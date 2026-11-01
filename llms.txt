@@ -1,0 +1,61 @@
+# Paolo Marocco — Neural Models · Visual Storytelling
+
+> Personal site of Paolo Marocco: mathematician and PhD in Economics, former
+> secondary-school teacher, former professional film critic (two books, on
+> Eric Rohmer and on Hitchcock's Vertigo), now building AI-assisted
+> visual-storytelling pipelines (ComfyUI) and a Dynamic Creative
+> Optimization (DCO) engine for brand campaigns, plus quantitative tools
+> for Italian film-industry analysis.
+
+## Core pages
+
+- [About](https://storyline-engine.com/about.html): who Paolo is and his background.
+- [Posts](https://storyline-engine.com/posts.html): index of all posts on this site.
+- [ADV](https://storyline-engine.com/adv.html): Dynamic Creative Optimization for brand campaigns.
+- [ComfyUI](https://storyline-engine.com/comfyui.html): overview of the node-based generative-AI tool.
+- [Visual Stories / Storyboards](https://storyline-engine.com/neural-graphics.html): AI-made visual narrative for comics and storyboards.
+- [Film Forecast](https://storyline-engine.com/neural-forecast.html): quantitative tools for the Italian film industry.
+
+## ComfyUI (technical)
+
+- [What is ComfyUI](https://storyline-engine.com/post-comfyui-intro.html)
+- [ComfyUI Visual Stories — Concepts](https://storyline-engine.com/post-comfyui-concepts.html)
+- [ComfyUI Visual Stories — The Node Graph](https://storyline-engine.com/post-comfyui-course-material.html)
+- [ComfyUI Visual Stories — The Python Scripts](https://storyline-engine.com/post-comfyui-python.html)
+- [Pipeline setup instructions](https://storyline-engine.com/comfyui-pipeline-setup.html)
+- [Python/bash workflow instructions](https://storyline-engine.com/comfyui-python-workflow-instructions.html)
+- [Curated ComfyUI resources](https://storyline-engine.com/post-comfyui-documents.html)
+- [Gemini vs ComfyUI: a comparison](https://storyline-engine.com/post-confyui-confronto-gemini.html)
+- [AELITA: PuLID vs Flux Kontext](https://storyline-engine.com/post-aelita.html)
+
+## DCO engine (advertising automation)
+
+- [The Engine: generation, control, export](https://storyline-engine.com/post-dco-engine.html)
+- [DCO: One Pipeline, Many Products](https://storyline-engine.com/post-dco-pipeline.html)
+- [DCO Engine: technical description](https://storyline-engine.com/dco-engine-tech.html)
+- [DCO: cost model](https://storyline-engine.com/dco-costs-tech.html)
+- [DCO and the Agency Market](https://storyline-engine.com/post-dco-mercato-globale.html)
+- [The Agency Channel in Italy](https://storyline-engine.com/post-dco-mercato-agenzie-ita.html)
+- [Meet Pannocchino e Spighetta](https://storyline-engine.com/post-pannocchino-spighetta.html)
+- [Pannocchino e Spighetta have a baby](https://storyline-engine.com/post-storyboard-adv.html)
+- [The grape harvest of Grappolotto and Foglina](https://storyline-engine.com/post-storyboard-vendemmia.html)
+
+## AI storyboards (visual stories)
+
+- [Aelita — Soviet Science Fiction (background)](https://storyline-engine.com/aelita.html)
+- [Aelita Storyboard (EN)](https://storyline-engine.com/aelita-storyboard-en.html) / [IT](https://storyline-engine.com/aelita-storyboard.html)
+- [First Encounter (background)](https://storyline-engine.com/primo-incontro.html)
+- [First Encounter Storyboard (EN)](https://storyline-engine.com/primo-incontro-storyboard-en.html) / [IT](https://storyline-engine.com/primo-incontro-storyboard.html)
+- [Under the Asphalt (background)](https://storyline-engine.com/sotto-lasfalto.html)
+- [Under the Asphalt Storyboard (EN)](https://storyline-engine.com/sotto-lasfalto-storyboard-en.html) / [IT](https://storyline-engine.com/sotto-lasfalto-storyboard.html)
+
+## Film industry analysis
+
+- [On the unexpected success of certain films](https://storyline-engine.com/post-box-office-imprevisto.html)
+- [Which genres carry the lowest risk of flop](https://storyline-engine.com/post-generi-rischio.html)
+- [Science fiction: a singular genre](https://storyline-engine.com/post-fantascienza.html)
+- [Horror: B-movies and social paradigms](https://storyline-engine.com/post-horror-bmovie.html)
+
+## Optional
+
+- Older, superseded versions of some ComfyUI posts are kept online for existing internal links but excluded from indexing (noindex); please prefer the pages listed above.
