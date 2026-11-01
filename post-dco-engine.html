@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>The Engine: generation, control, export</title>
+  <link rel="alternate" hreflang="en"        href="https://storyline-engine.com/post-dco-engine.html">
+  <link rel="alternate" hreflang="it"        href="https://storyline-engine.com/post-dco-engine.html?lang=it">
+  <link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-dco-engine.html">
+    <!-- Preload self-hosted fonts so they're already in flight before style.css
+       is even parsed — closes the remaining window where the browser paints
+       with the fallback (Georgia/Courier) and then swaps to the real font,
+       which is what still reads as the font "changing size" on reload. -->
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/style.css">
+
+  <style>
+    /* ── post body text ─────────────────────────────────── */
+    .post-text {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.15rem;
+      line-height: 1.75;
+      margin: 0 0 1.4em 0;
+    }
+    /* about-link (defined in style.css) handles all inline links:
+       ochre colour at rest, darker on hover, no underline        */
+
+    /* ── footnote ref ────────────────────────────────────── */
+    sup.fn-ref {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6em;
+      line-height: 1;
+      vertical-align: super;
+      margin-left: 0.1em;
+    }
+    sup.fn-ref a { text-decoration: none; opacity: 0.55; }
+    sup.fn-ref a:hover { opacity: 1; }
+
+    /* ── footnotes block ─────────────────────────────────── */
+    .footnotes {
+      margin-top: 4rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid currentColor;
+      opacity: 0.65;
+    }
+    .footnotes ol {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 0.92rem;
+      line-height: 1.65;
+      padding-left: 1.4em;
+      margin: 0 0 0 -1.4em;
+      list-style-position: outside;
+    }
+    .footnotes li { margin-bottom: 0.8em; }
+    .fn-back {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8em;
+      margin-left: 0.4em;
+      text-decoration: none;
+      opacity: 0.5;
+    }
+    .fn-back:hover { opacity: 1; }
+
+    /* ── figure / image ──────────────────────────────────── */
+    .post-figure {
+      margin: 2.5rem auto 2rem;
+    }
+    .post-figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid rgba(0,0,0,0.10);
+      background: #ffffff;
+    }
+
+    /* ── caption: bold title + smaller body ──────────────── */
+    .post-caption {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      line-height: 1.7;
+      color: #1A5CB3;
+      margin-top: 0.7rem;
+      text-align: justify;
+    }
+    .caption-title {
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      display: block;
+      margin-bottom: 0.2em;
+      text-align: center;
+    }
+
+    /* ── numbered content list ───────────────────────────── */
+    .content-list { list-style: none; padding: 0; margin: 1.6rem 0 0; }
+    .content-item {
+      display: grid;
+      grid-template-columns: 3rem 1fr;
+      gap: 1.6rem;
+      padding: 2rem 0;
+    }
+    .content-item:last-child { border-bottom: 1px solid rgba(0,0,0,0.08); }
+    /* no bottom line right before a chapter heading: its own thick top border already separates */
+    .content-list:has(+ .chapter-heading) .content-item:last-child { border-bottom: none; }
+    .content-number {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #1A5CB3;
+      opacity: 0.25;
+      padding-top: 0.15rem;
+      line-height: 1;
+    }
+    .content-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #1A5CB3;
+      margin: 0 0 0.9rem;
+      font-weight: 400;
+    }
+    .content-body .post-text { margin: 0; }
+
+    /* ── sub-bullet list ───────────────────────────────────── */
+    .content-sublist {
+      list-style: disc;
+      padding-left: 1.4em;
+      margin-top: 0.9em;
+      margin-bottom: 0;
+    }
+    .content-sublist li {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      margin-bottom: 0.6em;
+    }
+
+    /* ── placeholder figure (image to be generated later) ───── */
+    .post-figure--placeholder {
+      border: 2px dashed rgba(26,92,179,0.35);
+      background: rgba(26,92,179,0.04);
+      padding: 2.2rem 1.6rem;
+      border-radius: 4px;
+    }
+    .placeholder-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #1A5CB3;
+      opacity: 0.6;
+      display: block;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .post-figure--placeholder .post-caption { margin-top: 0; }
+
+    /* ── real figures ───────────────────────────────────────── */
+    .fig-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+    .fig-row img { aspect-ratio: 21 / 20; object-fit: cover; }
+    .post-figure--product { max-width: 420px; }
+    .post-figure--diagram { max-width: 640px; }
+    @media (max-width: 700px) { .fig-row { grid-template-columns: 1fr; } }
+
+    @media (max-width: 700px) {
+      .content-item { grid-template-columns: 2rem 1fr; gap: 1rem; }
+      .content-number { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body class="interior">
+
+  <header>
+    <a href="about.html" class="nav-item" data-en="ABOUT" data-it="ABOUT">ABOUT</a>
+    <div class="menu-container">
+      <span class="menu-trigger" data-en="TOPICS" data-it="ARGOMENTI">TOPICS</span>
+      <div class="menu-dropdown">
+        <a href="adv.html"             class="menu-item" data-en="ADV"            data-it="ADV">ADV</a>
+        <a href="neural-graphics.html" class="menu-item" data-en="VISUAL STORIES" data-it="FUMETTI/STORYBOARD">VISUAL STORIES</a>
+        <a href="comfyui.html"         class="menu-item" data-en="COMFYUI"        data-it="COMFYUI">COMFYUI</a>
+        <a href="posts.html"           class="menu-item" data-en="POSTS"          data-it="POST">POSTS</a>
+        <span class="menu-item menu-item--disabled" data-en="VIDEO" data-it="VIDEO">VIDEO</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content">
+
+    <p class="section-label" data-en="Claude + Gemini API &middot; Dynamic Creative Optimization · ENGINE · RELEASE 1" data-it="Claude + Gemini API &middot; Dynamic Creative Optimization · ENGINE · RELEASE 1">Claude + Gemini API &middot; Dynamic Creative Optimization · ENGINE · RELEASE 1</p>
+    <h1 class="page-title"
+        data-en="The Engine: generation, control, export"
+        data-it="Il motore: generazione, controllo, export">
+      The Engine: generation, control, export
+    </h1>
+
+    <div class="page-body">
+
+      <div class="post-tags" style="margin-bottom:2rem;">
+        <span class="post-tag tag-narr" data-en="Gemini API"  data-it="Gemini API">Gemini API</span>
+        <span class="post-tag tag-narr" data-en="DCO"         data-it="DCO">DCO</span>
+        <span class="post-tag tag-narr" data-en="Orchestration" data-it="Orchestrazione">Orchestration</span>
+        <span class="post-tag tag-narr" data-en="LLM-as-judge" data-it="LLM-as-judge">LLM-as-judge</span>
+        <span class="post-tag tag-narr" data-en="Engine"      data-it="Motore">Engine</span>
+      </div>
+
+      <p class="post-abstract-text"
+         data-en="We present an engine for automatic storyboard generation, for campaigns built around mascot characters. Here's the I/O in brief. In: four manual inputs — the mascot pair (neutral reference image), the brand or object to promote, the script that describes the story, and the slogans — all chosen upstream, by the brand or its agency; everything else, the structured description file included, is generated. Out: N story variants, with a QA control mechanism, and export formatting matching the AD-serving/DCO platforms this generative engine plugs into. This post complements the worked example from the earlier post <a href='post-storyboard-vendemmia.html' class='about-link'>The grape harvest of Grappolotto and Foglina</a>, adding more technical depth. The goal is to bring attention to the automatic self-correction loop that checks variants against a human-approved master storyboard (Chapter 05), the manifest's data structure and its final human sign-off (Chapter 06), and on to the formats and the formatting spaces per the specifications of a reference template (Chapter 07). Finally, in the last step, the batch of information for every shot is exported into the Manifest, according to the format agreed with the AD-serving/DCO platforms. A point which, from the market's point of view, is covered in more depth in the post <a href='post-dco-pipeline.html' class='about-link'>DCO: One Pipeline, Many Products</a>."
+         data-it="Proponiamo un engine di generazione automatica storyboard, per campagne che hanno come protagonisti mascotte. Riepiloghiamo l'I/O. In ingresso: quattro input manuali — la coppia di mascotte (immagine neutra di riferimento), il brand o l'oggetto da promuovere, lo script che descrive la storia e gli slogan — scelti a monte, dal brand o dalla sua agenzia; tutto il resto, file di descrizione strutturato compreso, è generato. In uscita: N varianti della storia, con un meccanismo di controllo QA, e la formattazione di export rispondente alle piattaforme di AD-serving/DCO che integrano questo engine generativo. Questo post complementa l'esempio descrittivo del post precedente <a href='post-storyboard-vendemmia.html' class='about-link'>La vendemmia di Grappolotto e Foglina</a> integrandolo con aspetti più tecnici. L'obbiettivo è quello di portare l'attenzione sul loop di autocorrezione automatico delle varianti rispetto a un master storyboard approvato da una persona (capitolo 05), la struttura dati del manifest e la sua firma umana finale (capitolo 06), fino alle proporzioni e agli spazi di formattazione secondo le specifiche di un template di riferimento (capitolo 07). Infine nell'ultimo passo, il batch delle informazioni di tutte le inquadrature, viene esportato nel Manifest rispetto al formato concordato con le piattaforme di AD-serving/DCO. Un aspetto che, dal pdv del mercato, viene approfondito nel post <a href='post-dco-pipeline.html' class='about-link'>DCO: una Pipeline, Più Prodotti</a>.">
+        We present an engine for automatic storyboard generation, for campaigns built around mascot characters. Here's the I/O in brief. In: four manual inputs — the mascot pair (neutral reference image), the brand or object to promote, the script that describes the story, and the slogans — all chosen upstream, by the brand or its agency; everything else, the structured description file included, is generated. Out: N story variants, with a QA control mechanism, and export formatting matching the AD-serving/DCO platforms this generative engine plugs into. This post complements the worked example from the earlier post <a href="post-storyboard-vendemmia.html" class="about-link">The grape harvest of Grappolotto and Foglina</a>, adding more technical depth. The goal is to bring attention to the automatic self-correction loop that checks variants against a human-approved master storyboard (Chapter 05), the manifest's data structure and its final human sign-off (Chapter 06), and on to the formats and the formatting spaces per the specifications of a reference template (Chapter 07). Finally, in the last step, the batch of information for every shot is exported into the Manifest, according to the format agreed with the AD-serving/DCO platforms. A point which, from the market's point of view, is covered in more depth in the post <a href="post-dco-pipeline.html" class="about-link">DCO: One Pipeline, Many Products</a>.
+      </p>
+
+      <!-- ── INTRO ─────────────────────────────────────────── -->
+      <p class="post-text"
+         data-en="<strong>Where the engine sits.</strong> It is not the campaign. The brand or its agency decides the brand, the slogan, the cast and the setting, and calls the engine as a pre-production step: a creative lead or a campaign-operations person sends one job — a brief, a locked character pair, the background plates — either as an API request or as a JSON file, and gets back a pool of finished story variants. The story itself arrives in one of two ways: written by the brand's creative team, or drafted by the engine from the brief and then approved upstream; the engine never decides on its own which story runs. The pool then enters whichever dynamic-creative tool the client already runs today (<a href='post-dco-mercato-globale.html' class='about-link'>DCO and the Agency Market</a> covers how that hand-off works); the job and export formats are specified in <a href='dco-engine-tech.html' class='about-link'>DCO Engine: technical description</a>.<br><br>What follows covers the whole engine, not a layer on top of something explained elsewhere: given a character pair and a brand's slogan, generate the story itself, not just its shots; run it through the loop that produces compatible variants for new slogans; and check and repair every shot with the generate &rarr; judge &rarr; correct loop the rest of this mechanism relies on. The product being advertised in the running example is a professional wooden waiter's corkscrew, shown below."
+         data-it="<strong>Dove si colloca il motore.</strong> Il brand o la sua agenzia di riferimento decidono il prodotto, slogan, personaggi e ambientazione, e chiamano il motore come passo di pre-produzione. Un direttore creativo o chi gestisce la campagna, spedisce un unico job — un brief, una coppia di personaggi già fissata, le ambientazioni — tramite API oppure come file JSON. Il motore genera un pool di varianti di storia già pronte, da cui viene prodotto l'Export. La storia (o meglio lo script) può essere scritta dal team creativo del brand, oppure creata dal motore a partire dal brief e poi approvata in modo supervisionato. Il risultato del processo entra poi nello stesso strumento di dynamic creative che il cliente usa già oggi (<a href='post-dco-mercato-globale.html' class='about-link'>DCO e il mercato delle agenzie</a> spiega come avviene quel passaggio); i formati della richiesta e dell'export sono specificati in <a href='dco-engine-tech.html' class='about-link'>Motore DCO: descrizione tecnica</a>.Il prodotto pubblicizzato nell'esempio che seguirà è un cavatappi professionale in legno">
+        <strong>Where the engine sits.</strong> It is not the campaign. The brand or its agency decides the brand, the slogan, the cast and the setting, and calls the engine as a pre-production step: a creative lead or a campaign-operations person sends one job — a brief, a locked character pair, the background plates — either as an API request or as a JSON file, and gets back a pool of finished story variants. The story itself arrives in one of two ways: written by the brand's creative team, or drafted by the engine from the brief and then approved upstream; the engine never decides on its own which story runs. The pool then enters whichever dynamic-creative tool the client already runs today (<a href="post-dco-mercato-globale.html" class="about-link">DCO and the Agency Market</a> covers how that hand-off works); the job and export formats are specified in <a href="dco-engine-tech.html" class="about-link">DCO Engine: technical description</a>.<br><br>What follows covers the whole engine, not a layer on top of something explained elsewhere: given a character pair and a brand's slogan, generate the story itself, not just its shots; run it through the loop that produces compatible variants for new slogans; and check and repair every shot with the generate &rarr; judge &rarr; correct loop the rest of this mechanism relies on. The product being advertised in the running example is a professional wooden waiter's corkscrew, shown below.
+      </p>
+
+      <!-- ── WHAT DCO IS ───────────────────────────────────── -->
+      <p class="content-title" style="margin-top:2.5rem;"
+         data-en="What Dynamic Creative Optimization is" data-it="Cos'è il Dynamic Creative Optimization">
+        What Dynamic Creative Optimization is
+      </p>
+
+      <p class="post-text"
+         data-en="Dynamic Creative Optimization (DCO) is the performance-marketing practice of generating many ad variants automatically instead of committing to one static creative, so a campaign can be tested and optimised at scale rather than designed once and hoped for. The goal predates generative AI by years — DCO has run on templated recombination since programmatic display advertising; what AI changes is which variants are affordable to produce and what each one can actually show."
+         data-it="Il Dynamic Creative Optimization (DCO) è la pratica, nel performance marketing, di generare automaticamente molte varianti di un annuncio invece di affidarsi a un solo esempio statico, in modo da poter testare e ottimizzare una campagna su scala. Questo obiettivo ha preceduto l'AI di diversi anni — il DCO girava su ricombinazione attraverso template fin dalla pubblicità schedulata; ciò che l'AI ha cambiato, tra le altre cose, sono i livelli di scalabilità e di distribuzione su una maggiore varietà di piattaforme, l'ottimizzazione di  
+		 quali varianti della storia potranno confluire in produzioni più vantaggiose di prodotti, feed-back in tempo reale, e altro (vedi le dot list seguenti).">
+        Dynamic Creative Optimization (DCO) is the performance-marketing practice of generating many ad variants automatically instead of committing to one static creative, so a campaign can be tested and optimised at scale rather than designed once and hoped for. The goal predates generative AI by years — DCO has run on templated recombination since programmatic display advertising; what AI changes is which variants are affordable to produce and what each one can actually show.
+      </p>
+
+      <p class="post-text" style="margin-bottom:0.5em;"
+         data-en="<strong>What it does.</strong>" data-it="<strong>Cosa fa.</strong>">
+        <strong>What it does.</strong>
+      </p>
+      <ul class="content-sublist">
+        <li data-en="Produces many variants of one campaign idea automatically — different slogans, different staging, different regional cuts — instead of committing to a single agency-approved version run everywhere."
+            data-it="Produce automaticamente molte varianti di un'unica campagna — slogan diversi, staging diverso, customizzazioni regionali diverse — invece di affidarsi a un'unica versione approvata dall'agenzia e mandata in onda ovunque.">
+          Produces many variants of one campaign idea automatically — different slogans, different staging, different regional cuts — instead of committing to a single agency-approved version run everywhere.
+        </li>
+        <li data-en="Tests those variants against real audience response and shifts spend toward whichever perform, instead of guessing upfront which creative will work."
+            data-it="Testa quelle varianti che rispondono sulla risposta reale del pubblico e sposta la spesa verso quelle che performano meglio, invece di indovinare in anticipo quale sarà più adatta.">
+          Tests those variants against real audience response and shifts spend toward whichever perform, instead of guessing upfront which creative will work.
+        </li>
+        <li data-en="In its generative-AI form specifically, renders each variant as new imagery on demand, rather than recombining a fixed set of pre-shot photos or clips — the older, templated form DCO has used for years."
+            data-it="Nella sua forma basata su AI, trasforma ogni variante in una nuova immagine generata su richiesta, invece di ricombinare un set fisso di foto o clip già pronta — la forma più antica usata dal DCO per anni.">
+          In its generative-AI form specifically, renders each variant as new imagery on demand, rather than recombining a fixed set of pre-shot photos or clips — the older, templated form DCO has used for years.
+        </li>
+      </ul>
+
+      <p class="post-text" style="margin-top:1.4em; margin-bottom:0.5em;"
+         data-en="<strong>Who it's for.</strong>" data-it="<strong>A chi è rivolto.</strong>">
+        <strong>Who it's for.</strong>
+      </p>
+      <ul class="content-sublist">
+        <li data-en="Performance-marketing agencies already running DCO at volume, who need a way to check every variant stays on-brand without reviewing each one by hand."
+            data-it="Agenzie di performance marketing che fanno già DCO, ma che hanno bisogno di un modo per controllare la coerenza delle variazioni rispetto al brand senza rivederle a mano una per una.">
+          Performance-marketing agencies already running DCO at volume, who need a way to check every variant stays on-brand without reviewing each one by hand.
+        </li>
+        <li data-en="Global CPG brands running one character or campaign across many regional markets, who need every localised variant to agree with the others on what &quot;on-brand&quot; means."
+            data-it="un brand CPG con presenza in decine di paesi ha tipicamente un personaggio o una campagna “master” ideata a livello centrale (global creative team), ma l’esecuzione in ogni mercato è delegata ad agenzie/uffici locali — per lingua, cultura, media buying, normative pubblicitarie locali. Essere d’accordo su cosa significhi &quot;on-brand&quot; vuol dire avere una definizione esplicita e controllabile di cosa rende quel personaggio riconoscibile come appartenente al brand.">
+          Global CPG brands running one character or campaign across many regional markets, who need every localised variant to agree with the others on what "on-brand" means.
+        </li>
+        <li data-en="AdTech and creative-automation infrastructure vendors, who build and sell this kind of pipeline to agencies and brands rather than running campaigns themselves."
+            data-it="Vendor di infrastrutture AdTech e automazione creativa, che costruiscono e vendono questo tipo di pipeline ad agenzie invece di gestire campagne in prima persona.">
+          AdTech and creative-automation infrastructure vendors, who build and sell this kind of pipeline to agencies and brands rather than running campaigns themselves.
+        </li>
+        <li data-en="Large-scale UGC and co-creation campaigns, where the sheer review volume makes manual QA physically impossible rather than just expensive."
+            data-it="Campagne UGC e co-creazione su larga scala, dove il volume di revisione da solo rende il QA manuale fisicamente impossibile, non solo costoso.">
+          Large-scale UGC and co-creation campaigns, where the sheer review volume makes manual QA physically impossible rather than just expensive.
+        </li>
+        <li data-en="Each of these four buyer profiles is worked through in detail, with real cases, in <a href='post-dco-pipeline.html' class='about-link'>DCO: One Pipeline, Many Products</a>."
+            data-it="Ciascuno di questi quattro profili di acquirenti è approfondito, con casi reali, in <a href='post-dco-pipeline.html' class='about-link'>DCO: una Pipeline, Più Prodotti</a>.">
+          Each of these four buyer profiles is worked through in detail, with real cases, in <a href="post-dco-pipeline.html" class="about-link">DCO: One Pipeline, Many Products</a>.
+        </li>
+      </ul>
+
+      <p class="post-text" style="margin-top:1.4em; margin-bottom:0.5em;"
+         data-en="<strong>What AI contributes today.</strong>" data-it="<strong>Il contributo di oggi con l'AI.</strong>">
+        <strong>What AI contributes today.</strong>
+      </p>
+      <ul class="content-sublist">
+        <li data-en="Before generative AI, DCO meant recombining a limited set of pre-shot photos or clips into different arrangements — real variety was capped by how much had been shot in the first place."
+            data-it="Prima dell'AI, il DCO significava ricombinare un set limitato di foto o clip già girate in disposizioni diverse — la varietà reale era limitata da quanto era stato girato in partenza.">
+          Before generative AI, DCO meant recombining a limited set of pre-shot photos or clips into different arrangements — real variety was capped by how much had been shot in the first place.
+        </li>
+        <li data-en="Generative AI removes that cap: each variant can be a new image or sequence, built to spec rather than selected from a fixed set, which is what makes a full new mascot story — not just a new crop or headline — a realistic variant to generate."
+            data-it="L'AI generativa rimuove quel limite: ogni variante può essere una nuova immagine o sequenza, costruita su misura invece che selezionata da un set fisso, il che è ciò che rende una storia completamente nuova delle mascotte — non solo un nuovo ritaglio o titolo — una variante realistica da generare.">
+          Generative AI removes that cap: each variant can be a new image or sequence, built to spec rather than selected from a fixed set, which is what makes a full new mascot story — not just a new crop or headline — a realistic variant to generate.
+        </li>
+        <li data-en="That removal creates a new bottleneck of its own: nothing in generation itself guarantees a freshly generated variant is still on-brand and on-character. The generate &rarr; judge &rarr; correct loop described below exists to close exactly that gap — it is the actual contribution this post walks through, not the generation step on its own."
+            data-it="Il cambiamento di prospettiva AI crea però un nuovo collo di bottiglia: la generazione in sé non garantisce che una variante appena generata resti coerente con brand e personaggi. Il loop genera &rarr; giudica &rarr; correggi (vedi capt 05 The judge in the loop) serve proprio per colmare questa carenza.">
+          That removal creates a new bottleneck of its own: nothing in generation itself guarantees a freshly generated variant is still on-brand and on-character. The generate &rarr; judge &rarr; correct loop described below exists to close exactly that gap — it is the actual contribution this post walks through, not the generation step on its own.
+        </li>
+      </ul>
+
+      <!-- ── CONTENTS ──────────────────────────────────────── -->
+      <ol class="content-list">
+
+        <!-- 01 -->
+        <li class="content-item">
+          <div class="content-number">01</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="The product and the campaign's claim"
+                data-it="Il prodotto e il claim della campagna">
+              The product and the campaign's claim
+            </h3>
+
+            <figure class="post-figure post-figure--product" style="margin-top:0.4rem;">
+              <img src="assets/post-dco-engine/corkscrew_no_watermark.jpg" alt="Professional wooden waiter's corkscrew" loading="lazy">
+              <figcaption class="post-caption"
+                data-en="<span class='caption-title'>The product: a professional wooden waiter&rsquo;s corkscrew</span>"
+                data-it="<span class='caption-title'>Il prodotto: un cavatappi professionale in legno</span>">
+                <span class="caption-title">The product: a professional wooden waiter&rsquo;s corkscrew</span>
+              </figcaption>
+            </figure>
+
+            <p class="post-text"
+               data-en="The object every variant in this post has to show correctly: wooden handle, hinged lever, foil cutter, spiral worm — de-branded, since the brand behind it is kept deliberately anonymous throughout this example, for copyright. It's a small, mechanically specific object — easy to get subtly wrong — which is exactly why it is a useful thing to put in front of the judge step described below. The claim built around it is a vineyard-brand one: wine marketing already leans on seasonal, narrative slogans rather than feature lists, which fits an engine whose actual job is restaging one story around a changing slogan — the two used further down are &ldquo;&hellip;the harvest gives us a wonderful wine!&rdquo; and &ldquo;&hellip;raising a glass of wine!&rdquo;. One product, one claim, many compatible variants of it — that is the worked example the rest of this post follows."
+               data-it="L'oggetto da promuovere in questo esempio è un cavatappi professionale in legno de-brandizzato, perché il brand dietro di esso resta volutamente anonimo in tutto questo esempio, per motivi di copyright. I suoi componenti chiave - manico in legno, leva a cerniera, taglia-capsula, spirale - devono essere immediatamente riconoscibili in ogni variante delle immagini di cui è il soggetto. È un oggetto piccolo e meccanicamente preciso — con un discreto rischio di mostrarlo in modo con consistente rispetto alle esigenze del brand — ed è esattamente per questo che è un buon banco di prova per il ciclo di check automatico dell'algorotmo descritto nei capt. successivi. Il claim costruito attorno a esso è un claim da brand vinicolo: il marketing del vino si appoggia già a slogan stagionali e narrativi più che a elenchi di caratteristiche, il che si adatta a un motore il cui compito reale è rimettere in scena una storia attorno a uno slogan che cambia — i due usati più avanti sono &ldquo;&hellip;la vendemmia ci regala un grande vino!&rdquo; e &ldquo;&hellip;fanno festa col buon vino!&rdquo;.">
+              The object every variant in this post has to show correctly: wooden handle, hinged lever, foil cutter, spiral worm — de-branded, since the brand behind it is kept deliberately anonymous throughout this example, for copyright. It's a small, mechanically specific object — easy to get subtly wrong — which is exactly why it is a useful thing to put in front of the judge step described below. The claim built around it is a vineyard-brand one: wine marketing already leans on seasonal, narrative slogans rather than feature lists, which fits an engine whose actual job is restaging one story around a changing slogan — the two used further down are "…the harvest gives us a wonderful wine!" and "…raising a glass of wine!". One product, one claim, many compatible variants of it — that is the worked example the rest of this post follows.
+            </p>
+
+          </div>
+        </li>
+
+      </ol>
+
+      <!-- ── CONTENTS ──────────────────────────────────────── -->
+      <ol class="content-list" >
+
+        <!-- 02 -->
+        <li class="content-item">
+          <div class="content-number">02</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="The character pair, the product, and the background plates"
+                data-it="La coppia di personaggi, il prodotto e gli sfondi">
+              The character pair, the product, and the background plates
+            </h3>
+
+            <p class="post-text"
+               data-en="The reference campaign uses the same storyboard already seen in <a href='post-storyboard-vendemmia.html' class='about-link'>The grape harvest of Grappolotto and Foglina</a>. The input the engine needs: one character pair in two images — the one with the two mascots isolated (neutral image) and the one with the mascots staged in the vineyard background plate — plus, when the campaign's product needs a locked visual identity of its own rather than a generic stand-in, its own separate reference image (the corkscrew case below). The pair's neutral image is taken as the reference, and it plays a double role, as we'll see in chapter <em>05 The judge in the loop</em>:<br>1. <strong>Identity reference</strong> — fixes the two characters' look: this is what D checks identity drift against (does the generated character actually look like Grappolotto/Foglina?).<br>2. <strong>Staging reference</strong> — also fixes who stands on the left and who on the right as the canonical convention, the same one that later reappears as the <code>LEFT:</code>/<code>RIGHT:</code> field in the structured description file (Chapter 03, one field per beat) and that D rechecks for spatial alignment (Chapter 05: &ldquo;confirming a character sits correctly on the <code>LEFT:</code> versus the <code>RIGHT:</code>&rdquo;).<br>The same logic applies to the product being advertised: once it has its own reference image, the generate&rarr;judge&rarr;correct loop checks its identity, position and context in every beat exactly as it does for the characters — not just that it's the right object (the wrong-object case in Chapter 05), but that it's staged the right way too. The settings for the other frames are obtained without needing any further input images, but from the description of the image itself, always using the neutral image of the two isolated mascots as the reference. The reference mascots can be generated (with the Google Gemini API, in this release) or commissioned from an outside service. That isn't the point of this post — the point is to show how easy it is to rely on a same-day setup, rather than a multi-week illustration commission."
+               data-it="La campagna di riferimento coinvolge lo storyboard già visto in <a href='post-storyboard-vendemmia.html' class='about-link'>La vendemmia di Grappolotto e Foglina</a>. L'input richiesto dal motore: una coppia di personaggi in due immagini &mdash; quella con le due mascotte isolate (immagine neutra) e quella con le mascotte inserite nell'ambiente vinicolo che fa da sfondo &mdash; più, quando il prodotto della campagna ha bisogno di un'identità visiva fissata invece di un ripiego generico, una sua immagine di riferimento a parte (il caso del cavatappi qui sotto). L'immagine neutra della coppia viene presa come riferimento, e ha un doppio ruolo, come vedremo nel capt. <em>05 Il judge nel loop</em>:<br>1. <strong>Riferimento di identità</strong> &mdash; fissa l'aspetto dei due personaggi: è contro questa che D controlla l'identity drift (il personaggio generato assomiglia davvero a Grappolotto/Foglina?).<br>2. <strong>Riferimento di staging</strong> &mdash; fissa anche chi sta a sinistra e chi a destra come convenzione canonica, quella stessa che poi ricompare come campo <code>LEFT:</code>/<code>RIGHT:</code> nel file di descrizione strutturato (capitolo 03, un campo per ogni beat) e che D ricontrolla per l'allineamento spaziale (capitolo 05: &ldquo;confermare che un personaggio sia correttamente a <code>LEFT:</code> piuttosto che a <code>RIGHT:</code>&rdquo;).<br>La stessa logica vale per il prodotto pubblicizzato: una volta che ha la propria immagine di riferimento, il loop genera&rarr;judge&rarr;correggi ne controlla identità, posizione e contesto in ogni beat esattamente come fa per i personaggi &mdash; non solo che sia l'oggetto giusto (il caso di wrong object nel capitolo 05), ma anche che sia messo in scena nel modo giusto.
+			   <br>Le ambientazioni degli altri fotogrammi saranno ottenute senza l'esigenza di altre immagini in input, ma in base alla descrizione dell'immagine stessa, e usando come referenti sempre l'immagine neutra delle due mascotte isolate. Le mascotte di riferimento potrebbero essere generate (con le API di Google Gemini, in questa release), oppure commissionate a un servizio esterno. Non è questo un punto nodale in questo post, semmai quello di mostrare la facilità di affidarsi a un setup risolvibile in un giorno, piuttosto che a una commissione illustrativa di settimane.">
+              The reference campaign uses the same storyboard already seen in <a href="post-storyboard-vendemmia.html" class="about-link">The grape harvest of Grappolotto and Foglina</a>. The input the engine needs: one character pair in two images — the one with the two mascots isolated (neutral image) and the one with the mascots staged in the vineyard background plate — plus, when the campaign's product needs a locked visual identity of its own rather than a generic stand-in, its own separate reference image (the corkscrew case below). The pair's neutral image is taken as the reference, and it plays a double role, as we'll see in chapter <em>05 The judge in the loop</em>:<br>1. <strong>Identity reference</strong> — fixes the two characters' look: this is what D checks identity drift against (does the generated character actually look like Grappolotto/Foglina?).<br>2. <strong>Staging reference</strong> — also fixes who stands on the left and who on the right as the canonical convention, the same one that later reappears as the <code>LEFT:</code>/<code>RIGHT:</code> field in the structured description file (Chapter 03, one field per beat) and that D rechecks for spatial alignment (Chapter 05: “confirming a character sits correctly on the <code>LEFT:</code> versus the <code>RIGHT:</code>”).<br>The same logic applies to the product being advertised: once it has its own reference image, the generate→judge→correct loop checks its identity, position and context in every beat exactly as it does for the characters — not just that it's the right object (the wrong-object case in Chapter 05), but that it's staged the right way too. The settings for the other frames are obtained without needing any further input images, but from the description of the image itself, always using the neutral image of the two isolated mascots as the reference. The reference mascots can be generated (with the Google Gemini API, in this release) or commissioned from an outside service. That isn't the point of this post — the point is to show how easy it is to rely on a same-day setup, rather than a multi-week illustration commission.
+            </p>
+
+          </div>
+        </li>
+
+      </ol>
+
+      <!-- ── FIGURE ─── -->
+      <figure class="post-figure">
+        <div class="fig-row">
+          <img src="assets/post-dco-engine/pair-neutral.jpg" alt="Character pair Grappolotto and Foglina on a neutral background" loading="lazy" style="object-position: 50% 30%;">
+          <img src="assets/post-dco-engine/pair-vineyard.jpg" alt="Character pair Grappolotto and Foglina in the vineyard background" loading="lazy" style="object-position: 52% 55%;">
+        </div>
+        <figcaption class="post-caption"
+          data-en="<span class='caption-title'>Chapter 02 &mdash; the reference pair, neutral and in the vineyard</span>Left: Grappolotto (a grape-bunch character) and Foglina (a vine-leaf character) on a plain background &mdash; the identity reference, staged <code>LEFT:</code>/<code>RIGHT:</code> as on the rest of the site. Right: the same pair in the vineyard background plate, the setting the stories will be staged in. Both are generated images, which the engine allows."
+          data-it="<span class='caption-title'>Capitolo 02 &mdash; la coppia di riferimento, neutra e nel vigneto</span>A sinistra: Grappolotto (un personaggio a forma di grappolo d&rsquo;uva) e Foglina (un personaggio fatto di foglie di vite) su fondo neutro &mdash; il riferimento di identità, in staging <code>LEFT:</code>/<code>RIGHT:</code> come nel resto del sito. A destra: la stessa coppia nello sfondo da vigneto, l&rsquo;ambientazione in cui verranno messe in scena le storie. ">
+          <span class="caption-title">Chapter 02 &mdash; the reference pair, neutral and in the vineyard</span>Left: Grappolotto (a grape-bunch character) and Foglina (a vine-leaf character) on a plain background &mdash; the identity reference, staged <code>LEFT:</code>/<code>RIGHT:</code> as on the rest of the site. Right: the same pair in the vineyard background plate, the setting the stories will be staged in. Both are generated images, which the engine allows.
+        </figcaption>
+      </figure>
+
+      <ol class="content-list" start="3">
+
+        <!-- 03 -->
+        <li class="content-item">
+          <div class="content-number">03</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="The story as a structured description file"
+                data-it="La storia come file di descrizione strutturato">
+              The story as a structured description file
+            </h3>
+
+            <p class="post-text"
+               data-en="The engine needs the campaign story in a structured shape, not free prose: one entry per beat (shot), each with its characters and their <code>LEFT:</code>/<code>RIGHT:</code> position, the background plate, the product or prop, the narrative role (opening, reveal, close) and any scene conditions, such as rain or sun. The campaign creator fills in none of this: there are only four manual inputs — the mascot pair in the neutral image, the brand or object to promote, the script that describes the story, and the slogans (if the brand has no script, the engine can draft one from the brief and a person approves it upstream). Everything else is generated: Claude (or whichever LLM is used) structures the script into the description file and fills in all its fields, and a person checks it rather than hand-writing it shot by shot. An example of the file, and the function that produces it, are in <a href='dco-engine-tech.html' class='about-link'>DCO Engine: technical description</a>, chapter 02."
+               data-it="Il motore ha bisogno della storia in una forma strutturata, non come prosa libera: una voce per ogni beat (inquadratura), con i suoi personaggi e la loro posizione <code>LEFT:</code>/<code>RIGHT:</code>, lo sfondo, il prodotto o l'oggetto in scena, il ruolo narrativo (inizio, rivelazione, chiusura) e le eventuali condizioni di scena, come pioggia o sole. Chi crea la campagna non deve compilare tutto questo: gli input manuali sono solo quattro — la coppia di mascotte nell'immagine neutra, il brand o l'oggetto da promuovere, lo script che descrive la storia e gli slogan. Il resto è generato: Claude (o l'LLM usato) struttura lo script nel file di descrizione e ne riempie tutti i campi, e una persona lo controlla, invece di scriverlo a mano shot per shot. Un esempio del file che contiene queste informazioni, e la funzione che lo produce, sono in <a href='dco-engine-tech.html' class='about-link'>Motore DCO: descrizione tecnica</a>, capitolo 02.">
+              The engine needs the campaign story in a structured shape, not free prose: one entry per beat (shot), each with its characters and their <code>LEFT:</code>/<code>RIGHT:</code> position, the background plate, the product or prop, the narrative role (opening, reveal, close) and any scene conditions, such as rain or sun. The campaign creator fills in none of this: there are only four manual inputs — the mascot pair in the neutral image, the brand or object to promote, the script that describes the story, and the slogans (if the brand has no script, the engine can draft one from the brief and a person approves it upstream). Everything else is generated: Claude (or whichever LLM is used) structures the script into the description file and fills in all its fields, and a person checks it rather than hand-writing it shot by shot. An example of the file, and the function that produces it, are in <a href="dco-engine-tech.html" class="about-link">DCO Engine: technical description</a>, chapter 02.
+            </p>
+
+          </div>
+        </li>
+
+        <!-- 04 -->
+        <li class="content-item">
+          <div class="content-number">04</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="Variant types and orchestration: one cast, many compatible stories"
+                data-it="Tipi di variante e orchestrazione: un solo cast, molte storie compatibili">
+              Variant types and orchestration: one cast, many compatible stories
+            </h3>
+
+            <p class="post-text"
+               data-en="<strong>Two kinds of variant.</strong> <strong>Type A &mdash; script variants:</strong> each is a different story, written by a person as its own script (for example: Grappolotto and Foglina get married; later they have a child). Every script becomes its own description file, which then goes through the generate&rarr;judge&rarr;correct loop (chapter 05). This is what the first release covers. <strong>Type B &mdash; sub-variants:</strong> smaller episodes branching off a type A story, which the engine could propose automatically<sup class='fn-ref'><a href='#fn2' id='fnref2'>2</a></sup> (other little animals turn up; the child plays with the hens and the rooster gets jealous; a city cousin of Grappolotto arrives, running the grape cooperative's bank &mdash; stories in the style of 1950s&ndash;60s Disney). Each proposal would get its own description file, but only after a story-consistency check on the text, before any image is generated (see chapter 05). Type B is a future development, not part of the first release."
+               data-it="<strong>Due tipi di variante.</strong> <strong>Tipo A &mdash; varianti di script:</strong> ciascuna è una storia diversa, scritta da una persona come script a sé (per esempio: Grappolotto e Foglina si sposano; poi hanno un bimbo). Ogni script diventa il proprio file di descrizione, che passa poi per il loop genera&rarr;judge&rarr;correggi (capitolo 05). È ciò che copre la prima release. <strong>Tipo B &mdash; sotto-varianti:</strong> episodi minori che si staccano da una storia di tipo A, e che il motore potrebbe proporre in automatico<sup class='fn-ref'><a href='#fn2' id='fnref2'>2</a></sup> (arrivano altri animaletti; il bimbo gioca con le galline e il gallo è geloso; arriva un cugino di Grappolotto, un tipo di città che gestisce la banca della cooperativa dell'uva &mdash; storie in stile Disney anni '50-'60). Ogni proposta avrebbe il proprio file di descrizione, ma solo dopo un controllo di story consistency sul testo, prima di generare qualsiasi immagine (vedi capitolo 05). Il tipo B è uno sviluppo futuro, non fa parte della prima release.">
+              <strong>Two kinds of variant.</strong> <strong>Type A — script variants:</strong> each is a different story, written by a person as its own script (for example: Grappolotto and Foglina get married; later they have a child). Every script becomes its own description file, which then goes through the generate&rarr;judge&rarr;correct loop (chapter 05). This is what the first release covers. <strong>Type B — sub-variants:</strong> smaller episodes branching off a type A story, which the engine could propose automatically<sup class='fn-ref'><a href='#fn2' id='fnref2'>2</a></sup> (other little animals turn up; the child plays with the hens and the rooster gets jealous; a city cousin of Grappolotto arrives, running the grape cooperative's bank — stories in the style of 1950s–60s Disney). Each proposal would get its own description file, but only after a story-consistency check on the text, before any image is generated (see chapter 05). Type B is a future development, not part of the first release.
+            </p>
+
+            <p class="post-text"
+               data-en="<strong>Who orchestrates, in practice.</strong> The orchestration here isn't a hand-written, line-by-line control flow: it's a coordinating agent that launches one pass of the generate&rarr;judge&rarr;correct loop (chapter 05) per variant, handing each the same locked references every time &mdash; characters and product (chapter 02), background &mdash; and simply checks that every run comes back with the same cast and the same world, only staged differently."
+               data-it="<strong>Chi orchestra, in pratica.</strong> Qui l'orchestrazione non &egrave; un controllo scritto a mano riga per riga: &egrave; un agente coordinatore che lancia, per ogni variante, un passaggio del loop genera&rarr;judge&rarr;correggi (capitolo 05), passandogli sempre gli stessi riferimenti fissati &mdash; personaggi e prodotto (capitolo 02), sfondo &mdash; e si limita a verificare che ogni esecuzione torni con lo stesso cast e lo stesso mondo, solo messo in scena in modo diverso.">
+              <strong>Who orchestrates, in practice.</strong> The orchestration here isn't a hand-written, line-by-line control flow: it's a coordinating agent that launches one pass of the generate&rarr;judge&rarr;correct loop (chapter 05) per variant, handing each the same locked references every time — characters and product (chapter 02), background — and simply checks that every run comes back with the same cast and the same world, only staged differently.
+            </p>
+
+          </div>
+        </li>
+
+      </ol>
+
+      <!-- ── FIGURE ─── -->
+      <figure class="post-figure">
+        <img src="assets/post-dco-engine/slogans-b.jpg" alt="Three stills: the pair staged for two slogans in the vineyard" loading="lazy">
+        <figcaption class="post-caption"
+          data-en="<span class='caption-title'>Chapter 04 &mdash; two slogans, one compatible beat</span>Same pair, same vineyard plate, same &ldquo;product reveal&rdquo; beat, restaged for two slogans. Left: <strong>&ldquo;With Foglina among the rows and Grappolotto down by the vine, the harvest gives us a wonderful wine!&rdquo;</strong> Right: <strong>&ldquo;Between a cow who's had one booze too many, and a cheeky little vine, Grappolotto and his girl are raising a glass of wine!&rdquo;</strong> This is the loop's raw output, shown as it came out, before A&rarr;D&rarr;E&rarr;D filters it."
+          data-it="<span class='caption-title'>Capitolo 04 &mdash; due slogan, un beat compatibile</span>Stessa coppia, stesso sfondo da vigneto, stesso beat &ldquo;rivelazione del prodotto&rdquo;, rimesso in scena per due slogan. A sinistra: <strong>&ldquo;Con Foglina tra i filari e Grappolotto giù nel tino, la vendemmia ci regala un grande vino!&rdquo;</strong> A destra: <strong>&ldquo;Tra una mucca che sbevazza e un germoglio birichino, Grappolotto e la sua bella fanno festa col buon vino!&rdquo;</strong> È l'output grezzo del loop, mostrato così com'è uscito, prima che A&rarr;D&rarr;E&rarr;D lo filtri.">
+          <span class="caption-title">Chapter 04 — two slogans, one compatible beat</span>Same pair, same vineyard plate, same "product reveal" beat, restaged for two slogans. Left: <strong>"With Foglina among the rows and Grappolotto down by the vine, the harvest gives us a wonderful wine!"</strong> Right: <strong>"Between a cow who's had one booze too many, and a cheeky little vine, Grappolotto and his girl are raising a glass of wine!"</strong> This is the loop's raw output, shown as it came out, before A&rarr;D&rarr;E&rarr;D filters it.
+        </figcaption>
+      </figure>
+
+      <ol class="content-list" start="5">
+
+        <!-- 05 -->
+        <li class="content-item" id="loop">
+          <div class="content-number">05</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="The judge in the loop: A&rarr;D&rarr;E&rarr;D and its limits"
+                data-it="Il judge nel loop: A&rarr;D&rarr;E&rarr;D e i suoi limiti">
+              The judge in the loop: A&rarr;D&rarr;E&rarr;D and its limits
+            </h3>
+
+            <p class="post-text"
+               data-en="Each pass of the generate&rarr;judge&rarr;correct loop (A&rarr;D&rarr;E&rarr;D)<sup class='fn-ref'><a href='#fn1' id='fnref1'>1</a></sup> works from what is already fixed for that variant &mdash; its description file, the master storyboard (human-approved, the reference every variant is built and measured against), the character and product references (chapter 02) and the background plate &mdash; and produces its storyboard: same cast and setting, following the consistency rules fixed in chapters 02 and 03. The slogan comes along as supporting copy, but it does not build the storyboard: on its own, a slogan leaves the model too much room to invent scenes that don't fit together. The orchestration's job: keep every variant compatible &mdash; same characters, same world &mdash; while the staging follows its own description file, not the slogan."
+               data-it="Ogni passaggio del loop genera&rarr;judge&rarr;correggi (A&rarr;D&rarr;E&rarr;D)<sup class='fn-ref'><a href='#fn1' id='fnref1'>1</a></sup> parte da ci&ograve; che per quella variante &egrave; gi&agrave; fissato &mdash; il suo file di descrizione, il master storyboard (approvato da un controllo umano, il riferimento rispetto a cui si costruiscono e si misurano le varianti), i riferimenti dei personaggi e del prodotto (capitolo 02) e lo sfondo &mdash; e ne produce lo storyboard: stesso cast e stessa ambientazione, seguendo le regole di coerenza fissate nei capitoli 02 e 03. Lo slogan accompagna come testo di appoggio, ma non costruisce lo storyboard: da solo lascerebbe al modello troppo margine per inventare scene che non stanno insieme. Il compito dell'orchestrazione &egrave; quello di mantenere ogni variante compatibile &mdash; stessi personaggi, stesso mondo &mdash; con uno staging che segue il proprio file di descrizione, non lo slogan.">
+              Each pass of the generate&rarr;judge&rarr;correct loop (A&rarr;D&rarr;E&rarr;D)<sup class='fn-ref'><a href='#fn1' id='fnref1'>1</a></sup> works from what is already fixed for that variant — its description file, the master storyboard (human-approved, the reference every variant is built and measured against), the character and product references (chapter 02) and the background plate — and produces its storyboard: same cast and setting, following the consistency rules fixed in chapters 02 and 03. The slogan comes along as supporting copy, but it does not build the storyboard: on its own, a slogan leaves the model too much room to invent scenes that don't fit together. The orchestration's job: keep every variant compatible — same characters, same world — while the staging follows its own description file, not the slogan.
+            </p>
+
+            <p class="post-text"
+               data-en="<strong>Two kinds of error, two different owners.</strong> The first: conformity errors and hallucination &mdash; identity drift, the wrong object, a deformed product, an extra character that doesn't belong in the cast. That's D's job, checked shot by shot against the spec and the master, and it's also D's strongest ground: research on using an LLM or VLM as a judge for image generation shows it aligns well with human judgment on clearly-failed outputs like these. D is weaker on fine spatial alignment &mdash; confirming a character sits correctly on the <code>LEFT:</code> versus the <code>RIGHT:</code> of a frame &mdash; which is exactly where the calibration below earns its keep. The second kind of error is a different problem entirely: the plot's semantic quality &mdash; does the story actually sell the brand? That's a creative-direction call made upstream, decided and signed off by a person when the master storyboard is locked, never a judgment D makes during the loop. For type B sub-variants (chapter 04, a future development) this call would not be left entirely to a person: a story-consistency loop, working like D but on the text before any image exists, would check each proposed sub-variant against the master storyboard and the cast rules, and send it back for rewriting if it contradicts them. It checks consistency, not persuasiveness: whether the story actually sells the brand stays a human sign-off. A stronger VLM raises generation quality, but it doesn't move this second line: conformity stays something D can check, the story's quality stays a human call."
+               data-it="<strong>Due classi di errore, due responsabili diversi.</strong> La prima: conformity errors e hallucination &mdash; identity drift, un oggetto sbagliato, un prodotto deformato, un personaggio in più che non appartiene al cast. È compito di D, controllato shot per shot contro la spec e il master, ed è anche il terreno più solido per D: la ricerca sull'uso di un LLM o VLM come judge per la generazione di immagini mostra che si allinea bene al giudizio umano su esiti così chiaramente falliti. D è più debole sull'allineamento spaziale fine &mdash; confermare che un personaggio sia correttamente a <code>LEFT:</code> piuttosto che a <code>RIGHT:</code> del fotogramma &mdash; ed è esattamente lì che la calibration qui sotto si guadagna il posto. La seconda classe di errore è un problema del tutto diverso: la semantic quality del plot &mdash; la storia promuove davvero il brand? È una scelta di creative direction a monte, decisa e approvata da una persona quando il master storyboard viene fissato, mai un giudizio che D fa durante il loop. Per le sotto-varianti di tipo B (capitolo 04, sviluppo futuro) questo passaggio non sarebbe lasciato interamente a una persona: un loop di story consistency, che funziona come D ma sul testo prima che esista qualsiasi immagine, controllerebbe ogni sotto-variante proposta contro il master storyboard e le regole del cast, e la rimanderebbe a riscrivere se le contraddice. Controlla la coerenza, non la forza persuasiva: se la storia promuove davvero il brand resta una firma umana. Un VLM più forte alza la qualità della generazione, ma non sposta questa seconda linea: la conformità resta qualcosa che D può controllare, la qualità della storia resta una scelta umana.">
+              <strong>Two kinds of error, two different owners.</strong> The first: conformity errors and hallucination — identity drift, the wrong object, a deformed product, an extra character that doesn't belong in the cast. That's D's job, checked shot by shot against the spec and the master, and it's also D's strongest ground: research on using an LLM or VLM as a judge for image generation shows it aligns well with human judgment on clearly-failed outputs like these. D is weaker on fine spatial alignment — confirming a character sits correctly on the <code>LEFT:</code> versus the <code>RIGHT:</code> of a frame — which is exactly where the calibration below earns its keep. The second kind of error is a different problem entirely: the plot's semantic quality — does the story actually sell the brand? That's a creative-direction call made upstream, decided and signed off by a person when the master storyboard is locked, never a judgment D makes during the loop. For type B sub-variants (chapter 04, a future development) this call would not be left entirely to a person: a story-consistency loop, working like D but on the text before any image exists, would check each proposed sub-variant against the master storyboard and the cast rules, and send it back for rewriting if it contradicts them. It checks consistency, not persuasiveness: whether the story actually sells the brand stays a human sign-off. A stronger VLM raises generation quality, but it doesn't move this second line: conformity stays something D can check, the story's quality stays a human call.
+            </p>
+
+
+            <p class="post-text"
+               data-en="<strong>Calibration.</strong> In practice, this means the supervisor periodically re-checks a sample of shots D has already waved through &mdash; not a full review of everything. Say D keeps approving a shot where Foglina ends up on the left instead of the right: once that mistake shows up often enough in the sample, it becomes a calibration example &mdash; the image, the correct verdict, the reason &mdash; added to D&rsquo;s prompt as a worked case to learn from. The sample also yields two numbers worth tracking: the <em>agreement rate</em> (how often D and the supervisor agree) and the <em>false-pass rate</em> (how often D lets a wrong shot through). Today this cycle &mdash; sample, measure, add the example &mdash; is done by hand; tracking it automatically from one release to the next is a later step, not part of this pipeline yet."
+               data-it="<strong>Calibration.</strong> In pratica significa che il supervisore ricontrolla a intervalli un campione di shot che D ha già approvato &mdash; non una revisione di tutto. Per esempio: se D continua ad approvare un'inquadratura in cui Foglina finisce a sinistra invece che a destra, una volta che l'errore si ripete abbastanza spesso nel campione diventa un esempio di calibration &mdash; l'immagine, il verdetto corretto, il motivo &mdash; aggiunto al prompt di D come caso da cui imparare. Dal campione escono anche due numeri utili da seguire: l'<em>agreement rate</em> (quanto spesso D e il supervisore sono d'accordo) e il <em>false-pass rate</em> (quanto spesso D lascia passare uno shot sbagliato). Oggi questo ciclo &mdash; campionare, misurare, aggiungere l&rsquo;esempio &mdash; si fa a mano; tracciarlo in automatico da una release all&rsquo;altra è un passo successivo, non ancora parte di questa pipeline.">
+              <strong>Calibration.</strong> In practice, this means the supervisor periodically re-checks a sample of shots D has already waved through — not a full review of everything. Say D keeps approving a shot where Foglina ends up on the left instead of the right: once that mistake shows up often enough in the sample, it becomes a calibration example — the image, the correct verdict, the reason — added to D’s prompt as a worked case to learn from. The sample also yields two numbers worth tracking: the <em>agreement rate</em> (how often D and the supervisor agree) and the <em>false-pass rate</em> (how often D lets a wrong shot through). Today this cycle — sample, measure, add the example — is done by hand; tracking it automatically from one release to the next is a later step, not part of this pipeline yet.
+            </p>
+
+            <p class="post-text"
+               data-en="<strong>An alternative mode: best-of-N.</strong> The default loop is pass/fail plus repair: D rejects a shot, E fixes only what was flagged. This release also offers another option: generate N candidates for the same beat and have a VLM rank them against the master storyboard, keeping the best one instead of repairing the single shot generated. Take the product-reveal beat, with Grappolotto and Foglina standing close together over the corkscrew: that&rsquo;s exactly where a staging slip &mdash; an arm in the wrong place, the product tilted &mdash; is both more likely and easier to spot. Generating three or four candidates and keeping the cleanest one costs more API calls per shot, but it&rsquo;s worth it on beats like this one."
+               data-it="<strong>Una modalità alternativa: best-of-N.</strong> Il loop di default è pass/fail più repair: D boccia un'inquadratura, E corregge solo ciò che è stato segnalato. Questa release offre anche un'altra opzione: generare N candidate per lo stesso beat e lasciare che un VLM le classifichi (<em>ranking</em>) contro il master storyboard, tenendo la migliore invece di correggere l'unica inquadratura generata. Prendiamo il beat della rivelazione del prodotto, con Grappolotto e Foglina vicini sopra il cavatappi: è esattamente lì che uno scivolone di staging &mdash; un braccio nel posto sbagliato, il prodotto inclinato &mdash; è insieme più probabile e più facile da notare. Generare tre o quattro candidate e scegliere la più pulita costa più chiamate API per shot, ma su un beat così ne vale la pena.">
+              <strong>An alternative mode: best-of-N.</strong> The default loop is pass/fail plus repair: D rejects a shot, E fixes only what was flagged. This release also offers another option: generate N candidates for the same beat and have a VLM rank them against the master storyboard, keeping the best one instead of repairing the single shot generated. Take the product-reveal beat, with Grappolotto and Foglina standing close together over the corkscrew: that’s exactly where a staging slip — an arm in the wrong place, the product tilted — is both more likely and easier to spot. Generating three or four candidates and keeping the cleanest one costs more API calls per shot, but it’s worth it on beats like this one.
+            </p>
+
+            <p class="post-text"
+               data-en="<strong>A real correction, worked through.</strong> A wrong-object case &mdash; the other conformity error D is built to catch, the product rather than the cast. For the campaign's hero shot &mdash; the one <a href='post-storyboard-vendemmia.html' class='about-link'>The grape harvest of Grappolotto and Foglina</a> opens on, promoting one specific product, a professional wooden corkscrew &mdash; a first generation pulls a generic, rough-looking corkscrew out of the engine's own asset repository instead of the branded one the whole campaign exists to sell. D flags it against the master: the spec names that exact product, not a stand-in from the repository. E corrects it by regenerating the prop region with the correct corkscrew &mdash; same shot, same characters, same table. The corrected version is the one published as the campaign's hero image."
+               data-it="<strong>Una correzione reale, passo per passo.</strong> Un caso di wrong object &mdash; l'altro conformity error che D è costruito per intercettare, sul prodotto anziché sul cast. Per lo shot principale della campagna &mdash; quello con cui si apre <a href='post-storyboard-vendemmia.html' class='about-link'>La vendemmia di Grappolotto e Foglina</a>, che promuove un prodotto preciso, un cavatappi professionale in legno &mdash; una prima generazione pesca un cavatappi generico e piuttosto grezzo dal repository di asset del motore, invece di quello brandizzato per cui esiste l'intera campagna. D lo segnala rispetto al master: la spec nomina esattamente quel prodotto, non un ripiego preso dal repository. E corregge rigenerando la zona dell'oggetto con il cavatappi corretto &mdash; stessa inquadratura, stessi personaggi, stesso tavolo. La versione corretta è quella pubblicata come immagine principale della campagna.">
+              <strong>A real correction, worked through.</strong> A wrong-object case — the other conformity error D is built to catch, the product rather than the cast. For the campaign's hero shot — the one <a href="post-storyboard-vendemmia.html" class="about-link">The grape harvest of Grappolotto and Foglina</a> opens on, promoting one specific product, a professional wooden corkscrew — a first generation pulls a generic, rough-looking corkscrew out of the engine's own asset repository instead of the branded one the whole campaign exists to sell. D flags it against the master: the spec names that exact product, not a stand-in from the repository. E corrects it by regenerating the prop region with the correct corkscrew — same shot, same characters, same table. The corrected version is the one published as the campaign's hero image.
+            </p>
+
+          </div>
+        </li>
+
+      </ol>
+
+      <!-- ── FIGURE ─── -->
+      <figure class="post-figure">
+        <div class="fig-row">
+          <img src="assets/post-dco-engine/cavatappi-flagged-wrong-prop.jpg" alt="Campaign hero shot with a generic, old-style corkscrew pulled from the engine's asset repository, flagged by D as the wrong product" loading="lazy">
+          <img src="assets/post-dco-engine/cavatappi-corrected-brand-prop.jpg" alt="Same hero shot corrected by E: the branded professional corkscrew the campaign is built around" loading="lazy">
+        </div>
+        <figcaption class="post-caption"
+          data-en="<span class='caption-title'>Chapter 05 &mdash; flagged by D, corrected by E</span>Left: the raw generation &mdash; the table is set with a generic, old-style corkscrew the engine pulled from its own asset repository, not the product the campaign promotes. Right: the same shot after correction &mdash; the branded professional corkscrew the whole campaign is built around, same table, same characters, same pose. This is the exact pair published as the campaign's hero shot. Four stages altogether: <strong>1. generated</strong>; <strong>2. flagged by D</strong>; <strong>3. corrected by E</strong>; <strong>4. passed on recheck</strong>."
+          data-it="<span class='caption-title'>Capitolo 05 &mdash; segnalato da D, corretto da E</span>A sinistra: la generazione grezza &mdash; sul tavolo c'è un cavatappi generico, di foggia antica, pescato dal repository di asset del motore, non il prodotto che la campagna promuove. A destra: lo stesso scatto dopo la correzione &mdash; il cavatappi professionale brandizzato su cui è costruita l'intera campagna, stesso tavolo, stessi personaggi, stessa posa. È esattamente la coppia pubblicata come immagine principale della campagna. Quattro stadi in tutto: <strong>1. generato</strong>; <strong>2. segnalato da D</strong>; <strong>3. corretto da E</strong>; <strong>4. passato al ricontrollo</strong>.">
+          <span class="caption-title">Chapter 05 — flagged by D, corrected by E</span>Left: the raw generation — the table is set with a generic, old-style corkscrew the engine pulled from its own asset repository, not the product the campaign promotes. Right: the same shot after correction — the branded professional corkscrew the whole campaign is built around, same table, same characters, same pose. This is the exact pair published as the campaign's hero shot. Four stages altogether: <strong>1. generated</strong>; <strong>2. flagged by D</strong>; <strong>3. corrected by E</strong>; <strong>4. passed on recheck</strong>.
+        </figcaption>
+      </figure>
+
+      <p class="post-text" style="margin-top:1.4em;"
+         data-en="<strong>Weighed against a person doing the same check by hand:</strong>"
+         data-it="<strong>Confrontato con una persona che faccia a mano lo stesso controllo:</strong>">
+        <strong>Weighed against a person doing the same check by hand:</strong>
+      </p>
+
+      <ul class="content-sublist">
+        <li data-en="<strong>Pro &mdash; scale:</strong> checks every variant at the same standard, whether it's variant 1 or variant 400; a human reviewer's attention and standards drift over a long batch in a way the judge's criteria don't."
+            data-it="<strong>Pro &mdash; scala:</strong> controlla ogni variante con lo stesso standard, che sia la variante 1 o la 400; l'attenzione e gli standard di un revisore umano deviano su un batch lungo in un modo che i criteri del judge non fanno.">
+          <strong>Pro — scale:</strong> checks every variant at the same standard, whether it's variant 1 or variant 400; a human reviewer's attention and standards drift over a long batch in a way the judge's criteria don't.
+        </li>
+        <li data-en="<strong>Pro &mdash; speed:</strong> a defect is flagged and routed back for correction in the time it takes to run the loop again, not in the time it takes to reach the top of a review queue."
+            data-it="<strong>Pro &mdash; velocità:</strong>  un difetto viene segnalato e rimandato in correzione nel tempo di una nuova esecuzione del loop, non nel tempo che ci vuole perché arrivi il suo turno in una coda di revisione umana.">
+          <strong>Pro — speed:</strong> a defect is flagged and routed back for correction in the time it takes to run the loop again, not in the time it takes to reach the top of a review queue.
+        </li>
+        <li data-en="<strong>Con &mdash; cost:</strong> every automated check is still an API call per shot, scaling linearly with volume; it isn't free just because no person is involved (cost detail in <a href='dco-costs-tech.html' class='about-link'>DCO: cost model</a>)."
+            data-it="<strong>Con &mdash; costo:</strong> ogni controllo automatico resta comunque una chiamata API per shot, lineare col volume; non è gratuito solo perché non coinvolge una persona (dettagli in <a href='dco-costs-tech.html' class='about-link'>DCO: modello dei costi</a>).">
+          <strong>Con — cost:</strong> every automated check is still an API call per shot, scaling linearly with volume; it isn't free just because no person is involved (cost detail in <a href="dco-costs-tech.html" class="about-link">DCO: cost model</a>).
+        </li>
+      </ul>
+
+      <p class="post-text" style="margin-top:1.4em;"
+         data-en="<strong>What's still open.</strong> What's new at engine scale is the volume of judgments per run. But a master storyboard and a calibration loop fix consistency <em>within</em> one variant, not <em>across</em> a batch: nothing here checks variant 12 against variant 1 once both individually pass D against the master &mdash; an open &quot;campaign auditor&quot; role this pipeline doesn't yet solve."
+         data-it="<strong>Cosa resta aperto.</strong> Un master storyboard e un loop di calibration risolvono la coerenza <em>all'interno di</em> una variante, non <em>tra</em> le varianti di un batch: nulla qui controlla la variante 12 rispetto alla variante 1 una volta che entrambe, singolarmente, superano il controllo di D contro il master &mdash; un ruolo aperto del &quot;revisore di campagna&quot; che questa pipeline non risolve ancora.">
+        <strong>What's still open.</strong> What's new at engine scale is the volume of judgments per run. But a master storyboard and a calibration loop fix consistency <em>within</em> one variant, not <em>across</em> a batch: nothing here checks variant 12 against variant 1 once both individually pass D against the master — an open "campaign auditor" role this pipeline doesn't yet solve.
+      </p>
+
+      <!-- ── SYNTHESIS ─────────────────────────────────────────── -->
+      <p class="content-title" style="margin-top:3rem;"
+         data-en="The full diagram" data-it="Il diagramma completo">The full diagram</p>
+
+      <figure class="post-figure post-figure--diagram">
+        <img src="assets/post-dco-engine/engine-diagram.jpg" alt="The engine in four steps" loading="lazy">
+        <figcaption class="post-caption"
+          data-en="<span class='caption-title'>The engine in four steps</span>The diagram covers only the engine proper, steps 1–4. Steps 5 and 6 are already outside the engine — two aspects of export — and are described in words below. Step 3 covers two boxes, not one: the loop itself, then its A&rarr;D&rarr;E&rarr;D judge-loop details, which Chapter 05 above walks through in full."
+          data-it="<span class='caption-title'>Il motore in quattro passi</span>Il diagramma copre solo il motore in senso proprio, i passi 1–4. I passi 5 e 6 sono già al di fuori del motore — due aspetti dell'export — e sono descritti a parole qui sotto. Il Passo 3 copre due riquadri, non uno: il loop in sé, poi i suoi dettagli del loop del judge A&rarr;D&rarr;E&rarr;D, che il capitolo 05 qui sopra racconta per intero.">
+          <span class="caption-title">The engine in four steps</span>The diagram covers only the engine proper, steps 1–4. Steps 5 and 6 are already outside the engine — two aspects of export — and are described in words below. Step 3 covers two boxes, not one: the loop itself, then its A&rarr;D&rarr;E&rarr;D judge-loop details, which Chapter 05 above walks through in full.
+        </figcaption>
+      </figure>
+
+      <ol class="content-sublist" style="list-style:none; padding-left:0;">
+        <li data-en="<strong>Step 1:</strong> One character pair, plus two or three background plates — these keyframes can themselves be generated rather than commissioned."
+            data-it="<strong>Passo 1:</strong> Una coppia di personaggi, una/più img del prodotto, più eventualmente due o tre sfondi — anche questi fotogrammi di riferimento possono essere generati invece che commissionati.">
+          <strong>Step 1:</strong> One character pair, plus two or three background plates — these keyframes can themselves be generated rather than commissioned.
+        </li>
+        <li data-en="<strong>Step 2:</strong> The story, automatically generated from the campaign subject by Claude (chat or API), structured as a description file — one entry per beat, with its characters, their position, and their narrative role."
+            data-it="<strong>Passo 2:</strong> La storia, generata automaticamente dal soggetto oppure scritta a mano, strutturata come file di descrizione (se scritta a mano, occorre una riformattazione standard di un LLM) — una voce per ogni beat, con i suoi personaggi, la loro posizione e il loro ruolo narrativo. Oltre alle loro interazioni con l'immagine del prodotto, quando presente.">
+          <strong>Step 2:</strong> The story, automatically generated from the campaign subject by Claude (chat or API), structured as a description file — one entry per beat, with its characters, their position, and their narrative role.
+        </li>
+        <li data-en="<strong>Step 3:</strong> A loop that generates story variations: the description file, the character and product images and the background go in, with the slogan as supporting copy; orchestration produces compatible story variants, staged as the description file says. Details: The A&rarr;D&rarr;E&rarr;D loop and its judge-reliability caveat — strong on gross identity drift, weaker on fine spatial alignment — against the Pros of automating that check at scale compared with a human doing it by hand."
+        data-it="<strong>Passo 3:</strong> Un loop che genera variazioni della storia: in input il file di descrizione, le immagini dei personaggi e del prodotto e lo sfondo, con lo slogan come testo di appoggio; l'orchestrazione produce varianti di storia compatibili, messe in scena come definito nel file di descrizione. Dettagli: Il loop A&rarr;D&rarr;E&rarr;D e la sua avvertenza sull'affidabilità del giudice automatico &mdash; forte sulla deriva grossolana di identità, più debole sull'allineamento spaziale fine &mdash; .">
+          <strong>Step 3:</strong> A loop that generates story variations: the description file, the character and product images and the background go in, with the slogan as supporting copy; orchestration produces compatible story variants, staged as the description file says. Details: The A&rarr;D&rarr;E&rarr;D loop and its judge-reliability caveat — strong on gross identity drift, weaker on fine spatial alignment — against the Pros of automating that check at scale compared with a human doing it by hand.
+        </li>
+        <li data-en="<strong>Step 4:</strong> Output: N generated-and-QA-repaired story variants for one brand &mdash; full beat-by-beat sequences, not single images. What N actually costs to produce &mdash; yield, refusal rate &mdash; is in <a href='dco-costs-tech.html' class='about-link'>DCO: cost model</a>."
+            data-it="<strong>Passo 4:</strong> Output: N varianti di storia generate e corrette via Controllo qualità (QA) per un brand &mdash; sequenze complete beat per beat, non singole immagini. Quanto costa davvero produrre N varianti &mdash; compresi tasso di scarto e inefficienze varie &mdash; è nella pagina di <a href='dco-costs-tech.html' class='about-link'>DCO: modello dei costi</a>.">
+          <strong>Step 4:</strong> Output: N generated-and-QA-repaired story variants for one brand — full beat-by-beat sequences, not single images. What N actually costs to produce — yield, refusal rate — is in <a href="dco-costs-tech.html" class="about-link">DCO: cost model</a>.
+        </li>
+        <li style="margin-top:1.2em; font-family:var(--mono); font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:#1A5CB3;"
+            data-en="Beyond the engine &mdash; two aspects of export"
+            data-it="Oltre il motore &mdash; due aspetti dell'export">
+          Beyond the engine — two aspects of export
+        </li>
+        <li style="color:var(--ink-mid);" data-en="<strong>Step 5:</strong> Formats and reserved zones: every approved shot is recomposed into the aspect ratios the ad formats will ask for, keeping the cast inside the frame and leaving clear the rectangle the template will occupy."
+            data-it="<strong>Passo 5:</strong> Proporzioni e zone riservate: ogni inquadratura approvata viene ricomposta nelle proporzioni che i formati pubblicitari chiederanno, tenendo il cast dentro il campo e lasciando libero il rettangolo che il template occuperà.">
+          <strong>Step 5:</strong> Formats and reserved zones: every approved shot is recomposed into the aspect ratios the ad formats will ask for, keeping the cast inside the frame and leaving clear the rectangle the template will occupy.
+        </li>
+        <li style="color:var(--ink-mid);" data-en="<strong>Step 6:</strong> Export: the batch becomes a structured manifest — one row per shot, format and slogan, with a unique ID, variant labels and QA status — plus the adapters towards the feed schema of the platform already in use."
+            data-it="<strong>Passo 6:</strong> Export: il batch diventa un manifest strutturato — una riga per inquadratura, proporzione e slogan, con ID univoco, etichette di variante e stato QA — più gli adattatori che lo integrano nella piattaforma già in uso (vedi capt 06).">
+          <strong>Step 6:</strong> Export: the batch becomes a structured manifest — one row per shot, format and slogan, with a unique ID, variant labels and QA status — plus the adapters towards the feed schema of the platform already in use.
+        </li>
+      </ol>
+
+      <ol class="content-list" start="6">
+
+        <!-- 06 -->
+        <li class="content-item">
+          <div class="content-number">06</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="Export: from pool to feed"
+                data-it="Export: dal pool al feed">
+              Export: from pool to feed
+            </h3>
+
+            <p class="post-text"
+               data-en="A pool of approved images is not yet something a dynamic-creative platform can read. The export layer covers that gap: it turns the run into a <strong>structured manifest</strong>, where every row is one deliverable unit — one shot, in one format, for one slogan. A six-beat story, with three slogans and four formats, produces 72 rows: exactly the multiplication that in an agency is still done by hand.<br><br>There is one canonical manifest, and the adapters towards individual platforms are thin. The engine never writes one vendor's format directly: it writes everything it knows about the batch, and an adapter selects and renames the columns for the destination. Adding a destination means writing an adapter, not touching the engine. The first adapter follows the feed schema already described in <a href='post-dco-mercato-globale.html' class='about-link'>DCO and the Agency Market</a>: a unique ID per row, an image URL, headline and CTA text, an exit URL. Let's list the Manifest's fields:"
+               data-it="Un pool di immagini approvate non è ancora sufficiente per un DCO platform, occorre aggiungere un layer di export: ossia trasformare il run del diagramma in figura, in un <strong>Manifest strutturato</strong>, dove ogni riga è un'unità deliberabile — una inquadratura, in una proporzione, per uno slogan. Una storia di sei beat, con tre slogan e quattro proporzioni, produce 72 righe: è esattamente la moltiplicazione che in agenzia si usa fare spesso a mano.<br><br>Il manifest è uno e canonico. Il motore non scrive mai direttamente il formato di questo o quel fornitore: scrive tutto quello che ha usato nel batch, e un adattatore seleziona e rinomina le colonne per la destinazione. Aggiungere una destinazione vuol dire scrivere un adattatore. Il primo adattatore segue lo schema a feed già descritto in <a href='post-dco-mercato-globale.html' class='about-link'>DCO e il mercato delle agenzie</a>: un ID univoco per riga, una URL immagine, i testi di headline e CTA, una URL di uscita. Elenchiamo i campi del Manifest:">
+              A pool of approved images is not yet something a dynamic-creative platform can read. The export layer covers that gap: it turns the run into a <strong>structured manifest</strong>, where every row is one deliverable unit — one shot, in one format, for one slogan. A six-beat story, with three slogans and four formats, produces 72 rows: exactly the multiplication that in an agency is still done by hand.<br><br>There is one canonical manifest, and the adapters towards individual platforms are thin. The engine never writes one vendor's format directly: it writes everything it knows about the batch, and an adapter selects and renames the columns for the destination. Adding a destination means writing an adapter, not touching the engine. The first adapter follows the feed schema already described in <a href="post-dco-mercato-globale.html" class="about-link">DCO and the Agency Market</a>: a unique ID per row, an image URL, headline and CTA text, an exit URL. Let's list the Manifest's fields:
+            </p>
+
+            <ul class="content-sublist">
+              <li data-en="<strong>asset_id</strong> — the identifier the DCO engine will use to call the image. The convention is to write them in this order — <em>brand-story-slogan-beat-format</em> — because when a report flags a problem, the ID already says where to look."
+                  data-it="<strong>asset_id</strong> — l'identificatore con cui il motore DCO chiamerà l'immagine. La convenzione è scriverle in questo ordine — <em>brand-storia-slogan-beat-proporzione</em> — perché quando un report segnala un problema, l'ID dice già dove guardare.">
+                <strong>asset_id</strong> — the identifier the DCO engine will use to call the image. The convention is to write them in this order — <em>brand-story-slogan-beat-format</em> — because when a report flags a problem, the ID already says where to look.
+              </li>
+              <li data-en="<strong>brand</strong>, <strong>product_line</strong> — the keys that hold a multi-product catalogue together (see <a href='post-dco-pipeline.html' class='about-link'>DCO: One Pipeline, Many Products</a>)."
+                  data-it="<strong>brand</strong>, <strong>linea_prodotto</strong> — le chiavi che tengono insieme un catalogo multi-prodotto (vedi <a href='post-dco-pipeline.html' class='about-link'>DCO: una Pipeline, Più Prodotti</a>).">
+                <strong>brand</strong>, <strong>product_line</strong> — the keys that hold a multi-product catalogue together (see <a href="post-dco-pipeline.html" class="about-link">DCO: One Pipeline, Many Products</a>).
+              </li>
+              <li data-en="<strong>story</strong>, <strong>beat</strong>, <strong>narrative_role</strong> — where the shot comes from and what function it has in the sequence: opening, development, close. It matters because a CTA does not belong on an opening beat."
+                  data-it="<strong>storia</strong>, <strong>beat</strong>, <strong>ruolo_narrativo</strong> — da dove viene l'inquadratura e che funzione ha nella sequenza: apertura, sviluppo, chiusura. Serve perché una CTA non va messa sopra un beat di apertura.">
+                <strong>story</strong>, <strong>beat</strong>, <strong>narrative_role</strong> — where the shot comes from and what function it has in the sequence: opening, development, close. It matters because a CTA does not belong on an opening beat.
+              </li>
+              <li data-en="<strong>cast</strong> — who is in frame, so a batch can be filtered by character."
+                  data-it="<strong>cast</strong> — chi è in scena, per filtrare un batch per personaggio.">
+                <strong>cast</strong> — who is in frame, so a batch can be filtered by character.
+              </li>
+              <li data-en="<strong>format</strong>, <strong>reserved_zone</strong> — the aspect ratio, and the rectangle the template can occupy without covering a face (chapter 07)."
+                  data-it="<strong>proporzioni</strong>, <strong>zona_riservata</strong> — le proporzioni e il rettangolo che il template può occupare senza coprire un volto (capitolo 07).">
+                <strong>format</strong>, <strong>reserved_zone</strong> — the aspect ratio, and the rectangle the template can occupy without covering a face (chapter 07).
+              </li>
+              <li data-en="<strong>variant_labels</strong> — what the scene depicts: <em>weather:rain</em>, <em>time:evening</em>, <em>occasion:birth</em>. This is the conceptually decisive column: here we declare what the image is, never who should see it. The selection stays with the platform's rules."
+                  data-it="<strong>etichette_variante</strong> — che cosa ritrae la scena: <em>meteo:pioggia</em>, <em>momento:sera</em>, <em>occasione:nascita</em>. È la colonna concettualmente decisiva: qui si dichiara che cos'è l'immagine, non chi deve vederla. La selezione resta alle regole della piattaforma.">
+                <strong>variant_labels</strong> — what the scene depicts: <em>weather:rain</em>, <em>time:evening</em>, <em>occasion:birth</em>. This is the conceptually decisive column: here we declare what the image is, never who should see it. The selection stays with the platform's rules.
+              </li>
+              <li data-en="<strong>qa_status</strong> — Quality control: passed first try, corrected, or discarded (with the discard reason). Discarded rows stay in the manifest for traceability, but never enter the feed."
+                  data-it="<strong>stato_qa</strong> — Il controllo qualità: passato al primo tentativo, corretto, o scartato (con il motivo di scarto). Le righe scartate restano nel manifest per tracciabilità, ma non entrano nel feed.">
+                <strong>qa_status</strong> — Quality control: passed first try, corrected, or discarded (with the discard reason). Discarded rows stay in the manifest for traceability, but never enter the feed.
+              </li>
+              <li data-en="<strong>review_status</strong> — the final human sign-off on brand and compliance, which stays a human signature."
+                  data-it="<strong>stato_revisione</strong> — l'approvazione umana finale su brand e conformità, che resta una firma umana.">
+                <strong>review_status</strong> — the final human sign-off on brand and compliance, which stays a human signature.
+              </li>
+            </ul>
+
+            <p class="post-text" style="margin-top:1.2em;"
+               data-en="Two reports come out of the same manifest. The first is <strong>coverage</strong>: for every combination the brief asked for — slogan by label by format — is there at least one approved row? The mismatch has to show up before delivery, not after. The second is the <strong>batch account</strong>: rows generated, approved, discarded, and machine time spent. Those are the production metrics the overview page talks about.<br><br>A design note: <em>asset_id</em> and <em>variant_labels</em> are also the hook that would later make it possible to read the platform's reports by ID and retire the low-performing variants."
+               data-it="Dallo stesso Manifest escono due report. Il primo è la <strong>copertura</strong>: per ogni combinazione chiesta dal brief — slogan per etichetta per proporzione — esiste almeno una riga approvata? L'incongruenza deve apparire prima della consegna, non dopo. Il secondo è il <strong>conto del batch</strong>: righe generate, approvate, scartate, e tempo macchina speso. Sono le metriche di produzione di cui tratta la pagina di presentazione.<br><br>Una nota di progetto: <em>asset_id</em> e <em>etichette_variante</em> sono anche l'aggancio che renderebbe possibile, in seguito, leggere i report della piattaforma per ID ed escludere le varianti di bassa performance.">
+              Two reports come out of the same manifest. The first is <strong>coverage</strong>: for every combination the brief asked for — slogan by label by format — is there at least one approved row? The mismatch has to show up before delivery, not after. The second is the <strong>batch account</strong>: rows generated, approved, discarded, and machine time spent. Those are the production metrics the overview page talks about.<br><br>A design note: <em>asset_id</em> and <em>variant_labels</em> are also the hook that would later make it possible to read the platform's reports by ID and retire the low-performing variants.
+            </p>
+
+          </div>
+        </li>
+
+        <!-- 07 -->
+        <li class="content-item">
+          <div class="content-number">07</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="Formats and reserved zones"
+                data-it="Proporzioni e zone riservate">
+              Formats and reserved zones
+            </h3>
+
+            <p class="post-text"
+               data-en="The same approved shot has to be exported in several aspect ratios — 1:1, 4:5, 9:16, 16:9 — as the ad platforms will require. The mechanical part is simple: crop where the content allows it, extend the background where a crop would hurt the cast or product, and have the judge of chapter 05 (the loop's automatic checker) recheck the reformatted frame, because identity has to hold after a crop or an extension too. The same information about where the characters stand enables the reverse operation, which is the one that counts most: <strong>composing the scene so that the rectangle where the template will write</strong> headline, price and CTA stays clear. A downstream tool cannot do this — by the time it receives the image the scene already exists, and useful information risks being covered for the viewer (see image below)."
+               data-it="La stessa inquadratura approvata deve essere esportata in più proporzioni — 1:1, 4:5, 9:16, 16:9 — come richiesto dalle piattaforme ADV. La parte meccanica è semplice: si ritaglia dove il contenuto lo consente, si estende lo sfondo dove il ritaglio sarebbe dannoso per il cast/prodotto, il 'Giudice' del capitolo 05 (ossia il controllore automatico del loop) ricontrolla il fotogramma riformattato, perché l'identità deve reggere anche dopo un ritaglio o un'estensione. La stessa informazione sulla posizione dei personaggi permette l'operazione inversa, che è quella che conta di più: <strong>comporre la scena lasciando libero il rettangolo dove il template scriverà</strong> titolo, prezzo e CTA. Uno strumento a valle non può farlo — quando riceve l'immagine la scena esiste già, e le informazioni utili rischiano di essere coperte al lettore (vedi immagine in basso).">
+              The same approved shot has to be exported in several aspect ratios — 1:1, 4:5, 9:16, 16:9 — as the ad platforms will require. The mechanical part is simple: crop where the content allows it, extend the background where a crop would hurt the cast or product, and have the judge of chapter 05 (the loop's automatic checker) recheck the reformatted frame, because identity has to hold after a crop or an extension too. The same information about where the characters stand enables the reverse operation, which is the one that counts most: <strong>composing the scene so that the rectangle where the template will write</strong> headline, price and CTA stays clear. A downstream tool cannot do this — by the time it receives the image the scene already exists, and useful information risks being covered for the viewer (see image below).
+            </p>
+
+            <p class="post-text" style="margin-top:1.2em;"
+               data-en="For this to work the engine needs an input it does not have on its own: the geometry of the templates actually in use at the client — which rectangle, in which aspect ratio. In practice, reserved-rectangle staging is waiting for the template geometry of a real client to put it to the test. For the API-call counts, per-image costs and the config-table/description-file mechanics behind both stages, see <a href='dco-costs-tech.html' class='about-link'>DCO: cost model</a>."
+               data-it="Perché funzioni, al motore serve un ingresso che da solo non ha: la geometria dei template effettivamente in uso presso il cliente — quale rettangolo, in quale proporzione. In pratica, la messa in scena a rettangolo riservato deve attendere la geometria dei template di un cliente reale per essere messa alla prova. Per il conteggio delle chiamate API, i costi per immagine e il meccanismo tabella-di-configurazione/file-di-descrizione dietro entrambi gli stadi, vedi <a href='dco-costs-tech.html' class='about-link'>DCO: modello dei costi</a>.">
+              For this to work the engine needs an input it does not have on its own: the geometry of the templates actually in use at the client — which rectangle, in which aspect ratio. In practice, reserved-rectangle staging is waiting for the template geometry of a real client to put it to the test. For the API-call counts, per-image costs and the config-table/description-file mechanics behind both stages, see <a href="dco-costs-tech.html" class="about-link">DCO: cost model</a>.
+            </p>
+
+            <figure class="post-figure" style="margin-top:1.6rem;">
+              <img src="assets/post-storyboard-vendemmia/pannocchino-spighetta-banner1.jpg" alt="Same shot, full cast in frame: a fixed box position landing on the cast's boots, next to the same box relocated to the clear area above" loading="lazy">
+              <figcaption class="post-caption"
+                data-en="<span class='caption-title'>Chapter 07 &mdash; same crop, two box strategies</span>The same approved shot, full cast in frame in both panels. Left: a fixed price/CTA box position, carried over unchanged from another layout &mdash; it lands right across the cast's boots. Right: the engine sizes and places the same box where the composed scene is actually clear, because it knows where the characters are. The mismatch shown here for one crop shows up at other aspect ratios too, just in different places."
+                data-it="<span class='caption-title'>Capitolo 07 &mdash; stesso ritaglio, due strategie di posizionamento</span>La stessa inquadratura approvata, con la coppia intera nel campo in entrambi i pannelli. A sinistra: una posizione fissa del box prezzo/CTA, portata invariata da un altro layout &mdash; finisce proprio sopra gli stivali del personaggio. Un altro banner, più invadente, finisce sul volto. A destra: il motore dimensiona e piazza lo stesso box dove la scena composta è libera, perché conosce la posizione dei personaggi. Il disallineamento mostrato qui per un ritaglio si ripresenta anche in altre immagini, soltanto in punti diversi.">
+                <span class="caption-title">Chapter 07 — same crop, two box strategies</span>The same approved shot, full cast in frame in both panels. Left: a fixed price/CTA box position, carried over unchanged from another layout — it lands right across the cast's boots. Right: the engine sizes and places the same box where the composed scene is actually clear, because it knows where the characters are. The mismatch shown here for one crop shows up at other aspect ratios too, just in different places.
+              </figcaption>
+            </figure>
+
+          </div>
+        </li>
+
+      </ol>
+
+    
+
+      <!-- ── FOOTNOTES ─────────────────────────────────────── -->
+      <section class="footnotes">
+        <ol>
+          <li id="fn1">
+            <span data-en="The A&rarr;D&rarr;E&rarr;D loop is the generate&ndash;judge&ndash;correct cycle the whole pipeline runs on, also described in <a href='post-dco-pipeline.html' class='about-link'>DCO: One Pipeline, Many Products</a>. <strong>A</strong> generates a shot against its structured spec. <strong>D</strong>, a Gemini-based VLM judge, checks the result assertion by assertion &mdash; does the LEFT: character still have its defining features, does the pose match the spec, and so on &mdash; and lists any defects by severity. <strong>E</strong> edits the shot to fix only what D flagged, without re-generating from scratch. D then rechecks the corrected shot, and the cycle repeats until it passes or hits a budget cap on retries. The loop runs once per shot, so a single story variant with several shots runs it several times."
+                  data-it="Il loop A&rarr;D&rarr;E&rarr;D è il ciclo genera&ndash;giudica&ndash;correggi su cui gira l'intera pipeline, descritto anche in <a href='post-dco-pipeline.html' class='about-link'>DCO: una Pipeline, Più Prodotti</a>. <strong>A</strong> genera un'inquadratura a partire dalla sua spec strutturata. <strong>D</strong>, un judge VLM basato su Gemini, verifica il risultato asserzione per asserzione &mdash; il personaggio LEFT: ha ancora i suoi tratti distintivi, la posa corrisponde alla spec, e così via &mdash; ed elenca eventuali difetti per gravità. <strong>E</strong> modifica l'inquadratura per correggere solo ciò che D ha segnalato, senza rigenerarla da zero. D ricontrolla poi l'inquadratura corretta, e il ciclo si ripete finché non passa o non raggiunge un limite massimo di tentativi. Il loop gira una volta per inquadratura, quindi una singola variante di storia con più inquadrature lo esegue più volte.">
+              The A&rarr;D&rarr;E&rarr;D loop is the generate–judge–correct cycle the whole pipeline runs on, also described in <a href="post-dco-pipeline.html" class="about-link">DCO: One Pipeline, Many Products</a>. <strong>A</strong> generates a shot against its structured spec. <strong>D</strong>, a Gemini-based VLM judge, checks the result assertion by assertion — does the LEFT: character still have its defining features, does the pose match the spec, and so on — and lists any defects by severity. <strong>E</strong> edits the shot to fix only what D flagged, without re-generating from scratch. D then rechecks the corrected shot, and the cycle repeats until it passes or hits a budget cap on retries. The loop runs once per shot, so a single story variant with several shots runs it several times.
+            </span>
+            <a href="#fnref1" class="fn-back" aria-label="back to text">&#8617;</a>
+          </li>
+          <li id="fn2">
+            <span data-en="Today's diffusion/transformer models do more than follow the prompt's plain, name-only list: they describe a scene in far more detail, adding characters nobody mentioned for consistency with the setting (e.g. a farmhouse, a flock of grazing sheep, a village fair, and so on). A similar idea could apply to building variants: treat the cast and props as random variables &mdash; different every time, yet still consistent with the scene and faithful to the campaign's message."
+                  data-it="La capacit&agrave; dei modelli diffusion/transformer oggi consiste nel descrivere un'immagine in forma molto pi&ugrave; dettagliata rispetto agli elenchi nominali espressi dal prompt: personaggi non menzionati vengono aggiunti per coerenza con il quadro scenico (es.: una fattoria, un gruppo di pecore al pascolo, una festa di paese, ecc.). Un fenomeno analogo si ritroverebbe nella costruzione delle varianti, viste come variabili casuali di personaggi/oggetti &mdash; ogni volta diversi, ma comunque coerenti con il quadro scenico e rispettosi del messaggio pubblicitario.">
+              Today's diffusion/transformer models do more than follow the prompt's plain, name-only list: they describe a scene in far more detail, adding characters nobody mentioned for consistency with the setting (e.g. a farmhouse, a flock of grazing sheep, a village fair, and so on). A similar idea could apply to building variants: treat the cast and props as random variables — different every time, yet still consistent with the scene and faithful to the campaign's message.
+            </span>
+            <a href="#fnref2" class="fn-back" aria-label="back to text">&#8617;</a>
+          </li>
+        </ol>
+      </section>
+
+    </div><!-- /page-body -->
+  </main>
+
+  <a href="posts.html" class="nav-back"
+     data-en="POSTS" data-it="POST">POSTS</a>
+
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="en">EN</button>
+    <button class="lang-btn" data-lang="it">IT</button>
+  </div>
+
+  <script src="assets/lang.js"></script>
+  <script>
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').classList.toggle('scrolled', window.scrollY > 20);
+    });
+  </script>
+</body>
+</html>

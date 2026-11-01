@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>ComfyUI Visual Stories — Concepts</title>
+  <link rel="alternate" hreflang="en"        href="https://storyline-engine.com/post-comfyui-concepts.html">
+  <link rel="alternate" hreflang="it"        href="https://storyline-engine.com/post-comfyui-concepts.html?lang=it">
+  <link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-comfyui-concepts.html">
+    <!-- Preload self-hosted fonts so they're already in flight before style.css
+       is even parsed — closes the remaining window where the browser paints
+       with the fallback (Georgia/Courier) and then swaps to the real font,
+       which is what still reads as the font "changing size" on reload. -->
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/style.css">
+
+  <style>
+    /* ── post body text ─────────────────────────────────── */
+    .post-text {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.15rem;
+      line-height: 1.75;
+      margin: 0 0 1.4em 0;
+    }
+    /* about-link (defined in style.css) handles all inline links:
+       ochre colour at rest, darker on hover, no underline        */
+
+    /* ── footnote ref ────────────────────────────────────── */
+    sup.fn-ref {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6em;
+      line-height: 1;
+      vertical-align: super;
+      margin-left: 0.1em;
+    }
+    sup.fn-ref a { text-decoration: none; opacity: 0.55; }
+    sup.fn-ref a:hover { opacity: 1; }
+
+    /* ── footnotes block ─────────────────────────────────── */
+    .footnotes {
+      margin-top: 4rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid currentColor;
+      opacity: 0.65;
+    }
+    .footnotes ol {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 0.92rem;
+      line-height: 1.65;
+      padding-left: 1.4em;
+      margin: 0 0 0 -1.4em;
+      list-style-position: outside;
+    }
+    .footnotes li { margin-bottom: 0.8em; }
+    .fn-back {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8em;
+      margin-left: 0.4em;
+      text-decoration: none;
+      opacity: 0.5;
+    }
+    .fn-back:hover { opacity: 1; }
+
+    /* ── figure / image ──────────────────────────────────── */
+    .post-figure {
+      margin: 2.5rem auto 2rem;
+    }
+    .post-figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid rgba(0,0,0,0.10);
+      background: #ffffff;
+    }
+
+    /* ── caption: bold title + smaller body ──────────────── */
+    .post-caption {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      line-height: 1.7;
+      color: #1A5CB3;
+      margin-top: 0.7rem;
+      text-align: justify;
+    }
+    .caption-title {
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      display: block;
+      margin-bottom: 0.2em;
+      text-align: center;
+    }
+
+    /* ── numbered content list ───────────────────────────── */
+    .content-list { list-style: none; padding: 0; margin: 1.6rem 0 0; }
+    .content-item {
+      display: grid;
+      grid-template-columns: 3rem 1fr;
+      gap: 1.6rem;
+      padding: 2rem 0;
+    }
+    .content-item:last-child { border-bottom: 1px solid rgba(0,0,0,0.08); }
+    /* no bottom line right before a chapter heading: its own thick top border already separates */
+    .content-list:has(+ .chapter-heading) .content-item:last-child { border-bottom: none; }
+    .content-number {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #1A5CB3;
+      opacity: 0.25;
+      padding-top: 0.15rem;
+      line-height: 1;
+    }
+    .content-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #1A5CB3;
+      margin: 0 0 0.9rem;
+      font-weight: 400;
+    }
+    .content-body .post-text { margin: 0; }
+    /* several paragraphs in one item: restore the spacing between them */
+    .content-body .post-text + .post-text,
+    .content-body .post-text + .content-sublist { margin-top: 1.4em; }
+    .content-body .content-sublist + .post-text { margin-top: 1.4em; }
+
+    /* ── sub-bullet list ─────────────────────────────────── */
+    .content-sublist {
+      list-style: disc;
+      padding-left: 1.4em;
+      margin-top: 0.9em;
+      margin-bottom: 0;
+    }
+    .content-sublist li {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      margin-bottom: 0.6em;
+    }
+
+    @media (max-width: 700px) {
+      .content-item { grid-template-columns: 2rem 1fr; gap: 1rem; }
+      .content-number { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body class="interior">
+
+  <header>
+    <a href="about.html" class="nav-item" data-en="ABOUT" data-it="ABOUT">ABOUT</a>
+    <div class="menu-container">
+      <span class="menu-trigger" data-en="TOPICS" data-it="ARGOMENTI">TOPICS</span>
+      <div class="menu-dropdown">
+        <a href="adv.html"             class="menu-item" data-en="ADV"            data-it="ADV">ADV</a>
+        <a href="neural-graphics.html" class="menu-item" data-en="VISUAL STORIES" data-it="FUMETTI/STORYBOARD">VISUAL STORIES</a>
+        <a href="comfyui.html"         class="menu-item" data-en="COMFYUI"        data-it="COMFYUI">COMFYUI</a>
+        <a href="posts.html"           class="menu-item" data-en="POSTS"          data-it="POST">POSTS</a>
+        <span class="menu-item menu-item--disabled" data-en="VIDEO" data-it="VIDEO">VIDEO</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content">
+
+    <p class="section-label" data-en="ComfyUI · Concepts · TECH OVERVIEW" data-it="ComfyUI · Concetti · PANORAMICA TECNICA">ComfyUI · Concepts · TECH OVERVIEW</p>
+    <h1 class="page-title" data-en="ComfyUI Visual Stories — Concepts" data-it="ComfyUI Storie Visive — Concetti">ComfyUI Visual Stories — Concepts</h1>
+
+    <div class="page-body">
+
+      <div class="post-tags" style="margin-bottom:2rem;">
+  <span class="post-tag tag-tech" data-en="ComfyUI" data-it="ComfyUI">ComfyUI</span>
+  <span class="post-tag tag-tech" data-en="Flux" data-it="Flux">Flux</span>
+  <span class="post-tag tag-tech" data-en="Diffusion Models" data-it="Diffusion Model">Diffusion Models</span>
+  <span class="post-tag tag-tech" data-en="IP-Adapter" data-it="IP-Adapter">IP-Adapter</span>
+  <span class="post-tag tag-tech" data-en="ControlNet" data-it="ControlNet">ControlNet</span>
+  <span class="post-tag tag-tech" data-en="Teaching" data-it="Didattica">Teaching</span>
+  <span class="post-tag tag-tech" data-en="Storyboard" data-it="Storyboard">Storyboard</span>
+</div>
+
+      <p class="post-abstract-text"
+         data-en="The ideas behind a short ComfyUI course for filmmakers and graphic designers. A clarification first: this is not about video generation, but about static images that preserve identity and consistency across a sequence — as in comics and storyboards — in a hyperrealistic style, meaning with the precision and detail of a high-resolution photograph. Without going into individual nodes, this post uses metaphors to explain how a Diffusion Model turns text into an image (CLIP, noise and denoising, VAE), how two adapters — IP-Adapter and ControlNet — teach it to respect a face and a framing, and how these three guides come together at every cycle of generation. It closes with a broader reflection on how neural networks learn through repeated cycles. The technical details, the node graph and the downloadable pipeline are in the companion post <a href='post-comfyui-course-material.html' class='about-link'>ComfyUI Visual Stories — The Node Graph</a>. More advanced examples using this technique can be found in <a href='neural-graphics.html' class='about-link'>Comics and Storyboards</a>."
+         data-it="Le idee che stanno dietro a un breve corso su ComfyUI per filmmaker e graphic designer. Innanzitutto un chiarimento: non si parla di video-generation, ma di immagini statiche che conservano identità e coerenza in una sequenza, come nei fumetti e negli storyboard, in stile iperrealistico, cioè con la precisione e il dettaglio di una fotografia ad alta risoluzione. Senza entrare nei singoli nodi, questo post spiega con delle metafore come un Diffusion Model trasforma un testo in un'immagine (CLIP, rumore e denoising, VAE), come due adattatori — IP-Adapter e ControlNet — gli insegnano a rispettare un volto e un'inquadratura, e come queste tre guide si intrecciano a ogni ciclo di generazione. Si chiude con una riflessione più ampia su come le reti neurali apprendono attraverso cicli ripetuti. I dettagli tecnici, il grafo dei nodi e la pipeline scaricabile sono nel post gemello <a href='post-comfyui-course-material.html' class='about-link'>ComfyUI Storie Visive — Il Grafo dei Nodi</a>. Esempi più evoluti che adottano questa tecnica li trovate in <a href='neural-graphics.html' class='about-link'>Fumetti e Storyboard</a>.">
+        The ideas behind a short ComfyUI course for filmmakers and graphic designers. A clarification first: this is not about video generation, but about static images that preserve identity and consistency across a sequence — as in comics and storyboards — in a hyperrealistic style, meaning with the precision and detail of a high-resolution photograph. Without going into individual nodes, this post uses metaphors to explain how a Diffusion Model turns text into an image (CLIP, noise and denoising, VAE), how two adapters — IP-Adapter and ControlNet — teach it to respect a face and a framing, and how these three guides come together at every cycle of generation. It closes with a broader reflection on how neural networks learn through repeated cycles. The technical details, the node graph and the downloadable pipeline are in the companion post <a href='post-comfyui-course-material.html' class='about-link'>ComfyUI Visual Stories — The Node Graph</a>. More advanced examples using this technique can be found in <a href='neural-graphics.html' class='about-link'>Comics and Storyboards</a>.
+      </p>
+
+      <!-- ── INTRO ─────────────────────────────────────────── -->
+      <p class="post-text"
+   data-en="Today, using generative AI in a controlled way — not through tools that do everything in one shot, that offer a guided but limited interface, or that behave as a black box — means working the way this course describes. One alternative, sometimes of higher quality, is to use the APIs of proprietary models, whose inner workings are hidden. But both for teaching and for cost, being able to open up the internal structure of these processes remains the strength of open-source models."
+   data-it="Oggi, per usare l'AI generativa in modo controllato — cioè non con strumenti che fanno tutto in un colpo solo, con un'interfaccia guidata ma limitata, o che funzionano come una black box — conviene lavorare nel modo che questo corso descrive. Un'alternativa, a volte di qualità superiore, è usare le API di modelli proprietari, il cui funzionamento interno non è visibile. Ma sia dal punto di vista didattico sia da quello dei costi, poter entrare nella struttura interna di questi processi resta il punto di forza dei modelli open source.">
+  Today, using generative AI in a controlled way — not through tools that do everything in one shot, that offer a guided but limited interface, or that behave as a black box — means working the way this course describes. One alternative, sometimes of higher quality, is to use the APIs of proprietary models, whose inner workings are hidden. But both for teaching and for cost, being able to open up the internal structure of these processes remains the strength of open-source models.
+</p>
+
+      <!-- ── CONCEPTS ──────────────────────────────────────── -->
+      <ol class="content-list">
+
+        <li class="content-item">
+          <div class="content-number">01</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+   data-en="Diffusion Models: the base chain"
+   data-it="Diffusion Model: la catena di base">
+  Diffusion Models: the base chain
+</h3>
+
+<p class="post-text"
+   data-en="This course's pipeline generates images through a Diffusion Model (DM) — the generative model that marked a turning point for 'visual' AI. More precisely, we use a Diffusion Model called <strong>Flux</strong>. Its basic chain is: CLIP → Noise → Denoising → VAE decoder. Let's take it one step at a time."
+   data-it="La pipeline di questo corso genera le immagini attraverso un Diffusion Model (DM): il modello generativo che ha segnato una svolta per l'AI 'grafica'. Più precisamente adottiamo un Diffusion Model chiamato <strong>Flux</strong>. La sua catena di base è: CLIP → Noise → Denoising → VAE decoder. Vediamola un passo alla volta.">
+  This course's pipeline generates images through a Diffusion Model (DM) — the generative model that marked a turning point for 'visual' AI. More precisely, we use a Diffusion Model called <strong>Flux</strong>. Its basic chain is: CLIP → Noise → Denoising → VAE decoder. Let's take it one step at a time.
+</p>
+
+<p class="post-text"
+   data-en="The first component is <strong>CLIP</strong> (you won't see it as a standalone ComfyUI node, since it is built into the main Flux module). CLIP learned, from billions of ⟨text, image⟩ pairs, how to associate an image with the text that describes it. The process doesn't happen 'in plain sight' but in geometric spaces, where both images and texts are tokenised — chopped into pieces — and the various fragments are associated with one another."
+   data-it="Il primo componente è <strong>CLIP</strong> (non lo vedete come nodo ComfyUI a sé stante, perché è integrato nel modulo principale Flux). CLIP ha imparato da miliardi di coppie ⟨testo, immagine⟩ ad associare un'immagine al testo che la descrive. Il processo non avviene 'in chiaro' ma in spazi geometrici, dove sia le immagini sia i testi vengono tokenizzati, ossia spezzettati, e i vari frammenti vengono associati tra loro.">
+  The first component is <strong>CLIP</strong> (you won't see it as a standalone ComfyUI node, since it is built into the main Flux module). CLIP learned, from billions of ⟨text, image⟩ pairs, how to associate an image with the text that describes it. The process doesn't happen 'in plain sight' but in geometric spaces, where both images and texts are tokenised — chopped into pieces — and the various fragments are associated with one another.
+</p>
+
+<p class="post-text"
+   data-en="In our culture, so tied to verbal language, this process is intuitive with texts: a text splits into words, words into syllables, down to letters. With images it isn't, because we have no mental habit trained to break an image into fragments in order to understand it better. If anything, the opposite process comes more naturally: jigsaw puzzles break an image apart precisely to test how well we can put it back together. If we had in front of us a fragment of an image and the text describing it, we would only risk making our lives harder when we want the full picture and its description: it isn't natural to find the right words to define a small piece of an image."
+   data-it="Per la nostra tradizione culturale, legata al linguaggio verbale, con i testi questo processo è intuitivo: un testo si divide in parole, le parole in sillabe, fino alle lettere. Con le immagini non lo è, perché non abbiamo una 'forma mentis' allenata a frammentare un'immagine per capirla meglio. Ci è anzi più naturale il processo contrario: i puzzle scompongono un'immagine proprio per metterci alla prova su quanto sappiamo ricomporla. Se avessimo davanti un frammento d'immagine e il testo che lo descrive, rischieremmo solo di complicarci la vita quando vogliamo ricostruire il quadro completo e la sua descrizione: non è naturale trovare le parole giuste per definire un pezzetto d'immagine.">
+  In our culture, so tied to verbal language, this process is intuitive with texts: a text splits into words, words into syllables, down to letters. With images it isn't, because we have no mental habit trained to break an image into fragments in order to understand it better. If anything, the opposite process comes more naturally: jigsaw puzzles break an image apart precisely to test how well we can put it back together. If we had in front of us a fragment of an image and the text describing it, we would only risk making our lives harder when we want the full picture and its description: it isn't natural to find the right words to define a small piece of an image.
+</p>
+
+<p class="post-text"
+   data-en="In geometric spaces, however, this is possible, because the system doesn't reason, break apart and reassemble the way we do, but works with measurements in abstract spaces, where objects (image + text) transformed into their 'numerical' form (or 'latent', to use a fashionable term) can be compared. This is exactly what CLIP does: it assigns a text label to an image fragment, chosen by geometric proximity. A symbolic example: think of a tree associated with every image of trees the model has learned, and imagine that every piece of the tree has a name. When I put the tree back together, I also get the detailed description of the tree. Of course, I can't do this in a space where trees are aggregates of pixels, only by manipulating abstract functions and metrics."
+   data-it="Negli spazi geometrici, però, questo è possibile, perché il sistema non ragiona, scompone e ricompone come facciamo noi, ma lavora con misure in spazi astratti, dove si possono confrontare oggetti (immagine + testo) trasformati nel loro aspetto 'numerico' (o 'latente', per usare un termine di moda). È esattamente ciò che fa CLIP: assegna un'etichetta testuale a un frammento di immagine, scelta per vicinanza geometrica. Un esempio simbolico: pensate a un albero associato a tutte le immagini di alberi che il modello ha appreso, e immaginate che ogni pezzo d'albero abbia un nome. Quando ricompongo l'albero, ottengo anche la descrizione dettagliata dell'albero. Naturalmente non posso farlo in uno spazio dove gli alberi sono aggregati di pixel, ma solo manipolando funzioni e metriche astratte.">
+  In geometric spaces, however, this is possible, because the system doesn't reason, break apart and reassemble the way we do, but works with measurements in abstract spaces, where objects (image + text) transformed into their 'numerical' form (or 'latent', to use a fashionable term) can be compared. This is exactly what CLIP does: it assigns a text label to an image fragment, chosen by geometric proximity. A symbolic example: think of a tree associated with every image of trees the model has learned, and imagine that every piece of the tree has a name. When I put the tree back together, I also get the detailed description of the tree. Of course, I can't do this in a space where trees are aggregates of pixels, only by manipulating abstract functions and metrics.
+</p>
+
+<p class="post-text"
+   data-en="CLIP's job, in the end, is to take every word of your prompt and associate it with the correct images it has learned from the enormous volume of the training set. That is the first step. But how does it generate new images that aren't in the training set? For example, all those fantastical images combining snails and skyscrapers? For that we need the other great insight behind Diffusion Models: the <strong>Noising/Denoising</strong> process."
+   data-it="Il compito di CLIP, alla fine, è prendere ogni parola del vostro prompt e associarla alle immagini corrette che ha appreso nell'enorme volume del training set. Questo è il primo passaggio. Ma come fa a generare immagini nuove, che nel training set non ci sono? Per esempio, tutte quelle immagini fantastiche che combinano lumache e grattacieli? Per farlo serve l'altra grande intuizione alla base dei Diffusion Model: il processo di <strong>Noising/Denoising</strong>.">
+  CLIP's job, in the end, is to take every word of your prompt and associate it with the correct images it has learned from the enormous volume of the training set. That is the first step. But how does it generate new images that aren't in the training set? For example, all those fantastical images combining snails and skyscrapers? For that we need the other great insight behind Diffusion Models: the <strong>Noising/Denoising</strong> process.
+</p>
+
+<p class="post-text"
+   data-en="It means adding noise to an image and then removing it. Here a metaphor makes things easier. You're in the countryside, the sky is clear, you see a house and recognise it perfectly. Gradually the fog rises: the house is harder to recognise, but still visible; the fog thickens until the house becomes invisible. At that point it has vanished, but you keep a memory of it, perhaps a slightly vague one. This is the Noising process: adding noise until an object can no longer be identified."
+   data-it="Si tratta di aggiungere rumore a un'immagine e poi di toglierlo. Qui è più facile ricorrere a una metafora. Siete in campagna, il cielo è terso, vedete una casa e la riconoscete perfettamente. Man mano si alza la nebbia: la casa è meno riconoscibile, ma ancora visibile; la nebbia cresce, finché la casa diventa invisibile. A questo punto è scomparsa, ma ne rimane il ricordo, anche se forse un po' vago. Questo è il processo di Noising: aggiungere rumore fino a rendere un oggetto non identificabile.">
+  It means adding noise to an image and then removing it. Here a metaphor makes things easier. You're in the countryside, the sky is clear, you see a house and recognise it perfectly. Gradually the fog rises: the house is harder to recognise, but still visible; the fog thickens until the house becomes invisible. At that point it has vanished, but you keep a memory of it, perhaps a slightly vague one. This is the Noising process: adding noise until an object can no longer be identified.
+</p>
+
+<p class="post-text"
+   data-en="Now let's move to the reverse process, Denoising. The fog clears little by little. Since you remember the house, because you had seen it, very little is needed — a fog that leaves only 10% visibility — to recognise it as the same one as before. Picture a cycle of clearing in successive steps, until the fog disappears entirely and you're back at the starting image. At that point you're sure it's the same house."
+   data-it="Passiamo ora al processo inverso, il Denoising. La nebbia si dirada a poco a poco. Dato che la casa ve la ricordate, perché l'avevate vista, basta poco — una nebbia che lascia solo il 10% di visibilità — per riconoscerla come quella di prima. Pensate a un ciclo di diradamento a passi successivi, finché la nebbia scompare del tutto e siete tornati all'immagine di partenza. A quel punto siete sicuri che sia la stessa casa.">
+  Now let's move to the reverse process, Denoising. The fog clears little by little. Since you remember the house, because you had seen it, very little is needed — a fog that leaves only 10% visibility — to recognise it as the same one as before. Picture a cycle of clearing in successive steps, until the fog disappears entirely and you're back at the starting image. At that point you're sure it's the same house.
+</p>
+
+<p class="post-text"
+   data-en="Intuitively, this is what happens at the geometric level so that the system learns the different tokens (fragments) that make up the house: it manages because it has broken the house into pieces and then put it back together — naturally, in geometric spaces made of numbers. And since every fragment in the training set has a textual meaning — or rather, comes very close to one, because the ⟨image, text⟩ pairs number in the billions, and that is precisely the space CLIP comes from — the final image can be reassembled even when it's made of fragments that may be invented, but that exist in the training set as fragments: a snail's horn, a skyscraper window. In short, the system in the latent space has 'understood' which text fragments to associate, step by step, with the images it discovered in the clearing fog."
+   data-it="Intuitivamente, è quel che accade a livello geometrico affinché il sistema impari i diversi token (frammenti) che compongono la casa: ci riesce perché l'ha frammentata e poi ricomposta, naturalmente negli spazi geometrici fatti di numeri. E dato che ogni frammento, nel training set, ha un significato testuale — o meglio, vi si avvicina molto, perché le coppie ⟨immagine, testo⟩ sono miliardi, ed è proprio lo spazio da cui nasce CLIP — l'immagine finale si può ricomporre anche quando è fatta di frammenti magari inventati, ma che nel training set esistono in quanto frammenti: un corno di lumaca, la finestra di un grattacielo. In definitiva, il sistema nello spazio latente ha 'capito' quali frammenti di testo associare, man mano, alle immagini che scopriva nella nebbia che si diradava.">
+  Intuitively, this is what happens at the geometric level so that the system learns the different tokens (fragments) that make up the house: it manages because it has broken the house into pieces and then put it back together — naturally, in geometric spaces made of numbers. And since every fragment in the training set has a textual meaning — or rather, comes very close to one, because the ⟨image, text⟩ pairs number in the billions, and that is precisely the space CLIP comes from — the final image can be reassembled even when it's made of fragments that may be invented, but that exist in the training set as fragments: a snail's horn, a skyscraper window. In short, the system in the latent space has 'understood' which text fragments to associate, step by step, with the images it discovered in the clearing fog.
+</p>
+
+<p class="post-text"
+   data-en="This is what the technical modules call <em>cross-attention</em>: the ability to focus on the text fragments best suited to describing the image that is emerging (in Flux it takes a slightly different form from the early Diffusion Models, but the idea is the same). To go from the language of numbers to what the human eye sees, the work is entrusted to the <strong>VAE (Variational Auto Encoder) in its decoder function</strong><sup class='fn-ref'><a href='#fn1' id='fnref1'>1</a></sup>. The same module also works in the opposite direction at the start of the Noising process during learning: everything is first transformed into numerical patterns by a VAE encoder."
+   data-it="Questo è ciò che nei moduli tecnici si chiama <em>cross-attention</em>: la capacità di focalizzarsi sui frammenti di testo più adatti a descrivere l'immagine che sta emergendo (in Flux ha una forma un po' diversa da quella dei primi Diffusion Model, ma l'idea è la stessa). Per passare dal linguaggio dei numeri a quello che vede l'occhio umano, il lavoro è affidato al <strong>VAE (Variational Auto Encoder) nella sua funzione di decoder</strong><sup class='fn-ref'><a href='#fn1' id='fnref1'>1</a></sup>. Lo stesso modulo lavora anche in senso inverso, all'inizio del processo di Noising durante l'apprendimento: tutto viene prima trasformato in pattern numerici da un VAE encoder.">
+  This is what the technical modules call <em>cross-attention</em>: the ability to focus on the text fragments best suited to describing the image that is emerging (in Flux it takes a slightly different form from the early Diffusion Models, but the idea is the same). To go from the language of numbers to what the human eye sees, the work is entrusted to the <strong>VAE (Variational Auto Encoder) in its decoder function</strong><sup class='fn-ref'><a href='#fn1' id='fnref1'>1</a></sup>. The same module also works in the opposite direction at the start of the Noising process during learning: everything is first transformed into numerical patterns by a VAE encoder.
+</p>
+
+<p class="post-text"
+   data-en="At this point, though, comes the hardest step. We've seen how the Diffusion Model manages to describe any image with a text, even when it doesn't know it in full: it is enough that it knows the fragments independently. But now you'll ask: the prompt you write is a sentence that is unlikely to appear, as it stands, in the dataset, and so has no associated images. And indeed the model often doesn't know it yet — but it manages to construct it, because a <em>noise prediction</em> mechanism comes into play, that is, a prediction of what the fog is covering in the image as it forms. During generation the model stays anchored to the text just as it did during training, with the difference that here the text isn't mapped onto an already formed image, but guides the image that is being formed. This with/without-fog passage drives a process of understanding and generation that is, in a rather interesting way, similar to how the human brain works (a similarity, however, discovered only afterwards)."
+   data-it="A questo punto, però, arriva il passaggio più difficile. Abbiamo visto come il Diffusion Model riesca a descrivere ogni immagine con un testo, anche quando non la conosce per intero: gli basta conoscere i frammenti in modo indipendente. Ma ora vi chiederete: il prompt che scrivete è una frase che difficilmente compare, così com'è, nel dataset, e quindi non ha immagini associate. E infatti spesso il modello non la conosce ancora — ma riesce a costruirla, perché entra in azione un meccanismo di <em>noise prediction</em>, cioè di previsione di ciò che la nebbia sta coprendo nell'immagine in formazione. Il modello, nella fase di generazione, resta ancorato al testo proprio come durante il training, con la differenza che qui il testo non è mappato su un'immagine già formata, ma guida l'immagine che si sta formando. Questo passaggio con/senza nebbia guida un processo di comprensione e generazione che assomiglia, in modo piuttosto interessante, al funzionamento del cervello umano (una somiglianza, però, scoperta solo in seguito).">
+  At this point, though, comes the hardest step. We've seen how the Diffusion Model manages to describe any image with a text, even when it doesn't know it in full: it is enough that it knows the fragments independently. But now you'll ask: the prompt you write is a sentence that is unlikely to appear, as it stands, in the dataset, and so has no associated images. And indeed the model often doesn't know it yet — but it manages to construct it, because a <em>noise prediction</em> mechanism comes into play, that is, a prediction of what the fog is covering in the image as it forms. During generation the model stays anchored to the text just as it did during training, with the difference that here the text isn't mapped onto an already formed image, but guides the image that is being formed. This with/without-fog passage drives a process of understanding and generation that is, in a rather interesting way, similar to how the human brain works (a similarity, however, discovered only afterwards).
+</p>
+
+          </div>
+        </li>
+
+        <li class="content-item">
+          <div class="content-number">02</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+   data-en="IP-Adapter: showing instead of describing"
+   data-it="IP-Adapter: mostrare invece di descrivere">
+  IP-Adapter: showing instead of describing
+</h3>
+
+<p class="post-text"
+   data-en="So far, text was the only thing guiding the fog. But a text, however detailed, describes a face poorly. Try describing a person in words to a police sketch artist: 'strong jaw, deep-set eyes, fifty-ish, tired look'. You'll get a plausible face, not <em>that</em> face. For a comic or a storyboard, though, you need the same face, shot after shot. The <strong>IP-Adapter</strong> (Image Prompt Adapter) solves the problem in a way that is easy to picture: instead of describing the face, it shows it. A reference photograph is placed alongside the text prompt."
+   data-it="Finora l'unico a guidare la nebbia era il testo. Ma un testo, per quanto dettagliato, descrive male un volto. Provate a descrivere a parole una persona a un disegnatore di identikit: 'mascella marcata, occhi infossati, cinquant'anni, aria stanca'. Otterrete un volto plausibile, non <em>quel</em> volto. Per un fumetto o uno storyboard serve invece lo stesso volto, inquadratura dopo inquadratura. L'<strong>IP-Adapter</strong> (Image Prompt Adapter) risolve il problema in un modo semplice da immaginare: invece di descrivere il volto, lo mostra. Al prompt testuale si affianca una fotografia di riferimento.">
+  So far, text was the only thing guiding the fog. But a text, however detailed, describes a face poorly. Try describing a person in words to a police sketch artist: 'strong jaw, deep-set eyes, fifty-ish, tired look'. You'll get a plausible face, not <em>that</em> face. For a comic or a storyboard, though, you need the same face, shot after shot. The <strong>IP-Adapter</strong> (Image Prompt Adapter) solves the problem in a way that is easy to picture: instead of describing the face, it shows it. A reference photograph is placed alongside the text prompt.
+</p>
+
+<p class="post-text"
+   data-en="How does it work, staying within the metaphor? The text says: 'behind the fog there is a house'. The photograph says: 'this very house', the one with the green door, the slightly crooked roof, the chimney on the left. At every step of the clearing, as the system decides which fragment to bring out, it has two prompters at its disposal: one speaks in words, the other shows pictures. To be able to listen to both together, the photograph too is translated into the language of numbers — into fragments, as with text — and added as a second channel the model can pay attention to, alongside the text one."
+   data-it="Come funziona, restando nella metafora? Il testo dice: 'dietro la nebbia c'è una casa'. La fotografia dice: 'proprio questa casa', quella con il portone verde, il tetto un po' storto, il camino a sinistra. A ogni passo del diradamento, mentre il sistema decide quale frammento far emergere, ha a disposizione due suggeritori: uno parla con le parole, l'altro mostra figure. Per poterli ascoltare insieme, anche la fotografia viene tradotta nel linguaggio dei numeri — in frammenti, come per il testo — e aggiunta come un secondo canale a cui il modello può prestare attenzione, accanto a quello del testo.">
+  How does it work, staying within the metaphor? The text says: 'behind the fog there is a house'. The photograph says: 'this very house', the one with the green door, the slightly crooked roof, the chimney on the left. At every step of the clearing, as the system decides which fragment to bring out, it has two prompters at its disposal: one speaks in words, the other shows pictures. To be able to listen to both together, the photograph too is translated into the language of numbers — into fragments, as with text — and added as a second channel the model can pay attention to, alongside the text one.
+</p>
+
+<p class="post-text"
+   data-en="It isn't copy-and-paste: the model doesn't cut the face out of the photograph and paste it into the image, but 'remembers' its features while rebuilding the scene with a completely different pose, light and expression. That's why there is an intensity dial (a weight): if it's too low, the face fades into the generic; if it's too high, the image becomes a bad photocopy that can no longer follow the prompt. With two characters in the same scene there are two photographs and their voices overlap: if one speaks louder than the other, it wins. That's why the main character is usually given a higher weight."
+   data-it="Non è un copia-incolla: il modello non ritaglia il volto dalla fotografia per incollarlo nell'immagine, ma 'si ricorda' dei suoi tratti mentre ricostruisce la scena con una posa, una luce e un'espressione completamente diverse. Per questo esiste un regolatore di intensità (un peso): se è troppo basso, il volto sfuma nel generico; se è troppo alto, l'immagine diventa una brutta fotocopia, che non riesce più a seguire il prompt. Con due personaggi nella stessa scena le fotografie sono due e le loro voci si sovrappongono: se una parla più forte dell'altra, vince quella. È per questo che al personaggio principale si dà di solito un peso maggiore.">
+  It isn't copy-and-paste: the model doesn't cut the face out of the photograph and paste it into the image, but 'remembers' its features while rebuilding the scene with a completely different pose, light and expression. That's why there is an intensity dial (a weight): if it's too low, the face fades into the generic; if it's too high, the image becomes a bad photocopy that can no longer follow the prompt. With two characters in the same scene there are two photographs and their voices overlap: if one speaks louder than the other, it wins. That's why the main character is usually given a higher weight.
+</p>
+
+          </div>
+        </li>
+
+        <li class="content-item">
+          <div class="content-number">03</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+   data-en="ControlNet: marks on the floor"
+   data-it="ControlNet: le tacche sul pavimento">
+  ControlNet: marks on the floor
+</h3>
+
+<p class="post-text"
+   data-en="Even with text and a photograph, there's one thing neither controls well: <em>where</em> each element sits within the frame. If I write 'two people at a small table, shot from above', the model decides distances, proportions and body positions on its own. Anyone who has worked on a set knows that this is the job of <em>marks</em>: the signs on the floor that tell the actor where to stop, how far from the camera, facing which way. <strong>ControlNet</strong> does the same job for the model: it hands over the geometry of the scene before the fog clears."
+   data-it="Anche con testo e fotografia, resta una cosa che nessuno dei due controlla bene: <em>dove</em> sta ciascun elemento nell'inquadratura. Se scrivo 'due persone a un tavolino, ripresa dall'alto', il modello decide da solo distanze, proporzioni, posizione dei corpi. Chi ha lavorato su un set sa che questo è il compito delle <em>tacche</em>: i segni sul pavimento che dicono all'attore dove fermarsi, a che distanza dalla macchina da presa, con quale orientamento. <strong>ControlNet</strong> fa lo stesso lavoro per il modello: gli consegna la geometria della scena prima che la nebbia si diradi.">
+  Even with text and a photograph, there's one thing neither controls well: <em>where</em> each element sits within the frame. If I write 'two people at a small table, shot from above', the model decides distances, proportions and body positions on its own. Anyone who has worked on a set knows that this is the job of <em>marks</em>: the signs on the floor that tell the actor where to stop, how far from the camera, facing which way. <strong>ControlNet</strong> does the same job for the model: it hands over the geometry of the scene before the fog clears.
+</p>
+
+<p class="post-text"
+   data-en="What does this geometry look like? In our case it's a <em>depth map</em>: a black-and-white image in which light means near and dark means far, with no faces, colours or details. Back to the countryside in the fog: it's as if, before any house appears, someone let you feel the hidden volumes with your hands — here something large and close, there something small and far, and empty space in between. When the fog clears, things appear in exactly those positions and with those proportions. The text and the photograph decide <em>what</em> things are; the depth map decides <em>where</em> they stand."
+   data-it="Che aspetto ha questa geometria? Nel nostro caso è una <em>mappa di profondità</em>: un'immagine in bianco e nero in cui il chiaro è vicino e lo scuro è lontano, senza volti, colori o dettagli. Tornando alla campagna nella nebbia: è come se, prima che compaia qualsiasi casa, qualcuno vi facesse toccare con le mani i volumi nascosti — qui c'è qualcosa di grande e vicino, là qualcosa di piccolo e lontano, in mezzo uno spazio vuoto. Quando la nebbia si dirada, le cose compaiono esattamente in quelle posizioni e con quelle proporzioni. Il testo e la fotografia decidono <em>che cosa</em> sono; la mappa di profondità decide <em>dove</em> stanno.">
+  What does this geometry look like? In our case it's a <em>depth map</em>: a black-and-white image in which light means near and dark means far, with no faces, colours or details. Back to the countryside in the fog: it's as if, before any house appears, someone let you feel the hidden volumes with your hands — here something large and close, there something small and far, and empty space in between. When the fog clears, things appear in exactly those positions and with those proportions. The text and the photograph decide <em>what</em> things are; the depth map decides <em>where</em> they stand.
+</p>
+
+<p class="post-text"
+   data-en="Technically, ControlNet is a 'twin' neural network, trained to work alongside the main model and read a guide image (depth is only one option: there are versions for outlines, body pose and more). Here too there is a dial, the 'strictness' of the marks: if it's high, the model follows them to the letter, but the image risks becoming stiff, almost mechanical; if it's low, the position is just a suggestion. In our pipeline we keep it fairly low: enough to respect the framings, but low enough to leave the characters their naturalness."
+   data-it="Dal punto di vista tecnico, ControlNet è una rete neurale 'gemella', addestrata ad affiancare il modello principale e a leggere un'immagine-guida (la profondità è solo una delle possibilità: ci sono versioni per i contorni, per la posa del corpo e altro ancora). Anche qui c'è un regolatore, la 'severità' delle tacche: se è alta, il modello esegue alla lettera, ma l'immagine rischia di diventare rigida, quasi meccanica; se è bassa, la posizione diventa un semplice suggerimento. Nella nostra pipeline lo teniamo piuttosto basso: quanto basta per rispettare le inquadrature, ma abbastanza poco da lasciare ai personaggi la loro naturalezza.">
+  Technically, ControlNet is a 'twin' neural network, trained to work alongside the main model and read a guide image (depth is only one option: there are versions for outlines, body pose and more). Here too there is a dial, the 'strictness' of the marks: if it's high, the model follows them to the letter, but the image risks becoming stiff, almost mechanical; if it's low, the position is just a suggestion. In our pipeline we keep it fairly low: enough to respect the framings, but low enough to leave the characters their naturalness.
+</p>
+
+          </div>
+        </li>
+
+        <li class="content-item">
+          <div class="content-number">04</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+   data-en="Three guides, one cycle"
+   data-it="Tre guide, un solo ciclo">
+  Three guides, one cycle
+</h3>
+
+<p class="post-text"
+   data-en="Let's put the pieces together. At every step of the fog's clearing, the model receives three kinds of guidance:"
+   data-it="Mettiamo insieme i pezzi. A ogni passo del diradamento della nebbia, il modello riceve tre tipi di indicazione:">
+  Let's put the pieces together. At every step of the fog's clearing, the model receives three kinds of guidance:
+</p>
+
+<ul class="content-sublist">
+<li
+   data-en="<strong>The text</strong> says <em>what</em> is in the scene: characters, place, action, type of shot."
+   data-it="<strong>Il testo</strong> dice <em>che cosa</em> c'è nella scena: personaggi, luogo, azione, tipo di ripresa.">
+  <strong>The text</strong> says <em>what</em> is in the scene: characters, place, action, type of shot.
+</li>
+<li
+   data-en="<strong>The reference photograph</strong> (IP-Adapter) says <em>who</em> the characters are and what they look like."
+   data-it="<strong>La fotografia di riferimento</strong> (IP-Adapter) dice <em>chi</em> sono i personaggi e che aspetto hanno.">
+  <strong>The reference photograph</strong> (IP-Adapter) says <em>who</em> the characters are and what they look like.
+</li>
+<li
+   data-en="<strong>The depth map</strong> (ControlNet) says <em>where</em> things stand and in what proportions."
+   data-it="<strong>La mappa di profondità</strong> (ControlNet) dice <em>dove</em> stanno le cose e con quali proporzioni.">
+  <strong>The depth map</strong> (ControlNet) says <em>where</em> things stand and in what proportions.
+</li>
+</ul>
+
+<p class="post-text"
+   data-en="The text, in turn, is read by two different 'readers': a more concise one, suited to short labels (such as a character's features), and a much more capacious one, suited to the detailed description of the scene. There is also a negative prompt, which says what to avoid — like a director who, besides saying what to shoot, says what must not be seen; in our pipeline it plays a marginal role, and we discuss it in the technical post. All of this is repeated, with the same three guides, for every shot in the sequence: this is how characters stay recognisable and the setting stays consistent from one shot to the next."
+   data-it="Il testo, a sua volta, viene letto da due 'lettori' diversi: uno più sintetico, adatto a etichette brevi (come i tratti di un personaggio), e uno molto più capiente, adatto alla descrizione dettagliata della scena. C'è anche un prompt negativo, che dice che cosa evitare — come un regista che, oltre a indicare che cosa girare, indica che cosa non si deve vedere; nella nostra pipeline ha un ruolo marginale, e ne parliamo nel post tecnico. Tutto questo viene ripetuto, con le stesse tre guide, per ogni inquadratura della sequenza: è così che i personaggi restano riconoscibili e l'ambiente coerente da uno shot all'altro.">
+  The text, in turn, is read by two different 'readers': a more concise one, suited to short labels (such as a character's features), and a much more capacious one, suited to the detailed description of the scene. There is also a negative prompt, which says what to avoid — like a director who, besides saying what to shoot, says what must not be seen; in our pipeline it plays a marginal role, and we discuss it in the technical post. All of this is repeated, with the same three guides, for every shot in the sequence: this is how characters stay recognisable and the setting stays consistent from one shot to the next.
+</p>
+
+          </div>
+        </li>
+
+        <li class="content-item">
+          <div class="content-number">05</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+   data-en="A broader reflection"
+   data-it="Una riflessione più generale">
+  A broader reflection
+</h3>
+
+<p class="post-text"
+   data-en="A final, broader reflection. The least intuitive thing — and it wasn't (almost) for anyone ten years ago — is that, thanks to neural networks, all the modules we've seen can be connected together and processed in cycles (many cycles) all at once. And the cycles are, in fact, of two kinds, which are worth keeping apart."
+   data-it="Una riflessione finale, più generale. La cosa meno intuitiva — e non lo era (quasi) per nessuno dieci anni fa — è che, grazie alle reti neurali, tutti i moduli che abbiamo visto possono essere connessi insieme ed essere elaborati in cicli (molti cicli) tutti insieme. E i cicli, in realtà, sono di due tipi, che conviene tenere distinti.">
+  A final, broader reflection. The least intuitive thing — and it wasn't (almost) for anyone ten years ago — is that, thanks to neural networks, all the modules we've seen can be connected together and processed in cycles (many cycles) all at once. And the cycles are, in fact, of two kinds, which are worth keeping apart.
+</p>
+
+<p class="post-text"
+   data-en="The first is the cycle of <em>generation</em>, the one we've already met: the fog clearing in successive steps (in our pipeline there are thirty), each of which removes a little noise, guided by text, photograph and depth. In this phase the network's weights don't change: the network applies what it has learned."
+   data-it="Il primo è il ciclo della <em>generazione</em>, quello che abbiamo già incontrato: la nebbia che si dirada a passi successivi (nella nostra pipeline sono trenta), ciascuno dei quali toglie un po' di rumore guidato da testo, fotografia e profondità. I pesi della rete, in questa fase, non cambiano: la rete applica ciò che ha imparato.">
+  The first is the cycle of <em>generation</em>, the one we've already met: the fog clearing in successive steps (in our pipeline there are thirty), each of which removes a little noise, guided by text, photograph and depth. In this phase the network's weights don't change: the network applies what it has learned.
+</p>
+
+<p class="post-text"
+   data-en="The second is the cycle of <em>learning</em>, which took place long before, during training. At every cycle the weights and internal connections of the network's neurons change, and this is how the network gradually learns and transforms the information it processes — even when that information is highly heterogeneous (since it includes everything: positions, character features, colours, environments, and so on). It is a gesture repeated an enormous number of times: each time, the network gets it a little less wrong."
+   data-it="Il secondo è il ciclo dell'<em>apprendimento</em>, avvenuto molto prima, durante il training. A ogni ciclo cambiano i pesi e le connessioni interne dei neuroni della rete, e in questo modo la rete impara e trasforma man mano l'informazione che elabora, anche quando è molto eterogenea (perché comprende tutto: posizioni, lineamenti dei personaggi, colori, ambienti, ecc.). È un gesto che si ripete un numero enorme di volte: ogni volta la rete sbaglia un po' meno.">
+  The second is the cycle of <em>learning</em>, which took place long before, during training. At every cycle the weights and internal connections of the network's neurons change, and this is how the network gradually learns and transforms the information it processes — even when that information is highly heterogeneous (since it includes everything: positions, character features, colours, environments, and so on). It is a gesture repeated an enormous number of times: each time, the network gets it a little less wrong.
+</p>
+
+<p class="post-text"
+   data-en="Today's networks are a combination of many layers (30–40 or more), where each layer is a stratum of neurons (millions of them, or more), and where the connections are guided by what's called an <em>attention mechanism</em>, which in short steers the flow of information. The <em>parameters</em> are the adjustable values the network has at its disposal, and their number depends on how many layers it has, how wide its vectors are, and how many attention mechanisms it contains. When you read that a network 'has 12 billion parameters' (as Flux does), it means there are 12 billion values to be adjusted, cycle after cycle, during learning. This is why hundreds or thousands of GPUs are needed for pre-training, and why the costs at OpenAI, Anthropic and similar companies are so high — and why, for now, these companies operate at a loss."
+   data-it="Le reti oggi sono una combinazione di molti layer (30-40 e oltre), dove ogni layer è uno strato di neuroni (milioni e più), e dove le connessioni sono guidate da quello che si chiama <em>attention mechanism</em>, che in breve pilota il flusso dell'informazione. I <em>parametri</em> sono i valori regolabili che la rete ha a disposizione, e il loro numero dipende da quanti layer ha, da quanto sono ampi i suoi vettori e da quanti meccanismi di attention contiene. Quando leggete che una rete 'ha 12 miliardi di parametri' (è il caso di Flux), significa che ci sono 12 miliardi di valori da regolare, ciclo dopo ciclo, durante l'apprendimento. Per questa ragione occorrono centinaia o migliaia di GPU per il pre-training, ed è per questa ragione che le spese di OpenAI, Anthropic e simili sono così elevate — motivo per cui, per ora, queste società operano in perdita.">
+  Today's networks are a combination of many layers (30–40 or more), where each layer is a stratum of neurons (millions of them, or more), and where the connections are guided by what's called an <em>attention mechanism</em>, which in short steers the flow of information. The <em>parameters</em> are the adjustable values the network has at its disposal, and their number depends on how many layers it has, how wide its vectors are, and how many attention mechanisms it contains. When you read that a network 'has 12 billion parameters' (as Flux does), it means there are 12 billion values to be adjusted, cycle after cycle, during learning. This is why hundreds or thousands of GPUs are needed for pre-training, and why the costs at OpenAI, Anthropic and similar companies are so high — and why, for now, these companies operate at a loss.
+</p>
+
+<p class="post-text"
+   data-en="Whether it's clearing the fog or learning how to clear it, the principle is the same: not one stroke of genius, but a simple gesture repeated many times, a little better each time."
+   data-it="Che si tratti di diradare la nebbia o di imparare a farlo, il principio è lo stesso: non un colpo di genio, ma un gesto semplice ripetuto molte volte, ogni volta un po' meglio.">
+  Whether it's clearing the fog or learning how to clear it, the principle is the same: not one stroke of genius, but a simple gesture repeated many times, a little better each time.
+</p>
+
+          </div>
+        </li>
+      </ol>
+
+      <!-- ── FOOTNOTES ─────────────────────────────────────── -->
+      <section class="footnotes">
+        <ol>
+          <li id="fn1">
+            <span data-en="In the language of statistical mathematics for neural networks, <em>Encoder</em> refers to the process that transforms a pixel image into a mathematical object within a geometric space — made of points, or more precisely N-dimensional vectors. The concept of a Zip file is often used to describe it: it is, in effect, a compressed space that allows all these geometric operations to take up far less space. The <em>Decoder</em> is the opposite process: from the geometric space back to the plain image."
+                  data-it="Nel linguaggio della matematica statistica delle reti neurali, per <em>Encoder</em> (in italiano 'encodare') si intende il processo che trasforma un'immagine fatta di pixel in un oggetto matematico in uno spazio geometrico (fatto di punti, o meglio di vettori a N dimensioni). Spesso viene usato il concetto di Zip per descriverlo: è, in effetti, uno spazio compresso che permette di occupare molto meno spazio durante tutte queste operazioni geometriche. Il <em>Decoder</em> è invece il processo opposto: dallo spazio geometrico all'immagine in chiaro.">In the language of statistical mathematics for neural networks, <em>Encoder</em> refers to the process that transforms a pixel image into a mathematical object within a geometric space — made of points, or more precisely N-dimensional vectors. The concept of a Zip file is often used to describe it: it is, in effect, a compressed space that allows all these geometric operations to take up far less space. The <em>Decoder</em> is the opposite process: from the geometric space back to the plain image.</span>
+            <a href="#fnref1" class="fn-back" aria-label="back to text">&#8617;</a>
+          </li>
+        </ol>
+      </section>
+
+      <p class="post-text" style="margin-top:2.5rem; opacity:0.75;"
+   data-en="Technical details, node graph and downloadable pipeline: <a href='post-comfyui-course-material.html' class='about-link'>ComfyUI Visual Stories — The Node Graph</a>."
+   data-it="Dettagli tecnici, grafo dei nodi e pipeline scaricabile: <a href='post-comfyui-course-material.html' class='about-link'>ComfyUI Storie Visive — Il Grafo dei Nodi</a>.">
+  Technical details, node graph and downloadable pipeline: <a href='post-comfyui-course-material.html' class='about-link'>ComfyUI Visual Stories — The Node Graph</a>.
+</p>
+
+    </div><!-- /page-body -->
+  </main>
+
+  <a href="posts.html" class="nav-back"
+     data-en="POSTS" data-it="POST">POSTS</a>
+
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="en">EN</button>
+    <button class="lang-btn" data-lang="it">IT</button>
+  </div>
+
+  <script src="assets/lang.js"></script>
+  <script>
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').classList.toggle('scrolled', window.scrollY > 20);
+    });
+  </script>
+</body>
+</html>

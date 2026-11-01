@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aelita — Graphic Novel Storyboard</title>
+  <link rel="alternate" hreflang="it"        href="https://storyline-engine.com/aelita-storyboard.html">
+  <link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/aelita-storyboard.html">
+    <!-- Preload self-hosted fonts so they're already in flight before style.css
+       is even parsed — closes the remaining window where the browser paints
+       with the fallback (Georgia/Courier) and then swaps to the real font,
+       which is what still reads as the font "changing size" on reload. -->
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+<style>
+    @font-face {
+      font-family: 'IBM Plex Mono';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('assets/fonts/ibm-plex-mono-latin-400-normal.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'IBM Plex Mono';
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url('assets/fonts/ibm-plex-mono-latin-600-normal.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'EB Garamond';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('assets/fonts/eb-garamond-latin-400-normal.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'EB Garamond';
+      font-style: italic;
+      font-weight: 400;
+      font-display: swap;
+      src: url('assets/fonts/eb-garamond-latin-400-italic.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'EB Garamond';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url('assets/fonts/eb-garamond-latin-500-normal.woff2') format('woff2');
+    }
+
+    :root {
+      --bg:       #0d0b09;
+      --panel:    #14110d;
+      --gold:     #e0a96d;
+      --gold-dim: rgba(224, 169, 109, 0.35);
+      --border-pdf: #d4a359;
+      --text:     #f4ebd9;
+      --muted:    rgba(244, 235, 217, 0.65);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'EB Garamond', serif;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    #storyboard-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    /* Ogni slide occupa esattamente il viewport ed è un contenitore flex verticale */
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(40px);
+      transition: opacity .5s ease, transform .5s ease, visibility 0s .5s;
+      padding: 3.5rem 1rem 1rem;
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0);
+      transition: opacity .5s ease, transform .5s ease;
+      z-index: 10;
+    }
+    .slide.prev { transform: translateX(-40px); }
+
+    /* Area Immagine: Rimanere sempre interamente visibile sullo schermo */
+    .img-wrapper {
+      flex: 1 1 auto;
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 0; /* Permette il corretto ridimensionamento dell'immagine */
+      padding: 0.5rem;
+    }
+
+    .comic-img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border: 3px solid var(--border-pdf);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.8);
+    }
+
+    /* Area Testo: Scrollabile indipendentemente se il contenuto eccede */
+    .text-panel-container {
+      flex: 0 0 auto;
+      width: 100%;
+      max-width: 840px;
+      max-height: 25vh; /* Limita l'altezza per lasciare priorità all'immagine */
+      overflow-y: auto;
+      margin-top: 0.5rem;
+      padding: 0.8rem 1.5rem 3.5rem;
+      background: var(--panel);
+      border: 1px solid var(--gold-dim);
+      border-top: 2px solid var(--gold);
+      scrollbar-width: thin;
+      scrollbar-color: var(--gold-dim) transparent;
+    }
+
+    .text-panel-container::-webkit-scrollbar { width: 4px; }
+    .text-panel-container::-webkit-scrollbar-thumb { background: var(--gold-dim); }
+
+    .panel-meta {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .shot-number {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .75rem;
+      letter-spacing: .18em;
+      color: var(--gold);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .shot-type {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      color: var(--muted);
+    }
+
+    .description {
+      font-size: 1.1rem;
+      line-height: 1.5;
+      opacity: .92;
+    }
+
+    /* Stile speciale per la copertina */
+    .cover-panel {
+      text-align: center;
+    }
+    .cover-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 1.4rem;
+      color: var(--gold);
+      letter-spacing: 0.15em;
+      margin-bottom: 0.3rem;
+    }
+
+    /* Control Bar */
+    .controls {
+      position: fixed;
+      bottom: 1.2rem;
+      right: 1rem;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+
+    .ctrl-btn {
+      background: rgba(13, 11, 9, 0.92);
+      border: 1px solid var(--gold-dim);
+      color: var(--text);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .75rem;
+      letter-spacing: .06em;
+      padding: .4rem .7rem;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: border-color .25s, color .25s;
+    }
+    .ctrl-btn:hover:not(:disabled) { border-color: var(--gold); color: var(--gold); }
+    .ctrl-btn:disabled { opacity: .25; cursor: not-allowed; }
+
+    .counter {
+      position: fixed;
+      bottom: 1.2rem;
+      left: 2rem;
+      z-index: 30;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .75rem;
+      color: var(--muted);
+      min-width: 55px;
+      text-align: center;
+      background: rgba(13, 11, 9, 0.95);
+      padding: .3rem .5rem;
+      border: 1px solid rgba(224, 169, 109, 0.15);
+      backdrop-filter: blur(8px);
+    }
+
+    /* Top Bar */
+    .top-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 30;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: .8rem 2rem;
+      background: linear-gradient(to bottom, rgba(13,11,9,.9) 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .top-bar a {
+      pointer-events: all;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .72rem;
+      letter-spacing: .1em;
+      color: var(--muted);
+      text-decoration: none;
+      border: 1px solid rgba(244,235,217,.2);
+      background: rgba(13,11,9,.8);
+      padding: .4rem .8rem;
+      backdrop-filter: blur(6px);
+      transition: color .25s, border-color .25s;
+    }
+    .top-bar a:hover { color: var(--gold); border-color: var(--gold-dim); }
+
+    @media (max-width: 700px) {
+      .slide { padding: 3rem 0.5rem 0.5rem; }
+      .text-panel-container { max-height: 30vh; padding: 0.8rem 1rem 3.5rem; }
+      .description { font-size: 0.98rem; }
+      .controls { right: 0.5rem; bottom: 0.8rem; }
+      .counter  { left:  0.5rem; bottom: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a href="aelita.html">✕ ESCI</a>
+  <a href="aelita-storyboard-en.html">EN</a>
+</div>
+
+<div id="storyboard-container">
+
+  <!-- Cover Slide -->
+  <div class="slide active">
+    <div class="img-wrapper">
+      <img src="assets/aelita/copertina_it.jpg" alt="Aelita Copertina" class="comic-img">
+    </div>
+    <div class="text-panel-container cover-panel">
+      <h1 class="cover-title">AELITA — o Il declino di Marte</h1>
+      <p class="description">Adattamento Graphic Novel dal romanzo di Aleksej Nikolaevič Tolstoj (1922).</p>
+    </div>
+  </div>
+
+  <!-- Vignetta 01 -->
+  <div class="slide">
+    <div class="img-wrapper">
+      <img src="assets/aelita/shot1.jpg" alt="Vignetta 01" class="comic-img">
+    </div>
+    <div class="text-panel-container">
+      <div class="panel-meta">
+        <span class="shot-number">Vignetta 01</span>
+        <span class="shot-type">Scena I</span>
+      </div>
+      <p class="description">L'ingegnere Mstislav Los' attacca l'annuncio di reclutamento per un viaggio su Marte tra le strade spoglie di Pietrogrado dopo la rivoluzione di Ottobre.</p>
+    </div>
+  </div>
+
+  <!-- Vignetta 02 -->
+  <div class="slide">
+    <div class="img-wrapper">
+      <img src="assets/aelita/shot2.jpg" alt="Vignetta 02" class="comic-img">
+    </div>
+    <div class="text-panel-container">
+      <div class="panel-meta">
+        <span class="shot-number">Vignetta 02</span>
+        <span class="shot-type">Scena II</span>
+      </div>
+      <p class="description">Al progetto aderisce Aleksej Gusev, un soldato dell'Armata Rossa, bolscevico dinamico e pragmatico. Il primo incontro avviene nel laboratorio di Los'.</p>
+    </div>
+  </div>
+
+  <!-- Vignetta 03 -->
+  <div class="slide">
+    <div class="img-wrapper">
+      <img src="assets/aelita/shot3.jpg" alt="Vignetta 03" class="comic-img">
+    </div>
+    <div class="text-panel-container">
+      <div class="panel-meta">
+        <span class="shot-number">Vignetta 03</span>
+        <span class="shot-type">Scena III</span>
+      </div>
+      <p class="description">Partenza del razzo metallico tra fumo ed esplosioni atomiche di fronte alla folla incuriosita e speranzosa di diffondere nello spazio il pensiero rivoluzionario.</p>
+    </div>
+  </div>
+
+  <!-- Vignetta 04 -->
+  <div class="slide">
+    <div class="img-wrapper">
+      <img src="assets/aelita/shot4.jpg" alt="Vignetta 04" class="comic-img">
+    </div>
+    <div class="text-panel-container">
+      <div class="panel-meta">
+        <span class="shot-number">Vignetta 04</span>
+        <span class="shot-type">Scena IV</span>
+      </div>
+      <p class="description">La quotidianità all'interno dell'abitacolo sferico durante la navigazione nello spazio profondo. Los mostra carte cosmiche al compagno di viaggio.</p>
+    </div>
+  </div>
+
+  <!-- Vignetta 05 -->
+  <div class="slide">
+    <div class="img-wrapper">
+      <img src="assets/aelita/shot5.jpg" alt="Vignetta 05" class="comic-img">
+    </div>
+    <div class="text-panel-container">
+      <div class="panel-meta">
+        <span class="shot-number">Vignetta 05</span>
+        <span class="shot-type">Scena V</span>
+      </div>
+      <p class="description">I due terrestri muovono i primi passi sul suolo marziano tra rocce rosse, cactus e piante aliene. Nessuna traccia di vita, tantomeno di civiltà.</p>
+    </div>
+  </div>
+
+  <!-- Vignetta 06 -->
+  <div class="slide">
+    <div class="img-wrapper">
+      <img src="assets/aelita/shot6.jpg" alt="Vignetta 06" class="comic-img">
+    </div>
+    <div class="text-panel-container">
+      <div class="panel-meta">
+        <span class="shot-number">Vignetta 06</span>
+        <span class="shot-type">Scena VI</span>
+      </div>
+      <p class="description">I due non demordono, spinti dal loro credo. Dopo qualche km si imbattono nei resti di quella che sembra una città marziana abbandonata.</p>
+    </div>
+  </div>
+
+  <!-- Vignetta 07 -->
+  <div class="slide">
+    <div class="img-wrapper">
+      <img src="assets/aelita/shot7.jpg" alt="Vignetta 07" class="comic-img">
+    </div>
+    <div class="text-panel-container">
+      <div class="panel-meta">
+        <span class="shot-number">Vignetta 07</span>
+        <span class="shot-type">Scena VII</span>
+      </div>
+      <p class="description">Continuando il cammino, i due si accorgono che la civiltà è ancora integra. I terrestri mostrano un messaggio di pace, ma vengono accerchiati da soldati di carnagione blu-verde.</p>
+    </div>
+  </div>
+
+  <!-- Vignetta 08 -->
+  <div class="slide">
+    <div class="img-wrapper">
+      <img src="assets/aelita/shot8.jpg" alt="Vignetta 08" class="comic-img">
+    </div>
+    <div class="text-panel-container">
+      <div class="panel-meta">
+        <span class="shot-number">Vignetta 08</span>
+        <span class="shot-type">Scena VIII</span>
+      </div>
+      <p class="description">Condotti nella capitale, incontrano Tuskub, il signore di Marte, che vuole conoscerli. Ma non c'è dialogo tra i terrestri e il dittatore imperscrutabile.</p>
+    </div>
+  </div>
+
+  <!-- Vignetta 09 -->
+  <div class="slide">
+    <div class="img-wrapper">
+      <img src="assets/aelita/shot9.jpg" alt="Vignetta 09" class="comic-img">
+    </div>
+    <div class="text-panel-container">
+      <div class="panel-meta">
+        <span class="shot-number">Vignetta 09</span>
+        <span class="shot-type">Scena IX</span>
+      </div>
+      <p class="description">L'incontro riservato nella dimora principesca di Aelita, figlia di Tuskub. La giovane mostra all'ingegnere terrestre i tentativi di ricostruzione della civiltà marziana.</p>
+    </div>
+  </div>
+
+  <!-- Vignetta 10 -->
+  <div class="slide">
+    <div class="img-wrapper">
+      <img src="assets/aelita/shot10.jpg" alt="Vignetta 10" class="comic-img">
+    </div>
+    <div class="text-panel-container">
+      <div class="panel-meta">
+        <span class="shot-number">Vignetta 10</span>
+        <span class="shot-type">Scena X</span>
+      </div>
+      <p class="description">La principessa confida a Los il desiderio di fuggire da una società antiquata e maschilista. Los la convince ad andare con lui nella rinnovata Russia.</p>
+    </div>
+  </div>
+
+  <!-- Vignetta 11 -->
+  <div class="slide">
+    <div class="img-wrapper">
+      <img src="assets/aelita/shot11.jpg" alt="Vignetta 11" class="comic-img">
+    </div>
+    <div class="text-panel-container">
+      <div class="panel-meta">
+        <span class="shot-number">Vignetta 11</span>
+        <span class="shot-type">Scena XI</span>
+      </div>
+      <p class="description">Nel frattempo, Gusev visita i bassifondi industriali marziani toccando con mano lo sfruttamento del proletariato alieno.</p>
+    </div>
+  </div>
+
+  <!-- Vignetta 12 -->
+  <div class="slide">
+    <div class="img-wrapper">
+      <img src="assets/aelita/shot12.jpg" alt="Vignetta 12" class="comic-img">
+    </div>
+    <div class="text-panel-container">
+      <div class="panel-meta">
+        <span class="shot-number">Vignetta 12</span>
+        <span class="shot-type">Scena XII</span>
+      </div>
+      <p class="description">Gusev parla alla folla di lavoratori marziani incitandoli a una rivolta. Qualcuno aderisce, ma altri temono i soldati di Tuskub.</p>
+    </div>
+  </div>
+
+  <!-- Vignetta 13 -->
+  <div class="slide">
+    <div class="img-wrapper">
+      <img src="assets/aelita/shot13.jpg" alt="Vignetta 13" class="comic-img">
+    </div>
+    <div class="text-panel-container">
+      <div class="panel-meta">
+        <span class="shot-number">Vignetta 13</span>
+        <span class="shot-type">Scena XIII</span>
+      </div>
+      <p class="description">Il dittatore viene informato della missione dei terrestri, che vengono rincorsi dall'esercito. Nel frattempo alcuni marziani hanno aderito al pensiero bolscevico e scoppia una guerra civile.</p>
+    </div>
+  </div>
+
+  <!-- Vignetta 14 -->
+  <div class="slide">
+    <div class="img-wrapper">
+      <img src="assets/aelita/shot14.jpg" alt="Vignetta 14" class="comic-img">
+    </div>
+    <div class="text-panel-container">
+      <div class="panel-meta">
+        <span class="shot-number">Vignetta 14</span>
+        <span class="shot-type">Scena XIV</span>
+      </div>
+      <p class="description">Los' viene allontanato da Aelita durante il crollo del movimento insurrezionale. I due amanti si abbracciano per l'ultima volta. Le guardie Tuskub sorvegliano la principessa.</p>
+    </div>
+  </div>
+
+  <!-- Vignetta 15 -->
+  <div class="slide">
+    <div class="img-wrapper">
+      <img src="assets/aelita/shot15.jpg" alt="Vignetta 15" class="comic-img">
+    </div>
+    <div class="text-panel-container">
+      <div class="panel-meta">
+        <span class="shot-number">Vignetta 15</span>
+        <span class="shot-type">Scena XV</span>
+      </div>
+      <p class="description">I terrestri raggiungono la navicella, dalla quale cercano di sintonizzarsi al radio-trasmettitore del palazzo reale, dove Aelita disperata lancia messaggi nel cosmo.</p>
+    </div>
+  </div>
+
+  <!-- Vignetta 16 -->
+  <div class="slide">
+    <div class="img-wrapper">
+      <img src="assets/aelita/shot16.jpg" alt="Vignetta 16" class="comic-img">
+    </div>
+    <div class="text-panel-container">
+      <div class="panel-meta">
+        <span class="shot-number">Vignetta 16</span>
+        <span class="shot-type">Scena XVI</span>
+      </div>
+      <p class="description">Los, nelle fredde notti dell'inverno russo, guarda il cielo cosmico, sognando il fantasma della bella principessa aliena. Forse progetterà una nuova missione.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="counter"><span id="current">COVER</span> / 16</div>
+<div class="controls">
+  <button class="ctrl-btn" id="prevBtn" disabled>← PREV</button>
+  <button class="ctrl-btn" id="nextBtn">NEXT →</button>
+</div>
+
+<script>
+  const slides   = document.querySelectorAll('.slide');
+  const prevBtn  = document.getElementById('prevBtn');
+  const nextBtn  = document.getElementById('nextBtn');
+  const counter  = document.getElementById('current');
+  const langLink = document.querySelector('.top-bar a:last-child');
+  let cur = 0;
+
+  function syncLangLink() {
+    langLink.href = langLink.href.split('#')[0] + '#' + cur;
+  }
+
+  function go(n) {
+    slides[cur].classList.remove('active');
+    slides[cur].classList.add('prev');
+    cur = n;
+    slides.forEach((s, i) => { if (i !== cur) s.classList.remove('active'); });
+    slides[cur].classList.remove('prev');
+    slides[cur].classList.add('active');
+    
+    // Reset scroll del testo se presente
+    const container = slides[cur].querySelector('.text-panel-container');
+    if (container) container.scrollTop = 0;
+
+    counter.textContent = cur === 0 ? 'COVER' : cur;
+    prevBtn.disabled = cur === 0;
+    nextBtn.disabled = cur === slides.length - 1;
+    syncLangLink();
+    history.replaceState(null, '', '#' + cur);
+  }
+
+  syncLangLink();
+  const initSlide = parseInt(window.location.hash.slice(1));
+  if (!isNaN(initSlide) && initSlide > 0 && initSlide < slides.length) go(initSlide);
+
+  nextBtn.addEventListener('click', () => { if (cur < slides.length - 1) go(cur + 1); });
+  prevBtn.addEventListener('click', () => { if (cur > 0) go(cur - 1); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' && cur < slides.length - 1) go(cur + 1);
+    if (e.key === 'ArrowLeft'  && cur > 0)                 go(cur - 1);
+  });
+</script>
+</body>
+</html>

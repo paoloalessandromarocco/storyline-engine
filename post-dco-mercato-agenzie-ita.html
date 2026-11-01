@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>The Agency Channel in Italy</title>
+  <link rel="alternate" hreflang="en"        href="https://storyline-engine.com/post-dco-mercato-agenzie-ita.html">
+  <link rel="alternate" hreflang="it"        href="https://storyline-engine.com/post-dco-mercato-agenzie-ita.html?lang=it">
+  <link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-dco-mercato-agenzie-ita.html">
+    <!-- Preload self-hosted fonts so they're already in flight before style.css
+       is even parsed — closes the remaining window where the browser paints
+       with the fallback (Georgia/Courier) and then swaps to the real font,
+       which is what still reads as the font "changing size" on reload. -->
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/style.css">
+
+  <style>
+    /* ── post body text ─────────────────────────────────── */
+    .post-text {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.15rem;
+      line-height: 1.75;
+      margin: 0 0 1.4em 0;
+    }
+
+    /* ── numbered content list ───────────────────────────── */
+    .content-list { list-style: none; padding: 0; margin: 1.6rem 0 0; }
+    .content-item {
+      display: grid;
+      grid-template-columns: 3rem 1fr;
+      gap: 1.6rem;
+      padding: 2rem 0;
+    }
+    .content-item:last-child { border-bottom: 1px solid rgba(0,0,0,0.08); }
+    /* no bottom line right before a chapter heading: its own thick top border already separates */
+    .content-list:has(+ .chapter-heading) .content-item:last-child { border-bottom: none; }
+    .content-number {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #1A5CB3;
+      opacity: 0.25;
+      padding-top: 0.15rem;
+      line-height: 1;
+    }
+    .content-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #1A5CB3;
+      margin: 0 0 0.9rem;
+      font-weight: 400;
+    }
+    .content-body .post-text { margin: 0; }
+
+    /* ── pros / cons two-column (same as adv.html) ────────── */
+    .pros-cons-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 0.5rem 0 1.5rem;
+    }
+    .pros-cons-col h3 {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+    .pros-cons-col ul {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.1rem;
+      line-height: 1.65;
+      padding-left: 1.2em;
+    }
+    .pros-cons-col ul li { margin-bottom: 0.6em; }
+    .col-pros h3 { color: #1A5800; }
+    .col-cons h3 { color: #A76300; }
+
+    @media (max-width: 700px) {
+      .content-item { grid-template-columns: 2rem 1fr; gap: 1rem; }
+      .content-number { font-size: 1.1rem; }
+      .pros-cons-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── footnote ref ────────────────────────────────────── */
+    sup.fn-ref {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6em;
+      line-height: 1;
+      vertical-align: super;
+      margin-left: 0.1em;
+    }
+    sup.fn-ref a { text-decoration: none; opacity: 0.55; }
+    sup.fn-ref a:hover { opacity: 1; }
+
+    /* ── footnotes block ─────────────────────────────────── */
+    .footnotes {
+      margin-top: 4rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid currentColor;
+      opacity: 0.65;
+    }
+    .footnotes ol {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 0.92rem;
+      line-height: 1.65;
+      padding-left: 1.4em;
+      margin: 0 0 0 -1.4em;
+      list-style-position: outside;
+    }
+    .footnotes li { margin-bottom: 0.8em; }
+    .fn-back {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8em;
+      margin-left: 0.4em;
+      text-decoration: none;
+      opacity: 0.5;
+    }
+    .fn-back:hover { opacity: 1; }
+
+    /* ── chapter heading ─────────────────────────────────── */
+    .chapter-heading {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 1.05rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #1A5CB3;
+      margin: 3.5rem 0 0.5rem;
+      padding-top: 2rem;
+      border-top: 2px solid rgba(0,0,0,0.12);
+    }
+    .content-sublist {
+      list-style: disc;
+      padding-left: 1.4em;
+      margin-top: 0.9em;
+      margin-bottom: 0;
+    }
+    .content-sublist li {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      margin-bottom: 0.6em;
+    }
+  </style>
+</head>
+<body class="interior">
+
+  <header>
+    <a href="about.html" class="nav-item" data-en="ABOUT" data-it="ABOUT">ABOUT</a>
+    <div class="menu-container">
+      <span class="menu-trigger" data-en="TOPICS" data-it="ARGOMENTI">TOPICS</span>
+      <div class="menu-dropdown">
+        <a href="adv.html"             class="menu-item" data-en="ADV"            data-it="ADV">ADV</a>
+        <a href="neural-graphics.html" class="menu-item" data-en="VISUAL STORIES" data-it="FUMETTI/STORYBOARD">VISUAL STORIES</a>
+        <a href="comfyui.html"         class="menu-item" data-en="COMFYUI"        data-it="COMFYUI">COMFYUI</a>
+        <a href="posts.html"           class="menu-item" data-en="POSTS"          data-it="POST">POSTS</a>
+        <span class="menu-item menu-item--disabled" data-en="VIDEO" data-it="VIDEO">VIDEO</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content">
+
+    <p class="section-label" data-en="ComfyUI &middot; Dynamic Creative Optimization &middot; Go-to-Market · ITALY" data-it="ComfyUI &middot; Dynamic Creative Optimization &middot; Go-to-Market · ITALIA">ComfyUI &middot; Dynamic Creative Optimization &middot; Go-to-Market · ITALY</p>
+    <h1 class="page-title"
+        data-en="The Agency Channel in Italy"
+        data-it="Il canale delle agenzie in Italia">
+      The Agency Channel in Italy
+    </h1>
+
+    <div class="page-body">
+
+      <div class="post-tags" style="margin-bottom:2rem;">
+        <span class="post-tag tag-narr" data-en="DCO" data-it="DCO">DCO</span>
+        <span class="post-tag tag-narr" data-en="Go-to-Market" data-it="Go-to-Market">Go-to-Market</span>
+        <span class="post-tag tag-narr" data-en="Agencies" data-it="Agenzie">Agencies</span>
+        <span class="post-tag tag-narr" data-en="Italy" data-it="Italia">Italy</span>
+        <span class="post-tag tag-narr" data-en="Market Analysis" data-it="Analisi di Mercato">Market Analysis</span>
+        <span class="post-tag tag-narr" data-en="ADV" data-it="ADV">ADV</span>
+      </div>
+
+      <p class="post-abstract-text"
+         data-en="Who operates in the Italian Dynamic Creative Optimization market, who actually buys from them, where a small producer can realistically enter, and what a flexible service shared by several small agencies would look like. The international picture &mdash; what traditional DCO can and can't do, what the large platforms' AI already covers, and the realistic route into the gap &mdash; is in <a href='post-dco-mercato-globale.html' class='about-link'>DCO and the Agency Market</a>; the multi-product question is in <a href='post-dco-pipeline.html' class='about-link'>DCO: One Pipeline, Many Products</a>. Companion to the landing page's &quot;who it's for&quot; section: <a href='adv.html' class='about-link'>Automated Creative for Brand Campaigns</a>."
+         data-it="Chi opera nel mercato italiano della Dynamic Creative Optimization, chi compra davvero da loro, dove un piccolo produttore può realisticamente entrare, e come sarebbe un servizio flessibile condiviso da più piccole agenzie. Il quadro internazionale &mdash; cosa la DCO tradizionale può e non può fare, cosa l'AI delle grandi piattaforme copre già, e la via realistica per entrare nel varco &mdash; è in <a href='post-dco-mercato-globale.html' class='about-link'>DCO e il mercato delle agenzie</a>. In breve, la via d’ingresso realistica: non un prodotto nuovo che possa competere con le piattaforme, ma calibrazione + audit venduti insieme all’onboarding — un cuneo da consulente/artigiano, non da vendor..">
+        Who operates in the Italian Dynamic Creative Optimization market, who actually buys from them, where a small producer can realistically enter, and what a flexible service shared by several small agencies would look like. The international picture — what traditional DCO can and can't do, what the large platforms' AI already covers, and the realistic route into the gap — is in <a href="post-dco-mercato-globale.html" class="about-link">DCO and the Agency Market</a>; the multi-product question is in <a href="post-dco-pipeline.html" class="about-link">DCO: One Pipeline, Many Products</a>. Companion to the landing page's "who it's for" section: <a href="adv.html" class="about-link">Automated Creative for Brand Campaigns</a>.
+      </p>
+
+      <!-- ── CONTENTS ──────────────────────────────────────── -->
+      <ol class="content-list">
+
+        <!-- 01 -->
+        <li class="content-item">
+          <div class="content-number">01</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="Who operates in the Italian DCO market"
+                data-it="Chi opera nel mercato DCO italiano">
+              Who operates in the Italian DCO market
+            </h3>
+
+            <p class="post-text"
+               data-en="Companies offering Dynamic Creative Optimization in Italy split cleanly into three tiers, and the split tracks what each one actually sells. The first tier is platform infrastructure: Criteo, through its Milan branch, runs DCO+, an AI-driven engine that assembles banners and video ads in real time from product feeds and browsing-behaviour signals — a commerce-media retargeting business, not a creative-production one. Connected-Stories, a native Italian-founded player with offices in Rome, Milan and New York, sells a Creative Management Platform built on predictive and generative AI for hyper-personalised dynamic video and display across CTV and the open web. Amazon Ads and Google's DV360/Studio sit in the same tier at enterprise scale, with DCO built into the buying platform itself rather than sold as a separate service."
+               data-it="Le aziende che offrono Dynamic Creative Optimization in Italia si dividono nettamente in tre livelli, e la divisione segue cosa ciascuna vende realmente. Il primo livello è infrastruttura di piattaforma: Criteo, tramite la sede di Milano, gestisce DCO+, un motore guidato dall'AI che assembla banner e video ad in tempo reale a partire da feed di prodotto e segnali di comportamento di navigazione — un business di retargeting per il commerce media, non di produzione creativa. Connected-Stories, player nativo italiano con sedi a Roma, Milano e New York, vende una Creative Management Platform costruita su AI predittiva e generativa per video e display dinamici iper-personalizzati su CTV e web aperto. Amazon Ads e DV360/Studio di Google si collocano nello stesso livello a scala enterprise, con la DCO integrata direttamente nella piattaforma di acquisto invece che venduta come servizio separato.">
+              Companies offering Dynamic Creative Optimization in Italy split cleanly into three tiers, and the split tracks what each one actually sells. The first tier is platform infrastructure: Criteo, through its Milan branch, runs DCO+, an AI-driven engine that assembles banners and video ads in real time from product feeds and browsing-behaviour signals — a commerce-media retargeting business, not a creative-production one. Connected-Stories, a native Italian-founded player with offices in Rome, Milan and New York, sells a Creative Management Platform built on predictive and generative AI for hyper-personalised dynamic video and display across CTV and the open web. Amazon Ads and Google's DV360/Studio sit in the same tier at enterprise scale, with DCO built into the buying platform itself rather than sold as a separate service.
+            </p>
+            <p class="post-text" style="margin-top:1.2em;"
+               data-en="The second tier is independent AdTech and resellers (Eikontech, ShowHeroes Group, Aryel): technical integrators that make the first tier's platforms work inside a single campaign."
+               data-it="Il secondo livello è l'AdTech indipendente e i reseller (Eikontech, ShowHeroes Group, Aryel): integratori tecnici che fanno funzionare le piattaforme del primo livello dentro una singola campagna.">
+              The second tier is independent AdTech and resellers (Eikontech, ShowHeroes Group, Aryel): technical integrators that make the first tier's platforms work inside a single campaign.
+            </p>
+            <p class="post-text" style="margin-top:1.2em;"
+               data-en="The third tier is where creative decisions get made rather than just executed: the Big Four media-agency hubs — WPP (through GroupM, EssenceMediacom, Wavemaker), Publicis, Omnicom and Dentsu Italy — run the DCO campaigns of enterprise clients through platforms like Flashtalking, Celtra or Google Studio, and, below them, a layer of specialised digital agencies (the names that come up are Youthquake, Hej! and Fragos Media) runs the same kind of performance-driven DCO integration for mid-market clients."
+               data-it="Il terzo livello è quello in cui le decisioni creative si prendono, non solo si eseguono: i grandi gruppi di agenzie media — WPP (tramite GroupM, EssenceMediacom, Wavemaker), Publicis, Omnicom e Dentsu Italia — gestiscono le campagne DCO dei clienti enterprise attraverso piattaforme come Flashtalking, Celtra o Google Studio, e, sotto di loro, uno strato di agenzie digitali specializzate (i nomi che ricorrono sono Youthquake, Hej! e Fragos Media) fa lo stesso tipo di integrazione DCO orientata alla performance per clienti di fascia media.">
+              The third tier is where creative decisions get made rather than just executed: the Big Four media-agency hubs — WPP (through GroupM, EssenceMediacom, Wavemaker), Publicis, Omnicom and Dentsu Italy — run the DCO campaigns of enterprise clients through platforms like Flashtalking, Celtra or Google Studio, and, below them, a layer of specialised digital agencies (the names that come up are Youthquake, Hej! and Fragos Media) runs the same kind of performance-driven DCO integration for mid-market clients.
+            </p>
+
+          </div>
+        </li>
+
+        <!-- 02 -->
+        <li class="content-item">
+          <div class="content-number">02</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="Who actually buys it"
+                data-it="Chi lo compra davvero">
+              Who actually buys it
+            </h3>
+
+            <p class="post-text"
+               data-en="DCO in Italy gets adopted wherever a brand has a large product catalogue, prices that change often, or a high volume of individual customer touchpoints &mdash; the three conditions under which swapping creative elements automatically actually pays for itself. E-commerce and large retail is the clearest case (Unieuro, MediaWorld, Zalando, Amazon Italy, Yoox): catalogues too large to hand-design around. Automotive (Stellantis Group, BMW Italia, Volkswagen Group Italia) follows the same logic with location, weather and dealer offers instead of a live feed; fashion and luxury (Armani, Moncler, Calzedonia Group) use it for localised overlays rather than full personalisation, since the category guards its visual identity more tightly. Telecoms and energy, travel and hospitality, finance and insurance (TIM, Enel, ITA Airways, Generali, among others) use it for dynamic pricing, live offers and weather-triggered creative. What they all share is volume: enough touchpoints that no human workflow could produce a variant for each one."
+               data-it="La DCO in Italia viene adottata ovunque un brand abbia un catalogo prodotto ampio, prezzi che cambiano spesso, o un volume elevato di singoli punti di contatto con il cliente &mdash; le tre condizioni in cui sostituire automaticamente gli elementi creativi si ripaga davvero. L'e-commerce e la grande distribuzione sono il caso più chiaro (Unieuro, MediaWorld, Zalando, Amazon Italia, Yoox): cataloghi troppo grandi per essere progettati a mano. L'automotive (Stellantis Group, BMW Italia, Volkswagen Group Italia) segue la stessa logica con posizione, meteo e offerte per concessionario invece di un feed live; moda e lusso (Armani, Moncler, Calzedonia Group) la usano per overlay localizzati più che per una personalizzazione completa, perché il settore tutela più rigidamente la propria identità visiva. Telecomunicazioni ed energia, viaggi e ospitalità, finanza e assicurazioni (TIM, Enel, ITA Airways, Generali, tra gli altri) la usano per pricing dinamico, offerte live e creatività attivata dal meteo. Ciò che li accomuna è il volume: punti di contatto così numerosi che nessun flusso di lavoro umano potrebbe produrre una variante per ciascuno.">
+              DCO in Italy gets adopted wherever a brand has a large product catalogue, prices that change often, or a high volume of individual customer touchpoints — the three conditions under which swapping creative elements automatically actually pays for itself. E-commerce and large retail is the clearest case (Unieuro, MediaWorld, Zalando, Amazon Italy, Yoox): catalogues too large to hand-design around. Automotive (Stellantis Group, BMW Italia, Volkswagen Group Italia) follows the same logic with location, weather and dealer offers instead of a live feed; fashion and luxury (Armani, Moncler, Calzedonia Group) use it for localised overlays rather than full personalisation, since the category guards its visual identity more tightly. Telecoms and energy, travel and hospitality, finance and insurance (TIM, Enel, ITA Airways, Generali, among others) use it for dynamic pricing, live offers and weather-triggered creative. What they all share is volume: enough touchpoints that no human workflow could produce a variant for each one.
+            </p>
+
+          </div>
+        </li>
+
+        <!-- 05 -->
+        <li class="content-item" id="open-door">
+          <div class="content-number">03</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="The open door: mid-market specialised agencies"
+                data-it="La porta aperta: le agenzie specializzate di fascia media">
+              The open door: mid-market specialised agencies
+            </h3>
+
+            <p class="post-text"
+               data-en="Of the three tiers mapped above, the first two are not realistic doors to walk through. Platform infrastructure — Criteo's DCO+, Google's DV360/Studio, native players like Connected-Stories — owns the data feeds, the targeting signals and the real-time serving layer; that's infrastructure, not a creative-quality play, and nothing here competes with it or needs to. The Big Four agency hubs run enterprise accounts (the Stellantis, Armani, TIM-scale logos from the client map above) through years of sunk-cost integration with Flashtalking or Celtra; pitching a replacement into that relationship misreads what it actually is — a long-term platform and media-buying commitment, not a creative-vendor search."
+               data-it="Dei tre livelli mappati sopra, i primi due non sono porte realisticamente accessibili. L'infrastruttura di piattaforma — DCO+ di Criteo, DV360/Studio di Google, player nativi come Connected-Stories — possiede i feed dati, i segnali di targeting e il livello di serving in tempo reale; quella è infrastruttura, non una partita di qualità creativa, e qui non si compete con essa né ce n'è bisogno. I grandi gruppi di agenzie gestiscono account enterprise (marchi della portata di Stellantis, Armani, TIM della mappa clienti sopra) attraverso anni di integrazione a costo già sostenuto con Flashtalking o Celtra; proporre una sostituzione dentro quel rapporto fraintende cosa sia realmente — un impegno di piattaforma e di media buying di lungo periodo, non una ricerca di fornitore creativo.">
+              Of the three tiers mapped above, the first two are not realistic doors to walk through. Platform infrastructure — Criteo's DCO+, Google's DV360/Studio, native players like Connected-Stories — owns the data feeds, the targeting signals and the real-time serving layer; that's infrastructure, not a creative-quality play, and nothing here competes with it or needs to. The Big Four agency hubs run enterprise accounts (the Stellantis, Armani, TIM-scale logos from the client map above) through years of sunk-cost integration with Flashtalking or Celtra; pitching a replacement into that relationship misreads what it actually is — a long-term platform and media-buying commitment, not a creative-vendor search.
+            </p>
+            <p class="post-text" style="margin-top:1.2em;"
+               data-en="The third tier is where a subcontracted creative-generation vendor is a plausible fit: the specialised digital agencies named in the market map above — Youthquake, Hej!, Fragos Media — serving mid-market clients without a platform relationship as large as the Big Four's. They're named here as an illustration of the tier's shape, not as specific prospects — the point is structural: these shops run project-based engagements, commission specialists for production work they don't staff in-house, and serve brands closer to the food &amp; beverage, wine and regional FMCG profile this pipeline's own case studies (Pannocchino e Spighetta, the vineyard pair) already match. That combination — smaller sales cycle, project-shaped engagement, a client base with mascot- or character-driven creative needs — is what makes this tier reachable where the first two aren't."
+               data-it="Il terzo livello è quello in cui un fornitore esterno di generazione creativa ha un fit plausibile: le agenzie digitali specializzate citate nella mappa di mercato sopra — Youthquake, Hej!, Fragos Media — che servono clienti di fascia media senza un rapporto di piattaforma grande quanto quello dei grandi gruppi. Sono citate qui come illustrazione della forma del livello, non come prospect specifici — il punto è strutturale: queste agenzie lavorano per progetti, affidano all'esterno lavori di produzione che non presidiano internamente, e servono brand più vicini al profilo food &amp; beverage, vinicolo e FMCG regionale che i casi di studio di questa pipeline (Pannocchino e Spighetta, la coppia da vigneto) già corrispondono. Questa combinazione — ciclo di vendita più breve, impegno a progetto, una base clienti con esigenze creative guidate da mascotte o personaggi — è ciò che rende questo livello raggiungibile dove i primi due non lo sono.">
+              The third tier is where a subcontracted creative-generation vendor is a plausible fit: the specialised digital agencies named in the market map above — Youthquake, Hej!, Fragos Media — serving mid-market clients without a platform relationship as large as the Big Four's. They're named here as an illustration of the tier's shape, not as specific prospects — the point is structural: these shops run project-based engagements, commission specialists for production work they don't staff in-house, and serve brands closer to the food &amp; beverage, wine and regional FMCG profile this pipeline's own case studies (Pannocchino e Spighetta, the vineyard pair) already match. That combination — smaller sales cycle, project-shaped engagement, a client base with mascot- or character-driven creative needs — is what makes this tier reachable where the first two aren't.
+            </p>
+            <p class="post-text" style="margin-top:1.2em;"
+               data-en="<strong>Why the platforms don't come down to this tier.</strong> This is an economic argument, not something Google or Criteo has stated, and it is not that a smaller advertiser's money is worth less. First, the need itself is a narrow vertical use case, independent of budget size: a recurring, character-consistent story is not something a bank or an airline needs either, and a horizontal platform allocates engineering against aggregate demand across its whole base. Second, where the need does turn up, it clusters among regional and mid-market brands &mdash; food &amp; beverage, wine, local FMCG, the profile mapped in chapter 02 &mdash; which cannot absorb the cost of a studio hand-illustrating a consistent mascot the way an enterprise account does through its agency retainer. Together these keep the spend signal for this need faint inside a platform that allocates by volume."
+               data-it="<strong>Perché le piattaforme non scendono fino a questa fascia.</strong> È un argomento economico, non qualcosa che Google o Criteo abbiano dichiarato, e non è che il denaro di un inserzionista più piccolo valga meno. Primo, il bisogno in sé è un caso d'uso verticale di nicchia, indipendente dalla dimensione del budget: una storia ricorrente e coerente nel personaggio non serve nemmeno a una banca o a una compagnia aerea, e una piattaforma orizzontale alloca lo sviluppo in base alla domanda aggregata su tutta la sua base. Secondo, dove il bisogno emerge, si concentra tra i brand regionali e di fascia media &mdash; food &amp; beverage, vino, FMCG locale, il profilo mappato nel capitolo 02 &mdash; che non possono assorbire il costo di uno studio che illustri a mano una mascotte coerente, come un account enterprise già fa tramite il retainer della propria agenzia. Insieme, questi due fattori mantengono debole il segnale di spesa legato a questo bisogno dentro una piattaforma che alloca per volume.">
+              <strong>Why the platforms don't come down to this tier.</strong> This is an economic argument, not something Google or Criteo has stated, and it is not that a smaller advertiser's money is worth less. First, the need itself is a narrow vertical use case, independent of budget size: a recurring, character-consistent story is not something a bank or an airline needs either, and a horizontal platform allocates engineering against aggregate demand across its whole base. Second, where the need does turn up, it clusters among regional and mid-market brands — food &amp; beverage, wine, local FMCG, the profile mapped in chapter 02 — which cannot absorb the cost of a studio hand-illustrating a consistent mascot the way an enterprise account does through its agency retainer. Together these keep the spend signal for this need faint inside a platform that allocates by volume.
+            </p>
+            <p class="post-text" style="margin-top:1.2em;"
+               data-en="A dedicated vendor can still break even on this segment: the cost model prices a flat monthly platform fee pooled across several brands and agencies, a one-off onboarding per brand and a variable cost per campaign, breaking even at around two campaigns a month per agency (estimates built from figures already on this site, not measurements; see <a href='dco-costs-tech.html#multi-agency' class='about-link'>DCO: cost model</a>, chapter 12). On regulation, beyond the EU AI Act duties discussed in <a href='#route' class='about-link'>chapter 04</a>, no advertising-specific duty was found in Italy's own AI law, Law 132/2025."
+               data-it="Un vendor dedicato può comunque raggiungere il pareggio su questo segmento: il modello di costo prevede un forfait mensile di piattaforma condiviso tra più brand e agenzie, un onboarding una tantum per brand e un costo variabile per campagna, in pareggio attorno a due campagne al mese per agenzia (stime ricavate da cifre già presenti in questo sito, non misure; vedi <a href='dco-costs-tech.html#multi-agency' class='about-link'>DCO: modello dei costi</a>, capitolo 12). Sul piano regolatorio, oltre agli obblighi dell'AI Act europeo discussi nel <a href='#route' class='about-link'>capitolo 04</a>, nella legge italiana sull'AI, la legge 132/2025, non risulta alcun obbligo specifico sulla pubblicità.">
+              A dedicated vendor can still break even on this segment: the cost model prices a flat monthly platform fee pooled across several brands and agencies, a one-off onboarding per brand and a variable cost per campaign, breaking even at around two campaigns a month per agency (estimates built from figures already on this site, not measurements; see <a href="dco-costs-tech.html#multi-agency" class="about-link">DCO: cost model</a>, chapter 12). On regulation, beyond the EU AI Act duties discussed in <a href="#route" class="about-link">chapter 04</a>, no advertising-specific duty was found in Italy's own AI law, Law 132/2025.
+            </p>
+
+
+          </div>
+        </li>
+
+        <!-- 04 -->
+        <li class="content-item" id="route">
+          <div class="content-number">04</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="The realistic route: calibration and audit, sold with onboarding"
+                data-it="La via realistica: calibrazione e audit, venduti con l'onboarding">
+              The realistic route: calibration and audit, sold with onboarding
+            </h3>
+
+            <p class="post-text"
+               data-en="<strong>On current evidence, the realistic way in is not a product but a service: calibration, audit and spot-check of AI creative checks, sold by the project to the mid-market agencies and regional brands described in <a href='#open-door' class='about-link'>chapter 03</a>. Integrators and vendors are a later, harder step.</strong> The reason is a gap the vendors leave open. Platforms publish accuracy claims without a validation protocol behind them: Rocketium advertises 90%+ brand-compliance accuracy without disclosing how it was tested, and the Volkswagen pipeline built with AWS uses LLM judges for brand fit while its published account reports no agreement figure between judge and human experts<sup class='fn-ref'><a href='#fn1' id='fnref1'>1</a></sup>."
+               data-it="<strong>Sulle prove attuali, la via realistica non è un prodotto ma un servizio: calibrazione, audit e spot-check dei controlli AI sulla creatività, venduti a progetto alle agenzie specializzate del mid-market e ai brand regionali descritti nel <a href='#open-door' class='about-link'>capitolo 03</a>. Integratori e vendor sono un passo successivo, più difficile.</strong> Il motivo è un vuoto che i vendor lasciano aperto. Le piattaforme pubblicano dichiarazioni di accuratezza senza un protocollo di validazione dietro: Rocketium annuncia oltre il 90% di accuratezza nella conformità al brand senza dire come l'abbia testata, e la pipeline di Volkswagen costruita con AWS usa LLM judge per l'aderenza al brand mentre il resoconto pubblicato non riporta alcun dato di concordanza tra judge ed esperti umani<sup class='fn-ref'><a href='#fn1' id='fnref1'>1</a></sup>.">
+              <strong>On current evidence, the realistic way in is not a product but a service: calibration, audit and spot-check of AI creative checks, sold by the project to the mid-market agencies and regional brands described in <a href="#open-door" class="about-link">chapter 03</a>. Integrators and vendors are a later, harder step.</strong> The reason is a gap the vendors leave open. Platforms publish accuracy claims without a validation protocol behind them: Rocketium advertises 90%+ brand-compliance accuracy without disclosing how it was tested, and the Volkswagen pipeline built with AWS uses LLM judges for brand fit while its published account reports no agreement figure between judge and human experts<sup class="fn-ref"><a href="#fn1" id="fnref1">1</a></sup>.
+            </p>
+            <p class="post-text" style="margin-top:1.2em;"
+               data-en="What would be sold comes in three parts. <strong>A calibration study per brand:</strong> a person labels a set of shots as on-brand or not (30–50 to start, around 400 for a result within about ±5 points), and the study reports how often the judge agrees with them beyond chance (Cohen's kappa) and how many bad shots it lets through<sup class='fn-ref'><a href='#fn2' id='fnref2'>2</a></sup>. Raw agreement alone can mislead when brand-fit calls are ambiguous, as they often are: a 2025 study shows that standard validation can pick judges up to 34% worse<sup class='fn-ref'><a href='#fn3' id='fnref3'>3</a></sup>. <strong>A blind audit of a judge already in use:</strong> a reviewer who has not seen its verdicts re-checks a sample of the shots it approved, and the share they reject is the escape rate, defined in <a href='dco-engine-tech.html' class='about-link'>DCO Engine: technical description</a>. <strong>Spot-check tooling:</strong> the sampling and review queue that keep a person in the loop at a known cost."
+               data-it="Ciò che si venderebbe si articola in tre parti. <strong>Uno studio di calibrazione per brand:</strong> una persona etichetta un set di inquadrature come in linea o fuori dal brand (30–50 per cominciare, circa 400 per un risultato entro circa ±5 punti), e lo studio riporta quanto spesso il judge concorda con lei al netto del caso (kappa di Cohen) e quante inquadrature sbagliate lascia passare<sup class='fn-ref'><a href='#fn2' id='fnref2'>2</a></sup>. L'agreement grezzo da solo può ingannare quando i giudizi di aderenza al brand sono ambigui, come spesso sono: uno studio del 2025 mostra che la validazione standard può scegliere judge fino al 34% peggiori<sup class='fn-ref'><a href='#fn3' id='fnref3'>3</a></sup>. <strong>Un audit alla cieca di un judge già in uso:</strong> un revisore che non ha visto i suoi verdetti ricontrolla un campione delle inquadrature approvate, e la quota che respinge è l'escape rate, definito in <a href='dco-engine-tech.html' class='about-link'>Motore DCO: descrizione tecnica</a>. <strong>Strumenti di spot-check:</strong> il campionamento e la coda di revisione che tengono una persona nel loop a un costo noto.">
+              What would be sold comes in three parts. <strong>A calibration study per brand:</strong> a person labels a set of shots as on-brand or not (30–50 to start, around 400 for a result within about ±5 points), and the study reports how often the judge agrees with them beyond chance (Cohen's kappa) and how many bad shots it lets through<sup class="fn-ref"><a href="#fn2" id="fnref2">2</a></sup>. Raw agreement alone can mislead when brand-fit calls are ambiguous, as they often are: a 2025 study shows that standard validation can pick judges up to 34% worse<sup class="fn-ref"><a href="#fn3" id="fnref3">3</a></sup>. <strong>A blind audit of a judge already in use:</strong> a reviewer who has not seen its verdicts re-checks a sample of the shots it approved, and the share they reject is the escape rate, defined in <a href="dco-engine-tech.html" class="about-link">DCO Engine: technical description</a>. <strong>Spot-check tooling:</strong> the sampling and review queue that keep a person in the loop at a known cost.
+            </p>
+            <p class="post-text" style="margin-top:1.2em;"
+               data-en="Who would buy it. Honestly, the top of the list is out of reach for now. Integrators like Avahi (an AWS partner that sells bespoke pipeline builds to martech firms, with the brand checks written inside each one) and the brands under Article 50 of the EU AI Act are enterprise buyers: long sales cycles, procurement, and counterparts who can build the function themselves. A one-person producer reaches them, if at all, later, as a subcontractor with a track record. With vendors, too, the loop — judge logic, per-brand calibration, spot-check tooling — has room, but <strong>as consulting, calibration and audit sold by the project, not as a licensed component — and realistically only after a first track record with agencies</strong>: no public case turned up of a platform licensing a third party's judge. The nearer buyer is the one already named in <a href='#open-door' class='about-link'>chapter 03</a>: the specialised mid-market agency and the regional brand — food, wine, local FMCG — that runs or is about to run AI-generated creative and has nobody to tell it how far to trust its checks. There, calibration is not a separate product but a step of onboarding: the per-brand calibration set is what the cost model prices at roughly six to eight hours, about €225–250 per brand, one-off (a cost estimate, not a price), and recalibrating when a brand's look changes is a natural small retainer. The AI Act adds only a modest pull: Article 50, applicable since 2 August 2026, makes brand and agency jointly responsible for labelling realistic AI content<sup class='fn-ref'><a href='#fn4' id='fnref4'>4</a></sup>, but it asks for records of AI use per asset, not for calibrated judges, and stylised mascots are probably outside it. No public pricing exists for comparable services."
+               data-it="Chi lo comprerebbe. A essere onesti, la parte alta della lista per ora è fuori portata. Gli integratori come Avahi (partner AWS che vende costruzioni di pipeline su misura a società martech, con i controlli di brand scritti dentro ciascuna) e i brand soggetti all'articolo 50 dell'AI Act europeo sono compratori enterprise: cicli di vendita lunghi, procurement, e controparti che possono costruirsi da sole la funzione. Un produttore da solo li raggiunge, se mai, più avanti, come subappaltatore con uno storico. Anche con i vendor il loop — logica del judge, calibrazione per brand, strumenti di spot-check — ha spazio, ma <strong>come consulenza, calibrazione e audit venduti a progetto, non come componente in licenza — e realisticamente solo dopo un primo storico con le agenzie</strong>: non risulta alcun caso pubblico di una piattaforma che dia in licenza il judge di terzi. Il compratore più vicino è quello già indicato nel <a href='#open-door' class='about-link'>capitolo 03</a>: l'agenzia specializzata del mid-market e il brand regionale — food, vino, FMCG locale — che usa o sta per usare creatività generata con l'AI e non ha nessuno che gli dica fino a che punto fidarsi dei propri controlli. Lì la calibrazione non è un prodotto a parte ma un passo dell'onboarding: il calibration set per brand è ciò che il modello dei costi stima in circa sei-otto ore, intorno a 225–250 € per brand, una tantum (una stima di costo, non un prezzo), e ricalibrare quando cambia l'aspetto di un brand è un piccolo canone naturale. L'AI Act aggiunge solo una spinta modesta: l'articolo 50, applicabile dal 2 agosto 2026, rende brand e agenzia corresponsabili dell'etichettatura dei contenuti AI realistici<sup class='fn-ref'><a href='#fn4' id='fnref4'>4</a></sup>, ma chiede registri dell'uso dell'AI per ogni asset, non judge calibrati, e le mascotte stilizzate ne sono probabilmente fuori. Per servizi comparabili non esistono prezzi pubblici.">
+              Who would buy it. Honestly, the top of the list is out of reach for now. Integrators like Avahi (an AWS partner that sells bespoke pipeline builds to martech firms, with the brand checks written inside each one) and the brands under Article 50 of the EU AI Act are enterprise buyers: long sales cycles, procurement, and counterparts who can build the function themselves. A one-person producer reaches them, if at all, later, as a subcontractor with a track record. With vendors, too, the loop — judge logic, per-brand calibration, spot-check tooling — has room, but <strong>as consulting, calibration and audit sold by the project, not as a licensed component — and realistically only after a first track record with agencies</strong>: no public case turned up of a platform licensing a third party's judge. The nearer buyer is the one already named in <a href="#open-door" class="about-link">chapter 03</a>: the specialised mid-market agency and the regional brand — food, wine, local FMCG — that runs or is about to run AI-generated creative and has nobody to tell it how far to trust its checks. There, calibration is not a separate product but a step of onboarding: the per-brand calibration set is what the cost model prices at roughly six to eight hours, about €225–250 per brand, one-off (a cost estimate, not a price), and recalibrating when a brand's look changes is a natural small retainer. The AI Act adds only a modest pull: Article 50, applicable since 2 August 2026, makes brand and agency jointly responsible for labelling realistic AI content<sup class="fn-ref"><a href="#fn4" id="fnref4">4</a></sup>, but it asks for records of AI use per asset, not for calibrated judges, and stylised mascots are probably outside it. No public pricing exists for comparable services.
+            </p>
+            <p class="post-text" style="margin-top:1.2em;"
+               data-en="Limits, stated plainly. No consultancy was found selling independent judge validation as a named service: the public material of large integrators lists practices (red teaming, human oversight, audit trails), not deliverables. Nothing found shows anyone buying this. The risks are small tickets, dependence on a few integrators if that route is taken, and vendors absorbing the function once buyers ask for published validation — the last is inference, not evidence. The sources on calibration concern text judges, none was found for image brand judges, and the legal points come from secondary sources not yet checked against the texts of the regulation and of the Italian law."
+               data-it="I limiti, detti chiaramente. Non è stata trovata alcuna società di consulenza che venda la validazione indipendente di un judge come servizio con un nome: il materiale pubblico dei grandi integratori elenca pratiche (red teaming, supervisione umana, audit trail), non deliverable. Nulla di ciò che è emerso mostra che qualcuno compri questo servizio. I rischi sono i ticket piccoli, la dipendenza da pochi integratori se si imbocca quella strada, e i vendor che assorbono la funzione quando i compratori chiederanno una validazione pubblicata — quest'ultimo è inferenza, non evidenza. Le fonti sulla calibrazione riguardano judge di testo, non ne è stata trovata nessuna per judge di immagini, e i punti giuridici vengono da fonti secondarie non ancora verificate sui testi del regolamento e della legge italiana.">
+              Limits, stated plainly. No consultancy was found selling independent judge validation as a named service: the public material of large integrators lists practices (red teaming, human oversight, audit trails), not deliverables. Nothing found shows anyone buying this. The risks are small tickets, dependence on a few integrators if that route is taken, and vendors absorbing the function once buyers ask for published validation — the last is inference, not evidence. The sources on calibration concern text judges, none was found for image brand judges, and the legal points come from secondary sources not yet checked against the texts of the regulation and of the Italian law.
+            </p>
+
+          </div>
+        </li>
+
+      </ol>
+
+      <!-- ── CHAPTER 3 ─────────────────────────────────────── -->
+      <h2 id="flexible-service" class="chapter-heading">
+        <span data-en="A Flexible Service for Small Agencies" data-it="Un servizio flessibile per le piccole agenzie">A Flexible Service for Small Agencies</span>
+      </h2>
+
+      <p class="post-text"
+               data-en="A caution first: this chapter rests on working assumptions, not measurements, and claims a direction, not a business plan. The buyers described in <a href='post-dco-mercato-globale.html' class='about-link'>DCO and the Agency Market</a> are large, or sell to the large. The first customers this project can actually reach are different: small agencies, the kind that launch perhaps two or three campaigns a month, served five to ten at a time by one engine. At that volume the revenue per agency is low, and that shapes what kind of service can exist at all."
+               data-it="Una premessa di prudenza: questo capitolo poggia su ipotesi di lavoro, non su misurazioni, e indica una direzione, non un business plan. I compratori descritti in <a href='post-dco-mercato-globale.html' class='about-link'>DCO e il mercato delle agenzie</a> sono grandi, o vendono ai grandi. I primi clienti che questo progetto può davvero raggiungere sono diversi: piccole agenzie, di quelle che lanciano forse due o tre campagne al mese, servite cinque-dieci alla volta da un solo motore. A quel volume il ricavo per agenzia è basso, e questo condiziona che tipo di servizio possa esistere.">
+              A caution first: this chapter rests on working assumptions, not measurements, and claims a direction, not a business plan. The buyers described in <a href="post-dco-mercato-globale.html" class="about-link">DCO and the Agency Market</a> are large, or sell to the large. The first customers this project can actually reach are different: small agencies, the kind that launch perhaps two or three campaigns a month, served five to ten at a time by one engine. At that volume the revenue per agency is low, and that shapes what kind of service can exist at all.
+            </p>
+
+      <p class="post-text"
+         data-en="<strong>A dedicated service does not pay.</strong> A web service built around fixed cases — one mascot pair, one product line, one set of formats — for an agency's two or three campaigns a month carries the full cost of building, hosting and calibrating it, spread over very few jobs, and has to be rebuilt for the next agency. The economics only close for a client large enough to absorb that fixed cost, which is exactly the client this project is not selling to first."
+         data-it="<strong>Un servizio dedicato non conviene.</strong> Un web service costruito su casi fissi — una coppia di mascotte, una linea di prodotto, un set di proporzioni — per le due o tre campagne al mese di un'agenzia sostiene per intero il costo di costruzione, hosting e calibrazione, ripartito su pochissimi lavori, e va ricostruito per l'agenzia successiva. I conti tornano solo per un cliente abbastanza grande da assorbire quel costo fisso, che è esattamente il cliente a cui questo progetto non si rivolge per primo.">
+        <strong>A dedicated service does not pay.</strong> A web service built around fixed cases — one mascot pair, one product line, one set of formats — for an agency's two or three campaigns a month carries the full cost of building, hosting and calibrating it, spread over very few jobs, and has to be rebuilt for the next agency. The economics only close for a client large enough to absorb that fixed cost, which is exactly the client this project is not selling to first.
+      </p>
+
+      <p class="post-text"
+         data-en="<strong>A flexible service does.</strong> The same engine serves five to ten small agencies at once, because everything that differs between them is data, not code: each brand arrives as a configuration file, a reference pair and a calibration set (see <a href='dco-engine-tech.html#brand-config' class='about-link'>DCO Engine: technical description</a>), while the loop, the manifest and the export are shared. Five to ten agencies at two or three campaigns each is ten to thirty campaigns a month through one engine. The fixed cost is paid once; what grows with each new agency is the cost of onboarding its brands and the API cost of its runs. It also fits what the engine is for: brand-consistent, checked creative for agencies that have neither a big-brand production budget nor a reviewer for every variant."
+         data-it="<strong>Un servizio flessibile sì.</strong> Lo stesso motore serve da cinque a dieci piccole agenzie insieme, perché tutto ciò che le differenzia è dato, non codice: ogni brand arriva come file di configurazione, coppia di riferimento e calibration set (vedi <a href='dco-engine-tech.html#brand-config' class='about-link'>Motore DCO: descrizione tecnica</a>), mentre il loop, il manifest e l'export sono condivisi. Da cinque a dieci agenzie con due o tre campagne ciascuna fanno da dieci a trenta campagne al mese su un solo motore. Il costo fisso si paga una volta; ciò che cresce con ogni nuova agenzia è il costo di onboarding dei suoi brand e il costo API dei suoi run. Si adatta anche allo scopo del motore: creatività coerente con il brand e controllata, per agenzie che non hanno né il budget di produzione di un grande brand né un revisore umano per ogni variante.">
+        <strong>A flexible service does.</strong> The same engine serves five to ten small agencies at once, because everything that differs between them is data, not code: each brand arrives as a configuration file, a reference pair and a calibration set (see <a href="dco-engine-tech.html#brand-config" class="about-link">DCO Engine: technical description</a>), while the loop, the manifest and the export are shared. Five to ten agencies at two or three campaigns each is ten to thirty campaigns a month through one engine. The fixed cost is paid once; what grows with each new agency is the cost of onboarding its brands and the API cost of its runs. It also fits what the engine is for: brand-consistent, checked creative for agencies that have neither a big-brand production budget nor a reviewer for every variant.
+      </p>
+
+      <p class="post-text"
+         data-en="For that to hold, four things have to be true:"
+         data-it="Perché questo regga, quattro cose devono essere vere:">
+        For that to hold, four things have to be true:
+      </p>
+      <ul class="content-sublist" style="margin-top:-0.6em; margin-bottom:1.4em;">
+        <li data-en="<strong>Onboarding a brand stays cheap.</strong> The configuration file is the lever; if every new brand needs bespoke engineering, the model collapses back into the dedicated service."
+            data-it="<strong>L'onboarding di un brand resta economico.</strong> Il file di configurazione è la leva; se ogni nuovo brand richiede ingegneria su misura, il modello ricade nel servizio dedicato."><strong>Onboarding a brand stays cheap.</strong> The configuration file is the lever; if every new brand needs bespoke engineering, the model collapses back into the dedicated service.</li>
+        <li data-en="<strong>Calibration is per brand.</strong> It cannot be skipped or shared, so onboarding carries a real human-time cost that is not in any API figure."
+            data-it="<strong>La calibrazione è per brand.</strong> Non si può saltare né condividere, quindi l'onboarding ha un costo reale in tempo umano che non compare in nessuna cifra API."><strong>Calibration is per brand.</strong> It cannot be skipped or shared, so onboarding carries a real human-time cost that is not in any API figure.</li>
+        <li data-en="<strong>Tenants are isolated.</strong> One agency's reference pair, configuration and outputs are never visible to another: shared engine, separate brands."
+            data-it="<strong>I tenant sono isolati.</strong> La coppia di riferimento, la configurazione e gli output di un'agenzia non sono mai visibili a un'altra: motore condiviso, brand separati."><strong>Tenants are isolated.</strong> One agency's reference pair, configuration and outputs are never visible to another: shared engine, separate brands.</li>
+        <li data-en="<strong>Human review is a capacity, not a free step.</strong> The three human checkpoints still need people, and with many small tenants that queue has to be sized and priced."
+            data-it="<strong>La revisione umana è una capacità, non un passaggio gratuito.</strong> I tre checkpoint umani richiedono comunque persone, e con molti piccoli tenant quella coda va dimensionata e prezzata."><strong>Human review is a capacity, not a free step.</strong> The three human checkpoints still need people, and with many small tenants that queue has to be sized and priced.</li>
+      </ul>
+
+      <p class="post-text"
+         data-en="What the cost model leaves open is the platform's fixed cost and the revenue per campaign. Two of the four conditions are also still open on the technical side: tenant isolation (a tenant key above the brand key is not specified yet) and the sizing of the human-review queue."
+         data-it="Il modello dei costi lascia aperti il costo fisso della piattaforma e il ricavo per campagna. Due delle quattro condizioni restano inoltre aperte sul piano tecnico: l'isolamento dei tenant (una chiave tenant sopra la chiave brand non è ancora specificata) e il dimensionamento della coda di revisione umana.">
+        What the cost model leaves open is the platform's fixed cost and the revenue per campaign. Two of the four conditions are also still open on the technical side: tenant isolation (a tenant key above the brand key is not specified yet) and the sizing of the human-review queue.
+      </p>
+
+
+
+      <p class="post-text" style="margin-top:2.5rem; opacity:0.75;">
+        <span data-en="Related reading: " data-it="Letture correlate: ">Related reading: </span><a href="post-dco-mercato-globale.html" class="about-link" data-en="DCO and the Agency Market" data-it="DCO e il mercato delle agenzie">DCO and the Agency Market</a><span data-en=", " data-it=", ">, </span><a href="post-dco-pipeline.html" class="about-link" data-en="DCO: One Pipeline, Many Products" data-it="DCO: una Pipeline, Più Prodotti">DCO: One Pipeline, Many Products</a><span data-en=", " data-it=", ">, </span><a href="post-dco-engine.html" class="about-link" data-en="The Engine: generation, control, export" data-it="Il motore: generazione, controllo, export">The Engine: generation, control, export</a><span data-en=", " data-it=", ">, </span><a href="dco-costs-tech.html#multi-agency" class="about-link" data-en="DCO: cost model" data-it="DCO: modello dei costi">DCO: cost model</a>.
+      </p>
+
+
+      <!-- ── FOOTNOTES ─────────────────────────────────────── -->
+      <section class="footnotes">
+        <ol>
+          <li id="fn1">
+            <span data-en="Rocketium, &quot;How Rocketium achieves 90% brand compliance accuracy&quot; (rocketium.ai): the page does not disclose a validation protocol for the headline figure. ZenML LLMOps database entry on the Volkswagen Group marketing platform built with AWS (zenml.io), a secondary summary of an AWS case study: it reports no agreement between the LLM judge and human experts, and its 95% component-accuracy target is stated as not independently verified."
+                  data-it="Rocketium, &quot;How Rocketium achieves 90% brand compliance accuracy&quot; (rocketium.ai): la pagina non dichiara un protocollo di validazione per la cifra principale. Voce del database LLMOps di ZenML sulla piattaforma di marketing di Volkswagen Group costruita con AWS (zenml.io), un riassunto secondario di un case study AWS: non riporta alcuna concordanza tra LLM judge ed esperti umani, e il suo obiettivo di accuratezza del 95% sui componenti è indicato come non verificato in modo indipendente.">
+              Rocketium, "How Rocketium achieves 90% brand compliance accuracy" (<a href="https://rocketium.ai/academy/all/how-rocketium-achieves-90-brand-compliance-accuracy" class="about-link" target="_blank" rel="noopener noreferrer">rocketium.ai</a>): the page does not disclose a validation protocol for the headline figure. ZenML LLMOps database entry on the Volkswagen Group marketing platform built with AWS (<a href="https://zenml.io/llmops-database/ai-powered-marketing-content-generation-and-compliance-platform-at-scale" class="about-link" target="_blank" rel="noopener noreferrer">zenml.io</a>), a secondary summary of an AWS case study: it reports no agreement between the LLM judge and human experts, and its 95% component-accuracy target is stated as not independently verified.
+            </span>
+            <a href="#fnref1" class="fn-back" aria-label="back to text">&#8617;</a>
+          </li>
+          <li id="fn2">
+            <span data-en="Arize, &quot;Measuring human–LLM judge alignment&quot; (arize.com), 2026: 30–50 annotated examples for early rubric work, about 400 for roughly ±5 points at 95% confidence, raw agreement reported together with a chance-adjusted metric such as Cohen's kappa. It is written for text judges; no equivalent guidance was found for image brand judges, so these thresholds are a starting point, not a standard."
+                  data-it="Arize, &quot;Measuring human–LLM judge alignment&quot; (arize.com), 2026: 30–50 esempi annotati per il lavoro iniziale sulla rubrica, circa 400 per circa ±5 punti al 95% di confidenza, agreement grezzo riportato insieme a una metrica corretta per il caso come il kappa di Cohen. È scritta per judge di testo; non è stata trovata una guida equivalente per judge di immagini, quindi queste soglie sono un punto di partenza, non uno standard.">
+              Arize, "Measuring human–LLM judge alignment" (<a href="https://arize.com/blog/measuring-human-llm-judge-alignment/" class="about-link" target="_blank" rel="noopener noreferrer">arize.com</a>), 2026: 30–50 annotated examples for early rubric work, about 400 for roughly ±5 points at 95% confidence, raw agreement reported together with a chance-adjusted metric such as Cohen's kappa. It is written for text judges; no equivalent guidance was found for image brand judges, so these thresholds are a starting point, not a standard.
+            </span>
+            <a href="#fnref2" class="fn-back" aria-label="back to text">&#8617;</a>
+          </li>
+          <li id="fn3">
+            <span data-en="Guerdan et al. (CMU and Microsoft Research), &quot;Validating LLM-as-a-Judge Systems in the Absence of Gold Labels&quot; (arXiv 2503.05965, March 2025): existing validation can pick judges that perform up to 34% worse, and judges that rank high on standard agreement can rank among the worst under measures that account for indeterminate items."
+                  data-it="Guerdan et al. (CMU e Microsoft Research), &quot;Validating LLM-as-a-Judge Systems in the Absence of Gold Labels&quot; (arXiv 2503.05965, marzo 2025): la validazione esistente può scegliere judge con prestazioni fino al 34% peggiori, e judge che si collocano in alto per agreement standard possono collocarsi tra i peggiori con misure che tengono conto degli elementi indeterminati.">
+              Guerdan et al. (CMU and Microsoft Research), "Validating LLM-as-a-Judge Systems in the Absence of Gold Labels" (<a href="https://arxiv.org/html/2503.05965v2" class="about-link" target="_blank" rel="noopener noreferrer">arXiv 2503.05965</a>, March 2025): existing validation can pick judges that perform up to 34% worse, and judges that rank high on standard agreement can rank among the worst under measures that account for indeterminate items.
+            </span>
+            <a href="#fnref3" class="fn-back" aria-label="back to text">&#8617;</a>
+          </li>
+          <li id="fn4">
+            <span data-en="Lewis Silkin, &quot;The new AI labelling rules for deployers in the advertising supply chain&quot;, 31 July 2026 (lewissilkin.com), a UK firm's reading of an EU law, not legal advice; Ropes &amp; Gray, 3 August 2026 (ropesgray.com), for the dates: Article 50 applies from 2 August 2026, with until 2 December 2026 for the machine-readable marking duty on systems already on the market. Law 132/2025 was published in the Gazzetta Ufficiale on 25 September 2025. Neither the regulation nor the Italian law was checked against its official text."
+                  data-it="Lewis Silkin, &quot;The new AI labelling rules for deployers in the advertising supply chain&quot;, 31 luglio 2026 (lewissilkin.com), lettura di uno studio britannico di una norma UE, non è un parere legale; Ropes &amp; Gray, 3 agosto 2026 (ropesgray.com), per le date: l'articolo 50 si applica dal 2 agosto 2026, con tempo fino al 2 dicembre 2026 per l'obbligo di marcatura leggibile da macchina sui sistemi già sul mercato. La legge 132/2025 è stata pubblicata nella Gazzetta Ufficiale il 25 settembre 2025. Né il regolamento né la legge italiana sono stati verificati sul testo ufficiale.">
+              Lewis Silkin, "The new AI labelling rules for deployers in the advertising supply chain", 31 July 2026 (<a href="https://www.lewissilkin.com/insights/2026/07/31/the-new-ai-labelling-rules-for-deployers-in-the-advertising-supply-chain" class="about-link" target="_blank" rel="noopener noreferrer">lewissilkin.com</a>), a UK firm's reading of an EU law, not legal advice; Ropes &amp; Gray, 3 August 2026 (<a href="https://www.ropesgray.com/en/insights/viewpoints/2026/08/102nfqm/you-talkin-to-me-operationalising-the-eu-ai-acts-transparency-obligations" class="about-link" target="_blank" rel="noopener noreferrer">ropesgray.com</a>), for the dates: Article 50 applies from 2 August 2026, with until 2 December 2026 for the machine-readable marking duty on systems already on the market. Law 132/2025 was published in the Gazzetta Ufficiale on 25 September 2025. Neither the regulation nor the Italian law was checked against its official text.
+            </span>
+            <a href="#fnref4" class="fn-back" aria-label="back to text">&#8617;</a>
+          </li>
+        </ol>
+      </section>
+
+    </div><!-- /page-body -->
+  </main>
+
+  <a href="posts.html" class="nav-back"
+     data-en="POSTS" data-it="POST">POSTS</a>
+
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="en">EN</button>
+    <button class="lang-btn" data-lang="it">IT</button>
+  </div>
+
+  <script src="assets/lang.js"></script>
+  <script>
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').classList.toggle('scrolled', window.scrollY > 20);
+    });
+  </script>
+</body>
+</html>

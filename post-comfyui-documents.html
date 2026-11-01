@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>ComfyUI: curated online resources</title>
+  <link rel="alternate" hreflang="en"        href="https://storyline-engine.com/post-comfyui-documents.html">
+  <link rel="alternate" hreflang="it"        href="https://storyline-engine.com/post-comfyui-documents.html?lang=it">
+  <link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-comfyui-documents.html">
+    <!-- Preload self-hosted fonts so they're already in flight before style.css
+       is even parsed — closes the remaining window where the browser paints
+       with the fallback (Georgia/Courier) and then swaps to the real font,
+       which is what still reads as the font "changing size" on reload. -->
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/style.css">
+
+  <style>
+    /* ── post body text ─────────────────────────────────── */
+    .post-text {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.15rem;
+      line-height: 1.75;
+      margin: 0 0 1.4em 0;
+    }
+    /* about-link (defined in style.css) handles all inline links:
+       ochre colour at rest, darker on hover, no underline        */
+
+    /* ── numbered content list ───────────────────────────── */
+    .content-list { list-style: none; padding: 0; margin: 1.6rem 0 0; }
+    .content-item {
+      display: grid;
+      grid-template-columns: 3rem 1fr;
+      gap: 1.6rem;
+      padding: 2rem 0;
+    }
+    .content-item:last-child { border-bottom: 1px solid rgba(0,0,0,0.08); }
+    /* no bottom line right before a chapter heading: its own thick top border already separates */
+    .content-list:has(+ .chapter-heading) .content-item:last-child { border-bottom: none; }
+    .content-number {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 600;
+      opacity: 0.18;
+      padding-top: 0.15rem;
+      line-height: 1;
+    }
+    .content-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin: 0 0 0.9rem;
+      font-weight: 400;
+    }
+    .content-body .post-text { margin: 0; }
+
+    /* ── sub-bullet list (channel entries) ───────────────── */
+    .content-sublist {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 0.9em;
+      margin-bottom: 0;
+    }
+    .content-sublist li {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      margin-bottom: 0.9em;
+      padding-left: 0;
+    }
+
+    @media (max-width: 700px) {
+      .content-item { grid-template-columns: 2rem 1fr; gap: 1rem; }
+      .content-number { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body class="interior">
+
+  <header>
+    <a href="about.html" class="nav-item" data-en="ABOUT" data-it="ABOUT">ABOUT</a>
+    <div class="menu-container">
+      <span class="menu-trigger" data-en="TOPICS" data-it="ARGOMENTI">TOPICS</span>
+      <div class="menu-dropdown">
+        <a href="adv.html"             class="menu-item" data-en="ADV"            data-it="ADV">ADV</a>
+        <a href="neural-graphics.html" class="menu-item" data-en="VISUAL STORIES" data-it="FUMETTI/STORYBOARD">VISUAL STORIES</a>
+        <a href="comfyui.html"         class="menu-item" data-en="COMFYUI"        data-it="COMFYUI">COMFYUI</a>
+        <a href="posts.html"           class="menu-item" data-en="POSTS"          data-it="POST">POSTS</a>
+        <span class="menu-item menu-item--disabled" data-en="VIDEO" data-it="VIDEO">VIDEO</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content">
+
+    <p class="section-label"
+       data-en="ComfyUI · Online Resources · Online tutorial · OVERVIEW"
+       data-it="ComfyUI · Sitografia · Online tutorial · PANORAMICA">ComfyUI · Online Resources · Online tutorial · OVERVIEW</p>
+
+    <h1 class="page-title"
+        data-en="ComfyUI: curated online resources"
+        data-it="ComfyUI: sitografia ragionata">ComfyUI: curated online resources</h1>
+
+    <div class="page-body">
+
+      <!-- tags -->
+      <div class="post-tags" style="margin-bottom:2rem;">
+        <span class="post-tag tag-tech" data-en="ComfyUI"       data-it="ComfyUI">ComfyUI</span>
+        <span class="post-tag tag-tech" data-en="Documentation" data-it="Documentazione">Documentation</span>
+        <span class="post-tag tag-tech" data-en="Tutorial"      data-it="Tutorial">Tutorial</span>
+        <span class="post-tag tag-tech" data-en="Video"         data-it="Video">Video</span>
+      </div>
+
+      <!-- ── ABSTRACT ──────────────────────────────────────── -->
+      <p class="post-abstract-text"
+         data-en="A curated selection of online resources for ComfyUI: official repositories, workflow libraries, and video channels. Each entry is annotated — scope, technical level, and the most relevant use case are indicated — rather than offered as a bare list of links. The page is divided into two sections: web documentation and video tutorials."
+         data-it="Una selezione ragionata di risorse online per ComfyUI: repository ufficiali, librerie di workflow e canali video. Ogni voce è commentata — perimetro, livello tecnico e caso d'uso più rilevante — piuttosto che presentata come una lista di link. La pagina è divisa in due sezioni: documentazione web e video tutorial.">
+        A curated selection of online resources for ComfyUI: official repositories, workflow libraries, and video channels. Each entry is annotated — scope, technical level, and the most relevant use case are indicated — rather than offered as a bare list of links. The page is divided into two sections: web documentation and video tutorials.
+      </p>
+
+      <!-- ── CONTENTS (no image on this page) ─────────────── -->
+      <ol class="content-list">
+
+        <!-- 01 -->
+        <li class="content-item">
+          <div class="content-number">01</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="Web documentation (annotated)"
+                data-it="Documentazione web (commentata)">
+              Web documentation (annotated)
+            </h3>
+
+            <p class="post-text"
+               data-en="The official ComfyUI documentation is deliberately minimal. A more practical reference is the community repository at <a href='https://github.com/comfyanonymous/ComfyUI' class='about-link' target='_blank'>github.com/comfyanonymous/ComfyUI</a>, where the README and Issues section together cover most setup and installation questions. For workflow examples, <a href='https://comfyanonymous.github.io/ComfyUI_examples' class='about-link' target='_blank'>ComfyUI_examples</a> collects tested pipelines for the most common use cases — text-to-image, image-to-image, inpainting, ControlNet, upscaling.
+				External resources worth bookmarking: <a href='https://github.com/ltdrdata/ComfyUI-Manager' class='about-link' target='_blank'>ComfyUI Manager</a>, a sub-environment for discovering and installing new and/or custom nodes (not easy to use if you're not an expert: it helps to get an LLM's assistance, asking via chat how to solve a specific problem in order to fix or enrich a graph). The <a href='https://civitai.com' class='about-link' target='_blank'>Civitai</a> library for downloading models through checkpoints and, in certain cases, LoRA customisations trained on specific datasets. We also recommend the <a href='https://www.reddit.com/r/comfyui/' class='about-link' target='_blank'>subreddit r/comfyui</a> for troubleshooting (that is, advice on solving problems that other users have already encountered) — a pre-LLM style resource, but still consistently useful for broadening one's knowledge of the environment."
+
+				data-it="La documentazione ufficiale di ComfyUI è volutamente minimale. Un riferimento più pratico è il repository della community su <a href='https://github.com/comfyanonymous/ComfyUI' class='about-link' target='_blank'>github</a>, dove il README e la sezione Issues coprono insieme la maggior parte delle domande di installazione e configurazione. Per esempi di workflow scritti in JSON, <a href='https://comfyanonymous.github.io/ComfyUI_examples' class='about-link' target='_blank'>ComfyUI_examples</a> raccoglie pipeline testate per i casi d'uso più comuni — text-to-image, image-to-image, inpainting, ControlNet, upscaling.
+				Altre risorse utili: <a href='https://github.com/ltdrdata/ComfyUI-Manager' class='about-link' target='_blank'>ComfyUI Manager</a>: un sottoambiente che permette di scoprire e installare nodi nuovi e/o personalizzati (di non facile uso per chi non sia esperto: meglio farsi aiutare dagli LLM, chiedendo via chat come risolvere un certo problema per sistemare e arricchire un grafo). La libreria <a href='https://civitai.com' class='about-link' target='_blank'>Civitai</a> per scaricare i modelli attraverso i checkpoint e in certi casi anche le personalizzazioni LoRA su training set specifici. Segnaliamo inoltre il <a href='https://www.reddit.com/r/comfyui/' class='about-link' target='_blank'>subreddit r/comfyui</a> per il troubleshooting (ossia consigli su come risolvere problemi che altri utenti hanno già affrontato) — un sistema stile pre-LLM, ma comunque sempre utile per allargare le competenze sull'ambiente.">
+				The official ComfyUI documentation is deliberately minimal. A more practical reference is the community repository at github.com/comfyanonymous/ComfyUI, where the README and Issues section together cover most setup and installation questions. For workflow examples, comfyanonymous.github.io/ComfyUI_examples collects tested pipelines for the most common use cases — text-to-image, image-to-image, inpainting, ControlNet, upscaling. External resources worth bookmarking: ComfyUI Manager, a sub-environment for discovering and installing new and/or custom nodes (not easy to use if you're not an expert: it helps to get an LLM's assistance, asking via chat how to solve a specific problem in order to fix or enrich a graph). The <a href="https://civitai.com" class="about-link" target="_blank">Civitai</a> library for downloading models through checkpoints and, in certain cases, LoRA customisations trained on specific datasets. We also recommend the <a href="https://www.reddit.com/r/comfyui/" class="about-link" target="_blank">subreddit r/comfyui</a> for troubleshooting (that is, advice on solving problems that other users have already encountered). A pre-LLM style resource, but still consistently useful for broadening one's knowledge of the environment.
+            </p>
+
+          </div>
+        </li>
+
+        <!-- 02 -->
+        <li class="content-item">
+          <div class="content-number">02</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="Video tutorials"
+                data-it="Video tutorial">
+              Video tutorials
+            </h3>
+
+            <p class="post-text"
+               data-en="The vast majority of YouTube tutorials presenting ComfyUI applications aim primarily to grow their own audience, favouring spectacle over explanation. Genuinely educational channels — oriented towards presenting pipelines with functions typical of the worlds of advertising, art direction and VFX — remain rare. The reason for this asymmetry is straightforward. The generative AI market today is not dedicated to creating storyboards or visual effects, but to light entertainment in one's free time or to completing school assignments (at home and in class).<br>
+				The YouTube landscape broadly reflects this imbalance. There is practically no middle ground between the purely decorative channel — enjoyable to watch but offering no real learning value — and the specialist channel, such as those listed below. Since AI is a phenomenon of dizzying expansion, doing new things with it requires commitment, experimentation, repeated attempts and staying up to date. On this site I have tried to reach a level that is sufficiently accessible while still maintaining an explanatory approach to how things are actually built within visual stories (in the posts <a href='post-comfyui-modelli.html' class='about-link'>ComfyUI Visual Stories &mdash; Part 1</a> and <a href='post-comfyui-modelli2.html' class='about-link'>ComfyUI Visual Stories &mdash; Part 2</a> you can find the programme of one of my courses). I would finally like to present a selection of top channels, to give a sense of the standard set by those who genuinely know how to work well in this field. "
+               data-it=" L'obbiettivo della maggioranza dei tutorial YT che propongono applicazioni ComfyUI è quello di ampliare la diffusione del proprio canale mirando più a stupire che a spiegare. Mentre sono rari quelli con un forte spirito didattico, orientati a presentare pipeline con funzioni tipiche del mondo ADV, art-direction e VFX. La risposta di questa asimmetria è scontata. Il mercato AI generativo, oggi non è dedicato a creare storyboard o effetti speciali, ma all'intrattenimento leggero nel tempo libero oppure a svolgere i compiti di scuola (a casa e in classe). <br>
+			   Lo spazio YT riflette a grandi linee questo sbilanciamento. Praticamente non esiste un livello intermedio tra il canale scenografico, puramente fruibile senza nessuna utilità di apprendimento, e il canale specialistico come quelli presentati nella lista sottostante. Dato che l'AI è un fenomeno di espansione vorticosa, per fare cose nuove, occorre dedicarsi, fare prove, ritentare ed essere aggiornati. In questo sito, ho cercato di raggiungere un livello sufficientemente divulgativo ma che comunque tenesse conto di una didattica esplicativa su come realizzare oggetti, all'interno di storie visive (nei post <a href='post-comfyui-modelli.html' class='about-link'>ComfyUI Storie Visive &mdash; Parte 1</a> e <a href='post-comfyui-modelli2.html' class='about-link'>ComfyUI Storie Visive &mdash; Parte 2</a> potete trovare il programma di un mio corso). Vorrei infine presentarvi una selezione di canali Top, per avere come riferimento il livello di chi sa lavorare bene in questo ambito.">  The vast majority of YouTube tutorials presenting ComfyUI applications aim primarily to grow their own audience, favouring spectacle over explanation. Genuinely educational channels — oriented towards presenting pipelines with functions typical of the worlds of advertising, art direction and VFX — remain rare. The reason for this asymmetry is straightforward. The generative AI market today is not dedicated to creating storyboards or visual effects, but to light entertainment in one's free time or to completing school assignments (at home and in class).<br>
+			   The YouTube landscape broadly reflects this imbalance. There is practically no middle ground between the purely decorative channel — enjoyable to watch but offering no real learning value — and the specialist channel, such as those listed below. Since AI is a phenomenon of dizzying expansion, doing new things with it requires commitment, experimentation, repeated attempts and staying up to date. On this site I have tried to reach a level that is sufficiently accessible while still maintaining an explanatory approach to how things are actually built within visual stories (see the posts <a href="post-comfyui-modelli.html" class="about-link">ComfyUI Visual Stories &mdash; Part 1</a> and <a href="post-comfyui-modelli2.html" class="about-link">ComfyUI Visual Stories &mdash; Part 2</a>). I would finally like to present a selection of top channels, to give a sense of the standard set by those who genuinely know how to work well in this field. 
+			</p>
+			<!-- sub-bullet list: each <li> carries its own data-en / data-it -->	
+			<!-- 1A -->			
+            <ul class="content-sublist">
+			<li>
+			  <a href="https://www.youtube.com/@mickmumpitz" class="about-link" target="_blank">Mickmumpitz</a>
+			  <span
+				data-en="A VFX artist turned AI filmmaker. A relevant, widely-followed channel for cinematic ComfyUI pipelines: workflows for consistent characters, 3D-film pipelines combining Blender and ComfyUI, and LLM-assisted vibe coding. Publishes the workflow's JSON file with every video.<br>Note: the results are sometimes striking, but these are assisted demos (ComfyUI pipelines), not produced in real time, with no pre-packaging. The automation operates at the level of the single shot, while reference curation, staging, and LoRA correction remain manual. There is no evidence these pipelines are used by agencies; this is hobbyist/VFX-educational material. Commercial models (Runway, Veo, Sora, Kling) share the same limitation: character consistency isn't guaranteed without a 3D model of the character carried forward frame by frame, or without timing frequent successive inputs: <i>frame chaining</i> (Muybridge-style). In short, the problem is one of very short-term visual memory."
+				data-it="VFX artist diventato filmmaker AI. Un canale rilevante e molto seguito, per pipeline ComfyUI cinematografiche: workflow per personaggi coerenti, pipeline 3D film con Blender + ComfyUI, e vibe coding assistito da LLM. Pubblica il file JSON del workflow con ogni video.<br>Attenzione: gli effetti sono a volte sorprendenti ma si tratta di demo (pipeline ComfyUI) assistite, non realizzate in tempo reale, senza pre-confezionamento. L’automazione vive a livello di singola inquadratura, mentre l'organizzazione dei riferimenti, staging, correzione LoRA restano manuali. Nessuna prova che queste pipeline siano usate da agenzie; è materiale hobbista/VFX-didattico. I modelli commerciali (Runway, Veo, Sora, Kling) condividono lo stesso limite: coerenza del personaggio non garantita senza un modello 3D del personaggio, che porta avanti frame per frame, o senza un timing di frequenti input successivi: <i>frame chaining</i> (stile Muybridge). In soldoni, il problema è quello della memoria visiva a brevissimo termine.">
+			  </span>
+			</li>
+
+			<!-- 2A -->
+			<li>
+			  <a href="https://www.youtube.com/@sebastiankamph" class="about-link" target="_blank">Sebastian Kamph</a>
+			  <span
+				data-en="Professional Art Director and one of the most consistently active ComfyUI educators. Covers Flux, ControlNet, LoRA training and advanced workflows. A reliable reference for building and understanding complex pipelines."
+				data-it="Art Director professionista e uno degli educatori ComfyUI più costantemente attivi. Copre Flux, ControlNet, training LoRA e workflow avanzati. Un riferimento affidabile per costruire e comprendere pipeline complesse.">
+			  </span>
+			</li>
+
+			<!-- 3A -->
+			<li>
+			  <a href="https://www.youtube.com/channel/UCNOzlWHq4LgGcEHliHWm6HA/videos" class="about-link" target="_blank">Latent Vision</a>
+			  <span
+				data-en="The YouTube channel of Matteo Spinelli, the developer of IPAdapter — the node at the heart of character consistency pipelines. Unlike tutorial channels that use the tools, this is the toolmaker explaining ComfyUI internals from the inside."
+				data-it="Il canale YouTube di Matteo Spinelli, lo sviluppatore di IPAdapter — il nodo al centro delle pipeline di coerenza dei personaggi. A differenza dei canali tutorial che usano gli strumenti, questo è il creatore degli strumenti che spiega il funzionamento interno di ComfyUI.">
+			  </span>
+			</li>
+
+			<!-- 4A -->
+			<li>
+			  <a href="https://www.youtube.com/@TensorAlchemist" class="about-link" target="_blank">Tensor Alchemist</a>
+			  <span
+				data-en="One of the top-ranked ComfyUI channels by views in 2026, with tutorials on the latest models (LTX 2.3, Flux, WAN 2.2) and full workflow demonstrations. Strong focus on low-VRAM optimisation and production-ready pipelines."
+				data-it="Uno dei canali ComfyUI più seguiti per visualizzazioni nel 2026, con tutorial sui modelli più recenti (LTX 2.3, Flux, WAN 2.2) e dimostrazioni complete di workflow. Forte focus sull'ottimizzazione per VRAM ridotta e pipeline pronte per la produzione.">
+			  </span>
+			</li>
+
+			<!-- 5A -->
+			<li>
+			  <a href="https://www.youtube.com/@comfyorg" class="about-link" target="_blank">Comfy.org (official)</a>
+			  <span
+				data-en="The official ComfyUI channel, maintained by Comfy Org. Includes the video 'Vibe Noding for ComfyUI' (June 2025) — a direct demonstration of vibe coding a custom ComfyUI node via LLM, which is the closest published example of the technique described on this page."
+				data-it="Il canale ufficiale di ComfyUI, gestito da Comfy Org. Include il video 'Vibe Noding for ComfyUI' (giugno 2025) — una dimostrazione diretta di vibe coding di un nodo ComfyUI personalizzato tramite LLM, che è l'esempio pubblicato più vicino alla tecnica descritta in questa pagina.">
+			  </span>
+			</li>
+			<!-- IT-1 -->
+			<li>
+			  <a href="https://www.youtube.com/@simone_rizzo98" class="about-link" target="_blank">Simone Rizzo</a>
+			  <span
+				data-en="AI engineer, graduate in Computer Science, with a specialization in Artificial Intelligence, CEO of Inferentia and adjunct professor at the University of Bologna. Covers ComfyUI, AI workflows and practical LLM applications in Italian. One of the most technically solid Italian voices on generative AI."
+				data-it="Finalmente un canale scritto e gestito da un italiano :) Simone Rizzo, AI engineer, laureato in Ingegneria Informatica, con indirizzo in Intelligenza Artificiale, CEO di Inferentia e docente a contratto all'Università di Bologna. Tratta ComfyUI, workflow AI e applicazioni pratiche degli LLM in italiano. Una delle voci italiane tecnicamente più solide.">
+			  </span>
+			</li>
+			</ul>
+
+          </div>
+        </li>
+
+      </ol>
+
+    </div><!-- /page-body -->
+  </main>
+
+  <a href="posts.html" class="nav-back"
+     data-en="POSTS" data-it="POST">POSTS</a>
+
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="en">EN</button>
+    <button class="lang-btn" data-lang="it">IT</button>
+  </div>
+
+  <script src="assets/lang.js"></script>
+  <script>
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').classList.toggle('scrolled', window.scrollY > 20);
+    });
+  </script>
+</body>
+</html>

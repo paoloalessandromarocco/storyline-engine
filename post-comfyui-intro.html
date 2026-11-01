@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>What is ComfyUI</title>
+  <link rel="alternate" hreflang="en"        href="https://storyline-engine.com/post-comfyui-intro.html">
+  <link rel="alternate" hreflang="it"        href="https://storyline-engine.com/post-comfyui-intro.html?lang=it">
+  <link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-comfyui-intro.html">
+    <!-- Preload self-hosted fonts so they're already in flight before style.css
+       is even parsed — closes the remaining window where the browser paints
+       with the fallback (Georgia/Courier) and then swaps to the real font,
+       which is what still reads as the font "changing size" on reload. -->
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/style.css">
+
+  <style>
+    /* ── post body text ─────────────────────────────────── */
+    .post-text {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.15rem;
+      line-height: 1.75;
+      margin: 0 0 1.4em 0;
+    }
+    /* about-link (defined in style.css) handles all inline links:
+       ochre colour at rest, darker on hover, no underline        */
+
+    /* ── footnote ref ────────────────────────────────────── */
+    sup.fn-ref {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6em;
+      line-height: 1;
+      vertical-align: super;
+      margin-left: 0.1em;
+    }
+    sup.fn-ref a { text-decoration: none; opacity: 0.55; }
+    sup.fn-ref a:hover { opacity: 1; }
+
+    /* ── footnotes block ─────────────────────────────────── */
+    .footnotes {
+      margin-top: 4rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid currentColor;
+      opacity: 0.65;
+    }
+    .footnotes ol {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 0.92rem;
+      line-height: 1.65;
+      padding-left: 1.4em;
+      margin: 0;
+    }
+    .footnotes li { margin-bottom: 0.8em; }
+    .fn-back {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8em;
+      margin-left: 0.4em;
+      text-decoration: none;
+      opacity: 0.5;
+    }
+    .fn-back:hover { opacity: 1; }
+
+    /* ── figure / image ──────────────────────────────────── */
+    .post-figure {
+      margin: 2.5rem auto 2rem;
+    }
+    .post-figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    /* ── caption: bold title + smaller body ──────────────── */
+    .post-caption {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.04em;
+      line-height: 1.7;
+      opacity: 0.55;
+      margin-top: 0.7rem;
+      text-align: justify;
+    }
+    .caption-title {
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      display: block;
+      margin-bottom: 0.2em;
+      text-align: center;
+    }
+
+    /* ── numbered content list ───────────────────────────── */
+    .content-list { list-style: none; padding: 0; margin: 1.6rem 0 0; }
+    .content-item {
+      display: grid;
+      grid-template-columns: 3rem 1fr;
+      gap: 1.6rem;
+      padding: 2rem 0;
+    }
+    .content-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.1); }
+    /* no bottom line right before a chapter heading: its own thick top border already separates */
+    .content-list:has(+ .chapter-heading) .content-item:last-child { border-bottom: none; }
+    .content-number {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 600;
+      opacity: 0.18;
+      padding-top: 0.15rem;
+      line-height: 1;
+    }
+    .content-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin: 0 0 0.9rem;
+      font-weight: 400;
+    }
+    .content-body .post-text { margin: 0; }
+
+    /* ── sub-bullet list ─────────────────────────────────── */
+    .content-sublist {
+      list-style: disc;
+      padding-left: 1.4em;
+      margin-top: 0.9em;
+      margin-bottom: 0;
+    }
+    .content-sublist li {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      margin-bottom: 0.35em;
+      opacity: 0.88;
+    }
+
+    @media (max-width: 700px) {
+      .content-item { grid-template-columns: 2rem 1fr; gap: 1rem; }
+      .content-number { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body class="interior">
+
+  <header>
+    <a href="about.html" class="nav-item" data-en="ABOUT" data-it="ABOUT">ABOUT</a>
+    <div class="menu-container">
+      <span class="menu-trigger" data-en="TOPICS" data-it="ARGOMENTI">TOPICS</span>
+      <div class="menu-dropdown">
+        <a href="adv.html"             class="menu-item" data-en="ADV"            data-it="ADV">ADV</a>
+        <a href="neural-graphics.html" class="menu-item" data-en="VISUAL STORIES" data-it="FUMETTI/STORYBOARD">VISUAL STORIES</a>
+        <a href="comfyui.html"         class="menu-item" data-en="COMFYUI"        data-it="COMFYUI">COMFYUI</a>
+        <a href="posts.html"           class="menu-item" data-en="POSTS"          data-it="POST">POSTS</a>
+        <span class="menu-item menu-item--disabled" data-en="VIDEO" data-it="VIDEO">VIDEO</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content">
+
+    <p class="section-label"
+       data-en="ComfyUI · Introduction · TECH OVERVIEW"
+       data-it="ComfyUI · Introduzione · PANORAMICA TECNICA">ComfyUI · Introduction · TECH OVERVIEW</p>
+
+    <h1 class="page-title"
+        data-en="What is ComfyUI"
+        data-it="Cosa è ComfyUI">What is ComfyUI</h1>
+
+    <div class="page-body">
+
+      <!-- tags -->
+      <div class="post-tags" style="margin-bottom:2rem;">
+        <span class="post-tag tag-tech" data-en="ComfyUI"    data-it="ComfyUI">ComfyUI</span>
+        <span class="post-tag tag-tech" data-en="Nodes"      data-it="Nodi">Nodes</span>
+        <span class="post-tag tag-tech" data-en="Generation" data-it="Generazione">Generation</span>
+        <span class="post-tag tag-tech" data-en="Graphs"     data-it="Grafi">Graphs</span>
+      </div>
+
+      <!-- ── ABSTRACT ──────────────────────────────────────── -->
+      <!--span class="var-section-header"
+            data-en="ABSTRACT"
+            data-it="SINTESI">ABSTRACT</span-->
+			
+		
+
+      <p class="post-abstract-text" id="fnref1"
+         data-en="<a href='https://comfy.org/' class='about-link' target='_blank'>ComfyUI</a> is a node-based graphical interface for <em>image generation</em><sup class='fn-ref'><a href='#fn1' id='fnref1'>1</a></sup> (the use case covered in this blog, but also for text, video, 3D models, and more). Unlike tools that rely solely on text prompts, it lets you build complex visual pipelines (graphs of functional Nodes) in which every step of the generative process is explicit, editable, and composable with other graphs — intuitively, like Lego. This article introduces the core components — nodes, connections, inputs, parameters — with no programming knowledge assumed. This post is not an introductory course: for external tutorials and annotated online resources, see <a href='post-comfyui-documents.html' class='about-link'>ComfyUI: curated online resources</a>. <strong>NOTE</strong>: if the technicalities of this section bore you, skip straight ahead to browsing the stories listed on the <a href='neural-graphics.html?lang=en' class='about-link' target='_self'>Graphic novels and Storyboards</a> page."
+         data-it="<a href='https://comfy.org/' class='about-link' target='_blank'>ComfyUI</a> è un'interfaccia grafica a nodi per la <em>generazione di immagini</em><sup class='fn-ref'><a href='#fn1' id='fnref1'>1</a></sup> (utilizzo presentato in questo blog), ma anche di testi, video, modelli 3D e altro. A differenza dei tool basati solo su prompt testuali, permette di costruire pipeline visive complesse (grafi di nodi funzionali), in cui ogni passaggio del processo generativo è esplicito, modificabile e componibile con altri grafi — intuitivamente come il Lego. Questo articolo introduce i componenti di base — nodi, connessioni, argomenti di input, parametri — senza presupporre conoscenze di programmazione. Questo post non è un corso introduttivo: per tutorial esterni e risorse online commentate, vedi <a href='post-comfyui-documents.html' class='about-link'>ComfyUI: sitografia ragionata</a>. <strong>NOTA</strong>: Se vi annoiano i tecnicismi di questa parte, passate direttamente a sfogliare le storie listate nella pagina <a href='neural-graphics.html?lang=it' class='about-link' target='_self'>Graphic novel e Storyboard</a>.">
+        <a href='https://comfy.org/' class='about-link' target='_blank'>ComfyUI</a> is a node-based graphical interface for <em>image generation</em><sup class="fn-ref"><a href="#fn1"  id="fnref1">1</a></sup> (the use case covered in this blog, but also for text, video, 3D models, and more). Unlike tools that rely solely on text prompts, it lets you build complex visual pipelines (graphs of functional Nodes) in which every step of the generative process is explicit, editable, and composable with other graphs — intuitively, like Lego. This article introduces the core components — nodes, connections, inputs, parameters — with no programming knowledge assumed. This post is not an introductory course: for external tutorials and annotated online resources, see <a href="post-comfyui-documents.html" class="about-link">ComfyUI: curated online resources</a>. <strong>NOTE</strong>: if the technicalities of this section bore you, skip straight ahead to browsing the stories listed on the <a href="neural-graphics.html?lang=en" class="about-link" target="_self">Graphic novels and Storyboards</a> page.
+      </p>
+
+      <!-- ── FIGURE ─────────────────────────────────────────── -->
+      <figure class="post-figure">
+        <img src="assets/post-comfyui-intro/canvas_1.jpg"
+             alt="ComfyUI graph on the Canvas">
+        <figcaption class="post-caption"
+          data-en="<span class='caption-title'>ComfyUI graph</span> The graph in question, composed of 4 nodes, reproduces a simple pipeline to generate an image, in this case a camera Blackmagic URSA Cine."
+          data-it="<span class='caption-title'>Esempio di grafo ComfyUI</span>Il grafo in oggetto, composto da 4 nodi, riproduce un semplice schema per generare un'immagine, in questo caso una cinepresa Blackmagic URSA Cine.">
+          <span class="caption-title">ComfyUI graph</span> The graph in question, composed of 4 nodes, reproduces a simple pipeline to generate an image, in this case a camera Blackmagic URSA Cine.
+        </figcaption>
+      </figure>
+
+      <!-- ── CONTENTS ───────────────────────────────────────── -->
+      <!--span class="var-section-header"
+            data-en="CONTENTS"
+            data-it="">CONTENTS</span -->
+
+      <ol class="content-list">
+
+        <!-- 01 -->
+        <li class="content-item">
+          <div class="content-number">01</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="Nodes, connections, input arguments, parameters"
+                data-it="Nodi, connessioni, argomenti di input, parametri">
+              Nodes, connections, input arguments, parameters
+            </h3>
+
+            <p class="post-text"
+                data-en="The (open-source) frameworks for customising visual stories in a professional direction — that is, ones that preserve the identity and coherence of characters and settings over time — are today node-based systems, whose construction is AI-assisted. To simplify: these are diagrams of nodes, each with an elementary function, which, combined together, form aggregates with a meaning and utility of their own. In plain terms, like Lego bricks, born as a physical language of universal creativity. In our case, the creativity is not building little houses and cars, but AI systems. ComfyUI, which we will cover in these pages, is probably today the most complete and widely used open-source architecture for this purpose, equipped with 60,000 custom nodes — though the essentials number around 100 to 200 — for creating images, video, 3D and audio.
+
+But what, then, is ComfyUI? ComfyUI is built on three foundational elements: Nodes, Arguments, and Connections. One or more input nodes receive incoming data and information. Symmetrically, one or more output nodes emit outgoing data and information. In between, a network of further interconnected nodes is constructed to transform information from Input to Output.
+				A <em>node</em> is a self-contained processing unit that performs a single basic function — loading a network model, encoding a text prompt, transforming a plain image into a latent vector, and so on. <em>Connections</em> can be thought of as the cables linking the output of one node to the input of another, thus forming chains through which information (or, put differently, data) flows. Without resorting to formal definitions, the totality of these chains constitutes a graph — a set of interconnected nodes running from one or more Inputs to one or more Outputs. Graphs give rise to a workflow (a work flow, or more precisely a flow of information passing through stages) known as a <em>pipeline</em> — by analogy with a system of oil pipelines.
+
+				<em>Arguments</em> are the input variables of the function or neural network that underlies the node. The user can browse through them in predefined slots and enter specific values, without ever having to interact directly with lines of code. For a ComfyUI user, arguments are the <em>parameters</em> exposed directly inside the graphical box that forms the node — text fields, drop-down menus, numeric sliders, and so on — which allow the node to be configured. Together, these elements make every pipeline fully readable: the entire generative process can be followed from left to right, and any individual stage can be viewed inside the flow. "
+                data-it="I framework (open source) per la personalizzazione di storie visive, che si spingano in una direzione professionale (ossia conservino identitità e corenza di personaggi e ambienti nel tempo, sono oggi i sistemi node-based (la cui costruzione è assistita dall'AI). Per semplificare: si tratta di diagrammi di nodi, ognuno dotato di una funzione elementare, i quali, combinati insieme, formano aggregati dotati di un significato e una propria utilità.  In parole povere, come i mattoncini Lego, nati come linguaggio fisico di creatività universale. Nel nostro caso, la creatività  non è qualla di fare casette e automobili, ma sistemi AI. ComfyUI, che tratteremo in queste pagine, è probabilmente oggi l'architettura open-source più completa e diffusa a tale scopo. Dotata di 60.000 nodi personalizzati (ma gli essenziali sono circa 100-200) per creare immagini, video, 3D e audio.
+							
+				Ma che cosa è al dunque ComfyUI. ComfyUI si fonda su 3 elementi costitutivi: Nodi, Argomenti, Connettivi. Uno o più nodi di input ricevono dati e informationi in ingresso. In modo simmetrico, uno o più nodi di output emettono dati e informationi in uscita. In mezzo viene costruita una rete di altri nodi connessi tra loro per trasformare l'informazione dall'Input all'Output. Il <em>nodo</em> è un'unità di elaborazione autonoma che svolge una funzione base — caricare un modello di rete, codificare un prompt testuale, trasformare un'immagine in chiaro in un vettore latente, e cos' via. Le <em>connessioni</em> possono essere viste come i cavi che collegano l'uscita di un nodo all'ingresso di un altro, creando così delle catene in cui passa l'informazione (detto altrimenti: i dati). Evitando definizioni formali, l'insieme di queste catene costituiscono un grafo, ossia un insieme di nodi connessi, a partire da uno o più Input per arrivare a uno o piu Output. I grafi danno luogo a un workflow (flusso di lavoro, o meglio flusso di passaggio di informazioni) definito <em>pipeline</em>, come il sistema di condotte di tubi petroliferi.    Gli <em>argomenti</em> sono le variabili in input della funzione o della rete neurale che viene sottesa dal nodo. L'utente può scorrerle in slot predefiniti e inserire determinati valori, senza dover agire direttamente su linee di codice.  Per un utente ComfyUI gli argomenti sono dei <em>parametri</em> esposti direttamente nella casella grafica che forma il nodo — campi di testo, menu a tendina, slider numerici, ecc — che permettono di configurare il nodo. L'insieme di questi elementi rendono ogni pipeline pienamente leggibile: è possibile seguire l'intero processo generativo da sinistra a destra, vedendo sull'interfaccia (Canvas) l'andamento del flusso.">
+                ComfyUI is built on three foundational elements: Nodes, Arguments, and Connections. One or more input nodes receive incoming data and information. Symmetrically, one or more output nodes emit outgoing data and information. In between, a network of further interconnected nodes is constructed to transform information from Input to Output.
+
+				A <em>node</em> is a self-contained processing unit that performs a single basic function — loading a network model, encoding a text prompt, transforming a plain image into a latent vector, and so on. <em>Connections</em> can be thought of as the cables linking the output of one node to the input of another, thus forming chains through which information (or, put differently, data) flows. Without resorting to formal definitions, the totality of these chains constitutes a graph — a set of interconnected nodes running from one or more Inputs to one or more Outputs. Graphs give rise to a workflow (a work flow, or more precisely a flow of information passing through stages) known as a <em>pipeline</em> — by analogy with a system of oil pipelines.
+
+				<em>Arguments</em> are the input variables of the function or neural network that underlies the node. The user can browse through them in predefined slots and enter specific values, without ever having to interact directly with lines of code. For a ComfyUI user, arguments are the <em>parameters</em> exposed directly inside the graphical box that forms the node — text fields, drop-down menus, numeric sliders, and so on — which allow the node to be configured. Together, these elements make every pipeline fully readable: the entire generative process can be followed from left to right, and any individual stage can be viewed inside the flow.
+            </p>
+
+          </div>
+        </li>
+
+        <!-- 02 -->
+        <li class="content-item">
+          <div class="content-number">02</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="The ComfyUI graph in the figure"
+                data-it="L'esempio ComfyUI in figura">
+              The ComfyUI graph in the figure
+            </h3>
+
+            <p class="post-text"
+               data-en="Let us break down the ComfyUI graph shown in the figure into its components. This pipeline represents a basic flow for text-to-image generation (that is, from a descriptive text to the generated image) using the Stable Diffusion XL model. The process follows a logical path from the upper left to the right: the information flow passes through the nodes: <em>Load Checkpoint, CLIP, KSampler, VAE Decode</em>. These nodes are connected by edges (in practice, the connecting wires) that exit from the right side of each node and enter the left side of the next. Let us look at the meaning of these nodes and how they are connected."
+               data-it="Scomponiamo il grafo ComfyUI in figura nelle sue componenti. Questa pipeline rappresenta un flusso base per la generazione di immagini text-to-image (ovvero da un testo descrittivo all'imagine generata) utilizzando il modello <strong>Stable Diffusion XL</strong>. Il processo segue un percorso logico da sinistra in alto verso destra: il flusso delle informazioni attraversa i nodi: <em>Load Checkpoint, Clip, K-sampler, VAE Decode</em>. Questi nodi sono connessi con degli archi (in pratica i fili di congiunzione) che escono a dx di ogni nodo ed entrano a sx del nodo successivo. Vediamo il significato di questi nodi e come sono connessi.">
+			   Let us break down the ComfyUI graph shown in the figure into its components. This pipeline represents a basic flow for text-to-image generation (that is, from a descriptive text to the generated image) using the Stable Diffusion XL model. The process follows a logical path from the upper left to the right: the information flow passes through the nodes: <em>Load Checkpoint, CLIP, KSampler, VAE Decode</em>. These nodes are connected by edges (in practice, the connecting wires) that exit from the right side of each node and enter the left side of the next. Let us look at the meaning of these nodes and how they are connected.
+              
+            </p>
+			
+			<!-- sub-bullet list: each <li> carries its own data-en / data-it -->
+            <ul class="content-sublist">
+                <li data-en="<strong>Load Checkpoint (Green)</strong> - This node is the starting point. It loads the neural network (the Stable Diffusion XL base model: SDXL) from checkpoint files (a checkpoint is the saved state of a neural network that has already completed its training). It supplies the three essential components of the pipeline, explained below: the SDXL Model (for image generation), the CLIP network (for text-to-image association), and the VAE network (for the final decoding of the image into visible form)."
+                data-it="<strong>Load Checkpoint (Verde)</strong> — Questo nodo è il punto di partenza. Carica la rete neurale (il modello base Stable Diffusion XL: SDXL) dai file di checkpoint (il checkpoint è lo stato dei file della rete neurale che ha già appreso ). Fornisce i tre componenti essenziali della pipeline, che spieghiamo di seguito: il Modello SDXL (per generare l'immagine), la rete CLIP (per l'associazione testo/img) e la rete VAE (per la decodifica finale in chiaro dell'immagine)">
+                <strong>Load Checkpoint (Green)</strong>  This node is the starting point. It loads the neural network (the Stable Diffusion XL base model: SDXL) from checkpoint files (a checkpoint is the saved state of a neural network that has already completed its training). It supplies the three essential components of the pipeline, explained below: the SDXL Model (for image generation), the CLIP network (for text-to-image association), and the VAE network (for the final decoding of the image into visible form).
+              </li>
+				 <li data-en="<strong>CLIP Text Encode (Yellow)</strong> — This node receives the text prompt (e.g.: <em>A photo of a futuristic camera rig...</em>) and passes it to the CLIP component. This component aligns the text to the prior images contained in its dataset (since it has been pre-trained on billions of text/image pairs). In plain terms, it 'recognises' the text as a combination of image fragments (tokens), mapped within abstract mathematical spaces (vectors of numbers)."
+                 data-it="<strong>CLIP Text Encode (Giallo)</strong> Questo nodo riceve il prompt di testo (as.:<em>A photo of a futuristic camera rig...</em>) e lo invia al componente CLIP. Questa componente allinea il testo alle immagini pregresse che contiene nel dataset (dato che è pre-addestrato su miliardi di coppie testo/img). In parole povere 'riconosce' il testo come unione di frammenti (token) di immagini, all'interno di spazi matematici astratti (vettori di numeri).">
+                 <strong>CLIP Text Encode (Yellow)</strong> — This node receives the text prompt (e.g.: <em>A photo of a futuristic camera rig...</em>) and passes it to the CLIP component. This component aligns the text to the prior images contained in its dataset (since it has been pre-trained on billions of text/image pairs). In plain terms, it 'recognises' the text as a combination of image fragments (tokens), mapped within abstract mathematical spaces (vectors of numbers).
+              </li>
+              <li data-en="<strong>KSampler (Blue)</strong> — the core sampling node: through a series of iterations it transforms random noise into a defined image (metaphorically, it is like discovering a picture hidden in fog and gradually bringing it into focus). It receives as input the SDXL model and the image description, as can be seen from the connections entering the node."
+              data-it="<strong>KSampler (Blu)</strong> — il nodo di campionamento centrale: attraverso una serie di iterazioni trasforma il rumore bianco in un'immagine definita (metaforicamente è come scoprire un'immagine nella nebbia e man mano metterla a fuoco). Riceve in input il modello SDXL e la descrizione dell'immagine, come si può vedere dalle connessioni che entrano nel nodo.">
+              <strong>KSampler (Blue)</strong> — the core sampling node: through a series of iterations it transforms random noise into a defined image (metaphorically, it is like discovering a picture hidden in fog and gradually bringing it into focus). It receives as input the SDXL model and the image description, as can be seen from the connections entering the node.
+              </li>
+              <li data-en="<strong>VAE Decode (Purple)</strong> — This node receives the vector representation of the image (that is, the numerically encoded form in mathematical space) produced by the KSampler, and translates it into real pixels to produce the final visible image, which can then be saved."
+              data-it="<strong>VAE Decode (Viola)</strong> —  Questo nodo riceve l'immagine vettoriale (ossia quella numerica codificata negli spazi matematici)  prodotta dal K-Sampler e la traduce in pixel reali per creare l'immagine visibile in chiaro, che può poi essere salvata. ">
+              <strong>VAE Decode (Purple)</strong> — This node receives the vector representation of the image (that is, the numerically encoded form in mathematical space) produced by the KSampler, and translates it into real pixels to produce the final visible image, which can then be saved.
+              </li>
+            </ul>
+
+
+          </div>
+        </li>
+        <!-- 03 -->
+        <li class="content-item">
+          <div class="content-number">03</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="How and why we use it here"
+                data-it="Come e perché lo usiamo in questa sede">
+              How and why we use it here
+            </h3>
+
+			<p class="post-text"
+			   data-en='This site uses ComfyUI as the generative engine for all its visual stories (comics and storyboards). Rather than generating images through a chat interface or a static web form (one shot), ComfyUI offers control over every stage of the process: model selection, text prompt encoding, parameter adjustment, and the insertion or removal of modules (character and environment conditioning, output post-processing, and so on)<sup class="fn-ref"><a href="#fn2"  id="fnref2">2</a></sup>. The pipelines built in this way are designed for sequential storytelling — graphic novel panels, storyboard frames, character body, face and costume — where consistency across different poses of the same character matters greatly (something that cannot be achieved simply by repeating prompts). All graph workflows associated with the stories are downloadable from their respective pages, listed in <a href="neural-graphics.html?lang=en" class="about-link" target="_self">Comics and Storyboards</a>.<br>Finally, one practically significant development. Until about eighteen months ago, ComfyUI graphs were built by hand, connecting pairs of module nodes through the graphical interface of the environment. This meant an enormous amount of work to create graphs of just 10–20 nodes — far smaller than those used to generate stories such as the one shown in <a href="sotto-lasfalto.html?lang=en" class="about-link" target="_self">Under the Asphalt</a>, which have 80+ nodes and hundreds of connections. Today, through Vibe Coding it is possible to generate the graph JSON<sup class="fn-ref"><a href="#fn3" id="fnref3">3</a></sup> directly via an LLM (Claude, Gemini, the various GPT models from OpenAI, and others), and then, if needed, refine it directly in an editor or regenerate it through further Vibe Coding. An epoch-making shift whose full implications will become clearer over the next one to two years.'
+
+			   data-it='Questo sito utilizza ComfyUI come motore generativo per tutte le storie visive (fumetti e storyboard). Invece di generare immagini tramite un&#39;interfaccia chat o un modulo web statico (one shot), ComfyUI offre un controllo su ogni fase del processo: la scelta del modello, la codifica dei prompt testuali, la regolazione dei parametri, l&#39;inserimento e l&#39;eliminazione di moduli (il condizionamento di personaggi e ambienti, il post-processing degli output, ecc.)<sup class="fn-ref"><a href="#fn2"  id="fnref2">2</a></sup>. Le pipeline costruite in questo modo sono progettate per la narrazione sequenziale — tavole di graphic novel, fotogrammi di storyboard, corpo, volto e abbigliamento dei personaggi — dove la coerenza tra le diverse posizioni dello stesso personaggio conta molto (un aspetto non ottenibile semplicemente con prompt ripetuti). Tutti i workflow dei grafi associati alle storie sono scaricabili dalle pagine relative, listate in <a href="neural-graphics.html?lang=it" class="about-link" target="_self">Graphic novel e Storyboard</a>.<br>Infine, un aspetto pratico di notevole impatto. Fino a circa 18 mesi fa i grafi ComfyUI venivano realizzati a mano, connettendo i nodi di coppie di moduli utilizzando l&#39;interfaccia grafica dell&#39;ambiente. Questo significava un lavoro enorme per creare grafi di 10–20 nodi, quindi molto più piccoli di quelli utilizzati per generare storie come quella visualizzata in <a href="sotto-lasfalto.html?lang=it" class="about-link" target="_self">Sotto l&#39;asfalto</a>, che hanno 80+ nodi e centinaia di connessioni. Oggi, per mezzo del Vibe Code è possibile generare via LLM (Claude, Gemini, i diversi GPT di OpenAI e altri) direttamente il JSON<sup class="fn-ref"><a href="#fn3" id="fnref3">3</a></sup> del grafo, e in seguito, se occorre, correggerlo con un editor o rigenerandolo con Vibe Code. Un cambiamento epocale i cui riflessi si vedranno meglio tra 1 o 2 anni.'>
+
+			  This site uses ComfyUI as the generative engine for all its visual stories (comics and storyboards). Rather than generating images through a chat interface or a static web form (one shot), ComfyUI offers control over every stage of the process: model selection, text prompt encoding, parameter adjustment, and the insertion or removal of modules (character and environment conditioning, output post-processing, and so on)<sup class="fn-ref"><a href="#fn2"  id="fnref2">2</a></sup>. The pipelines built in this way are designed for sequential storytelling — graphic novel panels, storyboard frames, character body, face and costume — where consistency across different poses of the same character matters greatly (something that cannot be achieved simply by repeating prompts). All graph workflows associated with the stories are downloadable from their respective pages, listed in <a href="neural-graphics.html?lang=en" class="about-link" target="_self">Comics and Storyboards</a>.<br>Finally, one practically significant development. Until about eighteen months ago, ComfyUI graphs were built by hand, connecting pairs of module nodes through the graphical interface of the environment. This meant an enormous amount of work to create graphs of just 10–20 nodes — far smaller than those used to generate stories such as the one shown in <a href="sotto-lasfalto.html?lang=en" class="about-link" target="_self">Under the Asphalt</a>, which have 80+ nodes and hundreds of connections. Today, through Vibe Coding it is possible to generate the graph JSON<sup class="fn-ref"><a href="#fn3" id="fnref3">3</a></sup> directly via an LLM (Claude, Gemini, the various GPT models from OpenAI, and others), and then, if needed, refine it directly in an editor or regenerate it through further Vibe Coding. An epoch-making shift whose full implications will become clearer over the next one to two years.
+			</p>
+
+          </div>
+        </li>
+
+
+      </ol>
+
+      <!-- ── FOOTNOTES ───────────────────────────────────────── -->
+      <section class="footnotes">
+        <ol>
+          <li id="fn1">
+				  <span data-en="The concept of node-based programming is not new in computer science. In short, it involves an interactive environment that requires no code writing: the program is instead created by connecting graphical blocks, each of which performs a specific function. The first prototypes appeared as early as the 1960s, but it was only in the last twenty years, with the rise of <em>No Code</em> programming, that this approach gained widespread success. Ultimately, ComfyUI had the intuition — and the organisational skill — to structure an AI environment <em>No Code</em> in which the nodes were components of neural networks, or graphical functions to connect alongside them."
+                  data-it="il concetto di linguaggio a nodi non è nuovo nell'informatica. In breve, si tratta di avere un ambiente interattivo che non necessita della scrittura di codice, ma il programma viene creato connettendo blocchi grafici, ognuno dei quali ha una sua funzione. I primi prototitpi nascevano già negli anni 60, ma solo negli ultimi 20 anni, con la programmazione <em>No Code</em> questo approccio ha avuto successo. In definitiva, ComfyUI ha avuto l'intuizione e l'abilità organizzativa, di strutturare un ambiente AI <em>No Code</em> in cui i nodi erano delle componenti di reti neurali o funzioni grafiche con cui associarle.">The concept of node-based programming is not new in computer science. In short, it involves an interactive environment that requires no code writing: the program is instead created by connecting graphical blocks, each of which performs a specific function. The first prototypes appeared as early as the 1960s, but it was only in the last twenty years, with the rise of <em>No Code</em> programming, that this approach gained widespread success. Ultimately, ComfyUI had the intuition — and the organisational skill — to structure an AI environment <em>No Code</em> in which the nodes were components of neural networks, or graphical functions to connect alongside them.</span>
+            <a href="#fnref1" class="fn-back" aria-label="back to text">↩</a>
+          </li>
+		  <li id="fn2">
+				  <span data-en="Without going into detail, ComfyUI offers not only a design front end through nodes and connections, but also integration with programs (Python) and (bash)scripts. This is particularly useful for creating image variations and for building function loops — which represent the real engine of any non-trivial workflow (by default, looping nodes directly is not possible, so external code must be integrated into the Python environment)."
+                  data-it="Senza entrare in dettaglio, ComfyUI non offre solo un front end di progettazione con  nodi e connessioni, ma anche l'integrazione con programmi (python) e (bash) script. Questo aspetto è utile in particolare per fare variazioni di un immagine, e per costruire Loop di funzioni, che rappresentano l'anima del nodo (di default, non è possibile fare loop di nodi in modo diretto, per cui occorre integrare  codice nell'ambiente python).">Without going into detail, ComfyUI offers not only a design front end through nodes and connections, but also integration with programs (Python) and (bash) scripts. This is particularly useful for creating image variations and for building function loops — which represent the real engine of any non-trivial workflow (by default, looping nodes directly is not possible, so external code must be integrated into the Python environment).</span>
+              <a href="#fnref2" class="fn-back" aria-label="back to text">↩</a>
+            </li>
+			<li id="fn3">
+				  <span
+					data-en="JSON (JavaScript Object Notation: created by Javascript group, and subsequently spread to other environments ) is a lightweight text format for representing structured data as key-value pairs — readable by both humans and machines. ComfyUI uses JSON as the native file format for its workflows: every node, connection, and parameter of a graph is serialised into a single .json file that can be saved, shared, and loaded back into the environment exactly as built. "
+					data-it="JSON (JavaScript Object Notation: nato per Javascript e poi diffuso in molti ambiti) è un formato testuale di scambio  per rappresentare dati strutturati — leggibile sia dagli umani che dalle macchine. ComfyUI utilizza JSON come formato nativo per i suoi grafi (workflow): ogni nodo, connessione e parametro di un grafo viene descritto in un singolo file .json che può essere condiviso (es.: via mail). E' sufficiente caricare il file drag/drop nell'interfaccia ComfyUI per vederlo visualizzato direttamente (esempio: come in figura).">JSON (JavaScript Object Notation: created by Javascript group, and subsequently spread to other environments ) is a lightweight text format for representing structured data as key-value pairs — readable by both humans and machines. ComfyUI uses JSON as the native file format for its workflows: every node, connection, and parameter of a graph is serialised into a single .json file that can be saved, shared, and loaded back into the environment exactly as built. 
+				  </span>
+				  <a href="#fnref3" class="fn-back" aria-label="back to text">↩</a>
+			  </li>
+        </ol>
+      </section>
+
+    </div><!-- /page-body -->
+  </main>
+
+  <a href="posts.html" class="nav-back"
+     data-en="POSTS" data-it="POST">POSTS</a>
+
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="en">EN</button>
+    <button class="lang-btn" data-lang="it">IT</button>
+  </div>
+
+  <script src="assets/lang.js"></script>
+  <script>
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').classList.toggle('scrolled', window.scrollY > 20);
+    });
+  </script>
+</body>
+</html>

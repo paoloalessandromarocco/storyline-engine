@@ -1,0 +1,554 @@
+/* ══════════════════════════════════════════════════════════════════════════
+   TOKENS
+══════════════════════════════════════════════════════════════════════════ */
+:root {
+  /* Interior text — Klein blue palette */
+  --ink:         #002FA7;   /* Klein blue — main text, nav */
+  --ink-mid:     #4878BE;   /* medium blue — dates, muted */
+  --ink-dark:    #001D6C;   /* darker Klein — hover */
+
+  /* Interior backgrounds (unchanged warm wheat) */
+  --wheat-light: #F6F9FD;   /* lighter than campione1a #E9F1FC */
+  --wheat-mid:   #C5D5EC;   /* blue-tinted dividers */
+  --wheat-warm:  #1A5CB3;   /* medium blue — labels, tags */
+
+  /* Home page — on dark spiral bottom */
+  --home-bottom: #F7F2E6;   /* light ocra, same as about.html's interior bg */
+
+  --mono:       'IBM Plex Mono', 'Courier New', monospace;
+  --serif:      'EB Garamond', Georgia, serif;
+
+  /* +2px on nav (0.78rem→0.91rem), +2px throughout interior */
+  --nav-size:    0.91rem;
+  --nav-spacing: 0.14em;
+}
+
+/* ── Self-hosted fonts ───────────────────────────────────────────────────
+   Served from assets/fonts/, same origin as the page — no more dependency
+   on fonts.googleapis.com, which was the real cause of the font randomly
+   switching size/typeface on reload (a network-timing race, not fixable
+   by tweaking font-display while the font still came from Google's CDN).
+══════════════════════════════════════════════════════════════════════════ */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/ibm-plex-mono-latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('fonts/ibm-plex-mono-latin-600-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/eb-garamond-latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/eb-garamond-latin-400-italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('fonts/eb-garamond-latin-500-normal.woff2') format('woff2');
+}
+
+/* ── Reset ───────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body { font-family: var(--serif); color: var(--ink); -webkit-font-smoothing: antialiased; }
+a { text-decoration: none; color: inherit; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   HEADER — identical structure on every page
+══════════════════════════════════════════════════════════════════════════ */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 26px 44px;
+}
+
+/* ABOUT — left item */
+.nav-item {
+  font-family: var(--mono);
+  font-size: var(--nav-size);
+  letter-spacing: var(--nav-spacing);
+  color: #002FA7;
+  transition: color 0.2s, opacity 0.2s;
+  cursor: pointer;
+}
+.nav-item:hover { color: #001D6C; }
+
+/* ── MENU dropdown — right item ─────────────────────────────────────────── */
+.menu-container {
+  position: relative;
+}
+.menu-trigger {
+  font-family: var(--mono);
+  font-size: var(--nav-size);
+  letter-spacing: var(--nav-spacing);
+  color: #002FA7;
+  cursor: default;
+  user-select: none;
+  transition: color 0.2s;
+}
+.menu-container:hover .menu-trigger { color: #001D6C; }
+
+.menu-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  padding-top: 18px;   /* gap bridged so hover doesn't break */
+  display: none;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 15px;
+  z-index: 300;
+}
+.menu-container:hover .menu-dropdown { display: flex; }
+
+.menu-item {
+  font-family: var(--mono);
+  font-size: var(--nav-size);
+  letter-spacing: var(--nav-spacing);
+  color: #4878BE;            /* start dimmed — makes hover contrast clear */
+  white-space: nowrap;
+  transition: color 0.2s, letter-spacing 0.15s;
+  line-height: 1;
+}
+a.menu-item:hover {
+  color: #001260;            /* very dark navy — maximum contrast on hover */
+  letter-spacing: 0.18em;   /* slight tracking expansion as visual cue */
+}
+
+.menu-item--disabled {
+  color: #4878BE;
+  opacity: 0.30;
+  pointer-events: none;
+  cursor: default;
+  /* no hover effect since pointer-events: none */
+}
+
+/* ── Home-page bottom-left tags ──────────────────────────────────────────── */
+.home-tags {
+  position: fixed;
+  bottom: 26px;
+  left: 44px;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  pointer-events: none;
+}
+.home-tags-row {
+  display: flex;
+  gap: 18px;
+}
+.home-tag {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  color: #C8DCFF;
+  opacity: 0.65;
+}
+
+/* ── Back arrow — bottom-left ────────────────────────────────────────────── */
+.nav-back {
+  position: fixed;
+  bottom: 26px; left: 44px;
+  z-index: 200;
+  font-family: var(--mono);
+  font-size: var(--nav-size);
+  letter-spacing: var(--nav-spacing);
+  color: #002FA7;
+  opacity: 0.65;
+  transition: opacity 0.2s, color 0.2s;
+  line-height: 1;
+}
+.nav-back:hover { opacity: 1; color: #001260; }
+.nav-back::before { content: "← "; }
+
+/* ── Lang switch — bottom-right ──────────────────────────────────────────── */
+.lang-switch { position: fixed; bottom: 26px; right: 44px; z-index: 200; }
+.lang-btn {
+  font-family: var(--mono);
+  font-size: var(--nav-size);
+  letter-spacing: var(--nav-spacing);
+  background: none; border: none; cursor: pointer; padding: 0;
+  color: #002FA7;
+  opacity: 0.65;
+  transition: opacity 0.2s;
+}
+.lang-btn:hover { opacity: 1; }
+
+/* Home page: bottom elements on dark blue spiral — ocra accent, bumped
+   size/spacing and a soft dark halo so they stay readable over the
+   water-filtered background */
+body.home .nav-back,
+body.home .lang-btn {
+  color: var(--home-bottom);
+  opacity: 0.8;
+  font-size: calc(var(--nav-size) + 2px);
+  letter-spacing: 0.20em;
+  text-shadow: 0 0 2px rgba(0,0,0,0.6), 0 0 4px rgba(0,0,0,0.4);
+}
+body.home .nav-back:hover,
+body.home .lang-btn:hover { opacity: 1; }
+
+/* Home page: nav on light top → Klein blue works as-is. Only +2px size here —
+   no letter-spacing bump, no halo: the background behind these is already light */
+body.home .nav-item,
+body.home .menu-trigger,
+body.home .menu-item {
+  font-size: calc(var(--nav-size) + 2px);
+}
+body.home .menu-trigger { color: #002FA7; }
+body.home .menu-item    { color: #002FA7; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   HOME PAGE
+══════════════════════════════════════════════════════════════════════════ */
+body.home { background: #0A1A82; overflow: hidden; }
+
+.hero {
+  position: relative;
+  width: 100vw; height: 100vh;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 28%;
+  transform: scale(1.06);  /* 6% overscan — covers border gap from displacement */
+  filter: url(#water);
+  will-change: filter;
+}
+
+/* ── Two-line tagline — above the spiral ──────────────────────────────────── */
+.hero-text {
+  position: absolute;
+  top: 37%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
+  z-index: 2;
+  width: 90vw;
+}
+.hero-title {
+  font-family: var(--mono);
+  font-size: clamp(1.32rem, 2.4vw, 2.1rem);  /* same size as hero-sub, +20% */
+  font-weight: 600;                            /* bold distinguishes it */
+  line-height: 1.4;
+  letter-spacing: 0.03em;
+  color: #002FA7;
+  margin-bottom: 0.3em;
+}
+.hero-sub {
+  font-family: var(--mono);
+  font-size: clamp(1.32rem, 2.4vw, 2.1rem);  /* +20% */
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.03em;
+  color: #002FA7;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   INTERIOR PAGES  —  wheat background, Klein blue text, +2px throughout
+══════════════════════════════════════════════════════════════════════════ */
+body.interior { background: #F7F2E6; min-height: 100vh; }
+body.interior header { background: transparent; transition: background 0.3s; }
+body.interior header.scrolled {
+  background: #F6F9FD;
+  /* border removed — was causing visible stripe on scroll */
+}
+
+.page-content { max-width: 780px; margin: 0 auto; padding: 140px 44px 100px; }
+
+/* section label — e.g. "Visual development · Storyboard" */
+.section-label {
+  font-family: var(--mono);
+  font-size: 0.80rem;          /* was 0.68 +0.12 ≈ +2px */
+  letter-spacing: 0.18em;
+  color: #1A5CB3;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+
+.page-title {
+  font-family: var(--serif);
+  font-size: 2.75rem;          /* was 2.6 */
+  font-weight: 400; line-height: 1.2;
+  margin-bottom: 12px; letter-spacing: -0.01em;
+}
+
+.page-body { font-family: var(--serif); font-size: 1.28rem; line-height: 1.78; }
+.page-body p + p { margin-top: 1.4em; }
+
+.divider { border: none; border-top: 1px solid #C5D5EC; margin: 60px 0; }
+
+/* ── Project list ──────────────────────────────────────────────────────── */
+.project-item {
+  display: flex; align-items: baseline; justify-content: space-between;
+  padding: 26px 0; border-bottom: 1px solid #C5D5EC;
+  transition: opacity 0.2s;
+}
+.project-item:first-child { border-top: 1px solid #C5D5EC; }
+.project-item:hover { opacity: 0.55; }
+.project-name { font-family: var(--serif); font-size: 1.38rem; font-style: italic; }
+.project-tag  { font-family: var(--mono); font-size: 0.80rem; letter-spacing: 0.12em; color: #1A5CB3; }
+
+a.project-item { color: inherit; text-decoration: none; display: flex; }
+
+/* Forecast expanded item */
+.project-item--expanded { flex-direction: column; align-items: flex-start; gap: 10px; }
+.project-item--expanded .project-main {
+  display: flex; width: 100%;
+  align-items: baseline; justify-content: space-between;
+}
+.project-item--expanded:hover { opacity: 1; }  /* desc text is not a link — no fade */
+.project-desc { font-family: var(--serif); font-size: 1.13rem; line-height: 1.7; color: #4878BE; max-width: 92%; }
+
+/* ── Post list ──────────────────────────────────────────────────────────── */
+.post-item {
+  display: grid; grid-template-columns: 80px 1fr 60px;
+  gap: 0 28px; align-items: baseline;
+  padding: 22px 0; border-bottom: 1px solid #C5D5EC;
+}
+.post-item:first-child { border-top: 1px solid #C5D5EC; }
+.post-date  { font-family: var(--mono); font-size: 0.80rem; letter-spacing: 0.06em; color: #4878BE; }
+.post-title {
+  font-family: var(--serif); font-size: 1.25rem; font-style: italic;
+  color: #002FA7; transition: color 0.2s;
+}
+a.post-title:hover { color: #001D6C; }
+.post-lang  { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.1em; color: #1A5CB3; text-align: right; }
+
+/* ── Bio (about) ────────────────────────────────────────────────────────── */
+.bio-block { display: grid; grid-template-columns: 110px 1fr; gap: 0 18px; margin-top: 48px; }
+.bio-label { font-family: var(--mono); font-size: 0.80rem; letter-spacing: 0.14em; color: #1A5CB3; padding-top: 4px; }
+.bio-text  { font-family: var(--serif); font-size: 1.28rem; line-height: 1.78; }
+.bio-text p + p { margin-top: 1.2em; }
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   POST ARTICLE ELEMENTS
+══════════════════════════════════════════════════════════════════════════ */
+.post-subtitle {
+  font-family: var(--serif); font-size: 1.42rem;
+  font-style: italic; color: #4878BE;
+  line-height: 1.45; margin-bottom: 52px;
+}
+.post-figure { margin: 52px 0; }
+.post-figure img { width: 100%; height: auto; display: block; }
+.post-caption {
+  font-family: var(--mono); font-size: 0.78rem;
+  letter-spacing: 0.1em; color: #1A5CB3; margin-top: 12px; line-height: 1.5;
+}
+.post-note {
+  border-left: 2px solid #C5D5EC;
+  padding: 14px 22px; margin: 36px 0;
+  font-family: var(--mono); font-size: 0.91rem;
+  line-height: 1.75; color: #4878BE;
+}
+.post-link-ext {
+  display: block; border: 1px solid #C5D5EC;
+  padding: 18px 22px; margin: 28px 0;
+  transition: border-color 0.2s; color: inherit;
+}
+.post-link-ext:hover { border-color: #002FA7; }
+.post-link-ext .link-label {
+  font-family: var(--mono); font-size: 0.78rem;
+  letter-spacing: 0.14em; color: #1A5CB3; margin-bottom: 5px;
+}
+.post-link-ext .link-title { font-family: var(--serif); font-size: 1.13rem; color: #002FA7; }
+.post-link-ext .link-url   { font-family: var(--mono); font-size: 0.72rem; color: #4878BE; margin-top: 4px; }
+.post-pdf-btn {
+  display: inline-block; margin: 28px 0;
+  font-family: var(--mono); font-size: 0.85rem;
+  letter-spacing: 0.12em; color: #002FA7;
+  border: 1px solid #002FA7; padding: 10px 22px; transition: opacity 0.2s;
+}
+.post-pdf-btn:hover { opacity: 0.45; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   FORECAST SUB-PAGE
+══════════════════════════════════════════════════════════════════════════ */
+.forecast-intro { font-family: var(--serif); font-size: 1.33rem; font-style: italic; color: #4878BE; line-height: 1.6; margin-bottom: 48px; }
+.forecast-section-title { font-family: var(--mono); font-size: 0.85rem; letter-spacing: 0.16em; color: #1A5CB3; text-transform: uppercase; margin: 48px 0 16px; }
+.forecast-body { font-family: var(--serif); font-size: 1.25rem; line-height: 1.78; }
+.forecast-body p + p { margin-top: 1.3em; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   POST TAGS — outlined pills, three group color families
+══════════════════════════════════════════════════════════════════════════ */
+.post-tag {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.60rem;
+  letter-spacing: 0.10em;
+  padding: 2px 7px;
+  border: 1px solid;
+  white-space: nowrap;
+  margin: 1px 2px 1px 0;
+}
+/* ComfyUI group — Klein blue */
+.tag-tech   { color: #002FA7; border-color: #002FA7; }
+/* Narrazioni group — warm amber (complementary to blue) */
+.tag-narr   { color: #8B5200; border-color: #A76300; }
+/* Cinema e mercato group — deep green */
+.tag-cinema { color: #1A5800; border-color: #267300; }
+
+/* ── Post group label ──────────────────────────────────────────────────── */
+.post-group {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.20em;
+  color: #4878BE;
+  text-transform: uppercase;
+  padding: 28px 0 10px;
+  border-bottom: 1px solid #C5D5EC;
+}
+.post-group:first-child { padding-top: 0; }
+
+/* ── Post item — two-column: date | title+tags ─────────────────────────── */
+.post-item {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 0 28px;
+  align-items: start;
+  border-bottom: 1px solid #C5D5EC;
+}
+.post-date { font-family: var(--mono); font-size: 0.80rem; letter-spacing: 0.06em; color: #4878BE; padding-top: 22px; }
+.post-title-wrap { padding: 20px 0; display: flex; flex-direction: column; gap: 6px; }
+.post-tags { display: flex; flex-wrap: wrap; gap: 3px; }
+
+/* ── Post abstract section ─────────────────────────────────────────────── */
+.post-abstract-text {
+  font-family: var(--serif);
+  font-size: 1.20rem;
+  line-height: 1.75;
+  color: #4878BE;
+  font-style: italic;
+  margin-top: 12px;
+}
+
+/* ── Contact / email on about page ────────────────────────────────────── */
+.contact-block { margin-top: 32px; }
+.contact-line {
+  font-family: var(--mono);
+  font-size: 0.80rem;
+  letter-spacing: 0.06em;
+  color: #4878BE;
+  margin-top: 8px;
+  line-height: 1.8;
+}
+.contact-line a { color: #002FA7; border-bottom: 1px solid #C5D5EC; transition: border-color 0.2s; }
+.contact-line a:hover { border-bottom-color: #002FA7; }
+.contact-hover-note {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.10em;
+  color: #C5D5EC;
+  margin-top: 4px;
+  transition: color 0.3s;
+}
+.contact-block:hover .contact-hover-note { color: #4878BE; }
+
+/* ── Solaris trigger — absolutely centred in the fixed header ────────────── */
+.header-solaris-trigger {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--mono);
+  font-size: var(--nav-size);
+  letter-spacing: var(--nav-spacing);
+  color: #4878BE;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #C5D5EC;
+  cursor: pointer;
+  padding: 0;
+  white-space: nowrap;
+  transition: color 0.2s;
+  z-index: 110;
+}
+.header-solaris-trigger:hover {
+  color: #002FA7;
+  border-bottom-color: #002FA7;
+}
+
+.solaris-panel {
+  display: none;
+  position: fixed;
+  top: 68px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(700px, 88vw);
+  background: rgba(240, 247, 255, 0.90);
+  border: 1px solid rgba(0, 47, 167, 0.18);
+  padding: 26px 34px 22px;
+  z-index: 300;
+  backdrop-filter: blur(10px);
+}
+.solaris-panel.visible { display: block; }
+.solaris-panel-text {
+  font-family: var(--serif);
+  font-size: 0.92rem;
+  line-height: 1.80;
+  color: #8B5200;
+  font-style: italic;
+}
+
+
+/* ── Post group colored by family ──────────────────────────────────────── */
+.post-group--tech   { color: #002FA7; border-bottom-color: #002FA7; }
+.post-group--narr   { color: #8B5200; border-bottom-color: #A76300; }
+.post-group--cinema { color: #1A5800; border-bottom-color: #267300; }
+
+/* ── About page links — warm amber, distinct from Klein blue body text ─── */
+.about-link {
+  color: #8B5200;
+  text-decoration: none; 
+  transition: color 0.2s;
+}
+.about-link:hover { color: #5C3600; }
+
+/* ── Solaris text — full-width, smaller, no italic ──────────────────────── */
+.bio-solaris-full {
+  grid-column: 1 / -1;
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #8B5200;
+  margin-top: 32px;
+  font-style: normal;
+  border-top: 1px solid #C5D5EC;
+  padding-top: 28px;
+}
+
+/* ── disabled links (post not yet published) ───────────────────────────── */
+.about-link--disabled { color: #9a9a9a; cursor: default; pointer-events: none; }
+.about-link--disabled:hover { color: #9a9a9a; }
+.project-item--disabled { pointer-events: none; cursor: default; }
+.project-item--disabled .project-name,
+.project-item--disabled .project-tag { color: #9a9a9a; }
+.project-item--disabled:hover { opacity: 1; }

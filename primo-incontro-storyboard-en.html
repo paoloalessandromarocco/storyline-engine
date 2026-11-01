@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Storyboard — First Encounter</title>
+    <!-- Preload self-hosted fonts so they're already in flight before style.css
+       is even parsed — closes the remaining window where the browser paints
+       with the fallback (Georgia/Courier) and then swaps to the real font,
+       which is what still reads as the font "changing size" on reload. -->
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+<style>
+    @font-face {
+      font-family: 'IBM Plex Mono';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('assets/fonts/ibm-plex-mono-latin-400-normal.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'IBM Plex Mono';
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url('assets/fonts/ibm-plex-mono-latin-600-normal.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'EB Garamond';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('assets/fonts/eb-garamond-latin-400-normal.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'EB Garamond';
+      font-style: italic;
+      font-weight: 400;
+      font-display: swap;
+      src: url('assets/fonts/eb-garamond-latin-400-italic.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'EB Garamond';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url('assets/fonts/eb-garamond-latin-500-normal.woff2') format('woff2');
+    }
+
+    :root {
+      --bg:       #0a0a0a;
+      --panel:    #0f0f0f;
+      --gold:     #d4af37;
+      --gold-dim: rgba(212,175,55,.35);
+      --text:     #f0f0f0;
+      --muted:    rgba(240,240,240,.6);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'EB Garamond', serif;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ── Slide container ── */
+    #storyboard-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    /* Each slide fills the viewport and scrolls internally */
+    .slide {
+      position: absolute;
+      inset: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(40px);
+      transition: opacity .5s ease, transform .5s ease, visibility 0s .5s;
+      scrollbar-width: thin;
+      scrollbar-color: var(--gold-dim) transparent;
+    }
+    .slide::-webkit-scrollbar { width: 4px; }
+    .slide::-webkit-scrollbar-thumb { background: var(--gold-dim); }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0);
+      transition: opacity .5s ease, transform .5s ease;
+      z-index: 10;
+    }
+    .slide.prev { transform: translateX(-40px); }
+
+    /* ── Image: full width, natural height, no crop ── */
+    .bg-img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* ── Text panel flows directly below the image ── */
+    .text-panel {
+      background: var(--panel);
+      border-top: 1px solid var(--gold-dim);
+      padding: 1.6rem 3.5rem 6rem;
+    }
+
+    .panel-meta {
+      display: flex;
+      align-items: baseline;
+      gap: 1.2rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .shot-number {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .72rem;
+      letter-spacing: .18em;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+    .shot-type {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+    .description {
+      font-size: 1.13rem;
+      line-height: 1.72;
+      max-width: 72ch;
+      opacity: .88;
+    }
+    .dialogue-box {
+      border-left: 1.5px solid var(--gold-dim);
+      padding-left: 1.4rem;
+      margin-top: 1.3rem;
+      display: flex;
+      flex-direction: column;
+      gap: .65rem;
+    }
+    .dialogue-line {
+      font-size: 1.08rem;
+      line-height: 1.5;
+      font-style: italic;
+      max-width: 68ch;
+      opacity: .85;
+    }
+    .char-name {
+      font-family: 'IBM Plex Mono', monospace;
+      font-style: normal;
+      font-size: .78rem;
+      color: var(--gold);
+      letter-spacing: .1em;
+      margin-right: .5rem;
+    }
+
+    /* ── Navigation — always fixed, visible over scroll ── */
+    .controls {
+      position: fixed;
+      bottom: 1.6rem;
+      right: 2.8rem;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+    }
+    .ctrl-btn {
+      background: rgba(10,10,10,.92);
+      border: 1px solid var(--gold-dim);
+      color: var(--text);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .78rem;
+      letter-spacing: .08em;
+      padding: .55rem 1.1rem;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: border-color .25s, color .25s;
+    }
+    .ctrl-btn:hover:not(:disabled) { border-color: var(--gold); color: var(--gold); }
+    .ctrl-btn:disabled { opacity: .25; cursor: not-allowed; }
+    .counter {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .78rem;
+      color: var(--muted);
+      min-width: 52px;
+      text-align: center;
+      background: rgba(10,10,10,.8);
+      padding: .3rem .4rem;
+    }
+
+    /* ── Top bar ── */
+    .top-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 30;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: .8rem 2.8rem;
+      background: linear-gradient(to bottom, rgba(10,10,10,.8) 0%, transparent 100%);
+      pointer-events: none;
+    }
+    .top-bar a {
+      pointer-events: all;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .72rem;
+      letter-spacing: .1em;
+      color: var(--muted);
+      text-decoration: none;
+      border: 1px solid rgba(240,240,240,.2);
+      background: rgba(10,10,10,.75);
+      padding: .45rem .9rem;
+      backdrop-filter: blur(6px);
+      transition: color .25s, border-color .25s;
+    }
+    .top-bar a:hover { color: var(--gold); border-color: var(--gold-dim); }
+
+    /* ── Scroll hint (fades after first interaction) ── */
+    .scroll-hint {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .65rem;
+      letter-spacing: .1em;
+      color: var(--gold-dim);
+      text-align: center;
+      padding: .5rem 0 1rem;
+      user-select: none;
+    }
+
+    @media (max-width: 700px) {
+      .text-panel { padding: 1.2rem 1.4rem 5.5rem; }
+      .description { font-size: 1rem; }
+      .controls { right: 1rem; bottom: 1rem; }
+      .top-bar { padding: .7rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a href="primo-incontro.html">✕ EXIT</a>
+  <a href="primo-incontro-storyboard.html">IT</a>
+</div>
+
+<div id="storyboard-container">
+
+  <!-- Slide 1 -->
+  <div class="slide active">
+    <img src="assets/primo-incontro/shot1.jpg" alt="Shot 1" class="bg-img">
+    <div class="text-panel">
+      <div class="panel-meta">
+        <span class="shot-number">Shot 1</span>
+        <span class="shot-type">Medium shot / Close-up — JIM</span>
+      </div>
+      <p class="description">Jim sits at a table with his forearms resting on it, facing the room with a smiling, reassuring look — waiting to welcome the woman he is expecting. The setting is a refined, silent and elegant lounge bar in Art Déco style, with dark green velvet sofas, walnut chairs and abstract paintings in gold and green. The venue is empty, bathed in warm amber lighting.</p>
+    </div>
+  </div>
+
+  <!-- Slide 2 -->
+  <div class="slide">
+    <img src="assets/primo-incontro/shot2.jpg" alt="Shot 2" class="bg-img">
+    <div class="text-panel">
+      <div class="panel-meta">
+        <span class="shot-number">Shot 2</span>
+        <span class="shot-type">Medium long shot / Wide — BARBARA</span>
+      </div>
+      <p class="description">From Jim's perspective we see the entrance door across the room opening: Barbara enters, slightly nervous, scanning the venue with an investigative gaze. In the background, the wall behind the bar with many bottles on display, in a warm, slightly dimmed atmosphere punctuated by intense wall sconces.</p>
+    </div>
+  </div>
+
+  <!-- Slide 3 -->
+  <div class="slide">
+    <img src="assets/primo-incontro/shot3.jpg" alt="Shot 3" class="bg-img">
+    <div class="text-panel">
+      <div class="panel-meta">
+        <span class="shot-number">Shot 3</span>
+        <span class="shot-type">Medium long shot / Wide — JIM</span>
+      </div>
+      <p class="description">Semi-wide shot of the room with several empty tables. Jim stands and walks forward — from his table across the venue towards Barbara (off-camera), making a welcoming gesture with his hand.</p>
+    </div>
+  </div>
+
+  <!-- Slide 4 -->
+  <div class="slide">
+    <img src="assets/primo-incontro/shot4.jpg" alt="Shot 4" class="bg-img">
+    <div class="text-panel">
+      <div class="panel-meta">
+        <span class="shot-number">Shot 4</span>
+        <span class="shot-type">Medium shot — JIM, BARBARA and the waiter</span>
+      </div>
+      <p class="description">Jim seated with his back to camera, looking at Barbara. She sits opposite him at the same table, returning his gaze. On the right, a waiter in his 50s or 60s discreetly approaches to place a glass of red wine on the table — ordered by Jim for Barbara. The bar wall is visible in the background.</p>
+      <div class="dialogue-box">
+        <p class="dialogue-line"><span class="char-name">BARBARA</span>Sorry I'm late — Roman traffic</p>
+        <p class="dialogue-line"><span class="char-name">JIM</span>Let's order! What would you like?</p>
+        <p class="dialogue-line"><span class="char-name">BARBARA</span>I'll trust your choice <em>(sorride)</em></p>
+        <p class="dialogue-line"><span class="char-name">JIM</span>How about a glass of Primitivo 2015?</p>
+        <p class="dialogue-line"><span class="char-name">BARBARA</span>Perfect <em>(smiles, used to being admired)</em></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 5 -->
+  <div class="slide">
+    <img src="assets/primo-incontro/shot5.jpg" alt="Shot 5" class="bg-img">
+    <div class="text-panel">
+      <div class="panel-meta">
+        <span class="shot-number">Shot 5</span>
+        <span class="shot-type">Medium close-up — BARBARA</span>
+      </div>
+      <p class="description">Barbara looks ahead smiling — presumably towards Jim, off-camera. The wine glass sits on the table. In the background the bar wall is glimpsed in a tighter framing.</p>
+      <div class="dialogue-box">
+        <p class="dialogue-line"><span class="char-name">BARBARA</span>In your photo you had a shorter beard</p>
+        <p class="dialogue-line"><span class="char-name">JIM</span>I stopped pretending to be someone else. At least with the beard… ok, terrible joke.</p>
+        <p class="dialogue-line"><span class="char-name">BARBARA</span><em>A pause. She smiles.</em></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 6 -->
+  <div class="slide">
+    <img src="assets/primo-incontro/shot6.jpg" alt="Shot 6" class="bg-img">
+    <div class="text-panel">
+      <div class="panel-meta">
+        <span class="shot-number">Shot 6</span>
+        <span class="shot-type">Close-up — BARBARA</span>
+      </div>
+      <p class="description">Tighter framing. Barbara has removed her blazer, revealing a semi-transparent black lace top. She holds the wine glass between her hands and fixes Jim (off-camera) with a penetrating gaze. The background shows the bar wall heavily blurred.</p>
+    </div>
+  </div>
+
+  <!-- Slide 7 -->
+  <div class="slide">
+    <img src="assets/primo-incontro/shot7.jpg" alt="Shot 7" class="bg-img">
+    <div class="text-panel">
+      <div class="panel-meta">
+        <span class="shot-number">Shot 7</span>
+        <span class="shot-type">Close-up — JIM</span>
+      </div>
+      <p class="description">Jim, smiling and visibly pleased with how the evening is unfolding, raises his whisky glass in a toast gesture towards Barbara.</p>
+      <div class="dialogue-box">
+        <p class="dialogue-line"><span class="char-name">JIM</span>To us!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 8 -->
+  <div class="slide">
+    <img src="assets/primo-incontro/shot8.jpg" alt="Shot 8" class="bg-img">
+    <div class="text-panel">
+      <div class="panel-meta">
+        <span class="shot-number">Shot 8</span>
+        <span class="shot-type">Close shot / Plongée</span>
+      </div>
+      <p class="description">High-angle shot centred on the wooden table. Framing the two glasses — a red wine glass and a whisky glass — close to the hands of both protagonists resting on the table. Her fingers open slightly but don't quite reach his.</p>
+    </div>
+  </div>
+
+  <!-- Slide 9 -->
+  <div class="slide">
+    <img src="assets/primo-incontro/shot9.jpg" alt="Shot 9" class="bg-img">
+    <div class="text-panel">
+      <div class="panel-meta">
+        <span class="shot-number">Shot 9</span>
+        <span class="shot-type">Two-shot / Semi-wide</span>
+      </div>
+      <p class="description">Jim and Barbara sit facing each other, forearms resting on the table. They stare into each other's eyes in a moment of silent, intense connection. She places her hands over his. On the table: Jim's whisky glass, nearly empty, and Barbara's wine glass almost drained. The bar wall is visible but blurred in the background.</p>
+    </div>
+  </div>
+
+  <!-- Slide 10 -->
+  <div class="slide">
+    <img src="assets/primo-incontro/shot10.png" alt="Shot 10" class="bg-img">
+    <div class="text-panel">
+      <div class="panel-meta">
+        <span class="shot-number">Shot 10</span>
+        <span class="shot-type">Two-shot / Tight close-up</span>
+      </div>
+      <p class="description">Tight framing of the two protagonists at the table. Jim gently takes Barbara's head and neck to draw her closer, while she places her hand on his chest with tender sensuality. Their lips brush at the very edge of a kiss. He is wearing a wedding ring — though that's a detail of little importance…</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="controls">
+  <button class="ctrl-btn" id="prevBtn" disabled>← PREV</button>
+  <div class="counter"><span id="current">1</span> / 10</div>
+  <button class="ctrl-btn" id="nextBtn">NEXT →</button>
+</div>
+
+<script>
+  const slides   = document.querySelectorAll('.slide');
+  const prevBtn  = document.getElementById('prevBtn');
+  const nextBtn  = document.getElementById('nextBtn');
+  const counter  = document.getElementById('current');
+  const langLink = document.querySelector('.top-bar a:last-child');
+  let cur = 0;
+
+  function syncLangLink() {
+    langLink.href = langLink.href.split('#')[0] + '#' + (cur + 1);
+  }
+
+  function go(n) {
+    slides[cur].classList.remove('active');
+    slides[cur].classList.add('prev');
+    cur = n;
+    slides.forEach((s, i) => { if (i !== cur) s.classList.remove('active'); });
+    slides[cur].classList.remove('prev');
+    slides[cur].classList.add('active');
+    slides[cur].scrollTop = 0;
+    counter.textContent = cur + 1;
+    prevBtn.disabled = cur === 0;
+    nextBtn.disabled = cur === slides.length - 1;
+    syncLangLink();
+    history.replaceState(null, '', '#' + (cur + 1));
+  }
+
+  // Restore slide from hash on load (e.g. arriving from the IT version at #5)
+  syncLangLink();
+  const initSlide = parseInt(window.location.hash.slice(1)) - 1;
+  if (initSlide > 0 && initSlide < slides.length) go(initSlide);
+
+  nextBtn.addEventListener('click', () => { if (cur < slides.length - 1) go(cur + 1); });
+  prevBtn.addEventListener('click', () => { if (cur > 0) go(cur - 1); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' && cur < slides.length - 1) go(cur + 1);
+    if (e.key === 'ArrowLeft'  && cur > 0)                 go(cur - 1);
+  });
+</script>
+</body>
+</html>

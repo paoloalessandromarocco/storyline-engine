@@ -1,0 +1,1100 @@
+{
+  "1": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "flux1-dev.safetensors"
+    }
+  },
+  "2": {
+    "class_type": "DualCLIPLoader",
+    "inputs": {
+      "clip_name1": "t5xxl_fp16.safetensors",
+      "clip_name2": "clip_l.safetensors"
+    }
+  },
+  "3": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    }
+  },
+  "4": {
+    "class_type": "ControlNetLoader",
+    "inputs": {
+      "control_net_name": "flux-depth-controlnet.safetensors"
+    }
+  },
+  "5": {
+    "class_type": "IPAdapterModelLoader",
+    "inputs": {
+      "ipadapter_file": "ip-adapter_flux.safetensors"
+    }
+  },
+  "6": {
+    "class_type": "CLIPVisionLoader",
+    "inputs": {
+      "clip_name": "sigclip_vision_384.safetensors"
+    }
+  },
+  "10": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "john_turnaround.png"
+    }
+  },
+  "11": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "elena_turnaround.png"
+    }
+  },
+  "12": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "john_face_crop.png"
+    }
+  },
+  "13": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "elena_face_crop.png"
+    }
+  },
+  "20": {
+    "class_type": "Load3DMesh",
+    "inputs": {
+      "mesh_path": "generic_humanoid.obj"
+    }
+  },
+  "21": {
+    "class_type": "3DPoseEditor",
+    "inputs": {
+      "mesh": [
+        "20",
+        0
+      ]
+    }
+  },
+  "200": {
+    "class_type": "CLIPTextEncodeFlux",
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "clip_l": "John, rugged male detective early 50s, sharp defined jawline, deep-set tired grey eyes, short cropped grey-brown hair, weathered olive skin with stubble, dark brown leather trench coat. wide establishing shot, retro-futuristic cyberpunk cafe, red neon glow, atmospheric haze, dark corner table, cinematic",
+      "t5xxl": "John is a rugged middle-aged male detective in his early fifties. He has a distinctly sharp and defined jawline, deep-set tired grey eyes with visible crow's feet, short cropped grey-brown hair receding slightly at the temples, weathered olive skin with subtle day-old stubble. He wears a worn dark brown leather trench coat over a rumpled off-white dress shirt with the collar loosened. He sits completely alone at a wet dark corner table in a retro-futuristic cyberpunk cafe. Above him a buzzing flickering red neon sign casts intense crimson glow and harsh geometric shadows across his face and trench coat. The air is thick with atmospheric haze and faint cigarette smoke. Cinematic wide angle establishing shot, anamorphic lens flare, deep contrast, photorealistic 8k film texture.",
+      "guidance": 3.5
+    }
+  },
+  "201": {
+    "class_type": "CLIPTextEncodeFlux",
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "clip_l": "",
+      "t5xxl": "blurry, deformed face, extra fingers, mutated hands, poorly drawn face, disfigured, bad anatomy, wrong proportions, multiple people, extra person, crowd",
+      "guidance": 3.5
+    }
+  },
+  "202": {
+    "class_type": "OrbitCamera",
+    "inputs": {
+      "mesh": [
+        "21",
+        0
+      ],
+      "focal_length": 24.0,
+      "pitch": -5.0,
+      "yaw": 0.0
+    }
+  },
+  "203": {
+    "class_type": "Render3DMeshToDepth",
+    "inputs": {
+      "mesh": [
+        "202",
+        0
+      ]
+    }
+  },
+  "204": {
+    "class_type": "ApplyControlNet",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "control_net": [
+        "4",
+        0
+      ],
+      "image": [
+        "203",
+        0
+      ],
+      "strength": 0.6
+    }
+  },
+  "210": {
+    "class_type": "ApplyPuLIDFlux",
+    "inputs": {
+      "model": [
+        "204",
+        0
+      ],
+      "image": [
+        "12",
+        0
+      ],
+      "weight": 0.55
+    }
+  },
+  "211": {
+    "class_type": "IPAdapterApply",
+    "inputs": {
+      "model": [
+        "210",
+        0
+      ],
+      "ipadapter": [
+        "5",
+        0
+      ],
+      "clip_vision": [
+        "6",
+        0
+      ],
+      "image": [
+        "10",
+        0
+      ],
+      "weight": 0.5,
+      "weight_type": "linear"
+    }
+  },
+  "205": {
+    "class_type": "EmptyLatentImage",
+    "inputs": {
+      "width": 1344,
+      "height": 768,
+      "batch_size": 1
+    }
+  },
+  "206": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": [
+        "211",
+        0
+      ],
+      "positive": [
+        "200",
+        0
+      ],
+      "negative": [
+        "201",
+        0
+      ],
+      "latent_image": [
+        "205",
+        0
+      ],
+      "steps": 30,
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1.0,
+      "seed": 43
+    }
+  },
+  "207": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "206",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "208": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "207",
+        0
+      ],
+      "filename_prefix": "Shot_1_Cafe_Wide"
+    }
+  },
+  "230": {
+    "class_type": "CLIPTextEncodeFlux",
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "clip_l": "John, rugged male detective early 50s, sharp defined jawline, deep-set tired grey eyes, short cropped grey-brown hair, weathered olive skin with stubble, dark brown leather trench coat. Elena, sleek female tech informant mid 30s, sharp angular features, clean defined jawline, dark calculating almond eyes, short asymmetric black hair with undercut, pale skin, dark tech jacket. medium over-the-shoulder shot, dim neon-lit cafe interior, red neon ambient glow, faint blue screen light, shallow depth of field",
+      "t5xxl": "Cinematic medium over-the-shoulder shot inside a dim neon-lit cafe. In the foreground the dark silhouette of John, rugged male detective early 50s, sharp defined jawline, deep-set tired grey eyes, short cropped grey-brown hair, weathered olive skin with stubble, dark brown leather trench coat is seen from behind his right shoulder, slightly out of focus. Opposite him at the table, Elena is a sleek female tech informant in her mid-thirties. She has sharp angular facial features with high cheekbones, a clean defined jawline, dark calculating almond-shaped eyes, short asymmetric black hair with a precise undercut on the left side, pale skin with subtle cool undertones. She wears a fitted matte-black tech-fabric jacket with minimal geometric seam detailing. Her face is partially illuminated by ambient red neon glow and a faint blue light reflecting from an unseen screen below frame. She has a sharp calculating expression, studying something on the table. Muted cyberpunk color palette, cinematic film grain, shallow depth of field, sharp focus on Elena's face, 35mm anamorphic photography.",
+      "guidance": 3.5
+    }
+  },
+  "231": {
+    "class_type": "CLIPTextEncodeFlux",
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "clip_l": "",
+      "t5xxl": "blurry, deformed face, extra fingers, mutated hands, poorly drawn face, disfigured, bad anatomy, wrong proportions",
+      "guidance": 3.5
+    }
+  },
+  "232": {
+    "class_type": "OrbitCamera",
+    "inputs": {
+      "mesh": [
+        "21",
+        0
+      ],
+      "focal_length": 35.0,
+      "pitch": 0.0,
+      "yaw": 35.0
+    }
+  },
+  "233": {
+    "class_type": "Render3DMeshToDepth",
+    "inputs": {
+      "mesh": [
+        "232",
+        0
+      ]
+    }
+  },
+  "234": {
+    "class_type": "ApplyControlNet",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "control_net": [
+        "4",
+        0
+      ],
+      "image": [
+        "233",
+        0
+      ],
+      "strength": 0.75
+    }
+  },
+  "240": {
+    "class_type": "ApplyPuLIDFlux",
+    "inputs": {
+      "model": [
+        "234",
+        0
+      ],
+      "image": [
+        "12",
+        0
+      ],
+      "weight": 0.4
+    }
+  },
+  "241": {
+    "class_type": "ApplyPuLIDFlux",
+    "inputs": {
+      "model": [
+        "240",
+        0
+      ],
+      "image": [
+        "13",
+        0
+      ],
+      "weight": 0.85
+    }
+  },
+  "242": {
+    "class_type": "IPAdapterApply",
+    "inputs": {
+      "model": [
+        "241",
+        0
+      ],
+      "ipadapter": [
+        "5",
+        0
+      ],
+      "clip_vision": [
+        "6",
+        0
+      ],
+      "image": [
+        "10",
+        0
+      ],
+      "weight": 0.35,
+      "weight_type": "linear"
+    }
+  },
+  "243": {
+    "class_type": "IPAdapterApply",
+    "inputs": {
+      "model": [
+        "242",
+        0
+      ],
+      "ipadapter": [
+        "5",
+        0
+      ],
+      "clip_vision": [
+        "6",
+        0
+      ],
+      "image": [
+        "11",
+        0
+      ],
+      "weight": 0.6,
+      "weight_type": "linear"
+    }
+  },
+  "235": {
+    "class_type": "EmptyLatentImage",
+    "inputs": {
+      "width": 1344,
+      "height": 768,
+      "batch_size": 1
+    }
+  },
+  "236": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": [
+        "243",
+        0
+      ],
+      "positive": [
+        "230",
+        0
+      ],
+      "negative": [
+        "231",
+        0
+      ],
+      "latent_image": [
+        "235",
+        0
+      ],
+      "steps": 30,
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1.0,
+      "seed": 44
+    }
+  },
+  "237": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "236",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "238": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "237",
+        0
+      ],
+      "filename_prefix": "Shot_2_Cafe_Medium_OTS"
+    }
+  },
+  "260": {
+    "class_type": "CLIPTextEncodeFlux",
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "clip_l": "Elena, sleek female tech informant mid 30s, sharp angular features, clean defined jawline, dark calculating almond eyes, short asymmetric black hair with undercut, pale skin, dark tech jacket. extreme close-up portrait, neon cafe, glowing data drive on table, neon red and cyan light on face, macro detail, shallow bokeh",
+      "t5xxl": "Intense cinematic macro close-up shot. Elena is a sleek female tech informant in her mid-thirties. She has sharp angular facial features with high cheekbones, a clean defined jawline, dark calculating almond-shaped eyes, short asymmetric black hair with a precise undercut on the left side, pale skin with subtle cool undertones. She wears a fitted matte-black tech-fabric jacket with minimal geometric seam detailing. She is leaning forward slightly with piercing focused eyes, explaining a glowing high-tech decrypted data drive resting on the dark table surface. Neon red from the left and cold cyan from the right catch the sharp contours of her cheekbones and jawline, and the intricate circuit textures of the drive. Extreme detail on skin textures and micro-expressions, shallow depth of field with beautiful bokeh of blurred warm cafe interior behind, 8k raw movie still.",
+      "guidance": 3.5
+    }
+  },
+  "261": {
+    "class_type": "CLIPTextEncodeFlux",
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "clip_l": "",
+      "t5xxl": "blurry, deformed face, extra fingers, mutated hands, poorly drawn face, disfigured, bad anatomy, wrong proportions, multiple people, extra person, crowd",
+      "guidance": 3.5
+    }
+  },
+  "262": {
+    "class_type": "OrbitCamera",
+    "inputs": {
+      "mesh": [
+        "21",
+        0
+      ],
+      "focal_length": 85.0,
+      "pitch": 0.0,
+      "yaw": 5.0
+    }
+  },
+  "263": {
+    "class_type": "Render3DMeshToDepth",
+    "inputs": {
+      "mesh": [
+        "262",
+        0
+      ]
+    }
+  },
+  "264": {
+    "class_type": "ApplyControlNet",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "control_net": [
+        "4",
+        0
+      ],
+      "image": [
+        "263",
+        0
+      ],
+      "strength": 0.85
+    }
+  },
+  "270": {
+    "class_type": "ApplyPuLIDFlux",
+    "inputs": {
+      "model": [
+        "264",
+        0
+      ],
+      "image": [
+        "13",
+        0
+      ],
+      "weight": 0.95
+    }
+  },
+  "271": {
+    "class_type": "IPAdapterApply",
+    "inputs": {
+      "model": [
+        "270",
+        0
+      ],
+      "ipadapter": [
+        "5",
+        0
+      ],
+      "clip_vision": [
+        "6",
+        0
+      ],
+      "image": [
+        "11",
+        0
+      ],
+      "weight": 0.7,
+      "weight_type": "linear"
+    }
+  },
+  "265": {
+    "class_type": "EmptyLatentImage",
+    "inputs": {
+      "width": 1344,
+      "height": 768,
+      "batch_size": 1
+    }
+  },
+  "266": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": [
+        "271",
+        0
+      ],
+      "positive": [
+        "260",
+        0
+      ],
+      "negative": [
+        "261",
+        0
+      ],
+      "latent_image": [
+        "265",
+        0
+      ],
+      "steps": 30,
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1.0,
+      "seed": 45
+    }
+  },
+  "267": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "266",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "268": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "267",
+        0
+      ],
+      "filename_prefix": "Shot_3_Cafe_Closeup"
+    }
+  },
+  "290": {
+    "class_type": "CLIPTextEncodeFlux",
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "clip_l": "John, rugged male detective early 50s, sharp defined jawline, deep-set tired grey eyes, short cropped grey-brown hair, weathered olive skin with stubble, dark brown leather trench coat. medium wide shot, underground concrete parking garage, brutalist pillars, rain-slicked floor, fluorescent flicker, cold tones",
+      "t5xxl": "Cinematic medium wide atmospheric shot of an underground concrete parking garage. John is a rugged middle-aged male detective in his early fifties. He has a distinctly sharp and defined jawline, deep-set tired grey eyes with visible crow's feet, short cropped grey-brown hair receding slightly at the temples, weathered olive skin with subtle day-old stubble. He wears a worn dark brown leather trench coat over a rumpled off-white dress shirt with the collar loosened. He walks cautiously through the vast dark space, stepping past massive brutalist concrete pillars. The environment is damp with rain-slicked concrete floors reflecting distant flickering overhead industrial fluorescent lights. Harsh shadows, deep blacks, cold desaturated color grade, cinematic suspenseful atmosphere, sharp focus on John's alert posture.",
+      "guidance": 3.5
+    }
+  },
+  "291": {
+    "class_type": "CLIPTextEncodeFlux",
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "clip_l": "",
+      "t5xxl": "blurry, deformed face, extra fingers, mutated hands, poorly drawn face, disfigured, bad anatomy, wrong proportions, multiple people, extra person, crowd",
+      "guidance": 3.5
+    }
+  },
+  "292": {
+    "class_type": "OrbitCamera",
+    "inputs": {
+      "mesh": [
+        "21",
+        0
+      ],
+      "focal_length": 28.0,
+      "pitch": -3.0,
+      "yaw": 10.0
+    }
+  },
+  "293": {
+    "class_type": "Render3DMeshToDepth",
+    "inputs": {
+      "mesh": [
+        "292",
+        0
+      ]
+    }
+  },
+  "294": {
+    "class_type": "ApplyControlNet",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "control_net": [
+        "4",
+        0
+      ],
+      "image": [
+        "293",
+        0
+      ],
+      "strength": 0.65
+    }
+  },
+  "300": {
+    "class_type": "ApplyPuLIDFlux",
+    "inputs": {
+      "model": [
+        "294",
+        0
+      ],
+      "image": [
+        "12",
+        0
+      ],
+      "weight": 0.65
+    }
+  },
+  "301": {
+    "class_type": "IPAdapterApply",
+    "inputs": {
+      "model": [
+        "300",
+        0
+      ],
+      "ipadapter": [
+        "5",
+        0
+      ],
+      "clip_vision": [
+        "6",
+        0
+      ],
+      "image": [
+        "10",
+        0
+      ],
+      "weight": 0.55,
+      "weight_type": "linear"
+    }
+  },
+  "295": {
+    "class_type": "EmptyLatentImage",
+    "inputs": {
+      "width": 1344,
+      "height": 768,
+      "batch_size": 1
+    }
+  },
+  "296": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": [
+        "301",
+        0
+      ],
+      "positive": [
+        "290",
+        0
+      ],
+      "negative": [
+        "291",
+        0
+      ],
+      "latent_image": [
+        "295",
+        0
+      ],
+      "steps": 30,
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1.0,
+      "seed": 46
+    }
+  },
+  "297": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "296",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "298": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "297",
+        0
+      ],
+      "filename_prefix": "Shot_4_Garage_Medium_Wide"
+    }
+  },
+  "320": {
+    "class_type": "CLIPTextEncodeFlux",
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "clip_l": "John, rugged male detective early 50s, sharp defined jawline, deep-set tired grey eyes, short cropped grey-brown hair, weathered olive skin with stubble, dark brown leather trench coat. Elena, sleek female tech informant mid 30s, sharp angular features, clean defined jawline, dark calculating almond eyes, short asymmetric black hair with undercut, pale skin, dark tech jacket. medium two-shot, dark cold concrete garage, two people facing, overhead industrial lights, long dramatic shadows, wet floor, tense",
+      "t5xxl": "Cinematic medium two-shot in a dark cold concrete parking garage. On the left side of frame, Elena is a sleek female tech informant in her mid-thirties. She has sharp angular facial features with high cheekbones, a clean defined jawline, dark calculating almond-shaped eyes, short asymmetric black hair with a precise undercut on the left side, pale skin with subtle cool undertones. She wears a fitted matte-black tech-fabric jacket with minimal geometric seam detailing. She has just appeared from behind a massive concrete pillar. On the right side of frame, John is a rugged middle-aged male detective in his early fifties. He has a distinctly sharp and defined jawline, deep-set tired grey eyes with visible crow's feet, short cropped grey-brown hair receding slightly at the temples, weathered olive skin with subtle day-old stubble. He wears a worn dark brown leather trench coat over a rumpled off-white dress shirt with the collar loosened. He has stopped abruptly in his tracks, body tense. Both characters face each other in balanced cinematic composition with visible tension. The scene is lit by harsh high-contrast overhead industrial lights casting long dramatic shadows across the wet floor. Photorealistic 8k, raw texture, cinematic still.",
+      "guidance": 3.5
+    }
+  },
+  "321": {
+    "class_type": "CLIPTextEncodeFlux",
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "clip_l": "",
+      "t5xxl": "blurry, deformed face, extra fingers, mutated hands, poorly drawn face, disfigured, bad anatomy, wrong proportions",
+      "guidance": 3.5
+    }
+  },
+  "322": {
+    "class_type": "OrbitCamera",
+    "inputs": {
+      "mesh": [
+        "21",
+        0
+      ],
+      "focal_length": 40.0,
+      "pitch": 0.0,
+      "yaw": 0.0
+    }
+  },
+  "323": {
+    "class_type": "Render3DMeshToDepth",
+    "inputs": {
+      "mesh": [
+        "322",
+        0
+      ]
+    }
+  },
+  "324": {
+    "class_type": "ApplyControlNet",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "control_net": [
+        "4",
+        0
+      ],
+      "image": [
+        "323",
+        0
+      ],
+      "strength": 0.8
+    }
+  },
+  "330": {
+    "class_type": "ApplyPuLIDFlux",
+    "inputs": {
+      "model": [
+        "324",
+        0
+      ],
+      "image": [
+        "12",
+        0
+      ],
+      "weight": 0.75
+    }
+  },
+  "331": {
+    "class_type": "ApplyPuLIDFlux",
+    "inputs": {
+      "model": [
+        "330",
+        0
+      ],
+      "image": [
+        "13",
+        0
+      ],
+      "weight": 0.75
+    }
+  },
+  "332": {
+    "class_type": "IPAdapterApply",
+    "inputs": {
+      "model": [
+        "331",
+        0
+      ],
+      "ipadapter": [
+        "5",
+        0
+      ],
+      "clip_vision": [
+        "6",
+        0
+      ],
+      "image": [
+        "10",
+        0
+      ],
+      "weight": 0.55,
+      "weight_type": "linear"
+    }
+  },
+  "333": {
+    "class_type": "IPAdapterApply",
+    "inputs": {
+      "model": [
+        "332",
+        0
+      ],
+      "ipadapter": [
+        "5",
+        0
+      ],
+      "clip_vision": [
+        "6",
+        0
+      ],
+      "image": [
+        "11",
+        0
+      ],
+      "weight": 0.55,
+      "weight_type": "linear"
+    }
+  },
+  "325": {
+    "class_type": "EmptyLatentImage",
+    "inputs": {
+      "width": 1344,
+      "height": 768,
+      "batch_size": 1
+    }
+  },
+  "326": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": [
+        "333",
+        0
+      ],
+      "positive": [
+        "320",
+        0
+      ],
+      "negative": [
+        "321",
+        0
+      ],
+      "latent_image": [
+        "325",
+        0
+      ],
+      "steps": 30,
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1.0,
+      "seed": 47
+    }
+  },
+  "327": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "326",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "328": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "327",
+        0
+      ],
+      "filename_prefix": "Shot_5_Garage_TwoShot"
+    }
+  },
+  "350": {
+    "class_type": "CLIPTextEncodeFlux",
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "clip_l": "John, rugged male detective early 50s, sharp defined jawline, deep-set tired grey eyes, short cropped grey-brown hair, weathered olive skin with stubble, dark brown leather trench coat. dramatic close-up portrait, dark parking garage, high-tech device emitting blue glow on face, deep shadows",
+      "t5xxl": "Cinematic dramatic close-up shot in the dark parking garage. John is a rugged middle-aged male detective in his early fifties. He has a distinctly sharp and defined jawline, deep-set tired grey eyes with visible crow's feet, short cropped grey-brown hair receding slightly at the temples, weathered olive skin with subtle day-old stubble. He wears a worn dark brown leather trench coat over a rumpled off-white dress shirt with the collar loosened. He is looking down intently at a small high-tech device held in both hands at chest level. His rugged face and focused expression are brilliantly illuminated from below by the cold emissive blue glow radiating from the device screen. The background is a dark out-of-focus concrete structure with deep shadows. Intricate skin texture details, realistic light reflection in his eyes, 8k resolution cinematic film capture.",
+      "guidance": 3.5
+    }
+  },
+  "351": {
+    "class_type": "CLIPTextEncodeFlux",
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "clip_l": "",
+      "t5xxl": "blurry, deformed face, extra fingers, mutated hands, poorly drawn face, disfigured, bad anatomy, wrong proportions, multiple people, extra person, crowd",
+      "guidance": 3.5
+    }
+  },
+  "352": {
+    "class_type": "OrbitCamera",
+    "inputs": {
+      "mesh": [
+        "21",
+        0
+      ],
+      "focal_length": 85.0,
+      "pitch": 2.0,
+      "yaw": -5.0
+    }
+  },
+  "353": {
+    "class_type": "Render3DMeshToDepth",
+    "inputs": {
+      "mesh": [
+        "352",
+        0
+      ]
+    }
+  },
+  "354": {
+    "class_type": "ApplyControlNet",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "control_net": [
+        "4",
+        0
+      ],
+      "image": [
+        "353",
+        0
+      ],
+      "strength": 0.85
+    }
+  },
+  "360": {
+    "class_type": "ApplyPuLIDFlux",
+    "inputs": {
+      "model": [
+        "354",
+        0
+      ],
+      "image": [
+        "12",
+        0
+      ],
+      "weight": 0.95
+    }
+  },
+  "361": {
+    "class_type": "IPAdapterApply",
+    "inputs": {
+      "model": [
+        "360",
+        0
+      ],
+      "ipadapter": [
+        "5",
+        0
+      ],
+      "clip_vision": [
+        "6",
+        0
+      ],
+      "image": [
+        "10",
+        0
+      ],
+      "weight": 0.7,
+      "weight_type": "linear"
+    }
+  },
+  "355": {
+    "class_type": "EmptyLatentImage",
+    "inputs": {
+      "width": 1344,
+      "height": 768,
+      "batch_size": 1
+    }
+  },
+  "356": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": [
+        "361",
+        0
+      ],
+      "positive": [
+        "350",
+        0
+      ],
+      "negative": [
+        "351",
+        0
+      ],
+      "latent_image": [
+        "355",
+        0
+      ],
+      "steps": 30,
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1.0,
+      "seed": 48
+    }
+  },
+  "357": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "356",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "358": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "357",
+        0
+      ],
+      "filename_prefix": "Shot_6_Garage_Closeup"
+    }
+  }
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Which genres carry the lowest risk of flop</title>
+    <!-- Preload self-hosted fonts so they're already in flight before style.css
+       is even parsed — closes the remaining window where the browser paints
+       with the fallback (Georgia/Courier) and then swaps to the real font,
+       which is what still reads as the font "changing size" on reload. -->
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="interior">
+
+  <header>
+    <a href="about.html" class="nav-item" data-en="ABOUT" data-it="ABOUT">ABOUT</a>
+    <div class="menu-container">
+      <span class="menu-trigger" data-en="TOPICS" data-it="ARGOMENTI">TOPICS</span>
+      <div class="menu-dropdown">
+        <a href="adv.html"             class="menu-item" data-en="ADV"            data-it="ADV">ADV</a>
+        <a href="neural-graphics.html" class="menu-item" data-en="VISUAL STORIES" data-it="FUMETTI/STORYBOARD">VISUAL STORIES</a>
+        <a href="comfyui.html"         class="menu-item" data-en="COMFYUI"        data-it="COMFYUI">COMFYUI</a>
+        <a href="posts.html"           class="menu-item" data-en="POSTS"          data-it="POST">POSTS</a>
+        <span class="menu-item menu-item--disabled" data-en="VIDEO" data-it="VIDEO">VIDEO</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content">
+
+    <p class="section-label" data-en="Cinema · Genre analysis" data-it="Cinema · Analisi di genere">Cinema · Genre analysis</p>
+    <h1 class="page-title" data-en="Which genres carry the lowest risk of flop" data-it="Quali sono i generi dove il rischio di flop è minore">Which genres carry the lowest risk of flop</h1>
+    <div class="post-tags" style="margin-bottom:40px;"><span class="post-tag tag-cinema" data-en="Generi" data-it="Generi">Generi</span><span class="post-tag tag-cinema" data-en="Rischio" data-it="Rischio">Rischio</span><span class="post-tag tag-cinema" data-en="Flop" data-it="Flop">Flop</span><span class="post-tag tag-cinema" data-en="Box Office" data-it="Box Office">Box Office</span></div>
+
+    <p class="section-label" data-en="ABSTRACT" data-it="SINTESI">ABSTRACT</p>
+    <p class="post-abstract-text"
+       data-en="Which film genre offers the greatest protection against the risk of flop? Drawing from Italian and international box office data, this post builds a risk map by genre — with surprises relative to common industry expectations."
+       data-it="Quale genere cinematografico offre la maggiore protezione dal rischio di flop? Partendo dai dati del box office italiano e internazionale, questo post costruisce una mappa del rischio per genere — con sorprese rispetto alle aspettative comuni del settore.">Which film genre offers the greatest protection against the risk of flop? Drawing from Italian and international box office data, this post builds a risk map by genre — with surprises relative to common industry expectations.</p>
+
+  </main>
+
+  <a href="posts.html" class="nav-back">←</a>
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="en">EN</button>
+    <button class="lang-btn" data-lang="it">IT</button>
+  </div>
+
+  <script src="assets/lang.js"></script>
+  <script>
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').classList.toggle('scrolled', window.scrollY > 20);
+    });
+  </script>
+</body>
+</html>

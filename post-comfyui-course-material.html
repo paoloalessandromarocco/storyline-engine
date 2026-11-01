@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>ComfyUI Visual Stories — The Node Graph</title>
+  <link rel="alternate" hreflang="en"        href="https://storyline-engine.com/post-comfyui-course-material.html">
+  <link rel="alternate" hreflang="it"        href="https://storyline-engine.com/post-comfyui-course-material.html?lang=it">
+  <link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-comfyui-course-material.html">
+    <!-- Preload self-hosted fonts so they're already in flight before style.css
+       is even parsed — closes the remaining window where the browser paints
+       with the fallback (Georgia/Courier) and then swaps to the real font,
+       which is what still reads as the font "changing size" on reload. -->
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/style.css">
+
+  <style>
+    /* ── post body text ─────────────────────────────────── */
+    .post-text {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.15rem;
+      line-height: 1.75;
+      margin: 0 0 1.4em 0;
+    }
+    /* about-link (defined in style.css) handles all inline links:
+       ochre colour at rest, darker on hover, no underline        */
+
+    /* ── footnote ref ────────────────────────────────────── */
+    sup.fn-ref {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6em;
+      line-height: 1;
+      vertical-align: super;
+      margin-left: 0.1em;
+    }
+    sup.fn-ref a { text-decoration: none; opacity: 0.55; }
+    sup.fn-ref a:hover { opacity: 1; }
+
+    /* ── footnotes block ─────────────────────────────────── */
+    .footnotes {
+      margin-top: 4rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid currentColor;
+      opacity: 0.65;
+    }
+    .footnotes ol {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 0.92rem;
+      line-height: 1.65;
+      padding-left: 1.4em;
+      margin: 0 0 0 -1.4em;
+      list-style-position: outside;
+    }
+    .footnotes li { margin-bottom: 0.8em; }
+    .fn-back {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8em;
+      margin-left: 0.4em;
+      text-decoration: none;
+      opacity: 0.5;
+    }
+    .fn-back:hover { opacity: 1; }
+
+    /* ── figure / image ──────────────────────────────────── */
+    .post-figure {
+      margin: 2.5rem auto 2rem;
+    }
+    .post-figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid rgba(0,0,0,0.10);
+      background: #ffffff;
+    }
+
+    /* ── caption: bold title + smaller body ──────────────── */
+    .post-caption {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      line-height: 1.7;
+      color: #1A5CB3;
+      margin-top: 0.7rem;
+      text-align: justify;
+    }
+    .caption-title {
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      display: block;
+      margin-bottom: 0.2em;
+      text-align: center;
+    }
+
+    /* ── numbered content list ───────────────────────────── */
+    .content-list { list-style: none; padding: 0; margin: 1.6rem 0 0; }
+    .content-item {
+      display: grid;
+      grid-template-columns: 3rem 1fr;
+      gap: 1.6rem;
+      padding: 2rem 0;
+    }
+    .content-item:last-child { border-bottom: 1px solid rgba(0,0,0,0.08); }
+    /* no bottom line right before a chapter heading: its own thick top border already separates */
+    .content-list:has(+ .chapter-heading) .content-item:last-child { border-bottom: none; }
+    .content-number {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #1A5CB3;
+      opacity: 0.25;
+      padding-top: 0.15rem;
+      line-height: 1;
+    }
+    .content-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #1A5CB3;
+      margin: 0 0 0.9rem;
+      font-weight: 400;
+    }
+    .content-body .post-text { margin: 0; }
+    /* several paragraphs in one item: restore the spacing between them */
+    .content-body .post-text + .post-text,
+    .content-body .post-text + .content-sublist { margin-top: 1.4em; }
+    .content-body .content-sublist + .post-text { margin-top: 1.4em; }
+
+    /* ── sub-bullet list ─────────────────────────────────── */
+    .content-sublist {
+      list-style: disc;
+      padding-left: 1.4em;
+      margin-top: 0.9em;
+      margin-bottom: 0;
+    }
+    .content-sublist li {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      margin-bottom: 0.6em;
+    }
+
+    @media (max-width: 700px) {
+      .content-item { grid-template-columns: 2rem 1fr; gap: 1rem; }
+      .content-number { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body class="interior">
+
+  <header>
+    <a href="about.html" class="nav-item" data-en="ABOUT" data-it="ABOUT">ABOUT</a>
+    <div class="menu-container">
+      <span class="menu-trigger" data-en="TOPICS" data-it="ARGOMENTI">TOPICS</span>
+      <div class="menu-dropdown">
+        <a href="adv.html"             class="menu-item" data-en="ADV"            data-it="ADV">ADV</a>
+        <a href="neural-graphics.html" class="menu-item" data-en="VISUAL STORIES" data-it="FUMETTI/STORYBOARD">VISUAL STORIES</a>
+        <a href="comfyui.html"         class="menu-item" data-en="COMFYUI"        data-it="COMFYUI">COMFYUI</a>
+        <a href="posts.html"           class="menu-item" data-en="POSTS"          data-it="POST">POSTS</a>
+        <span class="menu-item menu-item--disabled" data-en="VIDEO" data-it="VIDEO">VIDEO</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content">
+
+    <p class="section-label" data-en="ComfyUI · Node Graph · DEEP TECHNICAL" data-it="ComfyUI · Grafo dei Nodi · TECNICO AVANZATO">ComfyUI · Node Graph · DEEP TECHNICAL</p>
+    <h1 class="page-title" data-en="ComfyUI Visual Stories — The Node Graph" data-it="ComfyUI Storie Visive — Il Grafo dei Nodi">ComfyUI Visual Stories — The Node Graph</h1>
+
+    <div class="page-body">
+
+      <div class="post-tags" style="margin-bottom:2rem;">
+  <span class="post-tag tag-tech" data-en="ComfyUI" data-it="ComfyUI">ComfyUI</span>
+  <span class="post-tag tag-tech" data-en="Flux" data-it="Flux">Flux</span>
+  <span class="post-tag tag-tech" data-en="IP-Adapter" data-it="IP-Adapter">IP-Adapter</span>
+  <span class="post-tag tag-tech" data-en="ControlNet" data-it="ControlNet">ControlNet</span>
+  <span class="post-tag tag-tech" data-en="Tutorial" data-it="Tutorial">Tutorial</span>
+  <span class="post-tag tag-tech" data-en="Teaching" data-it="Didattica">Teaching</span>
+  <span class="post-tag tag-tech" data-en="Storyboard" data-it="Storyboard">Storyboard</span>
+</div>
+
+      <p class="post-abstract-text"
+         data-en="Teaching material from a short ComfyUI course for filmmakers and graphic designers: the node graph, explained node by node through two diagrams, of the pipeline used to generate the John-and-Elena sequence introduced in <a href='post-comfyui-concepts.html' class='about-link'>Concepts</a>. The full graph is downloadable as a JSON file. This post follows the GUI path, node by node; the Python and bash scripts that automate and scale that same kind of generation to many shots are in the companion post <a href='post-comfyui-python.html' class='about-link'>ComfyUI Visual Stories — The Python Scripts</a>."
+         data-it="Materiale didattico di un breve corso su ComfyUI per filmmaker e graphic designer: il grafo di nodi, spiegato nodo per nodo attraverso due schemi, della pipeline usata per generare la sequenza di John ed Elena presentata in <a href='post-comfyui-concepts.html' class='about-link'>Concetti</a>. Il grafo completo è scaricabile in formato JSON. Questo post segue il percorso via GUI, nodo per nodo; gli script Python e bash che automatizzano e scalano lo stesso tipo di generazione a molte inquadrature sono nel post gemello <a href='post-comfyui-python.html' class='about-link'>ComfyUI Storie Visive — Gli Script Python</a>.">
+        Teaching material from a short ComfyUI course for filmmakers and graphic designers: the node graph, explained node by node through two diagrams, of the pipeline used to generate the John-and-Elena sequence introduced in <a href='post-comfyui-concepts.html' class='about-link'>Concepts</a>. The full graph is downloadable as a JSON file. This post follows the GUI path, node by node; the Python and bash scripts that automate and scale that same kind of generation to many shots are in the companion post <a href='post-comfyui-python.html' class='about-link'>ComfyUI Visual Stories — The Python Scripts</a>.
+      </p>
+
+      <!-- ── INTRO ─────────────────────────────────────────── -->
+      <p class="post-text"
+   data-en="This post's job is to explain the two diagrams that summarise the graph — see the images below. The nodes they show are defined and explained one by one further down. For the ideas behind these diagrams, see <a href='post-comfyui-concepts.html' class='about-link'>Concepts</a>."
+   data-it="Compito di questo post è spiegare i due schemi che riassumono il grafo, vedi immagini sottostanti. I nodi esposti vengono definiti e spiegati di seguito. Per quanto riguarda le idee sottese a questi schemi vedi <a href='post-comfyui-concepts.html' class='about-link'>Concetti</a>.">
+  This post's job is to explain the two diagrams that summarise the graph — see the images below. The nodes they show are defined and explained one by one further down. For the ideas behind these diagrams, see <a href='post-comfyui-concepts.html' class='about-link'>Concepts</a>.
+</p>
+
+      <!-- ── FIGURE 1: loaders ─────────────────────────────── -->
+      <figure class="post-figure">
+        <img src="assets/post-comfyui-modelli/diagram1.png"
+             alt="ComfyUI pipeline loader nodes diagram">
+        <figcaption class="post-caption"
+          data-en="<span class='caption-title'>Pipeline loaders</span>The seven starting nodes of the pipeline."
+          data-it="<span class='caption-title'>Loader della pipeline</span>I sette nodi iniziali della pipeline.">
+          <span class='caption-title'>Pipeline loaders</span>The seven starting nodes of the pipeline.
+        </figcaption>
+      </figure>
+
+      <ol class="content-list">
+
+        <li class="content-item">
+          <div class="content-number">01</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+   data-en="The modules (first diagram)"
+   data-it="I moduli (prima figura)">
+  The modules (first diagram)
+</h3>
+
+<p class="post-text"
+   data-en="Here is what each of the seven loading modules shown in the diagram above does:"
+   data-it="Ecco come agisce ciascuno dei sette moduli  mostrati nello schema in alto:">
+  Here is what each of the seven loading modules shown in the diagram above does:
+</p>
+
+<ul class="content-sublist">
+<li
+   data-en="<strong>Flux-dev</strong> (Load Diffusion Model) is the main neural network, the one that generates the images (a type of Diffusion Model, explained in <a href='post-comfyui-concepts.html' class='about-link'>Concepts</a>). Here it is loaded in its 8-bit (fp8) version: with this reduction in the bits used for its numerical representations, it can run on its own on roughly 12&nbsp;GB of VRAM on an RTX&nbsp;3090. Its output (MODEL) is sent to the six shots."
+   data-it="<strong>Flux-dev</strong> (Load Diffusion Model) è la rete neurale principale, quella che genera le immagini (un tipo di Diffusion Model, spiegato in <a href='post-comfyui-concepts.html' class='about-link'>Concetti</a>). Qui è caricata nella versione a 8 bit (fp8): con questa riduzione dei bit usati per le rappresentazioni numeriche, può girare da sola su circa 12&nbsp;GB di VRAM su una scheda RTX&nbsp;3090. La sua uscita (MODEL) viene inviata ai sei shot.">
+  <strong>Flux-dev</strong> (Load Diffusion Model) is the main neural network, the one that generates the images (a type of Diffusion Model, explained in <a href='post-comfyui-concepts.html' class='about-link'>Concepts</a>). Here it is loaded in its 8-bit (fp8) version: with this reduction in the bits used for its numerical representations, it can run on its own on roughly 12&nbsp;GB of VRAM on an RTX&nbsp;3090. Its output (MODEL) is sent to the six shots.
+</li>
+<li
+   data-en="<strong>DualCLIPLoader</strong> loads the CLIP network. With Flux it actually loads two networks: CLIP (clip_l) and t5xxl. They serve roughly the same purpose — text-to-image association — but the second one supports prompts of up to 512 tokens, while CLIP is limited to around 70. Its output (CLIP) is sent to the twelve text-encoding nodes."
+   data-it="<strong>DualCLIPLoader</strong> carica la rete CLIP. Con Flux, in realtà, ne carica due: CLIP (clip_l) e t5xxl. Hanno circa lo stesso scopo — l'associazione testo-immagine — ma la seconda riesce a supportare prompt fino a 512 token, mentre CLIP è limitato a circa 70. La sua uscita (CLIP) viene inviata ai dodici nodi di codifica del testo.">
+  <strong>DualCLIPLoader</strong> loads the CLIP network. With Flux it actually loads two networks: CLIP (clip_l) and t5xxl. They serve roughly the same purpose — text-to-image association — but the second one supports prompts of up to 512 tokens, while CLIP is limited to around 70. Its output (CLIP) is sent to the twelve text-encoding nodes.
+</li>
+<li
+   data-en="<strong>VAELoader</strong> loads the VAE (Variational Auto Encoder): the network that converts between the graphical pixel space and the geometric space of numerical vectors, needed to perform all the calculations. In this pipeline it is used only in its decoder function: at the end of each chain, a VAE Decode node generates the final, plain-visible image (so there is one decoder per image, six in total)."
+   data-it="<strong>VAELoader</strong> carica il VAE (Variational Auto Encoder): la rete che converte dallo spazio grafico dei pixel a quello geometrico dei vettori numerici, necessario per poter eseguire tutti i calcoli. In questa pipeline viene usato solo nella sua funzione di decoder: alla fine di ogni catena, un nodo VAE Decode genera l'immagine finale in chiaro (quindi un decoder per ogni immagine, sei in totale).">
+  <strong>VAELoader</strong> loads the VAE (Variational Auto Encoder): the network that converts between the graphical pixel space and the geometric space of numerical vectors, needed to perform all the calculations. In this pipeline it is used only in its decoder function: at the end of each chain, a VAE Decode node generates the final, plain-visible image (so there is one decoder per image, six in total).
+</li>
+<li
+   data-en="<strong>LoadFluxIPAdapter</strong> loads the IP-Adapter (Image Prompt Adapter; here the XLabs version for Flux, paired with a CLIP ViT-L/14 image encoder). In practice, it loads the network responsible for maintaining consistency between images across different shots, injecting visual features (i.e. characteristics of the input image) into the main Flux network. Its output (FLUX_IPA) is sent to eight application nodes: one per shot, plus two more for the shots in which both characters appear. <em>Note:</em> at the pipeline level used in this course, this is arguably the weakest link, since it loses some consistency. In the final session of the second week I'll show how to improve it."
+   data-it="<strong>LoadFluxIPAdapter</strong> carica l'IP-Adapter (Image Prompt Adapter; qui la versione XLabs per Flux, abbinata a un image encoder CLIP ViT-L/14). In pratica carica la rete responsabile di mantenere la coerenza tra le immagini nei diversi shot, iniettando le feature visive (ossia le caratteristiche dell'immagine di input) nella rete principale Flux. La sua uscita (FLUX_IPA) viene inviata a otto nodi di applicazione: uno per shot, più due per gli shot in cui compaiono entrambi i personaggi. <em>Nota:</em> a livello di pipeline del corso, questo è forse l'elemento più debole, dato che perde un po' di coerenza. Nella sessione finale della seconda settimana vi mostro come migliorarlo.">
+  <strong>LoadFluxIPAdapter</strong> loads the IP-Adapter (Image Prompt Adapter; here the XLabs version for Flux, paired with a CLIP ViT-L/14 image encoder). In practice, it loads the network responsible for maintaining consistency between images across different shots, injecting visual features (i.e. characteristics of the input image) into the main Flux network. Its output (FLUX_IPA) is sent to eight application nodes: one per shot, plus two more for the shots in which both characters appear. <em>Note:</em> at the pipeline level used in this course, this is arguably the weakest link, since it loses some consistency. In the final session of the second week I'll show how to improve it.
+</li>
+<li
+   data-en="<strong>ControlNetLoader</strong> loads the ControlNet network (here a depth version for Flux), which adds spatial and structural conditioning to the characters' images. It is a companion network trained to read a guide image — such as a depth map of the characters' bodies and of the scene — and to make the generated image respect that geometry, whatever poses are defined in the prompts. ControlNet is independent of the IP-Adapter. Its output is sent to six application nodes, one per shot."
+   data-it="<strong>ControlNetLoader</strong> carica la rete ControlNet (qui una versione depth per Flux), che aggiunge il condizionamento spaziale e strutturale alle immagini dei protagonisti. È una rete 'gemella', addestrata a leggere un'immagine-guida — come la depth map dei corpi dei personaggi e della scena — e a far rispettare quella geometria all'immagine generata, quali che siano le pose definite nei prompt. ControlNet è indipendente dall'IP-Adapter. La sua uscita viene inviata a sei nodi di applicazione, uno per shot.">
+  <strong>ControlNetLoader</strong> loads the ControlNet network (here a depth version for Flux), which adds spatial and structural conditioning to the characters' images. It is a companion network trained to read a guide image — such as a depth map of the characters' bodies and of the scene — and to make the generated image respect that geometry, whatever poses are defined in the prompts. ControlNet is independent of the IP-Adapter. Its output is sent to six application nodes, one per shot.
+</li>
+<li
+   data-en="The two <strong>LoadImage</strong> nodes are simply loaders for the input images (the reference images of the two characters, John and Elena)."
+   data-it="I due nodi <strong>LoadImage</strong> sono semplicemente dei caricatori delle immagini in input (i riferimenti dei due personaggi, John ed Elena).">
+  The two <strong>LoadImage</strong> nodes are simply loaders for the input images (the reference images of the two characters, John and Elena).
+</li>
+</ul>
+
+          </div>
+        </li>
+
+        <li class="content-item">
+          <div class="content-number">02</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+   data-en="How the flow works"
+   data-it="Spiegazione del flusso">
+  How the flow works
+</h3>
+
+<p class="post-text"
+   data-en="Once <strong>Flux-dev</strong> is loaded, three kinds of input are applied to the Flux model."
+   data-it="Una volta caricato <strong>Flux-dev</strong>, al modello Flux vengono applicati tre tipi di input.">
+  Once <strong>Flux-dev</strong> is loaded, three kinds of input are applied to the Flux model.
+</p>
+
+<p class="post-text"
+   data-en="The first two act on the image itself: the IP-Adapter (<strong>IPA</strong>) and <strong>ControlNet</strong>, which modify certain internal states of the main Flux network. Following the wires between the nodes: the Flux model is sent to six chains of IPA nodes, one per final shot. In the four shots with a single character the chain has one ApplyFluxIPA node — for example <code style="word-break:break-word;">Shot_1_Cafe_Wide_A</code>, which opens on John alone at the bar, or <code style="word-break:break-word;">Shot_6_Garage_Closeup_A</code>, his dramatic close-up in the garage. In the two shots where both characters share the scene — <code style="word-break:break-word;">Shot_2_Cafe_Medium_OTS_A</code>, the over-the-shoulder shot at the bar, and <code style="word-break:break-word;">Shot_5_Garage_TwoShot_A</code>, the confrontation in the garage — the chain has two ApplyFluxIPA nodes in sequence, one per character: eight applications in all, which is why the FLUX_IPA output is sent to eight nodes in the first diagram. The output of each chain enters one of the six KSampler modules, which are responsible for the Noising/Denoising process described in <a href='post-comfyui-concepts.html' class='about-link'>Concepts</a>, controlling image generation starting from random noise (the fog discussed there). As for ControlNet, it's simpler: six lines leave the loader and enter the six nodes that apply it, one per shot — no distinction between single- and double-character shots, because the depth map concerns the scene, not the characters."
+   data-it="L'IP-Adapter (<strong>IPA</strong>) e <strong>ControlNet</strong> modificano alcuni stati interni della rete Flux. Seguendo le linee di connessione: il modello Flux viene inviato a sei catene di nodi IPA, una per ogni shot finale. Nei quattro shot con un solo personaggio la catena ha un solo nodo ApplyFluxIPA — ad esempio <code style="word-break:break-word;">Shot_1_Cafe_Wide_A</code>, che apre sul solo John al bar, o <code style="word-break:break-word;">Shot_6_Garage_Closeup_A</code>, il suo primo piano drammatico nel garage. Nei due shot in cui i personaggi condividono la scena — <code style="word-break:break-word;">Shot_2_Cafe_Medium_OTS_A</code>, l'inquadratura dall'alto della spalla al bar, e <code style="word-break:break-word;">Shot_5_Garage_TwoShot_A</code>, il confronto nel garage — la catena ha due nodi ApplyFluxIPA in sequenza, uno per personaggio: otto applicazioni in tutto, ed ecco perché nel primo schema l'uscita FLUX_IPA è inviata a otto nodi. L'uscita di ogni catena entra in uno dei sei moduli KSampler, responsabili del processo di Noising/Denoising descritto in <a href='post-comfyui-concepts.html' class='about-link'>Concetti</a>. Per ControlNet, più semplice: sei linee escono dal loader ed entrano nei sei nodi che lo applicano, uno per shot — nessuna distinzione tra shot singoli e doppi, perché la mappa di profondità riguarda la scena, non i personaggi.">
+  The first two act on the image itself: the IP-Adapter (<strong>IPA</strong>) and <strong>ControlNet</strong>, which modify certain internal states of the main Flux network. Following the wires between the nodes: the Flux model is sent to six chains of IPA nodes, one per final shot. In the four shots with a single character the chain has one ApplyFluxIPA node — for example <code style="word-break:break-word;">Shot_1_Cafe_Wide_A</code>, which opens on John alone at the bar, or <code style="word-break:break-word;">Shot_6_Garage_Closeup_A</code>, his dramatic close-up in the garage. In the two shots where both characters share the scene — <code style="word-break:break-word;">Shot_2_Cafe_Medium_OTS_A</code>, the over-the-shoulder shot at the bar, and <code style="word-break:break-word;">Shot_5_Garage_TwoShot_A</code>, the confrontation in the garage — the chain has two ApplyFluxIPA nodes in sequence, one per character: eight applications in all, which is why the FLUX_IPA output is sent to eight nodes in the first diagram. The output of each chain enters one of the six KSampler modules, which are responsible for the Noising/Denoising process described in <a href='post-comfyui-concepts.html' class='about-link'>Concepts</a>, controlling image generation starting from random noise (the fog discussed there). As for ControlNet, it's simpler: six lines leave the loader and enter the six nodes that apply it, one per shot — no distinction between single- and double-character shots, because the depth map concerns the scene, not the characters.
+</p>
+
+<p class="post-text"
+   data-en="The third input acts on the text component: twelve <strong>CLIPTextEncodeFlux</strong> nodes (one positive and one negative per shot) activate the prompts describing the six output images. Each node has two fields: <em>clip_l</em>, which holds only the character's identity tag, and <em>t5xxl</em>, with the long description of the shot (or, in the negative node, the elements to exclude). For <code style="word-break:break-word;">Shot_3_Cafe_Closeup_A</code>, for example, clip_l is just “Elena, sleek female tech informant mid 30s…”, while t5xxl spells out the shot in full: “Single face, one person. Intense cinematic macro close-up shot…”. It's this second field that really drives the composition; the first only anchors the face's identity."
+   data-it="Il terzo input agisce sul testo: dodici nodi <strong>CLIPTextEncodeFlux</strong> (uno positivo e uno negativo per shot) attivano i prompt che descrivono le sei immagini di output. Ogni nodo ha due campi: <em>clip_l</em>, che contiene solo l'etichetta di identità del personaggio, e <em>t5xxl</em>, con la descrizione estesa dell'inquadratura (o, nel nodo negativo, gli elementi da escludere). Per <code style="word-break:break-word;">Shot_3_Cafe_Closeup_A</code>, ad esempio, clip_l si limita a “Elena, sleek female tech informant mid 30s…”, mentre t5xxl descrive l'inquadratura per esteso: “Single face, one person. Intense cinematic macro close-up shot…”. È questo secondo campo a guidare davvero la composizione; il primo serve solo ad ancorare l'identità del volto.">
+  The third input acts on the text component: twelve <strong>CLIPTextEncodeFlux</strong> nodes (one positive and one negative per shot) activate the prompts describing the six output images. Each node has two fields: <em>clip_l</em>, which holds only the character's identity tag, and <em>t5xxl</em>, with the long description of the shot (or, in the negative node, the elements to exclude). For <code style="word-break:break-word;">Shot_3_Cafe_Closeup_A</code>, for example, clip_l is just “Elena, sleek female tech informant mid 30s…”, while t5xxl spells out the shot in full: “Single face, one person. Intense cinematic macro close-up shot…”. It's this second field that really drives the composition; the first only anchors the face's identity.
+</p>
+
+<p class="post-text"
+   data-en="Let's go over the inputs again:"
+   data-it="Ripetiamo gli input e a cosa servono:">
+  Let's go over the inputs again:
+</p>
+
+<ul class="content-sublist">
+<li
+   data-en="<strong>Image identity:</strong> the IP-Adapter injects the visual features of the character reference images into the Flux model, once per character present in the shot."
+   data-it="<strong>Identità dell'immagine:</strong> l'IP-Adapter inietta nel modello Flux le feature visive delle immagini di riferimento dei personaggi, una volta per ogni personaggio presente nello shot.">
+  <strong>Image identity:</strong> the IP-Adapter injects the visual features of the character reference images into the Flux model, once per character present in the shot.
+</li>
+<li
+   data-en="<strong>Spatial structure:</strong> ControlNet applies the guide depth map to the conditioning that reaches the sampler."
+   data-it="<strong>Struttura spaziale:</strong> ControlNet applica la depth map di guida al conditioning che arriva al sampler.">
+  <strong>Spatial structure:</strong> ControlNet applies the guide depth map to the conditioning that reaches the sampler.
+</li>
+<li
+   data-en="<strong>Text:</strong> positive and negative conditioning, encoded by the CLIPTextEncodeFlux nodes."
+   data-it="<strong>Testo:</strong> il conditioning positivo e negativo, codificato dai nodi CLIPTextEncodeFlux.">
+  <strong>Text:</strong> positive and negative conditioning, encoded by the CLIPTextEncodeFlux nodes.
+</li>
+<li
+   data-en="<strong>VAE:</strong> in this pipeline there is no VAE Encode node, because generation starts from an empty latent canvas (EmptyLatentImage); the VAE is used only at the end, to decode."
+   data-it="<strong>VAE:</strong> in questa pipeline non c'è un nodo VAE Encode, perché la generazione parte da una tela latente vuota (EmptyLatentImage); il VAE interviene solo alla fine, per decodificare.">
+  <strong>VAE:</strong> in this pipeline there is no VAE Encode node, because generation starts from an empty latent canvas (EmptyLatentImage); the VAE is used only at the end, to decode.
+</li>
+</ul>
+
+<p class="post-text"
+   data-en="At this point we reach the final steps: ControlNet applies the spatial guidance, KSampler performs the Noising/Denoising. Finally the VAE decoder brings the image back into plain, visible form, saved under a name that echoes the shot — for example <code style="word-break:break-word;">Shot_5_Garage_TwoShot_A.png</code>."
+   data-it="A questo punto arriviamo ai passaggi finali: ControlNet applica la guida spaziale, KSampler esegue il Noising/Denoising. Infine il VAE decoder riporta l'immagine in chiaro, salvata con un nome che riprende lo shot — ad esempio <code style="word-break:break-word;">Shot_5_Garage_TwoShot_A.png</code>.">
+  At this point we reach the final steps: ControlNet applies the spatial guidance, KSampler performs the Noising/Denoising. Finally the VAE decoder brings the image back into plain, visible form, saved under a name that echoes the shot — for example <code style="word-break:break-word;">Shot_5_Garage_TwoShot_A.png</code>.
+</p>
+
+          </div>
+        </li>
+      </ol>
+
+      <!-- ── FIGURE 2: complete flow ───────────────────────── -->
+      <figure class="post-figure">
+        <img src="assets/post-comfyui-modelli2/diagram2.png"
+             alt="ComfyUI pipeline flow diagram">
+        <figcaption class="post-caption"
+          data-en="<span class='caption-title'>The complete flow</span>From the Flux model through IP-Adapter and ControlNet conditioning, the two CLIPTextEncode branches, KSampler, VAE decoding, to the final SaveImage node."
+          data-it="<span class='caption-title'>Il flusso completo</span>Dal modello Flux, attraverso il conditioning di IP-Adapter e ControlNet, i due rami CLIPTextEncode, KSampler, la decodifica VAE, fino al nodo finale SaveImage.">
+          <span class='caption-title'>The complete flow</span>From the Flux model through IP-Adapter and ControlNet conditioning, the two CLIPTextEncode branches, KSampler, VAE decoding, to the final SaveImage node.
+        </figcaption>
+      </figure>
+
+      <ol class="content-list" start="3">
+
+        <li class="content-item">
+          <div class="content-number">03</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+   data-en="The main modules (second diagram)"
+   data-it="I moduli principali (seconda figura)">
+  The main modules (second diagram)
+</h3>
+
+<p class="post-text"
+   data-en="Here is what each of the main modules shown in the flow diagram above does — the modules not already covered among the loaders:"
+   data-it="Ecco cosa fa ciascuno dei moduli principali mostrati nello schema di flusso qui sopra — i moduli non già trattati tra i loader:">
+  Here is what each of the main modules shown in the flow diagram above does — the modules not already covered among the loaders:
+</p>
+
+<ul class="content-sublist">
+<li
+   data-en="<strong>ApplyFluxIPA</strong> applies the IP-Adapter to the current MODEL state, injecting one character's visual identity (from their reference image) into the network. It's applied once per character: when both share a scene, two nodes run in sequence, and the second partially overrides the first — a known limitation, mitigated by weighting the focal character higher (the weights in the pipeline range from 0.60 to 0.68)."
+   data-it="<strong>ApplyFluxIPA</strong> applica l'IP-Adapter allo stato corrente del MODEL, iniettando l'identità visiva di un personaggio (dalla sua immagine di riferimento) nella rete. Viene applicato una volta per personaggio: quando entrambi condividono la scena, due nodi si susseguono, e il secondo sovrascrive parzialmente il primo — un limite noto, mitigato dando un peso maggiore al personaggio focale (i pesi nella pipeline vanno da 0,60 a 0,68).">
+  <strong>ApplyFluxIPA</strong> applies the IP-Adapter to the current MODEL state, injecting one character's visual identity (from their reference image) into the network. It's applied once per character: when both share a scene, two nodes run in sequence, and the second partially overrides the first — a known limitation, mitigated by weighting the focal character higher (the weights in the pipeline range from 0.60 to 0.68).
+</li>
+<li
+   data-en="<strong>CLIPTextEncodeFlux (+)</strong> is the positive conditioning branch: it encodes the scene prompt — the character-identity tags in the clip_l field plus the detailed shot description in the t5xxl field — into the numeric space that will guide image generation. It also carries Flux's guidance value (3.5 here)."
+   data-it="<strong>CLIPTextEncodeFlux (+)</strong> è il ramo di conditioning positivo: codifica il prompt della scena — i tag di identità dei personaggi nel campo clip_l più la descrizione dettagliata dello shot nel campo t5xxl — nello spazio numerico che guiderà la generazione dell'immagine. Porta con sé anche il valore di guidance di Flux (qui 3,5).">
+  <strong>CLIPTextEncodeFlux (+)</strong> is the positive conditioning branch: it encodes the scene prompt — the character-identity tags in the clip_l field plus the detailed shot description in the t5xxl field — into the numeric space that will guide image generation. It also carries Flux's guidance value (3.5 here).
+</li>
+<li
+   data-en="<strong>CLIPTextEncodeFlux (&minus;)</strong> is the negative conditioning branch: it encodes what to exclude (blurry results, deformed anatomy, extra characters, and so on). At Flux's typical cfg=1.0 the sampler effectively ignores it, but it's wired correctly for whenever the cfg value is raised."
+   data-it="<strong>CLIPTextEncodeFlux (&minus;)</strong> è il ramo di conditioning negativo: codifica cosa escludere (risultati sfocati, anatomia deformata, personaggi in eccesso, ecc.). Al tipico cfg=1.0 di Flux il sampler di fatto lo ignora, ma è collegato correttamente per quando il valore di cfg viene alzato.">
+  <strong>CLIPTextEncodeFlux (&minus;)</strong> is the negative conditioning branch: it encodes what to exclude (blurry results, deformed anatomy, extra characters, and so on). At Flux's typical cfg=1.0 the sampler effectively ignores it, but it's wired correctly for whenever the cfg value is raised.
+</li>
+<li
+   data-en="<strong>ControlNetApplyAdvanced</strong> applies the depth map rendered from the 3D camera/mesh setup, at a given strength (here 0.25, over the whole sampling process), providing spatial and pose guidance to the model."
+   data-it="<strong>ControlNetApplyAdvanced</strong> applica la depth map generata dal setup di camera/mesh 3D, con una determinata intensità (qui 0,25, per l'intero processo di campionamento), fornendo al modello un condizionamento spaziale e di posa.">
+  <strong>ControlNetApplyAdvanced</strong> applies the depth map rendered from the 3D camera/mesh setup, at a given strength (here 0.25, over the whole sampling process), providing spatial and pose guidance to the model.
+</li>
+<li
+   data-en="<strong>KSampler</strong> is the actual sampling engine: it performs the iterative Noising/Denoising cycle described in <a href='post-comfyui-concepts.html' class='about-link'>Concepts</a>, converting random noise into the final latent image, guided by the positive/negative conditioning and by ControlNet. Here: 30 steps, euler sampler with the simple scheduler, cfg 1.0."
+   data-it="<strong>KSampler</strong> è il motore di campionamento vero e proprio: esegue il ciclo iterativo di Noising/Denoising descritto in <a href='post-comfyui-concepts.html' class='about-link'>Concetti</a>, trasformando il rumore casuale nell'immagine latente finale, guidato dal conditioning positivo/negativo e da ControlNet. Qui: 30 passi, sampler euler con scheduler simple, cfg 1,0.">
+  <strong>KSampler</strong> is the actual sampling engine: it performs the iterative Noising/Denoising cycle described in <a href='post-comfyui-concepts.html' class='about-link'>Concepts</a>, converting random noise into the final latent image, guided by the positive/negative conditioning and by ControlNet. Here: 30 steps, euler sampler with the simple scheduler, cfg 1.0.
+</li>
+<li
+   data-en="<strong>EmptyLatentImage</strong> allocates the empty latent canvas at the target resolution (1344&times;768) that KSampler will progressively fill."
+   data-it="<strong>EmptyLatentImage</strong> alloca la tela latente vuota alla risoluzione target (1344&times;768) che KSampler riempirà progressivamente.">
+  <strong>EmptyLatentImage</strong> allocates the empty latent canvas at the target resolution (1344&times;768) that KSampler will progressively fill.
+</li>
+<li
+   data-en="<strong>VAEDecode</strong> converts the final latent tensor into a pixel-space image, using the VAE loaded once at the top of the pipeline."
+   data-it="<strong>VAEDecode</strong> converte il tensore latente finale in un'immagine nello spazio dei pixel, usando il VAE caricato una sola volta all'inizio della pipeline.">
+  <strong>VAEDecode</strong> converts the final latent tensor into a pixel-space image, using the VAE loaded once at the top of the pipeline.
+</li>
+<li
+   data-en="<strong>SaveImage</strong> writes the resulting image to disk under a per-shot filename (e.g. <code style="word-break:break-word;">Shot_N_Name</code>)."
+   data-it="<strong>SaveImage</strong> scrive l'immagine risultante su disco con un nome file specifico per ogni shot (ad es. <code style="word-break:break-word;">Shot_N_Name</code>).">
+  <strong>SaveImage</strong> writes the resulting image to disk under a per-shot filename (e.g. <code style="word-break:break-word;">Shot_N_Name</code>).
+</li>
+</ul>
+
+          </div>
+        </li>
+
+        <li class="content-item">
+          <div class="content-number">04</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+   data-en="Settings at a glance and download"
+   data-it="Impostazioni in sintesi e download">
+  Settings at a glance and download
+</h3>
+
+<p class="post-text"
+   data-en="The main settings of the downloadable pipeline, at a glance:"
+   data-it="Le impostazioni principali della pipeline scaricabile, in sintesi:">
+  The main settings of the downloadable pipeline, at a glance:
+</p>
+
+<ul class="content-sublist">
+<li
+   data-en="<strong>Models:</strong> Flux-dev (fp8), text encoders clip_l + t5xxl (fp8), VAE ae.sft."
+   data-it="<strong>Modelli:</strong> Flux-dev (fp8), text encoder clip_l + t5xxl (fp8), VAE ae.sft.">
+  <strong>Models:</strong> Flux-dev (fp8), text encoders clip_l + t5xxl (fp8), VAE ae.sft.
+</li>
+<li
+   data-en="<strong>IP-Adapter:</strong> XLabs Flux version with a CLIP ViT-L/14 image encoder; weight 0.60–0.68 per application; 8 applications (6 shots, plus 2 for the two-character shots)."
+   data-it="<strong>IP-Adapter:</strong> versione XLabs per Flux con image encoder CLIP ViT-L/14; peso 0,60–0,68 per applicazione; 8 applicazioni (6 shot, più 2 per gli shot con due personaggi).">
+  <strong>IP-Adapter:</strong> XLabs Flux version with a CLIP ViT-L/14 image encoder; weight 0.60–0.68 per application; 8 applications (6 shots, plus 2 for the two-character shots).
+</li>
+<li
+   data-en="<strong>ControlNet:</strong> flux-depth-controlnet-v3; strength 0.25, active from 0 to 100% of the steps; 6 applications."
+   data-it="<strong>ControlNet:</strong> flux-depth-controlnet-v3; intensità 0,25, attivo dallo 0 al 100% dei passi; 6 applicazioni.">
+  <strong>ControlNet:</strong> flux-depth-controlnet-v3; strength 0.25, active from 0 to 100% of the steps; 6 applications.
+</li>
+<li
+   data-en="<strong>Text:</strong> 12 CLIPTextEncodeFlux nodes (positive + negative for each shot); Flux guidance 3.5."
+   data-it="<strong>Testo:</strong> 12 nodi CLIPTextEncodeFlux (positivo + negativo per ogni shot); guidance di Flux 3,5.">
+  <strong>Text:</strong> 12 CLIPTextEncodeFlux nodes (positive + negative for each shot); Flux guidance 3.5.
+</li>
+<li
+   data-en="<strong>Sampling:</strong> KSampler with 30 steps, euler / simple, cfg 1.0, full denoise; canvas 1344&times;768."
+   data-it="<strong>Campionamento:</strong> KSampler con 30 passi, euler / simple, cfg 1,0, denoise pieno; tela 1344&times;768.">
+  <strong>Sampling:</strong> KSampler with 30 steps, euler / simple, cfg 1.0, full denoise; canvas 1344&times;768.
+</li>
+<li
+   data-en="<strong>Output:</strong> 6 shots, each saved as its own image."
+   data-it="<strong>Output:</strong> 6 shot, ciascuno salvato come immagine a sé.">
+  <strong>Output:</strong> 6 shots, each saved as its own image.
+</li>
+</ul>
+
+<p class="post-text" style="margin-top:1.6em; opacity:0.75;"
+   data-en="Before running the pipeline, make sure all required custom node packs and model files are installed. The instructions page linked below lists every package, every model weight, and the files you need to provide yourself."
+   data-it="Prima di eseguire la pipeline, assicurati che tutti i pack di nodi personalizzati e i file modello richiesti siano installati. La pagina delle istruzioni collegata di seguito elenca ogni pacchetto, ogni peso del modello e i file che devi fornire personalmente.">
+  Before running the pipeline, make sure all required custom node packs and model files are installed. The instructions page linked below lists every package, every model weight, and the files you need to provide yourself.
+</p>
+
+<p class="post-text" style="margin-top:0.4rem; display:flex; gap:1.2rem; flex-wrap:wrap; align-items:center;">
+              <a href="assets/scenario3toConfyUI_B_canvas_v3.2_6.json"
+                 class="post-pdf-btn" download
+                 data-en="&darr; Download the pipeline (JSON)"
+                 data-it="&darr; Scarica la pipeline (JSON)">&darr; Download the pipeline (JSON)</a>
+              <a href="comfyui-pipeline-setup.html"
+                 class="post-pdf-btn"
+                 data-en="&rarr; Instructions for customized modules"
+                 data-it="&rarr; Istruzioni per i moduli personalizzati">&rarr; Instructions for customized modules</a>
+            </p>
+
+          </div>
+        </li>
+      </ol>
+
+
+    </div><!-- /page-body -->
+  </main>
+
+  <a href="posts.html" class="nav-back"
+     data-en="POSTS" data-it="POST">POSTS</a>
+
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="en">EN</button>
+    <button class="lang-btn" data-lang="it">IT</button>
+  </div>
+
+  <script src="assets/lang.js"></script>
+  <script>
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').classList.toggle('scrolled', window.scrollY > 20);
+    });
+  </script>
+</body>
+</html>

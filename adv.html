@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ADV — Automated Creativity for Brand Campaigns</title>
+  <link rel="alternate" hreflang="en"        href="https://storyline-engine.com/adv.html">
+  <link rel="alternate" hreflang="it"        href="https://storyline-engine.com/adv.html?lang=it">
+  <link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/adv.html">
+
+  <!-- Preload self-hosted fonts so they're already in flight before style.css
+       is even parsed — closes the remaining window where the browser paints
+       with the fallback (Georgia/Courier) and then swaps to the real font,
+       which is what still reads as the font "changing size" on reload. -->
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="assets/style.css">
+
+  <style>
+    /* ── post body text ───────────────────────────────────── */
+    .post-text {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.15rem;
+      line-height: 1.75;
+      margin: 0 0 1.4em 0;
+    }
+
+    /* ── question headers ─────────────────────────────────── */
+    .q-header {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      letter-spacing: 0.16em;
+      color: #1A5CB3;
+      text-transform: uppercase;
+      margin: 48px 0 16px;
+    }
+    .q-header:first-of-type { margin-top: 0; }
+
+    /* ── pros / cons stacked full-width lists ─────────────── */
+    .pc-section-title {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin: 1.3rem 0 0.8rem;
+    }
+    .pc-section-title.pc-pros { color: #1A5800; }
+    .pc-section-title.pc-cons { color: #A76300; }
+    .pc-list {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      line-height: 1.65;
+      padding-left: 1.2em;
+      margin: 0;
+    }
+    .pc-list li { margin-bottom: 0.6em; }
+
+    /* ── five-stage list ──────────────────────────────────── */
+    .stage-list {
+      margin: 0.6rem 0 1.4rem;
+      padding-left: 1.3em;
+    }
+    .stage-list li { margin-bottom: 0.7em; }
+
+    /* ── four-layer table ─────────────────────────────────── */
+    .layer-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.4rem 0 1.6rem;
+      font-family: var(--serif);
+      font-size: 1.02rem;
+      line-height: 1.6;
+    }
+    .layer-table th {
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #1A5CB3;
+      text-align: left;
+      font-weight: 400;
+      padding: 0 1rem 0.6rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.20);
+    }
+    .layer-table td {
+      vertical-align: top;
+      padding: 0.9rem 1rem 0.9rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .layer-table th:last-child, .layer-table td:last-child { padding-right: 0; }
+    .layer-table .layer-name {
+      font-family: var(--mono);
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      line-height: 1.5;
+    }
+    .layer-table .verdict {
+      font-family: var(--mono);
+      font-size: 0.70rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.35rem;
+    }
+    .layer-table .verdict-yes { color: #1A5800; }
+    .layer-table .verdict-no  { color: #A76300; }
+    @media(max-width:700px){
+      .layer-table, .layer-table tbody, .layer-table tr, .layer-table td { display: block; width: 100%; }
+      .layer-table thead { display: none; }
+      .layer-table tr { padding: 1.1rem 0; border-bottom: 1px solid rgba(0,0,0,0.14); }
+      .layer-table td { border: none; padding: 0.2rem 0; }
+    }
+
+    /* ── footnote ref ────────────────────────────────────── */
+    sup.fn-ref {
+      font-family: var(--mono);
+      font-size: 0.6em;
+      line-height: 1;
+      vertical-align: super;
+      margin-left: 0.1em;
+    }
+    sup.fn-ref a { text-decoration: none; opacity: 0.55; }
+    sup.fn-ref a:hover { opacity: 1; }
+
+    /* ── footnotes block ─────────────────────────────────── */
+    .footnotes {
+      margin-top: 4rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid currentColor;
+      opacity: 0.65;
+    }
+    .footnotes ol {
+      font-family: var(--serif);
+      font-size: 0.92rem;
+      line-height: 1.65;
+      padding-left: 1.4em;
+      margin: 0 0 0 -1.4em;
+      list-style-position: outside;
+    }
+    .footnotes li { margin-bottom: 0.8em; }
+    .fn-back {
+      font-family: var(--mono);
+      font-size: 0.8em;
+      margin-left: 0.4em;
+      text-decoration: none;
+      opacity: 0.5;
+    }
+    .fn-back:hover { opacity: 1; }
+  </style>
+</head>
+<body class="interior">
+
+  <header>
+    <a href="about.html" class="nav-item" data-en="ABOUT" data-it="ABOUT">ABOUT</a>
+    <div class="menu-container">
+      <span class="menu-trigger" data-en="TOPICS" data-it="ARGOMENTI">TOPICS</span>
+      <div class="menu-dropdown">
+        <a href="adv.html"             class="menu-item" data-en="ADV"            data-it="ADV">ADV</a>
+        <a href="neural-graphics.html" class="menu-item" data-en="VISUAL STORIES" data-it="FUMETTI/STORYBOARD">VISUAL STORIES</a>
+        <a href="comfyui.html"         class="menu-item" data-en="COMFYUI"        data-it="COMFYUI">COMFYUI</a>
+        <a href="posts.html"           class="menu-item" data-en="POSTS"          data-it="POST">POSTS</a>
+        <span class="menu-item menu-item--disabled" data-en="VIDEO" data-it="VIDEO">VIDEO</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content">
+
+    <p class="section-label"
+       data-en="Character Consistency · Brand Campaigns · Creative Automation"
+       data-it="Coerenza dei Personaggi · Campagne ADV · Automazione Creativa">
+      Character Consistency · Brand Campaigns · Creative Automation
+    </p>
+
+    <h1 class="page-title"
+        data-en="Automated Creativity for Brand Campaigns"
+        data-it="Creatività Automatizzata in Campagne ADV">Automated Creativity for Brand Campaigns</h1>
+
+    <hr class="divider" style="margin-top: 2.5rem; margin-bottom: 0.5rem;">
+
+    <p class="post-abstract-text" style="margin-bottom:28px;"
+       data-en="DCO (Dynamic Creative Optimization) is an advertising technology &mdash; increasingly automated &mdash; that creates, personalises and optimises ads in real time by drawing on various data: the data of the user the banner or message is aimed at, the context, the brand's and campaign's strategies, and more. In short, DCO is a methodology that chooses, for each user, the optimal combination of images, text and offers to show. From these, through a feedback mechanism, it learns to recognise the ones that work best. <br> This infrastructure is the preserve of platforms that have been established in the market for years, against which it's nearly impossible to compete. <a href='https://www.criteo.com/technology/dco/' class='about-link' target='_blank' rel='noopener noreferrer'>Criteo DCO+</a> (a retargeting engine for media commerce), <a href='https://marketingplatform.google.com/about/display-video-360/' class='about-link' target='_blank' rel='noopener noreferrer'>Google's DV360/Studio</a> (Google Marketing's enterprise-grade Demand-Side Platform, built for the programmatic buying of ad space across display, video, audio, TV...), and other template-based dynamic-creative platforms (with a fixed layout) such as <a href='https://flashtalking.com' class='about-link' target='_blank' rel='noopener noreferrer'>Flashtalking</a> and <a href='https://www.celtra.com' class='about-link' target='_blank' rel='noopener noreferrer'>Celtra</a>. To address the margin-for-improvement problem in these services, without already being an established company, you need to look one step back from the operational flow that leads to DCO. We're talking about the visual-narrative side of the content (images/text): the ability to automate the generation of narrative variants that are always new and consistent with the claim, the brand's requirements and the campaign's directives, and keep user attention alive and engaged. Some of the platforms mentioned above, or the components that integrate with them, already use generative AI to produce a background or a product variant, but often within a fixed template &mdash; Celtra itself says as much about its own tool. Or they're still single-shot generations, which lack the ability to keep a cast of characters and settings consistent across a whole storyboard. Or unable to generate a consistent multi-shot scene, in place of the traditional new asset generated and slotted into a template.<sup class='fn-ref'><a href='#fn1' id='fnref1'>1</a></sup>. <br>
+The goal set out in this section is to overcome these inefficiencies in creative content &mdash; especially common at the craft and low-budget level &mdash; in the quality of graphic content, the continuity of a story, and the ability to self-correct through a feedback loop, which the new wave of AI has already been offering for a few months now."
+       data-it="
+	   Il DCO (Dynamic Creative Optimization) è una tecnologia pubblicitaria (sempre più automatizzata) che crea, personalizza e ottimizza gli annunci in tempo reale sfruttando varie informazioni: i dati dell'utente a cui è diretto il banner/messaggio, il contesto, le strategie del brand, della campagna, e altro. In breve, il DCO è una metodologia che sceglie, per ogni utente, la combinazione ottima di immagini, testo e offerte da proporre. Dalle quali, grazie a un meccanismo di feed-back, impara a riconoscere quelle che funzionano meglio. <br> L'infrastruttura attorno al DCO è appannaggio di piattaforme consolidate sul mercato da anni, rispetto a cui è impossibile competere. <a href='https://www.criteo.com/technology/dco/' class='about-link' target='_blank' rel='noopener noreferrer'>Criteo DCO+</a> (motore di retargeting per il media commerce), <a href='https://marketingplatform.google.com/about/display-video-360/' class='about-link' target='_blank' rel='noopener noreferrer'>DV360/Studio di Google</a> (la Demand-Side Platform di livello enterprise di Google Marketing, progettata per l'acquisto programmatico di spazi pubblicitari su display, video, audio, TV...), e altre piattaforme di dynamic creative basate su template (con layout fisso) come <a href='https://flashtalking.com' class='about-link' target='_blank' rel='noopener noreferrer'>Flashtalking</a> e <a href='https://www.celtra.com' class='about-link' target='_blank' rel='noopener noreferrer'>Celtra</a>. Per affrontare il problema dei margini di miglioramento di questi servizi, senza essere un'azienda già consolidata, occorre osservare le cose dal passo precedente rispetto al flusso operativo che conduce al DCO. Stiamo parlando dell'aspetto visivo-narrativo dei contenuti (immagini/testo): la capacità di automatizzare la generazione di varianti narrative sempre nuove e coerenti al claim, alle esigenze del brand e alle direttive della campagna, e mantenere una user attention viva e ingaggiata. Alcune delle piattaforme succitate, o delle componenti che le integrano, usano già l'AI generativa per produrre uno sfondo o una variante di un prodotto, ma spesso all'interno di un template fissato — lo dichiara la stessa Celtra a proposito del proprio strumento. Oppure si tratta ancora di generazioni single-shot, che mancano della capacità di mantenere un cast di personaggi e scenografie coerenti lungo tutto uno storyboard. Oppure incapaci di generare una scena multi-inquadratura consistente, al posto del tradizionale nuovo asset generato e incastrato in un template.<sup class='fn-ref'><a href='#fn1' id='fnref1'>1</a></sup>.<br>
+	   L'obiettivo esposto in questa sezione è quello di superare queste inefficienze nel creative content, diffuse specialmente a livello artigianale e di low-budget, rispetto alla qualità dei contenuti grafici, alla contiguità di una storia e alla capacità di autocorreggersi in un loop (con feedback), che il nuovo corso dell'AI già offre da qualche mese. ">
+    </p>
+
+    <hr class="divider" style="margin-top: 0.5rem; margin-bottom: 2rem;">
+	
+	<p class="post-text" style="font-size: 1.28rem; line-height: 1.78; margin: 0.4rem 0 2.6rem;"
+       data-en="The innovative angle of this section's proposal is visible in the storyboards of two posts: <a href='post-pannocchino-spighetta.html' class='about-link'>Automatic Storyboard: Meet Pannocchino e Spighetta</a>, which follows the mascot pair from conception to a full storyboard, through to their wedding. And in the twin post, <a href='post-storyboard-adv.html' class='about-link'>Pannocchino e Spighetta have a baby</a>. The idea is to create a synergy inside a three-dimensional combination: <i>shot &times; format &times; slogan</i>, whose engine is proposed in <a href='post-dco-engine.html' class='about-link'>The Engine: generation, control, export</a>. We will see, by way of example, how a story made of 5&ndash;6 beats, 2 slogans and 4&ndash;5 formats leads to optimising time-to-market, cutting down a lot of the redundant effort of manual composition that many medium-small agencies today still solve by hand.<sup class='fn-ref'><a href='#fn2' id='fnref2'>2</a></sup>"
+       data-it="Chiarito che il post non si occupa di performance di campagne ADV, ma di ottimizzazione della creazione di contenuti, in particolare storyboard, ne sono stati creati alcuni puramente di esempio, per mostrare non la loro originalità ed efficacia, ma solo per poter presentare l'engine che li costruisce e li delibera. Per cui i due post: <a href='post-pannocchino-spighetta.html' class='about-link'>Storyboard Automatico: Ecco Pannocchino e Spighetta</a> che segue la coppia di mascotte nella loro festa di matrimonio, e il post gemello <a href='post-storyboard-adv.html' class='about-link'>Pannocchino e Spighetta hanno un bambino</a>, sono mostrati meramente come simulazione dei risultati di <a href='post-dco-engine.html' class='about-link'>The Engine: generation, control, export</a>. Semplicemente, i due post, insieme a quello sulla vendemmia (<a href='post-storyboard-vendemmia.html' class='about-link'>La vendemmia di Grappolotto e Foglina</a>) sono il frutto di una creazione generativa che, a partire da una combo a tre assi: <i>personaggi x claim x brand</i> genera una coerenza iterata fino alla presentazione finale del prodotto. 	   
+	   Vedremo, a titolo esemplificativo, come una storia composta da 5-6 beat, 2 slogan, 4-5 proporzioni, conduca a ottimizzare il time-to-market, riducendo l'effort ridondante di una composizione che oggi molte agenzie medio-piccole risolvono ancora a mano.<sup class='fn-ref'><a href='#fn2' id='fnref2'>2</a></sup>">
+      The innovative angle of this section's proposal is visible in the storyboards of two posts: <a href="post-pannocchino-spighetta.html" class="about-link">Automatic Storyboard: Meet Pannocchino e Spighetta</a>, which follows the mascot pair from conception to a full storyboard, through to their wedding. And in the twin post, <a href="post-storyboard-adv.html" class="about-link">Pannocchino e Spighetta have a baby</a>. The idea is to create a synergy inside a three-dimensional combination: <i>shot × format × slogan</i>, whose engine is proposed in <a href="post-dco-engine.html" class="about-link">The Engine: generation, control, export</a>. We will see, by way of example, how a story made of 5&ndash;6 beats, 2 slogans and 4&ndash;5 formats leads to optimising time-to-market, cutting down a lot of the redundant effort of manual composition that many medium-small agencies today still solve by hand.<sup class="fn-ref"><a href="#fn2" id="fnref2">2</a></sup>
+    </p>
+	
+
+    <div class="page-body">
+
+      <!-- Q0 — THE FOUR LAYERS -->
+      <p class="q-header" data-en="Where this sits, in the four layers of DCO" data-it="I quattro layer del DCO: dove ci collochiamo">Where this sits, in the four layers of DCO</p>
+
+      <p data-en="The table below breaks DCO down into four layers, to better scope this project. Each row states that layer's main task, and explains whether it's compatible with an independent project, detachable from the surrounding infrastructure. The first row meets these requirements, since it is a self-contained module which, by adding an I/O interface, can be slotted into a DSP wrapper. The ones that follow, for different reasons that boil down to a few recurring constraints &mdash; integration, budget, fixed and elaborate communication protocols, data, and so on &mdash; make compatibility practically impossible.<sup class='fn-ref'><a href='#fn4' id='fnref4'>4</a></sup>"
+         data-it="Nella tabella sottostante viene presentata una suddivisione del DCO in quattro layer, per circoscrivere meglio il nostro progetto. Ogni riga dichiara il compito principale di quel livello, e spiega se sia compatibile con un progetto indipendente, scollegabile dall'infrastruttura al contorno. La prima riga risponde a questi requisiti, dato che si tratta di un modulo circoscritto, il quale, aggiungendo un'interfaccia di I/O, è inscrivibile in un involucro DSP. Le successive, per motivi diversi ma riassumibili in diversi vincoli: integrazione, budget, comunicazioni articolate e precostituite, dati e quant'altro, ne rendono in pratica impossibile la compatibilità.<sup class='fn-ref'><a href='#fn4' id='fnref4'>4</a></sup>">
+        The table below breaks DCO down into four layers, to better scope this project. Each row states that layer's main task, and explains whether it's compatible with an independent project, detachable from the surrounding infrastructure. The first row meets these requirements, since it is a self-contained module which, by adding an I/O interface, can be slotted into a DSP wrapper. The ones that follow, for different reasons that boil down to a few recurring constraints — integration, budget, fixed and elaborate communication protocols, data, and so on — make compatibility practically impossible.<sup class="fn-ref"><a href="#fn4" id="fnref4">4</a></sup>
+      </p>
+
+      <table class="layer-table">
+        <thead>
+          <tr>
+            <th data-en="Layer" data-it="Layer">Layer</th>
+            <th data-en="What it does" data-it="Compito">What it does</th>
+            <th data-en="Addressed here?" data-it="Affrontato qui?">Addressed here?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="layer-name" data-en="1 &middot; Variant production" data-it="1 &middot; Produzione delle varianti">1 &middot; Variant production</td>
+            <td data-en="Creating the creative material the system will then distribute" data-it="Creare il materiale creativo che il sistema distribuirà (il nostro contributo)">Creating the creative material the system will then distribute</td>
+            <td data-en="<span class='verdict verdict-yes'>Yes</span>Multi-shot sequences with a consistent cast, automatic shot-by-shot checking, export into formats and feed rows" data-it="<span class='verdict verdict-yes'>Sì</span>È applicato alla creatività visivo-narrativa: le difficoltà non sono nell'interfacciamento col sistema esterno, ma quelle interne di avere un cast coerente, un controllo automatico shot per shot, infine un export in diverse proporzioni e righe di feed"><span class="verdict verdict-yes">Yes</span>Multi-shot sequences with a consistent cast, automatic shot-by-shot checking, export into formats and feed rows</td>
+          </tr>
+          <tr>
+            <td class="layer-name" data-en="2 &middot; Assembly and decision" data-it="2 &middot; Assemblaggio e decisione">2 &middot; Assembly and decision</td>
+            <td data-en="Rules, templates, feeds, live signals: combinations monitoring" data-it="Regole, template, feed, segnali live: monitoraggio delle combinazioni (lo fa lo strumento DCO che il cliente/l’agenzia ha già in casa)">Rules, templates, feeds, live signals: combinations monitoring</td>
+            <td data-en="<span class='verdict verdict-no'>No</span>It would require the feed integrations and ad-serving contracts the brand already holds; rebuilding them in parallel would duplicate infrastructure without improving the creative by one inch" data-it="<span class='verdict verdict-no'>No</span>Richiederebbe le integrazioni tra feed e contratti di Ad serving che il brand ha già concluso; rifarli in parallelo duplicherebbe solo inutilmente l'infrastruttura"><span class="verdict verdict-no">No</span>It would require the feed integrations and ad-serving contracts the brand already holds; rebuilding them in parallel would duplicate infrastructure without improving the creative by one inch</td>
+          </tr>
+          <tr>
+            <td class="layer-name" data-en="3 &middot; Delivery" data-it="3 &middot; Consegna">3 &middot; Delivery</td>
+            <td data-en="Buying the space and putting the ad on air" data-it="Acquisto dello spazio e messa in onda (la fa il DSP — Demand-Side Platform, piattaforma automatizzata per l'acquisto di spazi pubblicitari online — insieme al team di media buying/programmatic dell’agenzia)">Buying the space and putting the ad on air</td>
+            <td data-en="<span class='verdict verdict-no'>No</span>This is delivery infrastructure and certification, not a creative problem" data-it="<span class='verdict verdict-no'>No</span>Dipende dall'infrastruttura di delivery e certificazione, non è un problema creativo"><span class="verdict verdict-no">No</span>This is delivery infrastructure and certification, not a creative problem</td>
+          </tr>
+          <tr>
+            <td class="layer-name" data-en="4 &middot; Measurement and optimisation" data-it="4 &middot; Misura e ottimizzazione">4 &middot; Measurement and optimisation</td>
+            <td data-en="Reading the results and moving budget onto the variants that pay" data-it="Leggere i risultati e spostare il budget sulle varianti più proficue (la fa il team analytics/dati del brand o dell’agenzia)">Reading the results and moving budget onto the variants that pay</td>
+            <td data-en="<span class='verdict verdict-no'>No</span>It would need field data and traffic volumes a production supplier does not have; simulating them would cost more than they are worth and would produce numbers no planner would take at face value" data-it="<span class='verdict verdict-no'>No</span>Servirebbero dati ottenuti dal campo e volumi di traffico che un fornitore non ha; simularli sarebbe inutile e controproducente"><span class="verdict verdict-no">No</span>It would need field data and traffic volumes a production supplier does not have; simulating them would cost more than they are worth and would produce numbers no planner would take at face value</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p data-en="In short, the only flexible point in a &quot;bottom-up&quot; approach is the first layer &mdash; the one responsible for the creative scope of the content that carries the message and reaches the consumer directly. The layers above it belong to DCO's overarching management and structural layer, which involves the agency's strategic choices on budget allocation and its strategic objectives across different media."
+         data-it="In definitiva l'unico punto flessibile rispetto a un approccio 'dal basso' è il primo. Quello incaricato della portata creativa dei contenuti che veicolano il messaggio e la fruizione diretta del consumatore. I layer successivi appartengono al livello sovrastante della catena gestionale e strutturale del DCO, che coinvolgono le scelte strategiche dell'agenzia sull'allocazione del budget e gli obbiettivi strategici rispetto ai diversi media.">
+        In short, the only flexible point in a "bottom-up" approach is the first layer — the one responsible for the creative scope of the content that carries the message and reaches the consumer directly. The layers above it belong to DCO's overarching management and structural layer, which involves the agency's strategic choices on budget allocation and its strategic objectives across different media.
+      </p>
+
+      <!-- Q1 — THE PROBLEM 
+      <p class="q-header" data-en="The personalisation problem" data-it="Il problema della personalizzazione">The personalisation problem</p>
+      </p-->
+
+      <!-- Q2 — WHO IT'S FOR -->
+      <p class="q-header" data-en="Who it's for" data-it="A chi è rivolto">Who it's for</p>
+      <p data-en="Who is this for? Performance-marketing teams and the agencies that work for them — anyone who needs the same characters and product to stay consistent across dozens of ad variants, without redrawing them one by one for new settings or new character interactions. It sits upstream of the dynamic-creative platforms already in use — Flashtalking, Celtra, Criteo DCO+, DV360/Studio — not in competition with them. It fits into a pre-production stage that feeds richer, more coherent variants directly into whichever of those platforms is already running. We're not talking about the big brands running national campaigns through the major agency hubs. The realistic entry points are narrower. <br>The first kind of client is the mid-market digital agency. They're not looking for a platform to install in place of their own stack, but for a supplier to lean on for the creative side — much as they lean today on a freelance photographer or an outside illustration studio. A concrete example: a regional agency running paid social for a five-location restaurant chain, not a large multinational account. The second is brand marketing teams with a recurring mascot or character, where the character's coherence across a story matters more than simply swapping the product inside a template. This is the typical case for food &amp; beverage, wine, or regional FMCG (fast-moving consumer goods) brands: think of a pasta maker with a long-standing character on the label, who needs new narrative variants, not just new products. The third is pilot projects, run alongside the DCO a brand or agency already uses, without replacing it. Example: a brand already on Flashtalking wanting to trial a richer pool of creative variants for a single seasonal campaign (Christmas, the grape harvest), before deciding whether to extend it across the whole year. In this case the engine doesn't take the place of the existing DCO, it feeds it with more material to choose from."
+         data-it="Quali sono i destinatari di questo progetto? I team di performance marketing e le agenzie collegate — chiunque abbia una necessità di coerenza nel tempo tra i personaggi e il prodotto, rispetto a decine di varianti pubblicitarie, senza doverle ridisegnare una per una, ogni volta che cambi qualcosa (un nuovo personaggio, ambiente, evento, ...). Come abbiamo già accennato, si inserisce in una fase di pre-produzione a monte delle piattaforme di dynamic creative già in uso — Flashtalking, Celtra, Criteo DCO+, DV360/Studio — non in concorrenza con queste. Il primo tipo di cliente sono le agenzie digitali di fascia medio-piccola, che non cercano una piattaforma da installare per sostituire il proprio stack, ma un fornitore esterno a cui appoggiarsi per la parte creativa supportata dall'AI — un po' come più tradizionalmente si appoggiano a un fotografo freelance o a uno studio di illustrazione esterno. Un esempio concreto: un'agenzia regionale che gestisce diversi social a pagamento per conto di una catena di cinque ristoranti, con varietà diverse di menu e di tipi di clientela. Un secondo esempio è costituito dai team marketing di brand che hanno una mascotte o un personaggio ricorrente, dove conta più la coerenza del personaggio lungo una nuova storia, piuttosto che un semplice cambio di prodotto dentro un template predefinito. È il caso tipico dei marchi food &amp; beverage, del vino, o dei beni di largo consumo regionali(FMCG). Pensiamo a un pastificio con un personaggio storico in etichetta, che necessita di nuove varianti narrative per nuovi prodotti. Il terzo sono i progetti pilota, affiancati al DCO che un brand o un'agenzia già usano. Esempio: un brand già su <i>Flashtalking</i> che vuole provare un pool di varianti creative più ricco per una singola campagna stagionale (il Natale, la vendemmia), prima di decidere se estenderlo a tutto l'anno. In questo caso il motore non prende il posto del DCO esistente, ma lo alimenta con più materiale di scelta.">
+        Who is this for? Performance-marketing teams and the agencies that work for them — anyone who needs the same characters and product to stay consistent across dozens of ad variants, without redrawing them one by one for new settings or new character interactions. It sits upstream of the dynamic-creative platforms already in use — Flashtalking, Celtra, Criteo DCO+, DV360/Studio — not in competition with them. It fits into a pre-production stage that feeds richer, more coherent variants directly into whichever of those platforms is already running. We're not talking about the big brands running national campaigns through the major agency hubs. The realistic entry points are narrower. <br>The first kind of client is the mid-market digital agency. They're not looking for a platform to install in place of their own stack, but for a supplier to lean on for the creative side — much as they lean today on a freelance photographer or an outside illustration studio. A concrete example: a regional agency running paid social for a five-location restaurant chain, not a large multinational account. The second is brand marketing teams with a recurring mascot or character, where the character's coherence across a story matters more than simply swapping the product inside a template. This is the typical case for food &amp; beverage, wine, or regional FMCG (fast-moving consumer goods) brands: think of a pasta maker with a long-standing character on the label, who needs new narrative variants, not just new products. The third is pilot projects, run alongside the DCO a brand or agency already uses, without replacing it. Example: a brand already on Flashtalking wanting to trial a richer pool of creative variants for a single seasonal campaign (Christmas, the grape harvest), before deciding whether to extend it across the whole year. In this case the engine doesn't take the place of the existing DCO, it feeds it with more material to choose from.
+      </p>
+
+      <!-- Q3 — THE MECHANISM -->
+      <p class="q-header" data-en="The benefit" data-it="Il funzionamento">The benefit</p>
+
+      <p data-en="The tool works as a chain of five stages:" data-it="Lo strumento agisce come una catena di cinque stadi:">
+        The tool works as a chain of five stages:
+      </p>
+
+      <ul class="stage-list">
+        <li data-en="<strong>Input</strong> &mdash; what an agency has already decided: brand and slogans, a locked cast of characters, a setting, a story."
+            data-it="<strong>Input</strong> &mdash; ciò che un'agenzia ha già deciso: brand e slogan, un cast di personaggi fissato, un ambiente, una storia."><strong>Input</strong> — what an agency has already decided: brand and slogans, a locked cast of characters, a setting, a story.</li>
+        <li data-en="<strong>Engine</strong> &mdash; the story is staged shot by shot, for each slogan."
+            data-it="<strong>Engine</strong> &mdash; la storia viene messa in scena inquadratura per inquadratura, per ogni slogan."><strong>Engine</strong> — the story is staged shot by shot, for each slogan.</li>
+        <li data-en="<strong>QA</strong> &mdash; an automatic review model checks every image against the cast, and corrects or discards the ones that drift."
+            data-it="<strong>Quality Assurance (QA)</strong> &mdash; un modello automatico di revisione controlla ogni immagine rispetto al cast, gli ambienti e diversi parametri, e corregge o scarta quelle che si discostano."><strong>QA</strong> — an automatic review model checks every image against the cast, and corrects or discards the ones that drift.</li>
+        <li data-en="<strong>Formats</strong> &mdash; every approved shot is recomposed into the formats that will be needed, keeping the cast in frame and the area clear where the template will write headline, price and CTA."
+            data-it="<strong>Proporzioni</strong> &mdash; ogni inquadratura approvata viene ricomposta nelle proporzioni che serviranno (rispetto a una lista predefinita), mantenendo il cast nel campo e libera l'area dove il template scriverà titolo, prezzo e CTA."><strong>Formats</strong> — every approved shot is recomposed into the formats that will be needed, keeping the cast in frame and the area clear where the template will write headline, price and CTA.</li>
+        <li data-en="<strong>Export</strong> &mdash; the pool leaves as a structured <strong>Manifest</strong> (one data file, one row per shot, format and slogan, each with a unique ID, variant labels and QA status), ready to enter the feed of the dynamic-creative tool the brand or agency already runs."
+            data-it="<strong>Export</strong> &mdash; il pool esce come <strong>Manifest</strong> strutturato (un unico file dati, una riga per inquadratura, proporzione e slogan, ciascuna con ID univoco, etichette di variante e stato QA), pronto a entrare nel feed dello strumento di dynamic creative che il brand o l'agenzia usa già."><strong>Export</strong> — the pool leaves as a structured <strong>Manifest</strong> (one data file, one row per shot, format and slogan, each with a unique ID, variant labels and QA status), ready to enter the feed of the dynamic-creative tool the brand or agency already runs.</li>
+      </ul>
+
+      <p data-en="The last two stages &mdash; formats and export &mdash; are covered in detail in <a href='post-dco-engine.html' class='about-link'>The Engine: generation, control, export</a> (Chapters 06&ndash;07); <a href='post-dco-mercato-globale.html' class='about-link'>DCO and the Agency Market</a> covers how the hand-off to the dynamic-creative tool works.<br><br>What the tool adds is variety, not a new targeting method: the dynamic-creative platform has more coherent material at its disposal to choose from. One industry report puts DCO campaigns at a 32% higher CTR and a 56% lower cost-per-click than a single static creative."
+         data-it="Gli ultimi due stadi &mdash; proporzioni ed export &mdash; sono descritti in dettaglio in <a href='post-dco-engine.html' class='about-link'>Il motore: generazione, controllo, export</a> (capitoli 06&ndash;07); <a href='post-dco-mercato-globale.html' class='about-link'>DCO e il mercato delle agenzie</a> spiega come funziona il passaggio verso lo strumento di dynamic creative.<br><br> Al dunque, il tool proposto aggiunge varietà, non un nuovo metodo di targeting: la piattaforma di dynamic creative ha a disposizione più materiale coerente, da cui scegliere. Un report di settore riporta che le campagne DCO (dinamiche) ottengono un CTR superiore del 32% e un costo per clic inferiore del 56% rispetto a una singola creatività statica.">
+        The last two stages — formats and export — are covered in detail in <a href="post-dco-engine.html" class="about-link">The Engine: generation, control, export</a> (Chapters 06–07); <a href="post-dco-mercato-globale.html" class="about-link">DCO and the Agency Market</a> covers how the hand-off to the dynamic-creative tool works.<br><br>What the tool adds is variety, not a new targeting method: the dynamic-creative platform has more coherent material at its disposal to choose from. One industry report puts DCO campaigns at a 32% higher CTR and a 56% lower cost-per-click than a single static creative.
+      </p>
+
+
+      <!-- Q3b — WHAT IT DOES NOT DO -->
+      <p class="q-header" data-en="What it does not do" data-it="Cosa non fa">What it does not do</p>
+      <p data-en="Finally, the tool we're proposing, in its current prototype form, has two clear limits. The first concerns live-action footage of real people: the engine generates and keeps illustrated characters consistent, not filmed actors. It's not built for campaigns where the starting material is video of real people &mdash; that needs something else. The second concerns absolute legal certainty. The correction loop's automatic review step sharply reduces how many shots need a human review, but it doesn't remove that need entirely: there's always a small chance that a flawed image slips past the check unnoticed by a supervisor.<sup class='fn-ref'><a href='#fn3' id='fnref3'>3</a></sup> <br>A fuller map of the landscape introduced earlier on this page, in &quot;Who it's for&quot; &mdash; the specific agency tier this targets, and the honest pros and cons of reaching the market through that channel &mdash; is discussed in <span class='about-link about-link--disabled'>The Agency Channel in Italy</span>."
+         data-it="Il sistema che proponiamo, nella versione prototipale, ha due limiti. Il primo riguarda le riprese live-action di persone reali: il motore genera e mantiene coerenti personaggi illustrati, non attori filmati. Il secondo riguarda la certezza legale assoluta. Il ciclo di controllo automatico del loop di correzione riduce molto il numero di inquadrature che necessitano di una revisione umana, ma non la esclude del tutto, per ovvi motivi di sicurezza e compatibilità di certificazioni.<sup class='fn-ref'><a href='#fn3' id='fnref3'>3</a></sup> <br>Una mappa più completa del panorama introdotto poco sopra, in «A chi è rivolto» — il livello specifico di agenzie a cui ci si rivolge, e i pro e i contro rispetto a raggiungere il mercato attraverso quel canale — viene discussa in <span class='about-link about-link--disabled'>Il canale delle agenzie in Italia</span>. ">
+        Finally, the tool we're proposing, in its current prototype form, has two clear limits. The first concerns live-action footage of real people: the engine generates and keeps illustrated characters consistent, not filmed actors. It's not built for campaigns where the starting material is video of real people — that needs something else. The second concerns absolute legal certainty. The correction loop's automatic review step sharply reduces how many shots need a human review, but it doesn't remove that need entirely: there's always a small chance that a flawed image slips past the check unnoticed by a supervisor.<sup class="fn-ref"><a href="#fn3" id="fnref3">3</a></sup> <br>A fuller map of the landscape introduced earlier on this page, in "Who it's for" — the specific agency tier this targets, and the honest pros and cons of reaching the market through that channel — is discussed in <span class="about-link about-link--disabled">The Agency Channel in Italy</span>.
+      </p>
+
+      <!-- Q4 — PROS AND CONS -->
+      <p class="q-header" data-en="Pros and cons" data-it="Pro e contro">Pros and cons</p>
+      <h3 class="pc-section-title pc-pros" data-en="What works well" data-it="Cosa funziona bene">What works well</h3>
+      <ul class="pc-list">
+        <li data-en="Character identity stays consistent across dozens of narratively sequential staged shots &mdash; it isn't a single background template, but characters, faces, clothing, setting and lighting that all adapt to one another"
+            data-it="L'identità del personaggio rimane consistente su decine di inquadrature narrativamente in sequenza — non si tratta di un unico template di sfondo, ma personaggi, volti, abbigliamento, contesto e illuminazione si adattano mutuamente">Character identity stays consistent across dozens of narratively sequential staged shots — it isn't a single background template, but characters, faces, clothing, setting and lighting that all adapt to one another</li>
+        <li data-en="Produces a richer variant pool without touching the brand's or agency's existing DCO/DSP contracts, feed integrations or delivery infrastructure — it's additive, not a replacement sell"
+            data-it="Produce un pool di varianti più ricco senza intervenire sui contratti DCO/DSP, le integrazioni feed o l'infrastruttura di delivery già esistenti, usati dal brand o dall'agenzia">Produces a richer variant pool without touching the brand's or agency's existing DCO/DSP contracts, feed integrations or delivery infrastructure — it's additive, not a replacement sell</li>
+        <li data-en="A closed-loop QA step (generate → judge → correct) catches off-model frames automatically, instead of relying on a human to spot every one"
+            data-it="Il controllo qualità avviene in un ciclo interno automatico (genera → giudica → correggi), che intercetta i fotogrammi che si allontanano dal modello di storia previsto.">A closed-loop QA step (generate → judge → correct) catches off-model frames automatically, instead of relying on a human to spot every one</li>
+        <li data-en="Concretely: once the key characters are locked, each additional or modified staged shot costs one more engine run, not a new week of production &mdash; the marginal cost of the twentieth variant is very close to that of a second variant."
+            data-it="In concreto: una volta fissati i personaggi chiave, ogni inquadratura aggiuntiva/modificata costa un altro ciclo dell'engine, non una nuova settimana di produzione &mdash; il costo marginale della ventesima variante è molto vicino a quello di una seconda variante.">Concretely: once the key characters are locked, each additional or modified staged shot costs one more engine run, not a new week of production — the marginal cost of the twentieth variant is very close to that of a second variant.</li>
+			<li data-en="The bigger volume advantage isn't one campaign needing a hundred variants &mdash; few agencies do. It's the engine run as a shared service: the same formats, stages and QA loop apply regardless of brand or brief, so one centralised system can run variant batches for many different agencies and inputs in parallel, each paying only for its own run, not for rebuilding the pipeline"
+            data-it="Il vantaggio di volume più grande non costringe una singola campagna ad avere comunque molte varianti per azzerare il costo marginale. I vantaggi sono nel sistema di erogazione per più campagne e per più agenzie, come SaaS. La configurazione di proporzioni, stadi e loop di QA sono gli stessi a prescindere dal brand o dal brief. Quindi un sistema unico può erogare in parallelo batch di varianti per agenzie e input diversi, minimizzando la ridondanza delle delivery">The bigger volume advantage isn't one campaign needing a hundred variants — few agencies do. It's the engine run as a shared service: the same formats, stages and QA loop apply regardless of brand or brief, so one centralised system can run variant batches for many different agencies and inputs in parallel, each paying only for its own run, not for rebuilding the pipeline</li>
+        <li data-en="The pool isn't only inventory ready to ship: it also gives the team that makes the creative call something to compare side by side before deciding &mdash; a handful of staged options to discuss, not one AI-rendered guess to approve or reject"
+            data-it="Il pool dei risultati offre al team la possibilità di curiosare, riflettere, confrontare, scegliere &mdash; non un'unica ipotesi generata dall'AI single-shot da approvare o bocciare">The pool isn't only inventory ready to ship: it also gives the team that makes the creative call something to compare side by side before deciding — a handful of staged options to discuss, not one AI-rendered guess to approve or reject</li>
+      </ul>
+
+      <hr class="divider" style="margin: 1.8rem 0;">
+
+      <h3 class="pc-section-title pc-cons" data-en="Current limitations" data-it="I limiti attuali">Current limitations</h3>
+      <ul class="pc-list">
+        
+        <li data-en="Consistency under motion, video or live-action is still the field's frontier &mdash; here, we don't yet offer an improvement over traditional live-action or today's AI-video tools. What the engine produces is a sequence of still frames, coherent in narrative progression for the storyboard."
+            data-it="La coerenza in presenza di movimento, video o live-action è ancora la frontiera del settore &mdash; in questa sede non presentiamo ancora un miglioramento rispetto al live-action tradizionale o agli strumenti AI-video di oggi. Quello che il motore produce è una sequenza di fotogrammi fissi, ma dotati di coerenza nella progressione narrativa dello storyboard.">Consistency under motion, video or live-action is still the field's frontier — here, we don't yet offer an improvement over traditional live-action or today's AI-video tools. What the engine produces is a sequence of still frames, coherent in narrative progression for the storyboard.</li>
+			<li data-en="A remaining gap &mdash; not yet addressed, and also barely documented elsewhere &mdash; is the direct hand-off between the storyboard pipeline and ad-serving: a direct, structured link between the storyboard's output (the frames, the metadata, the variants) and a programmatic ad-serving/DCO system &mdash; that is, the platform that actually publishes and distributes the ads across channels (trafficking, the real-time dynamic swap of format/slogan toward the delivery environments: Meta, Google, various DSPs)."
+            data-it="Un punto debole, non ancora affrontato (ma altresì poco documentato), è l’aggancio diretto tra storyboard→pipeline DCO e l'ad-serving. Un collegamento diretto e strutturato tra l’output dello storyboard (i fotogrammi, i metadati, le varianti) e un sistema di ad-serving/DCO programmatico — cioè la piattaforma che poi effettivamente pubblica e distribuisce gli annunci sui canali (il trafficking, lo swap dinamico di proporzione/slogan in tempo reale verso gli ambienti di pubblicazione: Meta, Google, DSP vari).">A remaining gap — not yet addressed, and also barely documented elsewhere — is the direct hand-off between the storyboard pipeline and ad-serving: a direct, structured link between the storyboard's output (the frames, the metadata, the variants) and a programmatic ad-serving/DCO system — that is, the platform that actually publishes and distributes the ads across channels (trafficking, the real-time dynamic swap of format/slogan toward the delivery environments: Meta, Google, various DSPs).</li>
+      </ul>
+
+    <hr class="divider" style="margin: 1.8rem 0;">
+			
+	<p class="post-text" style="font-size: 1.28rem; line-height: 1.78; margin: 0.4rem 0 2.6rem;"
+       data-en="The limit is turning the sequence of images we used to generate the storyboards into continuous video, with camera movements and transitions. That's a different problem, still largely unsolved in a fully automatic way, without human supervision. Video originally generated by AI, with consistent characters and settings, still needs costly, specialised human supervision today &mdash; continuity, VFX review, filters, colour grading, audio and image-smoothness correction, and so on. The engine we're proposing simply sits upstream of that stage, automating the pre-production storyboard that used to need an illustrator; the move to finished video remains, with or without our contribution, a separate later step.<br><br>Either way, our still-frame automation doesn't lose relevance as AI video matures &mdash; if anything, it becomes even more necessary, since Kling, Veo and Higgsfield technically require a reference frame/start-end frame to achieve consistency, given that character “drift” is mitigated today precisely by that reference frame. The AI-native sector also explicitly treats the storyboard stage as an approval gate before moving on to the real costs of the finished video."
+       data-it="Il limite è quello di trasformare la sequenza di immagini con cui abbiamo generato gli storyboard in un video continuo, con movimenti di macchina e transizioni. È un problema diverso, a tutt'oggi praticamente irrisolto in modo automatico, senza supervisione umana. Un video generato originariamente dall'AI, con personaggi e ambienti coerenti, richiede oggi una supervisione umana costosa e specializzata — continuity, revisione VFX, filtri, colorazione, correzione del sonoro e della fluidità dell'immagine, ecc. Il motore che proponiamo si colloca semplicemente a monte di quella fase, automatizzando lo storyboard di pre-produzione che prima richiedeva un illustratore; il passaggio al video finale resta, con o senza il nostro contributo, un passo successivo separato.<br><br>In ogni modo, la nostra automazione a fotogrammi fissi non perde di rilevanza man mano che il video AI diventa più adulto. Anzi è ancor più necessaria, perché Kling, Veo e Higgsfield richiedono tecnicamente un fotogramma di riferimento/start-end-frame per ottenere coerenza, dato che la “deriva” del personaggio è mitigata oggi dal fotogramma di riferimento. Inoltre il settore AI-native tratta esplicitamente lo stadio storyboard come gate di approvazione prima di passare ai costi effettivi del video finale.">
+      The limit is turning the sequence of images we used to generate the storyboards into continuous video, with camera movements and transitions. That's a different problem, still largely unsolved in a fully automatic way, without human supervision. Video originally generated by AI, with consistent characters and settings, still needs costly, specialised human supervision today — continuity, VFX review, filters, colour grading, audio and image-smoothness correction, and so on. The engine we're proposing simply sits upstream of that stage, automating the pre-production storyboard that used to need an illustrator; the move to finished video remains, with or without our contribution, a separate later step.<br><br>Either way, our still-frame automation doesn't lose relevance as AI video matures — if anything, it becomes even more necessary, since Kling, Veo and Higgsfield technically require a reference frame/start-end frame to achieve consistency, given that character “drift” is mitigated today precisely by that reference frame. The AI-native sector also explicitly treats the storyboard stage as an approval gate before moving on to the real costs of the finished video.
+    </p>
+			
+			
+			
+			
+		
+
+      <!-- ── FOOTNOTES ─────────────────────────────────────── -->
+      <section class="footnotes">
+        <ol>
+		  		  
+          <li id="fn1">
+            <span data-en="Google's tool is horizontal by design — it has to work the same way for a shoe brand, an airline and a bank. That pushes it toward the lowest common denominator: swap an image, swap a price, swap a CTA. Character-consistent, multi-shot narrative generation — the same mascot staying recognisable across a dozen different scenes — is a narrow, vertical problem that a horizontal platform has no incentive to solve well, because most of its advertisers don't need it."
+                  data-it="La componente di content creation del DCO di Google è orizzontale per costruzione: deve funzionare allo stesso modo per un marchio di scarpe, una compagnia aerea o una banca. Questo la spinge a cercare il minimo comune denominatore tra questi asset — ciclare banner già pronti, sostituire prezzi, sostituire call to action — non a migliorare la generazione di una narrazione. Google investe in generative AI, ma a livello di asset (varianti di immagine), non di racconto: la narrazione resta un problema verticale e circoscritto, che una piattaforma orizzontale non ha incentivo a risolvere al suo interno, perché la maggior parte degli inserzionisti non ne ha bisogno — e quando serve, viene risolta fuori dalla piattaforma, da un’agenzia creativa o da un team interno al brand.">
+              Google's tool is horizontal by design — it has to work the same way for a shoe brand, an airline and a bank. That pushes it toward the lowest common denominator: swap an image, swap a price, swap a CTA. Character-consistent, multi-shot narrative generation — the same mascot staying recognisable across a dozen different scenes — is a narrow, vertical problem that a horizontal platform has no incentive to solve well, because most of its advertisers don't need it.
+            </span>
+            <a href="#fnref1" class="fn-back" aria-label="back to text">&#8617;</a>
+          </li>
+          <li id="fn2">
+            <span data-en="The problem with using AI, which is indeed automated, but at the level of the single frame, and almost never at the level of a continuous sequence of shots that stay consistent within a story. The difference between the two levels comes from the fact that a single generation forgets the one before it, and keeping a memory of context requires a layer above a simple prompt, however well engineered. That higher layer comes from more complex architectures, built from chains of agents calling APIs or from node-based structures like ComfyUI's. Whereas the off-the-shelf tools that promise, in one shot with a few parameters and a prompt, consistent characters and settings across at least 10 shots, are often poor and need substantial manual touch-ups."
+                  data-it="Il problema dell'uso dell'AI, che è sì automatizzata, ma a livello del singolo fotogramma, e quasi mai a livello di sequenza continua di inquadrature coerenti all'interno di una storia. La differenza tra i due livelli è dovuta al fatto che una generazione singola dimentica quella precedente, e per mantenere memoria di un contesto occorre un livello superiore a un semplice prompt, per quanto ingegnerizzato a dovere. Il livello superiore è ottenuto da architetture più complesse, formate da catene di agenti che chiamano API o da strutture a nodi come quelle di ComfyUI. Mentre i tool preconfezionati che promettono, in un colpo con qualche parametro e prompt, la coerenza di personaggi e ambienti attraverso almeno 10 inquadrature, è spesso scadente e necessita di notevoli ritocchi a mano.">
+              The problem with using AI, which is indeed automated, but at the level of the single frame, and almost never at the level of a continuous sequence of shots that stay consistent within a story. The difference between the two levels comes from the fact that a single generation forgets the one before it, and keeping a memory of context requires a layer above a simple prompt, however well engineered. That higher layer comes from more complex architectures, built from chains of agents calling APIs or from node-based structures like ComfyUI's. Whereas the off-the-shelf tools that promise, in one shot with a few parameters and a prompt, consistent characters and settings across at least 10 shots, are often poor and need substantial manual touch-ups.
+            </span>
+            <a href="#fnref2" class="fn-back" aria-label="back to text">&#8617;</a>
+          </li>
+          <li id="fn3">
+            <span data-en="For a pharmaceutical brand, or a campaign in a heavily regulated sector, where even a single out-of-compliance frame is an unacceptable legal risk, that residual margin can be intolerable: there, every single shot needs a human review, not just an automatic spot-check."
+                  data-it="Per un brand farmaceutico o per una campagna in un settore molto regolato, dove anche un singolo fotogramma fuori norma è un rischio legale inaccettabile, questo margine residuo può non essere tollerabile: lì serve una revisione umana su ogni singola inquadratura, non solo un controllo automatico a campione.">
+              For a pharmaceutical brand, or a campaign in a heavily regulated sector, where even a single out-of-compliance frame is an unacceptable legal risk, that residual margin can be intolerable: there, every single shot needs a human review, not just an automatic spot-check.
+            </span>
+            <a href="#fnref3" class="fn-back" aria-label="back to text">&#8617;</a>
+          </li>
+          <li id="fn4">
+            <span data-en="What the pool, by itself, does not do: (1) it does not bid &mdash; someone still has to decide what a single impression is worth; (2) it does not choose the audience &mdash; we declare what a scene is, never who should see it; (3) it does not react in real time &mdash; a new weather or price scene isn't painted on the spot, the platform switches to, or overlays onto, a scene already sitting in the pool."
+                  data-it="Quello che il pool, da solo, non fa: (1) non fa le offerte in asta &mdash; qualcuno deve comunque decidere quanto vale una singola impression; (2) non sceglie il pubblico &mdash; dichiariamo che cos'è una scena, non decidiamo mai chi deve vederla; (3) non reagisce in tempo reale &mdash; una nuova scena di meteo o di prezzo non viene dipinta sul momento, la piattaforma passa a una scena già pronta nel pool, o vi sovrappone sopra il nuovo dato.">
+              What the pool, by itself, does not do: (1) it does not bid — someone still has to decide what a single impression is worth; (2) it does not choose the audience — we declare what a scene is, never who should see it; (3) it does not react in real time — a new weather or price scene isn't painted on the spot, the platform switches to, or overlays onto, a scene already sitting in the pool.
+            </span>
+            <a href="#fnref4" class="fn-back" aria-label="back to text">&#8617;</a>
+          </li>
+        </ol>
+      </section>
+
+    </div>
+
+	<p class="q-header" data-en="Posts List" data-it="Elenco dei post">Posts List</p>
+    <hr class="divider" style="margin-top: 2.5rem; margin-bottom: 0.5rem;">
+
+    <div class="project-grid">
+      <a href="post-pannocchino-spighetta.html" class="project-item">
+        <span class="project-name" data-en="Automatic Storyboard: Meet Pannocchino e Spighetta!"
+              data-it="Storyboard Automatico: Ecco Pannocchino e Spighetta!">Automatic Storyboard: Meet Pannocchino e Spighetta!</span>
+        <span class="project-tag" data-en="FROM BRIEF TO FULL STORYBOARD" data-it="DAL BRIEF ALLO STORYBOARD COMPLETO">FROM BRIEF TO FULL STORYBOARD</span>
+      </a>
+      <a href="post-storyboard-adv.html" class="project-item">
+        <span class="project-name" data-en="Pannocchino e Spighetta have a baby"
+              data-it="Pannocchino e Spighetta hanno un bambino">Pannocchino e Spighetta have a baby</span>
+        <span class="project-tag" data-en="SAME LOCKED PAIR, A SECOND STORY" data-it="STESSA COPPIA FISSATA, UNA SECONDA STORIA">SAME LOCKED PAIR, A SECOND STORY</span>
+      </a>
+      <a href="post-storyboard-vendemmia.html" class="project-item">
+        <span class="project-name" data-en="The grape harvest of Grappolotto and Foglina"
+              data-it="La vendemmia di Grappolotto e Foglina">The grape harvest of Grappolotto and Foglina</span>
+        <span class="project-tag" data-en="A NEW PAIR, A FULL HARVEST ARC" data-it="UNA NUOVA COPPIA, UN ARCO COMPLETO">A NEW PAIR, A FULL HARVEST ARC</span>
+      </a>
+      <a href="post-dco-engine.html" class="project-item">
+        <span class="project-name" data-en="The Engine: generation, control, export"
+              data-it="Il motore: generazione, controllo, export">The Engine: generation, control, export</span>
+        <span class="project-tag" data-en="INSIDE THE GENERATION LOOP" data-it="DENTRO IL CICLO DI GENERAZIONE">INSIDE THE GENERATION LOOP</span>
+      </a>
+      <a href="post-dco-pipeline.html" class="project-item">
+        <span class="project-name" data-en="DCO: One Pipeline, Many Products"
+              data-it="DCO: una Pipeline, Più Prodotti">DCO: One Pipeline, Many Products</span>
+        <span class="project-tag" data-en="ONE PIPELINE, MANY PRODUCT LINES" data-it="UNA PIPELINE, PIÙ LINEE DI PRODOTTO">ONE PIPELINE, MANY PRODUCT LINES</span>
+      </a>
+      <a href="post-dco-mercato-globale.html" class="project-item">
+        <span class="project-name" data-en="DCO and the Agency Market"
+              data-it="DCO e il mercato delle agenzie">DCO and the Agency Market</span>
+        <span class="project-tag" data-en="WHERE CLOSED-LOOP QA FITS IN THE AGENCY MARKET" data-it="DOVE ENTRA IL QA A CICLO CHIUSO NEL MERCATO DELLE AGENZIE">WHERE CLOSED-LOOP QA FITS IN THE AGENCY MARKET</span>
+      </a>
+      <span class="project-item project-item--disabled">
+        <span class="project-name" data-en="The Agency Channel in Italy"
+              data-it="Il canale delle agenzie in Italia">The Agency Channel in Italy</span>
+        <span class="project-tag" data-en="THE ITALIAN AGENCY MARKET" data-it="IL MERCATO ITALIANO DELLE AGENZIE">THE ITALIAN AGENCY MARKET</span>
+      </span>
+    </div>
+
+    <p class="post-text" style="margin-top:1.5rem; opacity:0.75;"
+       data-en="For cost details see <a href='dco-costs-tech.html' class='about-link'>DCO: cost model</a>; for technical project details see <a href='dco-engine-tech.html' class='about-link'>DCO Engine: technical description</a>."
+       data-it="Per i dettagli sui costi vedi <a href='dco-costs-tech.html' class='about-link'>DCO: modello dei costi</a>; per i dettagli tecnici del progetto vedi <a href='dco-engine-tech.html' class='about-link'>Motore DCO: descrizione tecnica</a>.">
+      For cost details see <a href="dco-costs-tech.html" class="about-link">DCO: cost model</a>; for technical project details see <a href="dco-engine-tech.html" class="about-link">DCO Engine: technical description</a>.
+    </p>
+
+  </main>
+
+  <a href="index.html" class="nav-back" id="home-link" data-en="HOME" data-it="HOME">HOME</a>
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="en">EN</button>
+    <button class="lang-btn" data-lang="it">IT</button>
+  </div>
+
+  <script src="assets/lang.js"></script>
+  <script>
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').classList.toggle('scrolled', window.scrollY > 20);
+    });
+  </script>
+</body>
+</html>

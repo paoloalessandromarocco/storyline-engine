@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>ComfyUI: advertising storyboards</title>
+  <link rel="alternate" hreflang="en"        href="https://storyline-engine.com/post-comfyui-adv.html">
+  <link rel="alternate" hreflang="it"        href="https://storyline-engine.com/post-comfyui-adv.html?lang=it">
+  <link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-comfyui-adv.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <!-- Preload self-hosted fonts so they're already in flight before style.css
+       is even parsed — closes the remaining window where the browser paints
+       with the fallback (Georgia/Courier) and then swaps to the real font,
+       which is what still reads as the font "changing size" on reload. -->
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/style.css">
+
+  <style>
+    /* ── post body text ─────────────────────────────────── */
+    .post-text {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.15rem;
+      line-height: 1.75;
+      margin: 0 0 1.4em 0;
+    }
+    /* about-link (defined in style.css) handles all inline links:
+       ochre colour at rest, darker on hover, no underline        */
+
+    /* ── footnote ref ────────────────────────────────────── */
+    sup.fn-ref {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6em;
+      line-height: 1;
+      vertical-align: super;
+      margin-left: 0.1em;
+    }
+    sup.fn-ref a { text-decoration: none; opacity: 0.55; }
+    sup.fn-ref a:hover { opacity: 1; }
+
+    /* ── footnotes block ─────────────────────────────────── */
+    .footnotes {
+      margin-top: 4rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid currentColor;
+      opacity: 0.65;
+    }
+    .footnotes ol {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 0.92rem;
+      line-height: 1.65;
+      padding-left: 1.4em;
+      margin: 0;
+    }
+    .footnotes li { margin-bottom: 0.8em; }
+    .fn-back {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8em;
+      margin-left: 0.4em;
+      text-decoration: none;
+      opacity: 0.5;
+    }
+    .fn-back:hover { opacity: 1; }
+
+    /* ── figure / image ──────────────────────────────────── */
+    .post-figure {
+      margin: 2.5rem auto 2rem;
+    }
+    .post-figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    /* ── caption: bold title + smaller body ──────────────── */
+    .post-caption {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.04em;
+      line-height: 1.7;
+      opacity: 0.55;
+      margin-top: 0.7rem;
+      text-align: justify;
+    }
+    .caption-title {
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      display: block;
+      margin-bottom: 0.2em;
+      text-align: center;
+    }
+
+    /* ── numbered content list ───────────────────────────── */
+    .content-list { list-style: none; padding: 0; margin: 1.6rem 0 0; }
+    .content-item {
+      display: grid;
+      grid-template-columns: 3rem 1fr;
+      gap: 1.6rem;
+      padding: 2rem 0;
+    }
+    .content-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.1); }
+    /* no bottom line right before a chapter heading: its own thick top border already separates */
+    .content-list:has(+ .chapter-heading) .content-item:last-child { border-bottom: none; }
+    .content-number {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 600;
+      opacity: 0.18;
+      padding-top: 0.15rem;
+      line-height: 1;
+    }
+    .content-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin: 0 0 0.9rem;
+      font-weight: 400;
+    }
+    .content-body .post-text { margin: 0; }
+
+    /* ── sub-bullet list ─────────────────────────────────── */
+    .content-sublist {
+      list-style: disc;
+      padding-left: 1.4em;
+      margin-top: 0.9em;
+      margin-bottom: 0;
+    }
+    .content-sublist li {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      margin-bottom: 0.35em;
+      opacity: 0.88;
+    }
+
+    @media (max-width: 700px) {
+      .content-item { grid-template-columns: 2rem 1fr; gap: 1rem; }
+      .content-number { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body class="interior">
+
+  <header>
+    <a href="about.html" class="nav-item" data-en="ABOUT" data-it="ABOUT">ABOUT</a>
+    <div class="menu-container">
+      <span class="menu-trigger" data-en="TOPICS" data-it="ARGOMENTI">TOPICS</span>
+      <div class="menu-dropdown">
+        <a href="neural-graphics.html" class="menu-item" data-en="VISUAL STORIES" data-it="FUMETTI/STORYBOARD">VISUAL STORIES</a>
+        <a href="adv.html"             class="menu-item" data-en="ADV"            data-it="ADV">ADV</a>
+        <a href="posts.html"           class="menu-item" data-en="POSTS"          data-it="POST">POSTS</a>
+        <span class="menu-item menu-item--disabled" data-en="VIDEO" data-it="VIDEO">VIDEO</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content">
+
+    <p class="section-label"
+       data-en="ComfyUI · Advertising"
+       data-it="ComfyUI · Pubblicità">ComfyUI · Advertising</p>
+
+    <h1 class="page-title"
+        data-en="ComfyUI: advertising storyboards"
+        data-it="ComfyUI: storyboard pubblicitari">ComfyUI: advertising storyboards</h1>
+
+    <div class="page-body">
+
+      <!-- tags -->
+      <div class="post-tags" style="margin-bottom:2rem;">
+        <span class="post-tag tag-tech" data-en="ComfyUI"      data-it="ComfyUI">ComfyUI</span>
+        <span class="post-tag tag-tech" data-en="Advertising"  data-it="Pubblicità">Advertising</span>
+        <span class="post-tag tag-tech" data-en="Automation"   data-it="Automazione">Automation</span>
+        <span class="post-tag tag-tech" data-en="Consistency"  data-it="Coerenza">Consistency</span>
+      </div>
+
+      <!-- ── ABSTRACT ──────────────────────────────────────── -->
+
+      <p class="post-abstract-text"
+         data-en="This post is a follow-up to <a href='post-comfyui-intro.html' class='about-link' target='_self'>What is ComfyUI</a>, applied to a concrete case: an advertising mascot pair, <em>Pannocchino</em> and <em>Spighetta</em>, created for an Italian cake product. A brand built around two recurring characters cannot survive on a handful of illustrations — it needs a steady stream of new scenes, occasions, and formats, all showing the same two faces. Redrawing or re-photographing a mascot for every new story does not scale. What follows is a non-technical walkthrough of a ComfyUI pipeline built to generate many such stories automatically, keep the characters recognizable in every single shot, and catch and fix its own mistakes before a human ever sees them. The images below are concept illustrations used to visualize the idea — not output already produced by the pipeline described here."
+         data-it="Questo articolo prosegue <a href='post-comfyui-intro.html' class='about-link' target='_self'>Cosa è ComfyUI</a>, applicato a un nuovo caso applicativo: una coppia di mascotte pubblicitarie, <em>Pannocchino</em> e <em>Spighetta</em>, create per un prodotto dolciario italiano (fittizio). Un brand costruito attorno a due personaggi ricorrenti non può vivere di poche illustrazioni: ha bisogno di un flusso costante di nuove scene, occasioni e formati, sempre con gli stessi corpi e volti. Il presupposo del post è questo: ridisegnare o rifotografare una mascotte per ogni nuova storia non è scalabile. Quello che segue è una spiegazione non tecnica di un processo per generare automaticamente molte storie come questa, mantenere i personaggi riconoscibili in ogni singola inquadratura. Le immagini qui sotto sono illustrazioni concettuali usate per visualizzare l'idea — non sono output già prodotti dalla pipeline descritta qui: <a href="post-comfyui-adv-tech.html" class="about-link" target="_self">ComfyUI: the pipeline architecture</a>.">
+        This post is a follow-up to <a href='post-comfyui-intro.html' class="about-link" target="_self">What is ComfyUI</a>, applied to a concrete case: an advertising mascot pair, <em>Pannocchino</em> and <em>Spighetta</em>, created for an Italian cake product. A brand built around two recurring characters cannot survive on a handful of illustrations — it needs a steady stream of new scenes, occasions, and formats, all showing the same two faces. Redrawing or re-photographing a mascot for every new story does not scale. What follows is a non-technical walkthrough of a ComfyUI pipeline built to generate many such stories automatically, keep the characters recognizable in every single shot, and catch and fix its own mistakes before a human ever sees them. The images below are concept illustrations used to visualize the idea — not output already produced by the pipeline described here.
+      </p>
+
+      <!-- ── FIGURE 1 — ENCOUNTER ─────────────────────────── -->
+      <figure class="post-figure">
+        <img src="assets/post-comfyui-adv/01-encounter.jpg"
+             alt="Pannocchino and Spighetta sitting together on a bench in a wheat field at sunset">
+        <figcaption class="post-caption"
+          data-en="<span class='caption-title'>The encounter</span> Concept illustration — Pannocchino and Spighetta, the two mascots at the center of this pipeline, in the opening scene of a possible story. Not pipeline output."
+          data-it="<span class='caption-title'>L'incontro</span> Illustrazione concettuale — Pannocchino e Spighetta, i due protagonisti di questa pipeline, nella scena d'apertura di una possibile storia. Non è output della pipeline.">
+          <span class="caption-title">The encounter</span> Concept illustration — Pannocchino and Spighetta, the two mascots at the center of this pipeline, in the opening scene of a possible story. Not pipeline output.
+        </figcaption>
+      </figure>
+
+      <!-- ── CONTENT LIST ─────────────────────────────────── -->
+
+      <ol class="content-list">
+
+        <!-- 01 -->
+        <li class="content-item">
+          <div class="content-number">01</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="From a short brief to a full storyboard"
+                data-it="Da una breve descrizione a uno storyboard completo">
+              From a short brief to a full storyboard
+            </h3>
+
+            <p class="post-text"
+               data-en="Instead of writing one prompt per image and hoping it fits the previous one, the pipeline starts from a short, structured brief: who appears, what the occasion is, roughly how many shots the story needs, and what tone it should have — a birthday is not a harvest festival, and the brief says so explicitly rather than leaving it to be guessed shot by shot. That brief is expanded automatically into a full sequence of individual shot descriptions — framing, pose, setting, and the small continuity details that tie one frame to the next — the same way a human storyboard artist would break a script into panels, except the breakdown itself is generated rather than drawn by hand."
+               data-it="Invece di scrivere un prompt per ogni immagine sperando che si accordi con la precedente, la pipeline parte da una struttura: chi sono i personaggi, qual è l'occasione, quante inquadrature servono e che tono deve avere la storia — un compleanno non è una festa del raccolto, o una saga del paese, ma una storia più intima che si raccoglie nell'unità familiare di una fattoria simbolica, con gli animaletti tipici sorridenti e felici del contatto con la natura. E la descrizione breve lo dichiara esplicitamente invece di lasciarlo indovinare inquadratura per inquadratura. Questa descrizione viene espansa automaticamente in una sequenza completa di personaggi e ambientazioni per ogni singola inquadratura — taglio, posa, spazi, e i piccoli dettagli di continuità che legano un fotogramma al successivo — allo stesso modo in cui un disegnatore di storyboard scomporrebbe una sceneggiatura in tavole. L'aspetto compositivo è sostenuto non tanto da prompt e kwds, ma da un flusso organizzato attorno a nodi, che possono essere parametrizzati e ricombinati. Per dettagli si veda   <a href="post-comfyui-adv-tech.html" class="about-link" target="_self">ComfyUI: the pipeline architecture</a>.</span>"> 
+              Instead of writing one prompt per image and hoping it fits the previous one, the pipeline starts from a short, structured brief: who appears, what the occasion is, roughly how many shots the story needs, and what tone it should have — a birthday is not a harvest festival, and the brief says so explicitly rather than leaving it to be guessed shot by shot. That brief is expanded automatically into a full sequence of individual shot descriptions — framing, pose, setting, and the small continuity details that tie one frame to the next — the same way a human storyboard artist would break a script into panels, except the breakdown itself is generated rather than drawn by hand.
+            </p>
+
+            <p class="post-text"
+               data-en="This is the part that makes the system reusable rather than a one-off script. Changing the brief — a different occasion, a different setting, a different cast — is enough to start an entirely new story end to end; nothing about the characters themselves, or about the mechanism that keeps them consistent, needs to be touched. The brief is the only thing a person actually has to write."
+               data-it="Sotto alla funzione che regola l'aspetto compositivo,  c'è una seconda idea che vale la pena introdurre qui, in modo informale: prima che tutto ciò possa accadere, una competenza interna (implementata nel modello) deve sapere cosa contiene davvero un 'cortile di fattoria', e cosa contiene una 'casa', e che entrambi sono luoghi plausibili in cui far accadere un compleanno. Pensalo come il registro degli oggetti di scena di una compagnia teatrale — un quaderno, scritto una sola volta, che elenca ogni scenografia che la compagnia possiede (cucina, cortile, campo di grano…) e, per ciascuna, cosa le appartiene (la voce 'cortile' elenca una mucca, un cane, qualche gallina; la voce 'cucina' elenca un tavolo e una torta) e più o meno quanto può crescere una scena lì. È quel registro che permette, più avanti, di proporre un'occasione del tutto nuova — un pranzo del raccolto, una recita scolastica — semplicemente scrivendo una nuova voce nello stesso quaderno, invece di dover spiegare da zero, ogni volta, come appare un cortile di fattoria.">
+              This is the part that makes the system reusable rather than a one-off script. Changing the brief — a different occasion, a different setting, a different cast — is enough to start an entirely new story end to end; nothing about the characters themselves, or about the mechanism that keeps them consistent, needs to be touched. The brief is the only thing a person actually has to write.
+            </p>
+
+          </div>
+        </li>
+
+        <!-- ── FIGURE 2 — KISS ──────────────────────────────── -->
+        <li>
+          <figure class="post-figure">
+            <img src="assets/post-comfyui-adv/02-kiss.jpg"
+                 alt="Pannocchino and Spighetta kissing in a rustic kitchen, next to a cake">
+            <figcaption class="post-caption"
+              data-en="<span class='caption-title'>The kiss</span> Concept illustration — a close, intimate shot: exactly the kind of composition that is hardest to keep on-model. Not pipeline output."
+              data-it="<span class='caption-title'>Il bacio</span> Illustrazione concettuale — un'inquadratura ravvicinata e intima: proprio il tipo di composizione più difficile da mantenere coerente con il modello originale. Non è output della pipeline.">
+              <span class="caption-title">The kiss</span> Concept illustration — a close, intimate shot: exactly the kind of composition that is hardest to keep on-model. Not pipeline output.
+            </figcaption>
+          </figure>
+        </li>
+
+        <!-- 02 -->
+        <li class="content-item">
+          <div class="content-number">02</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="Staying recognizable, shot after shot"
+                data-it="Restare riconoscibili, inquadratura dopo inquadratura">
+              Staying recognizable, shot after shot
+            </h3>
+
+            <p class="post-text"
+               data-en="A plain text-to-image generator redraws a character from scratch every time, which is why it drifts: a slightly different face, a different shade of yellow, a hairstyle that is close but not quite right. Across a handful of images the drift is barely noticeable; across dozens it becomes a visible, inconsistent brand. To avoid this, the pipeline keeps a separate visual reference for each named character — a kind of fingerprint of how they look, built once from a small set of approved images — and attaches it to every shot it generates, whether it is a wide establishing shot in a wheat field or a tight close-up like the one above."
+               data-it="Un generatore testo-immagine standard ridisegna un personaggio da zero ogni volta, ed è per questo che tende a slittare: un volto leggermente diverso, una tonalità di giallo diversa, un'acconciatura non proprio identica. Su una manciata di immagini lo slittamento è quasi impercettibile; su decine diventa na storia visiva visibilmente incoerente. Per evitarlo, la pipeline mantiene per ogni personaggio nominato un riferimento visivo separato — una sorta di impronta di come deve apparire, costruita una sola volta da un piccolo set di immagini approvate — e lo applica a ogni inquadratura che genera, che sia un campo lungo in un campo di grano o un primo piano/medio come quello dell'immagine in alto.">
+              A plain text-to-image generator redraws a character from scratch every time, which is why it drifts: a slightly different face, a different shade of yellow, a hairstyle that is close but not quite right. Across a handful of images the drift is barely noticeable; across dozens it becomes a visible, inconsistent brand. To avoid this, the pipeline keeps a separate visual reference for each named character — a kind of fingerprint of how they look, built once from a small set of approved images — and attaches it to every shot it generates, whether it is a wide establishing shot in a wheat field or a tight close-up like the one above.
+            </p>
+
+            <p class="post-text"
+               data-en="The reference does the same job in every scene, which is what keeps Pannocchino and Spighetta looking like themselves across dozens of images instead of only the first few. It also scales sensibly: the two main characters carry a strict identity-lock, while secondary figures — farm animals, background guests, anyone not central to the brand — can appear from a plain description alone, without needing a reference of their own. Precision is spent where the brand actually depends on it, not evenly across every pixel in frame."
+               data-it="Il riferimento svolge la stessa funzione in ogni scena, ed è questo che mantiene Pannocchino e Spighetta riconoscibili lungo decine di immagini, e non solo nelle prime. Il sistema scala in modo ragionevole: i due personaggi principali mantengono un identity-lock rigoroso, mentre le figure secondarie — animali della fattoria, comparse sullo sfondo, chiunque non sia centrale per il brand — possono essere realizzati  a partire da una semplice descrizione testuale, senza bisogno di un riferimento identitario. ">
+              The reference does the same job in every scene, which is what keeps Pannocchino and Spighetta looking like themselves across dozens of images instead of only the first few. It also scales sensibly: the two main characters carry a strict identity-lock, while secondary figures — farm animals, background guests, anyone not central to the brand — can appear from a plain description alone, without needing a reference of their own. Precision is spent where the brand actually depends on it, not evenly across every pixel in frame.
+            </p>
+
+          </div>
+        </li>
+
+        <!-- ── FIGURE 3 — BABY BIRTH ────────────────────────── -->
+        <li>
+          <figure class="post-figure">
+            <img src="assets/post-comfyui-adv/03-baby-birth.jpg"
+                 alt="Pannocchino, Spighetta and their baby together in the kitchen with a cake">
+            <figcaption class="post-caption"
+              data-en="<span class='caption-title'>A new arrival</span> Concept illustration — a scene with three characters in frame, which is a harder case than the two-character shots above. Not pipeline output."
+              data-it="<span class='caption-title'>Un nuovo arrivo</span> Illustrazione concettuale — una scena con tre personaggi in campo, un caso più complesso delle inquadrature a due viste sopra. Non è output della pipeline.">
+              <span class="caption-title">A new arrival</span> Concept illustration — a scene with three characters in frame, which is a harder case than the two-character shots above. Not pipeline output.
+            </figcaption>
+          </figure>
+        </li>
+
+        <!-- 03 -->
+        <li class="content-item">
+          <div class="content-number">03</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="A self-checking step, not a human one"
+                data-it="Un controllo automatico, non umano">
+              A self-checking step, not a human one
+            </h3>
+
+            <p class="post-text"
+               data-en="Keeping the characters on-model is not guaranteed on the first attempt — it is checked. After each shot is generated, a second, independent pass looks at the result and compares it against the brief: are the right characters present, in the right pose, nothing off-brand in frame? That second pass is itself a generative model, asked to act as a reviewer rather than an illustrator — the same kind of judgment a human art director would apply, but running automatically on every single shot instead of a sample of them."
+               data-it="Mantenere i personaggi coerenti con il modello non è garantito al primo tentativo — viene verificato. Dopo che ogni inquadratura viene generata, un secondo passaggio, indipendente dal primo, osserva il risultato e lo confronta con il breve iniziale: ci sono i personaggi giusti, nella posa giusta, niente di fuori tono nell'inquadratura? Quel secondo passaggio è a sua volta un modello generativo, a cui viene chiesto di comportarsi da revisore anziché da illustratore — lo stesso tipo di giudizio che applicherebbe un art director umano, ma eseguito automaticamente su ogni singola inquadratura. Il controllo automatico non osserva  un'inquadratura chiedendosi se sia bella — scorre una lista di controllo breve e specifica, ricavata direttamente dalla stessa descrizione e dalla stessa voce del registro usata per generarla: ci sono i volti giusti in campo, più o meno nella posizione giusta, con un'espressione che corrisponde al momento richiesto, senza che qualcosa appartenente a un'altra voce del registro (per esempio un animale da fattoria) sia finito in un'inquadratura che doveva essere una cucina? È più simile a un correttore di bozze che confronta un testo con un prontuario di stile, rispetto a un critico che forma un giudizio di gusto — il test è ristretto e preciso, ed è esattamente questo che gli permette di funzionare da solo su ogni singola inquadratura, invece di essere riservato a un controllo a campione.">
+              Keeping the characters on-model is not guaranteed on the first attempt — it is checked. After each shot is generated, a second, independent pass looks at the result and compares it against the brief: are the right characters present, in the right pose, nothing off-brand in frame? That second pass is itself a generative model, asked to act as a reviewer rather than an illustrator — the same kind of judgment a human art director would apply, but running automatically on every single shot instead of a sample of them.
+            </p>
+
+            <p class="post-text"
+               data-en="When something does not match, that one shot is quietly regenerated and checked again, in a small loop that keeps running on its own until it passes — or is flagged for a human to look at, if it fails repeatedly. This is what makes it practical to introduce something as demanding as a new character in frame — like the scene above — without a human manually approving every output one by one. It is also the step that most clearly separates this approach from asking a general-purpose image tool for one picture at a time: there, the equivalent check is a person looking at the result and deciding by eye whether to accept it or try again. That works fine for one image. It does not stay fast or cheap once the brief calls for the twentieth, the fiftieth, or the two-hundredth.<sup class='fn-ref'><a href='#fn3'>[3]</a></sup>"
+               data-it="Quando qualcosa non corrisponde, quella singola inquadratura viene rigenerata  e ricontrollata, in un breve ciclo che prosegue da solo finché non viene superato — oppure segnalata a una persona, se continua a fallire. È questo che rende praticabile introdurre qualcosa di impegnativo come un nuovo personaggio in scena — come nell'immagine sopra — senza che una persona debba approvare manualmente ogni singolo output. È anche il passaggio che separa più nettamente questo approccio dal chiedere a uno strumento generico un'immagine alla volta: lì, il controllo equivalente è una persona che guarda il risultato e decide a occhio se accettarlo o riprovare. Funziona bene per una immagine, ma non quando ne richiede la ventesima, la cinquantesima o la duecentesima.<sup class='fn-ref'><a href='#fn3'>[3]</a></sup>">
+              When something does not match, that one shot is quietly regenerated and checked again, in a small loop that keeps running on its own until it passes — or is flagged for a human to look at, if it fails repeatedly. This is what makes it practical to introduce something as demanding as a new character in frame — like the scene above — without a human manually approving every output one by one. It is also the step that most clearly separates this approach from asking a general-purpose image tool for one picture at a time: there, the equivalent check is a person looking at the result and deciding by eye whether to accept it or try again. That works fine for one image. It does not stay fast or cheap once the brief calls for the twentieth, the fiftieth, or the two-hundredth.<sup class="fn-ref"><a href="#fn3">[3]</a></sup>
+            </p>
+
+          </div>
+        </li>
+
+        <!-- ── FIGURE 4 — FIRST BIRTHDAY, FARM ───────────────── -->
+        <li>
+          <figure class="post-figure">
+            <img src="assets/post-comfyui-adv/04-first-birthday-baby-outdoor.jpg"
+                 alt="Pannocchino, Spighetta and their baby celebrating the first birthday in a farmhouse courtyard, surrounded by farm animals">
+            <figcaption class="post-caption"
+              data-en="<span class='caption-title'>First birthday in the farmyard</span> Concept illustration — the family celebrates outdoors, and the cast widens to a cow, a dog, and a handful of chickens. Not pipeline output."
+              data-it="<span class='caption-title'>Il primo compleanno in cortile</span> Illustrazione concettuale — la famiglia festeggia all'aperto, e il cast si estende a una mucca, un cane e qualche gallina. Non è output della pipeline.">
+              <span class="caption-title">First birthday in the farmyard</span> Concept illustration — the family celebrates outdoors, and the cast widens to a cow, a dog, and a handful of chickens. Not pipeline output.
+            </figcaption>
+          </figure>
+        </li>
+
+        
+
+        <!-- 04 -->
+        <li class="content-item">
+          <div class="content-number">04</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="One occasion, several scenes"
+                data-it="Una stessa occasione, più scene">
+              One occasion, several scenes
+            </h3>
+
+            <p class="post-text"
+               data-en="The brief does not have to describe a single, linear sequence of shots — it can branch. The two images above are not two different stories: they are the same occasion, the first birthday, told twice. One version stays close to the family, indoors, just the three of them around the cake. The other steps outside, widens the frame, and brings in the farmyard — a cow, a dog, a handful of chickens — for a livelier, more populated version of the same afternoon. Both are generated from the same underlying brief with one parameter changed, and both go through the identical pipeline: expanded into shots, generated, and checked against the brief before being accepted."
+               data-it="Le due immagini sopra non sono due storie diverse: sono la stessa occasione, il primo compleanno, raccontata due volte. Una versione è interna alla famiglia, in casa, solo loro tre intorno alla torta. L'altra esce all'aperto, estende l'inquadratura e porta in scena il cortile della fattoria — una mucca, un cane, qualche gallina — per una versione più comunitaria e gioiosa dello stesso pomeriggio (oltre che multispecie). Entrambe nascono dallo stessa descrione  di base con un solo parametro cambiato, ed entrambe attraversano la medesima pipeline: scomposte in inquadrature, generate e verificate.  Immagina i tre personaggi come un unico ritaglio di carta, già in posa — il padre, la madre, il bambino che ride, la torta tenuta tra le loro mani. Quel ritaglio è completo in sé: porta con sé la disposizione dei corpi, l'inclinazione di una testa, un sorriso preciso. Quello che cambia tra la versione in cortile e quella in casa non è mai il ritaglio — è il foglio sottostante. Fai scorrere lo stesso ritaglio su uno sfondo da cucina e ottieni un pomeriggio in casa; fallo scorrere su uno sfondo di cortile, aggiungi ai margini una mucca e qualche gallina, e ottieni lo stesso pomeriggio all'aperto. L'abbraccio, le espressioni, la relazione tra i tre corpi — questa è la parte che resta fissa, come una posa che un fotografo blocca prima di cambiare il fondale dietro al soggetto.">
+              The brief does not have to describe a single, linear sequence of shots — it can branch. The two images above are not two different stories: they are the same occasion, the first birthday, told twice. One version stays close to the family, indoors, just the three of them around the cake. The other steps outside, widens the frame, and brings in the farmyard — a cow, a dog, a handful of chickens — for a livelier, more populated version of the same afternoon. Both are generated from the same underlying brief with one parameter changed, and both go through the identical pipeline: expanded into shots, generated, and checked against the brief before being accepted.
+            </p>
+
+            <p class="post-text"
+               data-en="This is where the identity-lock and the background-character handling described above actually earn their keep. The farmyard variant needs the animals treated as background figures — prompt-only, no reference, no identity-lock, exactly as in point 02 — while the three named characters still carry their strict reference in every shot, farmyard or living room. Branching a single occasion into two deliverable scenes costs nothing extra in setup: it is the same mechanism, run twice with a different setting, not a second production."
+               data-it="È qui che l'identity-lock e la gestione dei personaggi di sfondo descritte in precedenza si dimostrano utili davvero. La variante in cortile richiede che gli animali siano trattati come figure di sfondo — solo testo, senza riferimento, senza identity-lock, esattamente come al punto 02 — mentre i tre personaggi nominati mantengono comunque il loro riferimento rigoroso in ogni inquadratura, in cortile o in casa. Diramare una singola occasione in due scene finali non costa nulla in più in termini di impostazione: è lo stesso meccanismo, eseguito due volte con un'ambientazione diversa, non una nuova produzione da zero (come nei tool generativi black-box).">
+              This is where the identity-lock and the background-character handling described above actually earn their keep. The farmyard variant needs the animals treated as background figures — prompt-only, no reference, no identity-lock, exactly as in point 02 — while the three named characters still carry their strict reference in every shot, farmyard or living room. Branching a single occasion into two deliverable scenes costs nothing extra in setup: it is the same mechanism, run twice with a different setting, not a second production.
+            </p>
+
+          </div>
+        </li>
+		
+		<!-- ── FIGURE 5 — FIRST BIRTHDAY, HOME ───────────────── -->
+        <li>
+          <figure class="post-figure">
+            <img src="assets/post-comfyui-adv/05-first-birthday-baby-home.jpg"
+                 alt="The family cutting a cake together at home for the baby's first birthday">
+            <figcaption class="post-caption"
+              data-en="<span class='caption-title'>The same afternoon, at home</span> Concept illustration — the same birthday, told again: this time the family stays indoors, just the three of them around the cake. Not pipeline output."
+              data-it="<span class='caption-title'>Lo stesso pomeriggio, a casa</span> Illustrazione concettuale — lo stesso compleanno, raccontato di nuovo: questa volta la famiglia resta in casa, solo loro tre intorno alla torta. Non è output della pipeline.">
+              <span class="caption-title">The same afternoon, at home</span> Concept illustration — the same birthday, told again: this time the family stays indoors, just the three of them around the cake. Not pipeline output.
+            </figcaption>
+          </figure>
+        </li>
+
+        <!-- 05 -->
+        <li class="content-item">
+          <div class="content-number">05</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="Why this is fast, cheap, and built to grow"
+                data-it="Perché è veloce, economico e pensato per crescere">
+              Why this is fast, cheap, and built to grow
+            </h3>
+
+            <p class="post-text"
+               data-en="Three things follow directly from working this way — and all three are best understood against the alternative most content creators and agencies actually use today: asking a general-purpose tool like Gemini for one image at a time, by hand, restarting from the same reference each time to keep some rough continuity. That approach is not wrong — for a single hero image it is often the simplest thing to do — but it does not get cheaper or faster as volume grows, because the part that does not scale is the person: writing each prompt, judging each result, deciding what to regenerate."
+               data-it="Da questo modo di lavorare discendono direttamente tre conseguenze — e tutte e tre si capiscono meglio messe a confronto con l'alternativa black-box tool che la maggior parte dei content creator e delle agenzie usa oggi: chiedere a uno strumento generico come <i>DreamStudio, Pika<\i> o altri:  un'immagine alla volta, a mano, ripartendo ogni volta dallo stesso riferimento per mantenere una continuità approssimativa. Non è un approccio sbagliato — per una singola immagine principale è spesso la soluzione più semplice — ma non è scalabile: scrivere/modificare ogni prompt, valutare ogni risultato, e soprattutto cercare di sistemarlo tornando indietro e variando casualmente i parametri, kwds e testo.">
+              Three things follow directly from working this way — and all three are best understood against the alternative most content creators and agencies actually use today: asking a general-purpose tool like Gemini for one image at a time, by hand, restarting from the same reference each time to keep some rough continuity. That approach is not wrong — for a single hero image it is often the simplest thing to do — but it does not get cheaper or faster as volume grows, because the part that does not scale is the person: writing each prompt, judging each result, deciding what to regenerate.
+            </p>
+
+            <ul class="content-sublist">
+                <li data-en="<strong>Many variations.</strong> Because a brief — not a fixed drawing — is what changes between stories, the same cast can appear in dozens of different occasions (a birthday, an afternoon in the farmyard, a harvest festival, a new product launch) without anything being redesigned from scratch. One-shot generation can reach the same scenes eventually, but each one is its own manual effort, re-prompted and re-judged from nothing."
+                    data-it="<....">
+                    <strong>Many variations.</strong> Because a brief — not a fixed drawing — is what changes between stories, the same cast can appear in dozens of different occasions (a birthday, an afternoon in the farmyard, a harvest festival, a new product launch) without anything being redesigned from scratch. One-shot generation can reach the same scenes eventually, but each one is its own manual effort, re-prompted and re-judged from nothing.
+                </li>
+                <li data-en="<strong>Low cost that stays low.</strong> There is no reshoot and no new illustration commissioned for each variant; cost scales with a few minutes of computer time rather than hours of an illustrator's, photographer's, or prompt-engineer's time. The one-shot method also looks cheap at first — a single image is nearly free — but its real cost is the person re-prompting and eyeballing every output, and that cost is paid again, in full, for every single image. The pipeline's cost is paid mostly once, up front, in building the character reference and the checking step; after that, each additional story is marginal."
+                    data-it="<strong>Un costo basso che resta basso.</strong> Non c'è un nuovo scatto fotografico né una nuova illustrazione commissionata per ogni variante; il costo cresce con pochi minuti di tempo macchina, non con le ore di un illustratore, un fotografo o chi scrive i prompt. Anche il metodo one-shot sembra economico all'inizio — una singola immagine costa quasi nulla — ma il suo vero costo è l'effort della persona che riscrive e controlla a occhio ogni output, ed è un costo che si paga di nuovo, per intero, per ogni singola immagine. Il costo della pipeline viene invece pagato per lo più una volta sola, all'inizio, nel costruire il riferimento dei personaggi e il passaggio di controllo; da lì in poi, ogni storia aggiuntiva è marginale.">
+                    <strong>Low cost that stays low.</strong> There is no reshoot and no new illustration commissioned for each variant; cost scales with a few minutes of computer time rather than hours of an illustrator's, photographer's, or prompt-engineer's time. The one-shot method also looks cheap at first — a single image is nearly free — but its real cost is the person re-prompting and eyeballing every output, and that cost is paid again, in full, for every single image. The pipeline's cost is paid mostly once, up front, in building the character reference and the checking step; after that, each additional story is marginal.
+                </li>
+                <li data-en="<strong>Built to be rebuilt.</strong> Every step of the mechanism — the brief, the character reference, the checking step — is a separate, explicit piece. A new character, a new kind of occasion, or a new check can be added later without starting over, unlike a finished video or a commissioned illustration, which has to be redone whole if something changes — and unlike a one-shot workflow, which has no pieces to begin with: it is a person and a tool, not a system that can be inspected, versioned, or handed to someone else to run."
+                    data-it="<strong>Pensato per essere ricostruito.</strong> Ogni fase del meccanismo — la descrizione breve, il riferimento dei personaggi, il controllo — è un pezzo separato ed esplicito. Un nuovo personaggio, un nuovo tipo di occasione o un nuovo controllo possono essere aggiunti in seguito senza ripartire da zero.">
+                    <strong>Built to be rebuilt.</strong> Every step of the mechanism — the brief, the character reference, the checking step — is a separate, explicit piece. A new character, a new kind of occasion, or a new check can be added later without starting over, unlike a finished video or a commissioned illustration, which has to be redone whole if something changes — and unlike a one-shot workflow, which has no pieces to begin with: it is a person and a tool, not a system that can be inspected, versioned, or handed to someone else to run.
+                </li>
+            </ul>
+
+            <p class="post-text" style="margin-top:1.4em;"
+               data-en="None of this makes one-shot generation obsolete — for a single campaign image it remains the fastest path from idea to picture, and it is the right choice when there is only ever going to be one image. The case for a pipeline only appears once the brand needs the same characters again, and again, and again: that is when the manual-supervision cost of the one-shot method stops being a rounding error and starts being the whole budget, while the pipeline's cost curve has already gone flat."
+               data-it="Nulla di tutto questo rende obsoleta la generazione one-shot — per una singola immagine di campagna resta la via più rapida dall'idea alla figura, ed è la scelta giusta quando quell'immagine resterà davvero unica. Il vantaggio di una pipeline emerge solo quando il brand ha bisogno degli stessi personaggi di nuovo, e ancora, e ancora: è lì che il costo di supervisione manuale del metodo one-shot smette di essere un dettaglio trascurabile e rischia di coprire l'intero budget, mentre la curva di costo della pipeline si è già appiattita.">
+              None of this makes one-shot generation obsolete — for a single campaign image it remains the fastest path from idea to picture, and it is the right choice when there is only ever going to be one image. The case for a pipeline only appears once the brand needs the same characters again, and again, and again: that is when the manual-supervision cost of the one-shot method stops being a rounding error and starts being the whole budget, while the pipeline's cost curve has already gone flat.
+            </p>
+
+          </div>
+        </li>
+
+        <!-- ── FIGURE 6 — PACKAGING ─────────────────────────── -->
+        <li>
+          <figure class="post-figure">
+            <img src="assets/post-comfyui-adv/06-packaging.jpg"
+                 alt="Branded packaging box featuring Pannocchino and Spighetta">
+            <figcaption class="post-caption"
+              data-en="<span class='caption-title'>From story to shelf</span> Concept illustration — the same mechanism that builds the story can feed the final branded artwork too: the packaging is just another output of the same pipeline, not a separate job. Not pipeline output."
+              data-it="<span class='caption-title'>Dalla storia allo scaffale</span> Illustrazione concettuale — lo stesso meccanismo che costruisce la storia può alimentare anche il materiale grafico brandizzato finale: la confezione è semplicemente un altro output della stessa pipeline, non un lavoro a parte. Non è output della pipeline.">
+              <span class="caption-title">From story to shelf</span> Concept illustration — the same mechanism that builds the story can feed the final branded artwork too: the packaging is just another output of the same pipeline, not a separate job. Not pipeline output.
+            </figcaption>
+          </figure>
+        </li>
+
+      </ol>
+
+      <!-- ── FOOTNOTES ───────────────────────────────────────── -->
+      <section class="footnotes">
+        <ol>
+          <li id="fn1">
+            <span data-en="&quot;Brief&quot; is used here in the everyday sense: a short description of what a scene or a story needs, not a technical specification. Readers curious about the underlying node-based mechanism itself — what a node, a connection, or a pipeline actually is — can start from <a href='post-comfyui-intro.html' class='about-link' target='_self'>What is ComfyUI</a>."
+                  data-it="«Breve» è usato qui nel senso comune: una breve descrizione di cosa serva a una scena o a una storia, non una specifica tecnica. Chi fosse curioso del meccanismo a nodi sottostante — cosa sia davvero un nodo, una connessione o una pipeline — può partire da <a href='post-comfyui-intro.html' class='about-link' target='_self'>Cosa è ComfyUI</a>.">&quot;Brief&quot; is used here in the everyday sense: a short description of what a scene or a story needs, not a technical specification. Readers curious about the underlying node-based mechanism itself — what a node, a connection, or a pipeline actually is — can start from <a href="post-comfyui-intro.html" class="about-link" target="_self">What is ComfyUI</a>.</span>
+            <a href="#fn1" class="fn-back" aria-label="back to text">↩</a>
+          </li>
+          <li id="fn2">
+            <span data-en="Pannocchino and Spighetta are a fictional example used to illustrate the mechanism; the images on this page are concept illustrations created to visualize the idea, not screenshots of a finished, running pipeline."
+                  data-it="Pannocchino e Spighetta sono un esempio immaginario usato per illustrare il meccanismo; le immagini di questa pagina sono illustrazioni concettuali create per visualizzare l'idea, non schermate di una pipeline finita e funzionante.">Pannocchino and Spighetta are a fictional example used to illustrate the mechanism; the images on this page are concept illustrations created to visualize the idea, not screenshots of a finished, running pipeline.</span>
+            <a href="#fn2" class="fn-back" aria-label="back to text">↩</a>
+          </li>
+          <li id="fn3">
+            <span data-en="This page deliberately stays non-technical. The node-by-node architecture behind the brief, the character reference, and the checking loop — including how the back-edge from the checking step to the generator actually works — is written up separately in <a href='post-comfyui-adv-tech.html' class='about-link' target='_self'>ComfyUI: the pipeline architecture</a>."
+                  data-it="Questa pagina resta volontariamente non tecnica. L'architettura nodo-per-nodo dietro il breve, il riferimento dei personaggi e il ciclo di controllo — incluso come funziona davvero l'arco di ritorno dal controllo al generatore — è descritta a parte in <a href='post-comfyui-adv-tech.html' class='about-link' target='_self'>ComfyUI: l'architettura della pipeline</a>.">This page deliberately stays non-technical. The node-by-node architecture behind the brief, the character reference, and the checking loop — including how the back-edge from the checking step to the generator actually works — is written up separately in <a href="post-comfyui-adv-tech.html" class="about-link" target="_self">ComfyUI: the pipeline architecture</a>.</span>
+            <a href="#fn3" class="fn-back" aria-label="back to text">↩</a>
+          </li>
+        </ol>
+      </section>
+
+    </div><!-- /page-body -->
+  </main>
+
+  <a href="posts.html" class="nav-back"
+     data-en="POSTS" data-it="POST">POSTS</a>
+
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="en">EN</button>
+    <button class="lang-btn" data-lang="it">IT</button>
+  </div>
+
+  <script src="assets/lang.js"></script>
+  <script>
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').classList.toggle('scrolled', window.scrollY > 20);
+    });
+  </script>
+</body>
+</html>

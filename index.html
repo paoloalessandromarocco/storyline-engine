@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paolo — Neural Models · Visual Storytelling</title>
+  <link rel="alternate" hreflang="en" href="https://storyline-engine.com/index.html">
+  <link rel="alternate" hreflang="it" href="https://storyline-engine.com/index.html?lang=it">
+  <link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/index.html">
+    <!-- Preload self-hosted fonts so they're already in flight before style.css
+       is even parsed — closes the remaining window where the browser paints
+       with the fallback (Georgia/Courier) and then swaps to the real font,
+       which is what still reads as the font "changing size" on reload. -->
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="home">
+
+  <header>
+    <a href="about.html" class="nav-item" data-en="ABOUT" data-it="ABOUT">ABOUT</a>
+    <div class="menu-container">
+      <span class="menu-trigger" data-en="TOPICS" data-it="ARGOMENTI">TOPICS</span>
+      <div class="menu-dropdown">
+        <a href="adv.html"             class="menu-item" data-en="ADV"            data-it="ADV">ADV</a>
+        <a href="neural-graphics.html" class="menu-item" data-en="VISUAL STORIES" data-it="FUMETTI/STORYBOARD">VISUAL STORIES</a>
+        <a href="comfyui.html"         class="menu-item" data-en="COMFYUI"        data-it="COMFYUI">COMFYUI</a>
+        <a href="posts.html"           class="menu-item" data-en="POSTS"          data-it="POST">POSTS</a>
+        <span class="menu-item menu-item--disabled" data-en="VIDEO" data-it="VIDEO">VIDEO</span>
+      </div>
+    </div>
+  </header>
+
+
+
+  <!-- SVG water filter — applied to bg image only, text stays sharp -->
+  <svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+    <defs>
+      <filter id="water" x="-6%" y="-6%" width="112%" height="112%"
+              color-interpolation-filters="sRGB">
+        <feTurbulence id="turb"
+                      type="turbulence"
+                      baseFrequency="0.010 0.014"
+                      numOctaves="2"
+                      seed="3"
+                      result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise"
+                           scale="14"
+                           xChannelSelector="R"
+                           yChannelSelector="G"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <div class="hero">
+    <img class="hero-bg" src="assets/bg_solaris.jpg" alt="Solaris ocean">
+    <div class="hero-text">
+      <p class="hero-title"
+         data-en="Neural Models"
+         data-it="Modelli Neurali">Neural Models</p>
+      <p class="hero-sub"
+         data-en="Visual stories and ADV"
+         data-it="Visual storytelling and ADV">Visual stories and ADV</p>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const turb = document.getElementById('turb');
+      let t = 0;
+      function animate() {
+        t += 0.0018;  // 3× faster than before — motion stays perceptible
+
+        // Three irrational-ratio harmonics per axis — no common plateau
+        const fx = (0.010
+          + Math.sin(t)          * 0.0030
+          + Math.sin(t * 2.730)  * 0.0015
+          + Math.sin(t * 0.410)  * 0.0020).toFixed(6);
+
+        const fy = (0.014
+          + Math.sin(t * 0.618)  * 0.0040
+          + Math.sin(t * 1.870)  * 0.0020
+          + Math.cos(t * 3.140)  * 0.0010).toFixed(6);
+
+        turb.setAttribute('baseFrequency', fx + ' ' + fy);
+        requestAnimationFrame(animate);
+      }
+      animate();
+    })();
+  </script>
+
+  <!-- Bottom-left: category tags — cover the empty corner -->
+  <div class="home-tags">
+    <div class="home-tags-row">
+      <span class="home-tag" data-en="AI" data-it="IA">AI</span>
+      <span class="home-tag" data-en="CINEMA" data-it="CINEMA">CINEMA</span>
+      <span class="home-tag" data-en="STORYBOARD" data-it="STORYBOARD">STORYBOARD</span>
+	  <span class="home-tag" data-en="COMFYUI" data-it="COMFYUI">COMFYUI</span>
+    </div>
+    <div class="home-tags-row">
+      <span class="home-tag" data-en="ADV" data-it="ADV">ADV</spaN>
+      <span class="home-tag" data-en="AUTOMATED-CAMPAIGNS" data-it="CAMPAGNE AUTOMATICHE">AUTOMATED-CAMPAIGNS</span>
+      <!--span class="home-tag" data-en="BOX OFFICE" data-it="BOX OFFICE">BOX OFFICE</span-->
+    </div>
+  </div>
+
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="en">EN</button>
+    <button class="lang-btn" data-lang="it">IT</button>
+  </div>
+
+  <script src="assets/lang.js"></script>
+</body>
+</html>

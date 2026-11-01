@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>ComfyUI Visual Stories — Part 1</title>
+  <link rel="alternate" hreflang="en"        href="https://storyline-engine.com/post-comfyui-modelli.html">
+  <link rel="alternate" hreflang="it"        href="https://storyline-engine.com/post-comfyui-modelli.html?lang=it">
+  <link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-comfyui-modelli.html">
+    <!-- Preload self-hosted fonts so they're already in flight before style.css
+       is even parsed — closes the remaining window where the browser paints
+       with the fallback (Georgia/Courier) and then swaps to the real font,
+       which is what still reads as the font "changing size" on reload. -->
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/style.css">
+
+  <style>
+    /* ── post body text ─────────────────────────────────── */
+    .post-text {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.15rem;
+      line-height: 1.75;
+      margin: 0 0 1.4em 0;
+    }
+    /* about-link (defined in style.css) handles all inline links:
+       ochre colour at rest, darker on hover, no underline        */
+
+    /* ── footnote ref ────────────────────────────────────── */
+    sup.fn-ref {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6em;
+      line-height: 1;
+      vertical-align: super;
+      margin-left: 0.1em;
+    }
+    sup.fn-ref a { text-decoration: none; opacity: 0.55; }
+    sup.fn-ref a:hover { opacity: 1; }
+
+    /* ── footnotes block ─────────────────────────────────── */
+    .footnotes {
+      margin-top: 4rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid currentColor;
+      opacity: 0.65;
+    }
+    .footnotes ol {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 0.92rem;
+      line-height: 1.65;
+      padding-left: 1.4em;
+      margin: 0 0 0 -1.4em;
+      list-style-position: outside;
+    }
+    .footnotes li { margin-bottom: 0.8em; }
+    .fn-back {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8em;
+      margin-left: 0.4em;
+      text-decoration: none;
+      opacity: 0.5;
+    }
+    .fn-back:hover { opacity: 1; }
+
+    /* ── figure / image ──────────────────────────────────── */
+    .post-figure {
+      margin: 2.5rem auto 2rem;
+    }
+    .post-figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid rgba(0,0,0,0.10);
+      background: #ffffff;
+    }
+
+    /* ── caption: bold title + smaller body ──────────────── */
+    .post-caption {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      line-height: 1.7;
+      color: #1A5CB3;
+      margin-top: 0.7rem;
+      text-align: justify;
+    }
+    .caption-title {
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      display: block;
+      margin-bottom: 0.2em;
+      text-align: center;
+    }
+
+    /* ── numbered content list ───────────────────────────── */
+    .content-list { list-style: none; padding: 0; margin: 1.6rem 0 0; }
+    .content-item {
+      display: grid;
+      grid-template-columns: 3rem 1fr;
+      gap: 1.6rem;
+      padding: 2rem 0;
+    }
+    .content-item:last-child { border-bottom: 1px solid rgba(0,0,0,0.08); }
+    /* no bottom line right before a chapter heading: its own thick top border already separates */
+    .content-list:has(+ .chapter-heading) .content-item:last-child { border-bottom: none; }
+    .content-number {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #1A5CB3;
+      opacity: 0.25;
+      padding-top: 0.15rem;
+      line-height: 1;
+    }
+    .content-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #1A5CB3;
+      margin: 0 0 0.9rem;
+      font-weight: 400;
+    }
+    .content-body .post-text { margin: 0; }
+
+    /* ── sub-bullet list ─────────────────────────────────── */
+    .content-sublist {
+      list-style: disc;
+      padding-left: 1.4em;
+      margin-top: 0.9em;
+      margin-bottom: 0;
+    }
+    .content-sublist li {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      margin-bottom: 0.6em;
+    }
+
+    @media (max-width: 700px) {
+      .content-item { grid-template-columns: 2rem 1fr; gap: 1rem; }
+      .content-number { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body class="interior">
+
+  <header>
+    <a href="about.html" class="nav-item" data-en="ABOUT" data-it="ABOUT">ABOUT</a>
+    <div class="menu-container">
+      <span class="menu-trigger" data-en="TOPICS" data-it="ARGOMENTI">TOPICS</span>
+      <div class="menu-dropdown">
+        <a href="adv.html"             class="menu-item" data-en="ADV"            data-it="ADV">ADV</a>
+        <a href="neural-graphics.html" class="menu-item" data-en="VISUAL STORIES" data-it="FUMETTI/STORYBOARD">VISUAL STORIES</a>
+        <a href="comfyui.html"         class="menu-item" data-en="COMFYUI"        data-it="COMFYUI">COMFYUI</a>
+        <a href="posts.html"           class="menu-item" data-en="POSTS"          data-it="POST">POSTS</a>
+        <span class="menu-item menu-item--disabled" data-en="VIDEO" data-it="VIDEO">VIDEO</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content">
+
+    <p class="section-label" data-en="ComfyUI &middot; Models · DEEP TECHNICAL" data-it="ComfyUI &middot; Modelli · TECNICO AVANZATO">ComfyUI &middot; Models · DEEP TECHNICAL</p>
+    <h1 class="page-title" data-en="ComfyUI Visual Stories — Part 1" data-it="ComfyUI Storie Visive — Parte 1">ComfyUI Visual Stories — Part 1</h1>
+
+    <div class="page-body">
+
+      <div class="post-tags" style="margin-bottom:2rem;">
+        <span class="post-tag tag-tech" data-en="ComfyUI"      data-it="ComfyUI">ComfyUI</span>
+        <span class="post-tag tag-tech" data-en="Flux"         data-it="Flux">Flux</span>
+        <span class="post-tag tag-tech" data-en="Flux Kontext" data-it="Flux Kontext">Flux Kontext</span>
+        <span class="post-tag tag-tech" data-en="Tutorial"     data-it="Tutorial">Tutorial</span>
+        <span class="post-tag tag-tech" data-en="Teaching"     data-it="Didattica">Teaching</span>
+        <span class="post-tag tag-tech" data-en="Sampling"     data-it="Sampling">Sampling</span>
+        <span class="post-tag tag-tech" data-en="Storyboard"   data-it="Storyboard">Storyboard</span>
+      </div>
+
+      <p class="post-abstract-text"
+         data-en="Teaching material from a short ComfyUI course aimed at filmmakers and graphic designers. A clarification first: this is not a course on video generation, but on static images that preserve identity and consistency across frames — as in comics and storyboards. The image style is hyperrealistic, meaning it aims to reproduce reality with the precision and detail of a high-resolution photograph. The course is divided into three parts: the first two are fairly theoretical in their explanation of the modules, while the third is more practical and incorporates some sections written in Python. Each component is examined in its specific role within a generative pipeline, whose JSON file is available for download. More advanced examples using this technique can be found in <a href='neural-graphics.html' class='about-link'>Comics and Storyboards</a>."
+         data-it="Materiale didattico di un breve corso su ComfyUI destinato a filmmaker e graphic designer. Innanzitutto un chiarimento: non è un corso su video-generation ma su immagini statiche che conservano identità e coerenza in una sequenza, come nei fumetti e negli storyboard. Il tipo di immagine è iperrealistico, quindi orientato a riprodurre la realtà con una precisione e un dettaglio da sembrare una fotografia ad alta risoluzione. Il corso si divide in tre parti: le prime due sono piuttosto teoriche nella spiegazione dei moduli, la terza è più pratica e integra alcune parti in codice python. Ogni componente è esaminato nel suo ruolo specifico all'interno di una pipeline generativa, di cui è scaricabile il file json. Esempi più evoluti che adottano questa tecnica li trovate in <a href='neural-graphics.html' class='about-link'>Fumetti e Storyboard</a>.">
+        Teaching material from a short ComfyUI course aimed at filmmakers and graphic designers. A clarification first: this is not a course on video generation, but on static images that preserve identity and consistency across frames — as in comics and storyboards. The image style is hyperrealistic, meaning it aims to reproduce reality with the precision and detail of a high-resolution photograph. The course is divided into three parts: the first two are fairly theoretical in their explanation of the modules, while the third is more practical and incorporates some sections written in Python. Each component is examined in its specific role within a generative pipeline, whose JSON file is available for download. More advanced examples using this technique can be found in <a href='neural-graphics.html' class='about-link'>Comics and Storyboards</a>.
+      </p>
+
+      <!-- ── INTRO ─────────────────────────────────────────── -->
+      <p class="post-text"
+         data-en="Today, using generative AI in a controlled way — meaning not through tools that do everything in one shot, or that offer a guided-but-limited front end, or that behave as a black box — requires working the way this course describes. Every ComfyUI module/node wraps a Python function underneath (essentially 4–5 parallel neural networks calling further functions). What follows is a general overview, followed by a diagram summarising the 50+-node graph of the ComfyUI panel used in this pipeline. If parts of it aren't fully clear at first, don't worry — we'll go over everything again in the first two lessons of the course."
+         data-it="Oggi, per usare l'AI generativa in modo controllato — cioè non con strumenti che fanno tutto in un colpo solo, o che hanno un front end guidato, o che sono una black box — conviene lavorare nel modo che questo corso descrive. Certamente un'alternativa, a volte di qualità maggiore, è quella di usare le API di modelli proprietari, le cui funzioni non sono visibili. Però sia dal pdv didattico sia dei costi, entrare nella struttura interna di questi processi è ancora il punto di forza dei modelli Open Source.">
+        Today, using generative AI in a controlled way — meaning not through tools that do everything in one shot, or that offer a guided-but-limited front end, or that behave as a black box — requires working the way this course describes. Every ComfyUI module/node wraps a Python function underneath (essentially 4–5 parallel neural networks calling further functions). What follows is a general overview, followed by a diagram summarising the 50+-node graph of the ComfyUI panel used in this pipeline. If parts of it aren't fully clear at first, don't worry — we'll go over everything again in the first two lessons of the course.
+      </p>
+
+      <!-- ── CONTENTS ──────────────────────────────────────── -->
+      <ol class="content-list">
+
+        <!-- 01 -->
+        <li class="content-item">
+          <div class="content-number">01</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="Diffusion Models: the base chain"
+                data-it="Diffusion Model: la catena di base">
+              Diffusion Models: the base chain
+            </h3>
+<!-- ── CONCEPTS ──────────────────────────────────────── -->
+            <p class="post-text"
+               data-en="This course's pipeline generates images through a Diffusion Model (DM) — the generative model that marked a turning point for 'visual' AI. The main image-generating node in this pipeline is a Diffusion Model called <strong>Flux</strong> (a newer model, released in 2025 and imported into ComfyUI this year, more complex than the base architecture described below — which dates to 2022 — but fundamentally built on the same principles). <br><br>The basic chain behind every Diffusion Model is: CLIP → Noise → Denoising (with cross-attention happening inside it) → VAE decoder. Let's unpack it.<br><br><strong>CLIP</strong> (you won't see it as a standalone ComfyUI node here, since it's built into the main Flux module) learns from hundreds of billions of ⟨text, image⟩ pairs how to associate an image with the text describing it. In practice this happens in geometric spaces, where both images and text are tokenised — split into fragments, which are then associated with one another. For language this is intuitive: a text splits into words, words into syllables, down to letters. For images it's less intuitive, since we're not used to fragmenting images — we can do it, but it isn't natural to find the word-fragments that match those image-fragments. In geometric spaces, though, it is possible, and this is exactly what CLIP does: it assigns a text label to an image fragment, chosen by geometric proximity (to put it in words: imagine a tree associated with every image of trees the model has learned and accepted — and this operation happens fragment by fragment). CLIP's job, ultimately, is to take every word in your prompt and associate it with the correct learned images. But this alone isn't enough to generate new images. For that, we need the other great insight behind Diffusion Models:<br><br><strong>Noising/Denoising</strong>. That is, adding noise to an image and then removing it. The metaphor here is intuitive. You're in the countryside, the sky is clear, you see a house and recognise it perfectly. Slowly, fog rises; you recognise the house less clearly, but it's still visible; the fog thickens further, until the house becomes invisible (though you retain a memory of it, even if less precise). This is the Noising process. Now think of the reverse: the fog gradually clears. Since you'd already seen the house, it takes very little — fog leaving only 10% visibility — for you to recognise it as the same house, and so on until the fog is gone entirely. At that point you're certain it's the same house, because you now see it in full clarity (this is the Denoising process). Intuitively, this is what happens mathematically so the system learns the different tokens (fragments) that make up the house — that is, so it attaches meaning to those tokens. But how does it attach meaning? By looking it up in CLIP — the function we just described, built from ⟨text, image⟩ pairs, or more precisely fragments of ⟨text, image⟩ in abstract spaces. In the end, the system — putting everything back into plain terms — has 'understood' which text fragments to associate, step by step, with the images it discovered as the fog cleared. This is what we call <em>cross-attention</em> in the modules below: the ability to focus on the text fragments best suited to describing the image being learned in the clear.<br><br>Finally, the <strong>VAE (Variational Auto Encoder) decoder</strong><sup class='fn-ref'><a href='#fn1' id='fnref1'>1</a></sup>: skipping the technical details, the VAE decoder brings the generated image back into plain form (that is, from numerical patterns to a pixel image). We hadn't mentioned that, at the start of the Noising process, everything was first transformed into numerical patterns by a VAE encoder — to avoid overloading the explanation too early.<br><br>At this point, though, comes the hardest step, I think. We've seen how the Diffusion Model manages to describe every image with text, among everything it knows. But you might ask: surely it doesn't know the exact wording of your prompt, since it's unlikely to have that exact phrase in its dataset. And indeed, it doesn't know it yet — but it manages to construct it, because a <em>noise-prediction</em> mechanism is also at work (predicting what the fog is covering in the image as it forms). The VAE, at the final stage of the diffusion process, stays anchored to the text just as it did during training — with the difference that here the text isn't mapped to an already-formed image, but instead guides the image being formed. This passage with/without fog drives a process of understanding and generation that is, in a fairly interesting way, similar to how the human brain works (though this parallel was only discovered afterwards).<br><br>Let's now move on to the modules that represent the neural networks — the backbone of the pipeline we've traced. The first seven boxes you see, starting from the left, are five neural networks — shown in red (Flux-dev, FluxIPAdapter, DualCLIP, VAE, ControlNet) — plus two image-loading modules for our input characters. These neural networks work together to build and structure the images so that consistency is preserved, both within each character and between characters and the environment. Let's look at them one by one."
+			   
+               data-it="La pipeline di questo corso genera le immagini attraverso un Diffusion Model (DM): il modello generativo che ha segnato una svolta per l'AI 'grafica'. Più precisamente adotteremo un  Diffusion Model chiamato <strong>Flux</strong> <br><br>Vediamo come funziona un Diffusion Model. La sequenza base coinvolge questi nodi: CLIP → Noise → Denoising  → VAE decoder. Vediamola per passi.<br><br>Il primo componente è <strong>CLIP</strong> (non lo vedete come nodo ComfyUI a sé stante, dato che è integrato nel modulo principale Flux). CLIP apprende da centinaia di miliardi di coppie ⟨testo, immagine⟩ come associare un'immagine al testo che la descrive. Il processo non avviene 'in chiaro' ma in spazi geometrici, dove sia le immagini che i testi vengono tokenizzati, ossia spezzettati, e i vari frammenti associati tra loro. Per la tradizione culturale associata al linguaggio verbale questo processo è intuitivo: un testo si divide in parole, le parole in sillabe, fino alle lettere. Ma per le immagini non lo è, dato che non abbiamo cognitivamente una 'forma mentis' allenata a deframmentare un immagine per capirla meglio. Anzi sarebbe più naturale il processo contrario: infatti i puzzle scompongono immagini, per mettere alla prova il giocatore rispetto alla sua capacità di ricomporle. Per cui se abbiamo di fronte un frammento di immagine, e il testo associato che lo descrive, rischiamo solo di renderci la vita difficile, una volta che vogliamo avere il quadro completo dell'immagina interna e della sua relativa descrizione. La difficoltà è che non è naturale trovare i frammenti di parole adatti a definire frammenti di immagine. Negli spazi geometrici, però, questo è possibile, perché il sistema di ragionamento, decomposizione, e ricomposizione non è quello umano. Ma avviene attraverso misure in spazi astratti, dove sono possibili i confronti tra oggetti (immagine+testo) che vengono trasformati nel loro aspetto 'numerico' (o latente per usare un termine di moda). Questo  è esattamente ciò che fa CLIP: assegna un'etichetta testuale a un frammento di immagine, scelto per vicinanza geometrica (per fare un esempio simbolico: pensate a un albero associato a tutte le immagini di alberi che il modello ha appreso, e che ogni pezzo d'albero abbia un nome. Quando ricompongo l'albero avrò ottenuto anche la descrizione dettagliata dell'albero. Ma ovviamente non riesco a farlo in uno spazio dove gli alberi sono aggregati di pixel, ma sono manipolando funzioni e metriche astratte). Il compito di CLIP, alla fine, è prendere ogni parola del vostro prompt e associarla alle immagini corrette che ha appreso nel volume enorme del training set. Questo è il primo passaggio, ma coem fa a generare  nuove immagini che non sono nel training set? per esempio tutte le immagini fantastiche che combinano lumache con grattacieli? Per farlo serve l'altra grande intuizione dietro ai Diffusion Model:<br><br>Il processo di <strong>Noising/Denoising</strong>. Ossia aggiungere rumore a un'immagine e poi toglierlo. Qui è più facile fare una metafora intuitiva. Siete in campagna, il cielo è terso, vedete una casa e la riconoscete perfettamente. Man mano si alza la nebbia, la casa di prima è meno riconoscibile ma è ancora visibile; la nebbia cresce, finché la casa diventa invisibile. A questo punto è scompara, ma rimane il ricordo, anche se forse un po' vago, di quella casa). Questo è il processo di Noising: aggiungere rumore fino a rendere un oggetto non identificabile. Passiamo  ora al processo inverso di Denoising. La nebbia man mano si dirada. Dato che la casa ve la ricordate perché l'avevate vista, basta poco — una nebbia che lascia solo il 10% di visibilità — perché la riconosciate come quella di prima. Pensate ora a un ciclo di diradazione a passi finché la nebbia scompare del tutto, e siete tornati all'img di partenza. A questo punto siete sicuri che sia la stessa casa. Intuitivamente, è quel che accade a livello geometrico  affinché il sistema impari i diversi token (frammenti) che compongono la casa. Lo riesce a fare perché l'ha deframmentata e poi ricomposta, ovviamente negli spazi geometrici fatti di numeri. Ma dato che ogni fammento, nel training set ha un significato testuale, o meglio vi si avvicina molto (dato che sono triliardi le coppie <immagine, significato>: lo spazio che dà luogo a CLIP) si può ricomporre l'immagine finale. Poiché questa è composta di frammenti magari inventati, ma che nel training set, esistono in quanto frammenti (es.:un corno di lumaca o una finestra del grattacielo. In definitiva, il sistema nello spazio latente ha 'capito' quali frammenti di testo associare, man mano, alle immagini che scopriva nella nebbia che si diradava. Quando attuerà conversione in chiaro, riuscira a costruire l'immagine finale visibile all'occhio umano. 
+			   Questo è ciò che nei moduli tecnici viene chiamata <em>cross-attention</em>: la capacità di focalizzarsi sui frammenti di testo più idonei a descrivere l'immagine che sta emergendo in chiaro. Il compito di attuare questa trasformazione è quello del modulo <strong>VAE nella sua funzione di decoder</strong><sup class='fn-ref'><a href='#fn1' id='fnref1'>1</a></sup>. Questo modulo agisce anche in modo inverso all'inizio del processo di Noising: tutto viene prima trasformato in pattern numerici da un VAE encoder<br><br>A questo punto, però, arriva il passaggio più difficile. Abbiamo visto come il Diffusion Model riesca a descrivere ogni immagine con un testo, anche quando non la conosce- E' sufficiente che conosca i frammenti in modo indipendente. Ma ora vi chiederete: i termini del prompt in input sono privo di frammenti di img associate, dato che difficilmente CLIP ha nel suo dataset proprio quella frase. E infatti spesso non la conosce ancora — ma riesce a costruirla, perché agisce  un meccanismo di <em>noise prediction</em> (ossia di previsione di cosa la nebbia sta coprendo nell'immagine in formazione). Il VAE, nella parte finale del processo di diffusione, resta ancorato al testo proprio come durante il training, con la differenza che qui il testo non è mappato su un'immagine già formata, ma guida l'immagine in formazione. Questo passaggio con/senza nebbia guida un processo di comprensione e generazione che assomiglia, in modo piuttosto interessante, al funzionamento del cervello umano (una somiglianza però scoperta solo in seguito).<br><br>Passiamo ora ai moduli che rappresentano le reti neurali, ossia gli assi portanti della pipeline che abbiamo tracciato. I primi sette quadratini che vedete a partire da sinistra sono cinque reti neurali — in rosso (Flux-dev, FluxIPAdapter, DualCLIP, VAE, ControlNet) — più due moduli di caricamento delle immagini in input, ossia i nostri personaggi. Le reti neurali servono per creare e strutturare le immagini, in modo che ci sia coerenza dei personaggi, e tra i personaggi e l'ambiente. Vediamole una a una.">
+              This course's pipeline generates images through a Diffusion Model (DM) — the generative model that marked a turning point for 'visual' AI. The main image-generating node in this pipeline is a Diffusion Model called <strong>Flux</strong> (a newer model, released in 2025 and imported into ComfyUI this year, more complex than the base architecture described below — which dates to 2022 — but fundamentally built on the same principles). <br><br>The basic chain behind every Diffusion Model is: CLIP → Noise → Denoising (with cross-attention happening inside it) → VAE decoder. Let's unpack it.<br><br><strong>CLIP</strong> (you won't see it as a standalone ComfyUI node here, since it's built into the main Flux module) learns from hundreds of billions of ⟨text, image⟩ pairs how to associate an image with the text describing it. In practice this happens in geometric spaces, where both images and text are tokenised — split into fragments, which are then associated with one another. For language this is intuitive: a text splits into words, words into syllables, down to letters. For images it's less intuitive, since we're not used to fragmenting images — we can do it, but it isn't natural to find the word-fragments that match those image-fragments. In geometric spaces, though, it is possible, and this is exactly what CLIP does: it assigns a text label to an image fragment, chosen by geometric proximity (to put it in words: imagine a tree associated with every image of trees the model has learned and accepted — and this operation happens fragment by fragment). CLIP's job, ultimately, is to take every word in your prompt and associate it with the correct learned images. But this alone isn't enough to generate new images. For that, we need the other great insight behind Diffusion Models:<br><br><strong>Noising/Denoising</strong>. That is, adding noise to an image and then removing it. The metaphor here is intuitive. You're in the countryside, the sky is clear, you see a house and recognise it perfectly. Slowly, fog rises; you recognise the house less clearly, but it's still visible; the fog thickens further, until the house becomes invisible (though you retain a memory of it, even if less precise). This is the Noising process. Now think of the reverse: the fog gradually clears. Since you'd already seen the house, it takes very little — fog leaving only 10% visibility — for you to recognise it as the same house, and so on until the fog is gone entirely. At that point you're certain it's the same house, because you now see it in full clarity (this is the Denoising process). Intuitively, this is what happens mathematically so the system learns the different tokens (fragments) that make up the house — that is, so it attaches meaning to those tokens. But how does it attach meaning? By looking it up in CLIP — the function we just described, built from ⟨text, image⟩ pairs, or more precisely fragments of ⟨text, image⟩ in abstract spaces. In the end, the system — putting everything back into plain terms — has 'understood' which text fragments to associate, step by step, with the images it discovered as the fog cleared. This is what we call <em>cross-attention</em> in the modules below: the ability to focus on the text fragments best suited to describing the image being learned in the clear.<br><br>Finally, the <strong>VAE (Variational Auto Encoder) decoder</strong><sup class='fn-ref'><a href='#fn1' id='fnref1'>1</a></sup>: skipping the technical details, the VAE decoder brings the generated image back into plain form (that is, from numerical patterns to a pixel image). We hadn't mentioned that, at the start of the Noising process, everything was first transformed into numerical patterns by a VAE encoder — to avoid overloading the explanation too early.<br><br>At this point, though, comes the hardest step, I think. We've seen how the Diffusion Model manages to describe every image with text, among everything it knows. But you might ask: surely it doesn't know the exact wording of your prompt, since it's unlikely to have that exact phrase in its dataset. And indeed, it doesn't know it yet — but it manages to construct it, because a <em>noise-prediction</em> mechanism is also at work (predicting what the fog is covering in the image as it forms). The VAE, at the final stage of the diffusion process, stays anchored to the text just as it did during training — with the difference that here the text isn't mapped to an already-formed image, but instead guides the image being formed. This passage with/without fog drives a process of understanding and generation that is, in a fairly interesting way, similar to how the human brain works (though this parallel was only discovered afterwards).<br><br>Let's now move on to the modules that represent the neural networks — the backbone of the pipeline we've traced. The first seven boxes you see, starting from the left, are five neural networks — shown in red (Flux-dev, FluxIPAdapter, DualCLIP, VAE, ControlNet) — plus two image-loading modules for our input characters. These neural networks work together to build and structure the images so that consistency is preserved, both within each character and between characters and the environment. Let's look at them one by one.
+            </p>
+<!-- ── end CONCEPTS ──────────────────────────────────────── -->
+          </div>
+        </li>
+
+      </ol>
+
+      <!-- ── FIGURE (pg. 3 of the source document) ─────────── -->
+      <figure class="post-figure">
+        <img src="assets/post-comfyui-modelli/diagram1.png"
+             alt="ComfyUI pipeline loader nodes diagram">
+        <figcaption class="post-caption"
+          data-en="<span class='caption-title'>Pipeline loaders</span>The seven loading nodes of the pipeline (Load Diffusion Model, DualCLIPLoader, VAELoader, LoadFluxIPAdapter, the two LoadImage nodes for the character references, and ControlNetLoader), each sending its output &mdash; MODEL, CLIP, VAE &mdash; onward into the rest of the graph."
+          data-it="<span class='caption-title'>Loader della pipeline</span>I sette nodi di caricamento della pipeline (Load Diffusion Model, DualCLIPLoader, VAELoader, LoadFluxIPAdapter, i due nodi LoadImage per i riferimenti dei personaggi, e ControlNetLoader), ognuno dei quali invia la propria uscita &mdash; MODEL, CLIP, VAE &mdash; al resto del grafo.">
+          <span class="caption-title">Pipeline loaders</span>The seven loading nodes of the pipeline (Load Diffusion Model, DualCLIPLoader, VAELoader, LoadFluxIPAdapter, the two LoadImage nodes for the character references, and ControlNetLoader), each sending its output &mdash; MODEL, CLIP, VAE &mdash; onward into the rest of the graph.
+        </figcaption>
+      </figure>
+
+      <ol class="content-list" start="2">
+
+        <!-- 02 -->
+		<!-- ── Course Materials ──────────────────────────────────────── -->
+        <li class="content-item">
+          <div class="content-number">02</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="Explanation of the main modules (first diagram)"
+                data-it="Spiegazione moduli principali (prima figura)">
+              Explanation of the main modules (first diagram)
+            </h3>
+
+            <p class="post-text"
+               data-en="Here is what each of the seven loading modules shown in the diagram above does:"
+               data-it="Ecco cosa fa ciascuno dei sette moduli di caricamento mostrati nello schema qui sopra:">
+              Here is what each of the seven loading modules shown in the diagram above does:
+            </p>
+
+            <ul class="content-sublist">
+              <li data-en="<strong>Flux-dev</strong> (Load) is the main neural network, the one that generates the images (a type of Diffusion Model), explained above. With appropriate bit-reduction of its numerical representations, it can run on its own on roughly 12&nbsp;GB of VRAM on an RTX&nbsp;3090."
+                  data-it="<strong>Flux-dev</strong> (Load, ossia carica) è la rete neurale principale, quella che genera le immagini (un tipo di Diffusion Model), spiegata sopra. Con le opportune riduzioni nell'uso dei bit delle rappresentazioni numeriche, può girare da sola su circa 12&nbsp;GB di VRAM su una scheda RTX&nbsp;3090.">
+                <strong>Flux-dev</strong> (Load) is the main neural network, the one that generates the images (a type of Diffusion Model), explained above. With appropriate bit-reduction of its numerical representations, it can run on its own on roughly 12&nbsp;GB of VRAM on an RTX&nbsp;3090.
+              </li>
+              <li data-en="<strong>DualCLIPLoader</strong> loads the CLIP network we've just seen. With Flux it actually loads two networks: CLIP and t5xxl. They serve roughly the same purpose — text-to-image association — but the second one supports prompts of up to 512 tokens, while CLIP is limited to around 70."
+                  data-it="<strong>DualCLIPLoader</strong> carica la rete CLIP che abbiamo appena visto. Con Flux, in realtà, ne carica due: CLIP e t5xxl. Hanno circa lo stesso scopo — l'associazione testo-immagine — ma la seconda riesce a supportare prompt fino a 512 token, mentre CLIP è limitato a circa 70.">
+                <strong>DualCLIPLoader</strong> loads the CLIP network we've just seen. With Flux it actually loads two networks: CLIP and t5xxl. They serve roughly the same purpose — text-to-image association — but the second one supports prompts of up to 512 tokens, while CLIP is limited to around 70.
+              </li>
+              <li data-en="<strong>VAELoader</strong> loads the VAE (Variational Auto Encoder): the network that converts between the graphical pixel space and the geometric space of numerical vectors, needed to perform all the calculations. At the end of the whole chain, a VAE Decode node generates the final, plain-visible image (so there's one decoder per image)."
+                  data-it="<strong>VAELoader</strong> carica il VAE (Variational Auto Encoder): la rete che converte dallo spazio grafico dei pixel a quello geometrico dei vettori numerici, necessario per poter eseguire tutti i calcoli. Alla fine dell'intera catena, un nodo VAE Decode genera l'immagine finale in chiaro (quindi un decoder per ogni immagine).">
+                <strong>VAELoader</strong> loads the VAE (Variational Auto Encoder): the network that converts between the graphical pixel space and the geometric space of numerical vectors, needed to perform all the calculations. At the end of the whole chain, a VAE Decode node generates the final, plain-visible image (so there's one decoder per image).
+              </li>
+              <li data-en="<strong>LoadFluxIPAdapter</strong> loads the Image Processing Adapter network. In practice, it loads the network responsible for maintaining consistency between images across different shots, injecting visual features (i.e. characteristics of the input image) into the main Flux network to calibrate its weights. <em>Note:</em> at the pipeline level used in this course, this is arguably the weakest link, since it loses some consistency. In the final session of the second week I'll show how to improve it."
+                  data-it="<strong>LoadFluxIPAdapter</strong> carica la rete Image Processing Adapter. In pratica carica la rete responsabile di mantenere la coerenza tra le immagini nei diversi shot, iniettando le feature visive (ossia le caratteristiche dell'immagine di input) nella rete principale Flux per tararne i pesi. <em>Nota:</em> a livello di pipeline del corso, questo è forse l'elemento più debole, dato che perde un po' di coerenza. Nella sessione finale della seconda settimana vi mostro come migliorarlo.">
+                <strong>LoadFluxIPAdapter</strong> loads the Image Processing Adapter network. In practice, it loads the network responsible for maintaining consistency between images across different shots, injecting visual features (i.e. characteristics of the input image) into the main Flux network to calibrate its weights. <em>Note:</em> at the pipeline level used in this course, this is arguably the weakest link, since it loses some consistency. In the final session of the second week I'll show how to improve it.
+              </li>
+              <li data-en="<strong>ControlNetLoader</strong> loads the ControlNet network, which adds spatial and structural conditioning to the characters' images. It isn't really a neural network but an adaptation of graphical functions proposed 3–4 years ago — such as depth maps of characters' bodies. In practice, it estimates depth and then applies it to the different poses defined in the prompts. ControlNet is independent from the IP-Adapters."
+                  data-it="<strong>ControlNetLoader</strong> carica la rete Control-Net, che aggiunge il condizionamento spaziale e strutturale alle immagini dei protagonisti. Non è una vera rete neurale, ma l'adattamento di funzioni grafiche proposte 3-4 anni fa, come la Depth Map dei corpi dei personaggi. In pratica stima la profondità e poi la applica alle diverse pose definite nei prompt. ControlNet è indipendente dagli IP-Adapter.">
+                <strong>ControlNetLoader</strong> loads the ControlNet network, which adds spatial and structural conditioning to the characters' images. It isn't really a neural network but an adaptation of graphical functions proposed 3–4 years ago — such as depth maps of characters' bodies. In practice, it estimates depth and then applies it to the different poses defined in the prompts. ControlNet is independent from the IP-Adapters.
+              </li>
+              <li data-en="The two <strong>LoadImage</strong> nodes are simply loaders for the input images (the character references)."
+                  data-it="I due nodi <strong>LoadImage</strong> sono semplicemente dei caricatori delle immagini in input (i riferimenti dei personaggi).">
+                The two <strong>LoadImage</strong> nodes are simply loaders for the input images (the character references).
+              </li>
+            </ul>
+
+                     <p class="post-text" style="margin-top:1.6em; opacity:0.75;"
+                 data-en="Before running the pipeline, make sure all required custom node packs and model files are installed. The instructions page linked below lists every package, every model weight, and the files you need to provide yourself."
+                 data-it="Prima di eseguire la pipeline, assicurati che tutti i pack di nodi personalizzati e i file modello richiesti siano installati. La pagina delle istruzioni collegata di seguito elenca ogni pacchetto, ogni peso del modello e i file che devi fornire personalmente.">
+                Before running the pipeline, make sure all required custom node packs and model files are installed. The instructions page linked below lists every package, every model weight, and the files you need to provide yourself.
+              </p>
+
+     <p class="post-text" style="margin-top:0.4rem; display:flex; gap:1.2rem; flex-wrap:wrap; align-items:center;">
+              <a href="assets/post-comfyui-modelli/workflow_api_v2.json"
+                 class="post-pdf-btn" download
+                 data-en="&darr; Download the pipeline (JSON)"
+                 data-it="&darr; Scarica la pipeline (JSON)">&darr; Download the pipeline (JSON)</a>
+              <a href="comfyui-pipeline-setup.html"
+                 class="post-pdf-btn"
+                 data-en="&rarr; Instructions for customized modules"
+                 data-it="&rarr; Istruzioni per i moduli personalizzati">&rarr; Instructions for customized modules</a>
+            </p>
+
+          </div>
+        </li>
+
+      </ol>
+
+      <!-- ── FOOTNOTES ─────────────────────────────────────── -->
+      <section class="footnotes">
+        <ol>
+          <li id="fn1">
+            <span data-en="In the language of statistical mathematics for neural networks, <em>Encoder</em> refers to the process that transforms a pixel image into a mathematical object within a geometric space — made of points, or more precisely N-dimensional vectors. The concept of a Zip file is often used to describe it: it is, in effect, a compressed space that allows all these geometric operations to take up far less space. The <em>Decoder</em> is the opposite process: from the geometric space back to the plain image."
+                  data-it="Nel linguaggio della matematica statistica delle reti neurali, per <em>Encoder</em> (in italiano 'encodare') si intende il processo che trasforma un'immagine fatta di pixel in un oggetto matematico in uno spazio geometrico (fatto di punti, o meglio di vettori a N dimensioni). Spesso viene usato il concetto di Zip per descriverlo: è, in effetti, uno spazio compresso che permette di occupare molto meno spazio durante tutte queste operazioni geometriche. Il <em>Decoder</em> è invece il processo opposto: dallo spazio geometrico all'immagine in chiaro.">In the language of statistical mathematics for neural networks, <em>Encoder</em> refers to the process that transforms a pixel image into a mathematical object within a geometric space — made of points, or more precisely N-dimensional vectors. The concept of a Zip file is often used to describe it: it is, in effect, a compressed space that allows all these geometric operations to take up far less space. The <em>Decoder</em> is the opposite process: from the geometric space back to the plain image.</span>
+            <a href="#fnref1" class="fn-back" aria-label="back to text">&#8617;</a>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ── LINK TO PART TWO ──────────────────────────────── -->
+      <p class="post-text" style="margin-top:2.5rem; opacity:0.75;">
+        <span data-en="Continues in the second part: "
+              data-it="Continua nella seconda parte: ">Continues in the second part: </span><a
+          href="post-comfyui-modelli2.html" class="about-link"
+          data-en="ComfyUI Visual Stories — Part 2"
+          data-it="ComfyUI Storie Visive — Parte 2"
+        >ComfyUI Visual Stories — Part 2</a>.
+      </p>
+
+    </div><!-- /page-body -->
+  </main>
+
+  <a href="posts.html" class="nav-back"
+     data-en="POSTS" data-it="POST">POSTS</a>
+
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="en">EN</button>
+    <button class="lang-btn" data-lang="it">IT</button>
+  </div>
+
+  <script src="assets/lang.js"></script>
+  <script>
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').classList.toggle('scrolled', window.scrollY > 20);
+    });
+  </script>
+</body>
+</html>

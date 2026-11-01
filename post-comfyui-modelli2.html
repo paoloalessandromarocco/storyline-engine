@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>ComfyUI Visual Stories — Part 2</title>
+  <link rel="alternate" hreflang="en"        href="https://storyline-engine.com/post-comfyui-modelli2.html">
+  <link rel="alternate" hreflang="it"        href="https://storyline-engine.com/post-comfyui-modelli2.html?lang=it">
+  <link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-comfyui-modelli2.html">
+    <!-- Preload self-hosted fonts so they're already in flight before style.css
+       is even parsed — closes the remaining window where the browser paints
+       with the fallback (Georgia/Courier) and then swaps to the real font,
+       which is what still reads as the font "changing size" on reload. -->
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/style.css">
+
+  <style>
+    /* ── post body text ─────────────────────────────────── */
+    .post-text {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.15rem;
+      line-height: 1.75;
+      margin: 0 0 1.4em 0;
+    }
+    /* about-link (defined in style.css) handles all inline links:
+       ochre colour at rest, darker on hover, no underline        */
+
+    /* ── footnote ref ────────────────────────────────────── */
+    sup.fn-ref {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6em;
+      line-height: 1;
+      vertical-align: super;
+      margin-left: 0.1em;
+    }
+    sup.fn-ref a { text-decoration: none; opacity: 0.55; }
+    sup.fn-ref a:hover { opacity: 1; }
+
+    /* ── footnotes block ─────────────────────────────────── */
+    .footnotes {
+      margin-top: 4rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid currentColor;
+      opacity: 0.65;
+    }
+    .footnotes ol {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 0.92rem;
+      line-height: 1.65;
+      padding-left: 1.4em;
+      margin: 0 0 0 -1.4em;
+      list-style-position: outside;
+    }
+    .footnotes li { margin-bottom: 0.8em; }
+    .fn-back {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8em;
+      margin-left: 0.4em;
+      text-decoration: none;
+      opacity: 0.5;
+    }
+    .fn-back:hover { opacity: 1; }
+
+    /* ── figure / image ──────────────────────────────────── */
+    .post-figure {
+      margin: 2.5rem auto 2rem;
+    }
+    .post-figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid rgba(0,0,0,0.10);
+      background: #ffffff;
+    }
+
+    /* ── caption: bold title + smaller body ──────────────── */
+    .post-caption {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      line-height: 1.7;
+      color: #1A5CB3;
+      margin-top: 0.7rem;
+      text-align: justify;
+    }
+    .caption-title {
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      display: block;
+      margin-bottom: 0.2em;
+      text-align: center;
+    }
+
+    /* ── numbered content list ───────────────────────────── */
+    .content-list { list-style: none; padding: 0; margin: 1.6rem 0 0; }
+    .content-item {
+      display: grid;
+      grid-template-columns: 3rem 1fr;
+      gap: 1.6rem;
+      padding: 2rem 0;
+    }
+    .content-item:last-child { border-bottom: 1px solid rgba(0,0,0,0.08); }
+    /* no bottom line right before a chapter heading: its own thick top border already separates */
+    .content-list:has(+ .chapter-heading) .content-item:last-child { border-bottom: none; }
+    .content-number {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #1A5CB3;
+      opacity: 0.25;
+      padding-top: 0.15rem;
+      line-height: 1;
+    }
+    .content-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #1A5CB3;
+      margin: 0 0 0.9rem;
+      font-weight: 400;
+    }
+    .content-body .post-text { margin: 0; }
+
+    /* ── sub-bullet list ─────────────────────────────────── */
+    .content-sublist {
+      list-style: disc;
+      padding-left: 1.4em;
+      margin-top: 0.9em;
+      margin-bottom: 0;
+    }
+    .content-sublist li {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      margin-bottom: 0.6em;
+    }
+
+    @media (max-width: 700px) {
+      .content-item { grid-template-columns: 2rem 1fr; gap: 1rem; }
+      .content-number { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body class="interior">
+
+  <header>
+    <a href="about.html" class="nav-item" data-en="ABOUT" data-it="ABOUT">ABOUT</a>
+    <div class="menu-container">
+      <span class="menu-trigger" data-en="TOPICS" data-it="ARGOMENTI">TOPICS</span>
+      <div class="menu-dropdown">
+        <a href="adv.html"             class="menu-item" data-en="ADV"            data-it="ADV">ADV</a>
+        <a href="neural-graphics.html" class="menu-item" data-en="VISUAL STORIES" data-it="FUMETTI/STORYBOARD">VISUAL STORIES</a>
+        <a href="comfyui.html"         class="menu-item" data-en="COMFYUI"        data-it="COMFYUI">COMFYUI</a>
+        <a href="posts.html"           class="menu-item" data-en="POSTS"          data-it="POST">POSTS</a>
+        <span class="menu-item menu-item--disabled" data-en="VIDEO" data-it="VIDEO">VIDEO</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content">
+
+    <p class="section-label" data-en="ComfyUI &middot; Models · DEEP TECHNICAL" data-it="ComfyUI &middot; Modelli · TECNICO AVANZATO">ComfyUI &middot; Models · DEEP TECHNICAL</p>
+    <h1 class="page-title" data-en="ComfyUI Visual Stories — Part 2" data-it="ComfyUI Storie Visive — Parte 2">ComfyUI Visual Stories — Part 2</h1>
+
+    <div class="page-body">
+
+      <div class="post-tags" style="margin-bottom:2rem;">
+        <span class="post-tag tag-tech" data-en="ComfyUI"      data-it="ComfyUI">ComfyUI</span>
+        <span class="post-tag tag-tech" data-en="Flux"         data-it="Flux">Flux</span>
+        <span class="post-tag tag-tech" data-en="ControlNet"   data-it="ControlNet">ControlNet</span>
+        <span class="post-tag tag-tech" data-en="Tutorial"     data-it="Tutorial">Tutorial</span>
+        <span class="post-tag tag-tech" data-en="Teaching"     data-it="Didattica">Teaching</span>
+        <span class="post-tag tag-tech" data-en="Sampling"     data-it="Sampling">Sampling</span>
+        <span class="post-tag tag-tech" data-en="Storyboard"   data-it="Storyboard">Storyboard</span>
+      </div>
+
+      <p class="post-abstract-text"
+         data-en="Second part of the ComfyUI course material introduced in the previous post. Here the focus shifts from the individual loader modules to how they connect: the flow that runs from the Flux model through IP-Adapter and ControlNet conditioning, the two CLIPTextEncode branches (positive and negative), down to KSampler, VAE decoding, and the final saved image. The post closes with a broader reflection on how neural networks learn through repeated cycles, and an annotated diagram of the complete node chain. Previous section: <a href='post-comfyui-modelli.html' class='about-link'>ComfyUI Visual Stories — Part 1</a>."
+         data-it="Seconda parte del materiale didattico del corso ComfyUI introdotto nel post precedente. Qui il focus si sposta dai singoli moduli di caricamento a come questi si connettono tra loro: il flusso che va dal modello Flux, attraverso il conditioning di IP-Adapter e ControlNet, i due rami CLIPTextEncode (positivo e negativo), fino a KSampler, alla decodifica VAE e al salvataggio dell'immagine finale. Il post si chiude con una riflessione più ampia su come le reti neurali apprendono attraverso cicli ripetuti, e con uno schema commentato dell'intera catena di nodi. Parte precedente: <a href='post-comfyui-modelli.html' class='about-link'>ComfyUI Storie Visive — Parte 1</a>.">
+        Second part of the ComfyUI course material introduced in the previous post. Here the focus shifts from the individual loader modules to how they connect: the flow that runs from the Flux model through IP-Adapter and ControlNet conditioning, the two CLIPTextEncode branches (positive and negative), down to KSampler, VAE decoding, and the final saved image. The post closes with a broader reflection on how neural networks learn through repeated cycles, and an annotated diagram of the complete node chain. Previous section: <a href='post-comfyui-modelli.html' class='about-link'>ComfyUI Visual Stories — Part 1</a>.
+      </p>
+
+      <!-- ── CONTENTS ──────────────────────────────────────── -->
+      <ol class="content-list">
+
+        <!-- 01 -->
+        <li class="content-item">
+          <div class="content-number">01</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="How the flow works"
+                data-it="Spiegazione del flusso">
+              How the flow works
+            </h3>
+			
+			<!-- ── CONCEPTS ───────────── -->
+
+            <p class="post-text"
+               data-en="Once <strong>Flux-dev</strong> is loaded, three inputs are applied to the Flux model:<br><br>The first two act on the image itself: the Image Processing Adapter (<strong>IPA</strong>) and <strong>ControlNet</strong>, which modify certain internal states of the main Flux network. Following the wires between the nodes: in this pipeline, six lines leave the Flux Diffusion Model module and enter six IPA modules — one per final shot — then leave those six IPA modules and enter the six KSampler modules. These KSampler modules are the ones responsible for the Noising/Denoising process described in the introduction, controlling image generation starting from white noise (the fog discussed earlier). As for ControlNet, six lines leave the ControlNet loader and go into the module that applies ControlNet.<br><br>The third input acts on the text component: it creates the conditions that activate the prompts describing the six output images. As seen in the introductory explanation, the basic mechanism is to create an image by processing a text prompt together with the other input graphic components.<br><br>There is then a more elaborate mechanism, where the Flux model module is duplicated to resolve scenes in which both characters appear together. The sequence of the two modules isn't entirely clear-cut in the Flux graph's architecture, because they aren't static — they depend on the prompts (where the number of characters present in the scene is declared). The problem is therefore resolved by the internal architecture itself.<br><br>We arrive at the <strong>CLIPTextEncode</strong> module, which takes as input the connection to the main Flux module, to CLIP, and to the VAE. The role of this module is to integrate Flux and CLIP and then encode them with the VAE — that is, to transform into numeric spaces the descriptive prompts for each scene (there are two per scene: clip_l + t5xxl). Note: while t5xxl is tasked with describing the scene in detail, CLIP retains its older role of also describing a negative prompt — excluding all unwanted components.<br><br>Let's go over the three inputs again:"
+               data-it="Una volta caricato <strong>Flux-dev</strong>, vengono applicati tre input al modello Flux:<br><br>I primi due agiscono sull'immagine: l'Image Processing Adapter (<strong>IPA</strong>) e <strong>ControlNet</strong>, che modificano alcuni stati interni della rete neurale principale Flux. Seguendo le linee (wires) di connessione dei nodi: in questa pipeline sei linee escono dal modulo Diffusion Model Flux ed entrano nei sei moduli IPA — uno per ogni shot finale — per poi uscire dai sei IPA ed entrare nei sei moduli KSampler. Questi ultimi sono i moduli responsabili del processo di Noising/Denoising visto nell'introduzione, e controllano la generazione dell'immagine a partire dal rumore bianco (la nebbia di cui avevamo parlato). Per quanto riguarda ControlNet, sei linee escono dal loader di ControlNet ed entrano nel modulo che applica ControlNet.<br><br>Il terzo input agisce sulla componente testuale: crea le condizioni per attivare i prompt che descrivono le sei immagini di output. Come visto nella spiegazione iniziale, il meccanismo di base è creare un'immagine processando un prompt testuale insieme alle altre componenti grafiche in input.<br><br>C'è poi un meccanismo più articolato, in cui il modulo del modello Flux viene raddoppiato per risolvere le scene in cui i due personaggi sono presenti insieme. La sequenza dei due moduli non è del tutto chiara nell'architettura del grafo Flux, perché non sono statici ma dipendono dai prompt (dove viene dichiarato il numero di personaggi presenti in scena). Il problema viene quindi risolto dall'architettura interna stessa.<br><br>Arriviamo al modulo <strong>CLIPTextEncode</strong>, che ha in input la connessione al modulo principale Flux, a CLIP e alla VAE. Il compito di questo modulo è integrare Flux e CLIP per poi codificarli con la VAE — ossia trasformare in spazi numerici i prompt descrittivi di ogni scena (ce ne sono due per scena: clip_l + t5xxl). Nota: mentre t5xxl ha il compito di descrivere la scena in dettaglio, CLIP conserva il ruolo (più datato) di descrivere anche un prompt negativo, escludendo così tutti i componenti non voluti.<br><br>Ripetiamo i tre input:">
+              Once <strong>Flux-dev</strong> is loaded, three inputs are applied to the Flux model:<br><br>The first two act on the image itself: the Image Processing Adapter (<strong>IPA</strong>) and <strong>ControlNet</strong>, which modify certain internal states of the main Flux network. Following the wires between the nodes: in this pipeline, six lines leave the Flux Diffusion Model module and enter six IPA modules — one per final shot — then leave those six IPA modules and enter the six KSampler modules. These KSampler modules are the ones responsible for the Noising/Denoising process described in the introduction, controlling image generation starting from white noise (the fog discussed earlier). As for ControlNet, six lines leave the ControlNet loader and go into the module that applies ControlNet.<br><br>The third input acts on the text component: it creates the conditions that activate the prompts describing the six output images. As seen in the introductory explanation, the basic mechanism is to create an image by processing a text prompt together with the other input graphic components.<br><br>There is then a more elaborate mechanism, where the Flux model module is duplicated to resolve scenes in which both characters appear together. The sequence of the two modules isn't entirely clear-cut in the Flux graph's architecture, because they aren't static — they depend on the prompts (where the number of characters present in the scene is declared). The problem is therefore resolved by the internal architecture itself.<br><br>We arrive at the <strong>CLIPTextEncode</strong> module, which takes as input the connection to the main Flux module, to CLIP, and to the VAE. The role of this module is to integrate Flux and CLIP and then encode them with the VAE — that is, to transform into numeric spaces the descriptive prompts for each scene (there are two per scene: clip_l + t5xxl). Note: while t5xxl is tasked with describing the scene in detail, CLIP retains its older role of also describing a negative prompt — excluding all unwanted components.<br><br>Let's go over the three inputs again:
+            </p>
+
+            <ul class="content-sublist">
+              <li data-en="The main model receives FluxIPA and CLIP as input, as we saw: they coordinate image and text processing."
+                  data-it="Il modello principale riceve in ingresso FluxIPA e CLIP, che abbiamo visto: coordinano il processing dell'immagine e del testo.">
+                The main model receives FluxIPA and CLIP as input, as we saw: they coordinate image and text processing.
+              </li>
+              <li data-en="The VAE encoder transforms everything into numeric spaces so the operations can be carried out."
+                  data-it="Il VAE encoder trasforma tutto in spazi numerici per poter compiere le operazioni.">
+                The VAE encoder transforms everything into numeric spaces so the operations can be carried out.
+              </li>
+            </ul>
+
+            <p class="post-text" style="margin-top:1.2em;"
+               data-en="At this point we reach the final steps, already described individually above: ControlNet and KSampler — the part that simulates rendering, and the part that performs Noise-Denoising. Finally, the VAE decoder brings the scene image back into plain, visible form, which can then be saved to storage."
+               data-it="A questo punto arriviamo ai passaggi finali, già descritti singolarmente sopra: ControlNet e KSampler — la parte che simula il rendering e la parte che esegue il Noise-Denoising. Infine il VAE decoder riporta l'immagine della scena in chiaro, pronta per essere salvata nello Store.">
+              At this point we reach the final steps, already described individually above: ControlNet and KSampler — the part that simulates rendering, and the part that performs Noise-Denoising. Finally, the VAE decoder brings the scene image back into plain, visible form, which can then be saved to storage.
+            </p>
+
+          </div>
+        </li>
+
+        <!-- 02 -->
+        <li class="content-item">
+          <div class="content-number">02</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="A broader reflection"
+                data-it="Una riflessione pi&ugrave; generale">
+              A broader reflection
+            </h3>
+
+            <p class="post-text"
+               data-en="One final, broader reflection. The least intuitive thing — and it wasn't, almost for anyone, even ten years ago — is that, thanks to neural networks, all the modules we've seen can be connected together and processed in cycles (many cycles) all at once. At every cycle, the weights and internal connections of the network's neurons change, and this is how the network gradually learns and transforms the information it processes — even when that information is highly heterogeneous (since it includes everything: positions, character features, colours, environments, and so on). Today's networks have become a combination of many layers (30–40 or more), where each layer is a stratum of neurons (millions of them, or more), and where the connections are guided by what's called an <em>attention mechanism</em>, which in short steers the flow of information. By running many cycles, the network learns. Layers + vector dimensions + attention mechanisms = parameters. When you read that a network 'has 25 billion parameters', it means it has 25 billion combinations of (layers + vector dimensions + attention mechanisms). And all of this runs hundreds or thousands of cycles — or rather, it ran them during training. This is why hundreds or thousands of GPUs are needed for pre-training, and why the costs at OpenAI, Anthropic and similar companies are so high — and why, for now, these companies operate at a loss."
+               data-it="Facciamo una riflessione più generale. La cosa meno intuitiva — e non lo era (quasi) per nessuno dieci anni fa — è che, grazie alle reti neurali, tutti i moduli che abbiamo visto possono essere connessi insieme ed essere processati in cicli (molti cicli) tutti insieme. A ogni ciclo cambiano i pesi e le connessioni interne dei neuroni della rete, e in questo modo la rete impara e trasforma man mano l'informazione che processa, anche quando questa informazione è molto eterogenea (dato che comprende tutto: posizioni, lineamenti dei personaggi, colori, ambienti, ecc.). Le reti oggi sono diventate una combinazione di molti layer (30-40 e oltre), dove ogni layer è uno strato di neuroni (milioni e più), e dove le connessioni sono guidate da quello che si chiama <em>attention mechanism</em>, che in breve pilota il flusso dell'informazione. Facendo molti cicli, la rete impara. Layer + dimensioni dei vettori + meccanismi di attention = parametri. Quando leggete che una rete 'ha 25 miliardi di parametri', significa che ha 25 miliardi di combinazioni di (layer + dimensioni dei vettori + meccanismi di attention). E tutto questo comporta centinaia o migliaia di cicli — o meglio, li ha fatti durante l'apprendimento. Per questa ragione occorrono centinaia o migliaia di GPU per il pre-training, ed è per questa ragione che le spese di OpenAI, Anthropic e simili sono così elevate — motivo per cui, per ora, queste società operano in perdita.">
+              One final, broader reflection. The least intuitive thing — and it wasn't, almost for anyone, even ten years ago — is that, thanks to neural networks, all the modules we've seen can be connected together and processed in cycles (many cycles) all at once. At every cycle, the weights and internal connections of the network's neurons change, and this is how the network gradually learns and transforms the information it processes — even when that information is highly heterogeneous (since it includes everything: positions, character features, colours, environments, and so on). Today's networks have become a combination of many layers (30–40 or more), where each layer is a stratum of neurons (millions of them, or more), and where the connections are guided by what's called an <em>attention mechanism</em>, which in short steers the flow of information. By running many cycles, the network learns. Layers + vector dimensions + attention mechanisms = parameters. When you read that a network 'has 25 billion parameters', it means it has 25 billion combinations of (layers + vector dimensions + attention mechanisms). And all of this runs hundreds or thousands of cycles — or rather, it ran them during training. This is why hundreds or thousands of GPUs are needed for pre-training, and why the costs at OpenAI, Anthropic and similar companies are so high — and why, for now, these companies operate at a loss.
+            </p>
+
+          </div>
+        </li>
+      </ol>
+
+      <!-- ── FIGURE (pg. 6 of the source document, no image on prior pages) ── -->
+      <figure class="post-figure">
+        <img src="assets/post-comfyui-modelli2/diagram2.png"
+             alt="ComfyUI pipeline flow diagram">
+        <figcaption class="post-caption"
+          data-en="<span class='caption-title'>The complete flow</span>From the Flux model through IP-Adapter and ControlNet conditioning, the two CLIPTextEncode branches, KSampler, VAE decoding, to the final SaveImage node."
+          data-it="<span class='caption-title'>Il flusso completo</span>Dal modello Flux, attraverso il conditioning di IP-Adapter e ControlNet, i due rami CLIPTextEncode, KSampler, la decodifica VAE, fino al nodo finale SaveImage.">
+          <span class="caption-title">The complete flow</span>From the Flux model through IP-Adapter and ControlNet conditioning, the two CLIPTextEncode branches, KSampler, VAE decoding, to the final SaveImage node.
+        </figcaption>
+      </figure>
+
+      <ol class="content-list" start="3">
+
+        <!-- 03 -->
+		<!-- ── Course Materials ──────────────────────────────────────── -->
+        <li class="content-item">
+          <div class="content-number">03</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="Explanation of the main modules (second diagram)"
+                data-it="Spiegazione moduli principali (seconda figura)">
+              Explanation of the main modules (second diagram)
+            </h3>
+
+            <p class="post-text"
+               data-en="Here is what each of the main modules shown in the flow diagram above does — the modules not already covered in the first section:"
+               data-it="Ecco cosa fa ciascuno dei moduli principali mostrati nello schema di flusso qui sopra — i moduli non già trattati nella prima parte:">
+              Here is what each of the main modules shown in the flow diagram above does — the modules not already covered in the first section:
+            </p>
+
+            <ul class="content-sublist">
+              <li data-en="<strong>ApplyFluxIPA</strong> applies the IP-Adapter to the current MODEL state, injecting one character's visual identity (from their turnaround reference image) into the network's weights. It's applied once per character: first John, then Elena, when both share a scene. The second application partially overrides the first — a known limitation, mitigated by weighting the focal character higher."
+                  data-it="<strong>ApplyFluxIPA</strong> applica l'IP-Adapter allo stato corrente del MODEL, iniettando l'identità visiva di un personaggio (dalla sua immagine di riferimento turnaround) nei pesi della rete. Viene applicato una volta per personaggio: prima John, poi Elena, quando entrambi condividono la scena. La seconda applicazione sovrascrive parzialmente la prima — un limite noto, mitigato dando un peso maggiore al personaggio focale.">
+                <strong>ApplyFluxIPA</strong> applies the IP-Adapter to the current MODEL state, injecting one character's visual identity (from their turnaround reference image) into the network's weights. It's applied once per character: first John, then Elena, when both share a scene. The second application partially overrides the first — a known limitation, mitigated by weighting the focal character higher.
+              </li>
+              <li data-en="<strong>CLIPTextEncode (+)</strong> is the positive conditioning branch: it encodes the scene prompt (composite of character-identity tokens plus shot description) into the numeric space that will guide image generation."
+                  data-it="<strong>CLIPTextEncode (+)</strong> è il ramo di conditioning positivo: codifica il prompt della scena (composto dai token di identità dei personaggi più la descrizione dello shot) nello spazio numerico che guiderà la generazione dell'immagine.">
+                <strong>CLIPTextEncode (+)</strong> is the positive conditioning branch: it encodes the scene prompt (composite of character-identity tokens plus shot description) into the numeric space that will guide image generation.
+              </li>
+              <li data-en="<strong>CLIPTextEncode (&minus;)</strong> is the negative conditioning branch: it encodes what to exclude (blurry results, deformed anatomy, extra characters, and so on). At Flux's typical cfg=1.0 this has limited effect, but it's wired correctly for whenever the cfg value is raised."
+                  data-it="<strong>CLIPTextEncode (&minus;)</strong> è il ramo di conditioning negativo: codifica cosa escludere (risultati sfocati, anatomia deformata, personaggi in eccesso, ecc.). Al tipico cfg=1.0 di Flux ha un effetto limitato, ma è collegato correttamente per quando il valore di cfg viene alzato.">
+                <strong>CLIPTextEncode (&minus;)</strong> is the negative conditioning branch: it encodes what to exclude (blurry results, deformed anatomy, extra characters, and so on). At Flux's typical cfg=1.0 this has limited effect, but it's wired correctly for whenever the cfg value is raised.
+              </li>
+              <li data-en="<strong>ControlNetApply</strong> applies the depth map rendered from the 3D camera/mesh setup, at a given strength (e.g. 0.25), providing spatial and pose guidance to the model."
+                  data-it="<strong>ControlNetApply</strong> applica la depth map generata dal setup di camera/mesh 3D, con una determinata intensità (ad es. 0.25), fornendo al modello un condizionamento spaziale e di posa.">
+                <strong>ControlNetApply</strong> applies the depth map rendered from the 3D camera/mesh setup, at a given strength (e.g. 0.25), providing spatial and pose guidance to the model.
+              </li>
+              <li data-en="<strong>KSampler</strong> is the actual sampling engine: it performs the iterative Noising/Denoising cycle described earlier, converting random noise into the final latent image, guided by the positive/negative conditioning and by ControlNet."
+                  data-it="<strong>KSampler</strong> è il motore di campionamento vero e proprio: esegue il ciclo iterativo di Noising/Denoising descritto in precedenza, trasformando il rumore casuale nell'immagine latente finale, guidato dal conditioning positivo/negativo e da ControlNet.">
+                <strong>KSampler</strong> is the actual sampling engine: it performs the iterative Noising/Denoising cycle described earlier, converting random noise into the final latent image, guided by the positive/negative conditioning and by ControlNet.
+              </li>
+              <li data-en="<strong>EmptyLatentImage</strong> allocates the empty latent canvas at the target resolution (1344&times;768) that KSampler will progressively fill."
+                  data-it="<strong>EmptyLatentImage</strong> alloca la tela latente vuota alla risoluzione target (1344&times;768) che KSampler riempirà progressivamente.">
+                <strong>EmptyLatentImage</strong> allocates the empty latent canvas at the target resolution (1344&times;768) that KSampler will progressively fill.
+              </li>
+              <li data-en="<strong>VAEDecode</strong> converts the final latent tensor into a pixel-space image, using the VAE loaded once at the top of the pipeline."
+                  data-it="<strong>VAEDecode</strong> converte il tensore latente finale in un'immagine nello spazio dei pixel, usando il VAE caricato una sola volta all'inizio della pipeline.">
+                <strong>VAEDecode</strong> converts the final latent tensor into a pixel-space image, using the VAE loaded once at the top of the pipeline.
+              </li>
+              <li data-en="<strong>SaveImage</strong> writes the resulting image to disk under a per-shot filename (e.g. <code>Shot_N_Name</code>)."
+                  data-it="<strong>SaveImage</strong> scrive l'immagine risultante su disco con un nome file specifico per ogni shot (ad es. <code>Shot_N_Name</code>).">
+                <strong>SaveImage</strong> writes the resulting image to disk under a per-shot filename (e.g. <code>Shot_N_Name</code>).
+              </li>
+            </ul>
+
+                     <p class="post-text" style="margin-top:1.6em; opacity:0.75;"
+                 data-en="Before running the pipeline, make sure all required custom node packs and model files are installed. The instructions page linked below lists every package, every model weight, and the files you need to provide yourself."
+                 data-it="Prima di eseguire la pipeline, assicurati che tutti i pack di nodi personalizzati e i file modello richiesti siano installati. La pagina delle istruzioni collegata di seguito elenca ogni pacchetto, ogni peso del modello e i file che devi fornire personalmente.">
+                Before running the pipeline, make sure all required custom node packs and model files are installed. The instructions page linked below lists every package, every model weight, and the files you need to provide yourself.
+              </p>
+
+     <p class="post-text" style="margin-top:0.4rem; display:flex; gap:1.2rem; flex-wrap:wrap; align-items:center;">
+              <a href="assets/post-comfyui-modelli/workflow_api_v2.json"
+                 class="post-pdf-btn" download
+                 data-en="&darr; Download the pipeline (JSON)"
+                 data-it="&darr; Scarica la pipeline (JSON)">&darr; Download the pipeline (JSON)</a>
+              <a href="comfyui-pipeline-setup.html"
+                 class="post-pdf-btn"
+                 data-en="&rarr; Instructions for customized modules"
+                 data-it="&rarr; Istruzioni per i moduli personalizzati">&rarr; Instructions for customized modules</a>
+            </p>
+
+          </div>
+        </li>
+
+      </ol>
+
+      <!-- ── LINK BACK TO PART ONE ─────────────────────────── -->
+      <p class="post-text" style="margin-top:2.5rem; opacity:0.75;">
+        <span data-en="Previous part: "
+              data-it="Parte precedente: ">Previous part: </span><a
+          href="post-comfyui-modelli.html" class="about-link"
+          data-en="ComfyUI Visual Stories — Part 1"
+          data-it="ComfyUI Storie Visive — Parte 1"
+        >ComfyUI Visual Stories — Part 1</a>.
+      </p>
+
+    </div><!-- /page-body -->
+  </main>
+
+  <a href="posts.html" class="nav-back"
+     data-en="POSTS" data-it="POST">POSTS</a>
+
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="en">EN</button>
+    <button class="lang-btn" data-lang="it">IT</button>
+  </div>
+
+  <script src="assets/lang.js"></script>
+  <script>
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').classList.toggle('scrolled', window.scrollY > 20);
+    });
+  </script>
+</body>
+</html>
