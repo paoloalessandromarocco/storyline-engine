@@ -7,7 +7,7 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Gemini vs ComfyUI: a comparison</title>
+  <title>Gemini vs ComfyUI (Open source): a comparison</title>
   <link rel="alternate" hreflang="en"        href="https://storyline-engine.com/post-confyui-confronto-gemini.html">
   <link rel="alternate" hreflang="it"        href="https://storyline-engine.com/post-confyui-confronto-gemini.html?lang=it">
   <link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-confyui-confronto-gemini.html">
@@ -26,14 +26,14 @@
 
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Paolo Marocco">
-  <meta property="og:title" content="Gemini vs ComfyUI: a comparison">
+  <meta property="og:title" content="Gemini vs ComfyUI (Open source): a comparison">
   <meta property="og:description" content="Why a two-line Gemini prompt can outperform a 50-node ComfyUI pipeline built by hand — and what that gap actually is, and isn&#x27;t, about.">
   <meta property="og:url" content="https://storyline-engine.com/post-confyui-confronto-gemini.html">
   <meta property="og:image" content="https://storyline-engine.com/assets/post-confyui-confronto-gemini/diagram-loop.jpg">
   <meta property="og:locale" content="en_US">
   <meta property="og:locale:alternate" content="it_IT">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Gemini vs ComfyUI: a comparison">
+  <meta name="twitter:title" content="Gemini vs ComfyUI (Open source): a comparison">
   <meta name="twitter:description" content="Why a two-line Gemini prompt can outperform a 50-node ComfyUI pipeline built by hand — and what that gap actually is, and isn&#x27;t, about.">
   <meta name="twitter:image" content="https://storyline-engine.com/assets/post-confyui-confronto-gemini/diagram-loop.jpg">
 
@@ -41,7 +41,7 @@
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "Gemini vs ComfyUI: a comparison",
+  "headline": "Gemini vs ComfyUI (Open source): a comparison",
   "description": "Why a two-line Gemini prompt can outperform a 50-node ComfyUI pipeline built by hand — and what that gap actually is, and isn't, about.",
   "image": "https://storyline-engine.com/assets/post-confyui-confronto-gemini/diagram-loop.jpg",
   "inLanguage": "en",
@@ -223,6 +223,8 @@
         <span class="post-tag tag-narr" data-en="VLM"       data-it="VLM">VLM</span>
         <span class="post-tag tag-narr" data-en="Confronto" data-it="Confronto">Confronto</span>
       </div>
+
+            <p class="post-abstract-text" data-en="A two-line Gemini prompt often beats a hand-built 50-node ComfyUI pipeline for simple shots. ComfyUI only wins once you add back what Gemini already does internally: a judge that checks the image against a spec, and an editor that repairs only what fails." data-it="Un prompt di due righe su Gemini spesso batte una pipeline ComfyUI costruita a mano con 50 nodi, per scatti semplici. ComfyUI vince solo quando si aggiunge ciò che Gemini fa già internamente: un giudice che verifica l'immagine rispetto a una specifica, e un editor che corregge solo ciò che non torna.">A two-line Gemini prompt often beats a hand-built 50-node ComfyUI pipeline for simple shots. ComfyUI only wins once you add back what Gemini already does internally: a judge that checks the image against a spec, and an editor that repairs only what fails.</p>
 
       <p class="post-abstract-text"
          data-en="A working note on why a two-line Gemini prompt often outperforms a 50-node ComfyUI pipeline built by hand. The gap is not the level of detail in the prompt &mdash; it's a missing piece: a critical level that reads the generated image back against a structured spec, and a corrective editor that repairs only what fails, in a closed loop. This post reconstructs that architecture as an open graph (nodes A&ndash;E), isolates the minimal sub-graph that actually guarantees consistency, explains why ComfyUI's own execution model can't run the loop natively, and walks through how the critical node reasons, step by step, down to the instruction it hands the editor."
@@ -517,7 +519,15 @@
         </ol>
       </section>
 
-    </div><!-- /page-body -->
+      <p class="section-label" data-en="FAQ" data-it="FAQ">FAQ</p>
+      <p data-en="<strong>Is ComfyUI harder to learn than prompting Gemini?</strong> Yes, for a one-off image. The pipeline built across this course's first two parts runs 50+ nodes, IP-Adapter and ControlNet chains, and KSampler loops that need trial-and-error tuning — a two-line Gemini prompt gets a comparable single result faster." data-it="<strong>ComfyUI è più difficile da imparare rispetto a scrivere un prompt su Gemini?</strong> Sì, per un'immagine singola. La pipeline costruita nelle prime due parti di questo corso usa 50+ nodi, catene IP-Adapter e ControlNet, e cicli KSampler che richiedono una messa a punto per tentativi — un prompt di due righe su Gemini ottiene un risultato paragonabile più in fretta."><strong>Is ComfyUI harder to learn than prompting Gemini?</strong> Yes, for a one-off image. The pipeline built across this course's first two parts runs 50+ nodes, IP-Adapter and ControlNet chains, and KSampler loops that need trial-and-error tuning — a two-line Gemini prompt gets a comparable single result faster.</p>
+      <p data-en="<strong>Why does a two-line Gemini prompt beat a hand-built ComfyUI pipeline?</strong> Not because the prompt is more detailed — a sufficiently detailed prompt fed into a hand-built pipeline still falls short. The real difference is two steps Gemini runs internally that a plain pipeline doesn't: a critic that checks the rendered image against a structured spec, and a corrective editor that repairs only what fails, looping until it passes." data-it="<strong>Perché un prompt di due righe su Gemini batte una pipeline ComfyUI costruita a mano?</strong> Non perché il prompt sia più dettagliato — anche un prompt molto dettagliato dato in pasto a una pipeline costruita a mano non colma il divario. La vera differenza sono due passaggi che Gemini esegue internamente e che una pipeline semplice non ha: un critico che verifica l'immagine generata rispetto a una specifica strutturata, e un editor correttivo che ripara solo ciò che non torna, ciclando finché non passa."><strong>Why does a two-line Gemini prompt beat a hand-built ComfyUI pipeline?</strong> Not because the prompt is more detailed — a sufficiently detailed prompt fed into a hand-built pipeline still falls short. The real difference is two steps Gemini runs internally that a plain pipeline doesn't: a critic that checks the rendered image against a structured spec, and a corrective editor that repairs only what fails, looping until it passes.</p>
+      <p data-en="<strong>Can ComfyUI run that same generate-judge-correct loop natively?</strong> Not on its own. ComfyUI executes a fixed graph with no native conditional back-edge, so a node can't tell the queue to re-run itself. The practical fix is to keep the loop in Python — call ComfyUI's API for each pass — rather than trying to unroll it as nodes." data-it="<strong>ComfyUI può eseguire nativamente lo stesso ciclo genera-giudica-correggi?</strong> Non da solo. ComfyUI esegue un grafo fisso senza un vero arco di ritorno condizionale, quindi un nodo non può dire alla coda di rieseguirsi. La soluzione pratica è tenere il ciclo in Python — richiamando l'API di ComfyUI a ogni passaggio — invece di provare a srotolarlo come nodi."><strong>Can ComfyUI run that same generate-judge-correct loop natively?</strong> Not on its own. ComfyUI executes a fixed graph with no native conditional back-edge, so a node can't tell the queue to re-run itself. The practical fix is to keep the loop in Python — call ComfyUI's API for each pass — rather than trying to unroll it as nodes.</p>
+      <p data-en="<strong>When is it actually worth building this architecture instead of just using Gemini?</strong> Not for a one-off, hand-curated project where a person already reviews every frame. It earns its cost at production scale: any pipeline that has to generate and self-correct many sequences without a human checking each one." data-it="<strong>Quando vale davvero la pena costruire questa architettura invece di usare semplicemente Gemini?</strong> Non per un progetto singolo, curato a mano, dove una persona rivede già ogni fotogramma. Ripaga alla scala della produzione: qualsiasi pipeline che deve generare e autocorreggere molte sequenze senza che una persona ne controlli ciascuna."><strong>When is it actually worth building this architecture instead of just using Gemini?</strong> Not for a one-off, hand-curated project where a person already reviews every frame. It earns its cost at production scale: any pipeline that has to generate and self-correct many sequences without a human checking each one.</p>
+
+      <p data-en="Related: <a href='post-comfyui-intro.html' class='about-link'>What is ComfyUI</a> for the node basics, and <a href='post-comfyui-concepts.html' class='about-link'>ComfyUI Visual Stories — Concepts</a> for how this course's own pipeline builds consistency without this loop." data-it="Correlati: <a href='post-comfyui-intro.html' class='about-link'>Cosa è ComfyUI</a> per le basi sui nodi, e <a href='post-comfyui-concepts.html' class='about-link'>ComfyUI Storie Visive — Concetti</a> per come la pipeline di questo corso costruisce la coerenza senza questo ciclo.">Related: <a href='post-comfyui-intro.html' class='about-link'>What is ComfyUI</a> for the node basics, and <a href='post-comfyui-concepts.html' class='about-link'>ComfyUI Visual Stories — Concepts</a> for how this course's own pipeline builds consistency without this loop.</p>
+
+        </div><!-- /page-body -->
   </main>
 
   <a href="posts.html" class="nav-back"
