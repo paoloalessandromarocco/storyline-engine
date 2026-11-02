@@ -184,6 +184,9 @@ a.menu-item:hover {
 .nav-back:hover { opacity: 1; color: #001260; }
 .nav-back::before { content: "← "; }
 
+/* — Home link — stacked above the contextual back link — */
+.nav-home { bottom: 58px; }
+
 /* ── Lang switch — bottom-right ──────────────────────────────────────────── */
 .lang-switch { position: fixed; bottom: 26px; right: 44px; z-index: 200; }
 .lang-btn {
