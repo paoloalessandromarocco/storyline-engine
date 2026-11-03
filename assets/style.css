@@ -555,3 +555,9 @@ a.post-title:hover { color: #001D6C; }
 .project-item--disabled .project-name,
 .project-item--disabled .project-tag { color: #9a9a9a; }
 .project-item--disabled:hover { opacity: 1; }
+
+/* ── Post-body emphasis: underline instead of bold ──────────────────────── */
+.page-body strong {
+  font-weight: normal;
+  text-decoration: underline;
+}
