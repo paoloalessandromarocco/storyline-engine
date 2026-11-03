@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://storyline-engine.com/index.html</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <priority>1.0</priority>
+    <image:image><image:loc>https://storyline-engine.com/assets/thumbs/door-pannocchino.webp</image:loc></image:image>
+    <image:image><image:loc>https://storyline-engine.com/assets/thumbs/door-visual-stories.webp</image:loc></image:image>
+    <image:image><image:loc>https://storyline-engine.com/assets/thumbs/door-adv.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://storyline-engine.com/about.html</loc>
@@ -18,8 +22,12 @@
   </url>
   <url>
     <loc>https://storyline-engine.com/adv.html</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <priority>0.7</priority>
+    <image:image><image:loc>https://storyline-engine.com/assets/thumbs/adv-first-birthday.webp</image:loc></image:image>
+    <image:image><image:loc>https://storyline-engine.com/assets/thumbs/adv-selling-cake.webp</image:loc></image:image>
+    <image:image><image:loc>https://storyline-engine.com/assets/thumbs/adv-pigiatura.webp</image:loc></image:image>
+    <image:image><image:loc>https://storyline-engine.com/assets/thumbs/row-pannocchino.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://storyline-engine.com/comfyui.html</loc>
@@ -28,8 +36,12 @@
   </url>
   <url>
     <loc>https://storyline-engine.com/neural-graphics.html</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <priority>0.7</priority>
+    <image:image><image:loc>https://storyline-engine.com/assets/thumbs/row-sotto-lasfalto.webp</image:loc></image:image>
+    <image:image><image:loc>https://storyline-engine.com/assets/thumbs/row-primo-incontro.webp</image:loc></image:image>
+    <image:image><image:loc>https://storyline-engine.com/assets/thumbs/row-aelita.webp</image:loc></image:image>
+    <image:image><image:loc>https://storyline-engine.com/assets/thumbs/row-pannocchino.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://storyline-engine.com/neural-forecast.html</loc>
@@ -190,8 +202,9 @@
   </url>
   <url>
     <loc>https://storyline-engine.com/post-pannocchino-spighetta.html</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <priority>0.6</priority>
+    <image:image><image:loc>https://storyline-engine.com/assets/post-pannocchino-spighetta/01-encounter.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://storyline-engine.com/post-storyboard-adv.html</loc>
@@ -200,7 +213,8 @@
   </url>
   <url>
     <loc>https://storyline-engine.com/post-storyboard-vendemmia.html</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <priority>0.6</priority>
+    <image:image><image:loc>https://storyline-engine.com/assets/post-storyboard-vendemmia/01-raccolta-mattina.jpg</image:loc></image:image>
   </url>
 </urlset>
