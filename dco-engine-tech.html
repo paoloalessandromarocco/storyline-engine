@@ -402,7 +402,7 @@
 
             <p class="post-text"
                data-en="One Gemini call per beat in the spec. The description file drives the staging; the slogan is supporting copy, not the author of the story. Output here is unverified — same cast and setting as reference_set, staged as the spec says, but nothing has passed the judge loop yet."
-               data-it="Una chiamata a Gemini per ogni beat della spec. Il file di descrizione guida lo staging; lo slogan è testo di appoggio, non l'autore della storia. L'output qui non è ancora verificato — stesso cast e stessa ambientazione di reference_set, messi in scena come dice la spec, ma niente è ancora passato per il loop del judge.">
+               data-it="Una chiamata a Gemini per ogni beat dello story_spec. Il file di descrizione guida lo staging; lo slogan è testo di appoggio, non l'autore della storia. L'output qui non è ancora verificato — stesso cast e stessa ambientazione di reference_set, messi in scena come dice lo story_spec, ma niente è ancora passato per il loop del judge.">
               One Gemini call per beat in the spec. The description file drives the staging; the slogan is supporting copy, not the author of the story. Output here is unverified — same cast and setting as reference_set, staged as the spec says, but nothing has passed the judge loop yet.
             </p>
 
@@ -435,7 +435,7 @@
 
             <p class="post-text"
                data-en="This is where most of the engine's actual behaviour lives. One call runs the full loop for exactly one shot: Gemini as the VLM judge for D, Gemini again as the image editor for E."
-               data-it="È qui che vive la maggior parte del comportamento effettivo del motore. Una chiamata esegue l'intero loop per un singolo shot: Gemini come judge VLM per D, di nuovo Gemini come editor di immagini per E.">
+               data-it="È qui che agisce il motore: una chiamata esegue l'intero loop per un singolo shot — Gemini come judge automatico (VLM) per D, di nuovo Gemini come editor di immagini per E.">
               This is where most of the engine's actual behaviour lives. One call runs the full loop for exactly one shot: Gemini as the VLM judge for D, Gemini again as the image editor for E.
             </p>
 
@@ -525,7 +525,7 @@
                 <strong>Best-of-N resampling</strong> — generate 2–3 candidates with varied phrasing/seed, let D rank them, keep the best.
               </li>
               <li data-en="<strong>Escalate</strong> &mdash; stop spending budget on this shot, flag it (or the underlying spec/reference image) for a human look."
-                  data-it="<strong>Escalation</strong> &mdash; smettere di spendere budget su questo shot, segnalarlo (o la spec/immagine di riferimento sottostante) per una revisione umana.">
+                  data-it="<strong>Escalation</strong> &mdash; smettere di spendere budget su questo shot, segnalarlo (o il relativo <code>spec_entry</code>/l'immagine di riferimento sottostante) per una revisione umana.">
                 <strong>Escalate</strong> — stop spending budget on this shot, flag it (or the underlying spec/reference image) for a human look.
               </li>
             </ol>
@@ -1180,7 +1180,7 @@
 
             <p class="post-text" style="margin-top:1.2em;"
                data-en="<strong>B1 &mdash; How good is the judge.</strong> Measured against the human-labelled calibration set described in <a href='#brand-config' class='about-link'>chapter 01</a>:"
-               data-it="<strong>B1 &mdash; Quanto è buono il judge.</strong> Misurato sul calibration set etichettato a mano descritto nel <a href='#brand-config' class='about-link'>capitolo 01</a>:">
+               data-it="<strong>B1 &mdash; Quanto è accurato il judge.</strong> Misurato sul calibration set etichettato a mano descritto nel <a href='#brand-config' class='about-link'>capitolo 01</a>:">
               <strong>B1 &mdash; How good is the judge.</strong> Measured against the human-labelled calibration set described in <a href="#brand-config" class="about-link">chapter 01</a>:
             </p>
 
@@ -1370,7 +1370,7 @@
         </p>
         <p class="post-text"
            data-en="Structural implication: <code>generate_story_spec()</code> can't treat &ldquo;product&rdquo; as a slot the way it treats &ldquo;slogan.&rdquo; It needs a small library of per-product-category staging templates that spec generation selects from and fills in, rather than one generic <code>BeatSpec</code> schema trying to cover every product. A content/spec-design problem, not a code problem."
-           data-it="Implicazione strutturale: <code>generate_story_spec()</code> non può trattare &ldquo;prodotto&rdquo; come uno slot allo stesso modo di &ldquo;slogan.&rdquo; Ha bisogno di una piccola libreria di template di staging per categoria di prodotto, da cui la generazione della spec seleziona e riempie, invece di un unico schema <code>BeatSpec</code> generico che cerca di coprire ogni prodotto. Un problema di progettazione di contenuto/spec, non di codice.">
+           data-it="Implicazione strutturale: <code>generate_story_spec()</code> non può trattare &ldquo;prodotto&rdquo; come uno slot allo stesso modo di &ldquo;slogan.&rdquo; Ha bisogno di una piccola libreria di template di staging per categoria di prodotto, da cui la generazione dello story_spec seleziona e riempie, invece di un unico schema <code>BeatSpec</code> generico che cerca di coprire ogni prodotto. Un problema di progettazione di contenuti e schema, non di codice.">
           Structural implication: <code>generate_story_spec()</code> can't treat "product" as a slot the way it treats "slogan." It needs a small library of per-product-category staging templates that spec generation selects from and fills in, rather than one generic <code>BeatSpec</code> schema trying to cover every product. A content/spec-design problem, not a code problem.
         </p>
       </div>
@@ -1407,7 +1407,7 @@
         </p>
         <p class="post-text"
            data-en="Structural implication: approved outputs have to be stored as artefacts together with their spec, the model identifiers and the full attempt history that <code>judge_and_correct()</code> already records, and treated as the source of truth; re-running the pipeline is a way to make new variants, never to restore old ones."
-           data-it="Implicazione strutturale: gli output approvati vanno conservati come artefatti insieme alla loro spec, agli identificativi dei modelli e allo storico completo dei tentativi che <code>judge_and_correct()</code> già registra, e trattati come fonte di verità; rieseguire la pipeline serve a produrre varianti nuove, mai a ripristinare quelle vecchie.">
+           data-it="Implicazione strutturale: gli output approvati vanno conservati come artefatti insieme al relativo story_spec, agli identificativi dei modelli e allo storico completo dei tentativi che <code>judge_and_correct()</code> già registra, e trattati come fonte di verità; rieseguire la pipeline serve a produrre varianti nuove, mai a ripristinare quelle vecchie.">
           Structural implication: approved outputs have to be stored as artefacts together with their spec, the model identifiers and the full attempt history that <code>judge_and_correct()</code> already records, and treated as the source of truth; re-running the pipeline is a way to make new variants, never to restore old ones.
         </p>
         <p class="post-text" style="margin-top:1.2em;"
