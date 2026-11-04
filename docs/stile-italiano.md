@@ -38,6 +38,22 @@ Il white paper è lo spettro opposto, da non replicare:
    - Evitare: "Gemini come judge VLM per D" (un lettore poco esperto può pensare sia una revisione umana)
    - Preferire: "Gemini come judge automatico (VLM) per D" — la parola "automatico" alla prima occorrenza dettagliata elimina l'ambiguità per il resto del testo
 
+5. **Niente calchi letterali dall'inglese — tradurre il concetto, non la parola.**
+   - Evitare: "Una tattica per secchio" (calco di "bucket" nel senso di categoria di difetto)
+   - Preferire: "Per ogni categoria di difetto si sceglie una sola tattica"
+   - Evitare: "addestra un motore di personaggio" (calco di "character engine" riferito a un prodotto terzo)
+   - Preferire: "addestra un modello dedicato al personaggio"
+   - Evitare: "Uno schizzo, non una costruzione" (calco di "a sketch, not a build")
+   - Preferire: "Una bozza di progetto, non un'implementazione"
+
+6. **Uniformare la terminologia che la pagina stessa ha già stabilito — non introdurre un sinonimo o un'abbreviazione isolata in un punto della pagina.**
+   - Esempio: se il resto della pagina usa sempre "file di descrizione", non far ricomparire "spec" nuda in un paragrafo isolato
+   - Esempio: "capitolo" per esteso ovunque, mai l'abbreviazione informale "capt."/"capt"
+   - Questo vale anche per le frasi spiegate a lungo con un giro di parole quando il resto del testo ha già un termine preciso per lo stesso concetto — es. "contiene ciò che il capitolo 02 chiama il file di configurazione, più X, più Y" invece di elencare esplicitamente ogni campo
+
+## Sessione 2026-11-04 (seconda passata) — dco-engine-tech.html
+Altri 5 punti riscritti su richiesta diretta di Paolo, che hanno originato le regole 5 e 6 sopra: "tattica per secchio", la spiegazione della modifica locale mirata (troppo ellittica), il contenuto della riga del database per brand (frase-contenitore poco leggibile, riscritta come elenco con agreement/false-pass rate spiegati inline), la descrizione del prodotto Bria ("motore di personaggio"), e "uno schizzo, non una costruzione".
+
 ## Da fare
 - Integrare altri documenti di riferimento quando Paolo li fornisce (ha indicato che ne arriveranno altri).
 - Estrarre altre coppie prima/dopo concrete man mano che si editano nuove pagine del sito, non solo principi generali.
