@@ -618,11 +618,11 @@ a.post-title:hover { color: #001D6C; }
 }
 
 /* ── Exceptions: keep solid underline where dots would be noisy or confusing ── */
-.page-body .content-sublist li strong,
+.page-body li:not(.content-item) strong,
 .post-caption strong,
 .film-caption strong,
 .variant-caption strong,
 .caption-title strong,
 figcaption strong {
-  text-decoration-style: solid;
+  text-decoration: none;
 }
