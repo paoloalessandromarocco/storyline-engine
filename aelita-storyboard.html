@@ -116,6 +116,9 @@
       position: relative;
       width: 100vw;
       height: 100vh;
+      overflow: hidden; /* clip the off-screen (translateX) inactive slides so they
+                            can't widen the mobile layout viewport and drag the
+                            fixed-position nav bars off-screen with them */
     }
 
     /* Ogni slide occupa esattamente il viewport ed è un contenitore flex verticale */
@@ -299,8 +302,17 @@
       .slide { padding: 3rem 0.5rem 0.5rem; }
       .text-panel-container { max-height: 30vh; padding: 0.8rem 1rem 3.5rem; }
       .description { font-size: 0.98rem; }
-      .controls { right: 0.5rem; bottom: 0.8rem; }
-      .counter  { left:  0.5rem; bottom: 0.8rem; }
+      .controls {
+        top: 50%; bottom: auto; left: 0; right: 0; transform: translateY(-50%);
+        justify-content: space-between; padding: 0 0.5rem; pointer-events: none;
+      }
+      .ctrl-btn {
+        pointer-events: all; width: 48px; height: 48px; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center; font-size: 0; padding: 0;
+      }
+      #prevBtn::before { content: "←"; font-size: 1.3rem; }
+      #nextBtn::before { content: "→"; font-size: 1.3rem; }
+      .counter { left: 50%; right: auto; bottom: 0.6rem; transform: translateX(-50%); }
     }
   </style>
 </head>
