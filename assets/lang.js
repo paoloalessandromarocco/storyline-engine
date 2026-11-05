@@ -50,5 +50,21 @@
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.addEventListener('click', function () { applyLang(this.dataset.lang); });
     });
+
+    // Topics menu: tap to open/close on touch screens (hover still works on desktop)
+    const menu = document.querySelector('.menu-container');
+    if (menu) {
+      const trigger = menu.querySelector('.menu-trigger');
+      trigger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        menu.classList.toggle('open');
+      });
+      document.addEventListener('click', function (e) {
+        if (!menu.contains(e.target)) menu.classList.remove('open');
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') menu.classList.remove('open');
+      });
+    }
   });
 })();

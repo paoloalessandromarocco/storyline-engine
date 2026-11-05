@@ -7,6 +7,7 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="color-scheme" content="light">
   <title>Gemini vs ComfyUI (Open source): a comparison</title>
   <link rel="alternate" hreflang="en"        href="https://storyline-engine.com/post-confyui-confronto-gemini.html">
   <link rel="alternate" hreflang="it"        href="https://storyline-engine.com/post-confyui-confronto-gemini.html?lang=it">
@@ -293,7 +294,7 @@
       <!-- ── FIGURE 1 ──────────────────────────────────────── -->
       <figure class="post-figure">
         <img src="assets/post-confyui-confronto-gemini/diagram-pipeline.jpg"
-             alt="Reconstructed reason-plan-render-check-refine pipeline, nodes A to E">
+             alt="Reconstructed reason-plan-render-check-refine pipeline, nodes A to E" width="969" height="625" decoding="async">
         <figcaption class="post-caption"
           data-en="<span class='caption-title'>Reason &middot; plan &middot; render &middot; check &middot; refine</span>Teal nodes (A, D) are reasoning steps &mdash; an LLM or VLM call. The coral nodes (B, C, E) are synthesis steps &mdash; they produce or edit pixels. In Gemini all five collapse into one jointly-trained model; rebuilt in the open, they are five separate calls wired together."
           data-it="<span class='caption-title'>Ragiona &middot; pianifica &middot; genera &middot; verifica &middot; correggi</span>I nodi verdi (A, D) sono passaggi di ragionamento &mdash; una chiamata a un LLM o a un VLM. I nodi corallo (B, C, E) sono passaggi di sintesi &mdash; producono o modificano pixel. In Gemini tutti e cinque collassano in un unico modello addestrato insieme; ricostruiti in chiaro, sono cinque chiamate separate collegate tra loro.">
@@ -418,7 +419,7 @@
       <!-- ── FIGURE 2 ──────────────────────────────────────── -->
       <figure class="post-figure">
         <img src="assets/post-confyui-confronto-gemini/diagram-loop.jpg"
-             alt="Minimal consistency sub-graph: spec JSON, D critic, E editor, loop until pass or budget cap">
+             alt="Minimal consistency sub-graph: spec JSON, D critic, E editor, loop until pass or budget cap" width="969" height="495" loading="lazy" decoding="async">
         <figcaption class="post-caption"
           data-en="<span class='caption-title'>The minimal consistency sub-graph</span>The spec JSON held from A asserts against D, the VLM critic; D reports defects to E, the corrective editor; E loops back to D until the image passes or the iteration budget caps out. Everything that guarantees consistency across a sequence lives inside this dashed box."
           data-it="<span class='caption-title'>Il sotto-grafo minimo di coerenza</span>La spec JSON tenuta da A asserisce contro D, il nodo critico VLM; D riporta i difetti a E, l'editor correttivo; E torna a D finché l'immagine non passa o il budget di iterazioni non si esaurisce. Tutto ciò che garantisce la coerenza lungo una sequenza vive dentro questo riquadro tratteggiato.">
