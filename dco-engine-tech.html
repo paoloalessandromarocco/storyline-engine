@@ -204,6 +204,16 @@
     /* ── Emphasis: dotted underline so it reads as annotation, not as a link ── */
     .page-body strong { text-decoration-style: dotted; }
 
+    /* ── Exceptions: keep solid underline where dots would be noisy ─────────── */
+    .page-body li strong,
+    .post-caption strong,
+    .film-caption strong,
+    .variant-caption strong,
+    .caption-title strong,
+    figcaption strong {
+      text-decoration-style: solid;
+    }
+
     /* ── Links: Klein blue instead of the site-wide amber, which has too ──
        little contrast against this page's burgundy body text ───────────── */
     .about-link { color: #002FA7; }
