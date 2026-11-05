@@ -297,7 +297,13 @@
       .text-panel-container { max-height: 30vh; padding: 0.8rem 1rem 3.5rem; }
       .description { font-size: 0.98rem; }
       .controls {
-        top: 50%; bottom: auto; left: 0; right: 0; transform: translateY(-50%);
+        top: 38%; bottom: auto; left: 0; right: 0;
+        /* top is a pre-JS fallback only — positionNav() in the script below
+           sets it to the exact top edge of the gap under the current image.
+           No transform here: .controls wraps .counter in the Sotto l'Asfalto
+           markup, and a transform on it would make it the containing block
+           for that *nested*, independently position:fixed .counter — pulling
+           it off to a wrong spot instead of the viewport-relative one. */
         justify-content: space-between; padding: 0 0.5rem; pointer-events: none;
       }
       .ctrl-btn {
@@ -306,7 +312,7 @@
       }
       #prevBtn::before { content: "←"; font-size: 1.3rem; }
       #nextBtn::before { content: "→"; font-size: 1.3rem; }
-      .counter { left: 50%; right: auto; bottom: 0.6rem; transform: translateX(-50%); }
+      .counter { left: 50%; right: auto; top: 38%; bottom: auto; transform: translate(-50%, -50%); }
     }
   </style>
 </head>
@@ -571,7 +577,35 @@
   const nextBtn  = document.getElementById('nextBtn');
   const counter  = document.getElementById('current');
   const langLink = document.querySelector('.top-bar a:last-child');
+  const controls   = document.querySelector('.controls');
+  const counterBox = document.querySelector('.counter');
+  const navMQ = window.matchMedia('(max-width: 700px)');
   let cur = 0;
+
+  // On mobile, pin the arrows + counter just below the currently visible
+  // image (not on top of it, not drifting into the caption) instead of a
+  // fixed viewport-relative spot that can land anywhere depending on
+  // orientation and how much text the slide has.
+  function positionNav() {
+    if (!navMQ.matches) { controls.style.top = ''; counterBox.style.top = ''; return; }
+    const img = slides[cur].querySelector('.comic-img');
+    if (!img) return;
+    const place = () => {
+      const r = img.getBoundingClientRect();
+      const topEdge = Math.round(r.bottom) + 12; // small gap below the image
+      controls.style.top = topEdge + 'px';
+      // .counter, where it's independently position:fixed (Aelita, Primo
+      // Incontro), centers itself on `top` via its own transform, so it
+      // needs the row's *center*, not its top edge. Where .counter instead
+      // lives nested inside .controls (Sotto l'Asfalto) this is a no-op —
+      // flexbox already centers it there once .controls itself is placed.
+      counterBox.style.top = (topEdge + prevBtn.offsetHeight / 2) + 'px';
+    };
+    if (img.complete) place();
+    else img.addEventListener('load', place, { once: true });
+  }
+  window.addEventListener('resize', positionNav);
+  window.addEventListener('orientationchange', positionNav);
 
   function syncLangLink() {
     langLink.href = langLink.href.split('#')[0] + '#' + cur;
@@ -591,6 +625,7 @@
     counter.textContent = cur === 0 ? 'COVER' : cur;
     prevBtn.disabled = cur === 0;
     nextBtn.disabled = cur === slides.length - 1;
+    positionNav();
     syncLangLink();
     history.replaceState(null, '', '#' + cur);
   }
@@ -598,6 +633,8 @@
   syncLangLink();
   const initSlide = parseInt(window.location.hash.slice(1));
   if (!isNaN(initSlide) && initSlide > 0 && initSlide < slides.length) go(initSlide);
+
+  positionNav();
 
   nextBtn.addEventListener('click', () => { if (cur < slides.length - 1) go(cur + 1); });
   prevBtn.addEventListener('click', () => { if (cur > 0) go(cur - 1); });
