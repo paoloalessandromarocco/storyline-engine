@@ -652,6 +652,16 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
      about the author actually starts. */
   body.interior header { justify-content: flex-end; }
   body.interior header .nav-item { display: none; }
+  /* Mobile: Klein blue at small sizes reads too pale against the light
+     sky portion of the home hero image -- darken and add a soft halo so
+     ABOUT, ARGOMENTI/TOPICS and the hero title stay legible regardless
+     of what sits behind them in the image. */
+  body.home .nav-item,
+  body.home .menu-trigger,
+  body.home .hero-title {
+    color: #001D6C;
+    text-shadow: 0 0 4px rgba(247,242,230,0.9), 0 0 9px rgba(247,242,230,0.55);
+  }
   .menu-dropdown {
     background: #F7F2E6; padding: 12px 18px 14px; margin-top: -4px;
     gap: 4px; box-shadow: 0 6px 18px rgba(0,47,167,0.12); border: 1px solid #C5D5EC;
