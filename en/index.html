@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <title>Paolo — Neural Models · Visual Storytelling</title>
+  <link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/index.html">
+  <link rel="alternate" hreflang="it" href="https://storyline-engine.com/index.html">
+  <link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/index.html">
+    <!-- Preload self-hosted fonts so they're already in flight before style.css
+       is even parsed — closes the remaining window where the browser paints
+       with the fallback (Georgia/Courier) and then swaps to the real font,
+       which is what still reads as the font "changing size" on reload. -->
+  <link rel="preload" href="/assets/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/ibm-plex-mono-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/eb-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/eb-garamond-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+  <meta name="description" content="Visual storytelling and ADV creativity powered by neural models — ComfyUI pipelines, AI storyboards, and film/advertising case studies by Paolo Marocco.">
+  <link rel="canonical" href="https://storyline-engine.com/en/index.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Paolo Marocco">
+  <meta property="og:title" content="Paolo — Neural Models · Visual Storytelling">
+  <meta property="og:description" content="Visual storytelling and ADV creativity powered by neural models — ComfyUI pipelines, AI storyboards, and film/advertising case studies by Paolo Marocco.">
+  <meta property="og:url" content="https://storyline-engine.com/en/index.html">
+  <meta property="og:image" content="https://storyline-engine.com/assets/bg_new.jpg">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="it_IT">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Paolo — Neural Models · Visual Storytelling">
+  <meta name="twitter:description" content="Visual storytelling and ADV creativity powered by neural models — ComfyUI pipelines, AI storyboards, and film/advertising case studies by Paolo Marocco.">
+  <meta name="twitter:image" content="https://storyline-engine.com/assets/bg_new.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Paolo — Neural Models · Visual Storytelling",
+    "url": "https://storyline-engine.com/",
+    "author": {
+      "@type": "Person",
+      "name": "Paolo Marocco",
+      "url": "https://storyline-engine.com/about.html",
+      "sameAs": ["https://www.linkedin.com/in/paolo-marocco/"],
+      "knowsAbout": ["Machine Learning", "Dynamic Creative Optimization", "ComfyUI"]
+    }
+  }
+  </script>
+
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body class="home">
+
+  <header>
+    <a href="/about.html" class="nav-item" data-en="ABOUT" data-it="ABOUT">ABOUT</a>
+    <div class="menu-container">
+      <span class="menu-trigger" data-en="TOPICS" data-it="ARGOMENTI">TOPICS</span>
+      <div class="menu-dropdown">
+        <a href="/adv.html"             class="menu-item" data-en="ADV"            data-it="ADV">ADV</a>
+        <a href="/neural-graphics.html" class="menu-item" data-en="VISUAL STORIES" data-it="FUMETTI/STORYBOARD">VISUAL STORIES</a>
+        <a href="/comfyui.html"         class="menu-item" data-en="COMFYUI"        data-it="COMFYUI">COMFYUI</a>
+        <a href="/posts.html"           class="menu-item" data-en="POSTS"          data-it="POST">POSTS</a>
+        <span class="menu-item menu-item--disabled" data-en="VIDEO" data-it="VIDEO">VIDEO</span>
+      </div>
+    </div>
+  </header>
+
+
+
+  <!-- SVG water filter — applied to bg image only, text stays sharp -->
+  <svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+    <defs>
+      <filter id="water" x="-6%" y="-6%" width="112%" height="112%"
+              color-interpolation-filters="sRGB">
+        <feTurbulence id="turb"
+                      type="turbulence"
+                      baseFrequency="0.010 0.014"
+                      numOctaves="2"
+                      seed="3"
+                      result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise"
+                           scale="14"
+                           xChannelSelector="R"
+                           yChannelSelector="G"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <div class="hero">
+    <img class="hero-bg" src="/assets/bg_solaris.jpg" alt="Solaris ocean">
+    <div class="hero-text">
+      <p class="hero-title"
+         data-en="Neural Models"
+         data-it="Modelli Neurali">Neural Models</p>
+      <p class="hero-sub"
+         data-en="Visual stories and ADV"
+         data-it="Visual storytelling and ADV">Visual stories and ADV</p>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const turb = document.getElementById('turb');
+      let t = 0;
+      function animate() {
+        t += 0.0018;  // 3× faster than before — motion stays perceptible
+
+        // Three irrational-ratio harmonics per axis — no common plateau
+        const fx = (0.010
+          + Math.sin(t)          * 0.0030
+          + Math.sin(t * 2.730)  * 0.0015
+          + Math.sin(t * 0.410)  * 0.0020).toFixed(6);
+
+        const fy = (0.014
+          + Math.sin(t * 0.618)  * 0.0040
+          + Math.sin(t * 1.870)  * 0.0020
+          + Math.cos(t * 3.140)  * 0.0010).toFixed(6);
+
+        turb.setAttribute('baseFrequency', fx + ' ' + fy);
+        requestAnimationFrame(animate);
+      }
+      animate();
+    })();
+  </script>
+
+  <!-- Bottom-left: three small "doors" into the main sections -->
+  <div class="home-doors">
+    <a class="home-door" href="/en/post-pannocchino-spighetta.html" aria-label="Pannocchino e Spighetta">
+      <img src="/assets/thumbs/door-pannocchino.webp" loading="lazy" width="112" height="112"
+           data-alt-en="Pannocchino and Spighetta" data-alt-it="Pannocchino e Spighetta" alt="Pannocchino and Spighetta">
+    </a>
+    <a class="home-door" href="/neural-graphics.html" aria-label="Visual Stories">
+      <img src="/assets/thumbs/door-visual-stories.webp" loading="lazy" width="112" height="112"
+           data-alt-en="Visual Stories" data-alt-it="Fumetti e Storyboard" alt="Visual Stories">
+    </a>
+    <a class="home-door" href="/adv.html" aria-label="ADV">
+      <img src="/assets/thumbs/door-adv.webp" loading="lazy" width="112" height="112"
+           data-alt-en="Automated Creative for ADV" data-alt-it="Creatività automatizzata per ADV" alt="Automated Creative for ADV">
+    </a>
+  </div>
+
+  <div class="lang-switch">
+    <a class="lang-btn" href="/index.html">IT</a>
+  </div>
+
+  <script src="/assets/menu.js"></script>
+</body>
+</html>
