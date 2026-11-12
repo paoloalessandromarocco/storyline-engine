@@ -51,6 +51,22 @@ Il white paper è lo spettro opposto, da non replicare:
    - Esempio: "capitolo" per esteso ovunque, mai l'abbreviazione informale "capt."/"capt"
    - Questo vale anche per le frasi spiegate a lungo con un giro di parole quando il resto del testo ha già un termine preciso per lo stesso concetto — es. "contiene ciò che il capitolo 02 chiama il file di configurazione, più X, più Y" invece di elencare esplicitamente ogni campo
 
+## Sostituzioni lessicali fisse (termine da evitare → termine da usare)
+
+Regole permanenti, una coppia per riga. Valgono per ogni testo italiano tecnico/ADV che scrivo per Paolo — pagine del sito, bozze di proposta, note private — non solo per site_v20. Vanno applicate con tutte le varianti di genere/numero/maiuscolo del termine. Elenco vivo: ogni nuova regola lessicale o grammaticale che Paolo segnala va aggiunta qui, non solo nella memoria di Claude.
+
+| Da evitare | Usare invece | Nota |
+|---|---|---|
+| bloccato / bloccata / bloccati / bloccate (nel senso di "fissato, deciso a monte") | fissato / fissata / fissati / fissate | "bloccato" in italiano ha un altro significato (impedito, congelato); segnalato più volte come errore da non ripetere |
+| rompe / si rompe / rompere (nel senso di "si degrada", "smette di funzionare bene dopo un po'") | sfalda / si sfalda / sfaldare / sfaldarsi | |
+| bersaglio | target | |
+| duro, usato come comparativo/astratto ("il confronto più duro", "lavorare più duro") | difficile, dispendioso, con più impegno, ecc. | "duro" in italiano è durezza fisica, non difficoltà o intensità |
+| formato / rapporti d'aspetto (per l'aspect ratio delle immagini) | proporzioni | |
+| parte / sezione (per le sezioni numerate di un post) | capitolo / capitoli (anche abbreviato "capt." solo se già in uso nella pagina) | |
+| giudice (per il ruolo "judge" nel loop A→D→E→D) | judge (si lascia in inglese) | |
+| contro, come traduzione di "against" (es. "checked against the spec") | rispetto a / rispetto al | errore segnalato come serio e ricorrente |
+| lotto, come traduzione di "batch" | batch (si lascia in inglese) | |
+
 ## Sessione 2026-11-04 (seconda passata) — dco-engine-tech.html
 Altri 5 punti riscritti su richiesta diretta di Paolo, che hanno originato le regole 5 e 6 sopra: "tattica per secchio", la spiegazione della modifica locale mirata (troppo ellittica), il contenuto della riga del database per brand (frase-contenitore poco leggibile, riscritta come elenco con agreement/false-pass rate spiegati inline), la descrizione del prodotto Bria ("motore di personaggio"), e "uno schizzo, non una costruzione".
 
