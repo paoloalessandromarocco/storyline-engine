@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon-32x32.png" type="image/png">
@@ -8,7 +8,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="color-scheme" content="light">
-  <title>Previsioni — Forecast</title>
+  <title>Previsioni</title>
+  <link rel="alternate" hreflang="en"        href="https://storyline-engine.com/en/neural-forecast.html">
+  <link rel="alternate" hreflang="it"        href="https://storyline-engine.com/neural-forecast.html">
+  <link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/neural-forecast.html">
     <!-- Preload self-hosted fonts so they're already in flight before style.css
        is even parsed — closes the remaining window where the browser paints
        with the fallback (Georgia/Courier) and then swaps to the real font,
@@ -19,31 +22,31 @@
   <link rel="preload" href="assets/fonts/eb-garamond-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
 
-  <meta name="description" content="Quantitative tools for the Italian film industry: predictive models for box-office estimation and distribution strategy.">
+  <meta name="description" content="Strumenti quantitativi per l&#x27;industria cinematografica italiana: modelli predittivi per la stima del box office e la strategia distributiva.">
   <link rel="canonical" href="https://storyline-engine.com/neural-forecast.html">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Paolo Marocco">
-  <meta property="og:title" content="Previsioni — Forecast">
-  <meta property="og:description" content="Quantitative tools for the Italian film industry: predictive models for box-office estimation and distribution strategy.">
+  <meta property="og:title" content="Previsioni">
+  <meta property="og:description" content="Strumenti quantitativi per l&#x27;industria cinematografica italiana: modelli predittivi per la stima del box office e la strategia distributiva.">
   <meta property="og:url" content="https://storyline-engine.com/neural-forecast.html">
   <meta property="og:image" content="https://storyline-engine.com/assets/bg_new.jpg">
-  <meta property="og:locale" content="en_US">
-  <meta property="og:locale:alternate" content="it_IT">
+  <meta property="og:locale" content="it_IT">
+  <meta property="og:locale:alternate" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Previsioni — Forecast">
-  <meta name="twitter:description" content="Quantitative tools for the Italian film industry: predictive models for box-office estimation and distribution strategy.">
+  <meta name="twitter:title" content="Previsioni">
+  <meta name="twitter:description" content="Strumenti quantitativi per l&#x27;industria cinematografica italiana: modelli predittivi per la stima del box office e la strategia distributiva.">
   <meta name="twitter:image" content="https://storyline-engine.com/assets/bg_new.jpg">
 
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "Previsioni — Forecast",
-  "description": "Quantitative tools for the Italian film industry: predictive models for box-office estimation and distribution strategy.",
+  "name": "Previsioni",
+  "description": "Strumenti quantitativi per l'industria cinematografica italiana: modelli predittivi per la stima del box office e la strategia distributiva.",
   "url": "https://storyline-engine.com/neural-forecast.html",
   "image": "https://storyline-engine.com/assets/bg_new.jpg",
-  "inLanguage": "en",
+  "inLanguage": "it",
   "author": {
     "@type": "Person",
     "name": "Paolo Marocco",
@@ -59,12 +62,12 @@
   <header>
     <a href="about.html" class="nav-item" data-en="ABOUT" data-it="ABOUT">ABOUT</a>
     <div class="menu-container">
-      <span class="menu-trigger" data-en="TOPICS" data-it="ARGOMENTI">TOPICS</span>
+      <span class="menu-trigger" data-en="TOPICS" data-it="ARGOMENTI">ARGOMENTI</span>
       <div class="menu-dropdown">
         <a href="adv.html"             class="menu-item" data-en="ADV"            data-it="ADV">ADV</a>
-        <a href="neural-graphics.html" class="menu-item" data-en="VISUAL STORIES" data-it="FUMETTI/STORYBOARD">VISUAL STORIES</a>
+        <a href="neural-graphics.html" class="menu-item" data-en="VISUAL STORIES" data-it="FUMETTI/STORYBOARD">FUMETTI/STORYBOARD</a>
         <a href="comfyui.html"         class="menu-item" data-en="COMFYUI"        data-it="COMFYUI">COMFYUI</a>
-        <a href="posts.html"           class="menu-item" data-en="POSTS"          data-it="POST">POSTS</a>
+        <a href="posts.html"           class="menu-item" data-en="POSTS"          data-it="POST">POST</a>
         <span class="menu-item menu-item--disabled" data-en="VIDEO" data-it="VIDEO">VIDEO</span>
       </div>
     </div>
@@ -75,19 +78,17 @@
     <p class="section-label"
        data-en="Box office · Distribution · Film data"
        data-it="Box office · Distribuzione · Dati cinema">
-      Box office · Distribution · Film data
+      Box office · Distribuzione · Dati cinema
     </p>
 
     <h1 class="page-title"
         data-en="Forecast"
-        data-it="Previsioni">Forecast</h1>
+        data-it="Previsioni">Previsioni</h1>
 
     <div class="page-body">
       <p data-en="Quantitative tools for the Italian film industry. Predictive models for box office estimation and distribution strategy — built at the intersection of mathematical modelling and production experience."
          data-it="Strumenti quantitativi per l'industria cinematografica italiana. Modelli predittivi per la stima del box office e la strategia distributiva — costruiti all'intersezione tra modellazione matematica ed esperienza produttiva.">
-        Quantitative tools for the Italian film industry. Predictive models for box office
-        estimation and distribution strategy — built at the intersection of mathematical
-        modelling and production experience.
+        Strumenti quantitativi per l'industria cinematografica italiana. Modelli predittivi per la stima del box office e la strategia distributiva — costruiti all'intersezione tra modellazione matematica ed esperienza produttiva.
       </p>
     </div>
 
@@ -99,39 +100,25 @@
           <span class="project-name"
                 data-en="Where to distribute Italian and co-produced films"
                 data-it="Dove distribuire film italiani e/o co-prodotti">
-            Where to distribute Italian and co-produced films
+            Dove distribuire film italiani e/o co-prodotti
           </span>
         </a>
         <span class="project-tag"
               data-en="INTERACTIVE · DISTRIBUTION"
-              data-it="INTERATTIVO · DISTRIBUZIONE">INTERACTIVE · DISTRIBUTION</span>
+              data-it="INTERATTIVO · DISTRIBUZIONE">INTERATTIVO · DISTRIBUZIONE</span>
       </div>
 
       <p class="project-desc"
          style="font-style:italic; margin-bottom:8px;"
          data-en="A scoring tool to evaluate which country and genre to invest in, across two production categories: films shot in Italy and co-productions distributed abroad."
          data-it="Strumento di scoring per valutare in quale paese e su quale genere investire, rispetto a due categorie di produzioni: quelle girate in Italia e quelle co-prodotte ma distribuite all'estero.">
-        A scoring tool to evaluate which country and genre to invest in, across two production
-        categories: films shot in Italy and co-productions distributed abroad.
+        Strumento di scoring per valutare in quale paese e su quale genere investire, rispetto a due categorie di produzioni: quelle girate in Italia e quelle co-prodotte ma distribuite all'estero.
       </p>
 
       <p class="project-desc"
          data-en="The tool compares around 15 countries across two scenarios. In the first, an Italian film shot in Italy seeks distribution in foreign cinemas — the model evaluates how receptive each market is to Italian productions. In the second, the film is co-produced with a local partner in the target country — the model adds criteria specific to that investment: local production costs, access to public funds, availability of cast and crew on the ground. Concrete questions the tool answers: Is Spain a viable market for an Italian arthouse film, or does the language barrier limit its reach? Does South Korea offer co-production conditions that justify the distance for a sci-fi project? Between France and Belgium — similar markets on paper — which one scores better for a creative documentary? The model scores each country on: local audience demand, distribution access, cultural affinity with Italy, and screen concentration in major cities. A genre filter adjusts the scores based on each genre's specific reception patterns in that country — covering horror, thriller, comedy, sci-fi, action, arthouse drama, creative documentary, and musical. Criteria weights are user-adjustable. Every estimate comes with confidence indicators and country-level qualitative notes."
          data-it="Il tool confronta circa 15 paesi rispetto a due scenari. Nel primo, un film italiano girato in Italia cerca di uscire nelle sale di paesi stranieri — il modello valuta quanto ogni mercato sia ricettivo alle produzioni italiane. Nel secondo, il film è co-prodotto con un partner locale nel paese di destinazione — il modello aggiunge criteri specifici a quell'investimento: costi di produzione locale, accesso ai fondi pubblici, disponibilità di cast e crew sul posto. Domande concrete a cui il tool risponde: la Spagna è un mercato praticabile per un film italiano d'autore, o la barriera linguistica ne limita la portata? La Corea del Sud offre condizioni di co-produzione che giustificano la distanza per un progetto di fantascienza? Tra Francia e Belgio — mercati simili sulla carta — quale punteggio meglio per un documentario creativo? Il modello assegna punteggi per: domanda del pubblico locale, accesso alla distribuzione, affinità culturale con l'Italia, concentrazione degli schermi nelle grandi città. Un filtro per genere adatta i punteggi ai pattern di ricezione specifici nel paese selezionato — coprendo horror, thriller, commedia, sci-fi, action, dramma d'autore, documentario creativo e musical. I pesi dei criteri sono modificabili dall'utente. Ogni stima è accompagnata da indicatori di confidenza e note qualitative per paese.">
-        The tool compares around 15 countries across two scenarios. In the first, an Italian film
-        shot in Italy seeks distribution in foreign cinemas — the model evaluates how receptive
-        each market is to Italian productions. In the second, the film is co-produced with a local
-        partner in the target country — the model adds criteria specific to that investment: local
-        production costs, access to public funds, availability of cast and crew on the ground.
-        Concrete questions the tool answers: Is Spain a viable market for an Italian arthouse film,
-        or does the language barrier limit its reach? Does South Korea offer co-production conditions
-        that justify the distance for a sci-fi project? Between France and Belgium — similar markets
-        on paper — which one scores better for a creative documentary? The model scores each country
-        on: local audience demand, distribution access, cultural affinity with Italy, and screen
-        concentration in major cities. A genre filter adjusts the scores based on each genre's
-        specific reception patterns in that country — covering horror, thriller, comedy, sci-fi,
-        action, arthouse drama, creative documentary, and musical. Criteria weights are user-adjustable.
-        Every estimate comes with confidence indicators and country-level qualitative notes.
+        Il tool confronta circa 15 paesi rispetto a due scenari. Nel primo, un film italiano girato in Italia cerca di uscire nelle sale di paesi stranieri — il modello valuta quanto ogni mercato sia ricettivo alle produzioni italiane. Nel secondo, il film è co-prodotto con un partner locale nel paese di destinazione — il modello aggiunge criteri specifici a quell'investimento: costi di produzione locale, accesso ai fondi pubblici, disponibilità di cast e crew sul posto. Domande concrete a cui il tool risponde: la Spagna è un mercato praticabile per un film italiano d'autore, o la barriera linguistica ne limita la portata? La Corea del Sud offre condizioni di co-produzione che giustificano la distanza per un progetto di fantascienza? Tra Francia e Belgio — mercati simili sulla carta — quale punteggio meglio per un documentario creativo? Il modello assegna punteggi per: domanda del pubblico locale, accesso alla distribuzione, affinità culturale con l'Italia, concentrazione degli schermi nelle grandi città. Un filtro per genere adatta i punteggi ai pattern di ricezione specifici nel paese selezionato — coprendo horror, thriller, commedia, sci-fi, action, dramma d'autore, documentario creativo e musical. I pesi dei criteri sono modificabili dall'utente. Ogni stima è accompagnata da indicatori di confidenza e note qualitative per paese.
       </p>
     </div>
 
@@ -143,39 +130,24 @@
         <span class="project-name"
               data-en="Movie Revenue Estimation"
               data-it="Stima dei Ricavi Cinematografici">
-          Movie Revenue Estimation
+          Stima dei Ricavi Cinematografici
         </span>
         <span class="project-tag"
               data-en="ECONOMETRIC · BOX OFFICE"
-              data-it="ECONOMETRICO · BOX OFFICE">ECONOMETRIC · BOX OFFICE</span>
+              data-it="ECONOMETRICO · BOX OFFICE">ECONOMETRICO · BOX OFFICE</span>
       </div>
 
       <p class="project-desc"
          style="font-style:italic; margin-bottom:8px;"
          data-en="Econometric forecasting of Italian box office — from pre-acquisition to in-run projection."
          data-it="Previsione econometrica del box office italiano — dall'acquisizione alla proiezione in corso di sala.">
-        Econometric forecasting of Italian box office — from pre-acquisition to in-run projection.
+        Previsione econometrica del box office italiano — dall'acquisizione alla proiezione in corso di sala.
       </p>
 
       <p class="project-desc"
          data-en="The system estimates Italian box office performance of foreign and domestic films, combining OLS regression on pre-release signals (director consistency, festival pedigree, budget, critic scores) with a Bayesian lifecycle model of theatrical decay curves. Designed as a practical acquisition tool for independent Italian distributors and sales agents, it outputs a predicted gross range with 80% confidence interval and a breakeven probability for any film at negotiation time. The model covers five distinct scenarios. Scenario 1: model diagnostics — verifies the regression behaves sensibly on the training dataset before any decision is made. Scenario 2: foreign film still in production, with no reviews or opening data yet — answers the question 'should I acquire Italian distribution rights?'. Scenario 3: foreign film already released in its home market, with Rotten Tomatoes scores and opening weekend data — the confidence interval narrows significantly, because home-market opening is the strongest single predictor. Scenario 4: Italian film — theatrical versus platform comparison, with flags for RAI/Mediaset co-productions and rights already assigned to RAI Play, Prime or Netflix IT. Scenario 5: in-run monitoring — the decay curve is updated week by week with actual Italian box office data, refining the total gross projection as the theatrical run progresses."
          data-it="Il sistema stima l'incasso italiano di film stranieri e nazionali combinando regressione OLS su segnali pre-uscita (coerenza del regista, festival, budget, punteggi della critica) con un modello bayesiano delle curve di decadimento nelle sale. Progettato come strumento pratico di acquisizione per distributori italiani indipendenti e sales agent, produce un intervallo di ricavo previsto con affidabilità dell'80% e una probabilità di pareggio per qualsiasi film al momento della negoziazione. Il modello copre cinque scenari distinti. Scenario 1: diagnostica del modello — verifica che la regressione funzioni correttamente sul dataset di training prima di prendere qualsiasi decisione. Scenario 2: film straniero ancora in produzione, senza recensioni né dati di apertura — risponde alla domanda 'vale la pena acquisire i diritti italiani?'. Scenario 3: film straniero già uscito nel mercato di origine, con dati di Rotten Tomatoes e opening weekend — l'intervallo di confidenza si restringe sensibilmente, perché l'apertura nel mercato primario è il predittore più forte. Scenario 4: film italiano — confronto tra strategia teatrale e piattaforma, con flag per co-produzioni RAI/Mediaset e diritti già ceduti a RAI Play, Prime o Netflix IT. Scenario 5: monitoraggio in corso di sala — la curva di decadimento viene aggiornata settimana per settimana con i dati reali del box office italiano, affinando la proiezione totale man mano che la distribuzione avanza.">
-        The system estimates Italian box office performance of foreign and domestic films, combining
-        OLS regression on pre-release signals (director consistency, festival pedigree, budget,
-        critic scores) with a Bayesian lifecycle model of theatrical decay curves. Designed as a
-        practical acquisition tool for independent Italian distributors and sales agents, it outputs
-        a predicted gross range with 80% confidence interval and a breakeven probability for any
-        film at negotiation time. The model covers five distinct scenarios. Scenario 1: model
-        diagnostics — verifies the regression behaves sensibly on the training dataset before any
-        decision is made. Scenario 2: foreign film still in production, with no reviews or opening
-        data yet — answers the question 'should I acquire Italian distribution rights?'.
-        Scenario 3: foreign film already released in its home market, with Rotten Tomatoes scores
-        and opening weekend data — the confidence interval narrows significantly, because home-market
-        opening is the strongest single predictor. Scenario 4: Italian film — theatrical versus
-        platform comparison, with flags for RAI/Mediaset co-productions and rights already assigned
-        to RAI Play, Prime or Netflix IT. Scenario 5: in-run monitoring — the decay curve is updated
-        week by week with actual Italian box office data, refining the total gross projection as the
-        theatrical run progresses.
+        Il sistema stima l'incasso italiano di film stranieri e nazionali combinando regressione OLS su segnali pre-uscita (coerenza del regista, festival, budget, punteggi della critica) con un modello bayesiano delle curve di decadimento nelle sale. Progettato come strumento pratico di acquisizione per distributori italiani indipendenti e sales agent, produce un intervallo di ricavo previsto con affidabilità dell'80% e una probabilità di pareggio per qualsiasi film al momento della negoziazione. Il modello copre cinque scenari distinti. Scenario 1: diagnostica del modello — verifica che la regressione funzioni correttamente sul dataset di training prima di prendere qualsiasi decisione. Scenario 2: film straniero ancora in produzione, senza recensioni né dati di apertura — risponde alla domanda 'vale la pena acquisire i diritti italiani?'. Scenario 3: film straniero già uscito nel mercato di origine, con dati di Rotten Tomatoes e opening weekend — l'intervallo di confidenza si restringe sensibilmente, perché l'apertura nel mercato primario è il predittore più forte. Scenario 4: film italiano — confronto tra strategia teatrale e piattaforma, con flag per co-produzioni RAI/Mediaset e diritti già ceduti a RAI Play, Prime o Netflix IT. Scenario 5: monitoraggio in corso di sala — la curva di decadimento viene aggiornata settimana per settimana con i dati reali del box office italiano, affinando la proiezione totale man mano che la distribuzione avanza.
       </p>
     </div>
 
@@ -183,11 +155,10 @@
 
   <a href="index.html" class="nav-back" id="home-link" data-en="HOME" data-it="HOME">HOME</a>
   <div class="lang-switch">
-    <button class="lang-btn" data-lang="en">EN</button>
-    <button class="lang-btn" data-lang="it">IT</button>
+    <a class="lang-btn" href="/en/neural-forecast.html">EN</a>
   </div>
 
-  <script src="assets/lang.js"></script>
+  <script src="/assets/menu.js"></script>
   <script>
     window.addEventListener('scroll', () => {
       document.querySelector('header').classList.toggle('scrolled', window.scrollY > 20);

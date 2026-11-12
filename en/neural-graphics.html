@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <title>Visual Stories — Comics & Storyboard</title>
+  <link rel="alternate" hreflang="en"        href="https://storyline-engine.com/en/neural-graphics.html">
+  <link rel="alternate" hreflang="it"        href="https://storyline-engine.com/neural-graphics.html">
+  <link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/neural-graphics.html">
+    <!-- Preload self-hosted fonts so they're already in flight before style.css
+       is even parsed — closes the remaining window where the browser paints
+       with the fallback (Georgia/Courier) and then swaps to the real font,
+       which is what still reads as the font "changing size" on reload. -->
+  <link rel="preload" href="/assets/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/ibm-plex-mono-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/eb-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/eb-garamond-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+  <meta name="description" content="AI-made visual narrative for comics and storyboards — an overview for illustrators, editors and filmmakers evaluating the technology.">
+  <link rel="canonical" href="https://storyline-engine.com/en/neural-graphics.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Paolo Marocco">
+  <meta property="og:title" content="Visual Stories — Comics & Storyboard">
+  <meta property="og:description" content="AI-made visual narrative for comics and storyboards — an overview for illustrators, editors and filmmakers evaluating the technology.">
+  <meta property="og:url" content="https://storyline-engine.com/en/neural-graphics.html">
+  <meta property="og:image" content="https://storyline-engine.com/assets/bg_new.jpg">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="it_IT">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Visual Stories — Comics & Storyboard">
+  <meta name="twitter:description" content="AI-made visual narrative for comics and storyboards — an overview for illustrators, editors and filmmakers evaluating the technology.">
+  <meta name="twitter:image" content="https://storyline-engine.com/assets/bg_new.jpg">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Visual Stories — Comics & Storyboard",
+  "description": "AI-made visual narrative for comics and storyboards — an overview for illustrators, editors and filmmakers evaluating the technology.",
+  "url": "https://storyline-engine.com/en/neural-graphics.html",
+  "image": "https://storyline-engine.com/assets/bg_new.jpg",
+  "inLanguage": "en",
+  "author": {
+    "@type": "Person",
+    "name": "Paolo Marocco",
+    "url": "https://storyline-engine.com/about.html"
+  }
+}
+  </script>
+
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body class="interior">
+
+  <header>
+    <a href="/en/about.html" class="nav-item" data-en="ABOUT" data-it="ABOUT">ABOUT</a>
+    <div class="menu-container">
+      <span class="menu-trigger" data-en="TOPICS" data-it="ARGOMENTI">TOPICS</span>
+      <div class="menu-dropdown">
+        <a href="/en/adv.html"             class="menu-item" data-en="ADV"            data-it="ADV">ADV</a>
+        <a href="/en/neural-graphics.html" class="menu-item" data-en="VISUAL STORIES" data-it="FUMETTI/STORYBOARD">VISUAL STORIES</a>
+        <a href="/en/comfyui.html"         class="menu-item" data-en="COMFYUI"        data-it="COMFYUI">COMFYUI</a>
+        <a href="/en/posts.html"           class="menu-item" data-en="POSTS"          data-it="POST">POSTS</a>
+        <span class="menu-item menu-item--disabled" data-en="VIDEO" data-it="VIDEO">VIDEO</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content">
+
+    <p class="section-label"
+       data-en="Visual development · Storyboard · Graphic novel"
+       data-it="Sviluppo immagini · Storyboard · Graphic novel">
+      Visual development · Storyboard · Graphic novel
+    </p>
+
+    <h1 class="page-title"
+        data-en="Graphic novels and Storyboards"
+        data-it="Graphic novel e Storyboard">Graphic novels and Storyboards</h1>
+
+    <p class="post-abstract-text" style="margin-bottom:28px;"
+       data-en="Who this is for: anyone curious about AI-made visual narrative — comics readers, illustrators and comic editors sizing up the technology, film students and screenwriters exploring previsualisation. No technical  knowledge needed (like <a href='post-comfyui-intro.html' class='about-link'>ComfyUI</a>) to enjoy the stories below; the companion Posts go deeper for anyone who wants to generate similar stories."
+       data-it="A chi è rivolta: a chiunque sia curioso delle narrazioni visive fatte con l'AI — lettori di fumetti, illustratori e redattori che vogliono farsi un'idea della tecnologia, studenti di cinema e sceneggiatori che esplorano la previsualizzazione. Non occorre avere conoscenze tecniche (come quelle su <a href='post-comfyui-intro.html' class='about-link'>ComfyUI</a>) per apprezzare le storie sottostanti; i Post di accompagnamento entrano nel dettaglio per chi vuole generare storie simili.">
+      Who this is for: anyone curious about AI-made visual narrative — comics readers, illustrators and comic editors sizing up the technology, film students and screenwriters exploring previsualisation. No technical knowledge needed (like <a href='post-comfyui-intro.html' class='about-link'>ComfyUI</a>) to enjoy the stories below; the companion Posts go deeper for anyone who wants to generate similar stories.
+    </p>
+
+    <hr class="divider" style="margin-top: 2.5rem; margin-bottom: 0.5rem;">
+
+    <!-- ── STORIES — immediately after title, visible on all devices ── -->
+    <div class="project-grid">
+       <a href="/en/sotto-lasfalto.html" class="project-item project-item--thumb">
+        <img class="project-thumb" src="/assets/thumbs/row-sotto-lasfalto.webp" loading="lazy" width="168" height="94"
+             data-alt-en="Elena and Jhon in a noir underground garage" data-alt-it="Elena e Jhon in un garage sotterraneo noir" alt="Elena and Jhon in a noir underground garage" decoding="async">
+        <span class="project-text-group">
+        <span class="project-name"
+              data-en="Under the Asphalt"
+              data-it="Sotto l'Asfalto">Under the Asphalt</span>
+        <span class="project-tag"
+              data-en="STORYBOARD · CRIME NOIR · ACTION"
+              data-it="STORYBOARD · CRIMINE · ACTION">STORYBOARD · CRIME NOIR · ACTION</span>
+        </span>
+      </a>
+	  <a href="/en/primo-incontro.html" class="project-item project-item--thumb">
+        <img class="project-thumb" src="/assets/thumbs/row-primo-incontro.webp" loading="lazy" width="168" height="94"
+             data-alt-en="A couple's first kiss in an elegant bar" data-alt-it="Il primo bacio della coppia in un bar elegante" alt="A couple's first kiss in an elegant bar">
+        <span class="project-text-group">
+        <span class="project-name"
+              data-en="First Encounter"
+              data-it="Primo Incontro">First Encounter</span>
+        <span class="project-tag"
+              data-en="STORYBOARD · ROMANTIC · COMEDY"
+              data-it="STORYBOARD · ROMANTICO · COMMEDIA">STORYBOARD · ROMANTIC · COMEDY</span>
+        </span>
+      </a>
+      <a href="/en/aelita.html" class="project-item project-item--thumb">
+        <img class="project-thumb" src="/assets/thumbs/row-aelita.webp" loading="lazy" width="168" height="94"
+             data-alt-en="A ghostly figure outside a snow-covered house" data-alt-it="Una figura fantasma davanti a una casa innevata" alt="A ghostly figure outside a snow-covered house" decoding="async">
+        <span class="project-text-group">
+		<span class="project-name"
+			 data-en="Aelita"
+			 data-it="Aelita">Aelita</span>
+		<span class="project-tag"
+              data-en="GRAPHIC NOVEL · SOVIET SCIENCE FICTION · FUTURISM"
+              data-it="ROMANZO A FUMETTI · FANTASCIENZA SOVIETICA · FUTURISMO">GRAPHIC NOVEL · SOVIET SCIENCE FICTION · FUTURISM</span>
+        </span>
+	  </a>
+      <a href="/en/post-pannocchino-spighetta.html" class="project-item project-item--thumb">
+        <img class="project-thumb" src="/assets/thumbs/row-pannocchino.webp" loading="lazy" width="168" height="94"
+             data-alt-en="Pannocchino and Spighetta meet in a wheat field" data-alt-it="Pannocchino e Spighetta si incontrano in un campo di grano" alt="Pannocchino and Spighetta meet in a wheat field" decoding="async">
+        <span class="project-text-group">
+        <span class="project-name"
+              data-en="Meet Pannocchino e Spighetta"
+              data-it="Ecco Pannocchino e Spighetta">Meet Pannocchino e Spighetta</span>
+        <span class="project-tag"
+              data-en="STORYBOARD · FAMILY · MASCOTS"
+              data-it="STORYBOARD · FAMIGLIA · MASCOTTE">STORYBOARD · FAMILY · MASCOTS</span>
+        </span>
+      </a>
+    </div>
+
+    <hr class="divider" style="margin-top: 0.5rem; margin-bottom: 2.5rem;">
+
+    <!-- ── EDITORIAL CONTEXT — secondary, below the fold ── -->
+    <div class="page-body">
+
+      <p data-en="In this page we show some short stories composed by images. Unlike video, static images are today highly automatable at low cost. This has caused damage to the world of traditional illustration and comics, further reducing earnings and authorial protection. Although screenwriting/storyboarding schools, including the CSC, Centro Sperimentale di Cinematografia (<a href='https://www.fondazionecsc.it' class='about-link' target='_blank' rel='noopener noreferrer'>fondazionecsc.it</a>), continue to attract considerable demand and supply, the market has shifted. I am referring to small and mid-sized Italian film production companies — those with budgets around €0.5–2 million — where the use of storyboards has declined, without there actually having been a substantial replacement by automatically generated ones. This is caused not only by socio-political issues — distrust and exclusion — but also by the low quality of the off-the-shelf tools available on the web, with average subscriptions in the order of $35–50/month. To all this I would add a cultural factor tied to the asymmetry of the digital divide, which dominates sectors such as cinema — one that tends to be poorly suited to the times when it comes to pre-production tools and organisation/communication tools during the production phase, unlike the platforms on which Disney, Netflix, Amazon, Apple and so on operate. There, a business model geared towards cost optimisation and the remote deployment of resources favours meticulous attention to innovative technologies (both graphic and textual/communicative) across every production phase."
+         data-it="Scopo della pagina è presentare alcune brevi storie per immagini: fumetti e storyboard. A differenza dei video, la creazione delle immagini statiche è oggi altamente automatizzabile, a costi bassi. Questo ha comportato un danno nel mondo delle illustrazioni e dei fumetti tradizionali, riducendo ulteriormente i profitti e la tutela dell'autore. Sebbene le scuole di sceneggiatura/storyboard, a partire dai corsi del CSC, Centro Sperimentale di Cinematografia  (<a href='https://www.fondazionecsc.it' class='about-link' target='_blank' rel='noopener noreferrer'>fondazionecsc.it</a>), continuino ad avere una domanda e un'offerta cospicua, il mercato è un po' cambiato. Sto parlando delle piccole/medie case di produzione italiane, ossia con budget da mezzo a due milioni di euro, dove l'utilizzo di storyboard è calato. Senza esserci stata effettivamente una massiva sostituzione con quelli generati automaticamente. Questo aspetto è causato, non solo da problematiche politico-sociali di diffidenza ed esclusione, ma anche da una bassa qualità dei tool preconfezionati disponibili  sul web con abbonamenti medi dell'ordine di 35-50$/mese. A tutto questo aggiungerei un dato di natura culturale legato all'asimmetria del digital divide, imperante in settori quali il cinema, tendenzialmente poco adeguata ai tempi, per quanto riguarda i tool di pre-produzione e di organizzazione/comunicazione in fase realizzativa, a differenza delle platform dove agiscono Disney, Netflix, Amazon, Apple ecc. In cui, un regime imprenditoriale rivolto all'ottimizzazione dei costi e alla remotizzazione delle risorse, favorisce una meticolosa attenzione alle tecnologie innovative (sia grafiche che testuali/comunicative) in tutte le fasi produttive.">
+        In this page we show some short stories composed by images. Unlike video, static images are today highly automatable at low cost. This has caused damage to the world of traditional illustration and comics, further reducing earnings and authorial protection. Although screenwriting/storyboarding schools, including the CSC, Centro Sperimentale di Cinematografia (<a href="https://www.fondazionecsc.it" class="about-link" target="_blank" rel="noopener noreferrer">fondazionecsc.it</a>), continue to attract considerable demand and supply, the market has shifted. I am referring to small and mid-sized Italian film production companies — those with budgets around €0.5–2 million — where the use of storyboards has declined, without there actually having been a substantial replacement by automatically generated ones. This is caused not only by socio-political issues — distrust and exclusion — but also by the low quality of the off-the-shelf tools available on the web, with average subscriptions in the order of $35–50/month. To all this I would add a cultural factor tied to the asymmetry of the digital divide, which dominates sectors such as cinema — one that tends to be poorly suited to the times when it comes to pre-production tools and organisation/communication tools during the production phase, unlike the platforms on which Disney, Netflix, Amazon, Apple and so on operate. There, a business model geared towards cost optimisation and the remote deployment of resources favours meticulous attention to innovative technologies (both graphic and textual/communicative) across every production phase.
+      </p>
+
+      <p data-en="I have labelled the examples in this section: Storyboard and Graphic Novel. But strictly speaking, they are neither one nor the other. The stories in the Storyboard group lack the proper construction of bridging shots needed to evoke a more articulated visual narrative, useful as a support for directing. The graphic novels, meanwhile, are genuinely short. Here, rather than completeness, what I have tried to deliver is generative consistency, didactically preparatory to designing a true automated storyboard. Not by chance, each illustrated story linked above is accompanied by a Post (<a href='posts.html' class='about-link'>see link to ComfyUI section</a>) with educational content that tries to describe the technology used. It is clear what the communication gap is today between what is being generated and how it is generated: the resulting images are seen as works of magic or sorcery one needs to defend oneself from, like the Sirens' song in the Odyssey. Let's take an example. YouTube tutorials on generative AI explain, in a practical and sometimes hasty way, the key steps for designing — or merely running — an image-generation process (video, sound, etc.) with a given tool. But on average they offer no explanation of how or why that technology works, what its extensibility might be, and in particular in which cases it produces poor results. I understand that the underlying formal models are not easy to popularise, but focusing only on the technical-manipulative aspect, and taking for granted a whole set of knowledge needed to understand and then try to replicate similar examples, means drifting conceptually away from the technology — thereby feeding a process of fear and helpless surrender to enslavement by it. This gap between going deeper and seeing an immediate result drives a proliferation of ready-to-use tools — the likes of <a href='https://katalist.ai' class='about-link' target='_blank'>Katalist</a>, <a href='https://ltx.studio' class='about-link' target='_blank'>LTX Studio</a>, <a href='https://boords.com' class='about-link' target='_blank'>Boords AI</a> — presenting themselves as a magic hat, capable of doing everything: from ads to reels, from short stories to storyboards, with two prompts and a few keywords."
+         data-it="Ho denominato gli esempi di questa sezione: Storyboard e Graphic Novel. Ma a essere pignoli non sono né l'uno né l'altro. Le storie del gruppo Storyboards mancano di una costruzione opportuna degli shot di raccordo, per evocare una narrazione visiva più articolata e utile come supporto alla regia. Mentre le graphic novel sono veramente brevi.  In questa sede, più che la completezza, ho cercato di restituire una consistenza generativa, didatticamente propedeutica alla progettazione di uno storyboard automatico vero e proprio. Non a caso, ogni storia illustrata nei link in esergo è corredata da Post (<a href='posts.html' class='about-link'>vedi link a sezione ComfyUI</a>) di contenuti didattico-illustrativi, che cercano di descrivere la tecnologia utilizzata.    E' evidente quale sia oggi il gap comunicativo tra cosa si stia generando e su come venga generato: le img prodotte vengono  viste come delle opere di magia/stregoneria da cui occorre difendersi, come dal canto delle Sirene nell'Odissea. Facciamo un esempio. I tutorial di YouTube dedicati all'AI generativa spiegano in modo pratico, e a volte sbrigativo, i punti chiave per progettare o soltanto per eseguire un processo di generazione immagini (video, suoni, ecc.) con un certo tool. Ma non offrono mediamente spiegazioni su come e perché quella tecnologia funzioni, su quale sia la sua estendibilità, e in particolare in quali casi dia pessimi risultati. Capisco che i modelli formali sottesi non siano facilmente divulgativi, ma puntare solo all'aspetto tecnico-manipolativo, e dare per scontate tutta una serie di conoscenze necessarie per capire e quindi riprovare a fare esempi simili, significa  allontanarsi concettualmente dalla tecnologia. Quindi alimentare il processo di paura e consegna inerme alla schiavizzazione. Questo scarto tra approfondire e vedere immediatamente un risultato spinge a una proliferazione di tool pronti all'uso — i vari <a href='https://katalist.ai' class='about-link' target='_blank'>Katalist</a>, <a href='https://ltx.studio' class='about-link' target='_blank'>LTX Studio</a>, <a href='https://boords.com' class='about-link' target='_blank'>Boords AI</a> — che si presentano come un cappello magico, capaci di fare tutto: dagli ADV ai reels, dai racconti agli storyboard, grazie a due prompt e qualche parola chiave.">
+        I have labelled the examples in this section: Storyboard and Graphic Novel. But strictly speaking, they are neither one nor the other. The stories in the Storyboard group lack the proper construction of bridging shots needed to evoke a more articulated visual narrative, useful as a support for directing. The graphic novels, meanwhile, are genuinely short. Here, rather than completeness, what I have tried to deliver is generative consistency, didactically preparatory to designing a true automated storyboard. Not by chance, each illustrated story linked above is accompanied by a Post (<a href="/en/posts.html" class="about-link">see link to ComfyUI section</a>) with educational content that tries to describe the technology used. It is clear what the communication gap is today between what is being generated and how it is generated: the resulting images are seen as works of magic or sorcery one needs to defend oneself from, like the Sirens' song in the Odyssey. Let's take an example. YouTube tutorials on generative AI explain, in a practical and sometimes hasty way, the key steps for designing — or merely running — an image-generation process (video, sound, etc.) with a given tool. But on average they offer no explanation of how or why that technology works, what its extensibility might be, and in particular in which cases it produces poor results. I understand that the underlying formal models are not easy to popularise, but focusing only on the technical-manipulative aspect, and taking for granted a whole set of knowledge needed to understand and then try to replicate similar examples, means drifting conceptually away from the technology — thereby feeding a process of fear and helpless surrender to enslavement by it. This gap between going deeper and seeing an immediate result drives a proliferation of ready-to-use tools — the likes of <a href="https://katalist.ai" class="about-link" target="_blank">Katalist</a>, <a href="https://ltx.studio" class="about-link" target="_blank">LTX Studio</a>, <a href="https://boords.com" class="about-link" target="_blank">Boords AI</a> — presenting themselves as a magic hat, capable of doing everything: from ads to reels, from short stories to storyboards, with two prompts and a few keywords.
+      </p>
+
+      <p data-en="With that long preamble behind us, I focus on the primary objectives."
+         data-it="Terminata la lunga premessa, mi focalizzo sugli obiettivi primari.">
+        With that long preamble behind us, I focus on the primary objectives.
+      </p>
+
+      <ol style="margin: 0.4em 0 0.8em 1.4em;">
+        <li data-en="Verify the minimum input — i.e., the starting images — needed to generate a story that includes elements absent from the initial information. ComfyUI-based pipelines are now capable of covering a wide range of missing information without resorting to targeted training such as LoRAs and similar approaches. Although the use of custom training Nodes (such as LoRA specifically) on the story does allow for better visual quality of the story itself."
+            data-it="Verificare il minimo input necessario (ossia le immagini di partenza) per generare una storia comprensiva di elementi mancanti nell'informazione iniziale. Le pipeline di sistemi come ComfyUI sono ormai in grado di coprire una vasta gamma di informazioni mancanti, senza ricorrere necessariamente apprendimenti mirati come LoRA e simili. Sebbene l'uso di Nodi di training  personalizzati (come appunto LoRA) sulla storia, permetta una migliore qualità visiva della storia stessa.">
+          Verify the minimum input — i.e., the starting images — needed to generate a story that includes elements absent from the initial information. ComfyUI-based pipelines are now capable of covering a wide range of missing information without resorting to targeted training such as LoRAs and similar approaches. Although the use of custom training Nodes (such as LoRA specifically) on the story does allow for better visual quality of the story itself.
+        </li>
+        <li data-en="Maintain the identity of face, body, clothing and setting across a sequence of frames — this is the most critical weakness of off-the-shelf tools available online, which frequently lose the initial identity and visual consistency."
+            data-it="Mantenere l'identità del volto, corpo, abbigliamento e spazio durante una sequenza di fotogrammi — questo è l'aspetto più critico dei tool (preconfezionati) disponibili in rete, che spesso dimenticano l'identità e la consistenza iniziale.">
+          Maintain the identity of face, body, clothing and setting across a sequence of frames — this is the most critical weakness of off-the-shelf tools available online, which frequently lose the initial identity and visual consistency.
+        </li>
+        <li data-en="Preserve the coherence between the script text and the generated image — the image is not simply the product of prompt design, but the result of an orchestration of nodes, each of which is a neural network or a graphic function, controlled by a pipeline that forms its backbone, its frame (intuitively: bricks with input/output ports and segments connecting those ports)."
+            data-it="Conservare la congruenza tra il testo dello script e l'immagine generata — l'immagine non è banalmente frutto di un prompt design, ma il risultato di una orchestrazione di nodi, ognuno dei quali è una rete neurale o una funzione grafica, controllati da una pipeline che ne costituisce l'ossatura, il telaio (intuitivamente fatta di mattoncini con porte di entrata/uscita e segmenti che connettono queste porte).">
+          Preserve the coherence between the script text and the generated image — the image is not simply the product of prompt design, but the result of an orchestration of nodes, each of which is a neural network or a graphic function, controlled by a pipeline that forms its backbone, its frame (intuitively: bricks with input/output ports and segments connecting those ports).
+        </li>
+      </ol>
+
+      <p data-en="In the next posts I intend to describe a more substantial and professional storyboard, starting from an external screenplay written by a professional friend: Riccardo Aprile, winner of a Solinas prize."
+         data-it="Mi riprometto nei prossimi post di descrivere uno storyboard più professionale, a partire da una sceneggiatura esterna scritta da un professionista e amico: Riccardo Aprile, vincitore di un premio Solinas.">
+        In the next posts I intend to describe a more substantial and professional storyboard, starting from an external screenplay written by a professional friend: Riccardo Aprile, winner of a Solinas prize.
+      </p>
+
+    </div>
+
+  </main>
+
+  <a href="/en/index.html" class="nav-back" id="home-link" data-en="HOME" data-it="HOME">HOME</a>
+  <div class="lang-switch">
+    <a class="lang-btn" href="/neural-graphics.html">IT</a>
+  </div>
+
+  <script src="/assets/menu.js"></script>
+  <script>
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').classList.toggle('scrolled', window.scrollY > 20);
+    });
+  </script>
+</body>
+</html>

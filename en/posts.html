@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <title>Posts</title>
+  <link rel="alternate" hreflang="en"        href="https://storyline-engine.com/en/posts.html">
+  <link rel="alternate" hreflang="it"        href="https://storyline-engine.com/posts.html">
+  <link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/posts.html">
+    <!-- Preload self-hosted fonts so they're already in flight before style.css
+       is even parsed — closes the remaining window where the browser paints
+       with the fallback (Georgia/Courier) and then swaps to the real font,
+       which is what still reads as the font "changing size" on reload. -->
+  <link rel="preload" href="/assets/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/ibm-plex-mono-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/eb-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/eb-garamond-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+  <meta name="description" content="All posts on this site: ComfyUI pipelines, the DCO campaign engine, AI storyboard demos, and essays on film industry analysis.">
+  <link rel="canonical" href="https://storyline-engine.com/en/posts.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Paolo Marocco">
+  <meta property="og:title" content="Posts">
+  <meta property="og:description" content="All posts on this site: ComfyUI pipelines, the DCO campaign engine, AI storyboard demos, and essays on film industry analysis.">
+  <meta property="og:url" content="https://storyline-engine.com/en/posts.html">
+  <meta property="og:image" content="https://storyline-engine.com/assets/bg_new.jpg">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="it_IT">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Posts">
+  <meta name="twitter:description" content="All posts on this site: ComfyUI pipelines, the DCO campaign engine, AI storyboard demos, and essays on film industry analysis.">
+  <meta name="twitter:image" content="https://storyline-engine.com/assets/bg_new.jpg">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Posts",
+  "description": "All posts on this site: ComfyUI pipelines, the DCO campaign engine, AI storyboard demos, and essays on film industry analysis.",
+  "url": "https://storyline-engine.com/en/posts.html",
+  "image": "https://storyline-engine.com/assets/bg_new.jpg",
+  "inLanguage": "en"
+}
+  </script>
+
+  <link rel="stylesheet" href="/assets/style.css">
+
+  <style>
+    /* ── anchor targets clear the fixed header ─────────────── */
+    .post-group { scroll-margin-top: 110px; }
+
+    /* ── disabled post entries (Cinema e Mercato) ──────────── */
+    .post-title--disabled {
+      color: #9a9a9a;
+      cursor: default;
+    }
+    .post-tag--disabled {
+      color: #9a9a9a;
+      border-color: #9a9a9a;
+    }
+    .coming-soon {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 0.82em;
+      color: #9a9a9a;
+      margin-left: 10px;
+      white-space: nowrap;
+    }
+
+    /* ── level badge — reading depth, independent of topic ─── */
+    .level-badge {
+      display: inline-block;
+      font-family: 'IBM Plex Mono', 'Courier New', monospace;
+      font-size: 0.60rem;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      padding: 2px 7px;
+      color: #F6F9FD;
+      white-space: nowrap;
+    }
+    .level-overview { background: #267300; }
+    .level-handson  { background: #A76300; }
+    .level-deep     { background: #002FA7; }
+    .level-techoverview { background: #00682F; }
+
+    /* ── title + level badge, same line ──────────────────── */
+    .post-title-row {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    /* ── subsection label, nested inside a post-group ──────── */
+    .post-subgroup {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      color: #4878BE;
+      opacity: 0.75;
+      text-transform: uppercase;
+      padding: 22px 0 6px;
+    }
+    .post-group + .post-subgroup { padding-top: 10px; }
+  </style>
+</head>
+<body class="interior">
+
+  <header>
+    <a href="/en/about.html" class="nav-item" data-en="ABOUT" data-it="ABOUT">ABOUT</a>
+    <div class="menu-container">
+      <span class="menu-trigger" data-en="TOPICS" data-it="ARGOMENTI">TOPICS</span>
+      <div class="menu-dropdown">
+        <a href="/en/adv.html"             class="menu-item" data-en="ADV"            data-it="ADV">ADV</a>
+        <a href="/en/neural-graphics.html" class="menu-item" data-en="VISUAL STORIES" data-it="FUMETTI/STORYBOARD">VISUAL STORIES</a>
+        <a href="/en/comfyui.html"         class="menu-item" data-en="COMFYUI"        data-it="COMFYUI">COMFYUI</a>
+        <a href="/en/posts.html"           class="menu-item" data-en="POSTS"          data-it="POST">POSTS</a>
+        <span class="menu-item menu-item--disabled" data-en="VIDEO" data-it="VIDEO">VIDEO</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content">
+
+    <p class="section-label"
+       data-en="ComfyUI · Visual Stories · Cinema"
+       data-it="ComfyUI · Storie visive· Cinema">ComfyUI · Visual Stories · Cinema</p>
+    <h1 class="page-title" data-en="Posts" data-it="Post">Posts</h1>
+
+    <!-- ── GROUP 1: Adv Campaigns (graphical tools) ───────────────────── -->
+    <p class="post-group post-group--narr" id="adv-campaigns" data-en="ADV CAMPAIGNS" data-it="CAMPAGNE ADV">ADV CAMPAIGNS</p>
+
+    <div class="post-item">
+      <span class="post-date" data-en="10/09/2026" data-it="10/09/2026">10/09/2026</span>
+      <div class="post-title-wrap">
+        <div class="post-title-row">
+        <a href="/en/post-pannocchino-spighetta.html" class="post-title"
+           data-en="Automatic Storyboard: Meet Pannocchino e Spighetta"
+           data-it="Storyboard Automatico: Ecco Pannocchino e Spighetta">
+          Automatic Storyboard: Meet Pannocchino e Spighetta
+        </a>
+        <span class="level-badge level-overview" data-en="OVERVIEW" data-it="PANORAMICA">OVERVIEW</span>
+      </div>
+        <div class="post-tags" style="margin-bottom:40px;">
+          <span class="post-tag tag-narr" data-en="Gemini API" data-it="Gemini API">Gemini API</span>
+          <span class="post-tag tag-narr" data-en="ADV Campaign Example" data-it="Esempio di Campagna ADV">ADV Campaign Example</span>
+          <span class="post-tag tag-narr" data-en="Character Consistency" data-it="Coerenza dei Personaggi">Character Consistency</span>
+          <span class="post-tag tag-narr" data-en="DCO" data-it="DCO">DCO</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="post-item">
+      <span class="post-date" data-en="16/09/2026" data-it="16/09/2026">16/09/2026</span>
+      <div class="post-title-wrap">
+        <div class="post-title-row">
+        <a href="/en/post-storyboard-adv.html" class="post-title"
+           data-en="Pannocchino e Spighetta have a baby"
+           data-it="Pannocchino e Spighetta hanno un bambino">
+          Pannocchino e Spighetta have a baby
+        </a>
+        <span class="level-badge level-overview" data-en="OVERVIEW" data-it="PANORAMICA">OVERVIEW</span>
+      </div>
+        <div class="post-tags" style="margin-bottom:40px;">
+          <span class="post-tag tag-narr" data-en="Gemini API" data-it="Gemini API">Gemini API</span>
+          <span class="post-tag tag-narr" data-en="Case Study" data-it="Caso di Studio">Case Study</span>
+          <span class="post-tag tag-narr" data-en="Advertising" data-it="Pubblicità">Advertising</span>
+          <span class="post-tag tag-narr" data-en="Automation" data-it="Automazione">Automation</span>
+          <span class="post-tag tag-narr" data-en="ROI" data-it="ROI">ROI</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="post-item">
+      <span class="post-date" data-en="21/10/2026" data-it="21/10/2026">21/10/2026</span>
+      <div class="post-title-wrap">
+        <div class="post-title-row">
+        <a href="/en/post-storyboard-vendemmia.html" class="post-title"
+           data-en="The grape harvest of Grappolotto and Foglina"
+           data-it="La vendemmia di Grappolotto e Foglina">
+          The grape harvest of Grappolotto and Foglina
+        </a>
+        <span class="level-badge level-overview" data-en="OVERVIEW" data-it="PANORAMICA">OVERVIEW</span>
+      </div>
+        <div class="post-tags" style="margin-bottom:40px;">
+          <span class="post-tag tag-narr" data-en="Gemini API" data-it="Gemini API">Gemini API</span>
+          <span class="post-tag tag-narr" data-en="ADV Campaign Example" data-it="Esempio di Campagna ADV">ADV Campaign Example</span>
+          <span class="post-tag tag-narr" data-en="Character Consistency" data-it="Coerenza dei Personaggi">Character Consistency</span>
+          <span class="post-tag tag-narr" data-en="DCO" data-it="DCO">DCO</span>
+        </div>
+      </div>
+    </div>
+
+	
+	<div class="post-item">
+      <span class="post-date" data-en="09/10/2026" data-it="09/10/2026">09/10/2026</span>
+      <div class="post-title-wrap">
+        <div class="post-title-row">
+        <a href="/en/post-dco-engine.html" class="post-title"
+           data-en="The Engine: generation, control, export"
+           data-it="Il motore: generazione, controllo, export">
+          The Engine: generation, control, export
+        </a>
+        <span class="level-badge level-techoverview" data-en="TECH OVERVIEW" data-it="PANORAMICA TECNICA">TECH OVERVIEW</span>
+      </div>
+        <div class="post-tags" style="margin-bottom:40px;">
+          <span class="post-tag tag-narr" data-en="Gemini API" data-it="Gemini API">Gemini API</span>
+          <span class="post-tag tag-narr" data-en="DCO" data-it="DCO">DCO</span>
+          <span class="post-tag tag-narr" data-en="LoRA" data-it="LoRA">LoRA</span>
+          <span class="post-tag tag-narr" data-en="Orchestration" data-it="Orchestrazione">Orchestration</span>
+          <span class="post-tag tag-narr" data-en="Engine" data-it="Motore">Engine</span>
+        </div>
+      </div>
+    </div>
+
+   <div class="post-item">
+      <span class="post-date" data-en="23/09/2026" data-it="23/09/2026">23/09/2026</span>
+      <div class="post-title-wrap">
+        <div class="post-title-row">
+        <a href="/en/post-dco-pipeline.html" class="post-title"
+           data-en="DCO: One Pipeline, Many Products"
+           data-it="DCO: una Pipeline, Più Prodotti">
+          DCO: One Pipeline, Many Products
+        </a>
+        <span class="level-badge level-techoverview" data-en="TECH OVERVIEW" data-it="PANORAMICA TECNICA">TECH OVERVIEW</span>
+      </div>
+        <div class="post-tags" style="margin-bottom:40px;">
+          <span class="post-tag tag-narr" data-en="Gemini API" data-it="Gemini API">Gemini API</span>
+          <span class="post-tag tag-narr" data-en="DCO" data-it="DCO">DCO</span>
+          <span class="post-tag tag-narr" data-en="Multibrand" data-it="Multibrand">Multibrand</span>
+          <span class="post-tag tag-narr" data-en="QA" data-it="QA">QA</span>
+          <span class="post-tag tag-narr" data-en="LLM-as-judge" data-it="LLM-as-judge">LLM-as-judge</span>
+          <span class="post-tag tag-narr" data-en="Market Analysis" data-it="Analisi di Mercato">Market Analysis</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="post-item">
+      <span class="post-date" data-en="08/10/2026" data-it="08/10/2026">08/10/2026</span>
+      <div class="post-title-wrap">
+        <div class="post-title-row">
+        <a href="/en/post-dco-mercato-globale.html" class="post-title"
+           data-en="DCO and the Agency Market"
+           data-it="DCO e il mercato delle agenzie">
+          DCO and the Agency Market
+        </a>
+        <span class="level-badge level-overview" data-en="OVERVIEW" data-it="PANORAMICA">OVERVIEW</span>
+      </div>
+        <div class="post-tags" style="margin-bottom:40px;">
+          <span class="post-tag tag-narr" data-en="DCO" data-it="DCO">DCO</span>
+          <span class="post-tag tag-narr" data-en="Go-to-Market" data-it="Go-to-Market">Go-to-Market</span>
+          <span class="post-tag tag-narr" data-en="Agencies" data-it="Agenzie">Agencies</span>
+          <span class="post-tag tag-narr" data-en="Market Analysis" data-it="Analisi di Mercato">Market Analysis</span>
+          <span class="post-tag tag-narr" data-en="QA" data-it="QA">QA</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="post-item">
+      <span class="post-date" data-en="08/10/2026" data-it="08/10/2026">08/10/2026</span>
+      <div class="post-title-wrap">
+        <div class="post-title-row">
+        <a href="/en/post-dco-mercato-agenzie-ita.html" class="post-title"
+           data-en="The Agency Channel in Italy"
+           data-it="Il canale delle agenzie in Italia">
+          The Agency Channel in Italy
+        </a>
+        <span class="level-badge level-overview" data-en="OVERVIEW" data-it="PANORAMICA">OVERVIEW</span>
+      </div>
+        <div class="post-tags" style="margin-bottom:40px;">
+          <span class="post-tag tag-narr" data-en="DCO" data-it="DCO">DCO</span>
+          <span class="post-tag tag-narr" data-en="Go-to-Market" data-it="Go-to-Market">Go-to-Market</span>
+          <span class="post-tag tag-narr" data-en="Agencies" data-it="Agenzie">Agencies</span>
+          <span class="post-tag tag-narr" data-en="Italy" data-it="Italia">Italy</span>
+          <span class="post-tag tag-narr" data-en="Market Analysis" data-it="Analisi di Mercato">Market Analysis</span>
+          <span class="post-tag tag-narr" data-en="ADV" data-it="ADV">ADV</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── GROUP 2: ComfyUI ──────────────────────────────────────────── -->
+    <p class="post-group post-group--tech" id="comfyui" data-en="COMFYUI" data-it="COMFYUI">COMFYUI</p>
+
+    <!-- ── GROUP 2a: ComfyUI — Stories & Concepts ──────────────────────── -->
+    <p class="post-subgroup" id="comfyui-stories" data-en="Stories &amp; Concepts" data-it="Storie e Concetti">Stories &amp; Concepts</p>
+
+    <div class="post-item">
+      <span class="post-date" data-en="08/08/2026" data-it="08/08/2026">08/08/2026</span>
+      <div class="post-title-wrap">
+        <div class="post-title-row">
+        <a href="/en/post-comfyui-intro.html" class="post-title"
+           data-en="What is ComfyUI"
+           data-it="Cosa è ComfyUI">
+          What is ComfyUI
+        </a>
+        <span class="level-badge level-techoverview" data-en="TECH OVERVIEW" data-it="PANORAMICA TECNICA">TECH OVERVIEW</span>
+      </div>
+        <div class="post-tags" style="margin-bottom:40px;"><span class="post-tag tag-tech" data-en="ComfyUI" data-it="ComfyUI">ComfyUI</span><span class="post-tag tag-tech" data-en="components" data-it="componenti">components</span><span class="post-tag tag-tech" data-en="Nodes" data-it="Nodi">Nodes</span>
+		</div>
+      </div>
+    </div>
+
+    <div class="post-item">
+      <span class="post-date" data-en="15/08/2026" data-it="15/08/2026">15/08/2026</span>
+      <div class="post-title-wrap">
+        <div class="post-title-row">
+        <a href="/en/post-comfyui-documents.html" class="post-title"
+           data-en="ComfyUI: curated online resources"
+           data-it="ComfyUI — sitografia ragionata">
+          ComfyUI: curated online resources
+        </a>
+        <span class="level-badge level-overview" data-en="OVERVIEW" data-it="PANORAMICA">OVERVIEW</span>
+      </div>
+        <div class="post-tags" style="margin-bottom:40px;"><span class="post-tag tag-tech" data-en="ComfyUI" data-it="ComfyUI">ComfyUI</span><span class="post-tag tag-tech" data-en="online resources" data-it="risorse online">online resources</span><span class="post-tag tag-tech" data-en="Tutorial" data-it="Tutorial">Tutorial</span><span class="post-tag tag-tech" data-en="Video" data-it="Video">Video</span>
+		</div>
+      </div>
+    </div>
+
+    <div class="post-item">
+      <span class="post-date" data-en="21/08/2026" data-it="21/08/2026">21/08/2026</span>
+      <div class="post-title-wrap">
+        <div class="post-title-row">
+        <a href="/en/post-comfyui-concepts.html" class="post-title"
+           data-en="ComfyUI Visual Stories — Concepts"
+           data-it="ComfyUI Storie Visive — Concetti">
+          ComfyUI Visual Stories — Concepts
+        </a>
+        <span class="level-badge level-techoverview" data-en="TECH OVERVIEW" data-it="PANORAMICA TECNICA">TECH OVERVIEW</span>
+      </div>
+        <div class="post-tags" style="margin-bottom:40px;"><span class="post-tag tag-tech" data-en="ComfyUI" data-it="ComfyUI">ComfyUI</span><span class="post-tag tag-tech" data-en="Diffusion Models" data-it="Diffusion Model">Diffusion Models</span><span class="post-tag tag-tech" data-en="IP-Adapter" data-it="IP-Adapter">IP-Adapter</span><span class="post-tag tag-tech" data-en="ControlNet" data-it="ControlNet">ControlNet</span><span class="post-tag tag-tech" data-en="Didattica" data-it="Didattica">Didattica</span><span class="post-tag tag-tech" data-en="Storyboard" data-it="Storyboard">Storyboard</span>
+		</div>
+      </div>
+    </div>
+
+    <!-- ── GROUP 2b: ComfyUI — Course Material ─────────────────────────── -->
+    <p class="post-subgroup" id="comfyui-course-material" data-en="Course Material" data-it="Materiale del Corso">Course Material</p>
+
+    <div class="post-item">
+      <span class="post-date" data-en="28/08/2026" data-it="28/08/2026">28/08/2026</span>
+      <div class="post-title-wrap">
+        <div class="post-title-row">
+        <a href="/en/post-comfyui-course-material.html" class="post-title"
+           data-en="ComfyUI Visual Stories — The Node Graph"
+           data-it="ComfyUI Storie Visive — Il Grafo dei Nodi">
+          ComfyUI Visual Stories — The Node Graph
+        </a>
+        <span class="level-badge level-deep" data-en="DEEP TECHNICAL" data-it="TECNICO AVANZATO">DEEP TECHNICAL</span>
+      </div>
+        <div class="post-tags" style="margin-bottom:40px;"><span class="post-tag tag-tech" data-en="ComfyUI" data-it="ComfyUI">ComfyUI</span><span class="post-tag tag-tech" data-en="Flux" data-it="Flux">Flux</span><span class="post-tag tag-tech" data-en="IP-Adapter" data-it="IP-Adapter">IP-Adapter</span><span class="post-tag tag-tech" data-en="ControlNet" data-it="ControlNet">ControlNet</span><span class="post-tag tag-tech" data-en="Tutorial" data-it="Tutorial">Tutorial</span><span class="post-tag tag-tech" data-en="Didattica" data-it="Didattica">Didattica</span><span class="post-tag tag-tech" data-en="Storyboard" data-it="Storyboard">Storyboard</span>
+		</div>
+      </div>
+    </div>
+
+    <div class="post-item">
+      <span class="post-date" data-en="03/09/2026" data-it="03/09/2026">03/09/2026</span>
+      <div class="post-title-wrap">
+        <div class="post-title-row">
+        <a href="/en/post-comfyui-python.html" class="post-title"
+           data-en="ComfyUI Visual Stories — The Python Scripts"
+           data-it="ComfyUI Storie Visive — Gli Script Python">
+          ComfyUI Visual Stories — The Python Scripts
+        </a>
+        <span class="level-badge level-deep" data-en="DEEP TECHNICAL" data-it="TECNICO AVANZATO">DEEP TECHNICAL</span>
+      </div>
+        <div class="post-tags" style="margin-bottom:40px;"><span class="post-tag tag-tech" data-en="ComfyUI" data-it="ComfyUI">ComfyUI</span><span class="post-tag tag-tech" data-en="Tutorial" data-it="Tutorial">Tutorial</span><span class="post-tag tag-tech" data-en="Didattica" data-it="Didattica">Didattica</span><span class="post-tag tag-tech" data-en="Python" data-it="Python">Python</span><span class="post-tag tag-tech" data-en="Storyboard" data-it="Storyboard">Storyboard</span>
+		</div>
+      </div>
+    </div>
+
+    <div class="post-item">
+      <span class="post-date" data-en="dd/mm/2026" data-it="dd/mm/2026">dd/mm/2026</span>
+      <div class="post-title-wrap">
+        <div class="post-title-row">
+        <span class="post-title post-title--disabled"
+           data-en="Gemini vs ComfyUI: a comparison"
+           data-it="Gemini vs ComfyUI: un confronto">
+          Gemini vs ComfyUI: a comparison
+        </span>
+        <span class="level-badge level-deep" data-en="DEEP TECHNICAL" data-it="TECNICO AVANZATO">DEEP TECHNICAL</span>
+        <span class="coming-soon" data-en="Coming soon" data-it="Prossimamente">Coming soon</span>
+      </div>
+        <div class="post-tags" style="margin-bottom:40px;"><span class="post-tag tag-tech" data-en="Gemini" data-it="Gemini">Gemini</span><span class="post-tag tag-tech" data-en="ComfyUI" data-it="ComfyUI">ComfyUI</span><span class="post-tag tag-tech" data-en="Confronto" data-it="Confronto">Confronto</span>
+		</div>
+      </div>
+    </div>
+
+
+
+
+
+
+    <!-- ── GROUP 3: Narrazioni OBSOLETE ──────────────────────────────────────────
+    <p class="post-group post-group--narr" data-en="VISUAL NARRATIVES" data-it="NARRAZIONI">VISUAL NARRATIVES</p>
+
+    <div class="post-item">
+      <span class="post-date" data-en="dd/mm/2026" data-it="dd/mm/2026">dd/mm/2026</span>
+      <div class="post-title-wrap">
+        <a href="/en/post-aelita.html" class="post-title"
+           data-en="Aelita: a short graphic novel from Russian Futurism (1922)"
+           data-it="Aelita: breve graphic novel tratta dal futurismo russo (1922)">
+          Aelita: a short graphic novel from Russian Futurism (1922)
+        </a>
+        <div class="post-tags">
+          <span class="post-tag tag-narr">Aelita</span>
+          <span class="post-tag tag-narr">Graphic Novel</span>
+          <span class="post-tag tag-narr">Tolstoy</span>
+          <span class="post-tag tag-narr">Sci-Fi</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="post-item">
+      <span class="post-date" data-en="dd/mm/2026" data-it="dd/mm/2026">dd/mm/2026</span>
+      <div class="post-title-wrap">
+        <a href="/en/primo-incontro.html" class="post-title"
+           data-en="Primo Incontro: a photorealistic storyboard from a short script"
+           data-it="Primo Incontro: storyboard fotorealistico tratto da breve script">
+          Primo Incontro: a photorealistic storyboard from a short script
+        </a>
+        <div class="post-tags">
+          <span class="post-tag tag-narr">Primo Incontro</span>
+          <span class="post-tag tag-narr">PuLID</span>
+          <span class="post-tag tag-narr">Fotorealistico</span>
+        </div>
+      </div>
+    </div>
+
+	-->
+
+    <!-- ── GROUP 3: Cinema e mercato ──────────────────────────────────── -->
+    <p class="post-group post-group--cinema" id="cinema-mercato" data-en="CINEMA AND MARKET" data-it="CINEMA E MERCATO">CINEMA AND MARKET</p>
+
+    <div class="post-item">
+      <span class="post-date" data-en="mm/dd/2026" data-it="dd/mm/2026">mm/dd/2026</span>
+      <div class="post-title-wrap">
+        <span class="post-title post-title--disabled"
+           data-en="On the unexpected success of certain films"
+           data-it="A proposito del successo imprevisto di certi film">
+          On the unexpected success of certain films
+        </span>
+        <span class="coming-soon" data-en="Coming soon" data-it="Prossimamente">Coming soon</span>
+        <div class="post-tags">
+          <span class="post-tag tag-cinema">Box Office</span>
+          <span class="post-tag tag-cinema">Analisi</span>
+          <span class="post-tag tag-cinema">Imprevedibilità</span>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="post-item">
+      <span class="post-date" data-en="dd/mm/2026" data-it="dd/mm/2026">dd/mm/2026</span>
+      <div class="post-title-wrap">
+        <span class="post-title post-title--disabled"
+           data-en="Horror: &lsquo;B-movies and social paradigms&rsquo;"
+           data-it="Horror: &lsquo;B-movie e paradigmi sociali&rsquo;">
+          Horror: &lsquo;B-movies and social paradigms&rsquo;
+        </span>
+        <span class="coming-soon" data-en="Coming soon" data-it="Prossimamente">Coming soon</span>
+        <div class="post-tags">
+          <span class="post-tag tag-cinema">Horror</span>
+          <span class="post-tag tag-cinema">B-movie</span>
+          <span class="post-tag tag-cinema">Critica Sociale</span>
+          <span class="post-tag tag-cinema">Analisi di Genere</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="post-item">
+      <span class="post-date" data-en="dd/mm/2026" data-it="dd/mm/2026">dd/mm/2026</span>
+      <div class="post-title-wrap">
+        <span class="post-title post-title--disabled"
+           data-en="Science fiction: a singular genre between spectacle and concept"
+           data-it="La fantascienza: un genere singolare, a metà tra lo spettacolare e il concettuale">
+          Science fiction: a singular genre between spectacle and concept
+        </span>
+        <span class="coming-soon" data-en="Coming soon" data-it="Prossimamente">Coming soon</span>
+        <div class="post-tags">
+          <span class="post-tag tag-cinema">Sci-Fi</span>
+          <span class="post-tag tag-cinema">Fantascienza</span>
+          <span class="post-tag tag-cinema">Genere</span>
+          <span class="post-tag tag-cinema">Kubrick</span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <a href="/en/index.html" class="nav-back" id="home-link" data-en="HOME" data-it="HOME">HOME</a>
+  <div class="lang-switch">
+    <a class="lang-btn" href="/posts.html">IT</a>
+  </div>
+
+  <script src="/assets/menu.js"></script>
+  <script>
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').classList.toggle('scrolled', window.scrollY > 20);
+    });
+  </script>
+</body>
+</html>

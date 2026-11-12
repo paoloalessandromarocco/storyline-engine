@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <title>ComfyUI Visual Stories — The Python Scripts</title>
+  <link rel="alternate" hreflang="en"        href="https://storyline-engine.com/en/post-comfyui-python.html">
+  <link rel="alternate" hreflang="it"        href="https://storyline-engine.com/post-comfyui-python.html">
+  <link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-comfyui-python.html">
+    <!-- Preload self-hosted fonts so they're already in flight before style.css
+       is even parsed — closes the remaining window where the browser paints
+       with the fallback (Georgia/Courier) and then swaps to the real font,
+       which is what still reads as the font "changing size" on reload. -->
+  <link rel="preload" href="/assets/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/ibm-plex-mono-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/eb-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/eb-garamond-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+  <meta name="description" content="The scripting path through the ComfyUI course: an alternative to the node-based GUI, covered through the course&#x27;s Python/bash workflow.">
+  <link rel="canonical" href="https://storyline-engine.com/en/post-comfyui-python.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Paolo Marocco">
+  <meta property="og:title" content="ComfyUI Visual Stories — The Python Scripts">
+  <meta property="og:description" content="The scripting path through the ComfyUI course: an alternative to the node-based GUI, covered through the course&#x27;s Python/bash workflow.">
+  <meta property="og:url" content="https://storyline-engine.com/en/post-comfyui-python.html">
+  <meta property="og:image" content="https://storyline-engine.com/assets/bg_new.jpg">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="it_IT">
+  <meta property="article:tag" content="Python">
+  <meta property="article:tag" content="Generative AI">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ComfyUI Visual Stories — The Python Scripts">
+  <meta name="twitter:description" content="The scripting path through the ComfyUI course: an alternative to the node-based GUI, covered through the course&#x27;s Python/bash workflow.">
+  <meta name="twitter:image" content="https://storyline-engine.com/assets/bg_new.jpg">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "ComfyUI Visual Stories — The Python Scripts",
+  "description": "The scripting path through the ComfyUI course: an alternative to the node-based GUI, covered through the course's Python/bash workflow.",
+  "image": "https://storyline-engine.com/assets/bg_new.jpg",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://storyline-engine.com/en/post-comfyui-python.html",
+  "author": {
+    "@type": "Person",
+    "name": "Paolo Marocco",
+    "url": "https://storyline-engine.com/about.html"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Paolo Marocco"
+  }
+}
+  </script>
+
+  <link rel="stylesheet" href="/assets/style.css">
+
+  <style>
+    /* ── post body text ──────────────────────────────────── */
+    .post-text {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.15rem;
+      line-height: 1.75;
+      margin: 0 0 1.4em 0;
+    }
+
+    /* ── footnote ref ────────────────────────────────────── */
+    sup.fn-ref {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6em;
+      line-height: 1;
+      vertical-align: super;
+      margin-left: 0.1em;
+    }
+    sup.fn-ref a { text-decoration: none; opacity: 0.55; }
+    sup.fn-ref a:hover { opacity: 1; }
+
+    /* ── footnotes block ─────────────────────────────────── */
+    .footnotes {
+      margin-top: 4rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid currentColor;
+      opacity: 0.65;
+    }
+    .footnotes ol {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 0.92rem;
+      line-height: 1.65;
+      padding-left: 1.4em;
+      margin: 0 0 0 -1.4em;
+      list-style-position: outside;
+    }
+    .footnotes li { margin-bottom: 0.8em; }
+    .fn-back {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8em;
+      margin-left: 0.4em;
+      text-decoration: none;
+      opacity: 0.5;
+    }
+    .fn-back:hover { opacity: 1; }
+
+    /* ── numbered content list ───────────────────────────── */
+    .content-list { list-style: none; padding: 0; margin: 1.6rem 0 0; }
+    .content-item {
+      display: grid;
+      grid-template-columns: 3rem 1fr;
+      gap: 1.6rem;
+      padding: 2rem 0;
+    }
+    .content-item:last-child { border-bottom: 1px solid rgba(0,0,0,0.08); }
+    /* no bottom line right before a chapter heading: its own thick top border already separates */
+    .content-list:has(+ .chapter-heading) .content-item:last-child { border-bottom: none; }
+    .content-number {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #1A5CB3;
+      opacity: 0.25;
+      padding-top: 0.15rem;
+      line-height: 1;
+    }
+    .content-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #1A5CB3;
+      margin: 0 0 0.9rem;
+      font-weight: 400;
+    }
+    .content-body .post-text { margin: 0; }
+
+    /* ── sub-bullet list ─────────────────────────────────── */
+    .content-sublist {
+      list-style: disc;
+      padding-left: 1.4em;
+      margin-top: 0.9em;
+      margin-bottom: 0;
+    }
+    .content-sublist li {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      margin-bottom: 0.6em;
+    }
+
+    /* ── inline code and code blocks ─────────────────────── */
+    code {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.82em;
+      background: rgba(0,0,0,0.06);
+      padding: 0.1em 0.32em;
+      border-radius: 2px;
+    }
+    .code-block {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.79rem;
+      line-height: 1.62;
+      background: rgba(0,0,0,0.04);
+      border-left: 2px solid rgba(26,92,179,0.28);
+      padding: 0.85rem 1.2rem;
+      margin: 1.1rem 0 0;
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    /* ── file / denoise tables ───────────────────────────── */
+    .data-table,
+    .denoise-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.0rem;
+      line-height: 1.52;
+      margin: 1rem 0 1.4rem;
+    }
+    .data-table th,
+    .denoise-table th {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.64rem;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      text-align: left;
+      padding: 0.4rem 0.9rem 0.35rem;
+      border-bottom: 1.5px solid rgba(0,0,0,0.20);
+      color: #1A5CB3;
+      opacity: 0.70;
+    }
+    .data-table td,
+    .denoise-table td {
+      padding: 0.46rem 0.9rem;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+      vertical-align: top;
+    }
+    .data-table tr:last-child td,
+    .denoise-table tr:last-child td { border-bottom: none; }
+
+    /* ── lettered steps list (section 03) ────────────────── */
+    .steps-alpha {
+      list-style: lower-latin;
+      padding-left: 1.8em;
+      margin-top: 1.4rem;
+      margin-bottom: 0;
+    }
+    .steps-alpha > li {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      margin-bottom: 1.6rem;
+    }
+    .steps-alpha > li:last-child { margin-bottom: 0; }
+    .steps-alpha > li > .post-text {
+      margin: 0;
+      font-size: 1.05rem;
+    }
+
+    /* ── sequenza completa (end summary) ─────────────────── */
+    .sequenza-completa {
+      margin-top: 2.6rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+    .sequenza-pre {
+      list-style: none;
+      padding: 0;
+      margin: 0.6rem 0 0.2rem;
+    }
+    .sequenza-pre li {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      margin-bottom: 0.38em;
+      padding-left: 1.2em;
+      position: relative;
+    }
+    .sequenza-pre li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      opacity: 0.35;
+    }
+    .sequenza-steps {
+      padding-left: 1.5em;
+      margin: 0.35rem 0 0;
+    }
+    .sequenza-steps li {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      margin-bottom: 0.38em;
+    }
+
+    @media (max-width: 700px) {
+      .content-item { grid-template-columns: 2rem 1fr; gap: 1rem; }
+      .content-number { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body class="interior">
+
+  <header>
+    <a href="/en/about.html" class="nav-item" data-en="ABOUT" data-it="ABOUT">ABOUT</a>
+    <div class="menu-container">
+      <span class="menu-trigger" data-en="TOPICS" data-it="ARGOMENTI">TOPICS</span>
+      <div class="menu-dropdown">
+        <a href="/en/adv.html"             class="menu-item" data-en="ADV"            data-it="ADV">ADV</a>
+        <a href="/en/neural-graphics.html" class="menu-item" data-en="VISUAL STORIES" data-it="FUMETTI/STORYBOARD">VISUAL STORIES</a>
+        <a href="/en/comfyui.html"         class="menu-item" data-en="COMFYUI"        data-it="COMFYUI">COMFYUI</a>
+        <a href="/en/posts.html"           class="menu-item" data-en="POSTS"          data-it="POST">POSTS</a>
+        <span class="menu-item menu-item--disabled" data-en="VIDEO" data-it="VIDEO">VIDEO</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content">
+
+    <p class="section-label"
+       data-en="ComfyUI &middot; Python Scripts · DEEP TECHNICAL"
+       data-it="ComfyUI &middot; Script Python · TECNICO AVANZATO">ComfyUI &middot; Python Scripts · DEEP TECHNICAL</p>
+
+    <h1 class="page-title"
+        data-en="ComfyUI Visual Stories — The Python Scripts"
+        data-it="ComfyUI Storie Visive — Gli Script Python">ComfyUI Visual Stories — The Python Scripts</h1>
+
+    <div class="page-body">
+
+      <div class="post-tags" style="margin-bottom:2rem;">
+        <span class="post-tag tag-tech" data-en="ComfyUI"    data-it="ComfyUI">ComfyUI</span>
+        <span class="post-tag tag-tech" data-en="Tutorial"   data-it="Tutorial">Tutorial</span>
+        <span class="post-tag tag-tech" data-en="Teaching"   data-it="Didattica">Teaching</span>
+        <span class="post-tag tag-tech" data-en="Python"     data-it="Python">Python</span>
+        <span class="post-tag tag-tech" data-en="Storyboard" data-it="Storyboard">Storyboard</span>
+      </div>
+
+      <p class="post-abstract-text"
+         data-en="This post covers the course's other operational path: not the node-based GUI — explained in <a href='post-comfyui-course-material.html' class='about-link'>The Node Graph</a> — but Python and bash scripts that automate the generation (essentially <code>patcher.py</code> and <code>sweep.py</code>)<sup class='fn-ref'><a href='#fn1' id='fnref1'>1</a></sup>, useful for handling things like loops, multiple variants and the repetition of node clusters — hard to manage through graphs alone. In this post we'll see these scripts applied to 14 shots from the <a href='sotto-lasfalto.html' class='about-link'>Sotto l'Asfalto</a> story, with the two recurring characters John and Elena."
+         data-it="Questo post copre il percorso complementare a quello del grafo a nodi — vedi <a href='post-comfyui-course-material.html' class='about-link'>Il Grafo dei Nodi</a> — script Python e bash che automatizzano la generazione (essenzialmente <code>patcher.py</code> e <code>sweep.py</code>)<sup class='fn-ref'><a href='#fn1' id='fnref1'>1</a></sup>, utili ad esempio per trattare aspetti come i cicli, le multi-varianti e la ripetizione di aggregati di nodi — difficili da gestire soltanto tramite grafi. In questo post vedremo l'utilizzo di queste funzioni applicate a 14 inquadrature della storia <a href='sotto-lasfalto.html' class='about-link'>Sotto l'Asfalto</a>, con i due personaggi ricorrenti: John e Elena.">
+        This post covers the course's other operational path: not the node-based GUI — explained in <a href='post-comfyui-course-material.html' class='about-link'>The Node Graph</a> — but Python and bash scripts that automate the generation (essentially <code>patcher.py</code> and <code>sweep.py</code>)<sup class='fn-ref'><a href='#fn1' id='fnref1'>1</a></sup>, useful for handling things like loops, multiple variants and the repetition of node clusters — hard to manage through graphs alone. In this post we'll see these scripts applied to 14 shots from the <a href='sotto-lasfalto.html' class='about-link'>Sotto l'Asfalto</a> story, with the two recurring characters John and Elena.
+      </p>
+
+      <p class="post-text"
+         data-en="<a href='post-comfyui-course-material.html' class='about-link'>The Node Graph</a> — a pipeline shown on its own page — runs to 50+ nodes in ComfyUI. Scaling that kind of graph to generate 14 shots means replicating identical sub-graphs fourteen times — that is, multiplying around ten nodes by 14 within a single graph. This means handling prompts, weights and image references, shot by shot, inside the JSON. A process that quickly becomes unworkable.<sup class='fn-ref'><a href='#fn2' id='fnref2'>2</a></sup> This is the problem the scripts described here solve."
+         data-it="<a href='post-comfyui-course-material.html' class='about-link'>Il Grafo dei Nodi</a> — una pipeline vista nella pagina relativa — è composto da 50+ nodi ComfyUI. Scalare questo tipo di grafo per generare 14 inquadrature significa replicare identici sottografi quattordici volte — ossia moltiplicare una decina di nodi per 14 in un unico grafo. Questo comporta: gestire prompt, pesi e riferimenti alle immagini, inquadratura per inquadratura, nel JSON. Un processo che diventa rapidamente impraticabile<sup class='fn-ref'><a href='#fn2' id='fnref2'>2</a></sup>. È il problema risolto dagli script qui descritti.">
+        <a href='post-comfyui-course-material.html' class='about-link'>The Node Graph</a> — a pipeline shown on its own page — runs to 50+ nodes in ComfyUI. Scaling that kind of graph to generate 14 shots means replicating identical sub-graphs fourteen times — that is, multiplying around ten nodes by 14 within a single graph. This means handling prompts, weights and image references, shot by shot, inside the JSON. A process that quickly becomes unworkable.<sup class="fn-ref"><a href="#fn2" id="fnref2">2</a></sup> This is the problem the scripts described here solve.
+      </p>
+
+      <!-- ══════════════════════════════════════════════════ -->
+      <ol class="content-list">
+
+        <!-- 01 — VIBE-CODE ────────────────────────────────── -->
+        <li class="content-item">
+          <div class="content-number">01</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="Vibe-code: creating without writing code"
+                data-it="Vibe-code: diventare sviluppatore senza scrivere codice">
+              Vibe-code: creating without writing code
+            </h3>
+
+            <p class="post-text"
+               data-en="<em>Vibe-coding</em> is the practice of using an AI assistant — Claude, GPT, Gemini and others — to generate working code by describing the problem in natural language. You don't write Python directly; you describe the problem to the LLM, which writes the code — code you can either run yourself or have the model run, simulating the Python interpreter. The result behaves exactly as if a developer had built it for you. When changes are needed, you work through a configuration file that describes the properties of the vibe-coded functions: in principle, changing these configuration values is enough to get different runs of the code. This is AI's great revolution in programming: reducing developer jargon to natural language, and reshaping how teams are organised."
+               data-it="Il <em>vibe-code</em> è la pratica di usare un assistente AI — Claude, GPT, Gemini e altri — per generare codice funzionante descrivendo il problema in linguaggio naturale. Non si scrive direttamente codice Python, ma si descrive il problema all'LLM: il modello scrive il codice, che si può eseguire direttamente oppure far eseguire al modello stesso, che simula l'interprete Python. Il risultato si comporta esattamente come se un developer lo avesse costruito per voi. Se occorrono dei cambiamenti, si organizza un file di configurazione, dove si descrivono le proprietà delle funzioni del vibe-code: in teoria basta cambiare i valori di questi parametri per ottenere esecuzioni diverse del codice. È la grande rivoluzione dell'AI nella programmazione: democratizzare il gergo degli sviluppatori riducendolo a linguaggio naturale, cambiando l'organizzazione dei team.">
+              <em>Vibe-coding</em> is the practice of using an AI assistant — Claude, GPT, Gemini and others — to generate working code by describing the problem in natural language. You don't write Python directly; you describe the problem to the LLM, which writes the code — code you can either run yourself or have the model run, simulating the Python interpreter. The result behaves exactly as if a developer had built it for you. When changes are needed, you work through a configuration file that describes the properties of the vibe-coded functions: in principle, changing these configuration values is enough to get different runs of the code. This is AI's great revolution in programming: reducing developer jargon to natural language, and reshaping how teams are organised.
+            </p>
+
+            <p class="post-text"
+               data-en="In this pipeline the division of roles is clear. The AI handles the technical layer — generating the node-graph JSON, writing the patching and sweep scripts.<sup class='fn-ref'><a href='#fn3' id='fnref3'>3</a></sup> The human operator handles the creative layer — describing what each shot looks like (lighting, focal lengths, camera placement, etc.), setting the weights that balance facial identity, choosing which generated frames to keep, etc."
+               data-it="In questa pipeline la divisione dei ruoli è chiara. L'AI gestisce il livello tecnico — generare il JSON del grafo di nodi, scrivere gli script di patching e di sweep.<sup class='fn-ref'><a href='#fn3' id='fnref3'>3</a></sup> L'operatore umano gestisce il livello creativo — descrivere come appare ogni inquadratura (le luci, le focali, il posizionamento della mdp ecc.), impostare i pesi che bilanciano l'identità facciale, scegliere quali frame generati conservare, ecc.">
+              In this pipeline the division of roles is clear. The AI handles the technical layer — generating the node-graph JSON, writing the patching and sweep scripts.<sup class="fn-ref"><a href="#fn3" id="fnref3">3</a></sup> The human operator handles the creative layer — describing what each shot looks like (lighting, focal lengths, camera placement, etc.), setting the weights that balance facial identity, choosing which generated frames to keep, etc.
+            </p>
+
+            <p class="post-text"
+               data-en="Coming back to this project, the workflow uses five files: a) a base graph JSON (generated once by Claude from a natural-language description of the pipeline), b) a configuration file you can easily edit before each generation run, c) two automation scripts (also generated by Claude and reusable across other projects), d) the character reference images. No syntax to learn. One command to run. Filling in the config file and running a script is the entire technical interaction."
+               data-it="Ritornando a questo progetto, il flusso di lavoro usa cinque file: a) un JSON del grafo di base (generato una volta da Claude a partire da una descrizione in linguaggio naturale della pipeline), b) un file di configurazione che si può agevolmente modificare prima di ogni ciclo di generazione, c) due script di automazione (anch'essi generati da Claude e riutilizzabili in altri progetti), d) le immagini di riferimento dei personaggi. Nessuna sintassi da imparare. Un solo comando da lanciare. Compilare il file di config ed eseguire uno script è l'intera complessità dell'interazione tecnica.">
+              Coming back to this project, the workflow uses five files: a) a base graph JSON (generated once by Claude from a natural-language description of the pipeline), b) a configuration file you can easily edit before each generation run, c) two automation scripts (also generated by Claude and reusable across other projects), d) the character reference images. No syntax to learn. One command to run. Filling in the config file and running a script is the entire technical interaction.
+            </p>
+
+          </div>
+        </li>
+
+        <!-- 02 — IL PROGETTO ──────────────────────────────── -->
+        <li class="content-item">
+          <div class="content-number">02</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="The project"
+                data-it="Il progetto">
+              The project
+            </h3>
+
+            <p class="post-text"
+               data-en="The example used throughout this post is a 14-shot storyboard called <code>bar_14shots</code>, set in a wine bar with two recurring characters — Jim and Barbara. Their reference images (full-body turnaround, face crop, two-character reference) are the same files described in the <a href='comfyui-pipeline-setup.html' class='about-link'>setup page</a>. Each shot is photorealistic: Flux.1-dev as the base diffusion model, PuLID for face identity locking, XLabs IPAdapter for body and clothing consistency, ControlNet depth for spatial structure."
+               data-it="L'esempio usato in questo post è uno storyboard di 14 inquadrature chiamato <code>bar_14shots</code>, ambientato in un wine bar con due personaggi ricorrenti — Jim e Barbara. Le loro immagini di riferimento (corpo intero/turnaround, ritaglio del volto, riferimento a due personaggi) sono gli stessi file descritti nella <a href='comfyui-pipeline-setup.html' class='about-link'>pagina di configurazione</a>. Ogni inquadratura ha uno stile iperrealistico. I moduli coinvolti sono: Flux.1-dev come modello diffusivo base, PuLID per il blocco dell'identità facciale, XLabs IPAdapter per la coerenza di corpo e abbigliamento, ControlNet depth per la struttura spaziale.">
+              The example used throughout this post is a 14-shot storyboard called <code>bar_14shots</code>, set in a wine bar with two recurring characters — Jim and Barbara. Their reference images (full-body turnaround, face crop, two-character reference) are the same files described in the <a href="/en/comfyui-pipeline-setup.html" class="about-link">setup page</a>. Each shot is photorealistic: Flux.1-dev as the base diffusion model, PuLID for face identity locking, XLabs IPAdapter for body and clothing consistency, ControlNet depth for spatial structure.
+            </p>
+
+            <p class="post-text"
+               data-en="Before writing any configuration or running any script, it helps to describe the project in natural language — because that description is precisely what you will hand to Claude to generate the base graph JSON. A clear project brief covers: the number of shots; the two characters; which shots feature one character and which feature both (shots with two characters need a doubled PuLID + IPAdapter chain in the graph); the bar interior setting, anchored by a depth reference image called <code>wall1.png</code>; and the overall visual register — in this case photorealistic and cinematic."
+               data-it="Prima di scrivere qualsiasi configurazione o eseguire qualsiasi script, è utile descrivere il progetto in linguaggio naturale. Un brief di progetto chiaro include: il numero di inquadrature; i due personaggi; quali inquadrature presentano un solo personaggio e quali entrambi (le inquadrature a due personaggi richiedono una catena PuLID + IPAdapter doppia nel grafo); l'ambientazione dell'interno del bar, ancorata da un'immagine di riferimento <code>wall1.png</code>; e il registro visivo generale — in questo caso iperrealistico e cinematografico.">
+              Before writing any configuration or running any script, it helps to describe the project in natural language — because that description is precisely what you will hand to Claude to generate the base graph JSON. A clear project brief covers: the number of shots; the two characters; which shots feature one character and which feature both (shots with two characters need a doubled PuLID + IPAdapter chain in the graph); the bar interior setting, anchored by a depth reference image called <code>wall1.png</code>; and the overall visual register — in this case photorealistic and cinematic.
+            </p>
+
+            <p class="post-text"
+               data-en="Each shot can vary independently in framing (medium shot, wide shot, close-up), focal length, camera angle, and props. All of that variation is controlled through the configuration file — not through ComfyUI's interface, and not by editing the graph. Once the graph is generated by Claude, it becomes fixed infrastructure and is never touched again."
+               data-it="Ogni inquadratura può variare indipendentemente dal framing (piano medio, campo lungo, primo piano), dalla focale, dall'angolo di ripresa e dagli oggetti di scena. Tutta quella variazione è controllata attraverso il file di configurazione — non per mezzo dell'interfaccia di ComfyUI e modificando il grafo. In questo progetto, una volta che il grafo è generato da Claude, diventa una infrastruttura fissa e non viene mai più toccato.">
+              Each shot can vary independently in framing (medium shot, wide shot, close-up), focal length, camera angle, and props. All of that variation is controlled through the configuration file — not through ComfyUI's interface, and not by editing the graph. Once the graph is generated by Claude, it becomes fixed infrastructure and is never touched again.
+            </p>
+
+          </div>
+        </li>
+
+      </ol><!-- /content-list -->
+
+      <p class="post-text" style="margin-top:1.4rem;"
+         data-en="Want the concrete, hands-on steps — the five files, the run sequence, and the post-processing pass? See <a href='comfyui-python-workflow-instructions.html' class='about-link'>Instructions for writing and running this section's workflow</a>."
+         data-it="Vuoi i passaggi concreti, operativi — i cinque file, la sequenza di esecuzione e il passaggio di post-processing? Vedi <a href='comfyui-python-workflow-instructions.html' class='about-link'>Istruzioni per scrivere e lanciare il workflow di questa sezione</a>.">
+        Want the concrete, hands-on steps — the five files, the run sequence, and the post-processing pass? See <a href='comfyui-python-workflow-instructions.html' class='about-link'>Instructions for writing and running this section's workflow</a>.
+      </p>
+
+      <!-- ── FOOTNOTES ─────────────────────────────────────── -->
+      <section class="footnotes">
+        <ol>
+          <li id="fn1">
+            <span data-en="The name echoes <em>monkey patching</em>: modifying or extending classes, functions or objects at runtime without touching the original source code. Here it applies to the ComfyUI graph: <code>patcher.py</code> takes the base graph (never modified) and injects the configuration file's values into it at runtime — prompts, weights, image references — producing the PATCHED files ready for generation. <code>sweep.py</code> automates the generation itself: it varies a single parameter across a list of values and fires one API call per value, so several results can be compared quickly."
+                  data-it="Il nome richiama il <em>monkey patching</em>: la modifica o estensione a runtime di classi, funzioni o oggetti senza toccare il codice sorgente originale. Qui si applica al grafo ComfyUI: <code>patcher.py</code> prende il grafo di base (mai modificato) e vi inietta a runtime i valori del file di configurazione — prompt, pesi, riferimenti immagine — producendo i file PATCHED pronti per la generazione. <code>sweep.py</code> automatizza la generazione stessa: fa variare un singolo parametro su una lista di valori e lancia una chiamata API per ciascuno, per confrontare rapidamente più risultati.">
+              The name echoes <em>monkey patching</em>: modifying or extending classes, functions or objects at runtime without touching the original source code. Here it applies to the ComfyUI graph: <code>patcher.py</code> takes the base graph (never modified) and injects the configuration file's values into it at runtime — prompts, weights, image references — producing the PATCHED files ready for generation. <code>sweep.py</code> automates the generation itself: it varies a single parameter across a list of values and fires one API call per value, so several results can be compared quickly.
+            </span>
+            <a href="#fnref1" class="fn-back" aria-label="back to text">&#8617;</a>
+          </li>
+          <li id="fn2">
+            <span data-en="Although it is theoretically possible, with vibe-coding, to multiply sub-graphs and chain them indefinitely, in practice this runs into problems of visual readability and of actually running graphs with too many nodes. It is better to plan the project by splitting it into several distinct graphs, properly feeding the output of one as the input of the next."
+                  data-it="Pur essendo teoricamente possibile, con il vibe-code, moltiplicare i sottografi e collegarli all'infinito, in pratica si incontrano problemi di leggibilità visiva del grafo e di esecuzione effettiva con troppi nodi. Conviene quindi pianificare il progetto dividendolo in più grafi distinti, gestendo opportunamente gli output di uno come input del successivo.">
+              Although it is theoretically possible, with vibe-coding, to multiply sub-graphs and chain them indefinitely, in practice this runs into problems of visual readability and of actually running graphs with too many nodes. It is better to plan the project by splitting it into several distinct graphs, properly feeding the output of one as the input of the next.
+            </span>
+            <a href="#fnref2" class="fn-back" aria-label="back to text">&#8617;</a>
+          </li>
+          <li id="fn3">
+            <span data-en="Internally they're simple: <code>patcher.py</code> loads the graph JSON as a Python dictionary, looks up the target nodes by their ID (always the same, since the graph is fixed), and overwrites their parameter fields with the values read from <code>shots_config.py</code> — then saves the result to a new file. <code>sweep.py</code> does the same job as <code>patcher.py</code> in a loop: for each value in the list, it injects that value into the node, sends the patched JSON to the ComfyUI API endpoint, and saves the returned image under a name that includes the value used."
+                  data-it="Internamente sono semplici: <code>patcher.py</code> carica il JSON del grafo come un dizionario Python, cerca i nodi target tramite il loro ID (sempre lo stesso, perché il grafo è fisso) e sovrascrive i campi dei loro parametri con i valori letti da <code>shots_config.py</code> — poi salva il risultato in un nuovo file. <code>sweep.py</code> fa lo stesso lavoro di <code>patcher.py</code> in un ciclo: per ogni valore nella lista, inietta quel valore nel nodo, invia il JSON patchato all'endpoint API di ComfyUI e salva l'immagine restituita con un nome che include il valore usato.">
+              Internally they're simple: <code>patcher.py</code> loads the graph JSON as a Python dictionary, looks up the target nodes by their ID (always the same, since the graph is fixed), and overwrites their parameter fields with the values read from <code>shots_config.py</code> — then saves the result to a new file. <code>sweep.py</code> does the same job as <code>patcher.py</code> in a loop: for each value in the list, it injects that value into the node, sends the patched JSON to the ComfyUI API endpoint, and saves the returned image under a name that includes the value used.
+            </span>
+            <a href="#fnref3" class="fn-back" aria-label="back to text">&#8617;</a>
+          </li>
+        </ol>
+      </section>
+
+    </div><!-- /page-body -->
+  </main>
+
+  <a href="/en/index.html" class="nav-back nav-home" id="home-link" data-en="HOME" data-it="HOME">HOME</a>
+  <div class="lang-switch">
+    <a class="lang-btn" href="/post-comfyui-python.html">IT</a>
+  </div>
+
+  <script src="/assets/menu.js"></script>
+  <script>
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').classList.toggle('scrolled', window.scrollY > 20);
+    });
+  </script>
+</body>
+</html>

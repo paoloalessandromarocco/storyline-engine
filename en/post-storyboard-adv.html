@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <title>Pannocchino e Spighetta have a baby</title>
+  <link rel="alternate" hreflang="en"        href="https://storyline-engine.com/en/post-storyboard-adv.html">
+  <link rel="alternate" hreflang="it"        href="https://storyline-engine.com/post-storyboard-adv.html">
+  <link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-storyboard-adv.html">
+    <!-- Preload self-hosted fonts so they're already in flight before style.css
+       is even parsed — closes the remaining window where the browser paints
+       with the fallback (Georgia/Courier) and then swaps to the real font,
+       which is what still reads as the font "changing size" on reload. -->
+  <link rel="preload" href="/assets/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/ibm-plex-mono-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/eb-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/eb-garamond-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+  <meta name="description" content="The second story about mascots Pannocchino and Spighetta — testing the automatic storyboard engine on a new narrative for the same brand.">
+  <link rel="canonical" href="https://storyline-engine.com/en/post-storyboard-adv.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Paolo Marocco">
+  <meta property="og:title" content="Pannocchino e Spighetta have a baby">
+  <meta property="og:description" content="The second story about mascots Pannocchino and Spighetta — testing the automatic storyboard engine on a new narrative for the same brand.">
+  <meta property="og:url" content="https://storyline-engine.com/en/post-storyboard-adv.html">
+  <meta property="og:image" content="https://storyline-engine.com/assets/post-pannocchino-spighetta/01-encounter.jpg">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="it_IT">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pannocchino e Spighetta have a baby">
+  <meta name="twitter:description" content="The second story about mascots Pannocchino and Spighetta — testing the automatic storyboard engine on a new narrative for the same brand.">
+  <meta name="twitter:image" content="https://storyline-engine.com/assets/post-pannocchino-spighetta/01-encounter.jpg">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Pannocchino e Spighetta have a baby",
+  "description": "The second story about mascots Pannocchino and Spighetta — testing the automatic storyboard engine on a new narrative for the same brand.",
+  "image": "https://storyline-engine.com/assets/post-pannocchino-spighetta/01-encounter.jpg",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://storyline-engine.com/en/post-storyboard-adv.html",
+  "author": {
+    "@type": "Person",
+    "name": "Paolo Marocco",
+    "url": "https://storyline-engine.com/about.html"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Paolo Marocco"
+  }
+}
+  </script>
+
+  <link rel="stylesheet" href="/assets/style.css">
+
+  <style>
+    /* ── post body text ─────────────────────────────────── */
+    .post-text {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.15rem;
+      line-height: 1.75;
+      margin: 0 0 1.4em 0;
+    }
+    /* about-link (defined in style.css) handles all inline links:
+       ochre colour at rest, darker on hover, no underline        */
+
+    /* ── story headers (shared pattern with the sibling post) ─ */
+    .story-header {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      letter-spacing: 0.16em;
+      color: #1A5CB3;
+      text-transform: uppercase;
+      margin: 3.2rem 0 0.8rem;
+    }
+    .story-header:first-of-type { margin-top: 2.4rem; }
+    .story-intro { opacity: 0.85; }
+
+    .content-sublist2 {
+      list-style: disc;
+      padding-left: 1.4em;
+      margin-top: 0.9em;
+      margin-bottom: 0;
+    }
+    .content-sublist2 li {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      margin-bottom: 0.6em;
+      opacity: 0.88;
+    }
+
+    /* ── footnote ref ────────────────────────────────────── */
+    sup.fn-ref {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6em;
+      line-height: 1;
+      vertical-align: super;
+      margin-left: 0.1em;
+    }
+    sup.fn-ref a { text-decoration: none; opacity: 0.55; }
+    sup.fn-ref a:hover { opacity: 1; }
+
+    /* ── footnotes block ─────────────────────────────────── */
+    .footnotes {
+      margin-top: 4rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid currentColor;
+      opacity: 0.65;
+    }
+    .footnotes ol {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 0.92rem;
+      line-height: 1.65;
+      padding-left: 1.4em;
+      margin: 0;
+    }
+    .footnotes li { margin-bottom: 0.8em; }
+    .fn-back {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8em;
+      margin-left: 0.4em;
+      text-decoration: none;
+      opacity: 0.5;
+    }
+    .fn-back:hover { opacity: 1; }
+
+    /* ── manifest row, worked example ─────────────────────────── */
+    .manifest-row {
+      display: block;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8rem;
+      line-height: 1.7;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 6px;
+      padding: 1rem 1.2rem;
+      margin: 1.2rem 0 1.6rem;
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    /* ── figure / image ──────────────────────────────────── */
+    .post-figure {
+      margin: 2.5rem auto 2rem;
+    }
+    .post-figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    /* ── caption: bold title + smaller body ──────────────── */
+    .post-caption {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.04em;
+      line-height: 1.7;
+      opacity: 0.55;
+      margin-top: 0.7rem;
+      text-align: justify;
+    }
+    .caption-title {
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      display: block;
+      margin-bottom: 0.2em;
+      text-align: center;
+    }
+
+    /* ── numbered content list ───────────────────────────── */
+    .content-list { list-style: none; padding: 0; margin: 1.6rem 0 0; }
+    .content-item {
+      display: grid;
+      grid-template-columns: 3rem 1fr;
+      gap: 1.6rem;
+      padding: 2rem 0;
+    }
+    .content-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.1); }
+    /* no bottom line right before a chapter heading: its own thick top border already separates */
+    .content-list:has(+ .chapter-heading) .content-item:last-child { border-bottom: none; }
+    .content-number {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 600;
+      opacity: 0.18;
+      padding-top: 0.15rem;
+      line-height: 1;
+    }
+    .content-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin: 0 0 0.9rem;
+      font-weight: 400;
+    }
+    .content-body .post-text { margin: 0; }
+
+    /* ── sub-bullet list ─────────────────────────────────── */
+    .content-sublist {
+      list-style: disc;
+      padding-left: 1.4em;
+      margin-top: 0.9em;
+      margin-bottom: 0;
+    }
+    .content-sublist li {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      margin-bottom: 0.35em;
+      opacity: 0.88;
+    }
+
+    /* ── ROI comparison table ────────────────────────────── */
+    .roi-table-wrap {
+      overflow-x: auto;
+      margin: 1.6rem 0 0;
+    }
+    .roi-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 560px;
+    }
+    .roi-table th,
+    .roi-table td {
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 0.75rem 0.9rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    .roi-table th {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.75;
+      font-weight: 600;
+    }
+    .roi-table td {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .roi-table td.roi-metric {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.82rem;
+      letter-spacing: 0.02em;
+      opacity: 0.9;
+    }
+    .roi-table td.roi-pipeline { font-weight: 600; }
+
+    @media (max-width: 700px) {
+      .content-item { grid-template-columns: 2rem 1fr; gap: 1rem; }
+      .content-number { font-size: 1.1rem; }
+      .roi-table { font-size: 0.92rem; }
+    }
+
+    /* ── simulated engine output: variant pool grid ──────────── */
+    .variant-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 1.8rem 1.4rem;
+      margin: 1.6rem 0 0.4rem;
+    }
+    .variant-cell { display: flex; flex-direction: column; }
+    .img-placeholder {
+      border: 1px dashed rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.03);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.66rem;
+      letter-spacing: 0.03em;
+      opacity: 0.5;
+      padding: 0.6rem;
+    }
+    .ph-1x1  { aspect-ratio: 1 / 1; }
+    .ph-4x5  { aspect-ratio: 4 / 5; }
+    .ph-9x16 { aspect-ratio: 9 / 16; }
+    .ph-16x9 { aspect-ratio: 16 / 9; }
+    .variant-img { width: 100%; height: auto; object-fit: cover; display: block; border-radius: 4px; }
+    .variant-caption {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.02em;
+      line-height: 1.6;
+      opacity: 0.6;
+      margin-top: 0.6rem;
+      text-align: center;
+    }
+    .variant-caption .variant-label  { display: block; opacity: 0.85; margin-bottom: 0.25em; }
+    .variant-caption .variant-slogan { display: block; opacity: 1; font-family: 'EB Garamond', Georgia, serif; font-style: italic; font-size: 0.85rem; letter-spacing: normal; margin-bottom: 0.35em; }
+    .variant-caption .variant-file   { display: block; opacity: 0.55; font-style: italic; }
+  </style>
+</head>
+<body class="interior">
+
+  <header>
+    <a href="/en/about.html" class="nav-item" data-en="ABOUT" data-it="ABOUT">ABOUT</a>
+    <div class="menu-container">
+      <span class="menu-trigger" data-en="TOPICS" data-it="ARGOMENTI">TOPICS</span>
+      <div class="menu-dropdown">
+        <a href="/en/adv.html"             class="menu-item" data-en="ADV"            data-it="ADV">ADV</a>
+        <a href="/en/neural-graphics.html" class="menu-item" data-en="VISUAL STORIES" data-it="FUMETTI/STORYBOARD">VISUAL STORIES</a>
+        <a href="/en/comfyui.html"         class="menu-item" data-en="COMFYUI"        data-it="COMFYUI">COMFYUI</a>
+        <a href="/en/posts.html"           class="menu-item" data-en="POSTS"          data-it="POST">POSTS</a>
+        <span class="menu-item menu-item--disabled" data-en="VIDEO" data-it="VIDEO">VIDEO</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content">
+
+    <p class="section-label"
+       data-en="Claude + Gemini API · Case Study · OVERVIEW"
+       data-it="Caso di Studio · PANORAMICA">Claude + Gemini API · Case Study · OVERVIEW</p>
+
+    <h1 class="page-title"
+        data-en="Pannocchino e Spighetta have a baby"
+        data-it="Pannocchino e Spighetta hanno un bambino">Pannocchino e Spighetta have a baby</h1>
+
+    <div class="page-body">
+
+      <!-- tags -->
+      <div class="post-tags" style="margin-bottom:2rem;">
+        <span class="post-tag tag-tech" data-en="Gemini API"   data-it="Gemini API">Gemini API</span>
+        <span class="post-tag tag-tech" data-en="Case Study"   data-it="Caso di Studio">Case Study</span>
+        <span class="post-tag tag-tech" data-en="Advertising"  data-it="Pubblicità">Advertising</span>
+        <span class="post-tag tag-tech" data-en="Automation"   data-it="Automazione">Automation</span>
+        <span class="post-tag tag-tech" data-en="ROI"          data-it="ROI">ROI</span>
+      </div>
+
+      <!-- ── EXECUTIVE SUMMARY ─────────────────────────────── -->
+
+      <p class="post-abstract-text"
+         data-en="This is the second of two stories about the farm mascots already introduced in the sibling post, <a href='post-pannocchino-spighetta.html' class='about-link'>Automatic Storyboard: Meet Pannocchino e Spighetta</a><sup class='fn-ref'><a href='#fn1' id='fnref1'>[1]</a></sup> — &quot;Pannocchino and Spighetta&quot;, two mascots who live on a farm, surrounded by assorted friendly little animals. The visual narrative here shifts to the following year, when the couple sets to work preparing a new cake &mdash; still with the same ingredients, but lighter and more digestible, suited to weaning (whose packaging we see in the final image)."
+         data-it="Questo è il secondo di due storie sulle mascotte della fattoria già presentate nel post gemello, <a href='post-pannocchino-spighetta.html' class='about-link'>Storyboard Automatico: Ecco Pannocchino e Spighetta</a><sup class='fn-ref'><a href='#fn1' id='fnref1'>[1]</a></sup> — &quot;Pannocchino e Spighetta&quot;, due mascotte che abitano in una fattoria, circondate da animaletti vari e simpatici. La narrazione visiva qui si sposta all'anno successivo, quando la coppia si prodiga a preparare una nuova torta, sempre con gli stessi ingredienti, ma più leggera e digeribile, adatta allo svezzamento (la cui confezione vediamo nell'immagine finale).">
+        This is the second of two stories about the farm mascots already introduced in the sibling post, <a href="/en/post-pannocchino-spighetta.html" class="about-link">Automatic Storyboard: Meet Pannocchino e Spighetta</a><sup class="fn-ref"><a href="#fn1" id="fnref1">[1]</a></sup> — "Pannocchino and Spighetta", two mascots who live on a farm, surrounded by assorted friendly little animals. The visual narrative here shifts to the following year, when the couple sets to work preparing a new cake — still with the same ingredients, but lighter and more digestible, suited to weaning (whose packaging we see in the final image).
+      </p>
+
+      <p class="post-abstract-text"
+         data-en="A campaign built on recurring mascots cannot survive on single hero illustrations &mdash; redrawing characters for every scene, channel and occasion is slow and expensive. With that in mind, this post reuses the same locked pair, the same farm, the same nucleus as the sibling post, for a second product. In this case, the couple has settled into family life, with a child, baking cakes for all the characters, all the way to the farm stand selling at zero km. The goal was purely to create a setting in which the engine described in <a href='post-dco-engine.html' class='about-link'>The Engine: generation, control, export</a> and in the underlying technical post (<a href='dco-engine-tech.html' class='about-link'>DCO Engine: technical description</a>) could operate."
+         data-it="Una campagna ADV basata su mascotte ricorrenti non può limitarsi a singole illustrazioni isolate &mdash; ridisegnare i personaggi per ogni scena, canale ed evento è lento e costoso. Partendo da questa considerazione, il post riusa la stessa coppia di mascotte, la stessa fattoria, lo stesso nucleo del post gemello, per un secondo prodotto. In questo caso, la coppia è entrata in una cornice famigliare, ha un bambino, fa le torte per tutti i personaggi, fino al prodotto finale che vende in un banchetto a Km ZERO. Lo scopo di questo post è puramente quello di creare un contesto dove presentare l'engine descritto in <a href='post-dco-engine.html' class='about-link'>Il motore: generazione, controllo, export</a> e nel post tecnico soggiacente (<a href='dco-engine-tech.html' class='about-link'>Motore DCO: descrizione tecnica</a>).">
+        A campaign built on recurring mascots cannot survive on single hero illustrations — redrawing characters for every scene, channel and occasion is slow and expensive. With that in mind, this post reuses the same locked pair, the same farm, the same nucleus as the sibling post, for a second product. In this case, the couple has settled into family life, with a child, baking cakes for all the characters, all the way to the farm stand selling at zero km. The goal was purely to create a setting in which the engine described in <a href="/en/post-dco-engine.html" class="about-link">The Engine: generation, control, export</a> and in the underlying technical post (<a href="/en/dco-engine-tech.html" class="about-link">DCO Engine: technical description</a>) could operate.
+      </p>
+
+      <!-- ── PROLOGUE — THE KEYFRAME ──────────────────────── -->
+      <p class="story-header" data-en="Prologue — the keyframe" data-it="Prologo — il frame di riferimento">Prologue — the keyframe</p>
+
+      <figure class="post-figure">
+        <img src="/assets/post-pannocchino-spighetta/01-encounter.jpg"
+             alt="Pannocchino and Spighetta sitting together on a bench in a wheat field at sunset" width="1024" height="572" decoding="async">
+        <figcaption class="post-caption"
+          data-en="<span class='caption-title'>The Keyframe</span> is the same one used in the sibling post, <a href='post-pannocchino-spighetta.html' class='about-link'>Automatic Storyboard: Meet Pannocchino e Spighetta</a> — reproduced here as the anchor this story has to match."
+          data-it="<span class='caption-title'>Il Frame di Riferimento</span> è lo stesso utilizzato nel post gemello, <a href='post-pannocchino-spighetta.html' class='about-link'>Storyboard Automatico: Ecco Pannocchino e Spighetta</a> — viene riprodotto qui in aderenza alla storia.">
+          <span class="caption-title">The Keyframe</span> is the same one used in the sibling post, <a href="/en/post-pannocchino-spighetta.html" class="about-link">Automatic Storyboard: Meet Pannocchino e Spighetta</a> — reproduced here as the anchor this story has to match.
+        </figcaption>
+      </figure>
+
+      <!-- ── THE MECHANISM, INFORMALLY ────────────────────── -->
+      <p class="post-text"
+         data-en="What you'll find here isn't a fixed shot list locked to one idea, but an evolution of the same group of primitives put back on stage: the leads, the wheat field and the farmhouse, the farm animals, the products it's promoting. Compared with the first post, the events change and the staging changes with them — costumes, props, minor characters — while the cast and the setting stay the same. The rigorous version of this mechanism — the structured description file, and the automatic quality-control loop over the results — is covered in a post of its own: <a href='post-dco-engine.html' class='about-link'>The Engine: generation, control, export</a>."
+         data-it="Quello che trovate qui non è una scaletta fissa di inquadrature, ma un'evoluzione dello stesso gruppo di elementi primitivi rimesso in scena, i protagonisti, il campo di grano e la casa colonica, gli animaletti della fattoria, i prodotti che sta promuovendo. Rispetto al primo post, cambiano gli eventi e cambia la messa in scena — costumi, oggetti di scena, personaggi minori — mentre il cast e l'ambiente sono gli stessi. La versione rigorosa di questo meccanismo — il file di descrizione strutturato, e il loop di controllo automatico sulla qualità dei risultati — è trattata in un post dedicato: <a href='post-dco-engine.html' class='about-link'>Il motore: generazione, controllo, export</a>.">
+        What you'll find here isn't a fixed shot list locked to one idea, but an evolution of the same group of primitives put back on stage: the leads, the wheat field and the farmhouse, the farm animals, the products it's promoting. Compared with the first post, the events change and the staging changes with them — costumes, props, minor characters — while the cast and the setting stay the same. The rigorous version of this mechanism — the structured description file, and the automatic quality-control loop over the results — is covered in a post of its own: <a href="/en/post-dco-engine.html" class="about-link">The Engine: generation, control, export</a>.
+      </p>
+
+      <!-- ── STORY — THE BIRTH ────────────────────────────── -->
+      <p class="story-header" data-en="Story — the birth" data-it="Storia — la nascita">Story — the birth</p>
+      <p class="post-text story-intro"
+         data-en="A third character enters the scene, delighting the couple — the same identity upkeep that holds two faces steady now extends to three, and the newcomer starts to come into play with no reference images of its own to lean on (it exists purely as a product of prompts, models and parameters)."
+         data-it="Un terzo personaggio entra in scena allietando la coppia — lo stesso mantenimento d'identità dei due volti si estende a tre, e il nuovo arrivato inizia a entrare in gioco, senza immagini di riferimento proprie su cui appoggiarsi (è puro frutto di prompt, modelli e parametri).">
+        A third character enters the scene, delighting the couple — the same identity upkeep that holds two faces steady now extends to three, and the newcomer starts to come into play with no reference images of its own to lean on (it exists purely as a product of prompts, models and parameters).
+      </p>
+
+      <figure class="post-figure">
+        <img src="/assets/post-pannocchino-spighetta/02-kiss.jpg"
+             alt="Pannocchino and Spighetta kissing in a rustic kitchen, next to a cake" width="1100" height="614" loading="lazy" decoding="async">
+        <figcaption class="post-caption"
+          data-en="<span class='caption-title'>Before the News</span> A quiet moment in the kitchen before the farmhouse gets busy — the same two faces from the keyframe, now close together in warm interior light instead of sunset."
+          data-it="<span class='caption-title'>Prima della Notizia</span> Un momento di quiete in cucina prima che la casa colonica si riempia di gente — gli stessi due volti del frame di riferimento, ora vicini nella luce calda degli interni invece che al tramonto.">
+          <span class="caption-title">Before the News</span> A quiet moment in the kitchen before the farmhouse gets busy — the same two faces from the keyframe, now close together in warm interior light instead of sunset.
+        </figcaption>
+      </figure>
+
+      <figure class="post-figure">
+        <img src="/assets/post-pannocchino-spighetta/03-baby-birth.jpg"
+             alt="Pannocchino, Spighetta and their baby together in the kitchen with a cake" width="2752" height="1536" loading="lazy" decoding="async">
+        <figcaption class="post-caption"
+          data-en="<span class='caption-title'>The New Arrival</span> A third, hybrid face joins the two locked ones, with no reference of its own to draw on — the hardest shot in this story for identity lock to hold."
+          data-it="<span class='caption-title'>Il Nuovo Arrivo</span> Un terzo volto, ibrido, si unisce ai due precedenti, senza un proprio riferimento su cui contare — lo scatto più difficile di questa storia per mantenere l'identità nelle successive inquadrature.">
+          <span class="caption-title">The New Arrival</span> A third, hybrid face joins the two locked ones, with no reference of its own to draw on — the hardest shot in this story for identity lock to hold.
+        </figcaption>
+      </figure>
+
+      <figure class="post-figure">
+        <img src="/assets/post-pannocchino-spighetta/05-first-birthday-baby-home.jpg"
+             alt="The family cutting a cake together at home for the baby's first birthday">
+        <figcaption class="post-caption"
+          data-en="<span class='caption-title'>First Birthday, at Home</span> A year on, the same three faces around a cake in the same farmhouse kitchen — the quiet version of the party, before anyone else arrives."
+          data-it="<span class='caption-title'>Primo Compleanno, a Casa</span> Un anno dopo, gli stessi tre volti intorno a una torta nella stessa cucina — la versione tranquilla della festa, prima che arrivi chiunque altro.">
+          <span class="caption-title">First Birthday, at Home</span> A year on, the same three faces around a cake in the same farmhouse kitchen — the quiet version of the party, before anyone else arrives.
+        </figcaption>
+      </figure>
+
+      <p class="post-text" 
+         data-en="The two shots on either side of this paragraph are the same party caught at two different moments: the quiet cake-cutting indoors, then the same celebration spilling out into the farmyard once the guests — and the animals — show up. Nothing about the setup changes between them: same reference images, same identity lock on Pannocchino and Spighetta. What changes is simply the backdrop and who else is in frame, the same way changing rooms for a real party would."
+         data-it="Le due inquadrature ai lati di questo paragrafo sono la stessa festa colta in due momenti diversi: il taglio della torta in tranquillità dentro casa, poi la festa che si sposta nel cortile quando arrivano gli ospiti e gli animaletti. Tra le due inquadrature non cambia nulla nel setup di base: stesse immagini di riferimento, stesse identità di Pannocchino e Spighetta. Cambia solo lo sfondo e chi appare nell'inquadratura, proprio come se si cambiasse stanza durante una festa vera.">
+        The two shots on either side of this paragraph are the same party caught at two different moments: the quiet cake-cutting indoors, then the same celebration spilling out into the farmyard once the guests — and the animals — show up. Nothing about the setup changes between them: same reference images, same identity lock on Pannocchino and Spighetta. What changes is simply the backdrop and who else is in frame, the same way changing rooms for a real party would.
+      </p>
+
+      <figure class="post-figure">
+        <img src="/assets/post-pannocchino-spighetta/04-first-birthday-baby-outdoor.jpg"
+             alt="Pannocchino, Spighetta and their baby celebrating the first birthday in a farmhouse courtyard, surrounded by farm animals" width="1376" height="768" loading="lazy" decoding="async">
+        <figcaption class="post-caption"
+          data-en="<span class='caption-title'>First Birthday, in the Yard</span> The same party, wider: the farmyard cast joins in — cows, sheep, a dog, chickens — and the cake moves outside with everyone else."
+          data-it="<span class='caption-title'>Primo Compleanno, in Cortile</span> La stessa festa, più ampia: si uniscono gli animali della fattoria — mucche, pecore, un cane, galline — e la torta si sposta fuori con tutti gli altri.">
+          <span class="caption-title">First Birthday, in the Yard</span> The same party, wider: the farmyard cast joins in — cows, sheep, a dog, chickens — and the cake moves outside with everyone else.
+        </figcaption>
+      </figure>
+
+      <figure class="post-figure">
+        <img src="/assets/post-pannocchino-spighetta/06-selling-the-artigianal-cake.jpg"
+             alt="Pannocchino, Spighetta and their baby selling cakes at a rustic wooden farm stand, with a cow, hens and 'A KM 0' signage">
+        <figcaption class="post-caption"
+          data-en="<span class='caption-title'>The Km-Zero Stand</span> The three family members have set up a rustic wooden stall in the farmyard, open to the outdoors. Pannocchino and Spighetta work the stand together — mixing batter, packing boxes — while the baby watches happily from a wooden crate. A spotted cow in a rural harness has just delivered the milk pail, hens peck near baskets of fresh eggs, flour sacks and hay bales, and hand-lettered signs — &quot;A KM 0,&quot; &quot;PRODOTTO ARTIGIANALE,&quot; &quot;GENOA, LIGURIA&quot; — mark the shot that bridges the kitchen above and the finished packaging below: the home recipe, sold straight from the farm."
+          data-it="<span class='caption-title'>Il Banchetto a Km Zero</span> I tre membri della famiglia hanno allestito un banchetto rustico in legno nel cortile della fattoria, all'aperto. Pannocchino e Spighetta lavorano insieme al banco — impastano, confezionano le scatole — mentre il piccolo osserva felice da una cassetta di legno. Una mucca pezzata con imbracatura rurale ha appena consegnato il secchio del latte, le galline beccano vicino a cesti di uova fresche, sacchi di farina e balle di fieno, e cartelli scritti a mano — &quot;A KM 0,&quot; &quot;PRODOTTO ARTIGIANALE,&quot; &quot;GENOA, LIGURIA&quot; — segnano lo scatto che fa da ponte tra la cucina qui sopra e la confezione finita qui sotto: la ricetta di casa, venduta direttamente dalla fattoria.">
+          <span class="caption-title">The Km-Zero Stand</span> The three family members have set up a rustic wooden stall in the farmyard, open to the outdoors. Pannocchino and Spighetta work the stand together — mixing batter, packing boxes — while the baby watches happily from a wooden crate. A spotted cow in a rural harness has just delivered the milk pail, hens peck near baskets of fresh eggs, flour sacks and hay bales, and hand-lettered signs — "A KM 0," "PRODOTTO ARTIGIANALE," "GENOA, LIGURIA" — mark the shot that bridges the kitchen above and the finished packaging below: the home recipe, sold straight from the farm.
+        </figcaption>
+      </figure>
+
+      <figure class="post-figure">
+        <img src="/assets/post-pannocchino-spighetta/06A-selling-the-artigianal-cake-variation.jpg"
+             alt="A piglet balanced on a sugar bucket reaching for a cake at the farm stand while Pannocchino scolds it and the baby laughs" width="1024" height="572" loading="lazy" decoding="async">
+        <figcaption class="post-caption"
+          data-en="<span class='caption-title'>The Variation, a Bolder Piglet</span> A variation on the same stand, with the scene pushed further: a piglet is caught balanced on the rim of a metal bucket marked &quot;ZUCCHERO,&quot; front hooves on the counter, devouring a cake and scattering crumbs. Pannocchino leans indignantly over the counter, pointing a finger in rebuke; the baby, delighted, laughs it up from the crate as if egging the piglet on, while Spighetta looks on half-amused, half-startled. Same stand, same nucleus, a livelier beat<sup class='fn-ref'><a href='#fn2' id='fnref2'>[2]</a></sup>."
+          data-it="<span class='caption-title'>La Variante, un Maialino più Sfrontato</span> Una variante dello stesso banchetto, con la scena portata più avanti: un maialino viene colto in equilibrio sul bordo di un secchio di metallo con la scritta &quot;ZUCCHERO,&quot; le zampe anteriori sul bancone, intento a mangiare voracemente una torta e a spargere briciole. Pannocchino si sporge indignato oltre il bancone, puntando il dito in un gesto di rimprovero; il piccolo, divertito, ride a crepapelle dalla cassetta quasi a incoraggiare l'intruso, mentre Spighetta osserva tra il sorpreso e il divertito. Stesso banchetto, stesso nucleo, un momento più movimentato<sup class='fn-ref'><a href='#fn2' id='fnref2'>[2]</a></sup>.">
+          <span class="caption-title">The Variation, a Bolder Piglet</span> A variation on the same stand, with the scene pushed further: a piglet is caught balanced on the rim of a metal bucket marked "ZUCCHERO," front hooves on the counter, devouring a cake and scattering crumbs. Pannocchino leans indignantly over the counter, pointing a finger in rebuke; the baby, delighted, laughs it up from the crate as if egging the piglet on, while Spighetta looks on half-amused, half-startled. Same stand, same nucleus, a livelier beat<sup class="fn-ref"><a href="#fn2" id="fnref2">[2]</a></sup>.
+        </figcaption>
+      </figure>
+
+      <figure class="post-figure">
+        <img src="/assets/post-pannocchino-spighetta/08-packaging-detail.jpg"
+             alt="Branded packaging box featuring Pannocchino and Spighetta, the farm's birth-occasion cake edition">
+        <figcaption class="post-caption"
+          data-en="<span class='caption-title'>The Packaging — Torta Spighetta, Edizione Nascita</span> The story closes on the product it had been promoting all along: the farm's second edition of Torta Spighetta, a pale-blue box with a gold-foil wreath of wheat and corn husks."
+          data-it="<span class='caption-title'>La Confezione — Torta Spighetta, Edizione Nascita</span> La storia si chiude sul prodotto che stava promuovendo fin dall'inizio: la seconda edizione di Torta Spighetta della fattoria, una confezione celeste con una corona dorata di spighe e foglie di pannocchia.">
+          <span class="caption-title">The Packaging — Torta Spighetta, Edizione Nascita</span> The story closes on the product it had been promoting all along: the farm's second edition of Torta Spighetta, a pale-blue box with a gold-foil wreath of wheat and corn husks.
+        </figcaption>
+      </figure>
+
+      <!-- ── OTHER SCRIPTS, SAME PRIMITIVES ───────────────── -->
+      <p class="story-header" data-en="Other scripts the same setup could run" data-it="Altri script che lo stesso setup potrebbe raccontare">Other scripts the same setup could run</p>
+      <p class="post-text story-intro"
+         data-en="Before the sketches below, a quick recap of the story this run actually told: a new arrival joins the locked pair, a first birthday split between a quiet kitchen moment and a wider farmyard one, a wooden farm stand where the family sells the cake &quot;a km zero,&quot; and finally the branded packaging it was building toward all along. Same model as the wedding story: the same three primitives — the locked pair, this field and farmhouse, Torta Spighetta's birth-occasion packaging — were put together by an LLM, which sketched other ways the same occasion could be told. None of these were shot; they're shown here to illustrate what a &quot;variation from the same primitives&quot; actually looks like."
+         data-it="Facciamo un rapido riepilogo della storia che questa sessione ha effettivamente raccontato: un nuovo arrivo si unisce alla coppia, un primo compleanno diviso tra un momento tranquillo in cucina e uno più ampio in cortile, un banchetto in legno dove la famiglia vende la torta &quot;a km zero,&quot; e infine la confezione brandizzata verso cui tutto puntava fin dall'inizio. Stesso modello della storia del matrimonio: gli stessi tre elementi primitivi — la coppia fissata, questo campo e questa casa colonica, la confezione dell'edizione nascita di Torta Spighetta — sono stati confezionati da un LLM, che ha abbozzato altri modi di raccontare la stessa occasione. Nessuno di questi è stato poi girato; sono riportati qui per mostrare cosa significhi fare una &quot;variazione dagli stessi elementi primitivi&quot;.">
+        Before the sketches below, a quick recap of the story this run actually told: a new arrival joins the locked pair, a first birthday split between a quiet kitchen moment and a wider farmyard one, a wooden farm stand where the family sells the cake "a km zero," and finally the branded packaging it was building toward all along. Same model as the wedding story: the same three primitives — the locked pair, this field and farmhouse, Torta Spighetta's birth-occasion packaging — were put together by an LLM, which sketched other ways the same occasion could be told. None of these were shot; they're shown here to illustrate what a "variation from the same primitives" actually looks like.
+      </p>
+
+      <ul class="content-sublist2">
+        <li data-en="A storm clips the celebration short — Pannocchino carries the cradle indoors mid-scene, the farmyard animals scattering ahead of the rain, the party finishing by candlelight instead of string lights."
+            data-it="Un temporale interrompe la festa — Pannocchino porta la culla in casa a metà scena, gli animali della fattoria scappano davanti alla pioggia, la festa finisce a lume di candela invece che con le luci a festa.">
+          A storm clips the celebration short — Pannocchino carries the cradle indoors mid-scene, the farmyard animals scattering ahead of the rain, the party finishing by candlelight instead of string lights.
+        </li>
+
+        <li data-en="A multigenerational version: Spighetta's own mother — a second wheat-stalk character, never drawn before — arrives late with a family heirloom wreath, extending the identity-lock problem to a brand-new face mid-story."
+            data-it="Una versione multigenerazionale: la madre di Spighetta — un secondo personaggio-spiga, mai disegnato prima — arriva in ritardo con 'la torta nella nonna', estendendo il problema del mantenimento d'identità a un volto del tutto nuovo a metà storia.">
+          A multigenerational version: Spighetta's own mother — a second wheat-stalk character, never drawn before — arrives late with a family heirloom wreath, extending the identity-lock problem to a brand-new face mid-story.
+        </li>
+        <li data-en="A seasonal swap — the same birthday told in winter, string lights replaced by lanterns in the snow, testing whether the lock on costume and lighting holds as hard as the lock on faces."
+            data-it="Un cambio di stagione — lo stesso compleanno raccontato d'inverno, luci a festa sostituite da lanterne nella neve, per verificare se l'identità dei costumi e la luce adatta resistano quanto la consistenza dei volti.">
+          A seasonal swap — the same birthday told in winter, string lights replaced by lanterns in the snow, testing whether the lock on costume and lighting holds as hard as the lock on faces.
+        </li>
+        <li data-en="A single-shot version with no party at all: just the three of them on the keyframe bench at dusk, the cake implied rather than shown — the minimum story this same reference pair can still tell."
+            data-it="Una versione a un solo scatto, senza festa: solo i tre sulla panchina del frame di riferimento al tramonto, la torta suggerita più che mostrata — la storia minima che questa stessa coppia di riferimento può ancora raccontare.">
+          A single-shot version with no party at all: just the three of them on the keyframe bench at dusk, the cake implied rather than shown — the minimum story this same reference pair can still tell.
+        </li>
+      </ul>
+
+      <!-- ── SIMULATED ENGINE OUTPUT — THE VARIANT POOL ──────── -->
+      <p class="story-header" data-en="Simulated engine output — the variant pool" data-it="Output simulato del motore — il pool di varianti">Simulated engine output — the variant pool</p>
+      <p class="post-text story-intro"
+         data-en="A worked example of what the engine's last two stages — formats (Chapter 07) and export (Chapter 06), see <a href='post-dco-engine.html' class='about-link'>The Engine: generation, control, export</a> — would actually produce from this story, in the same spirit as the cake-brand example in <a href='adv.html' class='about-link'>ADV</a>. Starting from four staged stills — the rain closing in on the farmyard, the same rain turned to a sheltering downpour under the oak, the family's stall at the harvest festival, and a rainbow breaking over the whole farm community caught mid-storm — the engine tags each one with its event, weather and slogan, then stages a small pool of labelled variants re-cropped into the aspect ratios a real campaign would need: six labelled variants in all."
+         data-it="Un esempio concreto di cosa produrrebbero davvero le ultime due fasi del motore — proporzioni (capitolo 07) ed export (capitolo 06), vedi <a href='post-dco-engine.html' class='about-link'>Il motore: generazione, controllo, export</a> — a partire da questa storia, nello stesso spirito dell'esempio del brand di dolci in <a href='adv.html' class='about-link'>ADV</a>. Partendo da quattro scatti messi in scena — la pioggia che arriva sul cortile, la stessa pioggia diventata acquazzone sotto la quercia, il banchetto della festa del raccolto al mercato, e un arcobaleno che si apre sopra tutta la comunità della fattoria colta in mezzo al temporale — il motore etichetta ciascuno con il suo evento, meteo e slogan, poi mette in scena un piccolo pool di varianti ritagliate nelle proporzioni che servirebbero a una campagna reale: sei varianti etichettate in tutto.">
+        A worked example of what the engine's last two stages — formats (Chapter 07) and export (Chapter 06), see <a href="/en/post-dco-engine.html" class="about-link">The Engine: generation, control, export</a> — would actually produce from this story, in the same spirit as the cake-brand example in <a href="/en/adv.html" class="about-link">ADV</a>. Starting from four staged stills — the rain closing in on the farmyard, the same rain turned to a sheltering downpour under the oak, the family's stall at the harvest festival, and a rainbow breaking over the whole farm community caught mid-storm — the engine tags each one with its event, weather and slogan, then stages a small pool of labelled variants re-cropped into the aspect ratios a real campaign would need: six labelled variants in all.
+      </p>
+
+      <div class="variant-grid">
+        <div class="variant-cell">
+          <img class="variant-img ph-1x1" src="/assets/post-pannocchino-spighetta/birthday_yard_rain_light_1x1.jpg" alt="Pannocchino and Spighetta in the farmyard with their baby as light rain begins to fall" width="600" height="600" loading="lazy" decoding="async">
+          <p class="variant-caption"
+             data-en="<span class='variant-label'>format:1:1 &middot; event:birthday-yard &middot; weather:rain</span>"
+             data-it="<span class='variant-label'>proporzione:1:1 &middot; evento:compleanno-cortile &middot; meteo:pioggia</span>">
+            <span class="variant-label">format:1:1 · event:birthday-yard · weather:rain</span>
+          </p>
+        </div>
+        <div class="variant-cell">
+          <img class="variant-img ph-4x5" src="/assets/post-pannocchino-spighetta/birthday_yard_rain_storm_4x5.jpg" alt="Pannocchino and Spighetta sheltering under a tree with their baby as the rain turns to a downpour" width="480" height="600" loading="lazy" decoding="async">
+          <p class="variant-caption"
+             data-en="<span class='variant-label'>format:4:5 &middot; event:birthday-yard &middot; weather:rain</span>"
+             data-it="<span class='variant-label'>proporzione:4:5 &middot; evento:compleanno-cortile &middot; meteo:pioggia</span>">
+            <span class="variant-label">format:4:5 · event:birthday-yard · weather:rain</span>
+          </p>
+        </div>
+        <div class="variant-cell">
+          <img class="variant-img ph-9x16" src="/assets/post-pannocchino-spighetta/festa_raccolto_arcobaleno_9x16.jpg" alt="Vertical crop of Pannocchino and Spighetta with the farm community under a rainbow in the rain at the harvest festival" width="360" height="640" loading="lazy" decoding="async">
+          <p class="variant-caption"
+             data-en="<span class='variant-label'>format:9:16 &middot; event:festa-raccolto &middot; weather:rain &middot; slogan:amici-di-campagna</span><span class='variant-slogan'>&ldquo;Come wind, come rain, we'll feast on the grain&rdquo;</span>"
+             data-it="<span class='variant-label'>proporzione:9:16 &middot; evento:festa-raccolto &middot; meteo:pioggia &middot; slogan:amici-di-campagna</span><span class='variant-slogan'>&laquo;con sta pioggia e con sto vento, ce magnamo sto frumento&raquo;</span>">
+            <span class="variant-label">format:9:16 · event:festa-raccolto · weather:rain · slogan:amici-di-campagna</span>
+            <span class="variant-slogan">&ldquo;Come wind, come rain, we'll feast on the grain&rdquo;</span>
+          </p>
+        </div>
+        <div class="variant-cell">
+          <img class="variant-img ph-16x9" src="/assets/post-pannocchino-spighetta/birthday_yard_rain_light_16x9.jpg" alt="Widescreen crop of Pannocchino and Spighetta in the farmyard with their baby as light rain begins to fall" width="1200" height="675" loading="lazy" decoding="async">
+          <p class="variant-caption"
+             data-en="<span class='variant-label'>format:16:9 &middot; event:birthday-yard &middot; weather:rain</span>"
+             data-it="<span class='variant-label'>proporzione:16:9 &middot; evento:compleanno-cortile &middot; meteo:pioggia</span>">
+            <span class="variant-label">format:16:9 · event:birthday-yard · weather:rain</span>
+          </p>
+        </div>
+        <div class="variant-cell">
+          <img class="variant-img ph-1x1" src="/assets/post-pannocchino-spighetta/festa_raccolto_banco_1x1.jpg" alt="Pannocchino, Spighetta and their baby at the family's market stall during the harvest festival">
+          <p class="variant-caption"
+             data-en="<span class='variant-label'>format:1:1 &middot; event:festa-raccolto &middot; slogan:banco-in-festa</span><span class='variant-slogan'>&ldquo;Soaked by rain or kissed by sun, a good harvest goes to anyone who wants one&rdquo;</span>"
+             data-it="<span class='variant-label'>proporzione:1:1 &middot; evento:festa-raccolto &middot; slogan:banco-in-festa</span><span class='variant-slogan'>&laquo;Bagnato di pioggia o baciato dal sole, un buon raccolto se lo prende chi vuole.&raquo;</span>">
+            <span class="variant-label">format:1:1 · event:festa-raccolto · slogan:banco-in-festa</span>
+            <span class="variant-slogan">&ldquo;Soaked by rain or kissed by sun, a good harvest goes to anyone who wants one&rdquo;</span>
+          </p>
+        </div>
+        <div class="variant-cell">
+          <img class="variant-img ph-16x9" src="/assets/post-pannocchino-spighetta/festa_raccolto_arcobaleno_16x9.jpg" alt="Wide shot of Pannocchino, Spighetta and the farm community under a rainbow in the rain at the harvest festival" width="1200" height="675" loading="lazy" decoding="async">
+          <p class="variant-caption"
+             data-en="<span class='variant-label'>format:16:9 &middot; event:festa-raccolto &middot; weather:rain &middot; slogan:amici-di-campagna</span><span class='variant-slogan'>&ldquo;Come wind, come rain, we'll feast on the grain&rdquo;</span>"
+             data-it="<span class='variant-label'>proporzione:16:9 &middot; evento:festa-raccolto &middot; meteo:pioggia &middot; slogan:amici-di-campagna</span><span class='variant-slogan'>&laquo;con sta pioggia e con sto vento, ce magnamo sto frumento&raquo;</span>">
+            <span class="variant-label">format:16:9 · event:festa-raccolto · weather:rain · slogan:amici-di-campagna</span>
+            <span class="variant-slogan">&ldquo;Come wind, come rain, we'll feast on the grain&rdquo;</span>
+          </p>
+        </div>
+      </div>
+
+      <p class="post-text" style="margin-top:1.4rem; font-style:italic; opacity:0.75;"
+         data-en="Each labelled box above is exactly one row of the manifest described in chapter 06 of <a href='post-dco-engine.html' class='about-link'>The Engine: generation, control, export</a> — here we simulate that formatting/export stage by hand, using four real stills instead of a generated render pool."
+         data-it="Ogni riquadro etichettato qui sopra corrisponde esattamente a una riga del manifest descritto nel capitolo 06 di <a href='post-dco-engine.html' class='about-link'>Il motore: generazione, controllo, export</a> — qui simuliamo a mano questa fase di formattazione/export, usando quattro scatti reali invece di un pool di render generati.">
+        Each labelled box above is exactly one row of the manifest described in chapter 06 of <a href="/en/post-dco-engine.html" class="about-link">The Engine: generation, control, export</a> — here we simulate that formatting/export stage by hand, using four real stills instead of a generated render pool.
+      </p>
+
+      <!-- ── THE BUSINESS CASE ────────────────────────────── -->
+      <p class="story-header" data-en="The business case" data-it="Il caso di business">The business case</p>
+
+      <p class="post-text"
+         data-en="The difference between a one-shot workflow (giving the model exactly one example to follow) and an orchestrated pipeline isn't aesthetic — it's structural, and it shows up directly in the production budget. A one-shot workflow re-pays its full setup cost on every new shot: a new prompt, a new manual check, a new chance for the mascots to drift off-model. An orchestrated pipeline pays that setup cost once, when the reference pair and the identity lock are first built — as they are in the sibling post, <a href='post-pannocchino-spighetta.html' class='about-link'>Automatic Storyboard: Meet Pannocchino e Spighetta</a> — and amortises it across everything that reuses them afterward: not just more shots of the same story, but this post itself, a second story on the same cast, and, per <a href='post-dco-pipeline.html' class='about-link'>DCO: One Pipeline, Many Products</a>, a second mascot pair on the same mechanism."
+         data-it="La differenza tra un flusso one-shot (che lancia il modello su un unico esempio da seguire) e una pipeline orchestrata non è estetica — è strutturale, e si riflette direttamente nel budget di produzione. Un flusso one-shot ripaga per intero il proprio costo di setup a ogni nuovo scatto: un nuovo prompt, un nuovo controllo manuale, una nuova occasione per le mascotte di uscire dal modello. Una pipeline orchestrata paga quel costo di setup una sola volta, quando la coppia di riferimento e l'identità coerente vengono costruite la prima volta — come nel post gemello, <a href='post-pannocchino-spighetta.html' class='about-link'>Storyboard Automatico: Ecco Pannocchino e Spighetta</a> — e lo ammortizza su tutto ciò che li riusa in seguito: non solo altri scatti della stessa storia, ma questo stesso post, una seconda storia sullo stesso cast, e, secondo <a href='post-dco-pipeline.html' class='about-link'>DCO: una Pipeline, Più Prodotti</a>, una seconda coppia di mascotte sullo stesso meccanismo.">
+        The difference between a one-shot workflow (giving the model exactly one example to follow) and an orchestrated pipeline isn't aesthetic — it's structural, and it shows up directly in the production budget. A one-shot workflow re-pays its full setup cost on every new shot: a new prompt, a new manual check, a new chance for the mascots to drift off-model. An orchestrated pipeline pays that setup cost once, when the reference pair and the identity lock are first built — as they are in the sibling post, <a href="/en/post-pannocchino-spighetta.html" class="about-link">Automatic Storyboard: Meet Pannocchino e Spighetta</a> — and amortises it across everything that reuses them afterward: not just more shots of the same story, but this post itself, a second story on the same cast, and, per <a href="/en/post-dco-pipeline.html" class="about-link">DCO: One Pipeline, Many Products</a>, a second mascot pair on the same mechanism.
+      </p>
+
+      <div class="roi-table-wrap">
+        <table class="roi-table">
+          <thead>
+            <tr>
+              <th data-en="Metric" data-it="Metrica">Metric</th>
+              <th data-en="Standard &quot;One-Shot&quot; / Manual Prompts" data-it="&quot;One-Shot&quot; Standard / Prompt Manuali">Standard "One-Shot" / Manual Prompts</th>
+              <th data-en="Orchestrated Claude + Gemini Pipeline" data-it="Pipeline Claude + Gemini Orchestrata">Orchestrated Claude + Gemini Pipeline</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="roi-metric" data-en="Character Consistency" data-it="Coerenza dei Personaggi">Character Consistency</td>
+              <td data-en="Low (drifts across frames)" data-it="Bassa (slittamento tra i fotogrammi)">Low (drifts across frames)</td>
+              <td class="roi-pipeline" data-en="Consistent (reference-conditioned generation + judge loop)" data-it="Coerente (generazione condizionata dai riferimenti + loop del judge)">Consistent (reference-conditioned generation + judge loop)</td>
+            </tr>
+            <tr>
+              <td class="roi-metric" data-en="Manual Oversight Cost" data-it="Costo di Supervisione Manuale">Manual Oversight Cost</td>
+              <td data-en="High (paid per hour, per prompt/edit)" data-it="Elevato (pagato a ore, per prompt/modifica)">High (paid per hour, per prompt/edit)</td>
+              <td class="roi-pipeline" data-en="Low (paid once upfront for pipeline setup)" data-it="Contenuto (pagato una sola volta, per la supervisione finale dell'intera pipeline)">Low (paid once upfront for pipeline setup)</td>
+            </tr>
+            <tr>
+              <td class="roi-metric" data-en="Iteration Speed" data-it="Velocità di Iterazione">Iteration Speed</td>
+              <td data-en="Slow (manual re-prompting)<sup class='fn-ref'><a href='#fn3' id='fnref3'>[3]</a></sup>" data-it="Lenta (re-prompting manuale)<sup class='fn-ref'><a href='#fn3' id='fnref3'>[3]</a></sup>">Slow (manual re-prompting)<sup class="fn-ref"><a href="#fn3" id="fnref3">[3]</a></sup></td>
+              <td class="roi-pipeline" data-en="Automated (parallel API calls)" data-it="Automatica (chiamate API parallele)">Automated (parallel API calls)</td>
+            </tr>
+            <tr>
+              <td class="roi-metric" data-en="Scalability across Campaigns" data-it="Scalabilità tra le Campagne">Scalability across Campaigns</td>
+              <td data-en="Linear cost increase" data-it="Crescita lineare dei costi">Linear cost increase</td>
+              <td class="roi-pipeline" data-en="Marginal cost per new story" data-it="Costo marginale per nuova storia">Marginal cost per new story</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="post-text" style="margin-top:1.4rem;"
+         data-en="Put concretely: the same locked pair that produced the wedding story next door also produced this farm story at near-zero extra setup cost, and a second mascot pair in a different vertical at the cost of a new reference shoot — not a new pipeline build. The gap in the table widens, not narrows, the more stories and products run through the same locked pair."
+         data-it="In termini concreti: la stessa coppia fissata che ha prodotto la storia del matrimonio qui a fianco ha prodotto anche questa storia di fattoria a un costo di setup aggiuntivo quasi nullo, e una seconda coppia di mascotte in un settore diverso al costo di un nuovo shooting di riferimento — non di una nuova pipeline da costruire. Il divario nella tabella si allarga, non si restringe, quante più storie e prodotti passano per la stessa coppia fissata.">
+        Put concretely: the same locked pair that produced the wedding story next door also produced this farm story at near-zero extra setup cost, and a second mascot pair in a different vertical at the cost of a new reference shoot — not a new pipeline build. The gap in the table widens, not narrows, the more stories and products run through the same locked pair.
+      </p>
+
+      <p class="post-text" style="margin-top:1.2em;"
+         data-en="The same holds downstream: the shots of both stories leave as rows of one manifest, labelled by beat, slogan and format, ready for the feed of the dynamic-creative tool already in use &mdash; see chapter 06 of <a href='post-dco-engine.html' class='about-link'>The Engine: generation, control, export</a>."
+         data-it="Lo stesso vale a valle: le inquadrature di entrambe le storie escono come righe di un unico manifest, etichettate per beat, slogan e proporzione, pronte per il feed dello strumento di dynamic creative già in uso &mdash; vedi il capitolo 06 di <a href='post-dco-engine.html' class='about-link'>Il motore: generazione, controllo, export</a>.">
+        The same holds downstream: the shots of both stories leave as rows of one manifest, labelled by beat, slogan and format, ready for the feed of the dynamic-creative tool already in use — see chapter 06 of <a href="/en/post-dco-engine.html" class="about-link">The Engine: generation, control, export</a>.
+      </p>
+
+      <!-- ── EXPORT: MANIFEST ROW, WORKED THROUGH ─────────── -->
+      <p class="story-header" data-en="Export: Manifest rows" data-it="Export: Manifest report">Export: Manifest rows</p>
+      <p class="post-text story-intro"
+         data-en="The 11 fields every row carries (see chapter 06 of <a href='post-dco-engine.html' class='about-link'>The Engine: generation, control, export</a> for what each one is for), filled in for the indoor-birthday 1:1 variant above (adapt the Manifest fields to the new story):"
+         data-it="Gli 11 campi che ogni riga porta con sé (vedi il capitolo 06 di <a href='post-dco-engine.html' class='about-link'>Il motore: generazione, controllo, export</a> per cosa serve ciascuno), compilati per la variante 1:1 del compleanno in cucina qui sopra (adatta i campi Manifest alla nuova storia):">
+        The 11 fields every row carries (see chapter 06 of <a href="/en/post-dco-engine.html" class="about-link">The Engine: generation, control, export</a> for what each one is for), filled in for the indoor-birthday 1:1 variant above (adapt the Manifest fields to the new story):
+      </p>
+
+      <pre class="manifest-row"><code>asset_id        : torta-spighetta-nascita-slogan01-cucina-1x1
+brand           : Torta Spighetta
+product_line    : Birth Edition
+story           : Pannocchino e Spighetta have a baby
+beat            : birthday-indoor
+narrative_role  : development
+cast            : Pannocchino, Spighetta, baby
+format          : 1:1
+reserved_zone   : bottom 18% strip (y: 0.82&ndash;1.00), clear of all three faces
+variant_labels  : [event:birthday-indoor, time:day, slogan:01]
+qa_status       : passed first try
+review_status   : approved</code></pre>
+
+      <p class="post-text"
+         data-en="This Manifest is consumed by an <strong>ad-serving/DCO platform</strong> &mdash; the trafficking layer (Meta, Google/DV360, or an agency's own DSP) that actually publishes ads and swaps creative in real time. It reads <code>variant_labels</code> and <code>format</code> to pick the right row for each delivery slot and targeting rule; the engine itself never talks to the ad platform directly, only through this Manifest."
+         data-it="Questo Manifest viene letto e utilizzato da una <strong>piattaforma di ad-serving/DCO</strong> &mdash; il livello di AD trafficking (Meta, Google/DV360, o un DSP proprietario dell'agenzia) che pubblica effettivamente gli annunci. Legge <code>variant_labels</code> e <code>format</code> per scegliere la riga giusta per ogni slot di consegna e regola di targeting; il motore del nostro tool non dialoga mai direttamente con la piattaforma ADV, solo attraverso questo Manifest.">
+        This Manifest is consumed by an <strong>ad-serving/DCO platform</strong> — the trafficking layer (Meta, Google/DV360, or an agency's own DSP) that actually publishes ads and swaps creative in real time. It reads <code>variant_labels</code> and <code>format</code> to pick the right row for each delivery slot and targeting rule; the engine itself never talks to the ad platform directly, only through this Manifest.
+      </p>
+
+      <!-- ── FOOTNOTES ───────────────────────────────────────── -->
+      <section class="footnotes">
+        <ol>
+          <li id="fn1">
+            <span data-en="Pannocchino and Spighetta are a fictional example used to illustrate the mechanism; the images on this page are concept illustrations created to visualize the idea, not screenshots of a finished, running pipeline."
+                  data-it="Pannocchino e Spighetta sono un esempio immaginario usato per illustrare il meccanismo; le immagini di questa pagina sono illustrazioni concettuali create per visualizzare l'idea, non schermate di una pipeline finita e funzionante.">Pannocchino and Spighetta are a fictional example used to illustrate the mechanism; the images on this page are concept illustrations created to visualize the idea, not screenshots of a finished, running pipeline.</span>
+            <a href="#fnref1" class="fn-back" aria-label="back to text">↩</a>
+          </li>
+          <li id="fn2">
+            <span data-en="The long caption under this image, like others before it, might look like the image's prompt — it isn't: it's a semantic caption of the same image. Generating a complex image, with several characters that must preserve their identity across a storyboard, is a harder problem than plain prompt design. The prompt is produced by an LLM-RAG that describes the scene by drawing on similar stories (typical of &quot;happy farm&quot; mascots), where every character already has a history somewhere in the vast expanse of the web — though obviously in other settings and other compositions. Composing the new scene then draws on local-attention models and a re-rendering of the characters from drafts where depth/canny functions build the volumes, outlines, lighting and so on (since the composition has to stay coherent with the surrounding space and the other elements), plus other networks such as IP-Adapter, to hold identity steady against earlier frames (the cow, the piglet and so on are always the same individuals even when they're doing something else). A VLM then checks that the scene matches the specification the LLM generated automatically from all the scene's information. A loop-checking pass runs an internal check that the composition is harmonious and believable. All of this has a real bearing on the comparison between open-source and closed commercial models, such as Google's, OpenAI's and so on."
+                  data-it="The long caption under this image, like others before it, might look like the image's prompt — it isn't: it's a semantic caption of the same image. Generating a complex image, with several characters that must preserve their identity across a storyboard, is a harder problem than plain prompt design. The prompt is produced by an LLM-RAG that describes the scene by drawing on similar stories (typical of &quot;happy farm&quot; mascots), where every character already has a history somewhere in the vast expanse of the web — though obviously in other settings and other compositions. Composing the new scene then draws on local-attention models and a re-rendering of the characters from drafts where depth/canny functions build the volumes, outlines, lighting and so on (since the composition has to stay coherent with the surrounding space and the other elements), plus other networks such as IP-Adapter, to hold identity steady against earlier frames (the cow, the piglet and so on are always the same individuals even when they're doing something else). A VLM then checks that the scene matches the specification the LLM generated automatically from all the scene's information. A loop-checking pass runs an internal check that the composition is harmonious and believable. All of this has a real bearing on the comparison between open-source and closed commercial models, such as Google's, OpenAI's and so on.">The long caption under this image, like others before it, might look like the image's prompt — it isn't: it's a semantic caption of the same image. Generating a complex image, with several characters that must preserve their identity across a storyboard, is a harder problem than plain prompt design. The prompt is produced by an LLM-RAG that describes the scene by drawing on similar stories (typical of "happy farm" mascots), where every character already has a history somewhere in the vast expanse of the web — though obviously in other settings and other compositions. Composing the new scene then draws on local-attention models and a re-rendering of the characters from drafts where depth/canny functions build the volumes, outlines, lighting and so on (since the composition has to stay coherent with the surrounding space and the other elements), plus other networks such as IP-Adapter, to hold identity steady against earlier frames (the cow, the piglet and so on are always the same individuals even when they're doing something else). A VLM then checks that the scene matches the specification the LLM generated automatically from all the scene's information. A loop-checking pass runs an internal check that the composition is harmonious and believable. All of this has a real bearing on the comparison between open-source and closed commercial models, such as Google's, OpenAI's and so on.</span>
+            <a href="#fnref2" class="fn-back" aria-label="back to text">↩</a>
+          </li>
+          <li id="fn3">
+            <span data-en="So the claim isn't that the AI model itself is slower — it's that manual re-prompting adds a human-speed bottleneck (minutes to hours of attention per fix) on top of generation time, while the pipeline's automated loop and parallelism remove that bottleneck: human-in-the-loop correction, one shot at a time, instead of an automated check running across many shots at once. The next release aims to push further on output quality, not just on speed."
+                  data-it="So the claim isn't that the AI model itself is slower — it's that manual re-prompting adds a human-speed bottleneck (minutes to hours of attention per fix) on top of generation time, while the pipeline's automated loop and parallelism remove that bottleneck: human-in-the-loop correction, one shot at a time, instead of an automated check running across many shots at once. The next release aims to push further on output quality, not just on speed.">So the claim isn't that the AI model itself is slower — it's that manual re-prompting adds a human-speed bottleneck (minutes to hours of attention per fix) on top of generation time, while the pipeline's automated loop and parallelism remove that bottleneck: human-in-the-loop correction, one shot at a time, instead of an automated check running across many shots at once. The next release aims to push further on output quality, not just on speed.</span>
+            <a href="#fnref3" class="fn-back" aria-label="back to text">↩</a>
+          </li>
+        </ol>
+      </section>
+
+    </div><!-- /page-body -->
+  </main>
+
+  <a href="/en/index.html" class="nav-back nav-home" id="home-link" data-en="HOME" data-it="HOME">HOME</a>
+  <div class="lang-switch">
+    <a class="lang-btn" href="/post-storyboard-adv.html">IT</a>
+  </div>
+
+  <script src="/assets/menu.js"></script>
+  <script>
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').classList.toggle('scrolled', window.scrollY > 20);
+    });
+  </script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon-32x32.png" type="image/png">
@@ -8,9 +8,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="color-scheme" content="light">
-  <title>DCO: Cost Model — Gemini & Claude API Pricing</title>
-  <link rel="alternate" hreflang="en"        href="https://storyline-engine.com/dco-costs-tech.html">
-  <link rel="alternate" hreflang="it"        href="https://storyline-engine.com/dco-costs-tech.html?lang=it">
+  <title>DCO: Modello dei Costi — Prezzi API Gemini e Claude</title>
+  <link rel="alternate" hreflang="en"        href="https://storyline-engine.com/en/dco-costs-tech.html">
+  <link rel="alternate" hreflang="it"        href="https://storyline-engine.com/dco-costs-tech.html">
   <link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/dco-costs-tech.html">
     <!-- Preload self-hosted fonts so they're already in flight before style.css
        is even parsed — closes the remaining window where the browser paints
@@ -22,32 +22,32 @@
   <link rel="preload" href="assets/fonts/eb-garamond-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
 
-  <meta name="description" content="Reference cost figures for one DCO engine run, built from current Gemini and Claude API list prices — complementing the engine and pipeline pages.">
+  <meta name="description" content="Numeri di riferimento sul costo di un run del motore DCO, costruiti sui listini prezzi correnti delle API Gemini e Claude — a completamento delle pagine su motore e pipeline.">
   <link rel="canonical" href="https://storyline-engine.com/dco-costs-tech.html">
 
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Paolo Marocco">
-  <meta property="og:title" content="DCO: Cost Model — Gemini & Claude API Pricing">
-  <meta property="og:description" content="Reference cost figures for one DCO engine run, built from current Gemini and Claude API list prices — complementing the engine and pipeline pages.">
+  <meta property="og:title" content="DCO: Modello dei Costi — Prezzi API Gemini e Claude">
+  <meta property="og:description" content="Numeri di riferimento sul costo di un run del motore DCO, costruiti sui listini prezzi correnti delle API Gemini e Claude — a completamento delle pagine su motore e pipeline.">
   <meta property="og:url" content="https://storyline-engine.com/dco-costs-tech.html">
   <meta property="og:image" content="https://storyline-engine.com/assets/bg_new.jpg">
-  <meta property="og:locale" content="en_US">
-  <meta property="og:locale:alternate" content="it_IT">
+  <meta property="og:locale" content="it_IT">
+  <meta property="og:locale:alternate" content="en_US">
   <meta property="article:tag" content="API Architecture">
   <meta property="article:tag" content="Generative AI">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="DCO: Cost Model — Gemini & Claude API Pricing">
-  <meta name="twitter:description" content="Reference cost figures for one DCO engine run, built from current Gemini and Claude API list prices — complementing the engine and pipeline pages.">
+  <meta name="twitter:title" content="DCO: Modello dei Costi — Prezzi API Gemini e Claude">
+  <meta name="twitter:description" content="Numeri di riferimento sul costo di un run del motore DCO, costruiti sui listini prezzi correnti delle API Gemini e Claude — a completamento delle pagine su motore e pipeline.">
   <meta name="twitter:image" content="https://storyline-engine.com/assets/bg_new.jpg">
 
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "DCO: Cost Model — Gemini & Claude API Pricing",
-  "description": "Reference cost figures for one DCO engine run, built from current Gemini and Claude API list prices — complementing the engine and pipeline pages.",
+  "headline": "DCO: Modello dei Costi — Prezzi API Gemini e Claude",
+  "description": "Numeri di riferimento sul costo di un run del motore DCO, costruiti sui listini prezzi correnti delle API Gemini e Claude — a completamento delle pagine su motore e pipeline.",
   "image": "https://storyline-engine.com/assets/bg_new.jpg",
-  "inLanguage": "en",
+  "inLanguage": "it",
   "mainEntityOfPage": "https://storyline-engine.com/dco-costs-tech.html",
   "author": {
     "@type": "Person",
@@ -227,12 +227,12 @@
   <header>
     <a href="about.html" class="nav-item" data-en="ABOUT" data-it="ABOUT">ABOUT</a>
     <div class="menu-container">
-      <span class="menu-trigger" data-en="TOPICS" data-it="ARGOMENTI">TOPICS</span>
+      <span class="menu-trigger" data-en="TOPICS" data-it="ARGOMENTI">ARGOMENTI</span>
       <div class="menu-dropdown">
         <a href="adv.html"             class="menu-item" data-en="ADV"            data-it="ADV">ADV</a>
-        <a href="neural-graphics.html" class="menu-item" data-en="VISUAL STORIES" data-it="FUMETTI/STORYBOARD">VISUAL STORIES</a>
+        <a href="neural-graphics.html" class="menu-item" data-en="VISUAL STORIES" data-it="FUMETTI/STORYBOARD">FUMETTI/STORYBOARD</a>
         <a href="comfyui.html"         class="menu-item" data-en="COMFYUI"        data-it="COMFYUI">COMFYUI</a>
-        <a href="posts.html"           class="menu-item" data-en="POSTS"          data-it="POST">POSTS</a>
+        <a href="posts.html"           class="menu-item" data-en="POSTS"          data-it="POST">POST</a>
         <span class="menu-item menu-item--disabled" data-en="VIDEO" data-it="VIDEO">VIDEO</span>
       </div>
     </div>
@@ -242,12 +242,12 @@
 
     <p class="section-label"
        data-en="Claude + Gemini API &middot; Dynamic Creative Optimization · COST MODEL"
-       data-it="Claude + Gemini API &middot; Dynamic Creative Optimization · MODELLO DEI COSTI">Claude + Gemini API &middot; Dynamic Creative Optimization · COST MODEL</p>
+       data-it="Claude + Gemini API &middot; Dynamic Creative Optimization · MODELLO DEI COSTI">Claude + Gemini API &middot; Dynamic Creative Optimization · MODELLO DEI COSTI</p>
 
     <h1 class="page-title"
         data-en="DCO: cost model"
         data-it="DCO: modello dei costi">
-      DCO: cost model
+      DCO: modello dei costi
     </h1>
 
     <div class="page-body">
@@ -255,18 +255,18 @@
       <div class="post-tags" style="margin-bottom:2rem;">
         <span class="post-tag tag-tech" data-en="Claude API" data-it="Claude API">Claude API</span>
         <span class="post-tag tag-tech" data-en="Gemini API" data-it="Gemini API">Gemini API</span>
-        <span class="post-tag tag-tech" data-en="Token Economics" data-it="Economia dei Token">Token Economics</span>
-        <span class="post-tag tag-tech" data-en="Cost Model" data-it="Modello dei Costi">Cost Model</span>
+        <span class="post-tag tag-tech" data-en="Token Economics" data-it="Economia dei Token">Economia dei Token</span>
+        <span class="post-tag tag-tech" data-en="Cost Model" data-it="Modello dei Costi">Modello dei Costi</span>
       </div>
       <p class="post-abstract-text"
          data-en="Reference figures for the cost of one engine run, built from current Gemini and Claude API list prices. It complements two pages already on the site: <a href='post-dco-engine.html' class='about-link'>The Engine: generation, control, export</a> describes what the five stages do, and <a href='dco-engine-tech.html' class='about-link'>DCO Engine: technical description</a> formalises them as five Python functions and says which API each one calls. This page answers a narrower question &mdash; what does one run actually cost &mdash; using the same scenario as the overview page: a cake brand, a twelve-week display campaign, three claims, a locked cast, six-beat stories, four formats. Figures marked as an assumption are mine, declared as such; figures taken from a price list or from Paolo's own calculation are marked as given."
-         data-it="Numeri di riferimento sul costo di un run del motore, costruiti sui listini prezzi correnti delle API Gemini e Claude. Completa due pagine già sul sito: <a href='post-dco-engine.html' class='about-link'>Il motore: generazione, controllo, export</a> descrive cosa fanno i cinque stadi, e <a href='dco-engine-tech.html' class='about-link'>Motore DCO: descrizione tecnica</a> li formalizza come cinque funzioni Python e dice quale API chiama ciascuna. Questa pagina risponde a una domanda più circoscritta &mdash; quanto costa davvero un run &mdash; usando lo stesso scenario della pagina di presentazione: un brand di dolci, una campagna display di dodici settimane, tre claim, un cast bloccato, storie di sei beat, quattro proporzioni. I numeri segnati come ipotesi sono miei, dichiarati come tali; i numeri presi da un listino o dal calcolo di Paolo sono segnati come dati.">
-        Reference figures for the cost of one engine run, built from current Gemini and Claude API list prices. It complements two pages already on the site: <a href="post-dco-engine.html" class="about-link">The Engine: generation, control, export</a> describes what the five stages do, and <a href="dco-engine-tech.html" class="about-link">DCO Engine: technical description</a> formalises them as five Python functions and says which API each one calls. This page answers a narrower question — what does one run actually cost — using the same scenario as the overview page: a cake brand, a twelve-week display campaign, three claims, a locked cast, six-beat stories, four formats. Figures marked as an assumption are mine, declared as such; figures taken from a price list or from Paolo's own calculation are marked as given.
+         data-it="Numeri di riferimento sul costo di un run del motore, costruiti sui listini prezzi correnti delle API Gemini e Claude. Completa due pagine già sul sito: <a href='post-dco-engine.html' class='about-link'>Il motore: generazione, controllo, export</a> descrive cosa fanno i cinque stadi, e <a href='dco-engine-tech.html' class='about-link'>Motore DCO: descrizione tecnica</a> li formalizza come cinque funzioni Python e dice quale API chiama ciascuna. Questa pagina risponde a una domanda più circoscritta &mdash; quanto costa davvero un run &mdash; usando lo stesso scenario della pagina di presentazione: un brand di dolci, una campagna display di dodici settimane, tre claim, un cast fissato, storie di sei beat, quattro proporzioni. I numeri segnati come ipotesi sono miei, dichiarati come tali; i numeri presi da un listino o dal calcolo di Paolo sono segnati come dati.">
+        Numeri di riferimento sul costo di un run del motore, costruiti sui listini prezzi correnti delle API Gemini e Claude. Completa due pagine già sul sito: <a href="post-dco-engine.html" class="about-link">Il motore: generazione, controllo, export</a> descrive cosa fanno i cinque stadi, e <a href="dco-engine-tech.html" class="about-link">Motore DCO: descrizione tecnica</a> li formalizza come cinque funzioni Python e dice quale API chiama ciascuna. Questa pagina risponde a una domanda più circoscritta &mdash; quanto costa davvero un run &mdash; usando lo stesso scenario della pagina di presentazione: un brand di dolci, una campagna display di dodici settimane, tre claim, un cast fissato, storie di sei beat, quattro proporzioni. I numeri segnati come ipotesi sono miei, dichiarati come tali; i numeri presi da un listino o dal calcolo di Paolo sono segnati come dati.
       </p>
       <p class="post-text" style="opacity:0.8; margin-bottom:2rem;"
          data-en="Scenario used throughout: a twelve-week display campaign, three claims, a locked mascot pair, six-beat stories, four export formats &mdash; the same scenario the overview page's time-to-market section uses."
-         data-it="Scenario usato in tutta la pagina: una campagna display di dodici settimane, tre claim, una coppia di mascotte bloccata, storie di sei beat, quattro proporzioni di export &mdash; lo stesso scenario della sezione time-to-market della pagina di presentazione.">
-        Scenario used throughout: a twelve-week display campaign, three claims, a locked mascot pair, six-beat stories, four export formats — the same scenario the overview page's time-to-market section uses.
+         data-it="Scenario usato in tutta la pagina: una campagna display di dodici settimane, tre claim, una coppia di mascotte fissata, storie di sei beat, quattro proporzioni di export &mdash; lo stesso scenario della sezione time-to-market della pagina di presentazione.">
+        Scenario usato in tutta la pagina: una campagna display di dodici settimane, tre claim, una coppia di mascotte fissata, storie di sei beat, quattro proporzioni di export &mdash; lo stesso scenario della sezione time-to-market della pagina di presentazione.
       </p>
       <!-- ── CONTENTS ──────────────────────────────────────── -->
       <ol class="content-list">
@@ -278,32 +278,32 @@
             <h3 class="content-title"
                 data-en="Volume with a 30% waste rate"
                 data-it="Volume con un tasso di scarto del 30%">
-              Volume with a 30% waste rate
+              Volume con un tasso di scarto del 30%
             </h3>
 
             <p class="post-text"
                data-en="Every batch includes frames that will not pass the judge loop and have to be regenerated. The working rate used here is 30% &mdash; not every image discarded outright, but 30% more API calls budgeted than the number of panels actually delivered, so the discard-and-retry cycle is already paid for. A 1.3&times; multiplier on the panel count gives the number of API calls to budget."
                data-it="Ogni batch include fotogrammi che non passeranno il loop del judge automatico e vanno rigenerati. Il tasso di lavoro usato qui è il 30% &mdash; non che ogni immagine venga scartata del tutto, ma che si mettano in conto il 30% di chiamate API in più rispetto al numero di tavole effettivamente consegnate, così il ciclo di scarto-e-ritentativo è già pagato. Un moltiplicatore 1,3&times; sul numero di tavole dà il numero di chiamate API da mettere a budget.">
-              Every batch includes frames that will not pass the judge loop and have to be regenerated. The working rate used here is 30% — not every image discarded outright, but 30% more API calls budgeted than the number of panels actually delivered, so the discard-and-retry cycle is already paid for. A 1.3&times; multiplier on the panel count gives the number of API calls to budget.
+              Ogni batch include fotogrammi che non passeranno il loop del judge automatico e vanno rigenerati. Il tasso di lavoro usato qui è il 30% &mdash; non che ogni immagine venga scartata del tutto, ma che si mettano in conto il 30% di chiamate API in più rispetto al numero di tavole effettivamente consegnate, così il ciclo di scarto-e-ritentativo è già pagato. Un moltiplicatore 1,3&times; sul numero di tavole dà il numero di chiamate API da mettere a budget.
             </p>
 
             <table class="data-table">
               <thead><tr>
-                <th data-en="Case" data-it="Caso">Case</th>
-                <th data-en="Calls" data-it="Chiamate">Calls</th>
+                <th data-en="Case" data-it="Caso">Caso</th>
+                <th data-en="Calls" data-it="Chiamate">Chiamate</th>
               </tr></thead>
               <tbody>
                 <tr>
-                  <td data-en="20-panel story" data-it="Story da 20 tavole">20-panel story</td>
-                  <td data-en="20 &times; 1.3 = <strong>26 API calls</strong>" data-it="20 &times; 1,3 = <strong>26 chiamate API</strong>">20 &times; 1.3 = <strong>26 API calls</strong></td>
+                  <td data-en="20-panel story" data-it="Story da 20 tavole">Story da 20 tavole</td>
+                  <td data-en="20 &times; 1.3 = <strong>26 API calls</strong>" data-it="20 &times; 1,3 = <strong>26 chiamate API</strong>">20 &times; 1,3 = <strong>26 chiamate API</strong></td>
                 </tr>
                 <tr>
-                  <td data-en="30-panel story" data-it="Story da 30 tavole">30-panel story</td>
-                  <td data-en="30 &times; 1.3 = <strong>39 API calls</strong>" data-it="30 &times; 1,3 = <strong>39 chiamate API</strong>">30 &times; 1.3 = <strong>39 API calls</strong></td>
+                  <td data-en="30-panel story" data-it="Story da 30 tavole">Story da 30 tavole</td>
+                  <td data-en="30 &times; 1.3 = <strong>39 API calls</strong>" data-it="30 &times; 1,3 = <strong>39 chiamate API</strong>">30 &times; 1,3 = <strong>39 chiamate API</strong></td>
                 </tr>
                 <tr>
-                  <td data-en="This site's scenario: 6-beat story" data-it="Scenario di questo sito: story da 6 beat">This site's scenario: 6-beat story</td>
-                  <td data-en="6 &times; 1.3 = 7.8 &rarr; rounded up to <strong>8 API calls</strong>" data-it="6 &times; 1,3 = 7,8 &rarr; arrotondato a <strong>8 chiamate API</strong>">6 &times; 1.3 = 7.8 &rarr; rounded up to <strong>8 API calls</strong></td>
+                  <td data-en="This site's scenario: 6-beat story" data-it="Scenario di questo sito: story da 6 beat">Scenario di questo sito: story da 6 beat</td>
+                  <td data-en="6 &times; 1.3 = 7.8 &rarr; rounded up to <strong>8 API calls</strong>" data-it="6 &times; 1,3 = 7,8 &rarr; arrotondato a <strong>8 chiamate API</strong>">6 &times; 1,3 = 7,8 &rarr; arrotondato a <strong>8 chiamate API</strong></td>
                 </tr>
               </tbody>
             </table>
@@ -311,7 +311,7 @@
             <p class="post-text"
                data-en="The rounding matters: a fractional call does not exist, so the working number for one of this site's six-beat stories is 8 calls, not 7.8. That is the figure used in every calculation below."
                data-it="L'arrotondamento conta: una chiamata frazionaria non esiste, quindi il numero di lavoro per una delle storie a sei beat di questo sito è 8 chiamate, non 7,8. È la cifra usata in ogni calcolo più sotto.">
-              The rounding matters: a fractional call does not exist, so the working number for one of this site's six-beat stories is 8 calls, not 7.8. That is the figure used in every calculation below.
+              L'arrotondamento conta: una chiamata frazionaria non esiste, quindi il numero di lavoro per una delle storie a sei beat di questo sito è 8 chiamate, non 7,8. È la cifra usata in ogni calcolo più sotto.
             </p>
 
           </div>
@@ -325,36 +325,36 @@
             <h3 class="content-title"
                 data-en="Cost per image, by model tier"
                 data-it="Costo per immagine, per livello di modello">
-              Cost per image, by model tier
+              Costo per immagine, per livello di modello
             </h3>
 
             <p class="post-text"
                data-en="Three image-generation tiers, each suited to a different stage of the pipeline. The useful-image cost already has the 30% waste rate folded in: it is the figure to multiply by the number of panels actually delivered, not by the number of API calls."
                data-it="Tre livelli di generazione immagine, ciascuno adatto a uno stadio diverso della pipeline. Il costo per immagine utile ha già il tasso di scarto del 30% incorporato: è la cifra da moltiplicare per il numero di tavole effettivamente consegnate, non per il numero di chiamate API.">
-              Three image-generation tiers, each suited to a different stage of the pipeline. The useful-image cost already has the 30% waste rate folded in: it is the figure to multiply by the number of panels actually delivered, not by the number of API calls.
+              Tre livelli di generazione immagine, ciascuno adatto a uno stadio diverso della pipeline. Il costo per immagine utile ha già il tasso di scarto del 30% incorporato: è la cifra da moltiplicare per il numero di tavole effettivamente consegnate, non per il numero di chiamate API.
             </p>
 
             <table class="data-table">
               <thead><tr>
-                <th data-en="Model" data-it="Modello">Model</th>
-                <th data-en="Best for" data-it="Adatto a">Best for</th>
-                <th data-en="Cost" data-it="Costo">Cost</th>
+                <th data-en="Model" data-it="Modello">Modello</th>
+                <th data-en="Best for" data-it="Adatto a">Adatto a</th>
+                <th data-en="Cost" data-it="Costo">Costo</th>
               </tr></thead>
               <tbody>
                 <tr>
                   <td data-en="Gemini 3.1 Standard/Flash" data-it="Gemini 3.1 Standard/Flash">Gemini 3.1 Standard/Flash</td>
-                  <td data-en="Fast drafts and preliminary storyboards" data-it="Bozze rapide e storyboard preliminari">Fast drafts and preliminary storyboards</td>
-                  <td class="num" data-en="$0.04 base &rarr; <strong>$0.052</strong> per useful image" data-it="$0,04 base &rarr; <strong>$0,052</strong> a immagine utile">$0.04 base &rarr; <strong>$0.052</strong> per useful image</td>
+                  <td data-en="Fast drafts and preliminary storyboards" data-it="Bozze rapide e storyboard preliminari">Bozze rapide e storyboard preliminari</td>
+                  <td class="num" data-en="$0.04 base &rarr; <strong>$0.052</strong> per useful image" data-it="$0,04 base &rarr; <strong>$0,052</strong> a immagine utile">$0,04 base &rarr; <strong>$0,052</strong> a immagine utile</td>
                 </tr>
                 <tr>
                   <td data-en="Gemini 3.1 Pro" data-it="Gemini 3.1 Pro">Gemini 3.1 Pro</td>
-                  <td data-en="Balanced, standard visual continuity" data-it="Bilanciato, continuità visiva standard">Balanced, standard visual continuity</td>
-                  <td class="num" data-en="$0.134 base &rarr; <strong>$0.174</strong> per useful image" data-it="$0,134 base &rarr; <strong>$0,174</strong> a immagine utile">$0.134 base &rarr; <strong>$0.174</strong> per useful image</td>
+                  <td data-en="Balanced, standard visual continuity" data-it="Bilanciato, continuità visiva standard">Bilanciato, continuità visiva standard</td>
+                  <td class="num" data-en="$0.134 base &rarr; <strong>$0.174</strong> per useful image" data-it="$0,134 base &rarr; <strong>$0,174</strong> a immagine utile">$0,134 base &rarr; <strong>$0,174</strong> a immagine utile</td>
                 </tr>
                 <tr>
                   <td data-en="Gemini 4 Argon" data-it="Gemini 4 Argon">Gemini 4 Argon</td>
-                  <td data-en="Top tier: high spatial consistency, cinematic 4K detail" data-it="Top-tier: elevata coerenza spaziale, dettaglio cinematografico 4K">Top tier: high spatial consistency, cinematic 4K detail</td>
-                  <td class="num" data-en="$0.24 base &rarr; <strong>$0.312</strong> per useful image" data-it="$0,24 base &rarr; <strong>$0,312</strong> a immagine utile">$0.24 base &rarr; <strong>$0.312</strong> per useful image</td>
+                  <td data-en="Top tier: high spatial consistency, cinematic 4K detail" data-it="Top-tier: elevata coerenza spaziale, dettaglio cinematografico 4K">Top-tier: elevata coerenza spaziale, dettaglio cinematografico 4K</td>
+                  <td class="num" data-en="$0.24 base &rarr; <strong>$0.312</strong> per useful image" data-it="$0,24 base &rarr; <strong>$0,312</strong> a immagine utile">$0,24 base &rarr; <strong>$0,312</strong> a immagine utile</td>
                 </tr>
               </tbody>
             </table>
@@ -362,7 +362,7 @@
             <p class="post-text"
                data-en="Check against the reference figure: a 30-panel story on Argon costs 30 &times; $0.312 = <strong>$9.36</strong> &mdash; the same number as 39 calls &times; $0.24 base. The two ways of counting agree, which is what makes the per-useful-image figure usable directly against a delivered-panel count."
                data-it="Verifica sulla cifra di riferimento: una story da 30 tavole su Argon costa 30 &times; $0,312 = <strong>$9,36</strong> &mdash; lo stesso numero di 39 chiamate &times; $0,24 base. I due modi di contare coincidono, ed è ciò che rende la cifra per immagine utile usabile direttamente sul numero di tavole consegnate.">
-              Check against the reference figure: a 30-panel story on Argon costs 30 &times; $0.312 = <strong>$9.36</strong> — the same number as 39 calls &times; $0.24 base. The two ways of counting agree, which is what makes the per-useful-image figure usable directly against a delivered-panel count.
+              Verifica sulla cifra di riferimento: una story da 30 tavole su Argon costa 30 &times; $0,312 = <strong>$9,36</strong> &mdash; lo stesso numero di 39 chiamate &times; $0,24 base. I due modi di contare coincidono, ed è ciò che rende la cifra per immagine utile usabile direttamente sul numero di tavole consegnate.
             </p>
 
           </div>
@@ -375,41 +375,41 @@
             <h3 class="content-title"
                 data-en="The text prompt behind each image"
                 data-it="Il prompt di testo dietro ogni immagine">
-              The text prompt behind each image
+              Il prompt di testo dietro ogni immagine
             </h3>
 
             <p class="post-text"
                data-en="Each image call is preceded by an LLM call that writes the actual generation prompt. Four components make it up."
                data-it="Ogni chiamata immagine è preceduta da una chiamata LLM che scrive il prompt di generazione vero e proprio. Lo compongono quattro elementi.">
-              Each image call is preceded by an LLM call that writes the actual generation prompt. Four components make it up.
+              Ogni chiamata immagine è preceduta da una chiamata LLM che scrive il prompt di generazione vero e proprio. Lo compongono quattro elementi.
             </p>
 
             <table class="data-table">
               <thead><tr>
-                <th data-en="Component" data-it="Componente">Component</th>
-                <th data-en="Average volume" data-it="Volume medio">Average volume</th>
-                <th data-en="Note / detail" data-it="Nota / dettaglio">Note / detail</th>
+                <th data-en="Component" data-it="Componente">Componente</th>
+                <th data-en="Average volume" data-it="Volume medio">Volume medio</th>
+                <th data-en="Note / detail" data-it="Nota / dettaglio">Nota / dettaglio</th>
               </tr></thead>
               <tbody>
                 <tr>
-                  <td data-en="System prompt + character sheet" data-it="System prompt + scheda personaggio">System prompt + character sheet</td>
-                  <td class="num" data-en="1,000&ndash;2,000 input" data-it="1.000&ndash;2.000 input">1,000&ndash;2,000 input</td>
-                  <td data-en="Style rules, visual constraints, detailed character description" data-it="Regole di stile, vincoli visivi, descrizione dettagliata dei personaggi">Style rules, visual constraints, detailed character description</td>
+                  <td data-en="System prompt + character sheet" data-it="System prompt + scheda personaggio">System prompt + scheda personaggio</td>
+                  <td class="num" data-en="1,000&ndash;2,000 input" data-it="1.000&ndash;2.000 input">1.000&ndash;2.000 input</td>
+                  <td data-en="Style rules, visual constraints, detailed character description" data-it="Regole di stile, vincoli visivi, descrizione dettagliata dei personaggi">Regole di stile, vincoli visivi, descrizione dettagliata dei personaggi</td>
                 </tr>
                 <tr>
-                  <td data-en="Multi-shot context / history" data-it="Contesto multi-shot / storico">Multi-shot context / history</td>
-                  <td class="num" data-en="1,000&ndash;2,500 input" data-it="1.000&ndash;2.500 input">1,000&ndash;2,500 input</td>
-                  <td data-en="Past winning prompt examples, to keep dynamic consistency" data-it="Esempi di prompt passati vincenti, per mantenere la coerenza dinamica">Past winning prompt examples, to keep dynamic consistency</td>
+                  <td data-en="Multi-shot context / history" data-it="Contesto multi-shot / storico">Contesto multi-shot / storico</td>
+                  <td class="num" data-en="1,000&ndash;2,500 input" data-it="1.000&ndash;2.500 input">1.000&ndash;2.500 input</td>
+                  <td data-en="Past winning prompt examples, to keep dynamic consistency" data-it="Esempi di prompt passati vincenti, per mantenere la coerenza dinamica">Esempi di prompt passati vincenti, per mantenere la coerenza dinamica</td>
                 </tr>
                 <tr>
-                  <td data-en="Reference images as input (vision)" data-it="Immagini di riferimento in input (vision)">Reference images as input (vision)</td>
-                  <td class="num" data-en="~1,000&ndash;1,500 input" data-it="~1.000&ndash;1.500 input">~1,000&ndash;1,500 input</td>
-                  <td data-en="If 2&ndash;3 reference images are passed in, processed as visual tokens" data-it="Se si includono 2&ndash;3 immagini di riferimento, elaborate come token visivi">If 2&ndash;3 reference images are passed in, processed as visual tokens</td>
+                  <td data-en="Reference images as input (vision)" data-it="Immagini di riferimento in input (vision)">Immagini di riferimento in input (vision)</td>
+                  <td class="num" data-en="~1,000&ndash;1,500 input" data-it="~1.000&ndash;1.500 input">~1.000&ndash;1.500 input</td>
+                  <td data-en="If 2&ndash;3 reference images are passed in, processed as visual tokens" data-it="Se si includono 2&ndash;3 immagini di riferimento, elaborate come token visivi">Se si includono 2&ndash;3 immagini di riferimento, elaborate come token visivi</td>
                 </tr>
                 <tr>
-                  <td data-en="LLM output" data-it="Output generato dall'LLM">LLM output</td>
+                  <td data-en="LLM output" data-it="Output generato dall'LLM">Output generato dall'LLM</td>
                   <td class="num" data-en="300&ndash;800 output" data-it="300&ndash;800 output">300&ndash;800 output</td>
-                  <td data-en="The final prompt and technical parameters (JSON/Python spec) for the image call" data-it="Il prompt finale e i parametri tecnici (JSON/spec Python) per la chiamata immagine">The final prompt and technical parameters (JSON/Python spec) for the image call</td>
+                  <td data-en="The final prompt and technical parameters (JSON/Python spec) for the image call" data-it="Il prompt finale e i parametri tecnici (JSON/spec Python) per la chiamata immagine">Il prompt finale e i parametri tecnici (JSON/spec Python) per la chiamata immagine</td>
                 </tr>
               </tbody>
             </table>
@@ -425,31 +425,31 @@
             <h3 class="content-title"
                 data-en="Text cost for one story"
                 data-it="Costo del testo per una storia">
-              Text cost for one story
+              Costo del testo per una storia
             </h3>
 
             <p class="post-text"
                data-en="Worked example: a 30-panel story, 39 API calls at the 30% waste rate, an average prompt of 4,500 input tokens and 500 output tokens per call. Total volume for the story: roughly 175,500 input tokens and 19,500 output tokens."
                data-it="Esempio concreto: una story da 30 tavole, 39 chiamate API al tasso di scarto del 30%, un prompt medio di 4.500 token in input e 500 in output per chiamata. Volume totale per la story: circa 175.500 token in input e 19.500 in output.">
-              Worked example: a 30-panel story, 39 API calls at the 30% waste rate, an average prompt of 4,500 input tokens and 500 output tokens per call. Total volume for the story: roughly 175,500 input tokens and 19,500 output tokens.
+              Esempio concreto: una story da 30 tavole, 39 chiamate API al tasso di scarto del 30%, un prompt medio di 4.500 token in input e 500 in output per chiamata. Volume totale per la story: circa 175.500 token in input e 19.500 in output.
             </p>
 
             <table class="data-table">
               <thead><tr>
-                <th data-en="LLM text tier" data-it="Livello LLM testo">LLM text tier</th>
-                <th data-en="Text-token cost / story (39 gen.)" data-it="Costo token testo / story (39 gen.)">Text-token cost / story (39 gen.)</th>
-                <th data-en="Incidence on the Argon-4 image cost ($9.36)" data-it="Incidenza sul costo immagine Argon-4 ($9,36)">Incidence on the Argon-4 image cost ($9.36)</th>
+                <th data-en="LLM text tier" data-it="Livello LLM testo">Livello LLM testo</th>
+                <th data-en="Text-token cost / story (39 gen.)" data-it="Costo token testo / story (39 gen.)">Costo token testo / story (39 gen.)</th>
+                <th data-en="Incidence on the Argon-4 image cost ($9.36)" data-it="Incidenza sul costo immagine Argon-4 ($9,36)">Incidenza sul costo immagine Argon-4 ($9,36)</th>
               </tr></thead>
               <tbody>
                 <tr>
                   <td data-en="Gemini 3.1 Flash/Standard" data-it="Gemini 3.1 Flash/Standard">Gemini 3.1 Flash/Standard</td>
-                  <td class="num" data-en="~$0.02&ndash;$0.04" data-it="~$0,02&ndash;$0,04">~$0.02&ndash;$0.04</td>
-                  <td class="num" data-en="&lt; 0.5%" data-it="&lt; 0,5%">&lt; 0.5%</td>
+                  <td class="num" data-en="~$0.02&ndash;$0.04" data-it="~$0,02&ndash;$0,04">~$0,02&ndash;$0,04</td>
+                  <td class="num" data-en="&lt; 0.5%" data-it="&lt; 0,5%">&lt; 0,5%</td>
                 </tr>
                 <tr>
-                  <td data-en="Gemini 4 Argon / Pro-class (text)" data-it="Gemini 4 Argon / Pro-class (testo)">Gemini 4 Argon / Pro-class (text)</td>
-                  <td class="num" data-en="~$0.30&ndash;$0.45" data-it="~$0,30&ndash;$0,45">~$0.30&ndash;$0.45</td>
-                  <td class="num" data-en="~3%&ndash;4.5%" data-it="~3%&ndash;4,5%">~3%&ndash;4.5%</td>
+                  <td data-en="Gemini 4 Argon / Pro-class (text)" data-it="Gemini 4 Argon / Pro-class (testo)">Gemini 4 Argon / Pro-class (testo)</td>
+                  <td class="num" data-en="~$0.30&ndash;$0.45" data-it="~$0,30&ndash;$0,45">~$0,30&ndash;$0,45</td>
+                  <td class="num" data-en="~3%&ndash;4.5%" data-it="~3%&ndash;4,5%">~3%&ndash;4,5%</td>
                 </tr>
               </tbody>
             </table>
@@ -457,7 +457,7 @@
             <p class="post-text"
                data-en="The incidence column compares the text cost of writing the prompts against the image cost of generating them on Argon ($9.36 for this 30-panel story): on the cheap tier the prompting text is noise, under half a percent of the bill; even on the expensive tier it stays under 5%. Prompt-writing text is not where the budget goes &mdash; image generation is."
                data-it="La colonna dell'incidenza confronta il costo del testo per scrivere i prompt contro il costo immagine per generarli su Argon ($9,36 per questa story da 30 tavole): sul livello economico il testo di prompting è rumore, meno dello 0,5% del conto; anche sul livello costoso resta sotto il 5%. Il budget non va nel testo che scrive i prompt &mdash; va nella generazione immagine.">
-              The incidence column compares the text cost of writing the prompts against the image cost of generating them on Argon ($9.36 for this 30-panel story): on the cheap tier the prompting text is noise, under half a percent of the bill; even on the expensive tier it stays under 5%. Prompt-writing text is not where the budget goes — image generation is.
+              La colonna dell'incidenza confronta il costo del testo per scrivere i prompt contro il costo immagine per generarli su Argon ($9,36 per questa story da 30 tavole): sul livello economico il testo di prompting è rumore, meno dello 0,5% del conto; anche sul livello costoso resta sotto il 5%. Il budget non va nel testo che scrive i prompt &mdash; va nella generazione immagine.
             </p>
 
           </div>
@@ -470,41 +470,41 @@
             <h3 class="content-title"
                 data-en="Claude Sonnet for story generation"
                 data-it="Claude Sonnet per la generazione della storia">
-              Claude Sonnet for story generation
+              Claude Sonnet per la generazione della storia
             </h3>
 
             <p class="post-text"
                data-en="A separate cost from the two above: one Claude call writes the structured description file for the whole story &mdash; <code>generate_story_spec()</code> in the technical breakdown &mdash; not per panel, once per story."
                data-it="Un costo separato dai due precedenti: una chiamata a Claude scrive il file di descrizione strutturato dell'intera storia &mdash; <code>generate_story_spec()</code> nella scomposizione tecnica &mdash; non per tavola, una volta per storia.">
-              A separate cost from the two above: one Claude call writes the structured description file for the whole story — <code>generate_story_spec()</code> in the technical breakdown — not per panel, once per story.
+              Un costo separato dai due precedenti: una chiamata a Claude scrive il file di descrizione strutturato dell'intera storia &mdash; <code>generate_story_spec()</code> nella scomposizione tecnica &mdash; non per tavola, una volta per storia.
             </p>
 
             <table class="data-table">
               <thead><tr>
-                <th data-en="Operation" data-it="Tipo di operazione">Operation</th>
-                <th data-en="Standard (per 1M tokens)" data-it="Costo standard (per 1M token)">Standard (per 1M tokens)</th>
-                <th data-en="Batch API (&minus;50%)" data-it="Costo con Batch API (&minus;50%)">Batch API (&minus;50%)</th>
+                <th data-en="Operation" data-it="Tipo di operazione">Tipo di operazione</th>
+                <th data-en="Standard (per 1M tokens)" data-it="Costo standard (per 1M token)">Costo standard (per 1M token)</th>
+                <th data-en="Batch API (&minus;50%)" data-it="Costo con Batch API (&minus;50%)">Costo con Batch API (&minus;50%)</th>
               </tr></thead>
               <tbody>
                 <tr>
-                  <td data-en="Input tokens (prompt)" data-it="Token input (prompt)">Input tokens (prompt)</td>
-                  <td class="num" data-en="$3.00" data-it="$3,00">$3.00</td>
-                  <td class="num" data-en="$1.50" data-it="$1,50">$1.50</td>
+                  <td data-en="Input tokens (prompt)" data-it="Token input (prompt)">Token input (prompt)</td>
+                  <td class="num" data-en="$3.00" data-it="$3,00">$3,00</td>
+                  <td class="num" data-en="$1.50" data-it="$1,50">$1,50</td>
                 </tr>
                 <tr>
-                  <td data-en="Output tokens (generation)" data-it="Token output (generazione)">Output tokens (generation)</td>
-                  <td class="num" data-en="$15.00" data-it="$15,00">$15.00</td>
-                  <td class="num" data-en="$7.50" data-it="$7,50">$7.50</td>
+                  <td data-en="Output tokens (generation)" data-it="Token output (generazione)">Token output (generazione)</td>
+                  <td class="num" data-en="$15.00" data-it="$15,00">$15,00</td>
+                  <td class="num" data-en="$7.50" data-it="$7,50">$7,50</td>
                 </tr>
                 <tr>
-                  <td data-en="Prompt caching (write)" data-it="Prompt caching (scrittura)">Prompt caching (write)</td>
-                  <td class="num" data-en="$3.75" data-it="$3,75">$3.75</td>
-                  <td class="num" data-en="N/A" data-it="N/D">N/A</td>
+                  <td data-en="Prompt caching (write)" data-it="Prompt caching (scrittura)">Prompt caching (scrittura)</td>
+                  <td class="num" data-en="$3.75" data-it="$3,75">$3,75</td>
+                  <td class="num" data-en="N/A" data-it="N/D">N/D</td>
                 </tr>
                 <tr>
-                  <td data-en="Prompt caching (read)" data-it="Prompt caching (lettura)">Prompt caching (read)</td>
-                  <td class="num" data-en="$0.30" data-it="$0,30">$0.30</td>
-                  <td class="num" data-en="N/A" data-it="N/D">N/A</td>
+                  <td data-en="Prompt caching (read)" data-it="Prompt caching (lettura)">Prompt caching (lettura)</td>
+                  <td class="num" data-en="$0.30" data-it="$0,30">$0,30</td>
+                  <td class="num" data-en="N/A" data-it="N/D">N/D</td>
                 </tr>
               </tbody>
             </table>
@@ -512,7 +512,7 @@
             <p class="post-text"
                data-en="Figures per 1M tokens. <strong>Assumption, not given:</strong> a story-spec call for a six-beat story is estimated here at 4,000 input tokens (brief, character bios, a couple of worked examples) and 3,000 output tokens (the full beat-by-beat JSON). That gives <strong>$0.057</strong> per story at the standard rate, or <strong>$0.029</strong> on the Batch API. Either way it is small change next to the image cost &mdash; which is the expected shape: Claude writes the story once, Gemini renders it many times."
                data-it="Cifre per 1M di token. <strong>Ipotesi, non dato fornito:</strong> una chiamata di story-spec per una storia a sei beat è qui stimata in 4.000 token in input (brief, schede personaggio, un paio di esempi lavorati) e 3.000 in output (il JSON completo beat per beat). Dà <strong>$0,057</strong> a storia al tasso standard, o <strong>$0,029</strong> sulla Batch API. In entrambi i casi è spiccioli rispetto al costo immagine &mdash; ed è la forma attesa: Claude scrive la storia una volta, Gemini la rende molte volte.">
-              Figures per 1M tokens. <strong>Assumption, not given:</strong> a story-spec call for a six-beat story is estimated here at 4,000 input tokens (brief, character bios, a couple of worked examples) and 3,000 output tokens (the full beat-by-beat JSON). That gives <strong>$0.057</strong> per story at the standard rate, or <strong>$0.029</strong> on the Batch API. Either way it is small change next to the image cost — which is the expected shape: Claude writes the story once, Gemini renders it many times.
+              Cifre per 1M di token. <strong>Ipotesi, non dato fornito:</strong> una chiamata di story-spec per una storia a sei beat è qui stimata in 4.000 token in input (brief, schede personaggio, un paio di esempi lavorati) e 3.000 in output (il JSON completo beat per beat). Dà <strong>$0,057</strong> a storia al tasso standard, o <strong>$0,029</strong> sulla Batch API. In entrambi i casi è spiccioli rispetto al costo immagine &mdash; ed è la forma attesa: Claude scrive la storia una volta, Gemini la rende molte volte.
             </p>
 
           </div>
@@ -526,44 +526,44 @@
             <h3 class="content-title"
                 data-en="Total cost: per story and per campaign"
                 data-it="Costo totale: per storia e per campagna">
-              Total cost: per story and per campaign
+              Costo totale: per storia e per campagna
             </h3>
 
             <p class="post-text"
                data-en="Adding the three pieces together &mdash; image generation, the per-image prompting text, and the one Sonnet story-spec call &mdash; for this site's six-beat scenario: <strong>8 API calls per story, not 6</strong>, because that count already carries the 30% waste rate from Chapter 01 &mdash; six delivered panels, judge-loop retries included &mdash; plus the standard Sonnet rate for the one story-spec call:"
                data-it="Sommando i tre pezzi &mdash; generazione immagine, il testo di prompting per immagine, e l'unica chiamata Sonnet di story-spec &mdash; per lo scenario a sei beat di questo sito: <strong>8 chiamate API per storia, non 6</strong>, perché quel numero porta già con sé il tasso di scarto del 30% del Capitolo 01 &mdash; sei tavole consegnate, ritentativi del loop del judge inclusi &mdash; più la tariffa Sonnet standard per l'unica chiamata di story-spec:">
-              Adding the three pieces together — image generation, the per-image prompting text, and the one Sonnet story-spec call — for this site's six-beat scenario: <strong>8 API calls per story, not 6</strong>, because that count already carries the 30% waste rate from Chapter 01 — six delivered panels, judge-loop retries included — plus the standard Sonnet rate for the one story-spec call:
+              Sommando i tre pezzi &mdash; generazione immagine, il testo di prompting per immagine, e l'unica chiamata Sonnet di story-spec &mdash; per lo scenario a sei beat di questo sito: <strong>8 chiamate API per storia, non 6</strong>, perché quel numero porta già con sé il tasso di scarto del 30% del Capitolo 01 &mdash; sei tavole consegnate, ritentativi del loop del judge inclusi &mdash; più la tariffa Sonnet standard per l'unica chiamata di story-spec:
             </p>
 
             <table class="data-table">
               <thead><tr>
-                <th data-en="Tier" data-it="Livello">Tier</th>
-                <th data-en="Image" data-it="Immagine">Image</th>
-                <th data-en="Per-image text" data-it="Testo per immagine">Per-image text</th>
+                <th data-en="Tier" data-it="Livello">Livello</th>
+                <th data-en="Image" data-it="Immagine">Immagine</th>
+                <th data-en="Per-image text" data-it="Testo per immagine">Testo per immagine</th>
                 <th data-en="Sonnet story-spec" data-it="Sonnet story-spec">Sonnet story-spec</th>
-                <th data-en="Total / story" data-it="Totale / storia">Total / story</th>
+                <th data-en="Total / story" data-it="Totale / storia">Totale / storia</th>
               </tr></thead>
               <tbody>
                 <tr>
                   <td data-en="Flash" data-it="Flash">Flash</td>
-                  <td class="num" data-en="$0.32" data-it="$0,32">$0.32</td>
-                  <td class="num" data-en="$0.004&ndash;$0.008" data-it="$0,004&ndash;$0,008">$0.004&ndash;$0.008</td>
-                  <td class="num" data-en="$0.057" data-it="$0,057">$0.057</td>
-                  <td class="num" data-en="~$0.38" data-it="~$0,38">~$0.38</td>
+                  <td class="num" data-en="$0.32" data-it="$0,32">$0,32</td>
+                  <td class="num" data-en="$0.004&ndash;$0.008" data-it="$0,004&ndash;$0,008">$0,004&ndash;$0,008</td>
+                  <td class="num" data-en="$0.057" data-it="$0,057">$0,057</td>
+                  <td class="num" data-en="~$0.38" data-it="~$0,38">~$0,38</td>
                 </tr>
                 <tr>
                   <td data-en="Pro" data-it="Pro">Pro</td>
-                  <td class="num" data-en="$1.07" data-it="$1,07">$1.07</td>
-                  <td class="num" data-en="$0.06&ndash;$0.09" data-it="$0,06&ndash;$0,09">$0.06&ndash;$0.09</td>
-                  <td class="num" data-en="$0.057" data-it="$0,057">$0.057</td>
-                  <td class="num" data-en="~$1.19&ndash;$1.22" data-it="~$1,19&ndash;$1,22">~$1.19&ndash;$1.22</td>
+                  <td class="num" data-en="$1.07" data-it="$1,07">$1,07</td>
+                  <td class="num" data-en="$0.06&ndash;$0.09" data-it="$0,06&ndash;$0,09">$0,06&ndash;$0,09</td>
+                  <td class="num" data-en="$0.057" data-it="$0,057">$0,057</td>
+                  <td class="num" data-en="~$1.19&ndash;$1.22" data-it="~$1,19&ndash;$1,22">~$1,19&ndash;$1,22</td>
                 </tr>
                 <tr>
                   <td data-en="Argon 4" data-it="Argon 4">Argon 4</td>
-                  <td class="num" data-en="$1.92" data-it="$1,92">$1.92</td>
-                  <td class="num" data-en="$0.06&ndash;$0.09" data-it="$0,06&ndash;$0,09">$0.06&ndash;$0.09</td>
-                  <td class="num" data-en="$0.057" data-it="$0,057">$0.057</td>
-                  <td class="num" data-en="~$2.04&ndash;$2.07" data-it="~$2,04&ndash;$2,07">~$2.04&ndash;$2.07</td>
+                  <td class="num" data-en="$1.92" data-it="$1,92">$1,92</td>
+                  <td class="num" data-en="$0.06&ndash;$0.09" data-it="$0,06&ndash;$0,09">$0,06&ndash;$0,09</td>
+                  <td class="num" data-en="$0.057" data-it="$0,057">$0,057</td>
+                  <td class="num" data-en="~$2.04&ndash;$2.07" data-it="~$2,04&ndash;$2,07">~$2,04&ndash;$2,07</td>
                 </tr>
               </tbody>
             </table>
@@ -571,24 +571,24 @@
             <p class="post-text"
                data-en="Scaled to the full campaign &mdash; sixteen 6-beat creative sets over twelve weeks, the same figure the overview page's time-to-market section derives from the refresh-cadence benchmark &mdash; the generation-and-control stages (stages 1&ndash;3, not formats or export) cost on the order of <strong>$6 on Flash, $19 on Pro, $33 on Argon 4</strong> for the whole campaign, standard rates; roughly 5&ndash;10% less with Sonnet on the Batch API. These are API list prices for stages 1&ndash;3 only &mdash; they are not a quote, and they say nothing about the time a human reviewer spends, which the overview page's production metrics cover separately."
                data-it="Esteso all'intera campagna &mdash; sedici set creativi a 6 beat in dodici settimane, lo stesso numero che la sezione time-to-market della pagina di presentazione ricava dal benchmark di cadenza di rinfresco &mdash; gli stadi di generazione e controllo (stadi 1&ndash;3, non proporzioni o export) costano nell'ordine di <strong>$6 su Flash, $19 su Pro, $33 su Argon 4</strong> per l'intera campagna, tariffe standard; circa il 5&ndash;10% in meno con Sonnet sulla Batch API. Sono prezzi di listino API per i soli stadi 1&ndash;3 &mdash; non sono un preventivo, e non dicono nulla sul tempo che un revisore umano ci dedica, che la pagina di presentazione copre separatamente nelle metriche di produzione.">
-              Scaled to the full campaign — sixteen 6-beat creative sets over twelve weeks, the same figure the overview page's time-to-market section derives from the refresh-cadence benchmark — the generation-and-control stages (stages 1&ndash;3, not formats or export) cost on the order of <strong>$6 on Flash, $19 on Pro, $33 on Argon 4</strong> for the whole campaign, standard rates; roughly 5&ndash;10% less with Sonnet on the Batch API. These are API list prices for stages 1&ndash;3 only — they are not a quote, and they say nothing about the time a human reviewer spends, which the overview page's production metrics cover separately.
+              Esteso all'intera campagna &mdash; sedici set creativi a 6 beat in dodici settimane, lo stesso numero che la sezione time-to-market della pagina di presentazione ricava dal benchmark di cadenza di rinfresco &mdash; gli stadi di generazione e controllo (stadi 1&ndash;3, non proporzioni o export) costano nell'ordine di <strong>$6 su Flash, $19 su Pro, $33 su Argon 4</strong> per l'intera campagna, tariffe standard; circa il 5&ndash;10% in meno con Sonnet sulla Batch API. Sono prezzi di listino API per i soli stadi 1&ndash;3 &mdash; non sono un preventivo, e non dicono nulla sul tempo che un revisore umano ci dedica, che la pagina di presentazione copre separatamente nelle metriche di produzione.
             </p>
 
             <div class="open-question">
               <span class="oq-label"
                     data-en="Open &mdash; not priced here"
-                    data-it="Aperto &mdash; non prezzato qui">Open — not priced here</span>
+                    data-it="Aperto &mdash; non prezzato qui">Aperto &mdash; non prezzato qui</span>
               <p class="post-text"
                  data-en="Formats and export (stages 4&ndash;5 of the engine &mdash; see Chapter 06/07 of The Engine: generation, control, export) are not in this total. Reformatting a shot into a new aspect ratio may be a cheap crop or a full outpaint call depending on the shot, and no per-call price for that operation has been fixed yet &mdash; so it stays an open parameter rather than a guessed number."
                  data-it="Proporzioni ed export (stadi 4&ndash;5 del motore &mdash; vedi il Capitolo 06/07 di Il motore: generazione, controllo, export) non sono in questo totale. Riformattare un'inquadratura in una nuova proporzione può essere un ritaglio economico o una chiamata di outpaint completa a seconda dello scatto, e non è ancora stato fissato un prezzo per chiamata per quell'operazione &mdash; resta quindi un parametro aperto, non un numero indovinato.">
-                Formats and export (stages 4&ndash;5 of the engine — see Chapter 06/07 of The Engine: generation, control, export) are not in this total. Reformatting a shot into a new aspect ratio may be a cheap crop or a full outpaint call depending on the shot, and no per-call price for that operation has been fixed yet — so it stays an open parameter rather than a guessed number.
+                Proporzioni ed export (stadi 4&ndash;5 del motore &mdash; vedi il Capitolo 06/07 di Il motore: generazione, controllo, export) non sono in questo totale. Riformattare un'inquadratura in una nuova proporzione può essere un ritaglio economico o una chiamata di outpaint completa a seconda dello scatto, e non è ancora stato fissato un prezzo per chiamata per quell'operazione &mdash; resta quindi un parametro aperto, non un numero indovinato.
               </p>
             </div>
 
             <p class="post-text" style="margin-top:2rem;"
                data-en="A more realistic version of the above, beyond this page's own six-beat example. <strong>Assumptions, declared as such:</strong> a mascot-pair brand story like the ones on this site usually runs closer to ten beats once it has a real arc &mdash; setup, development, turn, payoff &mdash; rather than the six used above for simplicity; the waste rate is widened to a 30&ndash;50% range, since a flat 30% floor is optimistic once a judge is actually rejecting real output; and the model is fixed to <strong>Pro</strong> &mdash; the realistic middle tier for client work, neither the cheapest nor the top. Formats and export, flagged as unpriced just above, are estimated here too: of the three extra aspect ratios every approved shot needs beyond its native format, one is assumed to require a full outpaint call at the Pro rate, the other two surviving as a free reactive crop."
                data-it="Una versione più realistica di quella sopra, oltre l'esempio a sei beat di questa pagina. <strong>Ipotesi, dichiarate come tali:</strong> una storia di una coppia di mascotte come quelle di questo sito corre di solito più vicino ai dieci beat una volta che ha un vero arco narrativo &mdash; impostazione, sviluppo, svolta, pay-off &mdash; invece dei sei usati sopra per semplicità; il tasso di scarto è allargato a un intervallo 30&ndash;50%, perché un pavimento fisso al 30% è ottimistico quando è un judge vero a respingere output vero; e il modello è fissato a <strong>Pro</strong> &mdash; il livello intermedio realistico per un lavoro cliente, né il più economico né quello top. Anche proporzioni ed export, segnalati come non prezzati qui sopra, sono qui stimati: delle tre proporzioni extra che ogni scatto approvato richiede oltre alla sua proporzione nativa, se ne assume una che richieda una chiamata di outpaint completa alla tariffa Pro, le altre due sopravvivendo come un ritaglio reattivo gratuito.">
-              A more realistic version of the above, beyond this page's own six-beat example. <strong>Assumptions, declared as such:</strong> a mascot-pair brand story like the ones on this site usually runs closer to ten beats once it has a real arc — setup, development, turn, payoff — rather than the six used above for simplicity; the waste rate is widened to a 30–50% range, since a flat 30% floor is optimistic once a judge is actually rejecting real output; and the model is fixed to <strong>Pro</strong> — the realistic middle tier for client work, neither the cheapest nor the top. Formats and export, flagged as unpriced just above, are estimated here too: of the three extra aspect ratios every approved shot needs beyond its native format, one is assumed to require a full outpaint call at the Pro rate, the other two surviving as a free reactive crop.
+              Una versione più realistica di quella sopra, oltre l'esempio a sei beat di questa pagina. <strong>Ipotesi, dichiarate come tali:</strong> una storia di una coppia di mascotte come quelle di questo sito corre di solito più vicino ai dieci beat una volta che ha un vero arco narrativo &mdash; impostazione, sviluppo, svolta, pay-off &mdash; invece dei sei usati sopra per semplicità; il tasso di scarto è allargato a un intervallo 30&ndash;50%, perché un pavimento fisso al 30% è ottimistico quando è un judge vero a respingere output vero; e il modello è fissato a <strong>Pro</strong> &mdash; il livello intermedio realistico per un lavoro cliente, né il più economico né quello top. Anche proporzioni ed export, segnalati come non prezzati qui sopra, sono qui stimati: delle tre proporzioni extra che ogni scatto approvato richiede oltre alla sua proporzione nativa, se ne assume una che richieda una chiamata di outpaint completa alla tariffa Pro, le altre due sopravvivendo come un ritaglio reattivo gratuito.
             </p>
 
             <table class="data-table">
@@ -602,32 +602,32 @@
                 <col style="width:10%">
               </colgroup>
               <thead><tr>
-                <th data-en="Waste rate" data-it="Tasso di scarto">Waste rate</th>
-                <th data-en="API calls" data-it="Chiamate API">API calls</th>
-                <th data-en="Image generation" data-it="Generazione immagine">Image generation</th>
-                <th data-en="Per-image text" data-it="Testo per immagine">Per-image text</th>
+                <th data-en="Waste rate" data-it="Tasso di scarto">Tasso di scarto</th>
+                <th data-en="API calls" data-it="Chiamate API">Chiamate API</th>
+                <th data-en="Image generation" data-it="Generazione immagine">Generazione immagine</th>
+                <th data-en="Per-image text" data-it="Testo per immagine">Testo per immagine</th>
                 <th data-en="Sonnet story-spec" data-it="Sonnet story-spec">Sonnet story-spec</th>
-                <th data-en="Formats/export (est.)" data-it="Proporzioni/export (stima)">Formats/export (est.)</th>
-                <th data-en="Total / story" data-it="Totale / storia">Total / story</th>
+                <th data-en="Formats/export (est.)" data-it="Proporzioni/export (stima)">Proporzioni/export (stima)</th>
+                <th data-en="Total / story" data-it="Totale / storia">Totale / storia</th>
               </tr></thead>
               <tbody>
                 <tr>
                   <td data-en="30%" data-it="30%">30%</td>
-                  <td class="num" data-en="10 &times; 1.3 = 13" data-it="10 &times; 1,3 = 13">10 &times; 1.3 = 13</td>
-                  <td class="num" data-en="$13.91" data-it="$13,91">$13.91</td>
-                  <td class="num" data-en="$0.78&ndash;$1.17" data-it="$0,78&ndash;$1,17">$0.78&ndash;$1.17</td>
-                  <td class="num" data-en="$0.09" data-it="$0,09">$0.09</td>
-                  <td class="num" data-en="$10.70" data-it="$10,70">$10.70</td>
-                  <td class="num" data-en="~$25.50&ndash;$25.90" data-it="~$25,50&ndash;$25,90">~$25.50&ndash;$25.90</td>
+                  <td class="num" data-en="10 &times; 1.3 = 13" data-it="10 &times; 1,3 = 13">10 &times; 1,3 = 13</td>
+                  <td class="num" data-en="$13.91" data-it="$13,91">$13,91</td>
+                  <td class="num" data-en="$0.78&ndash;$1.17" data-it="$0,78&ndash;$1,17">$0,78&ndash;$1,17</td>
+                  <td class="num" data-en="$0.09" data-it="$0,09">$0,09</td>
+                  <td class="num" data-en="$10.70" data-it="$10,70">$10,70</td>
+                  <td class="num" data-en="~$25.50&ndash;$25.90" data-it="~$25,50&ndash;$25,90">~$25,50&ndash;$25,90</td>
                 </tr>
                 <tr>
                   <td data-en="50%" data-it="50%">50%</td>
-                  <td class="num" data-en="10 &times; 1.5 = 15" data-it="10 &times; 1,5 = 15">10 &times; 1.5 = 15</td>
-                  <td class="num" data-en="$16.05" data-it="$16,05">$16.05</td>
-                  <td class="num" data-en="$0.90&ndash;$1.35" data-it="$0,90&ndash;$1,35">$0.90&ndash;$1.35</td>
-                  <td class="num" data-en="$0.09" data-it="$0,09">$0.09</td>
-                  <td class="num" data-en="$10.70" data-it="$10,70">$10.70</td>
-                  <td class="num" data-en="~$27.70&ndash;$28.20" data-it="~$27,70&ndash;$28,20">~$27.70&ndash;$28.20</td>
+                  <td class="num" data-en="10 &times; 1.5 = 15" data-it="10 &times; 1,5 = 15">10 &times; 1,5 = 15</td>
+                  <td class="num" data-en="$16.05" data-it="$16,05">$16,05</td>
+                  <td class="num" data-en="$0.90&ndash;$1.35" data-it="$0,90&ndash;$1,35">$0,90&ndash;$1,35</td>
+                  <td class="num" data-en="$0.09" data-it="$0,09">$0,09</td>
+                  <td class="num" data-en="$10.70" data-it="$10,70">$10,70</td>
+                  <td class="num" data-en="~$27.70&ndash;$28.20" data-it="~$27,70&ndash;$28,20">~$27,70&ndash;$28,20</td>
                 </tr>
               </tbody>
             </table>
@@ -635,25 +635,25 @@
             <p class="post-text"
                data-en="The Sonnet figure is the same $0.057 assumption from Chapter 05, rescaled: output tokens grow with beat count (roughly 500 tokens/beat there), input stays flat at 4,000 tokens for brief and character bios, which gives about 5,000 output tokens and <strong>$0.09</strong> at ten beats. Formats/export is ten approved beats &times; one assumed outpaint call at the Pro rate ($1.07) &mdash; it does not grow with the waste rate, because reformatting only touches shots that already passed the judge, never the discarded retries."
                data-it="La cifra Sonnet è la stessa ipotesi di $0,057 del Capitolo 05, riscalata: i token di output crescono con il numero di beat (circa 500 token/beat lì), l'input resta fisso a 4.000 token per brief e schede personaggio, il che dà circa 5.000 token di output e <strong>$0,09</strong> a dieci beat. Proporzioni/export sono dieci beat approvati &times; una chiamata di outpaint assunta alla tariffa Pro ($1,07) &mdash; non cresce con il tasso di scarto, perché la riformattazione tocca solo gli scatti già passati dal judge, mai i ritentativi scartati.">
-              The Sonnet figure is the same $0.057 assumption from Chapter 05, rescaled: output tokens grow with beat count (roughly 500 tokens/beat there), input stays flat at 4,000 tokens for brief and character bios, which gives about 5,000 output tokens and <strong>$0.09</strong> at ten beats. Formats/export is ten approved beats × one assumed outpaint call at the Pro rate ($1.07) — it does not grow with the waste rate, because reformatting only touches shots that already passed the judge, never the discarded retries.
+              La cifra Sonnet è la stessa ipotesi di $0,057 del Capitolo 05, riscalata: i token di output crescono con il numero di beat (circa 500 token/beat lì), l'input resta fisso a 4.000 token per brief e schede personaggio, il che dà circa 5.000 token di output e <strong>$0,09</strong> a dieci beat. Proporzioni/export sono dieci beat approvati &times; una chiamata di outpaint assunta alla tariffa Pro ($1,07) &mdash; non cresce con il tasso di scarto, perché la riformattazione tocca solo gli scatti già passati dal judge, mai i ritentativi scartati.
             </p>
 
             <p class="post-text"
                data-en="Scaled to the same sixteen-set, twelve-week campaign used throughout this page, at ten beats per set on Pro: on the order of <strong>$410&ndash;$450 for the whole campaign</strong>, formats and export included &mdash; against the $19 quoted earlier for stages 1&ndash;3 alone. The gap between those two numbers is exactly what &ldquo;not priced here&rdquo; was hiding."
                data-it="Esteso alla stessa campagna di sedici set in dodici settimane usata in questa pagina, a dieci beat per set su Pro: nell'ordine di <strong>$410&ndash;$450 per l'intera campagna</strong>, proporzioni ed export inclusi &mdash; contro i $19 citati prima per i soli stadi 1&ndash;3. Il divario tra questi due numeri è esattamente quello che &ldquo;non prezzato qui&rdquo; nascondeva.">
-              Scaled to the same sixteen-set, twelve-week campaign used throughout this page, at ten beats per set on Pro: on the order of <strong>$410&ndash;$450 for the whole campaign</strong>, formats and export included — against the $19 quoted earlier for stages 1&ndash;3 alone. The gap between those two numbers is exactly what "not priced here" was hiding.
+              Esteso alla stessa campagna di sedici set in dodici settimane usata in questa pagina, a dieci beat per set su Pro: nell'ordine di <strong>$410&ndash;$450 per l'intera campagna</strong>, proporzioni ed export inclusi &mdash; contro i $19 citati prima per i soli stadi 1&ndash;3. Il divario tra questi due numeri è esattamente quello che &ldquo;non prezzato qui&rdquo; nascondeva.
             </p>
 
             <p class="post-text" style="margin-top:2rem;"
                data-en="<strong>A gap in everything above: the judge's own call.</strong> Every total so far adds image generation, the prompt-writing text and the Sonnet story-spec call &mdash; it never prices <code>judge_and_correct()</code> itself, the Gemini VLM call in chapter 09 of <a href='dco-engine-tech.html' class='about-link'>DCO Engine: technical description</a> that looks at a generated shot against the reference images and returns a per-assertion verdict. That call runs once per generation attempt, not once per delivered panel &mdash; so its count is the same inflated number as the API-calls row above (the 30% or 30&ndash;50% waste figure), not the smaller count of panels actually shipped."
                data-it="<strong>Un vuoto in tutto quanto sopra: la chiamata del judge stesso.</strong> Ogni totale finora somma generazione immagine, testo di prompting e chiamata Sonnet di story-spec &mdash; non prezza mai <code>judge_and_correct()</code> in sé, la chiamata Gemini VLM del capitolo 09 di <a href='dco-engine-tech.html' class='about-link'>Motore DCO: descrizione tecnica</a> che guarda uno scatto generato contro le immagini di riferimento e restituisce un verdetto per asserzione. Quella chiamata gira una volta per ogni tentativo di generazione, non una volta per tavola consegnata &mdash; quindi il suo conteggio è lo stesso numero gonfiato della riga delle chiamate API qui sopra (la cifra di scarto del 30% o del 30&ndash;50%), non il numero più piccolo di tavole davvero spedite.">
-              <strong>A gap in everything above: the judge's own call.</strong> Every total so far adds image generation, the prompt-writing text and the Sonnet story-spec call &mdash; it never prices <code>judge_and_correct()</code> itself, the Gemini VLM call in chapter 09 of <a href="dco-engine-tech.html" class="about-link">DCO Engine: technical description</a> that looks at a generated shot against the reference images and returns a per-assertion verdict. That call runs once per generation attempt, not once per delivered panel &mdash; so its count is the same inflated number as the API-calls row above (the 30% or 30&ndash;50% waste figure), not the smaller count of panels actually shipped.
+              <strong>Un vuoto in tutto quanto sopra: la chiamata del judge stesso.</strong> Ogni totale finora somma generazione immagine, testo di prompting e chiamata Sonnet di story-spec &mdash; non prezza mai <code>judge_and_correct()</code> in sé, la chiamata Gemini VLM del capitolo 09 di <a href="dco-engine-tech.html" class="about-link">Motore DCO: descrizione tecnica</a> che guarda uno scatto generato contro le immagini di riferimento e restituisce un verdetto per asserzione. Quella chiamata gira una volta per ogni tentativo di generazione, non una volta per tavola consegnata &mdash; quindi il suo conteggio è lo stesso numero gonfiato della riga delle chiamate API qui sopra (la cifra di scarto del 30% o del 30&ndash;50%), non il numero più piccolo di tavole davvero spedite.
             </p>
 
             <p class="post-text" style="margin-top:1.2em;"
                data-en="<strong>No benchmarked price exists for it; this is a placeholder by analogy,</strong> flagged as such below. A judge call and the per-image prompting-text call of chapter 03 have a similar shape &mdash; a handful of images as vision input, a compact structured output &mdash; so this page reuses that call's price as the judge's estimate: <strong>$0.004&ndash;$0.008</strong> on Flash, <strong>$0.06&ndash;$0.09</strong> on Pro or Argon 4. It is as likely to be too low (a verdict with per-assertion severity and class is more structured than a prompt) as too high (it compares against fewer images than the full generation prompt does)."
                data-it="<strong>Non esiste un prezzo misurato per questa chiamata; è un segnaposto</strong> per analogia, segnalato come tale qui sotto. Una chiamata del judge e la chiamata di testo di prompting per immagine del capitolo 03 hanno una forma simile &mdash; una manciata di immagini come input vision, un output strutturato compatto &mdash; quindi questa pagina riusa il prezzo di quella chiamata come stima per il judge: <strong>$0,004&ndash;$0,008</strong> su Flash, <strong>$0,06&ndash;$0,09</strong> su Pro o Argon 4. È tanto probabile che sia troppo bassa (un verdetto con gravità e classe per asserzione è più strutturato di un prompt) quanto che sia troppo alta (confronta contro meno immagini di quante ne usi l'intero prompt di generazione).">
-              <strong>No benchmarked price exists for it; this is a placeholder by analogy,</strong> flagged as such below. A judge call and the per-image prompting-text call of chapter 03 have a similar shape &mdash; a handful of images as vision input, a compact structured output &mdash; so this page reuses that call's price as the judge's estimate: <strong>$0.004&ndash;$0.008</strong> on Flash, <strong>$0.06&ndash;$0.09</strong> on Pro or Argon 4. It is as likely to be too low (a verdict with per-assertion severity and class is more structured than a prompt) as too high (it compares against fewer images than the full generation prompt does).
+              <strong>Non esiste un prezzo misurato per questa chiamata; è un segnaposto</strong> per analogia, segnalato come tale qui sotto. Una chiamata del judge e la chiamata di testo di prompting per immagine del capitolo 03 hanno una forma simile &mdash; una manciata di immagini come input vision, un output strutturato compatto &mdash; quindi questa pagina riusa il prezzo di quella chiamata come stima per il judge: <strong>$0,004&ndash;$0,008</strong> su Flash, <strong>$0,06&ndash;$0,09</strong> su Pro o Argon 4. È tanto probabile che sia troppo bassa (un verdetto con gravità e classe per asserzione è più strutturato di un prompt) quanto che sia troppo alta (confronta contro meno immagini di quante ne usi l'intero prompt di generazione).
             </p>
 
             <table class="data-table">
@@ -667,45 +667,45 @@
               <thead><tr>
                 <th data-en="Scenario" data-it="Scenario">Scenario</th>
                 <th data-en="Story" data-it="Story">Story</th>
-                <th data-en="Judge calls" data-it="Chiamate judge">Judge calls</th>
-                <th data-en="Judge cost" data-it="Costo judge">Judge cost</th>
-                <th data-en="Revised total/story" data-it="Totale/story rivisto">Revised total/story</th>
+                <th data-en="Judge calls" data-it="Chiamate judge">Chiamate judge</th>
+                <th data-en="Judge cost" data-it="Costo judge">Costo judge</th>
+                <th data-en="Revised total/story" data-it="Totale/story rivisto">Totale/story rivisto</th>
               </tr></thead>
               <tbody>
                 <tr>
-                  <td class="num" data-en="Six-beat, Flash" data-it="Sei beat, Flash">Six-beat, Flash</td>
-                  <td class="num" data-en="8 calls (Chapter 01)" data-it="8 chiamate (Capitolo 01)">8 calls (Chapter 01)</td>
+                  <td class="num" data-en="Six-beat, Flash" data-it="Sei beat, Flash">Sei beat, Flash</td>
+                  <td class="num" data-en="8 calls (Chapter 01)" data-it="8 chiamate (Capitolo 01)">8 chiamate (Capitolo 01)</td>
                   <td class="num" data-en="8" data-it="8">8</td>
-                  <td class="num" data-en="$0.03&ndash;$0.06" data-it="$0,03&ndash;$0,06">$0.03&ndash;$0.06</td>
-                  <td class="num" data-en="$0.38 &rarr; <strong>~$0.41&ndash;$0.44</strong>" data-it="$0,38 &rarr; <strong>~$0,41&ndash;$0,44</strong>">$0.38 &rarr; <strong>~$0.41&ndash;$0.44</strong></td>
+                  <td class="num" data-en="$0.03&ndash;$0.06" data-it="$0,03&ndash;$0,06">$0,03&ndash;$0,06</td>
+                  <td class="num" data-en="$0.38 &rarr; <strong>~$0.41&ndash;$0.44</strong>" data-it="$0,38 &rarr; <strong>~$0,41&ndash;$0,44</strong>">$0,38 &rarr; <strong>~$0,41&ndash;$0,44</strong></td>
                 </tr>
                 <tr>
-                  <td class="num" data-en="Six-beat, Pro" data-it="Sei beat, Pro">Six-beat, Pro</td>
-                  <td class="num" data-en="8 calls" data-it="8 chiamate">8 calls</td>
+                  <td class="num" data-en="Six-beat, Pro" data-it="Sei beat, Pro">Sei beat, Pro</td>
+                  <td class="num" data-en="8 calls" data-it="8 chiamate">8 chiamate</td>
                   <td class="num" data-en="8" data-it="8">8</td>
-                  <td class="num" data-en="$0.48&ndash;$0.72" data-it="$0,48&ndash;$0,72">$0.48&ndash;$0.72</td>
-                  <td class="num" data-en="$1.19&ndash;$1.22 &rarr; <strong>~$1.67&ndash;$1.94</strong>" data-it="$1,19&ndash;$1,22 &rarr; <strong>~$1,67&ndash;$1,94</strong>">$1.19&ndash;$1.22 &rarr; <strong>~$1.67&ndash;$1.94</strong></td>
+                  <td class="num" data-en="$0.48&ndash;$0.72" data-it="$0,48&ndash;$0,72">$0,48&ndash;$0,72</td>
+                  <td class="num" data-en="$1.19&ndash;$1.22 &rarr; <strong>~$1.67&ndash;$1.94</strong>" data-it="$1,19&ndash;$1,22 &rarr; <strong>~$1,67&ndash;$1,94</strong>">$1,19&ndash;$1,22 &rarr; <strong>~$1,67&ndash;$1,94</strong></td>
                 </tr>
                 <tr>
-                  <td class="num" data-en="Six-beat, Argon 4" data-it="Sei beat, Argon 4">Six-beat, Argon 4</td>
-                  <td class="num" data-en="8 calls" data-it="8 chiamate">8 calls</td>
+                  <td class="num" data-en="Six-beat, Argon 4" data-it="Sei beat, Argon 4">Sei beat, Argon 4</td>
+                  <td class="num" data-en="8 calls" data-it="8 chiamate">8 chiamate</td>
                   <td class="num" data-en="8" data-it="8">8</td>
-                  <td class="num" data-en="$0.48&ndash;$0.72" data-it="$0,48&ndash;$0,72">$0.48&ndash;$0.72</td>
-                  <td class="num" data-en="$2.04&ndash;$2.07 &rarr; <strong>~$2.52&ndash;$2.79</strong>" data-it="$2,04&ndash;$2,07 &rarr; <strong>~$2,52&ndash;$2,79</strong>">$2.04&ndash;$2.07 &rarr; <strong>~$2.52&ndash;$2.79</strong></td>
+                  <td class="num" data-en="$0.48&ndash;$0.72" data-it="$0,48&ndash;$0,72">$0,48&ndash;$0,72</td>
+                  <td class="num" data-en="$2.04&ndash;$2.07 &rarr; <strong>~$2.52&ndash;$2.79</strong>" data-it="$2,04&ndash;$2,07 &rarr; <strong>~$2,52&ndash;$2,79</strong>">$2,04&ndash;$2,07 &rarr; <strong>~$2,52&ndash;$2,79</strong></td>
                 </tr>
                 <tr>
-                  <td class="num" data-en="Ten-beat Pro, 30% waste" data-it="Dieci beat Pro, scarto 30%">Ten-beat Pro, 30% waste</td>
-                  <td class="num" data-en="13 calls (Chapter 06)" data-it="13 chiamate (Capitolo 06)">13 calls (Chapter 06)</td>
+                  <td class="num" data-en="Ten-beat Pro, 30% waste" data-it="Dieci beat Pro, scarto 30%">Dieci beat Pro, scarto 30%</td>
+                  <td class="num" data-en="13 calls (Chapter 06)" data-it="13 chiamate (Capitolo 06)">13 chiamate (Capitolo 06)</td>
                   <td class="num" data-en="13" data-it="13">13</td>
-                  <td class="num" data-en="$0.78&ndash;$1.17" data-it="$0,78&ndash;$1,17">$0.78&ndash;$1.17</td>
-                  <td class="num" data-en="$25.50&ndash;$25.90 &rarr; <strong>~$26.3&ndash;$27.1</strong>" data-it="$25,50&ndash;$25,90 &rarr; <strong>~$26,3&ndash;$27,1</strong>">$25.50&ndash;$25.90 &rarr; <strong>~$26.3&ndash;$27.1</strong></td>
+                  <td class="num" data-en="$0.78&ndash;$1.17" data-it="$0,78&ndash;$1,17">$0,78&ndash;$1,17</td>
+                  <td class="num" data-en="$25.50&ndash;$25.90 &rarr; <strong>~$26.3&ndash;$27.1</strong>" data-it="$25,50&ndash;$25,90 &rarr; <strong>~$26,3&ndash;$27,1</strong>">$25,50&ndash;$25,90 &rarr; <strong>~$26,3&ndash;$27,1</strong></td>
                 </tr>
                 <tr>
-                  <td class="num" data-en="Ten-beat Pro, 50% waste" data-it="Dieci beat Pro, scarto 50%">Ten-beat Pro, 50% waste</td>
-                  <td class="num" data-en="15 calls" data-it="15 chiamate">15 calls</td>
+                  <td class="num" data-en="Ten-beat Pro, 50% waste" data-it="Dieci beat Pro, scarto 50%">Dieci beat Pro, scarto 50%</td>
+                  <td class="num" data-en="15 calls" data-it="15 chiamate">15 chiamate</td>
                   <td class="num" data-en="15" data-it="15">15</td>
-                  <td class="num" data-en="$0.90&ndash;$1.35" data-it="$0,90&ndash;$1,35">$0.90&ndash;$1.35</td>
-                  <td class="num" data-en="$27.70&ndash;$28.20 &rarr; <strong>~$28.6&ndash;$29.6</strong>" data-it="$27,70&ndash;$28,20 &rarr; <strong>~$28,6&ndash;$29,6</strong>">$27.70&ndash;$28.20 &rarr; <strong>~$28.6&ndash;$29.6</strong></td>
+                  <td class="num" data-en="$0.90&ndash;$1.35" data-it="$0,90&ndash;$1,35">$0,90&ndash;$1,35</td>
+                  <td class="num" data-en="$27.70&ndash;$28.20 &rarr; <strong>~$28.6&ndash;$29.6</strong>" data-it="$27,70&ndash;$28,20 &rarr; <strong>~$28,6&ndash;$29,6</strong>">$27,70&ndash;$28,20 &rarr; <strong>~$28,6&ndash;$29,6</strong></td>
                 </tr>
               </tbody>
             </table>
@@ -713,13 +713,13 @@
             <p class="post-text" style="margin-top:1.2em;"
                data-en="<strong>What it does to the two campaign totals already on this page.</strong> On the bare six-beat, stages-1&ndash;3-only figure, the judge call is a real jump &mdash; roughly <strong>+20% on Flash, +50&ndash;80% on Pro and Argon 4</strong> &mdash; because that figure was always missing a whole category of call, not a rounding error. On the realistic sixteen-set campaign of Chapter 06 above, which already includes formats and export, the same judge cost is a much smaller share of a much bigger number: the <strong>$410&ndash;$450</strong> campaign total becomes roughly <strong>$423&ndash;$472</strong>, a <strong>3&ndash;5%</strong> increase. The two percentages describe the same dollar amount against two different bases &mdash; the alarming one was always measuring against a total this page itself flagged as incomplete."
                data-it="<strong>Cosa comporta sui due totali di campagna già su questa pagina.</strong> Sulla cifra nuda a sei beat, solo stadi 1&ndash;3, la chiamata del judge è un salto vero &mdash; circa <strong>+20% su Flash, +50&ndash;80% su Pro e Argon 4</strong> &mdash; perché quella cifra mancava sempre di un'intera categoria di chiamata, non di un arrotondamento. Sulla campagna realistica a sedici set del Capitolo 06 qui sopra, che include già proporzioni ed export, lo stesso costo del judge è una quota molto più piccola di un numero molto più grande: il totale di campagna di <strong>$410&ndash;$450</strong> diventa circa <strong>$423&ndash;$472</strong>, un aumento del <strong>3&ndash;5%</strong>. Le due percentuali descrivono la stessa cifra in dollari contro due basi diverse &mdash; quella allarmante misurava sempre contro un totale che questa stessa pagina segnalava come incompleto.">
-              <strong>What it does to the two campaign totals already on this page.</strong> On the bare six-beat, stages-1&ndash;3-only figure, the judge call is a real jump &mdash; roughly <strong>+20% on Flash, +50&ndash;80% on Pro and Argon 4</strong> &mdash; because that figure was always missing a whole category of call, not a rounding error. On the realistic sixteen-set campaign of Chapter 06 above, which already includes formats and export, the same judge cost is a much smaller share of a much bigger number: the <strong>$410&ndash;$450</strong> campaign total becomes roughly <strong>$423&ndash;$472</strong>, a <strong>3&ndash;5%</strong> increase. The two percentages describe the same dollar amount against two different bases &mdash; the alarming one was always measuring against a total this page itself flagged as incomplete.
+              <strong>Cosa comporta sui due totali di campagna già su questa pagina.</strong> Sulla cifra nuda a sei beat, solo stadi 1&ndash;3, la chiamata del judge è un salto vero &mdash; circa <strong>+20% su Flash, +50&ndash;80% su Pro e Argon 4</strong> &mdash; perché quella cifra mancava sempre di un'intera categoria di chiamata, non di un arrotondamento. Sulla campagna realistica a sedici set del Capitolo 06 qui sopra, che include già proporzioni ed export, lo stesso costo del judge è una quota molto più piccola di un numero molto più grande: il totale di campagna di <strong>$410&ndash;$450</strong> diventa circa <strong>$423&ndash;$472</strong>, un aumento del <strong>3&ndash;5%</strong>. Le due percentuali descrivono la stessa cifra in dollari contro due basi diverse &mdash; quella allarmante misurava sempre contro un totale che questa stessa pagina segnalava come incompleto.
             </p>
 
             <p class="post-text" style="margin-top:1.2em;"
                data-en="<strong>The real cost risk is not this call &mdash; it is the waste</strong> rate moving. The judge call itself, at a few cents to a dollar per story, is noise next to image generation, which is most of the bill throughout this page. What would actually move the budget is stricter checks (the colour, logo and tone checks of chapter 12 of <a href='dco-engine-tech.html' class='about-link'>DCO Engine: technical description</a>) lowering the first-pass yield and pushing more shots into retry &mdash; and nothing on this page measures that effect yet, because nobody has run the B4 study that chapter 12 proposes. Chapter 07 below adds a lever for exactly this risk."
                data-it="<strong>Il vero rischio di costo non è questa chiamata &mdash; è lo spostamento</strong> del tasso di scarto. La chiamata del judge in sé, da pochi centesimi a un dollaro per storia, è rumore accanto alla generazione immagine, che resta la maggior parte del conto in tutta questa pagina. Ciò che sposterebbe davvero il budget sono i controlli più severi (i controlli di colore, logo e tono del capitolo 12 di <a href='dco-engine-tech.html' class='about-link'>Motore DCO: descrizione tecnica</a>) che abbassano il first-pass yield e spingono più scatti nel ritentativo &mdash; e niente su questa pagina misura ancora quell'effetto, perché nessuno ha ancora fatto lo studio B4 che quel capitolo 12 propone. Il capitolo 07 qui sotto aggiunge una leva per esattamente questo rischio.">
-              <strong>The real cost risk is not this call &mdash; it is the waste</strong> rate moving. The judge call itself, at a few cents to a dollar per story, is noise next to image generation, which is most of the bill throughout this page. What would actually move the budget is stricter checks (the colour, logo and tone checks of chapter 12 of <a href="dco-engine-tech.html" class="about-link">DCO Engine: technical description</a>) lowering the first-pass yield and pushing more shots into retry &mdash; and nothing on this page measures that effect yet, because nobody has run the B4 study that chapter 12 proposes. Chapter 07 below adds a lever for exactly this risk.
+              <strong>Il vero rischio di costo non è questa chiamata &mdash; è lo spostamento</strong> del tasso di scarto. La chiamata del judge in sé, da pochi centesimi a un dollaro per storia, è rumore accanto alla generazione immagine, che resta la maggior parte del conto in tutta questa pagina. Ciò che sposterebbe davvero il budget sono i controlli più severi (i controlli di colore, logo e tono del capitolo 12 di <a href="dco-engine-tech.html" class="about-link">Motore DCO: descrizione tecnica</a>) che abbassano il first-pass yield e spingono più scatti nel ritentativo &mdash; e niente su questa pagina misura ancora quell'effetto, perché nessuno ha ancora fatto lo studio B4 che quel capitolo 12 propone. Il capitolo 07 qui sotto aggiunge una leva per esattamente questo rischio.
             </p>
 
           </div>
@@ -732,33 +732,33 @@
             <h3 class="content-title"
                 data-en="Optimisation strategies"
                 data-it="Strategie di ottimizzazione">
-              Optimisation strategies
+              Strategie di ottimizzazione
             </h3>
 
             <p class="post-text"
                data-en="Four levers, in the order they are worth pulling. These are proposals, not figures in production yet."
                data-it="Quattro leve, nell'ordine in cui conviene tirarle. Sono proposte, non cifre già in produzione.">
-              Four levers, in the order they are worth pulling. These are proposals, not figures in production yet.
+              Quattro leve, nell'ordine in cui conviene tirarle. Sono proposte, non cifre già in produzione.
             </p>
 
             <ul class="content-sublist">
               <li data-en="<strong>Prompt caching on the static part.</strong> The system prompt and character sheet (1,000&ndash;2,000 tokens, chapter 03) repeat unchanged across every call in a campaign. Caching them turns a $3.00/1M input cost into a $0.30/1M read after the first write &mdash; a 10&times; reduction on the one block of text that never changes between calls."
                   data-it="<strong>Prompt caching sulla parte statica.</strong> Il system prompt e la scheda personaggio (1.000&ndash;2.000 token, capitolo 03) si ripetono identici in ogni chiamata di una campagna. Metterli in cache trasforma un costo input di $3,00/1M in una lettura da $0,30/1M dopo la prima scrittura &mdash; una riduzione di 10&times; sull'unico blocco di testo che non cambia mai fra una chiamata e l'altra.">
-                <strong>Prompt caching on the static part.</strong> The system prompt and character sheet (1,000&ndash;2,000 tokens, chapter 03) repeat unchanged across every call in a campaign. Caching them turns a $3.00/1M input cost into a $0.30/1M read after the first write — a 10&times; reduction on the one block of text that never changes between calls.
+                <strong>Prompt caching sulla parte statica.</strong> Il system prompt e la scheda personaggio (1.000&ndash;2.000 token, capitolo 03) si ripetono identici in ogni chiamata di una campagna. Metterli in cache trasforma un costo input di $3,00/1M in una lettura da $0,30/1M dopo la prima scrittura &mdash; una riduzione di 10&times; sull'unico blocco di testo che non cambia mai fra una chiamata e l'altra.
               </li>
               <li data-en="<strong>Batch API wherever the job isn't time-critical.</strong> Story-spec generation and most prompt-writing calls don't need a synchronous answer &mdash; the 50% discount on both Claude legs (chapter 05) applies directly."
                   data-it="<strong>Batch API ovunque il lavoro non sia time-critical.</strong> La generazione dello story-spec e la maggior parte delle chiamate di scrittura prompt non hanno bisogno di una risposta sincrona &mdash; lo sconto del 50% su entrambe le gambe Claude (capitolo 05) si applica direttamente.">
-                <strong>Batch API wherever the job isn't time-critical.</strong> Story-spec generation and most prompt-writing calls don't need a synchronous answer — the 50% discount on both Claude legs (chapter 05) applies directly.
+                <strong>Batch API ovunque il lavoro non sia time-critical.</strong> La generazione dello story-spec e la maggior parte delle chiamate di scrittura prompt non hanno bisogno di una risposta sincrona &mdash; lo sconto del 50% su entrambe le gambe Claude (capitolo 05) si applica direttamente.
               </li>
               <li data-en="<strong>Tiered model selection by stage.</strong> Flash for the first generation and every judge-rejected retry, Pro or Argon 4 reserved for the shot that has already passed &mdash; instead of generating every candidate at top tier and discarding 30% of the expensive ones."
                   data-it="<strong>Selezione del modello a livelli per stadio.</strong> Flash per la prima generazione e ogni ritentativo respinto dal judge, Pro o Argon 4 riservati allo scatto che è già passato &mdash; invece di generare ogni candidato al livello più alto e scartarne il 30% già costoso.">
-                <strong>Tiered model selection by stage.</strong> Flash for the first generation and every judge-rejected retry, Pro or Argon 4 reserved for the shot that has already passed — instead of generating every candidate at top tier and discarding 30% of the expensive ones.
+                <strong>Selezione del modello a livelli per stadio.</strong> Flash per la prima generazione e ogni ritentativo respinto dal judge, Pro o Argon 4 riservati allo scatto che è già passato &mdash; invece di generare ogni candidato al livello più alto e scartarne il 30% già costoso.
               </li>
               <li data-en="<strong>A compact character sheet instead of re-sending reference images.</strong> Reference images as vision input cost ~1,000&ndash;1,500 tokens per call (chapter 03); a well-written text description of the same identity constraints is typically shorter and removes that cost from every call after the first."
                   data-it="<strong>Una scheda personaggio compatta invece di rimandare le immagini di riferimento.</strong> Le immagini di riferimento come input vision costano ~1.000&ndash;1.500 token per chiamata (capitolo 03); una descrizione testuale ben scritta degli stessi vincoli di identità è di norma più corta e toglie quel costo da ogni chiamata dopo la prima.">
-                <strong>A compact character sheet instead of re-sending reference images.</strong> Reference images as vision input cost ~1,000&ndash;1,500 tokens per call (chapter 03); a well-written text description of the same identity constraints is typically shorter and removes that cost from every call after the first.
+                <strong>Una scheda personaggio compatta invece di rimandare le immagini di riferimento.</strong> Le immagini di riferimento come input vision costano ~1.000&ndash;1.500 token per chiamata (capitolo 03); una descrizione testuale ben scritta degli stessi vincoli di identità è di norma più corta e toglie quel costo da ogni chiamata dopo la prima.
               </li>
-              <li data-en="<strong>Run stricter or new checks in shadow mode first.</strong> A rule addition (colour, logo, tone &mdash; chapter 12 of <a href='dco-engine-tech.html' class='about-link'>DCO Engine: technical description</a>) logs what it would have flagged without acting on it, so its effect on the waste rate is measured against the fixture library of open question E there before it is allowed to trigger a real retry on a client campaign. Turns the cost risk of a stricter judge from a guess into a number, for the price of a few fixture runs instead of a live campaign's worth of extra retries." data-it="<strong>Far girare controlli nuovi o più severi prima in modalità ombra.</strong> Una nuova regola (colore, logo, tono &mdash; capitolo 12 di <a href='dco-engine-tech.html' class='about-link'>Motore DCO: descrizione tecnica</a>) registra cosa avrebbe segnalato senza agire, così il suo effetto sul tasso di scarto viene misurato sulla libreria di fixture della domanda aperta E lì prima che le sia permesso innescare un ritentativo vero su una campagna cliente. Trasforma il rischio di costo di un judge più severo da un'ipotesi in un numero, al prezzo di qualche run di fixture invece che di ritentativi extra su una campagna vera."><strong>Run stricter or new checks in shadow mode first.</strong> A rule addition (colour, logo, tone — chapter 12 of <a href="dco-engine-tech.html" class="about-link">DCO Engine: technical description</a>) logs what it would have flagged without acting on it, so its effect on the waste rate is measured against the fixture library of open question E there before it is allowed to trigger a real retry on a client campaign. Turns the cost risk of a stricter judge from a guess into a number, for the price of a few fixture runs instead of a live campaign's worth of extra retries.</li>
+              <li data-en="<strong>Run stricter or new checks in shadow mode first.</strong> A rule addition (colour, logo, tone &mdash; chapter 12 of <a href='dco-engine-tech.html' class='about-link'>DCO Engine: technical description</a>) logs what it would have flagged without acting on it, so its effect on the waste rate is measured against the fixture library of open question E there before it is allowed to trigger a real retry on a client campaign. Turns the cost risk of a stricter judge from a guess into a number, for the price of a few fixture runs instead of a live campaign's worth of extra retries." data-it="<strong>Far girare controlli nuovi o più severi prima in modalità ombra.</strong> Una nuova regola (colore, logo, tono &mdash; capitolo 12 di <a href='dco-engine-tech.html' class='about-link'>Motore DCO: descrizione tecnica</a>) registra cosa avrebbe segnalato senza agire, così il suo effetto sul tasso di scarto viene misurato sulla libreria di fixture della domanda aperta E lì prima che le sia permesso innescare un ritentativo vero su una campagna cliente. Trasforma il rischio di costo di un judge più severo da un'ipotesi in un numero, al prezzo di qualche run di fixture invece che di ritentativi extra su una campagna vera."><strong>Far girare controlli nuovi o più severi prima in modalità ombra.</strong> Una nuova regola (colore, logo, tono &mdash; capitolo 12 di <a href="dco-engine-tech.html" class="about-link">Motore DCO: descrizione tecnica</a>) registra cosa avrebbe segnalato senza agire, così il suo effetto sul tasso di scarto viene misurato sulla libreria di fixture della domanda aperta E lì prima che le sia permesso innescare un ritentativo vero su una campagna cliente. Trasforma il rischio di costo di un judge più severo da un'ipotesi in un numero, al prezzo di qualche run di fixture invece che di ritentativi extra su una campagna vera.</li>
             </ul>
 
           </div>
@@ -771,25 +771,25 @@
             <h3 class="content-title"
                 data-en="The reserved zone for the template"
                 data-it="La zona riservata al template">
-              The reserved zone for the template
+              La zona riservata al template
             </h3>
 
             <p class="post-text"
                data-en="A template is an HTML layout with fixed boxes: in a 1:1 unit, the headline might sit in the top 18%, the price-and-CTA block in the bottom 22%. Those coordinates are known in advance and don't change. Today's order is: generate the image first, then the platform overlays the boxes on top. If a character's face sits in that bottom 22%, the price lands on it."
                data-it="Un template è un layout HTML con caselle in posizione fissa: in un'unità 1:1, il titolo potrebbe occupare il 18% in alto, il blocco prezzo-e-CTA il 22% in basso. Quelle coordinate sono note in anticipo e non cambiano. Oggi l'ordine è: prima si genera l'immagine, poi la piattaforma ci sovrappone le caselle sopra. Se la faccia di un personaggio sta in quel 22% in basso, il prezzo le finisce addosso.">
-              A template is an HTML layout with fixed boxes: in a 1:1 unit, the headline might sit in the top 18%, the price-and-CTA block in the bottom 22%. Those coordinates are known in advance and don't change. Today's order is: generate the image first, then the platform overlays the boxes on top. If a character's face sits in that bottom 22%, the price lands on it.
+              Un template è un layout HTML con caselle in posizione fissa: in un'unità 1:1, il titolo potrebbe occupare il 18% in alto, il blocco prezzo-e-CTA il 22% in basso. Quelle coordinate sono note in anticipo e non cambiano. Oggi l'ordine è: prima si genera l'immagine, poi la piattaforma ci sovrappone le caselle sopra. Se la faccia di un personaggio sta in quel 22% in basso, il prezzo le finisce addosso.
             </p>
 
             <p class="post-text"
                data-en="The reactive fix &mdash; after the image exists, choose the crop that keeps the cast out of the box &mdash; the engine can already do, because it has the description file and knows where the characters stand in every beat (Chapter 06 of the overview post). The <strong>proactive</strong> fix is the more interesting one: the box geometry enters the staging instruction itself. The description file gains a field such as <code>reserved: bottom 22%</code>, and the staging line becomes &ldquo;both characters in the top two-thirds, bottom fifth clear tablecloth.&rdquo; The scene is composed with the space already left empty."
                data-it="La correzione reattiva &mdash; dopo che l'immagine esiste, scegliere il ritaglio che tiene il cast fuori dalla casella &mdash; il motore la può già fare, perché ha il file di descrizione e sa dove stanno i personaggi in ogni beat (Capitolo 06 del post di presentazione). La correzione <strong>proattiva</strong> è quella più interessante: la geometria della casella entra nell'istruzione di messa in scena stessa. Il file di descrizione acquista un campo come <code>riservato: 22% in basso</code>, e la riga di regia diventa &ldquo;entrambi i personaggi nei due terzi superiori, quinto inferiore tovaglia libera.&rdquo; La scena nasce già con lo spazio lasciato libero.">
-              The reactive fix — after the image exists, choose the crop that keeps the cast out of the box — the engine can already do, because it has the description file and knows where the characters stand in every beat (Chapter 06 of the overview post). The <strong>proactive</strong> fix is the more interesting one: the box geometry enters the staging instruction itself. The description file gains a field such as <code>reserved: bottom 22%</code>, and the staging line becomes &ldquo;both characters in the top two-thirds, bottom fifth clear tablecloth.&rdquo; The scene is composed with the space already left empty.
+              La correzione reattiva &mdash; dopo che l'immagine esiste, scegliere il ritaglio che tiene il cast fuori dalla casella &mdash; il motore la può già fare, perché ha il file di descrizione e sa dove stanno i personaggi in ogni beat (Capitolo 06 del post di presentazione). La correzione <strong>proattiva</strong> è quella più interessante: la geometria della casella entra nell'istruzione di messa in scena stessa. Il file di descrizione acquista un campo come <code>riservato: 22% in basso</code>, e la riga di regia diventa &ldquo;entrambi i personaggi nei due terzi superiori, quinto inferiore tovaglia libera.&rdquo; La scena nasce già con lo spazio lasciato libero.
             </p>
 
             <p class="post-text"
                data-en="So yes &mdash; this is a branch of the pipeline that reads a set of predefined templates, but it never &ldquo;looks&rdquo; at them visually: it reads a small geometry table, one row per template and format, saying which rectangle, at which coordinates."
                data-it="Quindi sì &mdash; è un ramo della pipeline che legge un set di template predefiniti, ma non li &ldquo;guarda&rdquo; mai visivamente: legge una tabellina di geometrie, una riga per template e proporzione, che dice quale rettangolo, a quali coordinate.">
-              So yes — this is a branch of the pipeline that reads a set of predefined templates, but it never &ldquo;looks&rdquo; at them visually: it reads a small geometry table, one row per template and format, saying which rectangle, at which coordinates.
+              Quindi sì &mdash; è un ramo della pipeline che legge un set di template predefiniti, ma non li &ldquo;guarda&rdquo; mai visivamente: legge una tabellina di geometrie, una riga per template e proporzione, che dice quale rettangolo, a quali coordinate.
             </p>
 
             <div class="code-block"># one row of the template-geometry config table
@@ -803,22 +803,22 @@
             <ul class="content-sublist">
               <li data-en="<strong>The configuration table</strong> &mdash; data entry, not a model: one row per template and format, naming the rectangle a real client's templates actually reserve."
                   data-it="<strong>La tabella di configurazione</strong> &mdash; immissione dati, non un modello: una riga per template e proporzione, che nomina il rettangolo che i template di un cliente reale riservano davvero.">
-                <strong>The configuration table</strong> — data entry, not a model: one row per template and format, naming the rectangle a real client's templates actually reserve.
+                <strong>La tabella di configurazione</strong> &mdash; immissione dati, non un modello: una riga per template e proporzione, che nomina il rettangolo che i template di un cliente reale riservano davvero.
               </li>
               <li data-en="<strong>One added field in the description file,</strong> which already exists &mdash; so this is a field, not a new architecture."
                   data-it="<strong>Un campo in più nel file di descrizione,</strong> che già esiste &mdash; quindi è un campo, non una nuova architettura.">
-                <strong>One added field in the description file,</strong> which already exists — so this is a field, not a new architecture.
+                <strong>Un campo in più nel file di descrizione,</strong> che già esiste &mdash; quindi è un campo, non una nuova architettura.
               </li>
               <li data-en="<strong>A check</strong> that verifies the reserved rectangle really is quiet &mdash; low variance, few edges &mdash; about twenty lines of image analysis, and flags it when it isn't. No model to train."
                   data-it="<strong>Un controllo</strong> che verifichi che il rettangolo riservato sia davvero quieto &mdash; poca varianza, pochi bordi &mdash; una ventina di righe di analisi immagine, e lo segnala quando non lo è. Nessun modello da addestrare.">
-                <strong>A check</strong> that verifies the reserved rectangle really is quiet — low variance, few edges — about twenty lines of image analysis, and flags it when it isn't. No model to train.
+                <strong>Un controllo</strong> che verifichi che il rettangolo riservato sia davvero quieto &mdash; poca varianza, pochi bordi &mdash; una ventina di righe di analisi immagine, e lo segnala quando non lo è. Nessun modello da addestrare.
               </li>
             </ul>
 
             <p class="post-text"
                data-en="Cast-aware cropping is already implicit in the data the engine produces today; reserved-rectangle staging is designed, not built, and is waiting for the template geometry of a real client to be put to the test."
                data-it="Il ritaglio consapevole del cast è già implicito nei dati che il motore produce oggi; la messa in scena a rettangolo riservato è progettata, non costruita, e attende la geometria dei template di un cliente reale per essere messa alla prova.">
-              Cast-aware cropping is already implicit in the data the engine produces today; reserved-rectangle staging is designed, not built, and is waiting for the template geometry of a real client to be put to the test.
+              Il ritaglio consapevole del cast è già implicito nei dati che il motore produce oggi; la messa in scena a rettangolo riservato è progettata, non costruita, e attende la geometria dei template di un cliente reale per essere messa alla prova.
             </p>
 
           </div>
@@ -832,36 +832,36 @@
             <h3 class="content-title"
                 data-en="Where the formats go"
                 data-it="Dove vanno le proporzioni">
-              Where the formats go
+              Dove vanno le proporzioni
             </h3>
 
             <p class="post-text"
                data-en="The four aspect ratios in chapter 06 &mdash; 1:1, 4:5, 9:16, 16:9 &mdash; are a standard industry convention, not a figure specific to any one client: every format an ad can run in reduces to one of these four frames. The table below is that convention, not a site-specific invention."
                data-it="Le quattro proporzioni del capitolo 06 &mdash; 1:1, 4:5, 9:16, 16:9 &mdash; sono una convenzione standard del settore, non un dato specifico di un cliente: ogni proporzione in cui un annuncio può girare si riduce a uno di questi quattro fotogrammi. La tabella sotto è quella convenzione, non un'invenzione di questo sito.">
-              The four aspect ratios in chapter 06 — 1:1, 4:5, 9:16, 16:9 — are a standard industry convention, not a figure specific to any one client: every format an ad can run in reduces to one of these four frames. The table below is that convention, not a site-specific invention.
+              Le quattro proporzioni del capitolo 06 &mdash; 1:1, 4:5, 9:16, 16:9 &mdash; sono una convenzione standard del settore, non un dato specifico di un cliente: ogni proporzione in cui un annuncio può girare si riduce a uno di questi quattro fotogrammi. La tabella sotto è quella convenzione, non un'invenzione di questo sito.
             </p>
 
             <table class="data-table">
               <thead><tr>
-                <th data-en="Aspect ratio" data-it="Proporzioni">Aspect ratio</th>
-                <th data-en="Typical placement" data-it="Posizionamento tipico">Typical placement</th>
+                <th data-en="Aspect ratio" data-it="Proporzioni">Proporzioni</th>
+                <th data-en="Typical placement" data-it="Posizionamento tipico">Posizionamento tipico</th>
               </tr></thead>
               <tbody>
                 <tr>
                   <td data-en="1:1" data-it="1:1">1:1</td>
-                  <td data-en="Instagram/Facebook feed, Google Display Network, Pinterest" data-it="Feed Instagram/Facebook, Google Display Network, Pinterest">Instagram/Facebook feed, Google Display Network, Pinterest</td>
+                  <td data-en="Instagram/Facebook feed, Google Display Network, Pinterest" data-it="Feed Instagram/Facebook, Google Display Network, Pinterest">Feed Instagram/Facebook, Google Display Network, Pinterest</td>
                 </tr>
                 <tr>
                   <td data-en="4:5" data-it="4:5">4:5</td>
-                  <td data-en="Instagram/Facebook feed (mobile-optimised), LinkedIn feed" data-it="Feed Instagram/Facebook (ottimizzato mobile), feed LinkedIn">Instagram/Facebook feed (mobile-optimised), LinkedIn feed</td>
+                  <td data-en="Instagram/Facebook feed (mobile-optimised), LinkedIn feed" data-it="Feed Instagram/Facebook (ottimizzato mobile), feed LinkedIn">Feed Instagram/Facebook (ottimizzato mobile), feed LinkedIn</td>
                 </tr>
                 <tr>
                   <td data-en="9:16" data-it="9:16">9:16</td>
-                  <td data-en="Instagram/Facebook Stories and Reels, TikTok, YouTube Shorts" data-it="Stories e Reels Instagram/Facebook, TikTok, YouTube Shorts">Instagram/Facebook Stories and Reels, TikTok, YouTube Shorts</td>
+                  <td data-en="Instagram/Facebook Stories and Reels, TikTok, YouTube Shorts" data-it="Stories e Reels Instagram/Facebook, TikTok, YouTube Shorts">Stories e Reels Instagram/Facebook, TikTok, YouTube Shorts</td>
                 </tr>
                 <tr>
                   <td data-en="16:9" data-it="16:9">16:9</td>
-                  <td data-en="Classic display banners, YouTube pre-roll/in-stream, CTV" data-it="Banner display classici, pre-roll/in-stream YouTube, CTV">Classic display banners, YouTube pre-roll/in-stream, CTV</td>
+                  <td data-en="Classic display banners, YouTube pre-roll/in-stream, CTV" data-it="Banner display classici, pre-roll/in-stream YouTube, CTV">Banner display classici, pre-roll/in-stream YouTube, CTV</td>
                 </tr>
               </tbody>
             </table>
@@ -869,7 +869,7 @@
             <p class="post-text"
                data-en="The engine itself never learns any of this: a manifest row (chapter 06 of the overview post) only ever says a <code>format</code> field like <code>9:16</code>, never &ldquo;Instagram Story.&rdquo; Which row goes to which placement is decided one layer downstream, by the adapter into whichever DCO tool the client already runs &mdash; Flashtalking, Celtra, or DV360's own Studio, the three named in <a href='post-dco-mercato-globale.html' class='about-link'>DCO and the Agency Market</a> &mdash; according to what the agency actually bought for that campaign. Building a new adapter is the only place platform-specific knowledge belongs; the engine stays platform-agnostic by design."
                data-it="Il motore stesso non impara mai nulla di tutto questo: una riga del manifest (capitolo 06 del post di presentazione) riporta solo un campo <code>format</code> come <code>9:16</code>, mai &ldquo;Instagram Story.&rdquo; Quale riga vada a quale posizionamento lo decide uno strato più a valle, l'adattatore verso lo strumento DCO che il cliente già utilizza &mdash; Flashtalking, Celtra, o lo Studio proprio di DV360, i tre nominati in <a href='post-dco-mercato-globale.html' class='about-link'>DCO e il mercato delle agenzie</a> &mdash; in base a cosa l'agenzia ha effettivamente comprato per quella campagna. Scrivere un nuovo adattatore è l'unico punto dove la conoscenza specifica di piattaforma deve entrare; il motore resta agnostico rispetto alla piattaforma per costruzione.">
-              The engine itself never learns any of this: a manifest row (chapter 06 of the overview post) only ever says a <code>format</code> field like <code>9:16</code>, never "Instagram Story." Which row goes to which placement is decided one layer downstream, by the adapter into whichever DCO tool the client already runs — Flashtalking, Celtra, or DV360's own Studio, the three named in <a href="post-dco-mercato-globale.html" class="about-link">DCO and the Agency Market</a> — according to what the agency actually bought for that campaign. Building a new adapter is the only place platform-specific knowledge belongs; the engine stays platform-agnostic by design.
+              Il motore stesso non impara mai nulla di tutto questo: una riga del manifest (capitolo 06 del post di presentazione) riporta solo un campo <code>format</code> come <code>9:16</code>, mai &ldquo;Instagram Story.&rdquo; Quale riga vada a quale posizionamento lo decide uno strato più a valle, l'adattatore verso lo strumento DCO che il cliente già utilizza &mdash; Flashtalking, Celtra, o lo Studio proprio di DV360, i tre nominati in <a href="post-dco-mercato-globale.html" class="about-link">DCO e il mercato delle agenzie</a> &mdash; in base a cosa l'agenzia ha effettivamente comprato per quella campagna. Scrivere un nuovo adattatore è l'unico punto dove la conoscenza specifica di piattaforma deve entrare; il motore resta agnostico rispetto alla piattaforma per costruzione.
             </p>
 
           </div>
@@ -883,25 +883,25 @@
             <h3 class="content-title"
                 data-en="What one campaign run costs, worked out"
                 data-it="Quanto costa un run di campagna, calcolato">
-              What one campaign run costs, worked out
+              Quanto costa un run di campagna, calcolato
             </h3>
 
             <p class="post-text"
                data-en="The time this architecture compresses is the time of producing the pool, and it can be measured without asking a client for data. A worked example, with the assumptions spelled out: a twelve-week display campaign, three slogans, one locked cast, six-beat stories, four formats. Industry rules of thumb suggest refreshing display creative every two to four weeks and keeping three to five variants in rotation (see <a href='https://www.revenuejack.com/blog/refresh-banner-ads-frequency-guide' class='about-link' target='_blank' rel='noopener noreferrer'>this guide to banner refresh frequency</a>): at a three-week cadence with four variants in rotation, the campaign consumes sixteen distinct creative sets, which at six beats by four formats comes to 384 deliverable units."
                data-it="Il tempo che questa architettura comprime è quello della produzione del pool, e si misura senza chiedere dati a un cliente. Un esempio concreto, con le ipotesi dichiarate: una campagna display di dodici settimane, tre slogan, un cast fissato, storie di sei beat, quattro proporzioni. Le indicazioni di settore suggeriscono di rinfrescare la creatività display ogni due-quattro settimane e di tenerne tre-cinque varianti in rotazione (vedi <a href='https://www.revenuejack.com/blog/refresh-banner-ads-frequency-guide' class='about-link' target='_blank' rel='noopener noreferrer'>questa guida sulla frequenza di rinfresco dei banner</a>): a una cadenza di tre settimane con quattro varianti in rotazione, la campagna consuma sedici set creativi distinti, che a sei beat per quattro proporzioni fanno 384 unità consegnabili.">
-              The time this architecture compresses is the time of producing the pool, and it can be measured without asking a client for data. A worked example, with the assumptions spelled out: a twelve-week display campaign, three slogans, one locked cast, six-beat stories, four formats. Industry rules of thumb suggest refreshing display creative every two to four weeks and keeping three to five variants in rotation (see <a href="https://www.revenuejack.com/blog/refresh-banner-ads-frequency-guide" class="about-link" target="_blank" rel="noopener noreferrer">this guide to banner refresh frequency</a>): at a three-week cadence with four variants in rotation, the campaign consumes sixteen distinct creative sets, which at six beats by four formats comes to 384 deliverable units.
+              Il tempo che questa architettura comprime è quello della produzione del pool, e si misura senza chiedere dati a un cliente. Un esempio concreto, con le ipotesi dichiarate: una campagna display di dodici settimane, tre slogan, un cast fissato, storie di sei beat, quattro proporzioni. Le indicazioni di settore suggeriscono di rinfrescare la creatività display ogni due-quattro settimane e di tenerne tre-cinque varianti in rotazione (vedi <a href="https://www.revenuejack.com/blog/refresh-banner-ads-frequency-guide" class="about-link" target="_blank" rel="noopener noreferrer">questa guida sulla frequenza di rinfresco dei banner</a>): a una cadenza di tre settimane con quattro varianti in rotazione, la campagna consuma sedici set creativi distinti, che a sei beat per quattro proporzioni fanno 384 unità consegnabili.
             </p>
 
             <p class="post-text"
                data-en="The point is which of those numbers template-based production already solves. Resizing and export, yes: one vendor reports going from eighty hours to eight to update and export a campaign (see <a href='https://viewst.com/creative-production-kpis-dashboard-metrics/' class='about-link' target='_blank' rel='noopener noreferrer'>this review of creative-production KPIs</a>) &mdash; exactly the ground <code>reformat_to_formats()</code> and <code>export_manifest()</code> cover (chapters 05&ndash;06 of <a href='dco-engine-tech.html' class='about-link'>DCO Engine: technical description</a>). What it does not solve is the sixteen distinct sets: traditionally each one is a shoot or an illustration commission, so in practice the sixteen collapse into four real concepts plus twelve recolourings &mdash; which is exactly template fatigue. <code>run_campaign()</code> produces the sixteen sets from the same locked cast plus sixteen story files passed to <code>generate_variant()</code>."
                data-it="Il punto è quali di questi numeri la produzione a template risolva già. Il ridimensionamento e l'export sì: un fornitore dichiara il passaggio da ottanta ore a otto per aggiornare ed esportare una campagna (vedi <a href='https://viewst.com/creative-production-kpis-dashboard-metrics/' class='about-link' target='_blank' rel='noopener noreferrer'>questa rassegna sui KPI di produzione creativa</a>) &mdash; esattamente il terreno coperto da <code>reformat_to_formats()</code> ed <code>export_manifest()</code> (capitoli 05&ndash;06 di <a href='dco-engine-tech.html' class='about-link'>Motore DCO: descrizione tecnica</a>). Quello che non risolve sono i sedici set distinti: per via tradizionale ognuno è uno shooting o una commessa di illustrazione, e in pratica i sedici collassano in quattro concept reali più dodici ricolorazioni &mdash; che è esattamente la stanchezza da template. <code>run_campaign()</code> produce i sedici set dallo stesso cast fissato più sedici file di storia passati a <code>generate_variant()</code>.">
-              The point is which of those numbers template-based production already solves. Resizing and export, yes: one vendor reports going from eighty hours to eight to update and export a campaign (see <a href="https://viewst.com/creative-production-kpis-dashboard-metrics/" class="about-link" target="_blank" rel="noopener noreferrer">this review of creative-production KPIs</a>) — exactly the ground <code>reformat_to_formats()</code> and <code>export_manifest()</code> cover (chapters 05–06 of <a href="dco-engine-tech.html" class="about-link">DCO Engine: technical description</a>). What it does not solve is the sixteen distinct sets: traditionally each one is a shoot or an illustration commission, so in practice the sixteen collapse into four real concepts plus twelve recolourings — which is exactly template fatigue. <code>run_campaign()</code> produces the sixteen sets from the same locked cast plus sixteen story files passed to <code>generate_variant()</code>.
+              Il punto è quali di questi numeri la produzione a template risolva già. Il ridimensionamento e l'export sì: un fornitore dichiara il passaggio da ottanta ore a otto per aggiornare ed esportare una campagna (vedi <a href="https://viewst.com/creative-production-kpis-dashboard-metrics/" class="about-link" target="_blank" rel="noopener noreferrer">questa rassegna sui KPI di produzione creativa</a>) &mdash; esattamente il terreno coperto da <code>reformat_to_formats()</code> ed <code>export_manifest()</code> (capitoli 05&ndash;06 di <a href="dco-engine-tech.html" class="about-link">Motore DCO: descrizione tecnica</a>). Quello che non risolve sono i sedici set distinti: per via tradizionale ognuno è uno shooting o una commessa di illustrazione, e in pratica i sedici collassano in quattro concept reali più dodici ricolorazioni &mdash; che è esattamente la stanchezza da template. <code>run_campaign()</code> produce i sedici set dallo stesso cast fissato più sedici file di storia passati a <code>generate_variant()</code>.
             </p>
 
             <p class="post-text"
                data-en="The metrics reported for each run map directly onto <code>CampaignResult.stats</code>, defined in chapter 07 of <a href='dco-engine-tech.html' class='about-link'>DCO Engine: technical description</a> &mdash; the same <code>generated</code>, <code>passed_first_try</code>, <code>passed_after_correction</code>, <code>discarded</code>, <code>yield</code> and <code>refusal_rate</code> fields serialised in <code>result.json</code> there. What's reported is approved variants per run, machine time per variant, minutes of human review per batch, and refusal rate. CTR and cost per conversion are not reported: they depend on the decision and measurement layers (layers 2 and 4 in the parent post's four-layer table), which are not this one."
                data-it="Le metriche riportate per ogni run corrispondono direttamente ai campi di <code>CampaignResult.stats</code>, definiti nel capitolo 07 di <a href='dco-engine-tech.html' class='about-link'>Motore DCO: descrizione tecnica</a> &mdash; gli stessi <code>generated</code>, <code>passed_first_try</code>, <code>passed_after_correction</code>, <code>discarded</code>, <code>yield</code> e <code>refusal_rate</code> serializzati lì in <code>result.json</code>. Quello che viene riportato è: varianti approvate per run, tempo macchina per variante, minuti di revisione umana per batch, e tasso di scarto. Non riportiamo CTR né costo per conversione: dipendono dagli strati di decisione e di misura (i layer 2 e 4 nella tabella a quattro layer del post principale), che non sono questo.">
-              The metrics reported for each run map directly onto <code>CampaignResult.stats</code>, defined in chapter 07 of <a href="dco-engine-tech.html" class="about-link">DCO Engine: technical description</a> — the same <code>generated</code>, <code>passed_first_try</code>, <code>passed_after_correction</code>, <code>discarded</code>, <code>yield</code> and <code>refusal_rate</code> fields serialised in <code>result.json</code> there. What's reported is approved variants per run, machine time per variant, minutes of human review per batch, and refusal rate. CTR and cost per conversion are not reported: they depend on the decision and measurement layers (layers 2 and 4 in the parent post's four-layer table), which are not this one.
+              Le metriche riportate per ogni run corrispondono direttamente ai campi di <code>CampaignResult.stats</code>, definiti nel capitolo 07 di <a href="dco-engine-tech.html" class="about-link">Motore DCO: descrizione tecnica</a> &mdash; gli stessi <code>generated</code>, <code>passed_first_try</code>, <code>passed_after_correction</code>, <code>discarded</code>, <code>yield</code> e <code>refusal_rate</code> serializzati lì in <code>result.json</code>. Quello che viene riportato è: varianti approvate per run, tempo macchina per variante, minuti di revisione umana per batch, e tasso di scarto. Non riportiamo CTR né costo per conversione: dipendono dagli strati di decisione e di misura (i layer 2 e 4 nella tabella a quattro layer del post principale), che non sono questo.
             </p>
 
           </div>
@@ -915,19 +915,19 @@
             <h3 class="content-title"
                 data-en="What the campaign total means, and a leaner alternative"
                 data-it="Cosa significa il totale di campagna, e un'alternativa più leggera">
-              What the campaign total means, and a leaner alternative
+              Cosa significa il totale di campagna, e un'alternativa più leggera
             </h3>
 
             <p class="post-text"
                data-en="Worth spelling out, since the phrasing in Chapter 10 invites a reasonable misreading. The campaign figure above adds no time-based or distribution cost: trafficking, impressions and media spend are not this engine's job, are not priced anywhere on this page, and are paid by the client separately &mdash; exactly as already stated for the stage 1&ndash;3 figures earlier. The twelve weeks only justify how many distinct creative sets a campaign needs, under the refresh-cadence benchmark cited in Chapter 10; they add no per-week cost of their own. <strong>The &times;16 means sixteen distinct sequences, not a cost of publishing</strong> or of duration. Each of those sixteen is exactly the atemporal, predefined unit this page has been costing throughout &mdash; one story, its images, its formats, its metadata &mdash; run sixteen times instead of once, because a campaign that must not wear out over twelve weeks needs sixteen different creative sets, not one set stretched over time."
                data-it="Vale la pena chiarirlo, perché la formulazione del Capitolo 10 si presta a una lettura equivoca, ragionevole ma sbagliata. Il totale di campagna qui sopra non aggiunge nessun costo legato al tempo o alla distribuzione: il trafficking, le impression e la spesa media non sono compito di questo motore, non sono prezzati in nessun punto di questa pagina, e li paga il cliente separatamente &mdash; esattamente come già dichiarato per le cifre degli stadi 1&ndash;3 più sopra. Le dodici settimane servono solo a giustificare quanti set creativi distinti servono a una campagna, secondo il benchmark di cadenza di rinfresco citato nel Capitolo 10; non aggiungono nessun costo per settimana. <strong>Il &times;16 significa sedici sequenze distinte, non un costo di pubblicazione</strong> o di durata. Ognuna di quelle sedici è esattamente l'unità atemporale e predefinita che questa pagina ha calcolato dall'inizio &mdash; una storia, le sue immagini, le sue proporzioni, i suoi metadati &mdash; fatta girare sedici volte invece di una, perché una campagna che non deve esaurirsi in dodici settimane ha bisogno di sedici set creativi diversi, non di un set solo allungato nel tempo.">
-              Worth spelling out, since the phrasing in Chapter 10 invites a reasonable misreading. The campaign figure above adds no time-based or distribution cost: trafficking, impressions and media spend are not this engine's job, are not priced anywhere on this page, and are paid by the client separately — exactly as already stated for the stage 1–3 figures earlier. The twelve weeks only justify how many distinct creative sets a campaign needs, under the refresh-cadence benchmark cited in Chapter 10; they add no per-week cost of their own. <strong>The ×16 means sixteen distinct sequences, not a cost of publishing</strong> or of duration. Each of those sixteen is exactly the atemporal, predefined unit this page has been costing throughout — one story, its images, its formats, its metadata — run sixteen times instead of once, because a campaign that must not wear out over twelve weeks needs sixteen different creative sets, not one set stretched over time.
+              Vale la pena chiarirlo, perché la formulazione del Capitolo 10 si presta a una lettura equivoca, ragionevole ma sbagliata. Il totale di campagna qui sopra non aggiunge nessun costo legato al tempo o alla distribuzione: il trafficking, le impression e la spesa media non sono compito di questo motore, non sono prezzati in nessun punto di questa pagina, e li paga il cliente separatamente &mdash; esattamente come già dichiarato per le cifre degli stadi 1&ndash;3 più sopra. Le dodici settimane servono solo a giustificare quanti set creativi distinti servono a una campagna, secondo il benchmark di cadenza di rinfresco citato nel Capitolo 10; non aggiungono nessun costo per settimana. <strong>Il &times;16 significa sedici sequenze distinte, non un costo di pubblicazione</strong> o di durata. Ognuna di quelle sedici è esattamente l'unità atemporale e predefinita che questa pagina ha calcolato dall'inizio &mdash; una storia, le sue immagini, le sue proporzioni, i suoi metadati &mdash; fatta girare sedici volte invece di una, perché una campagna che non deve esaurirsi in dodici settimane ha bisogno di sedici set creativi diversi, non di un set solo allungato nel tempo.
             </p>
 
             <p class="post-text"
                data-en="The breakdown Chapter 10 left implicit, plus a cheaper alternative worked the same way:"
                data-it="Il dettaglio che il Capitolo 10 lasciava implicito, più un'alternativa più economica calcolata allo stesso modo:">
-              The breakdown Chapter 10 left implicit, plus a cheaper alternative worked the same way:
+              Il dettaglio che il Capitolo 10 lasciava implicito, più un'alternativa più economica calcolata allo stesso modo:
             </p>
 
             <table class="data-table">
@@ -940,32 +940,32 @@
               </colgroup>
               <thead><tr>
                 <th data-en="Scenario" data-it="Scenario">Scenario</th>
-                <th data-en="Model" data-it="Modello">Model</th>
-                <th data-en="Sequences" data-it="Sequenze">Sequences</th>
-                <th data-en="Cost / sequence" data-it="Costo / sequenza">Cost / sequence</th>
-                <th data-en="Campaign total" data-it="Totale campagna">Campaign total</th>
+                <th data-en="Model" data-it="Modello">Modello</th>
+                <th data-en="Sequences" data-it="Sequenze">Sequenze</th>
+                <th data-en="Cost / sequence" data-it="Costo / sequenza">Costo / sequenza</th>
+                <th data-en="Campaign total" data-it="Totale campagna">Totale campagna</th>
               </tr></thead>
               <tbody>
                 <tr>
-                  <td data-en="Maximum (as above)" data-it="Massimo (come sopra)">Maximum (as above)</td>
+                  <td data-en="Maximum (as above)" data-it="Massimo (come sopra)">Massimo (come sopra)</td>
                   <td data-en="Pro" data-it="Pro">Pro</td>
                   <td class="num" data-en="16" data-it="16">16</td>
-                  <td class="num" data-en="$25.50&ndash;$28.20" data-it="$25,50&ndash;$28,20">$25.50&ndash;$28.20</td>
+                  <td class="num" data-en="$25.50&ndash;$28.20" data-it="$25,50&ndash;$28,20">$25,50&ndash;$28,20</td>
                   <td class="num" data-en="~$410&ndash;$450" data-it="~$410&ndash;$450">~$410&ndash;$450</td>
                 </tr>
                 <tr>
-                  <td data-en="Lean, all Flash" data-it="Snello, tutto Flash">Lean, all Flash</td>
+                  <td data-en="Lean, all Flash" data-it="Snello, tutto Flash">Snello, tutto Flash</td>
                   <td data-en="Flash" data-it="Flash">Flash</td>
                   <td class="num" data-en="5" data-it="5">5</td>
-                  <td class="num" data-en="$7.50&ndash;$8.20" data-it="$7,50&ndash;$8,20">$7.50&ndash;$8.20</td>
-                  <td class="num" data-en="~$37.50&ndash;$41" data-it="~$37,50&ndash;$41">~$37.50&ndash;$41</td>
+                  <td class="num" data-en="$7.50&ndash;$8.20" data-it="$7,50&ndash;$8,20">$7,50&ndash;$8,20</td>
+                  <td class="num" data-en="~$37.50&ndash;$41" data-it="~$37,50&ndash;$41">~$37,50&ndash;$41</td>
                 </tr>
                 <tr>
-                  <td data-en="Hybrid (1 Pro + 4 Flash)" data-it="Ibrido (1 Pro + 4 Flash)">Hybrid (1 Pro + 4 Flash)</td>
+                  <td data-en="Hybrid (1 Pro + 4 Flash)" data-it="Ibrido (1 Pro + 4 Flash)">Ibrido (1 Pro + 4 Flash)</td>
                   <td data-en="Pro + Flash" data-it="Pro + Flash">Pro + Flash</td>
                   <td class="num" data-en="5 (1+4)" data-it="5 (1+4)">5 (1+4)</td>
-                  <td class="num" data-en="varies" data-it="varia">varies</td>
-                  <td class="num" data-en="~$55.50&ndash;$61" data-it="~$55,50&ndash;$61">~$55.50&ndash;$61</td>
+                  <td class="num" data-en="varies" data-it="varia">varia</td>
+                  <td class="num" data-en="~$55.50&ndash;$61" data-it="~$55,50&ndash;$61">~$55,50&ndash;$61</td>
                 </tr>
               </tbody>
             </table>
@@ -973,17 +973,17 @@
             <p class="post-text"
                data-en="The last two rows answer a cheaper production idea: five variants in random rotation instead of sixteen, generated on <strong>Flash</strong> rather than Pro, with the Sonnet story-spec call left unchanged. Flash's image-generation call ($0.32 against Pro's $1.07) and per-image text ($0.004&ndash;$0.008 against $0.06&ndash;$0.09) drop straight into Chapter 06's formula; formats/export is extended to the same rate on the same one-outpaint-in-three logic &mdash; <strong>$3.20</strong> per sequence instead of $10.70. That gives roughly <strong>$7.50&ndash;$8.20 per sequence on Flash</strong>, against $25.50&ndash;$28.20 on Pro &mdash; at five variants, all on Flash, a campaign runs about <strong>$37.50&ndash;$41</strong>. The hybrid row is the engineering idea described alongside this question: one reference sequence generated at full Pro quality, then fed back in as conditioning with an inflated prompt for the remaining four on Flash. It lands around <strong>$55.50&ndash;$61</strong> &mdash; cheaper than pure Pro, more than pure Flash, trading part of the saving for whatever consistency the Pro-seeded reference buys."
                data-it="Le ultime due righe rispondono a un'idea di produzione più economica: cinque varianti a rotazione casuale invece di sedici, generate su <strong>Flash</strong> invece che su Pro, lasciando invariata la chiamata Sonnet per lo story-spec. La chiamata di generazione immagine di Flash ($0,32 contro $1,07 di Pro) e il testo per immagine ($0,004&ndash;$0,008 contro $0,06&ndash;$0,09) entrano direttamente nella formula del Capitolo 06; proporzioni/export viene estesa alla stessa tariffa con la stessa logica di un outpaint su tre &mdash; <strong>$3,20</strong> per sequenza invece di $10,70. Questo dà circa <strong>$7,50&ndash;$8,20 per sequenza su Flash</strong>, contro $25,50&ndash;$28,20 su Pro &mdash; a cinque varianti, tutte su Flash, una campagna costa circa <strong>$37,50&ndash;$41</strong>. La riga ibrida è l'idea di engineering descritta insieme a questa domanda: una sequenza di riferimento generata alla piena qualità Pro, poi rimessa in input come condizionamento con un prompt gonfiato per le restanti quattro su Flash. Si arriva a circa <strong>$55,50&ndash;$61</strong> &mdash; più economico del solo Pro, più caro del solo Flash, scambiando parte del risparmio con la coerenza che il riferimento generato su Pro può garantire.">
-              The last two rows answer a cheaper production idea: five variants in random rotation instead of sixteen, generated on <strong>Flash</strong> rather than Pro, with the Sonnet story-spec call left unchanged. Flash's image-generation call ($0.32 against Pro's $1.07) and per-image text ($0.004–$0.008 against $0.06–$0.09) drop straight into Chapter 06's formula; formats/export is extended to the same rate on the same one-outpaint-in-three logic — <strong>$3.20</strong> per sequence instead of $10.70. That gives roughly <strong>$7.50–$8.20 per sequence on Flash</strong>, against $25.50–$28.20 on Pro — at five variants, all on Flash, a campaign runs about <strong>$37.50–$41</strong>. The hybrid row is the engineering idea described alongside this question: one reference sequence generated at full Pro quality, then fed back in as conditioning with an inflated prompt for the remaining four on Flash. It lands around <strong>$55.50–$61</strong> — cheaper than pure Pro, more than pure Flash, trading part of the saving for whatever consistency the Pro-seeded reference buys.
+              Le ultime due righe rispondono a un'idea di produzione più economica: cinque varianti a rotazione casuale invece di sedici, generate su <strong>Flash</strong> invece che su Pro, lasciando invariata la chiamata Sonnet per lo story-spec. La chiamata di generazione immagine di Flash ($0,32 contro $1,07 di Pro) e il testo per immagine ($0,004&ndash;$0,008 contro $0,06&ndash;$0,09) entrano direttamente nella formula del Capitolo 06; proporzioni/export viene estesa alla stessa tariffa con la stessa logica di un outpaint su tre &mdash; <strong>$3,20</strong> per sequenza invece di $10,70. Questo dà circa <strong>$7,50&ndash;$8,20 per sequenza su Flash</strong>, contro $25,50&ndash;$28,20 su Pro &mdash; a cinque varianti, tutte su Flash, una campagna costa circa <strong>$37,50&ndash;$41</strong>. La riga ibrida è l'idea di engineering descritta insieme a questa domanda: una sequenza di riferimento generata alla piena qualità Pro, poi rimessa in input come condizionamento con un prompt gonfiato per le restanti quattro su Flash. Si arriva a circa <strong>$55,50&ndash;$61</strong> &mdash; più economico del solo Pro, più caro del solo Flash, scambiando parte del risparmio con la coerenza che il riferimento generato su Pro può garantire.
             </p>
 
             <div class="open-question">
               <span class="oq-label"
                     data-en="Open &mdash; not verified here"
-                    data-it="Aperto &mdash; non verificato qui">Open — not verified here</span>
+                    data-it="Aperto &mdash; non verificato qui">Aperto &mdash; non verificato qui</span>
               <p class="post-text"
                  data-en="Two assumptions in this comparison carry the same flag as the rest of this page. First, the 30&ndash;50% waste range was derived for Pro and is simply reused here for Flash, with no evidence a lighter model rejects at the same rate under the same judge &mdash; it could be higher, from weaker fidelity to the brief, or similar, if the story itself is simple; this page doesn't know which. Second, the prompt-inflation step in the hybrid row is a production idea, not a costed one: whatever time it takes to engineer that conditioning step doesn't appear in any of these numbers. Rotating five variants at random rather than delivering all of them is a trafficking choice and changes nothing here either &mdash; the same distinction as the &times;16 above: generation cost is paid once per sequence produced, independent of how, or how often, a finished sequence is later served."
                  data-it="Due ipotesi di questo confronto portano lo stesso avviso del resto della pagina. Primo, l'intervallo di scarto 30&ndash;50% è stato derivato per Pro e qui viene semplicemente riusato per Flash, senza nessuna prova che un modello più leggero scarti allo stesso tasso sotto lo stesso judge &mdash; potrebbe essere più alto, per una fedeltà minore al brief, o simile, se la storia è semplice; questa pagina non lo sa. Secondo, il passo di gonfiatura del prompt nella riga ibrida è un'idea di produzione, non una voce di costo: il tempo che serve per fare l'engineering di quel condizionamento non compare in nessuno di questi numeri. Ruotare cinque varianti a caso invece di consegnarle tutte è una scelta di trafficking e non cambia nulla nemmeno qui &mdash; la stessa distinzione del &times;16 qui sopra: il costo di generazione si paga una volta per sequenza prodotta, indipendentemente da come, o quanto spesso, una sequenza finita viene poi servita.">
-                Two assumptions in this comparison carry the same flag as the rest of this page. First, the 30–50% waste range was derived for Pro and is simply reused here for Flash, with no evidence a lighter model rejects at the same rate under the same judge — it could be higher, from weaker fidelity to the brief, or similar, if the story itself is simple; this page doesn't know which. Second, the prompt-inflation step in the hybrid row is a production idea, not a costed one: whatever time it takes to engineer that conditioning step doesn't appear in any of these numbers. Rotating five variants at random rather than delivering all of them is a trafficking choice and changes nothing here either — the same distinction as the ×16 above: generation cost is paid once per sequence produced, independent of how, or how often, a finished sequence is later served.
+                Due ipotesi di questo confronto portano lo stesso avviso del resto della pagina. Primo, l'intervallo di scarto 30&ndash;50% è stato derivato per Pro e qui viene semplicemente riusato per Flash, senza nessuna prova che un modello più leggero scarti allo stesso tasso sotto lo stesso judge &mdash; potrebbe essere più alto, per una fedeltà minore al brief, o simile, se la storia è semplice; questa pagina non lo sa. Secondo, il passo di gonfiatura del prompt nella riga ibrida è un'idea di produzione, non una voce di costo: il tempo che serve per fare l'engineering di quel condizionamento non compare in nessuno di questi numeri. Ruotare cinque varianti a caso invece di consegnarle tutte è una scelta di trafficking e non cambia nulla nemmeno qui &mdash; la stessa distinzione del &times;16 qui sopra: il costo di generazione si paga una volta per sequenza prodotta, indipendentemente da come, o quanto spesso, una sequenza finita viene poi servita.
               </p>
             </div>
 
@@ -998,13 +998,13 @@
             <h3 class="content-title"
                 data-en="Multi-brand, multi-agency: what changes when the engine is shared"
                 data-it="Multi-brand e multi-agenzia: cosa cambia quando il motore è condiviso">
-              Multi-brand, multi-agency: what changes when the engine is shared
+              Multi-brand e multi-agenzia: cosa cambia quando il motore è condiviso
             </h3>
 
             <p class="post-text"
                data-en="Every figure above prices one run for one brand. The business model discussed in <a href='post-dco-mercato-agenzie-ita.html' class='about-link'>The Agency Channel in Italy</a> is different: one engine shared by five to ten small agencies, each with a few brands, each launching perhaps two or three campaigns a month (a working assumption, not data). Sharing changes what has to be counted. There are three layers of cost, and only the first is an API cost."
                data-it="Ogni cifra qui sopra prezza un run per un brand. Il modello di business discusso in <a href='post-dco-mercato-agenzie-ita.html' class='about-link'>Il canale delle agenzie in Italia</a> è diverso: un solo motore condiviso da cinque a dieci piccole agenzie, ciascuna con alcuni brand, ciascuna con forse due o tre campagne al mese (un'ipotesi di lavoro, non un dato). La condivisione cambia ciò che va contato. I livelli di costo sono tre, e solo il primo è un costo API.">
-              Every figure above prices one run for one brand. The business model discussed in <a href="post-dco-mercato-agenzie-ita.html" class="about-link">The Agency Channel in Italy</a> is different: one engine shared by five to ten small agencies, each with a few brands, each launching perhaps two or three campaigns a month (a working assumption, not data). Sharing changes what has to be counted. There are three layers of cost, and only the first is an API cost.
+              Ogni cifra qui sopra prezza un run per un brand. Il modello di business discusso in <a href="post-dco-mercato-agenzie-ita.html" class="about-link">Il canale delle agenzie in Italia</a> è diverso: un solo motore condiviso da cinque a dieci piccole agenzie, ciascuna con alcuni brand, ciascuna con forse due o tre campagne al mese (un'ipotesi di lavoro, non un dato). La condivisione cambia ciò che va contato. I livelli di costo sono tre, e solo il primo è un costo API.
             </p>
 
             <table class="data-table">
@@ -1014,25 +1014,25 @@
                 <col style="width:30%">
               </colgroup>
               <thead><tr>
-                <th data-en="Layer" data-it="Livello">Layer</th>
-                <th data-en="What it contains" data-it="Cosa contiene">What it contains</th>
-                <th data-en="Scales with" data-it="Scala con">Scales with</th>
+                <th data-en="Layer" data-it="Livello">Livello</th>
+                <th data-en="What it contains" data-it="Cosa contiene">Cosa contiene</th>
+                <th data-en="Scales with" data-it="Scala con">Scala con</th>
               </tr></thead>
               <tbody>
                 <tr>
                   <td data-en="Per run" data-it="Per run">Per run</td>
-                  <td data-en="API calls of Chapters 01&ndash;11: generation, judge, correction, formats" data-it="Chiamate API delle Capitoli 01&ndash;11: generazione, judge, correction, proporzioni">API calls of Chapters 01&ndash;11: generation, judge, correction, formats</td>
-                  <td data-en="Campaigns (linear)" data-it="Campagne (lineare)">Campaigns (linear)</td>
+                  <td data-en="API calls of Chapters 01&ndash;11: generation, judge, correction, formats" data-it="Chiamate API delle Capitoli 01&ndash;11: generazione, judge, correction, proporzioni">Chiamate API delle Capitoli 01&ndash;11: generazione, judge, correction, proporzioni</td>
+                  <td data-en="Campaigns (linear)" data-it="Campagne (lineare)">Campagne (lineare)</td>
                 </tr>
                 <tr>
                   <td data-en="Per brand" data-it="Per brand">Per brand</td>
-                  <td data-en="Configuration file, reference pair, calibration set: human time, plus the API calls of the calibration runs" data-it="File di configurazione, coppia di riferimento, calibration set: tempo umano, più le chiamate API dei run di calibrazione">Configuration file, reference pair, calibration set: human time, plus the API calls of the calibration runs</td>
-                  <td data-en="Brands onboarded (one-off; again if a brand's look changes)" data-it="Brand acquisiti (una tantum; di nuovo se cambia l'aspetto di un brand)">Brands onboarded (one-off; again if a brand's look changes)</td>
+                  <td data-en="Configuration file, reference pair, calibration set: human time, plus the API calls of the calibration runs" data-it="File di configurazione, coppia di riferimento, calibration set: tempo umano, più le chiamate API dei run di calibrazione">File di configurazione, coppia di riferimento, calibration set: tempo umano, più le chiamate API dei run di calibrazione</td>
+                  <td data-en="Brands onboarded (one-off; again if a brand's look changes)" data-it="Brand acquisiti (una tantum; di nuovo se cambia l'aspetto di un brand)">Brand acquisiti (una tantum; di nuovo se cambia l'aspetto di un brand)</td>
                 </tr>
                 <tr>
-                  <td data-en="Shared platform" data-it="Piattaforma condivisa">Shared platform</td>
-                  <td data-en="Hosting, storage, job queue, monitoring, review tooling, maintenance" data-it="Hosting, storage, coda dei job, monitoraggio, strumenti di revisione, manutenzione">Hosting, storage, job queue, monitoring, review tooling, maintenance</td>
-                  <td data-en="Fixed; spread over every tenant" data-it="Fisso; ripartito su tutti i tenant">Fixed; spread over every tenant</td>
+                  <td data-en="Shared platform" data-it="Piattaforma condivisa">Piattaforma condivisa</td>
+                  <td data-en="Hosting, storage, job queue, monitoring, review tooling, maintenance" data-it="Hosting, storage, coda dei job, monitoraggio, strumenti di revisione, manutenzione">Hosting, storage, coda dei job, monitoraggio, strumenti di revisione, manutenzione</td>
+                  <td data-en="Fixed; spread over every tenant" data-it="Fisso; ripartito su tutti i tenant">Fisso; ripartito su tutti i tenant</td>
                 </tr>
               </tbody>
             </table>
@@ -1040,7 +1040,7 @@
             <p class="post-text"
                data-en="The first layer is what this page already prices. At two to three campaigns a month per agency, it comes to the following, reusing the campaign totals of Chapter 11 (the arithmetic is a plain multiplication, rounded):"
                data-it="Il primo livello è quello che questa pagina già prezza. A due o tre campagne al mese per agenzia, il risultato è il seguente, riusando i totali di campagna del Capitolo 11 (l'aritmetica è una semplice moltiplicazione, arrotondata):">
-              The first layer is what this page already prices. At two to three campaigns a month per agency, it comes to the following, reusing the campaign totals of Chapter 11 (the arithmetic is a plain multiplication, rounded):
+              Il primo livello è quello che questa pagina già prezza. A due o tre campagne al mese per agenzia, il risultato è il seguente, riusando i totali di campagna del Capitolo 11 (l'aritmetica è una semplice moltiplicazione, arrotondata):
             </p>
 
             <table class="data-table">
@@ -1052,28 +1052,28 @@
               </colgroup>
               <thead><tr>
                 <th data-en="Scenario" data-it="Scenario">Scenario</th>
-                <th data-en="Per campaign" data-it="Per campagna">Per campaign</th>
-                <th data-en="Per agency / month (2&ndash;3 campaigns)" data-it="Per agenzia / mese (2&ndash;3 campagne)">Per agency / month (2&ndash;3 campaigns)</th>
-                <th data-en="5&ndash;10 agencies pooled / month" data-it="5&ndash;10 agenzie insieme / mese">5&ndash;10 agencies pooled / month</th>
+                <th data-en="Per campaign" data-it="Per campagna">Per campagna</th>
+                <th data-en="Per agency / month (2&ndash;3 campaigns)" data-it="Per agenzia / mese (2&ndash;3 campagne)">Per agenzia / mese (2&ndash;3 campagne)</th>
+                <th data-en="5&ndash;10 agencies pooled / month" data-it="5&ndash;10 agenzie insieme / mese">5&ndash;10 agenzie insieme / mese</th>
               </tr></thead>
               <tbody>
                 <tr>
-                  <td data-en="Maximum, Pro (16 sequences)" data-it="Massimo, Pro (16 sequenze)">Maximum, Pro (16 sequences)</td>
+                  <td data-en="Maximum, Pro (16 sequences)" data-it="Massimo, Pro (16 sequenze)">Massimo, Pro (16 sequenze)</td>
                   <td class="num" data-en="~$410&ndash;$450" data-it="~$410&ndash;$450">~$410&ndash;$450</td>
-                  <td class="num" data-en="~$820&ndash;$1,350" data-it="~$820&ndash;$1.350">~$820&ndash;$1,350</td>
-                  <td class="num" data-en="~$4,100&ndash;$13,500" data-it="~$4.100&ndash;$13.500">~$4,100&ndash;$13,500</td>
+                  <td class="num" data-en="~$820&ndash;$1,350" data-it="~$820&ndash;$1.350">~$820&ndash;$1.350</td>
+                  <td class="num" data-en="~$4,100&ndash;$13,500" data-it="~$4.100&ndash;$13.500">~$4.100&ndash;$13.500</td>
                 </tr>
                 <tr>
-                  <td data-en="Lean, all Flash (5)" data-it="Snello, tutto Flash (5)">Lean, all Flash (5)</td>
-                  <td class="num" data-en="~$37.50&ndash;$41" data-it="~$37,50&ndash;$41">~$37.50&ndash;$41</td>
+                  <td data-en="Lean, all Flash (5)" data-it="Snello, tutto Flash (5)">Snello, tutto Flash (5)</td>
+                  <td class="num" data-en="~$37.50&ndash;$41" data-it="~$37,50&ndash;$41">~$37,50&ndash;$41</td>
                   <td class="num" data-en="~$75&ndash;$123" data-it="~$75&ndash;$123">~$75&ndash;$123</td>
-                  <td class="num" data-en="~$375&ndash;$1,230" data-it="~$375&ndash;$1.230">~$375&ndash;$1,230</td>
+                  <td class="num" data-en="~$375&ndash;$1,230" data-it="~$375&ndash;$1.230">~$375&ndash;$1.230</td>
                 </tr>
                 <tr>
-                  <td data-en="Hybrid (1 Pro + 4 Flash)" data-it="Ibrido (1 Pro + 4 Flash)">Hybrid (1 Pro + 4 Flash)</td>
-                  <td class="num" data-en="~$55.50&ndash;$61" data-it="~$55,50&ndash;$61">~$55.50&ndash;$61</td>
+                  <td data-en="Hybrid (1 Pro + 4 Flash)" data-it="Ibrido (1 Pro + 4 Flash)">Ibrido (1 Pro + 4 Flash)</td>
+                  <td class="num" data-en="~$55.50&ndash;$61" data-it="~$55,50&ndash;$61">~$55,50&ndash;$61</td>
                   <td class="num" data-en="~$111&ndash;$183" data-it="~$111&ndash;$183">~$111&ndash;$183</td>
-                  <td class="num" data-en="~$555&ndash;$1,830" data-it="~$555&ndash;$1.830">~$555&ndash;$1,830</td>
+                  <td class="num" data-en="~$555&ndash;$1,830" data-it="~$555&ndash;$1.830">~$555&ndash;$1.830</td>
                 </tr>
               </tbody>
             </table>
@@ -1081,59 +1081,59 @@
             <p class="post-text"
                data-en="These figures assume every campaign has the size of the Chapter 11 scenarios, which is itself an assumption: a small agency's real campaigns may well be smaller. The point of the pooled column is something else. API cost is linear in campaigns, so pooling agencies does not make a single run cheaper. What pooling changes is the denominator of the other two layers: the shared platform's fixed cost <em>F</em> is divided by ten to thirty campaigns a month instead of two or three, roughly three to fifteen times less per campaign than a dedicated service would carry. As a condition: with a revenue <em>R</em> per campaign and a variable cost <em>v</em> per campaign (the first two layers), the platform breaks even at <em>N</em> = <em>F</em> / (<em>R</em> &minus; <em>v</em>) campaigns a month. This is a formula, not an estimate: <em>F</em> and <em>R</em> are not known."
                data-it="Queste cifre assumono che ogni campagna abbia la dimensione degli scenari del Capitolo 11, il che è a sua volta un'ipotesi: le campagne reali di una piccola agenzia possono essere ben più piccole. Il punto della colonna aggregata è un altro. Il costo API è lineare nelle campagne, quindi mettere insieme le agenzie non rende più economico un singolo run. Ciò che cambia è il denominatore degli altri due livelli: il costo fisso <em>F</em> della piattaforma condivisa viene diviso per dieci-trenta campagne al mese invece che per due-tre, cioè da circa tre a quindici volte meno per campagna di quanto porterebbe un servizio dedicato. Come condizione: con un ricavo <em>R</em> per campagna e un costo variabile <em>v</em> per campagna (i primi due livelli), la piattaforma raggiunge il pareggio a <em>N</em> = <em>F</em> / (<em>R</em> &minus; <em>v</em>) campagne al mese. È una formula, non una stima: <em>F</em> e <em>R</em> non sono noti.">
-              These figures assume every campaign has the size of the Chapter 11 scenarios, which is itself an assumption: a small agency's real campaigns may well be smaller. The point of the pooled column is something else. API cost is linear in campaigns, so pooling agencies does not make a single run cheaper. What pooling changes is the denominator of the other two layers: the shared platform's fixed cost <em>F</em> is divided by ten to thirty campaigns a month instead of two or three, roughly three to fifteen times less per campaign than a dedicated service would carry. As a condition: with a revenue <em>R</em> per campaign and a variable cost <em>v</em> per campaign (the first two layers), the platform breaks even at <em>N</em> = <em>F</em> / (<em>R</em> &minus; <em>v</em>) campaigns a month. This is a formula, not an estimate: <em>F</em> and <em>R</em> are not known.
+              Queste cifre assumono che ogni campagna abbia la dimensione degli scenari del Capitolo 11, il che è a sua volta un'ipotesi: le campagne reali di una piccola agenzia possono essere ben più piccole. Il punto della colonna aggregata è un altro. Il costo API è lineare nelle campagne, quindi mettere insieme le agenzie non rende più economico un singolo run. Ciò che cambia è il denominatore degli altri due livelli: il costo fisso <em>F</em> della piattaforma condivisa viene diviso per dieci-trenta campagne al mese invece che per due-tre, cioè da circa tre a quindici volte meno per campagna di quanto porterebbe un servizio dedicato. Come condizione: con un ricavo <em>R</em> per campagna e un costo variabile <em>v</em> per campagna (i primi due livelli), la piattaforma raggiunge il pareggio a <em>N</em> = <em>F</em> / (<em>R</em> &minus; <em>v</em>) campagne al mese. È una formula, non una stima: <em>F</em> e <em>R</em> non sono noti.
             </p>
 
             <p class="post-text"
                data-en="Two details of the technical side make the shared design plausible rather than a rewrite. The job interface in <a href='dco-engine-tech.html' class='about-link'>DCO Engine: technical description</a> is already file- and API-based, so a shared service differs from a single-brand run in who submits the jobs and where each brand's files live, not in the engine. And every manifest row already carries a brand key, so one tenant's output can be filtered from another's; a tenant key above it is a new field this documentation does not specify yet."
                data-it="Due dettagli sul lato tecnico rendono il disegno condiviso plausibile e non una riscrittura. L'interfaccia dei job in <a href='dco-engine-tech.html' class='about-link'>Motore DCO: descrizione tecnica</a> è già basata su file e API, quindi un servizio condiviso si distingue da un run a brand singolo per chi invia i job e dove stanno i file di ciascun brand, non per il motore. E ogni riga del manifest porta già una chiave di brand, quindi l'output di un tenant si può separare da quello di un altro; una chiave di tenant sopra di essa è un campo nuovo che questa documentazione non specifica ancora.">
-              Two details of the technical side make the shared design plausible rather than a rewrite. The job interface in <a href="dco-engine-tech.html" class="about-link">DCO Engine: technical description</a> is already file- and API-based, so a shared service differs from a single-brand run in who submits the jobs and where each brand's files live, not in the engine. And every manifest row already carries a brand key, so one tenant's output can be filtered from another's; a tenant key above it is a new field this documentation does not specify yet.
+              Due dettagli sul lato tecnico rendono il disegno condiviso plausibile e non una riscrittura. L'interfaccia dei job in <a href="dco-engine-tech.html" class="about-link">Motore DCO: descrizione tecnica</a> è già basata su file e API, quindi un servizio condiviso si distingue da un run a brand singolo per chi invia i job e dove stanno i file di ciascun brand, non per il motore. E ogni riga del manifest porta già una chiave di brand, quindi l'output di un tenant si può separare da quello di un altro; una chiave di tenant sopra di essa è un campo nuovo che questa documentazione non specifica ancora.
             </p>
 
             <p class="post-text"
                data-en="A forfait on the three unknowns above, then &mdash; every number here is an estimate Claude worked out from the figures already on this site, not a measurement, and it is marked as such throughout."
                data-it="Un forfait sulle tre incognite qui sopra, allora &mdash; ogni numero qui è una stima che Claude ha ricavato dalle cifre già su questa pagina, non una misura, ed è segnato come tale ovunque.">
-              A forfait on the three unknowns above, then &mdash; every number here is an estimate Claude worked out from the figures already on this site, not a measurement, and it is marked as such throughout.
+              Un forfait sulle tre incognite qui sopra, allora &mdash; ogni numero qui è una stima che Claude ha ricavato dalle cifre già su questa pagina, non una misura, ed è segnato come tale ovunque.
             </p>
 
             <p class="post-text" style="margin-top:1.2em;"
                data-en="<strong>Platform fixed cost F.</strong> Kept deliberately small, because nothing here has to be more than a database, object storage for generated images, a job queue and basic monitoring &mdash; a summary of that structure is in chapter 11 of <a href='dco-engine-tech.html#platform-structure' class='about-link'>DCO Engine: technical description</a>. Call that &euro;80&ndash;150 a month at this scale, rounded here to a flat <strong>F &asymp; &euro;150/month</strong>. Left out on purpose: the agency-facing API or dashboard an agency would actually log into to submit a job and review its output. That interface has not been designed yet &mdash; it is a one-off build cost, not a running one, and the same chapter 11 says so."
                data-it="<strong>Costo fisso di piattaforma F.</strong> Tenuto deliberatamente basso, perché qui non serve altro che un database, uno storage per le immagini generate, una coda dei job e un monitoraggio di base &mdash; una descrizione sommaria di questa struttura è nel capitolo 11 di <a href='dco-engine-tech.html#platform-structure' class='about-link'>Motore DCO: descrizione tecnica</a>. Diciamo &euro;80&ndash;150 al mese a questa scala, arrotondati qui a un forfait piatto <strong>F &asymp; &euro;150/mese</strong>. Escluso di proposito: l'API o la dashboard rivolta alle agenzie, con cui un'agenzia dovrebbe davvero autenticarsi per inviare un job e rivedere il suo output. Quell'interfaccia non è ancora stata progettata &mdash; è un costo di costruzione una tantum, non un costo corrente, e lo stesso capitolo 11 lo dice.">
-              <strong>Platform fixed cost F.</strong> Kept deliberately small, because nothing here has to be more than a database, object storage for generated images, a job queue and basic monitoring &mdash; a summary of that structure is in chapter 11 of <a href="dco-engine-tech.html#platform-structure" class="about-link">DCO Engine: technical description</a>. Call that &euro;80&ndash;150 a month at this scale, rounded here to a flat <strong>F &asymp; &euro;150/month</strong>. Left out on purpose: the agency-facing API or dashboard an agency would actually log into to submit a job and review its output. That interface has not been designed yet &mdash; it is a one-off build cost, not a running one, and the same chapter 11 says so.
+              <strong>Costo fisso di piattaforma F.</strong> Tenuto deliberatamente basso, perché qui non serve altro che un database, uno storage per le immagini generate, una coda dei job e un monitoraggio di base &mdash; una descrizione sommaria di questa struttura è nel capitolo 11 di <a href="dco-engine-tech.html#platform-structure" class="about-link">Motore DCO: descrizione tecnica</a>. Diciamo &euro;80&ndash;150 al mese a questa scala, arrotondati qui a un forfait piatto <strong>F &asymp; &euro;150/mese</strong>. Escluso di proposito: l'API o la dashboard rivolta alle agenzie, con cui un'agenzia dovrebbe davvero autenticarsi per inviare un job e rivedere il suo output. Quell'interfaccia non è ancora stata progettata &mdash; è un costo di costruzione una tantum, non un costo corrente, e lo stesso capitolo 11 lo dice.
             </p>
 
             <p class="post-text" style="margin-top:1.2em;"
                data-en="<strong>Per-brand onboarding.</strong> Writing the configuration file of <a href='post-dco-pipeline.html#reuse' class='about-link'>chapter 02</a> is roughly an hour; building and labelling the small calibration set it needs &mdash; &quot;a few dozen shots&quot;, per item D in <a href='dco-engine-tech.html' class='about-link'>DCO Engine: technical description</a> &mdash; is another three to four hours of a reviewer's time; the calibration run itself is a handful of API calls, cheap enough to fold into the per-campaign figure below. Add two to three hours of creative-direction time choosing and tuning candidates out of <code>generate_reference_pair()</code>, per open question B in <a href='dco-engine-tech.html' class='about-link'>DCO Engine: technical description</a>. Call it six to eight hours in total, <strong>&asymp; &euro;225&ndash;250 per brand</strong>, one-off, at a loaded reviewer/creative rate of roughly &euro;30&ndash;35/hour. Not covered by this figure: the recurring version of the same creative-direction work, when a brand's own story moves it into a different visual world mid-campaign &mdash; that is closer to a second onboarding than a tweak, and stays unpriced here."
                data-it="<strong>Onboarding per brand.</strong> Scrivere il file di configurazione del <a href='post-dco-pipeline.html#reuse' class='about-link'>capitolo 02</a> richiede circa un'ora; costruire ed etichettare il piccolo calibration set che serve &mdash; &quot;qualche decina di inquadrature&quot;, secondo il punto D di <a href='dco-engine-tech.html' class='about-link'>Motore DCO: descrizione tecnica</a> &mdash; sono altre tre o quattro ore di tempo di un revisore; il run di calibrazione in sé è una manciata di chiamate API, economiche abbastanza da confluire nella cifra per campagna qui sotto. Si aggiungono due o tre ore di tempo di direzione creativa per scegliere e affinare i candidati usciti da <code>generate_reference_pair()</code>, secondo la domanda aperta B di <a href='dco-engine-tech.html' class='about-link'>Motore DCO: descrizione tecnica</a>. Diciamo sei o otto ore in totale, <strong>&asymp; &euro;225&ndash;250 per brand</strong>, una tantum, a una tariffa caricata di revisore/creativo di circa &euro;30&ndash;35/ora. Non coperto da questa cifra: la versione ricorrente dello stesso lavoro di direzione creativa, quando la storia di un brand lo sposta in un mondo visivo diverso a metà campagna &mdash; è più vicino a un secondo onboarding che a un ritocco, e resta non prezzato qui.">
-              <strong>Per-brand onboarding.</strong> Writing the configuration file of <a href="post-dco-pipeline.html#reuse" class="about-link">chapter 02</a> is roughly an hour; building and labelling the small calibration set it needs &mdash; "a few dozen shots", per item D in <a href="dco-engine-tech.html" class="about-link">DCO Engine: technical description</a> &mdash; is another three to four hours of a reviewer's time; the calibration run itself is a handful of API calls, cheap enough to fold into the per-campaign figure below. Add two to three hours of creative-direction time choosing and tuning candidates out of <code>generate_reference_pair()</code>, per open question B in <a href="dco-engine-tech.html" class="about-link">DCO Engine: technical description</a>. Call it six to eight hours in total, <strong>&asymp; &euro;225&ndash;250 per brand</strong>, one-off, at a loaded reviewer/creative rate of roughly &euro;30&ndash;35/hour. Not covered by this figure: the recurring version of the same creative-direction work, when a brand's own story moves it into a different visual world mid-campaign &mdash; that is closer to a second onboarding than a tweak, and stays unpriced here.
+              <strong>Onboarding per brand.</strong> Scrivere il file di configurazione del <a href="post-dco-pipeline.html#reuse" class="about-link">capitolo 02</a> richiede circa un'ora; costruire ed etichettare il piccolo calibration set che serve &mdash; &quot;qualche decina di inquadrature&quot;, secondo il punto D di <a href="dco-engine-tech.html" class="about-link">Motore DCO: descrizione tecnica</a> &mdash; sono altre tre o quattro ore di tempo di un revisore; il run di calibrazione in sé è una manciata di chiamate API, economiche abbastanza da confluire nella cifra per campagna qui sotto. Si aggiungono due o tre ore di tempo di direzione creativa per scegliere e affinare i candidati usciti da <code>generate_reference_pair()</code>, secondo la domanda aperta B di <a href="dco-engine-tech.html" class="about-link">Motore DCO: descrizione tecnica</a>. Diciamo sei o otto ore in totale, <strong>&asymp; &euro;225&ndash;250 per brand</strong>, una tantum, a una tariffa caricata di revisore/creativo di circa &euro;30&ndash;35/ora. Non coperto da questa cifra: la versione ricorrente dello stesso lavoro di direzione creativa, quando la storia di un brand lo sposta in un mondo visivo diverso a metà campagna &mdash; è più vicino a un secondo onboarding che a un ritocco, e resta non prezzato qui.
             </p>
 
             <p class="post-text" style="margin-top:1.2em;"
                data-en="<strong>Variable cost per campaign, v.</strong> The lean-to-hybrid API range from Chapter 11 above, treated here at rough euro/dollar parity since the point is magnitude rather than an invoice: &euro;35&ndash;55. Add roughly ninety minutes of human time across the three checkpoints of <a href='post-dco-engine.html#loop' class='about-link'>The Engine: generation, control, export</a> (&euro;25&ndash;50 at the same rate as onboarding). <strong>v &asymp; &euro;90/campaign</strong> at the mid-point of that range."
                data-it="<strong>Costo variabile per campagna, v.</strong> L'intervallo API snello-ibrido del Capitolo 11 qui sopra, trattato a parità euro/dollaro approssimativa, perché il punto è l'ordine di grandezza e non una fattura: &euro;35&ndash;55. Si aggiungono circa novanta minuti di tempo umano sui tre checkpoint di <a href='post-dco-engine.html#loop' class='about-link'>Il motore: generazione, controllo, export</a> (&euro;25&ndash;50 alla stessa tariffa dell'onboarding). <strong>v &asymp; &euro;90/campagna</strong> al punto medio di quell'intervallo.">
-              <strong>Variable cost per campaign, v.</strong> The lean-to-hybrid API range from Chapter 11 above, treated here at rough euro/dollar parity since the point is magnitude rather than an invoice: &euro;35&ndash;55. Add roughly ninety minutes of human time across the three checkpoints of <a href="post-dco-engine.html#loop" class="about-link">The Engine: generation, control, export</a> (&euro;25&ndash;50 at the same rate as onboarding). <strong>v &asymp; &euro;90/campaign</strong> at the mid-point of that range.
+              <strong>Costo variabile per campagna, v.</strong> L'intervallo API snello-ibrido del Capitolo 11 qui sopra, trattato a parità euro/dollaro approssimativa, perché il punto è l'ordine di grandezza e non una fattura: &euro;35&ndash;55. Si aggiungono circa novanta minuti di tempo umano sui tre checkpoint di <a href="post-dco-engine.html#loop" class="about-link">Il motore: generazione, controllo, export</a> (&euro;25&ndash;50 alla stessa tariffa dell'onboarding). <strong>v &asymp; &euro;90/campagna</strong> al punto medio di quell'intervallo.
             </p>
 
             <p class="post-text" style="margin-top:1.2em;"
                data-en="<strong>Revenue per campaign, R.</strong> This is the one number with no basis in anything on this site &mdash; a placeholder price, not a decision. Call it <strong>R &asymp; &euro;200/campaign</strong>, in the range of a &euro;450&ndash;600 monthly subscription covering the two-to-three-campaign assumption. At those numbers, margin (R &minus; v) &asymp; &euro;110/campaign, and the break-even condition above becomes <strong>N = F / (R&minus;v) &asymp; 150 / 110</strong>, just under two campaigns a month. If these are in the right neighbourhood, a single small agency already clears the platform's flat cost on its own at its normal two to three campaigns; pooling five to ten agencies isn't needed to survive, it's there to turn a thin break-even into a comfortable one, and eventually to amortise the undesigned agency-facing interface above."
                data-it="<strong>Ricavo per campagna, R.</strong> È il numero senza alcuna base in nulla di già scritto su questo sito &mdash; un prezzo segnaposto, non una decisione. Diciamo <strong>R &asymp; &euro;200/campagna</strong>, nell'intervallo di un abbonamento mensile da &euro;450&ndash;600 che copre l'ipotesi delle due-tre campagne. Con questi numeri, il margine (R &minus; v) &asymp; &euro;110/campagna, e la condizione di pareggio qui sopra diventa <strong>N = F / (R&minus;v) &asymp; 150 / 110</strong>, poco meno di due campagne al mese. Se questi numeri sono nel giusto ordine di grandezza, una singola piccola agenzia copre già da sola il costo fisso della piattaforma alle sue normali due-tre campagne; mettere insieme cinque-dieci agenzie non serve per sopravvivere, serve a trasformare un pareggio sottile in uno comodo, e col tempo ad ammortizzare l'interfaccia verso le agenzie non ancora progettata.">
-              <strong>Revenue per campaign, R.</strong> This is the one number with no basis in anything on this site &mdash; a placeholder price, not a decision. Call it <strong>R &asymp; &euro;200/campaign</strong>, in the range of a &euro;450&ndash;600 monthly subscription covering the two-to-three-campaign assumption. At those numbers, margin (R &minus; v) &asymp; &euro;110/campaign, and the break-even condition above becomes <strong>N = F / (R&minus;v) &asymp; 150 / 110</strong>, just under two campaigns a month. If these are in the right neighbourhood, a single small agency already clears the platform's flat cost on its own at its normal two to three campaigns; pooling five to ten agencies isn't needed to survive, it's there to turn a thin break-even into a comfortable one, and eventually to amortise the undesigned agency-facing interface above.
+              <strong>Ricavo per campagna, R.</strong> È il numero senza alcuna base in nulla di già scritto su questo sito &mdash; un prezzo segnaposto, non una decisione. Diciamo <strong>R &asymp; &euro;200/campagna</strong>, nell'intervallo di un abbonamento mensile da &euro;450&ndash;600 che copre l'ipotesi delle due-tre campagne. Con questi numeri, il margine (R &minus; v) &asymp; &euro;110/campagna, e la condizione di pareggio qui sopra diventa <strong>N = F / (R&minus;v) &asymp; 150 / 110</strong>, poco meno di due campagne al mese. Se questi numeri sono nel giusto ordine di grandezza, una singola piccola agenzia copre già da sola il costo fisso della piattaforma alle sue normali due-tre campagne; mettere insieme cinque-dieci agenzie non serve per sopravvivere, serve a trasformare un pareggio sottile in uno comodo, e col tempo ad ammortizzare l'interfaccia verso le agenzie non ancora progettata.
             </p>
 
             <p class="post-text" style="margin-top:1.2em;"
                data-en="<strong>Two to three campaigns a month.</strong> Still a working assumption, not a benchmark this site has found evidence for. One way to read it as plausible rather than arbitrary: a small agency rarely runs several large campaigns at once, but often holds a handful of smaller retainer clients, each refreshing creative at something like the quarterly cadence already cited in Chapter 10. Six to ten such clients, each refreshed roughly once a quarter, land in that same two-to-three-a-month range in aggregate. A reasoned guess, not a count."
                data-it="<strong>Due o tre campagne al mese.</strong> Resta un'ipotesi di lavoro, non un benchmark per cui questo sito abbia trovato prove. Un modo per leggerla come plausibile e non arbitraria: una piccola agenzia raramente fa girare diverse grandi campagne insieme, ma spesso tiene una manciata di clienti più piccoli a retainer, ciascuno con un refresh creativo a una cadenza vicina a quella trimestrale già citata nel Capitolo 10. Sei-dieci clienti così, ciascuno rinfrescato più o meno una volta a trimestre, finiscono nello stesso intervallo di due-tre al mese in aggregato. Una stima ragionata, non un conteggio.">
-              <strong>Two to three campaigns a month.</strong> Still a working assumption, not a benchmark this site has found evidence for. One way to read it as plausible rather than arbitrary: a small agency rarely runs several large campaigns at once, but often holds a handful of smaller retainer clients, each refreshing creative at something like the quarterly cadence already cited in Chapter 10. Six to ten such clients, each refreshed roughly once a quarter, land in that same two-to-three-a-month range in aggregate. A reasoned guess, not a count.
+              <strong>Due o tre campagne al mese.</strong> Resta un'ipotesi di lavoro, non un benchmark per cui questo sito abbia trovato prove. Un modo per leggerla come plausibile e non arbitraria: una piccola agenzia raramente fa girare diverse grandi campagne insieme, ma spesso tiene una manciata di clienti più piccoli a retainer, ciascuno con un refresh creativo a una cadenza vicina a quella trimestrale già citata nel Capitolo 10. Sei-dieci clienti così, ciascuno rinfrescato più o meno una volta a trimestre, finiscono nello stesso intervallo di due-tre al mese in aggregato. Una stima ragionata, non un conteggio.
             </p>
 
             <div class="open-question">
               <span class="oq-label"
                     data-en="Open &mdash; the price is still a decision"
-                    data-it="Aperto &mdash; il prezzo resta una decisione">Open — the price is still a decision</span>
+                    data-it="Aperto &mdash; il prezzo resta una decisione">Aperto &mdash; il prezzo resta una decisione</span>
               <p class="post-text"
                data-en="The forfait above fills in order-of-magnitude numbers; it doesn't settle anything. Still open: the real euro/dollar conversion, treated here at rough parity for an order of magnitude only; the pricing model this actually lands on (per campaign, per seat, subscription) and the real R it produces; the real campaign frequency of real small agencies, once there are some to ask; and the build cost of the agency-facing API and dashboard sketched in chapter 11 of <a href='dco-engine-tech.html#platform-structure' class='about-link'>DCO Engine: technical description</a>, which sits entirely outside F above."
                data-it="Il forfait qui sopra riempie numeri all'ordine di grandezza; non chiude nulla. Restano aperti: la reale conversione euro/dollaro, qui trattata a parità approssimativa solo per l'ordine di grandezza; il modello di prezzo su cui si finirà davvero (a campagna, a postazione, abbonamento) e la R reale che produce; la reale frequenza di campagne delle piccole agenzie vere, una volta che ce ne saranno da interrogare; e il costo di costruzione dell'API e della dashboard verso le agenzie abbozzate nel capitolo 11 di <a href='dco-engine-tech.html#platform-structure' class='about-link'>Motore DCO: descrizione tecnica</a>, che sta interamente fuori dalla F qui sopra.">
-              The forfait above fills in order-of-magnitude numbers; it doesn't settle anything. Still open: the real euro/dollar conversion, treated here at rough parity for an order of magnitude only; the pricing model this actually lands on (per campaign, per seat, subscription) and the real R it produces; the real campaign frequency of real small agencies, once there are some to ask; and the build cost of the agency-facing API and dashboard sketched in chapter 11 of <a href="dco-engine-tech.html#platform-structure" class="about-link">DCO Engine: technical description</a>, which sits entirely outside F above.
+              Il forfait qui sopra riempie numeri all'ordine di grandezza; non chiude nulla. Restano aperti: la reale conversione euro/dollaro, qui trattata a parità approssimativa solo per l'ordine di grandezza; il modello di prezzo su cui si finirà davvero (a campagna, a postazione, abbonamento) e la R reale che produce; la reale frequenza di campagne delle piccole agenzie vere, una volta che ce ne saranno da interrogare; e il costo di costruzione dell'API e della dashboard verso le agenzie abbozzate nel capitolo 11 di <a href="dco-engine-tech.html#platform-structure" class="about-link">Motore DCO: descrizione tecnica</a>, che sta interamente fuori dalla F qui sopra.
             </p>
             </div>
 
@@ -1143,28 +1143,27 @@
 
       <!-- ── RELATED READING ──────────────────────────────────── -->
       <p class="post-text" style="margin-top:2.5rem; opacity:0.75;">
-        <span data-en="This page prices the stages described in " data-it="Questa pagina mette un prezzo sugli stadi descritti in ">This page prices the stages described in </span><a
+        <span data-en="This page prices the stages described in " data-it="Questa pagina mette un prezzo sugli stadi descritti in ">Questa pagina mette un prezzo sugli stadi descritti in </span><a
           href="post-dco-engine.html" class="about-link"
           data-en="The Engine: generation, control, export" data-it="Il motore: generazione, controllo, export"
-        >The Engine: generation, control, export</a><span data-en=", whose five stages are formalised as Python functions in " data-it=", i cui cinque stadi sono formalizzati come funzioni Python in ">, whose five stages are formalised as Python functions in </span><a
+        >Il motore: generazione, controllo, export</a><span data-en=", whose five stages are formalised as Python functions in " data-it=", i cui cinque stadi sono formalizzati come funzioni Python in ">, i cui cinque stadi sono formalizzati come funzioni Python in </span><a
           href="dco-engine-tech.html" class="about-link"
           data-en="DCO Engine: technical description" data-it="Motore DCO: descrizione tecnica"
-        >DCO Engine: technical description</a><span data-en="." data-it=".">.</span>
+        >Motore DCO: descrizione tecnica</a><span data-en="." data-it=".">.</span>
       </p>
 
     </div><!-- /page-body -->
   </main>
 
   <a href="post-dco-engine.html" class="nav-back"
-     data-en="BACK" data-it="INDIETRO">BACK</a>
+     data-en="BACK" data-it="INDIETRO">INDIETRO</a>
 
   <a href="index.html" class="nav-back nav-home" id="home-link" data-en="HOME" data-it="HOME">HOME</a>
   <div class="lang-switch">
-    <button class="lang-btn" data-lang="en">EN</button>
-    <button class="lang-btn" data-lang="it">IT</button>
+    <a class="lang-btn" href="/en/dco-costs-tech.html">EN</a>
   </div>
 
-  <script src="assets/lang.js"></script>
+  <script src="/assets/menu.js"></script>
   <script>
     window.addEventListener('scroll', () => {
       document.querySelector('header').classList.toggle('scrolled', window.scrollY > 20);

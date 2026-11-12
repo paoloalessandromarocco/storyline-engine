@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <title>DCO: One Pipeline, Many Products</title>
+  <link rel="alternate" hreflang="en"        href="https://storyline-engine.com/en/post-dco-pipeline.html">
+  <link rel="alternate" hreflang="it"        href="https://storyline-engine.com/post-dco-pipeline.html">
+  <link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-dco-pipeline.html">
+    <!-- Preload self-hosted fonts so they're already in flight before style.css
+       is even parsed — closes the remaining window where the browser paints
+       with the fallback (Georgia/Courier) and then swaps to the real font,
+       which is what still reads as the font "changing size" on reload. -->
+  <link rel="preload" href="/assets/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/ibm-plex-mono-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/eb-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/eb-garamond-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+  <meta name="description" content="Why Dynamic Creative Optimization stops being a single-brand exercise once an agency needs to run the same pipeline across multiple products.">
+  <link rel="canonical" href="https://storyline-engine.com/en/post-dco-pipeline.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Paolo Marocco">
+  <meta property="og:title" content="DCO: One Pipeline, Many Products">
+  <meta property="og:description" content="Why Dynamic Creative Optimization stops being a single-brand exercise once an agency needs to run the same pipeline across multiple products.">
+  <meta property="og:url" content="https://storyline-engine.com/en/post-dco-pipeline.html">
+  <meta property="og:image" content="https://storyline-engine.com/assets/post-dco-pipeline/coke1.jpg">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="it_IT">
+  <meta property="article:tag" content="API Architecture">
+  <meta property="article:tag" content="Generative AI">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DCO: One Pipeline, Many Products">
+  <meta name="twitter:description" content="Why Dynamic Creative Optimization stops being a single-brand exercise once an agency needs to run the same pipeline across multiple products.">
+  <meta name="twitter:image" content="https://storyline-engine.com/assets/post-dco-pipeline/coke1.jpg">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "DCO: One Pipeline, Many Products",
+  "description": "Why Dynamic Creative Optimization stops being a single-brand exercise once an agency needs to run the same pipeline across multiple products.",
+  "image": "https://storyline-engine.com/assets/post-dco-pipeline/coke1.jpg",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://storyline-engine.com/en/post-dco-pipeline.html",
+  "author": {
+    "@type": "Person",
+    "name": "Paolo Marocco",
+    "url": "https://storyline-engine.com/about.html"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Paolo Marocco"
+  }
+}
+  </script>
+
+  <link rel="stylesheet" href="/assets/style.css">
+
+  <style>
+    /* this post runs wider figures and code blocks than most posts
+       (the two brand_config.json excerpts need the room), so the
+       text column itself is widened a bit beyond style.css's
+       site-wide 780px default — scoped to this page only */
+    .page-content { max-width: 880px; }
+
+    /* ── post body text ─────────────────────────────────── */
+    .post-text {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.15rem;
+      line-height: 1.75;
+      margin: 0 0 1.4em 0;
+    }
+    /* about-link (defined in style.css) handles all inline links:
+       ochre colour at rest, darker on hover, no underline        */
+
+    /* ── footnote ref ────────────────────────────────────── */
+    sup.fn-ref {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6em;
+      line-height: 1;
+      vertical-align: super;
+      margin-left: 0.1em;
+    }
+    sup.fn-ref a { text-decoration: none; opacity: 0.55; }
+    sup.fn-ref a:hover { opacity: 1; }
+
+    /* ── footnotes block ─────────────────────────────────── */
+    .footnotes {
+      margin-top: 4rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid currentColor;
+      opacity: 0.65;
+    }
+    .footnotes ol {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 0.92rem;
+      line-height: 1.65;
+      padding-left: 1.4em;
+      margin: 0 0 0 -1.4em;
+      list-style-position: outside;
+    }
+    .footnotes li { margin-bottom: 0.8em; }
+    .fn-back {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8em;
+      margin-left: 0.4em;
+      text-decoration: none;
+      opacity: 0.5;
+    }
+    .fn-back:hover { opacity: 1; }
+
+    /* ── figure / image ──────────────────────────────────── */
+    .post-figure {
+      margin: 2.5rem auto 2rem;
+    }
+    .post-figure img {
+      width: 92%;
+	  margin: 0 auto;
+      height: auto;
+      display: block;
+      border: 1px solid rgba(0,0,0,0.10);
+      background: #ffffff;
+    }
+
+    /* ── triptych: three stills illustrating one case ──────
+       the three source photos have different native aspect
+       ratios (truck photo vs. ad stills), so each cell is
+       cropped to a shared 3:2 box rather than left to its own
+       ratio — otherwise the row reads as uneven/asymmetric.   */
+    .post-figure--triptych .triptych-row {
+      display: flex;
+      gap: 0.8rem;
+      margin-bottom: 0.9rem;
+    }
+    .post-figure--triptych .triptych-row > div {
+      flex: 1 1 0;
+      min-width: 0;
+      aspect-ratio: 3 / 2;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.10);
+      background: #ffffff;
+    }
+    .post-figure--triptych .triptych-row img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    @media (max-width: 720px) {
+      .post-figure--triptych .triptych-row { flex-direction: column; }
+    }
+
+    /* ── caption: bold title + smaller body ──────────────── */
+    .post-caption {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      line-height: 1.7;
+      color: #1A5CB3;
+      margin-top: 0.7rem;
+      text-align: justify;
+    }
+    .caption-title {
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      display: block;
+      margin-bottom: 0.2em;
+      text-align: center;
+    }
+
+    /* ── numbered content list ───────────────────────────── */
+    .content-list { list-style: none; padding: 0; margin: 1.6rem 0 0; }
+    .content-item {
+      display: grid;
+      grid-template-columns: 3rem 1fr;
+      gap: 1.6rem;
+      padding: 2rem 0;
+    }
+    .content-item:last-child { border-bottom: 1px solid rgba(0,0,0,0.08); }
+    /* no bottom line right before a chapter heading: its own thick top border already separates */
+    .content-list:has(+ .chapter-heading) .content-item:last-child { border-bottom: none; }
+    .content-body { min-width: 0; }
+    .content-number {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #1A5CB3;
+      opacity: 0.25;
+      padding-top: 0.15rem;
+      line-height: 1;
+    }
+    .content-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #1A5CB3;
+      margin: 0 0 0.9rem;
+      font-weight: 400;
+    }
+    .content-body .post-text { margin: 0; }
+
+    /* ── sub-bullet list ───────────────────────────────────── */
+    .content-sublist {
+      list-style: disc;
+      padding-left: 1.4em;
+      margin-top: 0.9em;
+      margin-bottom: 0;
+    }
+    .content-sublist li {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      margin-bottom: 0.6em;
+    }
+
+    /* ── chapter heading ─────────────────────────────────── */
+    .chapter-heading {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 1.05rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #1A5CB3;
+      margin: 3.5rem 0 0.5rem;
+      padding-top: 2rem;
+      border-top: 2px solid rgba(0,0,0,0.12);
+    }
+    .chapter-heading .chapter-num {
+      opacity: 0.5;
+      margin-right: 0.5em;
+    }
+
+    /* ── inline code and code blocks ─────────────────────── */
+    code {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.82em;
+      background: rgba(0,0,0,0.06);
+      padding: 0.1em 0.32em;
+      border-radius: 2px;
+    }
+    .code-block {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.79rem;
+      line-height: 1.6;
+      background: rgba(0,0,0,0.04);
+      border-left: 2px solid rgba(26,92,179,0.28);
+      padding: 0.9rem 1.2rem;
+      margin: 0 0 2rem;
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    @media (max-width: 700px) {
+      .content-item { grid-template-columns: 2rem 1fr; gap: 1rem; }
+      .content-number { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body class="interior">
+
+  <header>
+    <a href="/en/about.html" class="nav-item" data-en="ABOUT" data-it="ABOUT">ABOUT</a>
+    <div class="menu-container">
+      <span class="menu-trigger" data-en="TOPICS" data-it="ARGOMENTI">TOPICS</span>
+      <div class="menu-dropdown">
+        <a href="/en/adv.html"             class="menu-item" data-en="ADV"            data-it="ADV">ADV</a>
+        <a href="/en/neural-graphics.html" class="menu-item" data-en="VISUAL STORIES" data-it="FUMETTI/STORYBOARD">VISUAL STORIES</a>
+        <a href="/en/comfyui.html"         class="menu-item" data-en="COMFYUI"        data-it="COMFYUI">COMFYUI</a>
+        <a href="/en/posts.html"           class="menu-item" data-en="POSTS"          data-it="POST">POSTS</a>
+        <span class="menu-item menu-item--disabled" data-en="VIDEO" data-it="VIDEO">VIDEO</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content">
+
+    <p class="section-label" data-en="Claude + Gemini API &middot; Dynamic Creative Optimization · PIPELINE &amp; QA" data-it="Claude + Gemini API &middot; Dynamic Creative Optimization · PIPELINE &amp; QA">Claude + Gemini API &middot; Dynamic Creative Optimization · PIPELINE &amp; QA</p>
+    <h1 class="page-title"
+        data-en="DCO: One Pipeline, Many Products"
+        data-it="DCO: una Pipeline, Più Prodotti">
+      DCO: One Pipeline, Many Products
+    </h1>
+
+    <div class="page-body">
+
+      <div class="post-tags" style="margin-bottom:2rem;">
+        <span class="post-tag tag-narr" data-en="Gemini API"      data-it="Gemini API">Gemini API</span>
+        <span class="post-tag tag-narr" data-en="DCO"             data-it="DCO">DCO</span>
+        <span class="post-tag tag-narr" data-en="Multi-product"    data-it="Multi-prodotto">Multi-product</span>
+        <span class="post-tag tag-narr" data-en="Storyboard"      data-it="Storyboard">Storyboard</span>
+        <span class="post-tag tag-narr" data-en="Automation"      data-it="Automazione">Automation</span>
+        <span class="post-tag tag-narr" data-en="QA"              data-it="QA">QA</span>
+        <span class="post-tag tag-narr" data-en="LLM-as-judge"    data-it="LLM-as-judge">LLM-as-judge</span>
+        <span class="post-tag tag-narr" data-en="Market Analysis" data-it="Analisi di Mercato">Market Analysis</span>
+      </div>
+
+      <p class="post-abstract-text"
+         data-en="Dynamic Creative Optimization (DCO) stops being a single-brand exercise the moment an agency or a brand needs to run it across more than one mascot pair, more than one product line, or more than one market at once. <a href='post-dco-engine.html' class='about-link'>The Engine: generation, control, export</a> covers the mechanism itself — one brand, one mascot pair, the generate &rarr; judge &rarr; correct loop that keeps every shot on-brand (built on Claude and the Gemini API). This post assumes that mechanism and asks what changes once it's pushed past a single brand: what a second mascot pair actually costs to add, why a shared pipeline needs a per-brand configuration file to stay trustworthy (shown on two real brands), and whether that file, together with the abstraction already built into the loop, is enough to carry it across products &mdash; or whether the kind of campaign and the kind of brand change what has to be checked. The market side of the question has its own posts: <a href='post-dco-mercato-globale.html' class='about-link'>DCO and the Agency Market</a> and <a href='post-dco-mercato-agenzie-ita.html' class='about-link'>The Agency Channel in Italy</a>."
+         data-it="Il Dynamic Creative Optimization (DCO) smette di essere un esercizio a brand singolo nel momento in cui un'agenzia o un brand ha bisogno di farlo girare su più di una coppia di mascotte, più di una linea di prodotto, o più di un mercato alla volta. <a href='post-dco-engine.html' class='about-link'>Il motore: generazione, controllo, export</a> copre il meccanismo in sé — un brand, una coppia di mascotte, il loop genera &rarr; giudica &rarr; correggi che mantiene ogni inquadratura coerente con il brand (costruito su Claude e sull'API Gemini). Questo post dà per acquisito quel meccanismo e si chiede cosa cambi una volta spinto oltre un singolo brand: quanto costa davvero aggiungere una seconda coppia di mascotte, perché una pipeline condivisa ha bisogno di un file di configurazione per brand per restare affidabile (mostrato su due brand reali), e se quel file, insieme all'astrazione già presente nel loop, basti a portarlo su più prodotti &mdash; o se il tipo di campagna e il tipo di brand cambino ciò che va controllato. Il lato di mercato della questione ha i suoi post: <a href='post-dco-mercato-globale.html' class='about-link'>DCO e il mercato delle agenzie</a> e <a href='post-dco-mercato-agenzie-ita.html' class='about-link'>Il canale delle agenzie in Italia</a>.">
+        Dynamic Creative Optimization (DCO) stops being a single-brand exercise the moment an agency or a brand needs to run it across more than one mascot pair, more than one product line, or more than one market at once. <a href="/en/post-dco-engine.html" class="about-link">The Engine: generation, control, export</a> covers the mechanism itself — one brand, one mascot pair, the generate &rarr; judge &rarr; correct loop that keeps every shot on-brand (built on Claude and the Gemini API). This post assumes that mechanism and asks what changes once it's pushed past a single brand: what a second mascot pair actually costs to add, why a shared pipeline needs a per-brand configuration file to stay trustworthy (shown on two real brands), and whether that file, together with the abstraction already built into the loop, is enough to carry it across products — or whether the kind of campaign and the kind of brand change what has to be checked. The market side of the question has its own posts: <a href="/en/post-dco-mercato-globale.html" class="about-link">DCO and the Agency Market</a> and <a href="/en/post-dco-mercato-agenzie-ita.html" class="about-link">The Agency Channel in Italy</a>.
+      </p>
+
+      <!-- ── CONTENTS ──────────────────────────────────────── -->
+      <ol class="content-list" start="3">
+
+        <!-- 03 -->
+        <li class="content-item">
+          <div class="content-number">01</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="Why this matters for a multi-product catalogue"
+                data-it="Perché conta per un catalogo multi-prodotto">
+              Why this matters for a multi-product catalogue
+            </h3>
+
+<p class="post-text"
+               data-en="A food company rarely sells one product. A cake line sits next to jams, honey, preserves — a forest-fruit jam is not a large creative leap from a cake, but under a conventional production process it's still a separate photoshoot or a separate illustration commission, with its own cost and its own lead time. With a character-consistency pipeline that is already built, a jam-adjacent pair is a second reference pair and a reused pipeline: the generation, staging and judging steps don't need to be rebuilt, only re-pointed."
+               data-it="Un'azienda alimentare raramente vende un solo prodotto. Una linea di torte sta accanto a marmellate, miele, conserve — una marmellata di frutti di bosco non è un salto creativo enorme rispetto a una torta, ma in un processo di produzione convenzionale resta comunque un servizio fotografico a parte o una commissione illustrativa a parte, con un proprio costo e propri tempi. Con una pipeline per la coerenza dei personaggi già costruita, una coppia affine alla marmellata è una seconda coppia di riferimento e una pipeline riusata: i passaggi di generazione, staging e giudizio non vanno ricostruiti, solo ripuntati.">
+              A food company rarely sells one product. A cake line sits next to jams, honey, preserves — a forest-fruit jam is not a large creative leap from a cake, but under a conventional production process it's still a separate photoshoot or a separate illustration commission, with its own cost and its own lead time. With a character-consistency pipeline that is already built, a jam-adjacent pair is a second reference pair and a reused pipeline: the generation, staging and judging steps don't need to be rebuilt, only re-pointed.
+            </p>
+
+            <p class="post-text" style="margin-top:1.2em;"
+               data-en="That claim holds cleanly only while the new pair stays inside the same world as the first — same mood, same palette family, same kind of setting. Even then, &quot;re-point the pipeline&quot; says nothing about what should stay standard across a brand's own story once its own briefs start pulling in different directions. The missing piece is a <strong>configuration file</strong>: one per brand, sitting alongside the reference images rather than buried in any single shot's brief, that fixes the identity assertions the judge (step D of the loop) checks every shot against, the product the story is about, a palette and rendering-style anchor, the setting vocabulary allowed for that brand, and the narrative register it's allowed to swing across."
+               data-it="Questa affermazione regge pienamente solo finché la nuova coppia resta dentro lo stesso mondo della prima — stessa atmosfera, stessa famiglia di palette, stesso tipo di ambientazione. Anche allora, &quot;ripuntare la pipeline&quot; non dice nulla su cosa debba restare standard nella storia di un brand una volta che i suoi stessi brief iniziano a tirare in direzioni diverse. Il pezzo mancante è un <strong>file di configurazione</strong>: uno per brand, che affianca le immagini di riferimento invece di essere sepolto nel brief di una singola inquadratura, e che fissa le asserzioni di identità su cui il judge (il passo D del loop) controlla ogni inquadratura, il prodotto di cui parla la storia, un'ancora di palette e stile di resa, il vocabolario di ambientazione consentito per quel brand, e il registro narrativo entro cui può oscillare.">
+              That claim holds cleanly only while the new pair stays inside the same world as the first — same mood, same palette family, same kind of setting. Even then, "re-point the pipeline" says nothing about what should stay standard across a brand's own story once its own briefs start pulling in different directions. The missing piece is a <strong>configuration file</strong>: one per brand, sitting alongside the reference images rather than buried in any single shot's brief, that fixes the identity assertions the judge (step D of the loop) checks every shot against, the product the story is about, a palette and rendering-style anchor, the setting vocabulary allowed for that brand, and the narrative register it's allowed to swing across.
+            </p>
+
+            <p class="post-text" style="margin-top:1.2em;"
+               data-en="The next chapter writes that file out for two brands from this site &mdash; a farm and a winery &mdash; and uses them to show what is reused when a second brand arrives and what is not. The third asks how far that carries: whether the configuration file and the abstraction already in the loop are enough for other products, or whether the kind of campaign and the kind of brand change what has to be checked. The market side &mdash; which buyers pay for closed-loop QA, and the case for a flexible service &mdash; now lives in <a href='post-dco-mercato-globale.html' class='about-link'>DCO and the Agency Market</a> and <a href='post-dco-mercato-agenzie-ita.html' class='about-link'>The Agency Channel in Italy</a>."
+               data-it="Il capitolo successivo scrive quel file per due brand di questo sito &mdash; una fattoria e una cantina &mdash; e li usa per mostrare cosa si riusa quando arriva un secondo brand e cosa no. Il terzo si chiede fin dove arriva tutto questo: se il file di configurazione e l'astrazione già presente nel loop bastino per altri prodotti, o se il tipo di campagna e il tipo di brand cambino ciò che va controllato. Il lato di mercato &mdash; quali acquirenti pagano per il QA a ciclo chiuso, e le ragioni di un servizio flessibile &mdash; vive ora in <a href='post-dco-mercato-globale.html' class='about-link'>DCO e il mercato delle agenzie</a> e <a href='post-dco-mercato-agenzie-ita.html' class='about-link'>Il canale delle agenzie in Italia</a>.">
+              The next chapter writes that file out for two brands from this site — a farm and a winery — and uses them to show what is reused when a second brand arrives and what is not. The third asks how far that carries: whether the configuration file and the abstraction already in the loop are enough for other products, or whether the kind of campaign and the kind of brand change what has to be checked. The market side — which buyers pay for closed-loop QA, and the case for a flexible service — now lives in <a href="/en/post-dco-mercato-globale.html" class="about-link">DCO and the Agency Market</a> and <a href="/en/post-dco-mercato-agenzie-ita.html" class="about-link">The Agency Channel in Italy</a>.
+      </p>
+
+            <p class="post-text" style="margin-top:1.2em;"
+               data-en="Multi-product is also where the export layer earns its keep. Every row the engine ships carries its own brand and product-line key, so one run across four product lines does not come back as four folders somebody has to sort by hand: it comes back as one manifest the agency can filter by line, by slogan or by format, and hand to the platform a slice at a time. The column scheme is in <a href='post-dco-engine.html' class='about-link'>The Engine: generation, control, export</a>, chapter 06."
+               data-it="Il multi-prodotto è anche il punto in cui lo strato di export si guadagna il posto. Ogni riga che il motore consegna porta con sé la propria chiave di brand e di linea di prodotto, così un run su quattro linee non torna sotto forma di quattro cartelle da smistare a mano: torna come un unico manifest che l'agenzia può filtrare per linea, per slogan o per proporzione, e consegnare alla piattaforma una fetta alla volta. Lo schema delle colonne è in <a href='post-dco-engine.html' class='about-link'>Il motore: generazione, controllo, export</a>, capitolo 06.">
+              Multi-product is also where the export layer earns its keep. Every row the engine ships carries its own brand and product-line key, so one run across four product lines does not come back as four folders somebody has to sort by hand: it comes back as one manifest the agency can filter by line, by slogan or by format, and hand to the platform a slice at a time. The column scheme is in <a href="/en/post-dco-engine.html" class="about-link">The Engine: generation, control, export</a>, chapter 06.
+            </p>
+
+          </div>
+        </li>
+
+        <!-- 04 -->
+        <li class="content-item" id="reuse">
+          <div class="content-number">02</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="Two brands, one pipeline: what is reused and what is not"
+                data-it="Due brand, una pipeline: cosa si riusa e cosa no">
+              Two brands, one pipeline: what is reused and what is not
+            </h3>
+
+            <p class="post-text"
+         data-en="Two brands from this site make the reuse question concrete. Pannocchino e Spighetta are the farm mascots of a cake line (the wedding below is from <a href='post-pannocchino-spighetta.html' class='about-link'>Automatic Storyboard: Meet Pannocchino e Spighetta</a>); Grappolotto e Foglina, a grape and a vine leaf, are the mascots for a professional wooden corkscrew, sold by a brand kept deliberately anonymous &mdash; the real campaign images were digitally de-branded for copyright, and the configuration file below keeps that same choice rather than inventing a fake brand name. They are close in register — warm, artisanal, food-and-drink — but the characters, the settings and the product are all different, which makes them a fair test: the pipeline is the same, the brand is not. Below, each brand with the configuration file that would sit next to its reference images."
+         data-it="Due brand di questo sito rendono concreto il problema del riuso. Pannocchino e Spighetta sono le mascotte della fattoria per una linea di torte (il matrimonio qui sotto viene da <a href='post-pannocchino-spighetta.html' class='about-link'>Storyboard Automatico: Ecco Pannocchino e Spighetta</a>); Grappolotto e Foglina, un grappolo e una foglia di vite, sono le mascotte di un cavatappi professionale in legno, venduto da un brand lasciato volutamente anonimo &mdash; le immagini reali della campagna sono state de-brandizzate digitalmente per motivi di copyright, e il file di configurazione qui sotto mantiene la stessa scelta invece di inventare un nome di brand fittizio. Sono vicini nel registro — caldo, artigianale, enogastronomico — ma personaggi, ambientazioni e prodotto sono tutti diversi, il che li rende un test onesto: la pipeline è la stessa, il brand no. Qui sotto, ogni brand con il file di configurazione che starebbe accanto alle sue immagini di riferimento.">
+        Two brands from this site make the reuse question concrete. Pannocchino e Spighetta are the farm mascots of a cake line (the wedding below is from <a href="/en/post-pannocchino-spighetta.html" class="about-link">Automatic Storyboard: Meet Pannocchino e Spighetta</a>); Grappolotto e Foglina, a grape and a vine leaf, are the mascots for a professional wooden corkscrew, sold by a brand kept deliberately anonymous — the real campaign images were digitally de-branded for copyright, and the configuration file below keeps that same choice rather than inventing a fake brand name. They are close in register — warm, artisanal, food-and-drink — but the characters, the settings and the product are all different, which makes them a fair test: the pipeline is the same, the brand is not. Below, each brand with the configuration file that would sit next to its reference images.
+      </p>
+
+            <figure class="post-figure">
+        <img src="/assets/post-pannocchino-spighetta/wedding_prep_and_product_diptych.jpg"
+             alt="Left: Pannocchino and Spighetta getting dressed for the farm wedding. Right: the Torta Spighetta wedding-edition box, the product the story is for." width="1600" height="445" decoding="async">
+        <figcaption class="post-caption"
+          data-en="<span class='caption-title'>Brand A — the farm: Pannocchino e Spighetta</span>The reference pair of a cake line, getting ready for the farm wedding — golden-hour light, a warm rural setting, a storybook register — next to the product the story is for: the Torta Spighetta wedding edition. Everything D has to check in a shot like this — who the two characters are, what they wear, which product is in frame, which settings and colours belong to this brand — is written in the file below."
+          data-it="<span class='caption-title'>Brand A — la fattoria: Pannocchino e Spighetta</span>La coppia di riferimento di una linea di torte, mentre si preparano per il matrimonio in fattoria — luce da ora d'oro, ambientazione rurale e calda, registro da fiaba illustrata — accanto al prodotto per cui la storia esiste: la Torta Spighetta edizione nozze. Tutto ciò che D deve controllare in un'inquadratura come questa — chi sono i due personaggi, cosa indossano, quale prodotto è in scena, quali ambientazioni e colori appartengono a questo brand — è scritto nel file qui sotto.">
+          <span class="caption-title">Brand A — the farm: Pannocchino e Spighetta</span>The reference pair of a cake line, getting ready for the farm wedding — golden-hour light, a warm rural setting, a storybook register — next to the product the story is for: the Torta Spighetta wedding edition. Everything D has to check in a shot like this — who the two characters are, what they wear, which product is in frame, which settings and colours belong to this brand — is written in the file below.
+        </figcaption>
+      </figure>
+
+            <div class="code-block">// brand_config.json — Brand A: Pannocchino e Spighetta, the farm (torta-spighetta)
+{
+  "brand": "torta-spighetta",
+  "identity_assertions": {
+    "LEFT":  "Pannocchino: corn-cob body, green leaf tuft, green overalls, brown boots",
+    "RIGHT": "Spighetta: braided wheat updo with ears, red gingham dress, straw limbs"
+  },
+  "product": {
+    "name": "Torta Spighetta",
+    "editions": ["Nozze", "Nascita"],
+    "pack": "kraft-brown box, gold-foil wheat-and-poppy wreath"
+  },
+  "palette": ["warm sunset gold", "wheat yellow", "poppy red", "kraft brown"],
+  "style": "storybook 3D, soft golden-hour light",
+  "settings_allowed": ["wheat field", "farmhouse yard", "barn courtyard", "kitchen"],
+  "register": ["warm", "rural", "affectionate"],
+  "slogans": {
+    "Nozze": [
+      {
+        "en": "Two cereal species, one field of affection",
+        "it": "Due specie di cereali, un solo campo d'affetti"
+      },
+      {
+        "en": "Different in origin, united to sweeten us",
+        "it": "Diversi per origine, uniti per addolcirci"
+      }
+    ],
+    "Nascita": [
+      {
+        "en": "Come wind, come rain, we'll feast on the grain",
+        "it": "Con sta pioggia e con sto vento, ce magnamo sto frumento"
+      },
+      {
+        "en": "Soaked by rain or kissed by sun, a good harvest goes to anyone who wants one",
+        "it": "Bagnato di pioggia o baciato dal sole, un buon raccolto se lo prende chi vuole"
+      }
+    ]
+  }
+}</div>
+
+            <figure class="post-figure">
+        <img src="/assets/post-dco-mercati-qa/mascot-grappolo-foglia-cavatappi-crop.jpg"
+             alt="Grappolotto and Foglina opening a bottle of wine in a vineyard, in three panels: struggling by hand, using a corkscrew, then celebrating" width="1024" height="462" loading="lazy" decoding="async">
+        <figcaption class="post-caption"
+          data-en="<span class='caption-title'>Brand B — the winery: Grappolotto e Foglina</span>A three-beat mini-story about opening a bottle: on the left, Grappolotto struggles bare-handed while Foglina watches, puzzled; in the center, they reach for the corkscrew; on the right, they enjoy the evening, tipsy and happy, with the empty bottle and glasses on the table. New cast, new setting, new product — same generate &rarr; judge &rarr; correct loop, driven by a different file."
+          data-it="<span class='caption-title'>Brand B — la cantina: Grappolotto e Foglina</span>Una mini-storia in tre tempi sull'apertura di una bottiglia: a sinistra Grappolotto ci prova a mani nude mentre Foglina lo guarda perplessa; al centro usano il cavatappi; a destra si godono la serata, sbronzi e felici, con la bottiglia vuota e i bicchieri sul tavolo. Nuovo cast, nuova ambientazione, nuovo prodotto — stesso loop genera &rarr; giudica &rarr; correggi, guidato da un file diverso.">
+          <span class="caption-title">Brand B — the winery: Grappolotto e Foglina</span>A three-beat mini-story about opening a bottle: on the left, Grappolotto struggles bare-handed while Foglina watches, puzzled; in the center, they reach for the corkscrew; on the right, they enjoy the evening, tipsy and happy, with the empty bottle and glasses on the table. New cast, new setting, new product — same generate &rarr; judge &rarr; correct loop, driven by a different file.
+        </figcaption>
+      </figure>
+
+            <div class="code-block">// brand_config.json — Brand B: Grappolotto e Foglina, the winery (brand kept anonymous, see chapter text)
+{
+  "brand": "anonymous",
+  "identity_assertions": {
+    "LEFT":  "Grappolotto: purple grape-cluster head, small goatee, olive-green overalls with copper buttons, brown boots",
+    "RIGHT": "Foglina: green vine-leaf crown, long curling-tendril hair, leaf dress"
+  },
+  "product": {
+    "name": "professional wooden corkscrew",
+    "model": "branded model only; never a generic or antique stand-in"
+  },
+  "palette": ["golden-hour olive", "grape purple", "terracotta", "stone brown"],
+  "style": "storybook 3D, soft golden-hour light",
+  "settings_allowed": ["terraced vineyard", "stone wall", "cellar", "grape-pressing yard", "harvest-festival courtyard"],
+  "register": ["warm", "artisanal", "convivial"],
+  "slogans": [
+    {
+      "en": "With Foglina among the rows and Grappolotto down by the vine, the harvest gives us a wonderful wine!",
+      "it": "Con Foglina tra i filari e Grappolotto giù nel tino, la vendemmia ci regala un grande vino!"
+    },
+    {
+      "en": "Between a cow who's had many booze, and a cheeky little vine, Grappolotto and his girl are raising a glass of wine!",
+      "it": "Tra una mucca che sbevazza e un germoglio birichino, Grappolotto e la sua bella fanno festa col buon vino!"
+    }
+  ]
+}</div>
+
+            <p class="post-text"
+               data-en="Read side by side, the two files have identical keys and different values — that shared schema is the only thing the loop needs to know how to read, and it is what lets the same pipeline run both brands unmodified. The anatomy of the file field by field, what exactly is reused from one brand to the next, and the real cost of onboarding a second brand are broken down at the configuration-file level in <a href='dco-engine-tech.html#brand-config' class='about-link'>DCO Engine: technical description</a>."
+               data-it="Letti uno accanto all'altro, i due file hanno le stesse chiavi e valori diversi — questo schema condiviso è l'unica cosa che il loop deve saper leggere, ed è ciò che permette alla stessa pipeline di far girare entrambi i brand senza modifiche. L'anatomia del file campo per campo, cosa esattamente si riusa da un brand all'altro, e il costo reale di aggiungere un secondo brand sono approfonditi a livello del file di configurazione in <a href='dco-engine-tech.html#brand-config' class='about-link'>Motore DCO: descrizione tecnica</a>.">
+              Read side by side, the two files have identical keys and different values — that shared schema is the only thing the loop needs to know how to read, and it is what lets the same pipeline run both brands unmodified. The anatomy of the file field by field, what exactly is reused from one brand to the next, and the real cost of onboarding a second brand are broken down at the configuration-file level in <a href="/dco-engine-tech.html#brand-config" class="about-link">DCO Engine: technical description</a>.
+      </p>
+
+          </div>
+        </li>
+
+
+        <!-- 03 -->
+        <li class="content-item" id="other-products">
+          <div class="content-number">03</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="How many checks are needed? Configuration, products and the kind of campaign"
+                data-it="Quanti controlli da fare? Configurazione, prodotti e tipo di campagna">
+              How many checks are needed? Configuration, products and the kind of campaign
+            </h3>
+
+            <p class="post-text"
+               data-en="The previous chapter showed what a second brand needs: a configuration file, a reference pair and a new calibration set. A prior question remains, though: is that enough to check the quality of a different product, or does the level of abstraction already built into the pipeline's design suffice on its own? The answer runs in two directions. The generate &rarr; judge &rarr; correct loop does not know what a product is: it reads a schema and checks every shot against the assertions written there, which is why it can adapt to a cake line just as it does to a corkscrew. Within a family of products and brands that belong to the same merchandise category, share the same register, and run the same type of campaign (e.g. mascots) &mdash; the configuration file is sufficient."
+               data-it="Il capitolo precedente ha mostrato di cosa ha bisogno un secondo brand: un file di configurazione, una coppia di riferimento e un nuovo calibration set. Resta però una domanda a monte: basta questo per controllare la qualità di un prodotto diverso, o è sufficiente il livello di astrazione presente nel design della pipeline? La risposta ha due direzioni. Il loop genera &rarr; giudica &rarr; correggi non sa cosa sia un prodotto: legge uno schema e controlla ogni inquadratura rispetto alle asserzioni scritte, e per questo motivo può adattarsi a una linea di torte come a un cavatappi. Dentro una famiglia di prodotti e di brand appartenenti alla stessa categoria merceologica, con lo stesso registro, e una campagna dello stesso tipo (es.: mascotte) &mdash; il file di configurazione è sufficiente.">
+              The previous chapter showed what a second brand needs: a configuration file, a reference pair and a new calibration set. A prior question remains, though: is that enough to check the quality of a different product, or does the level of abstraction already built into the pipeline's design suffice on its own? The answer runs in two directions. The generate → judge → correct loop does not know what a product is: it reads a schema and checks every shot against the assertions written there, which is why it can adapt to a cake line just as it does to a corkscrew. Within a family of products and brands that belong to the same merchandise category, share the same register, and run the same type of campaign (e.g. mascots) — the configuration file is sufficient.
+            </p>
+
+            <p class="post-text" style="margin-top:1.2em;"
+               data-en="Where something can be lacking is not the loop's own checking, but the staging. A cake box, a bottle and a corkscrew are placed in a scene in different ways, and they play different roles. A small library of staging templates by product category is needed, to allow for some flexibility of variants here &mdash; an open problem listed in <a href='dco-engine-tech.html' class='about-link'>DCO Engine: technical description</a>."
+               data-it="Dove può mancare qualcosa non è sul controllo del loop succitato, ma sulla messa in scena. Una scatola di torta, una bottiglia e un cavatappi sono posizionati in una scena in modi diversi, e hanno funzioni diverse. Occorre una piccola libreria di template di staging per categoria di prodotto, per avere in questo caso un'elasticità di varianti, un problema aperto elencato in <a href='dco-engine-tech.html' class='about-link'>Motore DCO: descrizione tecnica</a>.">
+              Where something can be lacking is not the loop's own checking, but the staging. A cake box, a bottle and a corkscrew are placed in a scene in different ways, and they play different roles. A small library of staging templates by product category is needed, to allow for some flexibility of variants here — an open problem listed in <a href='dco-engine-tech.html' class='about-link'>DCO Engine: technical description</a>.
+            </p>
+
+            <p class="post-text" style="margin-top:1.2em;"
+               data-en="The second limit is more cumbersome, and it concerns checks rather than generation. How closely a campaign has to be controlled is not the same for every product. A healthcare campaign, or one for children's products, carries many more checks than a campaign for a pair of socks: more assertions for the judge to verify (what may be shown, claimed or implied), less tolerance for a shot that merely looks &ldquo;good enough&rdquo;, and more supervised interventions &mdash; human checkpoints that are not optional and cannot be sampled away. The loop is the same, but the configuration is richer and the human share is larger."
+               data-it="Il secondo limite è più ingombrante, e riguarda i controlli più che la generazione. Quanto una campagna vada controllata da vicino non è uguale per ogni prodotto. Una campagna healthcare, o per prodotti per l'infanzia, comporta molti più controlli di una campagna per un paio di calze: più asserzioni che il judge deve verificare (cosa si può mostrare, dichiarare o lasciar intendere), meno tolleranza per un'inquadratura che sembra 'abbastanza' giusta, e più interventi supervisionati &mdash; checkpoint umani che non sono facoltativi e non si possono ridurre a campionamento. Il loop è lo stesso, ma la configurazione è più ricca e la quota umana più ampia.">
+              The second limit is more cumbersome, and it concerns checks rather than generation. How closely a campaign has to be controlled is not the same for every product. A healthcare campaign, or one for children's products, carries many more checks than a campaign for a pair of socks: more assertions for the judge to verify (what may be shown, claimed or implied), less tolerance for a shot that merely looks “good enough”, and more supervised interventions — human checkpoints that are not optional and cannot be sampled away. The loop is the same, but the configuration is richer and the human share is larger.
+            </p>
+
+            <p class="post-text" style="margin-top:1.2em;"
+               data-en="This points to a connection that the configuration file alone does not capture: the one between the type of campaign and the type of brand. A storybook mascot pair is at home in a campaign for a food brand &mdash; tone, setting and product agree &mdash; and much less so when the subject calls for a particular register or heavy supervision. The file describes the brand; it does not say which kinds of campaign that brand can credibly carry, nor which control profile each one requires."
+               data-it="Qui emerge un legame che il solo file di configurazione non cattura: quella tra tipo di campagna e tipo di brand. Una coppia di mascotte da libro illustrato sta bene in una campagna per un brand alimentare &mdash; tono, ambientazione e prodotto si accordano &mdash; ma molto meno quando il soggetto richiede un registro particolare o una supervisione forte. Il file descrive il brand; non dice quali tipi di campagna quel brand possa sostenere con credibilità, né quale profilo di controllo richieda.">
+              This points to a connection that the configuration file alone does not capture: the one between the type of campaign and the type of brand. A storybook mascot pair is at home in a campaign for a food brand — tone, setting and product agree — and much less so when the subject calls for a particular register or heavy supervision. The file describes the brand; it does not say which kinds of campaign that brand can credibly carry, nor which control profile each one requires.
+            </p>
+
+          </div>
+        </li>
+
+      </ol>
+
+      <!-- ── RELATED READING ──────────────────────────────────── -->
+      <p class="post-text" style="margin-top:2.5rem; opacity:0.75;">
+        <span data-en="Builds on: " data-it="Si basa su: ">Builds on: </span><a
+          href="/en/post-dco-engine.html" class="about-link"
+          data-en="The Engine: generation, control, export" data-it="Il motore: generazione, controllo, export"
+        >The Engine: generation, control, export</a><span data-en=" — one brand, one mascot pair, and the generate &rarr; judge &rarr; correct loop that keeps every shot on-brand, which this post takes past a single brand." data-it=" — un brand, una coppia di mascotte, e il loop genera &rarr; giudica &rarr; correggi che mantiene ogni inquadratura coerente con il brand, che questo post porta oltre il singolo brand."> — one brand, one mascot pair, and the generate &rarr; judge &rarr; correct loop that keeps every shot on-brand, which this post takes past a single brand.</span>
+      </p>
+
+      <p class="post-text" style="margin-top:0.4rem; opacity:0.75;">
+        <span data-en="The market side: " data-it="Il lato di mercato: ">The market side: </span><a
+          href="/en/post-dco-mercato-globale.html" class="about-link"
+          data-en="DCO and the Agency Market" data-it="DCO e il mercato delle agenzie"
+        >DCO and the Agency Market</a><span data-en=", " data-it=", ">, </span><a
+          href="/en/post-dco-mercato-agenzie-ita.html" class="about-link"
+          data-en="The Agency Channel in Italy" data-it="Il canale delle agenzie in Italia"
+        >The Agency Channel in Italy</a>.
+      </p>
+
+
+    </div><!-- /page-body -->
+  </main>
+
+  <a href="/en/index.html" class="nav-back nav-home" id="home-link" data-en="HOME" data-it="HOME">HOME</a>
+  <div class="lang-switch">
+    <a class="lang-btn" href="/post-dco-pipeline.html">IT</a>
+  </div>
+
+  <script src="/assets/menu.js"></script>
+  <script>
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').classList.toggle('scrolled', window.scrollY > 20);
+    });
+  </script>
+</body>
+</html>

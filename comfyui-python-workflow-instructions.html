@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon-32x32.png" type="image/png">
@@ -8,9 +8,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="color-scheme" content="light">
-  <title>Workflow instructions — ComfyUI Python scripts</title>
-  <link rel="alternate" hreflang="en"        href="https://storyline-engine.com/comfyui-python-workflow-instructions.html">
-  <link rel="alternate" hreflang="it"        href="https://storyline-engine.com/comfyui-python-workflow-instructions.html?lang=it">
+  <title>Istruzioni per il workflow — script Python di ComfyUI</title>
+  <link rel="alternate" hreflang="en"        href="https://storyline-engine.com/en/comfyui-python-workflow-instructions.html">
+  <link rel="alternate" hreflang="it"        href="https://storyline-engine.com/comfyui-python-workflow-instructions.html">
   <link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/comfyui-python-workflow-instructions.html">
     <!-- Preload self-hosted fonts so they're already in flight before style.css
        is even parsed — closes the remaining window where the browser paints
@@ -22,32 +22,32 @@
   <link rel="preload" href="assets/fonts/eb-garamond-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
 
-  <meta name="description" content="Hands-on steps for writing and running the Python/bash ComfyUI workflow — the scripting alternative to the node-based graphical pipeline.">
+  <meta name="description" content="Passaggi operativi per scrivere e lanciare il workflow Python/bash di ComfyUI — l&#x27;alternativa a riga di comando alla pipeline grafica a nodi.">
   <link rel="canonical" href="https://storyline-engine.com/comfyui-python-workflow-instructions.html">
 
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Paolo Marocco">
-  <meta property="og:title" content="Workflow instructions — ComfyUI Python scripts">
-  <meta property="og:description" content="Hands-on steps for writing and running the Python/bash ComfyUI workflow — the scripting alternative to the node-based graphical pipeline.">
+  <meta property="og:title" content="Istruzioni per il workflow — script Python di ComfyUI">
+  <meta property="og:description" content="Passaggi operativi per scrivere e lanciare il workflow Python/bash di ComfyUI — l&#x27;alternativa a riga di comando alla pipeline grafica a nodi.">
   <meta property="og:url" content="https://storyline-engine.com/comfyui-python-workflow-instructions.html">
   <meta property="og:image" content="https://storyline-engine.com/assets/bg_new.jpg">
-  <meta property="og:locale" content="en_US">
-  <meta property="og:locale:alternate" content="it_IT">
+  <meta property="og:locale" content="it_IT">
+  <meta property="og:locale:alternate" content="en_US">
   <meta property="article:tag" content="Python">
   <meta property="article:tag" content="API Architecture">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Workflow instructions — ComfyUI Python scripts">
-  <meta name="twitter:description" content="Hands-on steps for writing and running the Python/bash ComfyUI workflow — the scripting alternative to the node-based graphical pipeline.">
+  <meta name="twitter:title" content="Istruzioni per il workflow — script Python di ComfyUI">
+  <meta name="twitter:description" content="Passaggi operativi per scrivere e lanciare il workflow Python/bash di ComfyUI — l&#x27;alternativa a riga di comando alla pipeline grafica a nodi.">
   <meta name="twitter:image" content="https://storyline-engine.com/assets/bg_new.jpg">
 
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "Workflow instructions — ComfyUI Python scripts",
-  "description": "Hands-on steps for writing and running the Python/bash ComfyUI workflow — the scripting alternative to the node-based graphical pipeline.",
+  "headline": "Istruzioni per il workflow — script Python di ComfyUI",
+  "description": "Passaggi operativi per scrivere e lanciare il workflow Python/bash di ComfyUI — l'alternativa a riga di comando alla pipeline grafica a nodi.",
   "image": "https://storyline-engine.com/assets/bg_new.jpg",
-  "inLanguage": "en",
+  "inLanguage": "it",
   "mainEntityOfPage": "https://storyline-engine.com/comfyui-python-workflow-instructions.html",
   "author": {
     "@type": "Person",
@@ -280,12 +280,12 @@
   <header>
     <a href="about.html" class="nav-item" data-en="ABOUT" data-it="ABOUT">ABOUT</a>
     <div class="menu-container">
-      <span class="menu-trigger" data-en="TOPICS" data-it="ARGOMENTI">TOPICS</span>
+      <span class="menu-trigger" data-en="TOPICS" data-it="ARGOMENTI">ARGOMENTI</span>
       <div class="menu-dropdown">
         <a href="adv.html"             class="menu-item" data-en="ADV"            data-it="ADV">ADV</a>
-        <a href="neural-graphics.html" class="menu-item" data-en="VISUAL STORIES" data-it="FUMETTI/STORYBOARD">VISUAL STORIES</a>
+        <a href="neural-graphics.html" class="menu-item" data-en="VISUAL STORIES" data-it="FUMETTI/STORYBOARD">FUMETTI/STORYBOARD</a>
         <a href="comfyui.html"         class="menu-item" data-en="COMFYUI"        data-it="COMFYUI">COMFYUI</a>
-        <a href="posts.html"           class="menu-item" data-en="POSTS"          data-it="POST">POSTS</a>
+        <a href="posts.html"           class="menu-item" data-en="POSTS"          data-it="POST">POST</a>
         <span class="menu-item menu-item--disabled" data-en="VIDEO" data-it="VIDEO">VIDEO</span>
       </div>
     </div>
@@ -295,11 +295,11 @@
 
     <p class="section-label"
        data-en="ComfyUI &middot; Workflow Instructions"
-       data-it="ComfyUI &middot; Istruzioni Workflow">ComfyUI &middot; Workflow Instructions</p>
+       data-it="ComfyUI &middot; Istruzioni Workflow">ComfyUI &middot; Istruzioni Workflow</p>
 
     <h1 class="page-title"
         data-en="Instructions for writing and running this section's workflow"
-        data-it="Istruzioni per scrivere e lanciare il workflow di questa sezione">Instructions for writing and running this section's workflow</h1>
+        data-it="Istruzioni per scrivere e lanciare il workflow di questa sezione">Istruzioni per scrivere e lanciare il workflow di questa sezione</h1>
 
     <div class="page-body">
 
@@ -307,13 +307,13 @@
         <span class="post-tag tag-tech" data-en="ComfyUI"  data-it="ComfyUI">ComfyUI</span>
         <span class="post-tag tag-tech" data-en="Python"   data-it="Python">Python</span>
         <span class="post-tag tag-tech" data-en="Workflow" data-it="Workflow">Workflow</span>
-        <span class="post-tag tag-tech" data-en="Scripts"  data-it="Script">Scripts</span>
+        <span class="post-tag tag-tech" data-en="Scripts"  data-it="Script">Script</span>
       </div>
 
       <p class="post-text"
          data-en="These are the concrete, hands-on steps for writing and running the Python/bash workflow introduced in <a href='post-comfyui-python.html' class='about-link'>ComfyUI Visual Stories — The Python Scripts</a>: the five workspace files, the run sequence, and the post-processing pass."
          data-it="Questi sono i passaggi concreti e operativi per scrivere e lanciare il workflow Python/bash introdotto in <a href='post-comfyui-python.html' class='about-link'>ComfyUI Storie Visive — Gli Script Python</a>: i cinque file del workspace, la sequenza di esecuzione e il passaggio di post-processing.">
-        These are the concrete, hands-on steps for writing and running the Python/bash workflow introduced in <a href='post-comfyui-python.html' class='about-link'>ComfyUI Visual Stories — The Python Scripts</a>: the five workspace files, the run sequence, and the post-processing pass.
+        Questi sono i passaggi concreti e operativi per scrivere e lanciare il workflow Python/bash introdotto in <a href="post-comfyui-python.html" class="about-link">ComfyUI Storie Visive — Gli Script Python</a>: i cinque file del workspace, la sequenza di esecuzione e il passaggio di post-processing.
       </p>
 
       <ol class="content-list">
@@ -326,48 +326,48 @@
             <h3 class="content-title"
                 data-en="The steps"
                 data-it="I passaggi">
-              The steps
+              I passaggi
             </h3>
 
             <p class="post-text"
                data-en="The workspace contains five files in two layers. The <em>static layer</em> (created once, never changed again): the base graph JSON and the two automation scripts. The <em>active layer</em> (edited before each generation run): the configuration file and the character reference images in <code>ComfyUI/input/</code>."
                data-it="Il workspace contiene cinque file in due livelli. Il <em>livello statico</em> (creato una volta, mai modificato di nuovo): il JSON del grafo base e i due script di automazione. Il <em>livello attivo</em> (modificato prima di ogni ciclo di generazione): il file di configurazione e le immagini di riferimento dei personaggi in <code>ComfyUI/input/</code>.">
-              The workspace contains five files in two layers. The <em>static layer</em> (created once, never changed again): the base graph JSON and the two automation scripts. The <em>active layer</em> (edited before each generation run): the configuration file and the character reference images in <code>ComfyUI/input/</code>.
+              Il workspace contiene cinque file in due livelli. Il <em>livello statico</em> (creato una volta, mai modificato di nuovo): il JSON del grafo base e i due script di automazione. Il <em>livello attivo</em> (modificato prima di ogni ciclo di generazione): il file di configurazione e le immagini di riferimento dei personaggi in <code>ComfyUI/input/</code>.
             </p>
 
             <table class="data-table">
               <thead>
                 <tr>
                   <th data-en="File" data-it="File">File</th>
-                  <th data-en="Generated by" data-it="Generato da">Generated by</th>
-                  <th data-en="Role" data-it="Ruolo">Role</th>
+                  <th data-en="Generated by" data-it="Generato da">Generato da</th>
+                  <th data-en="Role" data-it="Ruolo">Ruolo</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td><code>bar_14shots.json</code></td>
-                  <td data-en="Claude — once" data-it="Claude — una volta">Claude — once</td>
-                  <td data-en="Base graph: all node wiring. Never edited." data-it="Grafo base: tutti i collegamenti. Mai modificato.">Base graph: all node wiring. Never edited.</td>
+                  <td data-en="Claude — once" data-it="Claude — una volta">Claude — una volta</td>
+                  <td data-en="Base graph: all node wiring. Never edited." data-it="Grafo base: tutti i collegamenti. Mai modificato.">Grafo base: tutti i collegamenti. Mai modificato.</td>
                 </tr>
                 <tr>
                   <td><code>shots_config.py</code></td>
-                  <td data-en="You — each run" data-it="Tu — ogni ciclo">You — each run</td>
-                  <td data-en="Content: prompt, weights, image refs, seed per shot." data-it="Contenuto: prompt, pesi, riferimenti, seed per inquadratura.">Content: prompt, weights, image refs, seed per shot.</td>
+                  <td data-en="You — each run" data-it="Tu — ogni ciclo">Tu — ogni ciclo</td>
+                  <td data-en="Content: prompt, weights, image refs, seed per shot." data-it="Contenuto: prompt, pesi, riferimenti, seed per inquadratura.">Contenuto: prompt, pesi, riferimenti, seed per inquadratura.</td>
                 </tr>
                 <tr>
                   <td><code>patcher.py</code></td>
-                  <td data-en="Claude — once, reused" data-it="Claude — una volta, riutilizzato">Claude — once, reused</td>
-                  <td data-en="Reads base JSON + config, injects content, writes PATCHED files." data-it="Legge JSON base + config, inietta il contenuto, scrive i file PATCHED.">Reads base JSON + config, injects content, writes PATCHED files.</td>
+                  <td data-en="Claude — once, reused" data-it="Claude — una volta, riutilizzato">Claude — una volta, riutilizzato</td>
+                  <td data-en="Reads base JSON + config, injects content, writes PATCHED files." data-it="Legge JSON base + config, inietta il contenuto, scrive i file PATCHED.">Legge JSON base + config, inietta il contenuto, scrive i file PATCHED.</td>
                 </tr>
                 <tr>
                   <td><code>sweep.py</code></td>
-                  <td data-en="Claude — once, reused" data-it="Claude — una volta, riutilizzato">Claude — once, reused</td>
-                  <td data-en="Fires N API calls varying one parameter, saves N output images." data-it="Invia N chiamate API variando un parametro, salva N immagini.">Fires N API calls varying one parameter, saves N output images.</td>
+                  <td data-en="Claude — once, reused" data-it="Claude — una volta, riutilizzato">Claude — una volta, riutilizzato</td>
+                  <td data-en="Fires N API calls varying one parameter, saves N output images." data-it="Invia N chiamate API variando un parametro, salva N immagini.">Invia N chiamate API variando un parametro, salva N immagini.</td>
                 </tr>
                 <tr>
                   <td><code>jim_face.png</code>, <code>barbara_face.png</code> …</td>
-                  <td data-en="You — uploaded once" data-it="Tu — caricati una volta">You — uploaded once</td>
-                  <td data-en="Character and environment references in ComfyUI/input/." data-it="Riferimenti di personaggi e ambienti in ComfyUI/input/.">Character and environment references in ComfyUI/input/.</td>
+                  <td data-en="You — uploaded once" data-it="Tu — caricati una volta">Tu — caricati una volta</td>
+                  <td data-en="Character and environment references in ComfyUI/input/." data-it="Riferimenti di personaggi e ambienti in ComfyUI/input/.">Riferimenti di personaggi e ambienti in ComfyUI/input/.</td>
                 </tr>
               </tbody>
             </table>
@@ -378,7 +378,7 @@
                 <p class="post-text"
                    data-en="<strong>Generate the base graph.</strong> Describe the <code>bar_14shots</code> pipeline to Claude: 14 shots, Jim and Barbara, wine bar interior, one PuLID + IPAdapter + ControlNet chain per single-character shot, a doubled chain for shots with both characters. Claude returns the complete <code>bar_14shots.json</code>. Copy it to your workspace. This is the only moment you interact with the graph structure — it stays frozen from here on."
                    data-it="<strong>Generare il grafo di base.</strong> Descrivi la pipeline <code>bar_14shots</code> a Claude: 14 inquadrature, Jim e Barbara, interno di wine bar, una catena PuLID + IPAdapter + ControlNet per ogni inquadratura a singolo personaggio, una catena doppia per le inquadrature con entrambi i personaggi. Claude restituisce il <code>bar_14shots.json</code> completo. Copialo nel workspace. È il solo momento in cui si interagisce con la struttura del grafo — da qui in poi resta congelata.">
-                  <strong>Generate the base graph.</strong> Describe the <code>bar_14shots</code> pipeline to Claude: 14 shots, Jim and Barbara, wine bar interior, one PuLID + IPAdapter + ControlNet chain per single-character shot, a doubled chain for shots with both characters. Claude returns the complete <code>bar_14shots.json</code>. Copy it to your workspace. This is the only moment you interact with the graph structure — it stays frozen from here on.
+                  <strong>Generare il grafo di base.</strong> Descrivi la pipeline <code>bar_14shots</code> a Claude: 14 inquadrature, Jim e Barbara, interno di wine bar, una catena PuLID + IPAdapter + ControlNet per ogni inquadratura a singolo personaggio, una catena doppia per le inquadrature con entrambi i personaggi. Claude restituisce il <code>bar_14shots.json</code> completo. Copialo nel workspace. È il solo momento in cui si interagisce con la struttura del grafo — da qui in poi resta congelata.
                 </p>
               </li>
 
@@ -386,7 +386,7 @@
                 <p class="post-text"
                    data-en="<strong>Configure shots_config.py.</strong> Open the file and fill in the fields for the shot you are working on. Eight fields define each shot: <code>wall</code> (the depth reference image that also sets the environment), <code>framing</code>, <code>focal</code>, and <code>angle</code> (the cinematographic language, appended to the prompt text), <code>objects</code> (props in the scene), <code>clip_l</code> and <code>t5xxl</code> (the main scene description for Flux's two text encoders), and <code>neg</code> (negative prompt). A ninth field, <code>prev_image</code>, is reserved for visual continuity between shots and not yet wired in the current version.<sup class='fn-ref'><a href='#fn1' id='fnref1'>1</a></sup>"
                    data-it="<strong>Configurare shots_config.py.</strong> Apri il file e compila i campi per l'inquadratura su cui stai lavorando. Otto campi definiscono ogni inquadratura: <code>wall</code> (l'immagine di riferimento depth che imposta anche l'ambiente), <code>framing</code>, <code>focal</code> e <code>angle</code> (il linguaggio cinematografico, aggiunto al testo del prompt), <code>objects</code> (oggetti di scena), <code>clip_l</code> e <code>t5xxl</code> (la descrizione principale della scena per i due encoder di testo di Flux) e <code>neg</code> (prompt negativo). Un nono campo, <code>prev_image</code>, è riservato alla continuità visiva tra le inquadrature e non ancora collegato nella versione attuale.<sup class='fn-ref'><a href='#fn1' id='fnref1'>1</a></sup>">
-                  <strong>Configure shots_config.py.</strong> Open the file and fill in the fields for the shot you are working on. Eight fields define each shot: <code>wall</code> (the depth reference image that also sets the environment), <code>framing</code>, <code>focal</code>, and <code>angle</code> (the cinematographic language, appended to the prompt text), <code>objects</code> (props in the scene), <code>clip_l</code> and <code>t5xxl</code> (the main scene description for Flux's two text encoders), and <code>neg</code> (negative prompt). A ninth field, <code>prev_image</code>, is reserved for visual continuity between shots and not yet wired in the current version.<sup class="fn-ref"><a href="#fn1" id="fnref1">1</a></sup>
+                  <strong>Configurare shots_config.py.</strong> Apri il file e compila i campi per l'inquadratura su cui stai lavorando. Otto campi definiscono ogni inquadratura: <code>wall</code> (l'immagine di riferimento depth che imposta anche l'ambiente), <code>framing</code>, <code>focal</code> e <code>angle</code> (il linguaggio cinematografico, aggiunto al testo del prompt), <code>objects</code> (oggetti di scena), <code>clip_l</code> e <code>t5xxl</code> (la descrizione principale della scena per i due encoder di testo di Flux) e <code>neg</code> (prompt negativo). Un nono campo, <code>prev_image</code>, è riservato alla continuità visiva tra le inquadrature e non ancora collegato nella versione attuale.<sup class="fn-ref"><a href="#fn1" id="fnref1">1</a></sup>
                 </p>
 <div class="code-block"># shots_config.py  (excerpt)
 BASE_GRAPH = "bar_14shots"   # patcher.py and sweep.py derive all file paths from this constant
@@ -414,7 +414,7 @@ SHOTS = {
                 <p class="post-text"
                    data-en="<strong>Run patcher.py.</strong> The script reads <code>bar_14shots.json</code> and the active config, injects all content into the correct node fields, and writes two files: <code>bar_14shots_PATCHED.json</code> (GUI format — loadable in the ComfyUI browser to inspect the wired nodes before generating) and <code>bar_14shots_PATCHED_API.json</code> (API format — used by sweep.py and direct API calls). Loading the GUI file in the browser before generating is optional, but useful when debugging a shot for the first time."
                    data-it="<strong>Eseguire patcher.py.</strong> Lo script legge <code>bar_14shots.json</code> e la config attiva, inietta tutto il contenuto nei campi corretti dei nodi e scrive due file: <code>bar_14shots_PATCHED.json</code> (formato GUI — caricabile nel browser ComfyUI per ispezionare i nodi prima di generare) e <code>bar_14shots_PATCHED_API.json</code> (formato API — usato da sweep.py e dalle chiamate API dirette). Caricare il file GUI nel browser prima di generare è opzionale, ma utile quando si fa il debug di un'inquadratura per la prima volta.">
-                  <strong>Run patcher.py.</strong> The script reads <code>bar_14shots.json</code> and the active config, injects all content into the correct node fields, and writes two files: <code>bar_14shots_PATCHED.json</code> (GUI format — loadable in the ComfyUI browser to inspect the wired nodes before generating) and <code>bar_14shots_PATCHED_API.json</code> (API format — used by sweep.py and direct API calls). Loading the GUI file in the browser before generating is optional, but useful when debugging a shot for the first time.
+                  <strong>Eseguire patcher.py.</strong> Lo script legge <code>bar_14shots.json</code> e la config attiva, inietta tutto il contenuto nei campi corretti dei nodi e scrive due file: <code>bar_14shots_PATCHED.json</code> (formato GUI — caricabile nel browser ComfyUI per ispezionare i nodi prima di generare) e <code>bar_14shots_PATCHED_API.json</code> (formato API — usato da sweep.py e dalle chiamate API dirette). Caricare il file GUI nel browser prima di generare è opzionale, ma utile quando si fa il debug di un'inquadratura per la prima volta.
                 </p>
 <div class="code-block">python3 /workspace/patcher.py --shot 1A_Barbara_Enters
 
@@ -426,7 +426,7 @@ SHOTS = {
                 <p class="post-text"
                    data-en="<strong>Run sweep.py for parameter exploration.</strong> Instead of generating one image and guessing which weight is best, sweep.py loops over a list of values for a single parameter, fires an API call per value, and saves the corresponding output image. Use it to calibrate PuLID (face identity strength), IPAdapter (body and clothing reference strength), or to test different seeds before committing to a final generation."
                    data-it="<strong>Eseguire sweep.py per l'esplorazione dei parametri.</strong> Invece di generare un'immagine e indovinare quale peso è migliore, sweep.py cicla su una lista di valori per un singolo parametro, invia una chiamata API per ogni valore e salva l'immagine di output corrispondente. Usalo per calibrare PuLID (intensità dell'identità facciale), IPAdapter (intensità del riferimento per corpo e abbigliamento) o per testare seed diversi prima di impegnarsi in una generazione finale.">
-                  <strong>Run sweep.py for parameter exploration.</strong> Instead of generating one image and guessing which weight is best, sweep.py loops over a list of values for a single parameter, fires an API call per value, and saves the corresponding output image. Use it to calibrate PuLID (face identity strength), IPAdapter (body and clothing reference strength), or to test different seeds before committing to a final generation.
+                  <strong>Eseguire sweep.py per l'esplorazione dei parametri.</strong> Invece di generare un'immagine e indovinare quale peso è migliore, sweep.py cicla su una lista di valori per un singolo parametro, invia una chiamata API per ogni valore e salva l'immagine di output corrispondente. Usalo per calibrare PuLID (intensità dell'identità facciale), IPAdapter (intensità del riferimento per corpo e abbigliamento) o per testare seed diversi prima di impegnarsi in una generazione finale.
                 </p>
 <div class="code-block"># calibrate face identity: 4 values → 4 output images compared side by side
 python3 /workspace/sweep.py --shot 1A_Barbara_Enters \
@@ -442,7 +442,7 @@ python3 /workspace/sweep.py --shot 1A_Barbara_Enters \
                 <p class="post-text" style="margin-top:1.1rem;"
                    data-en="Sweepable parameters: <code>pulid_weight</code>, <code>ipadapter_weight</code>, <code>denoise</code>, <code>seed</code>, <code>cfg</code>, <code>steps</code>. The script derives the API JSON path from the <code>BASE_GRAPH</code> constant defined in <code>shots_config.py</code> — no additional arguments needed."
                    data-it="Parametri esplorabili: <code>pulid_weight</code>, <code>ipadapter_weight</code>, <code>denoise</code>, <code>seed</code>, <code>cfg</code>, <code>steps</code>. Lo script ricava il percorso del JSON API dalla costante <code>BASE_GRAPH</code> definita in <code>shots_config.py</code> — nessun argomento aggiuntivo necessario.">
-                  Sweepable parameters: <code>pulid_weight</code>, <code>ipadapter_weight</code>, <code>denoise</code>, <code>seed</code>, <code>cfg</code>, <code>steps</code>. The script derives the API JSON path from the <code>BASE_GRAPH</code> constant defined in <code>shots_config.py</code> — no additional arguments needed.
+                  Parametri esplorabili: <code>pulid_weight</code>, <code>ipadapter_weight</code>, <code>denoise</code>, <code>seed</code>, <code>cfg</code>, <code>steps</code>. Lo script ricava il percorso del JSON API dalla costante <code>BASE_GRAPH</code> definita in <code>shots_config.py</code> — nessun argomento aggiuntivo necessario.
                 </p>
               </li>
 
@@ -464,43 +464,43 @@ python3 /workspace/sweep.py --shot 1A_Barbara_Enters \
             <p class="post-text"
                data-en="Once a shot is generated, small defects can be corrected without re-running the full pipeline. A separate lightweight set of three files applies img2img refinement: it takes the already-generated frame as a structural anchor and re-runs diffusion on it at a controlled noise level, guided by a corrective prompt. The result sits between the original and a full regeneration — closer to one or the other depending on how much noise you inject."
                data-it="Una volta generata un'inquadratura, piccoli difetti possono essere corretti senza rieseguire l'intera pipeline. Un set separato e leggero di tre file applica il raffinamento img2img: prende il frame già generato come ancora strutturale e riesegue la diffusione su di esso a un livello di rumore controllato, guidato da un prompt correttivo. Il risultato si colloca tra l'originale e una rigenerazione completa — più vicino all'uno o all'altro a seconda di quanto rumore si inietta.">
-              Once a shot is generated, small defects can be corrected without re-running the full pipeline. A separate lightweight set of three files applies img2img refinement: it takes the already-generated frame as a structural anchor and re-runs diffusion on it at a controlled noise level, guided by a corrective prompt. The result sits between the original and a full regeneration — closer to one or the other depending on how much noise you inject.
+              Una volta generata un'inquadratura, piccoli difetti possono essere corretti senza rieseguire l'intera pipeline. Un set separato e leggero di tre file applica il raffinamento img2img: prende il frame già generato come ancora strutturale e riesegue la diffusione su di esso a un livello di rumore controllato, guidato da un prompt correttivo. Il risultato si colloca tra l'originale e una rigenerazione completa — più vicino all'uno o all'altro a seconda di quanto rumore si inietta.
             </p>
 
             <p class="post-text"
                data-en="The control parameter is <code>denoise</code>. The table maps its range to the kind of change it produces:"
                data-it="Il parametro di controllo è <code>denoise</code>. La tabella mappa il suo intervallo al tipo di cambiamento che produce:">
-              The control parameter is <code>denoise</code>. The table maps its range to the kind of change it produces:
+              Il parametro di controllo è <code>denoise</code>. La tabella mappa il suo intervallo al tipo di cambiamento che produce:
             </p>
 
             <table class="denoise-table">
               <thead>
                 <tr>
                   <th data-en="denoise" data-it="denoise">denoise</th>
-                  <th data-en="Effect" data-it="Effetto">Effect</th>
-                  <th data-en="Typical use" data-it="Uso tipico">Typical use</th>
+                  <th data-en="Effect" data-it="Effetto">Effetto</th>
+                  <th data-en="Typical use" data-it="Uso tipico">Uso tipico</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td><code>0.15 – 0.30</code></td>
-                  <td data-en="Micro-fix — barely visible" data-it="Micro-correzione — quasi invisibile">Micro-fix — barely visible</td>
-                  <td data-en="Skin artifacts, blurred edges, eye sharpness" data-it="Artefatti di pelle, bordi sfocati, nitidezza occhi">Skin artifacts, blurred edges, eye sharpness</td>
+                  <td data-en="Micro-fix — barely visible" data-it="Micro-correzione — quasi invisibile">Micro-correzione — quasi invisibile</td>
+                  <td data-en="Skin artifacts, blurred edges, eye sharpness" data-it="Artefatti di pelle, bordi sfocati, nitidezza occhi">Artefatti di pelle, bordi sfocati, nitidezza occhi</td>
                 </tr>
                 <tr>
                   <td><code>0.30 – 0.50</code></td>
-                  <td data-en="Moderate — structure stays" data-it="Moderata — struttura intatta">Moderate — structure stays</td>
-                  <td data-en="Wrong background element, uneven lighting" data-it="Elemento di sfondo errato, luce irregolare">Wrong background element, uneven lighting</td>
+                  <td data-en="Moderate — structure stays" data-it="Moderata — struttura intatta">Moderata — struttura intatta</td>
+                  <td data-en="Wrong background element, uneven lighting" data-it="Elemento di sfondo errato, luce irregolare">Elemento di sfondo errato, luce irregolare</td>
                 </tr>
                 <tr>
                   <td><code>0.50 – 0.70</code></td>
-                  <td data-en="Strong — significant change" data-it="Forte — cambiamento significativo">Strong — significant change</td>
-                  <td data-en="Face drift, mood or style correction" data-it="Deriva del volto, correzione di mood o stile">Face drift, mood or style correction</td>
+                  <td data-en="Strong — significant change" data-it="Forte — cambiamento significativo">Forte — cambiamento significativo</td>
+                  <td data-en="Face drift, mood or style correction" data-it="Deriva del volto, correzione di mood o stile">Deriva del volto, correzione di mood o stile</td>
                 </tr>
                 <tr>
                   <td><code>0.70 – 0.90</code></td>
-                  <td data-en="Near-regeneration — composition only" data-it="Quasi-rigenerazione — solo composizione">Near-regeneration — composition only</td>
-                  <td data-en="Full palette or atmosphere overhaul" data-it="Revisione completa di palette o atmosfera">Full palette or atmosphere overhaul</td>
+                  <td data-en="Near-regeneration — composition only" data-it="Quasi-rigenerazione — solo composizione">Quasi-rigenerazione — solo composizione</td>
+                  <td data-en="Full palette or atmosphere overhaul" data-it="Revisione completa di palette o atmosfera">Revisione completa di palette o atmosfera</td>
                 </tr>
               </tbody>
             </table>
@@ -508,7 +508,7 @@ python3 /workspace/sweep.py --shot 1A_Barbara_Enters \
             <p class="post-text"
                data-en="The three-file set follows the same pattern as the main pipeline: one config file for the creative direction, scripts and graph JSON for the technical execution. <code>postprocess_config.py</code> is the only file you edit: declare the input image, the corrective prompt, and the denoise value. <code>postprocess_run.py</code> is the engine (generated by Claude). <code>postprocess_graph.json</code> is an 11-node API graph, static and never edited."
                data-it="Il set di tre file segue lo stesso schema della pipeline principale: un file di config per la direzione creativa, script e JSON del grafo per l'esecuzione tecnica. <code>postprocess_config.py</code> è l'unico file che si modifica: si dichiara l'immagine di input, il prompt correttivo e il valore di denoise. <code>postprocess_run.py</code> è il motore (generato da Claude). <code>postprocess_graph.json</code> è un grafo API a 11 nodi, statico e mai modificato.">
-              The three-file set follows the same pattern as the main pipeline: one config file for the creative direction, scripts and graph JSON for the technical execution. <code>postprocess_config.py</code> is the only file you edit: declare the input image, the corrective prompt, and the denoise value. <code>postprocess_run.py</code> is the engine (generated by Claude). <code>postprocess_graph.json</code> is an 11-node API graph, static and never edited.
+              Il set di tre file segue lo stesso schema della pipeline principale: un file di config per la direzione creativa, script e JSON del grafo per l'esecuzione tecnica. <code>postprocess_config.py</code> è l'unico file che si modifica: si dichiara l'immagine di input, il prompt correttivo e il valore di denoise. <code>postprocess_run.py</code> è il motore (generato da Claude). <code>postprocess_graph.json</code> è un grafo API a 11 nodi, statico e mai modificato.
             </p>
 
 <div class="code-block">python3 /workspace/postprocess_run.py
@@ -529,47 +529,47 @@ python3 /workspace/sweep.py --shot 1A_Barbara_Enters \
         <h3 class="content-title"
             data-en="Complete sequence — all steps"
             data-it="Sequenza completa — tutti i passaggi">
-          Complete sequence — all steps
+          Sequenza completa — tutti i passaggi
         </h3>
 
         <ul class="sequenza-pre">
           <li data-en="The Node Graph: a full walkthrough of the ComfyUI node graph, node by node — DualCLIPLoader, VAELoader, IP-Adapter, ControlNet depth, KSampler. See the companion post <a href='post-comfyui-course-material.html' class='about-link'>ComfyUI Visual Stories — The Node Graph</a>."
               data-it="Il Grafo dei Nodi: un percorso completo nel grafo di nodi di ComfyUI, nodo per nodo — DualCLIPLoader, VAELoader, IP-Adapter, ControlNet depth, KSampler. Vedi il post gemello <a href='post-comfyui-course-material.html' class='about-link'>ComfyUI Storie Visive — Il Grafo dei Nodi</a>.">
-            The Node Graph: a full walkthrough of the ComfyUI node graph, node by node — DualCLIPLoader, VAELoader, IP-Adapter, ControlNet depth, KSampler. See the companion post <a href='post-comfyui-course-material.html' class='about-link'>ComfyUI Visual Stories — The Node Graph</a>.
+            Il Grafo dei Nodi: un percorso completo nel grafo di nodi di ComfyUI, nodo per nodo — DualCLIPLoader, VAELoader, IP-Adapter, ControlNet depth, KSampler. Vedi il post gemello <a href="post-comfyui-course-material.html" class="about-link">ComfyUI Storie Visive — Il Grafo dei Nodi</a>.
           </li>
           <li data-en="Setup: install custom node packs, download model weights, upload character references to <code>ComfyUI/input/</code>. See the <a href='comfyui-pipeline-setup.html' class='about-link'>setup page</a>."
               data-it="Setup: installare i pack di nodi personalizzati, scaricare i pesi dei modelli, caricare i riferimenti dei personaggi in <code>ComfyUI/input/</code>. Vedi la <a href='comfyui-pipeline-setup.html' class='about-link'>pagina di configurazione</a>.">
-            Setup: install custom node packs, download model weights, upload character references to <code>ComfyUI/input/</code>. See the <a href="comfyui-pipeline-setup.html" class="about-link">setup page</a>.
+            Setup: installare i pack di nodi personalizzati, scaricare i pesi dei modelli, caricare i riferimenti dei personaggi in <code>ComfyUI/input/</code>. Vedi la <a href="comfyui-pipeline-setup.html" class="about-link">pagina di configurazione</a>.
           </li>
         </ul>
 
         <ol class="sequenza-steps">
           <li data-en="Describe the pipeline to Claude → receive <code>bar_14shots.json</code> → copy to workspace."
               data-it="Descrivere la pipeline a Claude → ricevere <code>bar_14shots.json</code> → copiare nel workspace.">
-            Describe the pipeline to Claude → receive <code>bar_14shots.json</code> → copy to workspace.
+            Descrivere la pipeline a Claude → ricevere <code>bar_14shots.json</code> → copiare nel workspace.
           </li>
           <li data-en="Edit <code>shots_config.py</code>: set prompt, wall, framing, weights, seed for the target shot."
               data-it="Modificare <code>shots_config.py</code>: impostare prompt, wall, framing, pesi, seed per l'inquadratura target.">
-            Edit <code>shots_config.py</code>: set prompt, wall, framing, weights, seed for the target shot.
+            Modificare <code>shots_config.py</code>: impostare prompt, wall, framing, pesi, seed per l'inquadratura target.
           </li>
           <li data-en="Run <code>patcher.py</code> → <code>bar_14shots_PATCHED.json</code> + <code>_PATCHED_API.json</code>. Optional: load <code>_PATCHED.json</code> in the ComfyUI browser to verify node values."
               data-it="Eseguire <code>patcher.py</code> → <code>bar_14shots_PATCHED.json</code> + <code>_PATCHED_API.json</code>. Opzionale: caricare <code>_PATCHED.json</code> nel browser ComfyUI per verificare i valori dei nodi.">
-            Run <code>patcher.py</code> → <code>bar_14shots_PATCHED.json</code> + <code>_PATCHED_API.json</code>. Optional: load <code>_PATCHED.json</code> in the ComfyUI browser to verify node values.
+            Eseguire <code>patcher.py</code> → <code>bar_14shots_PATCHED.json</code> + <code>_PATCHED_API.json</code>. Opzionale: caricare <code>_PATCHED.json</code> nel browser ComfyUI per verificare i valori dei nodi.
           </li>
           <li data-en="Run <code>sweep.py --shot SHOT_NAME --param pulid_weight --values 0.2,0.35,0.5,0.65</code> → 4 variants generated and saved automatically."
               data-it="Eseguire <code>sweep.py --shot NOME_SHOT --param pulid_weight --values 0.2,0.35,0.5,0.65</code> → 4 varianti generate e salvate automaticamente.">
-            Run <code>sweep.py --shot SHOT_NAME --param pulid_weight --values 0.2,0.35,0.5,0.65</code> → 4 variants generated and saved automatically.
+            Eseguire <code>sweep.py --shot NOME_SHOT --param pulid_weight --values 0.2,0.35,0.5,0.65</code> → 4 varianti generate e salvate automaticamente.
           </li>
           <li data-en="Set image + corrective prompt + denoise in <code>postprocess_config.py</code>, then run <code>postprocess_run.py</code>. Repeat with higher denoise if the first pass is insufficient."
               data-it="Impostare immagine + prompt correttivo + denoise in <code>postprocess_config.py</code>, poi eseguire <code>postprocess_run.py</code>. Ripetere con denoise più alto se il primo passaggio non è sufficiente.">
-            Set image + corrective prompt + denoise in <code>postprocess_config.py</code>, then run <code>postprocess_run.py</code>. Repeat with higher denoise if the first pass is insufficient.
+            Impostare immagine + prompt correttivo + denoise in <code>postprocess_config.py</code>, poi eseguire <code>postprocess_run.py</code>. Ripetere con denoise più alto se il primo passaggio non è sufficiente.
           </li>
         </ol>
 
         <p class="post-text" style="margin-top:1.4rem; opacity:0.72;"
            data-en="Steps b–d form an iteration loop. For a 14-shot storyboard, expect several cycles: start with sweeps to calibrate weights, generate all shots, then post-process the frames that need correction."
            data-it="I passaggi b–d formano un ciclo iterativo. Per uno storyboard di 14 inquadrature, aspettarsi diversi cicli: iniziare con gli sweep per calibrare i pesi, generare tutte le inquadrature, poi post-processare i frame che richiedono correzioni.">
-          Steps b–d form an iteration loop. For a 14-shot storyboard, expect several cycles: start with sweeps to calibrate weights, generate all shots, then post-process the frames that need correction.
+          I passaggi b–d formano un ciclo iterativo. Per uno storyboard di 14 inquadrature, aspettarsi diversi cicli: iniziare con gli sweep per calibrare i pesi, generare tutte le inquadrature, poi post-processare i frame che richiedono correzioni.
         </p>
 
       </div><!-- /sequenza-completa -->
@@ -580,7 +580,7 @@ python3 /workspace/sweep.py --shot 1A_Barbara_Enters \
           <li id="fn1">
             <span data-en="The <code>prev_image</code> field is intended to feed the output of a previous shot back into the IPAdapter of the next one — a technique for visual continuity between consecutive frames (consistent clothing, lighting match, camera continuity). It requires adding a dedicated IPA node per shot in the graph. It is documented in <code>shots_config.py</code> so that a future revision can wire it without changing the config format."
                   data-it="Il campo <code>prev_image</code> è destinato a reintrodurre l'output di un'inquadratura precedente nell'IPAdapter di quella successiva — una tecnica per la continuità visiva tra frame consecutivi (coerenza dell'abbigliamento, corrispondenza della luce, continuità della camera). Richiede l'aggiunta di un nodo IPA dedicato per ogni inquadratura nel grafo. È documentato in <code>shots_config.py</code> affinché una revisione futura possa collegarlo senza modificare il formato della config.">
-              The <code>prev_image</code> field is intended to feed the output of a previous shot back into the IPAdapter of the next one — a technique for visual continuity between consecutive frames (consistent clothing, lighting match, camera continuity). It requires adding a dedicated IPA node per shot in the graph. It is documented in <code>shots_config.py</code> so that a future revision can wire it without changing the config format.
+              Il campo <code>prev_image</code> è destinato a reintrodurre l'output di un'inquadratura precedente nell'IPAdapter di quella successiva — una tecnica per la continuità visiva tra frame consecutivi (coerenza dell'abbigliamento, corrispondenza della luce, continuità della camera). Richiede l'aggiunta di un nodo IPA dedicato per ogni inquadratura nel grafo. È documentato in <code>shots_config.py</code> affinché una revisione futura possa collegarlo senza modificare il formato della config.
             </span>
             <a href="#fnref1" class="fn-back" aria-label="back to text">&#8617;</a>
           </li>
@@ -592,11 +592,10 @@ python3 /workspace/sweep.py --shot 1A_Barbara_Enters \
 
   <a href="index.html" class="nav-back nav-home" id="home-link" data-en="HOME" data-it="HOME">HOME</a>
   <div class="lang-switch">
-    <button class="lang-btn" data-lang="en">EN</button>
-    <button class="lang-btn" data-lang="it">IT</button>
+    <a class="lang-btn" href="/en/comfyui-python-workflow-instructions.html">EN</a>
   </div>
 
-  <script src="assets/lang.js"></script>
+  <script src="/assets/menu.js"></script>
   <script>
     window.addEventListener('scroll', () => {
       document.querySelector('header').classList.toggle('scrolled', window.scrollY > 20);
