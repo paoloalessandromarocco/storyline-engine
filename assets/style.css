@@ -628,6 +628,58 @@ figcaption strong {
 }
 
 
+/* ── Video-channel critique list (post-comfyui-documents.html, "Video tutorial") ──
+   outer list = the 5 authors: round ocra markers, same visual weight as before.
+   "Sintesi" lead-in: no marker, bold ocra label, thin left accent.
+   inner lists = per-channel detail points: thin line markers, tighter spacing ── */
+.content-sublist > li:not(.content-sublist-summary) {
+  list-style: none;
+  position: relative;
+  padding-left: 24px;
+}
+.content-sublist > li:not(.content-sublist-summary)::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.5em;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #8B5200;
+}
+.content-sublist-summary {
+  list-style: none;
+  padding: 8px 0 8px 16px;
+  border-left: 3px solid #8B5200;
+}
+.content-sublist-summary strong {
+  color: #8B5200;
+  font-weight: 600;
+  text-decoration: none;
+}
+.content-sublist-detail {
+  list-style: none;
+  margin: 10px 0 4px;
+  padding: 0;
+}
+.content-sublist-detail li {
+  position: relative;
+  padding-left: 16px;
+  margin-bottom: 5px;
+  line-height: 1.45;
+}
+.content-sublist-detail li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.78em;
+  width: 8px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.5;
+}
+
+
 /* ══════════════════════════════════════════════════════════════════════════
    RESPONSIVE LAYER — phones, tablets and very large / HiDPI screens
    (desktop 1100–1799px is intentionally untouched)
