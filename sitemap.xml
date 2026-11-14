@@ -334,6 +334,22 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-comfyui-documents.html"/>
   </url>
   <url>
+    <loc>https://storyline-engine.com/masterclass.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/masterclass.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/masterclass.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/masterclass.html"/>
+  </url>
+  <url>
+    <loc>https://storyline-engine.com/en/masterclass.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/masterclass.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/masterclass.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/masterclass.html"/>
+  </url>
+  <url>
     <loc>https://storyline-engine.com/post-comfyui-intro.html</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>

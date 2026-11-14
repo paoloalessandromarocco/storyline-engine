@@ -120,84 +120,82 @@
 </head>
 <body class="interior">
   <header>
-    <a href="/en/about.html" class="nav-item" data-en="ABOUT" data-it="ABOUT">ABOUT</a>
+    <a href="/en/about.html" class="nav-item">ABOUT</a>
     <div class="menu-container">
-      <span class="menu-trigger" data-en="TOPICS" data-it="ARGOMENTI">TOPICS</span>
+      <span class="menu-trigger">TOPICS</span>
       <div class="menu-dropdown">
-        <a href="/en/adv.html"             class="menu-item" data-en="ADV"            data-it="ADV">ADV</a>
-        <a href="/en/neural-graphics.html" class="menu-item" data-en="VISUAL STORIES" data-it="FUMETTI/STORYBOARD">VISUAL STORIES</a>
-        <a href="/en/comfyui.html"         class="menu-item" data-en="COMFYUI"        data-it="COMFYUI">COMFYUI</a>
-        <a href="/en/posts.html"           class="menu-item" data-en="POSTS"          data-it="POST">POSTS</a>
-        <span class="menu-item menu-item--disabled" data-en="VIDEO" data-it="VIDEO">VIDEO</span>
+        <a href="/en/adv.html"             class="menu-item">ADV</a>
+        <a href="/en/neural-graphics.html" class="menu-item">VISUAL STORIES</a>
+        <a href="/en/comfyui.html"         class="menu-item">COMFYUI</a>
+        <a href="/en/posts.html"           class="menu-item">POSTS</a>
+        <span class="menu-item menu-item--disabled">VIDEO</span>
       </div>
     </div>
   </header>
   <main class="page-content">
-    <p class="section-label" data-en="ComfyUI &middot; Pipeline Setup" data-it="ComfyUI &middot; Configurazione Pipeline">ComfyUI &middot; Pipeline Setup</p>
-    <h1 class="page-title" data-en="Setup instructions for customized modules" data-it="Istruzioni di configurazione per i moduli personalizzati">Setup instructions for customized modules</h1>
+    <p class="section-label">ComfyUI &middot; Pipeline Setup</p>
+    <h1 class="page-title">Setup instructions for customized modules</h1>
     <div class="page-body">
       <div class="post-tags" style="margin-bottom:2rem;">
-        <span class="post-tag tag-tech" data-en="ComfyUI"        data-it="ComfyUI">ComfyUI</span>
-        <span class="post-tag tag-tech" data-en="Setup"          data-it="Configurazione">Setup</span>
-        <span class="post-tag tag-tech" data-en="Installation"   data-it="Installazione">Installation</span>
-        <span class="post-tag tag-tech" data-en="Custom Nodes"   data-it="Nodi Personalizzati">Custom Nodes</span>
-        <span class="post-tag tag-tech" data-en="Models"         data-it="Modelli">Models</span>
+        <span class="post-tag tag-tech">ComfyUI</span>
+        <span class="post-tag tag-tech">Setup</span>
+        <span class="post-tag tag-tech">Installation</span>
+        <span class="post-tag tag-tech">Custom Nodes</span>
+        <span class="post-tag tag-tech">Models</span>
       </div>
 
-      <p class="post-text" data-en="This pipeline uses several modules that are not included in a standard ComfyUI installation. Before loading the workflow JSON, you need to install the relevant custom node packs via ComfyUI Manager, download the required model weights from HuggingFace, and prepare your own character reference images and a 3D humanoid mesh. The tables below list everything you need." data-it="Questa pipeline utilizza diversi moduli non inclusi in un'installazione standard di ComfyUI. Prima di caricare il JSON del workflow, è necessario installare i pack di nodi personalizzati tramite ComfyUI Manager, scaricare i pesi dei modelli da HuggingFace, preparare le proprie immagini di riferimento dei personaggi e una mesh 3D umanoide. Le tabelle qui di seguito elencano tutto il necessario.">This pipeline uses several modules that are not included in a standard ComfyUI installation. Before loading the workflow JSON, you need to install the relevant custom node packs via ComfyUI Manager, download the required model weights from HuggingFace, and prepare your own character reference images and a 3D humanoid mesh. The tables below list everything you need.</p>
+      <p class="post-text">This pipeline uses several modules that are not included in a standard ComfyUI installation. Before loading the workflow JSON, you need to install the relevant custom node packs via ComfyUI Manager, download the required model weights from HuggingFace, and prepare your own character reference images and a 3D humanoid mesh. The tables below list everything you need.</p>
 
       <!-- ── SECTION 1 ──────────────────────────────────────── -->
-      <span class="var-section-header" data-en="NON-STANDARD NODES — WHAT TO INSTALL" data-it="NODI NON STANDARD — COSA INSTALLARE">NON-STANDARD NODES — WHAT TO INSTALL</span>
+      <span class="var-section-header">NON-STANDARD NODES — WHAT TO INSTALL</span>
       <table class="setup-table">
         <thead><tr>
-          <th data-en="Node(s) in JSON" data-it="Nodi nel JSON">Node(s) in JSON</th>
-          <th data-en="Package"         data-it="Pacchetto">Package</th>
-          <th data-en="Install via"     data-it="Come installare">Install via</th>
+          <th>Node(s) in JSON</th>
+          <th>Package</th>
+          <th>Install via</th>
         </tr></thead>
         <tbody>        <tr>
           <td><code>CLIPTextEncodeFlux</code></td>
           <td>Built into ComfyUI core since late&nbsp;2024</td>
-          <td data-en="Update ComfyUI to the current version — no extra install if up to date" data-it="Aggiorna ComfyUI all'ultima versione — nessuna installazione aggiuntiva se già aggiornato">Update ComfyUI to the current version — no extra install if up to date</td>
+          <td>Update ComfyUI to the current version — no extra install if up to date</td>
         </tr>
         <tr>
           <td><code>ControlNetApply</code></td>
           <td><a href='https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet' class='tbl-link' target='_blank'>ComfyUI-Advanced-ControlNet</a></td>
-          <td data-en="ComfyUI Manager &rarr; search <em>&quot;Advanced ControlNet&quot;</em>" data-it="ComfyUI Manager &rarr; cerca <em>&quot;Advanced ControlNet&quot;</em>">ComfyUI Manager &rarr; search <em>&quot;Advanced ControlNet&quot;</em></td>
+          <td>ComfyUI Manager &rarr; search <em>&quot;Advanced ControlNet&quot;</em></td>
         </tr>
         <tr>
           <td><code>ApplyPuLIDFlux</code></td>
           <td><a href='https://github.com/balazik/ComfyUI-PuLID-Flux' class='tbl-link' target='_blank'>ComfyUI-PuLID-Flux</a></td>
-          <td data-en="ComfyUI Manager &rarr; search <em>&quot;PuLID Flux&quot;</em>" data-it="ComfyUI Manager &rarr; cerca <em>&quot;PuLID Flux&quot;</em>">ComfyUI Manager &rarr; search <em>&quot;PuLID Flux&quot;</em></td>
+          <td>ComfyUI Manager &rarr; search <em>&quot;PuLID Flux&quot;</em></td>
         </tr>
         <tr>
           <td><code>IPAdapterModelLoader</code><br><code>IPAdapterApply</code></td>
           <td><a href='https://github.com/cubiq/ComfyUI_IPAdapter_plus' class='tbl-link' target='_blank'>ComfyUI_IPAdapter_plus</a> (cubiq)</td>
-          <td data-en="ComfyUI Manager &rarr; search <em>&quot;IPAdapter Plus&quot;</em>" data-it="ComfyUI Manager &rarr; cerca <em>&quot;IPAdapter Plus&quot;</em>">ComfyUI Manager &rarr; search <em>&quot;IPAdapter Plus&quot;</em></td>
+          <td>ComfyUI Manager &rarr; search <em>&quot;IPAdapter Plus&quot;</em></td>
         </tr>
         <tr>
           <td><code>CLIPVisionLoader</code></td>
           <td>Built into ComfyUI core</td>
-          <td data-en="No install needed" data-it="Nessuna installazione necessaria">No install needed</td>
+          <td>No install needed</td>
         </tr>
         <tr>
           <td><code>Load3DMesh</code><br><code>3DPoseEditor</code><br><code>OrbitCamera</code><br><code>Render3DMeshToDepth</code></td>
           <td><a href='https://github.com/MrForExample/ComfyUI-3D-Pack' class='tbl-link' target='_blank'>ComfyUI-3D-Pack</a></td>
-          <td data-en="ComfyUI Manager &rarr; search <em>&quot;3D Pack&quot;</em> or <em>&quot;OrbitCamera&quot;</em>" data-it="ComfyUI Manager &rarr; cerca <em>&quot;3D Pack&quot;</em> o <em>&quot;OrbitCamera&quot;</em>">ComfyUI Manager &rarr; search <em>&quot;3D Pack&quot;</em> or <em>&quot;OrbitCamera&quot;</em></td>
+          <td>ComfyUI Manager &rarr; search <em>&quot;3D Pack&quot;</em> or <em>&quot;OrbitCamera&quot;</em></td>
         </tr>
         </tbody>
       </table>
 
       <!-- ── SECTION 2 ──────────────────────────────────────── -->
-      <span class="var-section-header" data-en="MODEL FILES REQUIRED" data-it="FILE MODELLO RICHIESTI">MODEL FILES REQUIRED</span>
-      <p class="post-text" style="margin-bottom:0.5rem;"
-         data-en="All files go inside the ComfyUI <code>models/</code> folder, in the indicated subfolder."
-         data-it="Tutti i file vanno all'interno della cartella <code>models/</code> di ComfyUI, nella sottocartella indicata.">
+      <span class="var-section-header">MODEL FILES REQUIRED</span>
+      <p class="post-text" style="margin-bottom:0.5rem;">
         All files go inside the ComfyUI <code>models/</code> folder, in the indicated subfolder.</p>
       <table class="setup-table">
         <thead><tr>
-          <th data-en="File in JSON"   data-it="File nel JSON">File in JSON</th>
-          <th data-en="Download from"  data-it="Scarica da">Download from</th>
-          <th data-en="Subfolder"      data-it="Sottocartella">Subfolder</th>
+          <th>File in JSON</th>
+          <th>Download from</th>
+          <th>Subfolder</th>
         </tr></thead>
         <tbody>        <tr>
           <td><code>flux1-dev.safetensors</code></td>
@@ -238,72 +236,72 @@
       </table>
 
       <!-- ── SECTION 3 ──────────────────────────────────────── -->
-      <span class="var-section-header" data-en="FILES YOU MUST PROVIDE YOURSELF" data-it="FILE DA FORNIRE PERSONALMENTE">FILES YOU MUST PROVIDE YOURSELF</span>
-      <p class="pipeline-note" data-en="The pipeline uses a 3D humanoid mesh to generate a per-shot depth map that ControlNet uses as spatial guidance (body position, scale, rough pose within the frame). Without the mesh file, the Render3DMeshToDepth nodes produce nothing and ControlNet depth guidance is silently disabled. The mesh does not need to be detailed: a generic neutral T-pose figure is sufficient. Recommended free sources: <a href='http://www.makehumancommunity.org/content/downloads.html' class='tbl-link' target='_blank'>MakeHuman</a> (export directly as OBJ, simplest option); <a href='https://www.mixamo.com' class='tbl-link' target='_blank'>Mixamo</a> (T-pose FBX, then export as OBJ from Blender); or any neutral-pose humanoid OBJ from <a href='https://www.cgtrader.com/free-3d-models/character' class='tbl-link' target='_blank'>CGTrader</a> or Sketchfab. Place the file at <code>ComfyUI/input/generic_humanoid.obj</code> — the Load3DMesh node reads from the <code>input/</code> folder, the same folder used by LoadImage." data-it="La pipeline utilizza una mesh 3D umanoide per generare una depth map per ogni shot, che ControlNet usa come guida spaziale (posizione del corpo, scala, posa approssimativa nel frame). Senza il file mesh, i nodi Render3DMeshToDepth non producono nulla e il depth guidance di ControlNet viene disabilitato silenziosamente. La mesh non deve essere dettagliata: è sufficiente una figura generica in posa neutra (T-pose). Fonti gratuite consigliate: <a href='http://www.makehumancommunity.org/content/downloads.html' class='tbl-link' target='_blank'>MakeHuman</a> (esporta direttamente come OBJ, opzione più semplice); <a href='https://www.mixamo.com' class='tbl-link' target='_blank'>Mixamo</a> (T-pose FBX, poi esporta come OBJ da Blender); o qualsiasi OBJ umanoide in posa neutra da <a href='https://www.cgtrader.com/free-3d-models/character' class='tbl-link' target='_blank'>CGTrader</a> o Sketchfab. Posizionare il file in <code>ComfyUI/input/generic_humanoid.obj</code> — il nodo Load3DMesh legge dalla cartella <code>input/</code>, la stessa usata da LoadImage.">The pipeline uses a 3D humanoid mesh to generate a per-shot depth map that ControlNet uses as spatial guidance (body position, scale, rough pose within the frame). Without the mesh file, the Render3DMeshToDepth nodes produce nothing and ControlNet depth guidance is silently disabled. The mesh does not need to be detailed: a generic neutral T-pose figure is sufficient. Recommended free sources: <a href='http://www.makehumancommunity.org/content/downloads.html' class='tbl-link' target='_blank'>MakeHuman</a> (export directly as OBJ, simplest option); <a href='https://www.mixamo.com' class='tbl-link' target='_blank'>Mixamo</a> (T-pose FBX, then export as OBJ from Blender); or any neutral-pose humanoid OBJ from <a href='https://www.cgtrader.com/free-3d-models/character' class='tbl-link' target='_blank'>CGTrader</a> or Sketchfab. Place the file at <code>ComfyUI/input/generic_humanoid.obj</code> — the Load3DMesh node reads from the <code>input/</code> folder, the same folder used by LoadImage.</p>
+      <span class="var-section-header">FILES YOU MUST PROVIDE YOURSELF</span>
+      <p class="pipeline-note">The pipeline uses a 3D humanoid mesh to generate a per-shot depth map that ControlNet uses as spatial guidance (body position, scale, rough pose within the frame). Without the mesh file, the Render3DMeshToDepth nodes produce nothing and ControlNet depth guidance is silently disabled. The mesh does not need to be detailed: a generic neutral T-pose figure is sufficient. Recommended free sources: <a href='http://www.makehumancommunity.org/content/downloads.html' class='tbl-link' target='_blank'>MakeHuman</a> (export directly as OBJ, simplest option); <a href='https://www.mixamo.com' class='tbl-link' target='_blank'>Mixamo</a> (T-pose FBX, then export as OBJ from Blender); or any neutral-pose humanoid OBJ from <a href='https://www.cgtrader.com/free-3d-models/character' class='tbl-link' target='_blank'>CGTrader</a> or Sketchfab. Place the file at <code>ComfyUI/input/generic_humanoid.obj</code> — the Load3DMesh node reads from the <code>input/</code> folder, the same folder used by LoadImage.</p>
       <table class="setup-table">
         <thead><tr>
-          <th data-en="File in JSON"  data-it="File nel JSON">File in JSON</th>
-          <th data-en="What it is"   data-it="Cosa &egrave;">What it is</th>
-          <th data-en="Notes"        data-it="Note">Notes</th>
-          <th data-en="Preview"      data-it="Anteprima" style="width:96px;">Preview</th>
+          <th>File in JSON</th>
+          <th>What it is</th>
+          <th>Notes</th>
+          <th style="width:96px;">Preview</th>
         </tr></thead>
         <tbody>
         <tr>
           <td><code>jim_turnaround.jpg</code></td>
-          <td data-en="Full-body reference image of character Jim" data-it="Immagine di riferimento corpo intero del personaggio Jim">Full-body reference image of character Jim</td>
-          <td data-en="Used by IP-Adapter for clothing/posture" data-it="Usata dall'IP-Adapter per abbigliamento/postura">Used by IP-Adapter for clothing/posture</td>
+          <td>Full-body reference image of character Jim</td>
+          <td>Used by IP-Adapter for clothing/posture</td>
           <td><img src="/assets/comfyui-pipeline-setup/jim_reduct.jpg" alt="Jim turnaround" style="width:80px;height:auto;border-radius:3px;display:block;opacity:0.88;" width="627" height="1090" decoding="async"></td>
         </tr>
         <tr>
           <td><code>barbara_turnaround.jpg</code></td>
-          <td data-en="Full-body reference image of character Barbara" data-it="Immagine di riferimento corpo intero del personaggio Barbara">Full-body reference image of character Barbara</td>
-          <td data-en="Used by IP-Adapter" data-it="Usata dall'IP-Adapter">Used by IP-Adapter</td>
+          <td>Full-body reference image of character Barbara</td>
+          <td>Used by IP-Adapter</td>
           <td><img src="/assets/comfyui-pipeline-setup/barbara_reduct.jpg" alt="Barbara turnaround" style="width:80px;height:auto;border-radius:3px;display:block;opacity:0.88;" width="489" height="774" loading="lazy" decoding="async"></td>
         </tr>
         <tr>
           <td><code>jim_face_crop.png</code></td>
-          <td data-en="Tight face crop of Jim (~512&times;512&nbsp;px)" data-it="Ritaglio ravvicinato del volto di Jim (~512&times;512&nbsp;px)">Tight face crop of Jim (~512&times;512&nbsp;px)</td>
-          <td data-en="Used by PuLID for facial geometry" data-it="Usata da PuLID per la geometria facciale">Used by PuLID for facial geometry</td>
+          <td>Tight face crop of Jim (~512&times;512&nbsp;px)</td>
+          <td>Used by PuLID for facial geometry</td>
           <td><img src="/assets/comfyui-pipeline-setup/jim_face.png" alt="Jim face crop" style="width:80px;height:auto;border-radius:3px;display:block;opacity:0.88;" width="609" height="610" loading="lazy" decoding="async"></td>
         </tr>
         <tr>
           <td><code>barbara_face_crop.png</code></td>
-          <td data-en="Tight face crop of Barbara (~512&times;512&nbsp;px)" data-it="Ritaglio ravvicinato del volto di Barbara (~512&times;512&nbsp;px)">Tight face crop of Barbara (~512&times;512&nbsp;px)</td>
-          <td data-en="Used by PuLID for facial geometry" data-it="Usata da PuLID per la geometria facciale">Used by PuLID for facial geometry</td>
+          <td>Tight face crop of Barbara (~512&times;512&nbsp;px)</td>
+          <td>Used by PuLID for facial geometry</td>
           <td><img src="/assets/comfyui-pipeline-setup/barbara_face.png" alt="Barbara face crop" style="width:80px;height:auto;border-radius:3px;display:block;opacity:0.88;" width="609" height="610" loading="lazy" decoding="async"></td>
         </tr>
         <tr>
           <td><code>jim_barbara_ref.jpg</code></td>
-          <td data-en="Two-character reference — Jim and Barbara together" data-it="Riferimento a due personaggi — Jim ed Barbara insieme">Two-character reference — Jim and Barbara together</td>
-          <td data-en="Visual reference for dual-character shots (shots 2 and 5)" data-it="Riferimento visivo per gli shot a due personaggi (shot 2 e 5)">Visual reference for dual-character shots (shots 2 and 5)</td>
+          <td>Two-character reference — Jim and Barbara together</td>
+          <td>Visual reference for dual-character shots (shots 2 and 5)</td>
           <td><img src="/assets/comfyui-pipeline-setup/barbara_and_jim_kiss_each_other.jpg" alt="Jim and Barbara together" style="width:80px;height:auto;border-radius:3px;display:block;opacity:0.88;" width="614" height="495" loading="lazy" decoding="async"></td>
         </tr>
         <tr>
           <td><code>generic_humanoid.obj</code></td>
-          <td data-en="A 3D humanoid mesh in neutral T-pose" data-it="Una mesh 3D umanoide in posa neutra (T-pose)">A 3D humanoid mesh in neutral T-pose</td>
-          <td data-en="Used to generate per-shot depth maps for ControlNet. See the note above for recommended sources and where to place the file." data-it="Usata per generare depth map per ogni shot da inviare a ControlNet. Vedi la nota sopra per le fonti consigliate e la cartella di destinazione.">Used to generate per-shot depth maps for ControlNet. See the note above for recommended sources and where to place the file.</td>
+          <td>A 3D humanoid mesh in neutral T-pose</td>
+          <td>Used to generate per-shot depth maps for ControlNet. See the note above for recommended sources and where to place the file.</td>
           <td><img src="/assets/comfyui-pipeline-setup/neutral_humanoid_reduct.jpg" alt="Humanoid T-pose" style="width:80px;height:auto;border-radius:3px;display:block;opacity:0.88;" width="1126" height="614" loading="lazy" decoding="async"></td>
         </tr>
         </tbody>
       </table>
 
       <!-- ── SECTION 4 ──────────────────────────────────────── -->
-      <span class="var-section-header" data-en="RECOMMENDED RUN SEQUENCE" data-it="SEQUENZA DI ESECUZIONE CONSIGLIATA">RECOMMENDED RUN SEQUENCE</span>
+      <span class="var-section-header">RECOMMENDED RUN SEQUENCE</span>
       <ol class="run-sequence">
-        <li data-en="Update ComfyUI to the current version before anything else (<code>git pull</code> in the ComfyUI folder)." data-it="Aggiorna ComfyUI all'ultima versione prima di tutto il resto (<code>git pull</code> nella cartella di ComfyUI).">Update ComfyUI to the current version before anything else (<code>git pull</code> in the ComfyUI folder).</li>
-        <li data-en="Install all custom node packs via ComfyUI Manager. Restart ComfyUI after." data-it="Installa tutti i pack di nodi personalizzati tramite ComfyUI Manager. Riavvia ComfyUI al termine.">Install all custom node packs via ComfyUI Manager. Restart ComfyUI after.</li>
-        <li data-en="Download all model files and place them in the correct <code>models/</code> subfolders (see table above)." data-it="Scarica tutti i file modello e posizionali nelle sottocartelle <code>models/</code> corrette (vedi tabella sopra).">Download all model files and place them in the correct <code>models/</code> subfolders (see table above).</li>
-        <li data-en="Prepare your reference images — full-body turnarounds and tight face crops for both characters." data-it="Prepara le immagini di riferimento — corpo intero (turnaround) e ritaglio ravvicinato del volto per entrambi i personaggi.">Prepare your reference images — full-body turnarounds and tight face crops for both characters.</li>
-        <li data-en="Export or download a neutral T-pose humanoid OBJ and place it at <code>ComfyUI/input/generic_humanoid.obj</code>." data-it="Esporta o scarica una mesh umanoide OBJ in T-pose neutra e posizionala in <code>ComfyUI/input/generic_humanoid.obj</code>.">Export or download a neutral T-pose humanoid OBJ and place it at <code>ComfyUI/input/generic_humanoid.obj</code>.</li>
-        <li data-en="Fix the class name if needed: verify that all six ControlNet nodes in the JSON read <code>&quot;class_type&quot;: &quot;ControlNetApply&quot;</code>. The JSON provided here already has this fix applied." data-it="Verifica il nome del nodo: controlla che i sei nodi ControlNet nel JSON abbiano <code>&quot;class_type&quot;: &quot;ControlNetApply&quot;</code>. Il JSON fornito qui ha già questa correzione applicata.">Fix the class name if needed: verify that all six ControlNet nodes in the JSON read <code>&quot;class_type&quot;: &quot;ControlNetApply&quot;</code>. The JSON provided here already has this fix applied.</li>
-        <li data-en="Load the JSON in ComfyUI via <strong>Load &rarr; workflow_api_v2.json</strong>." data-it="Carica il JSON in ComfyUI tramite <strong>Load &rarr; workflow_api_v2.json</strong>.">Load the JSON in ComfyUI via <strong>Load &rarr; workflow_api_v2.json</strong>.</li>
-        <li data-en="Update the four <code>LoadImage</code> nodes with your actual character image files." data-it="Aggiorna i quattro nodi <code>LoadImage</code> con i tuoi file immagine dei personaggi.">Update the four <code>LoadImage</code> nodes with your actual character image files.</li>
-        <li data-en="Update the <code>Load3DMesh</code> node with the path to your <code>.obj</code> file if the filename differs." data-it="Aggiorna il nodo <code>Load3DMesh</code> con il percorso del tuo file <code>.obj</code> se il nome del file è diverso.">Update the <code>Load3DMesh</code> node with the path to your <code>.obj</code> file if the filename differs.</li>
-        <li data-en="<strong>Queue</strong> — each of the 6 shots runs sequentially. At 30 steps on a 3090 expect roughly 3–5 minutes per shot." data-it="<strong>Queue</strong> — ognuno dei 6 shot viene eseguito in sequenza. A 30 step su una 3090, prevedere circa 3–5 minuti per shot."><strong>Queue</strong> — each of the 6 shots runs sequentially. At 30 steps on a 3090 expect roughly 3–5 minutes per shot.</li>
+        <li>Update ComfyUI to the current version before anything else (<code>git pull</code> in the ComfyUI folder).</li>
+        <li>Install all custom node packs via ComfyUI Manager. Restart ComfyUI after.</li>
+        <li>Download all model files and place them in the correct <code>models/</code> subfolders (see table above).</li>
+        <li>Prepare your reference images — full-body turnarounds and tight face crops for both characters.</li>
+        <li>Export or download a neutral T-pose humanoid OBJ and place it at <code>ComfyUI/input/generic_humanoid.obj</code>.</li>
+        <li>Fix the class name if needed: verify that all six ControlNet nodes in the JSON read <code>&quot;class_type&quot;: &quot;ControlNetApply&quot;</code>. The JSON provided here already has this fix applied.</li>
+        <li>Load the JSON in ComfyUI via <strong>Load &rarr; workflow_api_v2.json</strong>.</li>
+        <li>Update the four <code>LoadImage</code> nodes with your actual character image files.</li>
+        <li>Update the <code>Load3DMesh</code> node with the path to your <code>.obj</code> file if the filename differs.</li>
+        <li><strong>Queue</strong> — each of the 6 shots runs sequentially. At 30 steps on a 3090 expect roughly 3–5 minutes per shot.</li>
       </ol>
     </div>
   </main>
-  <a href="/en/index.html" class="nav-back nav-home" id="home-link" data-en="HOME" data-it="HOME">HOME</a>
+  <a href="/en/index.html" class="nav-back nav-home" id="home-link">HOME</a>
   <div class="lang-switch">
     <a class="lang-btn" href="/comfyui-pipeline-setup.html">IT</a>
   </div>

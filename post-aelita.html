@@ -64,58 +64,48 @@
 <body class="interior">
 
   <header>
-    <a href="about.html" class="nav-item" data-en="ABOUT" data-it="ABOUT">ABOUT</a>
+    <a href="about.html" class="nav-item">ABOUT</a>
     <div class="menu-container">
-      <span class="menu-trigger" data-en="TOPICS" data-it="ARGOMENTI">ARGOMENTI</span>
+      <span class="menu-trigger">ARGOMENTI</span>
       <div class="menu-dropdown">
-        <a href="adv.html"             class="menu-item" data-en="ADV"            data-it="ADV">ADV</a>
-        <a href="neural-graphics.html" class="menu-item" data-en="VISUAL STORIES" data-it="FUMETTI/STORYBOARD">FUMETTI/STORYBOARD</a>
-        <a href="comfyui.html"         class="menu-item" data-en="COMFYUI"        data-it="COMFYUI">COMFYUI</a>
-        <a href="posts.html"           class="menu-item" data-en="POSTS"          data-it="POST">POST</a>
-        <span class="menu-item menu-item--disabled" data-en="VIDEO" data-it="VIDEO">VIDEO</span>
+        <a href="adv.html"             class="menu-item">ADV</a>
+        <a href="neural-graphics.html" class="menu-item">FUMETTI/STORYBOARD</a>
+        <a href="comfyui.html"         class="menu-item">COMFYUI</a>
+        <a href="posts.html"           class="menu-item">POST</a>
+        <span class="menu-item menu-item--disabled">VIDEO</span>
       </div>
     </div>
   </header>
 
   <main class="page-content">
 
-    <p class="section-label"
-       data-en="ComfyUI · Graphic novel · 2026"
-       data-it="ComfyUI · Romanzo grafico · 2026">
+    <p class="section-label">
       ComfyUI · Romanzo grafico · 2026
     </p>
 
-    <h1 class="page-title"
-        data-en="AELITA: PuLID vs Flux Kontext for graphic novel storyboarding"
-        data-it="AELITA: PuLID vs Flux Kontext per lo storyboard di romanzi grafici">
+    <h1 class="page-title">
       AELITA: PuLID vs Flux Kontext per lo storyboard di romanzi grafici
     </h1>
 
-    <p class="post-subtitle"
-       data-en="Building an AI storyboard pipeline for a graphic novel adaptation of Alexei Tolstoy's Soviet sci-fi novel — and what the two main identity-preservation approaches actually do."
-       data-it="Costruire una pipeline di storyboard AI per l'adattamento in romanzo grafico del romanzo di fantascienza sovietica di Alexei Tolstoy — e cosa fanno davvero i due principali approcci per la preservazione dell'identità visiva.">
+    <p class="post-subtitle">
       Costruire una pipeline di storyboard AI per l'adattamento in romanzo grafico del romanzo di fantascienza sovietica di Alexei Tolstoy — e cosa fanno davvero i due principali approcci per la preservazione dell'identità visiva.
     </p>
 
     <!-- Lead image — Soviet sci-fi landscape as visual reference -->
     <figure class="post-figure">
       <img src="assets/solaris.jpg" alt="Tarkovsky — figures in a field, misty landscape" width="619" height="495" decoding="async">
-      <p class="post-caption"
-         data-en="Tarkovsky's visual language as a reference point: flat, saturated fields; figures dwarfed by environment. The AELITA graphic novel operates in the same register — Soviet landscape, retro-futurist technology, illustrated style that no AI model naturally preserves."
-         data-it="Il linguaggio visivo di Tarkovsky come punto di riferimento: campi piatti e saturi, figure schiacciante dall'ambiente. Il romanzo grafico AELITA opera nello stesso registro — paesaggio sovietico, tecnologia retro-futurista, stile illustrato che nessun modello AI preserva naturalmente.">
+      <p class="post-caption">
         Il linguaggio visivo di Tarkovsky come punto di riferimento: campi piatti e saturi, figure schiacciante dall'ambiente. Il romanzo grafico AELITA opera nello stesso registro — paesaggio sovietico, tecnologia retro-futurista, stile illustrato che nessun modello AI preserva naturalmente.
       </p>
     </figure>
 
     <div class="page-body">
 
-      <p data-en="AELITA is a graphic novel adaptation of Alexei Tolstoy's 1923 Soviet science fiction novel — built entirely in ComfyUI on RunPod, using Flux-based models. The cast includes two human protagonists (Los and Gusev) and blue-skinned Martian characters with strict appearance rules across all 8 panels."
-         data-it="AELITA è un adattamento in romanzo grafico del romanzo di fantascienza sovietica del 1923 di Alexei Tolstoy — costruito interamente in ComfyUI su RunPod, usando modelli basati su Flux. Il cast include due protagonisti umani (Los e Gusev) e personaggi marziani dalla pelle blu con regole di aspetto rigide su tutti gli 8 pannelli.">
+      <p>
         AELITA è un adattamento in romanzo grafico del romanzo di fantascienza sovietica del 1923 di Alexei Tolstoy — costruito interamente in ComfyUI su RunPod, usando modelli basati su Flux. Il cast include due protagonisti umani (Los e Gusev) e personaggi marziani dalla pelle blu con regole di aspetto rigide su tutti gli 8 pannelli.
       </p>
 
-      <p data-en="The central architectural question: which identity-preservation mechanism produces consistent characters across panels — PuLID (face biometric lock) or Flux Kontext (reference image conditioning)? The answer turned out to be neither simple nor symmetric."
-         data-it="La domanda architettonica centrale: quale meccanismo di preservazione dell'identità produce personaggi coerenti tra i pannelli — PuLID (blocco biometrico del volto) o Flux Kontext (condizionamento da immagine di riferimento)? La risposta si è rivelata né semplice né simmetrica.">
+      <p>
         La domanda architettonica centrale: quale meccanismo di preservazione dell'identità produce personaggi coerenti tra i pannelli — PuLID (blocco biometrico del volto) o Flux Kontext (condizionamento da immagine di riferimento)? La risposta si è rivelata né semplice né simmetrica.
       </p>
 
@@ -124,28 +114,22 @@
     <hr class="divider">
 
     <!-- Technical callout — PuLID -->
-    <div class="post-note"
-         data-en="PuLID anchors identity at the biometric level — facial geometry, skin tone, proportions. It is the right tool for photorealistic characters whose face must be locked across shots. But it fights illustrated styles: feeding it a drawn reference produces a photorealistic output, not an illustrated one. The style of the source image is discarded."
-         data-it="PuLID ancora l'identità al livello biometrico — geometria facciale, tono della pelle, proporzioni. È lo strumento giusto per personaggi fotorealistici il cui volto deve essere fissato tra i shot. Ma combatte gli stili illustrati: dargli un riferimento disegnato produce un output fotorealistico, non illustrato. Lo stile dell'immagine sorgente viene scartato.">
+    <div class="post-note">
       PuLID ancora l'identità al livello biometrico — geometria facciale, tono della pelle, proporzioni. È lo strumento giusto per personaggi fotorealistici il cui volto deve essere fissato tra i shot. Ma combatte gli stili illustrati: dargli un riferimento disegnato produce un output fotorealistico, non illustrato. Lo stile dell'immagine sorgente viene scartato.
     </div>
 
     <!-- Technical callout — Kontext -->
-    <div class="post-note"
-         data-en="Flux Kontext conditions generation on the full visual content of a reference image — pose, clothing, color palette, spatial relationships. It does content/identity transfer, not style transfer. Like PuLID, it outputs in Flux's native photorealistic register regardless of whether the reference is illustrated or photographic. The implication: for illustrated graphic novel output, neither mechanism alone is sufficient."
-         data-it="Flux Kontext condiziona la generazione sul contenuto visivo completo di un'immagine di riferimento — posa, abbigliamento, palette cromatica, relazioni spaziali. Fa trasferimento di contenuto/identità, non di stile. Come PuLID, produce nel registro fotorealistico nativo di Flux indipendentemente da se il riferimento è illustrato o fotografico. L'implicazione: per l'output illustrato di un romanzo grafico, nessuno dei due meccanismi da solo è sufficiente.">
+    <div class="post-note">
       Flux Kontext condiziona la generazione sul contenuto visivo completo di un'immagine di riferimento — posa, abbigliamento, palette cromatica, relazioni spaziali. Fa trasferimento di contenuto/identità, non di stile. Come PuLID, produce nel registro fotorealistico nativo di Flux indipendentemente da se il riferimento è illustrato o fotografico. L'implicazione: per l'output illustrato di un romanzo grafico, nessuno dei due meccanismi da solo è sufficiente.
     </div>
 
     <div class="page-body">
 
-      <p data-en="The architecture that worked for AELITA: Flux Kontext fed with panel crops (not masked character extractions). No PuLID. No ControlNet depth. Prompts generated by Claude Sonnet API applying cinematographic rules — camera angle, LEFT:/RIGHT: spatial anchoring, scale anchoring, environment density minimums for wide shots. One 69-node graph for 8 outputs, JSON built programmatically by a dedicated generator script."
-         data-it="L'architettura che ha funzionato per AELITA: Flux Kontext alimentato con crop dei pannelli (non estrazioni di personaggi mascherati). Niente PuLID. Niente ControlNet depth. Prompt generati dall'API di Claude Sonnet applicando regole cinematografiche — angolo di camera, ancoraggio spaziale LEFT:/RIGHT:, ancoraggio di scala, minimi di densità ambientale per i campi larghi. Un grafo a 69 nodi per 8 output, JSON costruito programmaticamente da uno script generatore dedicato.">
+      <p>
         L'architettura che ha funzionato per AELITA: Flux Kontext alimentato con crop dei pannelli (non estrazioni di personaggi mascherati). Niente PuLID. Niente ControlNet depth. Prompt generati dall'API di Claude Sonnet applicando regole cinematografiche — angolo di camera, ancoraggio spaziale LEFT:/RIGHT:, ancoraggio di scala, minimi di densità ambientale per i campi larghi. Un grafo a 69 nodi per 8 output, JSON costruito programmaticamente da uno script generatore dedicato.
       </p>
 
-      <p data-en="The open empirical question: a hybrid pipeline — PuLID vault generation on RunPod feeding Kontext Max per panel — is pending a 10-panel test. The hypothesis: PuLID generates photorealistic character reference frames; Kontext uses those frames as conditioning anchors while accepting a stronger style LoRA. If the hypothesis holds, illustrated output with consistent identity becomes achievable."
-         data-it="La domanda empirica aperta: una pipeline ibrida — generazione vault con PuLID su RunPod che alimenta Kontext Max per pannello — è in attesa di un test a 10 pannelli. L'ipotesi: PuLID genera frame di riferimento fotorealistici dei personaggi; Kontext usa quei frame come ancoraggi di condizionamento accettando un LoRA di stile più forte. Se l'ipotesi regge, un output illustrato con identità coerente diventa raggiungibile.">
+      <p>
         La domanda empirica aperta: una pipeline ibrida — generazione vault con PuLID su RunPod che alimenta Kontext Max per pannello — è in attesa di un test a 10 pannelli. L'ipotesi: PuLID genera frame di riferimento fotorealistici dei personaggi; Kontext usa quei frame come ancoraggi di condizionamento accettando un LoRA di stile più forte. Se l'ipotesi regge, un output illustrato con identità coerente diventa raggiungibile.
       </p>
 
@@ -154,8 +138,7 @@
     <hr class="divider">
 
     <!-- Comparison table rendered in minimal CSS -->
-    <p class="section-label" style="margin-bottom:20px;"
-       data-en="COMPARISON" data-it="CONFRONTO">CONFRONTO</p>
+    <p class="section-label" style="margin-bottom:20px;">CONFRONTO</p>
 
     <style>
       .compare-table { width:100%; border-collapse:collapse; font-family:'IBM Plex Mono','Courier New',monospace; font-size:0.72rem; }
@@ -167,31 +150,31 @@
     <table class="compare-table">
       <thead>
         <tr>
-          <th data-en="DIMENSION" data-it="DIMENSIONE">DIMENSIONE</th>
+          <th>DIMENSIONE</th>
           <th>PuLID</th>
           <th>Flux Kontext</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td data-en="Identity mechanism" data-it="Meccanismo identità">Meccanismo identità</td>
-          <td data-en="Biometric face lock" data-it="Blocco biometrico viso">Blocco biometrico viso</td>
-          <td data-en="Full-frame visual conditioning" data-it="Condizionamento visivo full-frame">Condizionamento visivo full-frame</td>
+          <td>Meccanismo identità</td>
+          <td>Blocco biometrico viso</td>
+          <td>Condizionamento visivo full-frame</td>
         </tr>
         <tr>
-          <td data-en="Style preservation" data-it="Preservazione stile">Preservazione stile</td>
-          <td data-en="None — overwrites with photorealistic output" data-it="Nessuna — sovrascrive con output fotorealistico">Nessuna — sovrascrive con output fotorealistico</td>
-          <td data-en="None — same photorealistic register" data-it="Nessuna — stesso registro fotorealistico">Nessuna — stesso registro fotorealistico</td>
+          <td>Preservazione stile</td>
+          <td>Nessuna — sovrascrive con output fotorealistico</td>
+          <td>Nessuna — stesso registro fotorealistico</td>
         </tr>
         <tr>
-          <td data-en="Character masking" data-it="Mascheratura personaggi">Mascheratura personaggi</td>
-          <td data-en="Required — one node per face" data-it="Richiesta — un nodo per volto">Richiesta — un nodo per volto</td>
-          <td data-en="Not needed — panel crops work" data-it="Non necessaria — i crop funzionano">Non necessaria — i crop funzionano</td>
+          <td>Mascheratura personaggi</td>
+          <td>Richiesta — un nodo per volto</td>
+          <td>Non necessaria — i crop funzionano</td>
         </tr>
         <tr>
-          <td data-en="Best for" data-it="Ideale per">Ideale per</td>
-          <td data-en="Photorealistic film storyboard" data-it="Storyboard cinematografico fotorealistico">Storyboard cinematografico fotorealistico</td>
-          <td data-en="Illustrated graphic novel (with style LoRA)" data-it="Romanzo grafico illustrato (con style LoRA)">Romanzo grafico illustrato (con style LoRA)</td>
+          <td>Ideale per</td>
+          <td>Storyboard cinematografico fotorealistico</td>
+          <td>Romanzo grafico illustrato (con style LoRA)</td>
         </tr>
       </tbody>
     </table>
@@ -207,7 +190,7 @@
 
   </main>
 
-  <a href="index.html" class="nav-back nav-home" id="home-link" data-en="HOME" data-it="HOME">HOME</a>
+  <a href="index.html" class="nav-back nav-home" id="home-link">HOME</a>
   <div class="lang-switch">
     <a class="lang-btn" href="/en/post-aelita.html">EN</a>
   </div>
