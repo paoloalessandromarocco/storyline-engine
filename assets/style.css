@@ -657,7 +657,7 @@ figcaption strong {
 }
 .content-sublist-detail li {
   list-style-type: "– ";
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 .content-sublist-detail li::marker {
   color: inherit;
