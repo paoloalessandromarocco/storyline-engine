@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <title>Mickmumpitz's ComfyUI masterclass — technical breakdown</title>
+  <link rel="alternate" hreflang="en"        href="https://storyline-engine.com/en/masterclass.html">
+  <link rel="alternate" hreflang="it"        href="https://storyline-engine.com/masterclass.html">
+  <link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/masterclass.html">
+    <!-- Preload self-hosted fonts so they're already in flight before style.css
+       is even parsed — closes the remaining window where the browser paints
+       with the fallback (Georgia/Courier) and then swaps to the real font,
+       which is what still reads as the font "changing size" on reload. -->
+  <link rel="preload" href="/assets/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/ibm-plex-mono-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/eb-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/eb-garamond-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+  <meta name="description" content="A technical breakdown of Mickmumpitz's ComfyUI masterclass (Create HYPERREALISTIC Consistent AI Characters): tools per phase, AI Toolkit for LoRA training, alternatives, and the newest models as of November 2026.">
+  <link rel="canonical" href="https://storyline-engine.com/en/masterclass.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Paolo Marocco">
+  <meta property="og:title" content="Mickmumpitz's ComfyUI masterclass — technical breakdown">
+  <meta property="og:description" content="A technical breakdown of Mickmumpitz's ComfyUI masterclass (Create HYPERREALISTIC Consistent AI Characters): tools per phase, AI Toolkit for LoRA training, alternatives, and the newest models as of November 2026.">
+  <meta property="og:url" content="https://storyline-engine.com/en/masterclass.html">
+  <meta property="og:image" content="https://storyline-engine.com/assets/post-confyui-confronto-gemini/img1.jpg">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="it_IT">
+  <meta property="article:tag" content="ComfyUI">
+  <meta property="article:tag" content="Generative AI">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mickmumpitz's ComfyUI masterclass — technical breakdown">
+  <meta name="twitter:description" content="A technical breakdown of Mickmumpitz's ComfyUI masterclass (Create HYPERREALISTIC Consistent AI Characters): tools per phase, AI Toolkit for LoRA training, alternatives, and the newest models as of November 2026.">
+  <meta name="twitter:image" content="https://storyline-engine.com/assets/post-confyui-confronto-gemini/img1.jpg">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Create HYPERREALISTIC Consistent AI Characters — technical breakdown",
+  "description": "A technical breakdown of Mickmumpitz's ComfyUI masterclass (Create HYPERREALISTIC Consistent AI Characters): tools per phase, AI Toolkit for LoRA training, alternatives, and the newest models as of November 2026.",
+  "image": "https://storyline-engine.com/assets/post-confyui-confronto-gemini/img1.jpg",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://storyline-engine.com/en/masterclass.html",
+  "author": {
+    "@type": "Person",
+    "name": "Paolo Marocco",
+    "url": "https://storyline-engine.com/about.html"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Paolo Marocco"
+  }
+}
+  </script>
+
+  <link rel="stylesheet" href="/assets/style.css">
+
+  <style>
+    :root { --burgundy: #6B2737; }
+    body.interior { color: var(--burgundy); }
+    .page-title, .section-label { color: var(--burgundy) !important; }
+    .post-tag { border-color: var(--burgundy) !important; color: var(--burgundy) !important; }
+    .content-sublist li, .open-question p { color: var(--burgundy); }
+
+    /* ── post body text ─────────────────────────────────── */
+    .post-text {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.15rem;
+      line-height: 1.75;
+      margin: 0 0 1.4em 0;
+    }
+
+    /* ── open-question callout ───────────────────────────── */
+    .open-question {
+      border-left: 3px solid var(--burgundy);
+      padding: 4px 0 4px 20px;
+      margin: 1.8rem 0;
+    }
+    .open-question .oq-label {
+      display: block;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--burgundy);
+      margin-bottom: 0.6rem;
+    }
+    .open-question p { margin: 0 0 1em; }
+    .open-question p:last-child { margin-bottom: 0; }
+
+    /* ── numbered content list ───────────────────────────── */
+    .content-list { list-style: none; padding: 0; margin: 1.6rem 0 0; }
+    .content-item {
+      display: grid;
+      grid-template-columns: 3rem 1fr;
+      gap: 1.6rem;
+      padding: 2rem 0;
+    }
+    .content-item > .content-body { min-width: 0; }
+    .content-item:last-child { border-bottom: 1px solid rgba(0,0,0,0.08); }
+    .content-number {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--burgundy);
+      opacity: 0.25;
+      padding-top: 0.15rem;
+      line-height: 1;
+    }
+    .content-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--burgundy);
+      margin: 0 0 0.9rem;
+      font-weight: 400;
+    }
+    .content-body .post-text { margin: 0 0 1.2em; }
+    .content-body .post-text:last-child { margin-bottom: 0; }
+
+    /* ── sub-bullet / ranked list ─────────────────────────── */
+    .content-sublist {
+      list-style: disc;
+      padding-left: 1.4em;
+      margin: 0.9em 0 1.2em;
+    }
+    .content-sublist li {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      margin-bottom: 0.6em;
+    }
+    .content-sublist.sources-list { margin-bottom: 0; }
+
+    /* ── defect-category table ────────────────────────────── */
+    .data-table {
+      width: 100%;
+      table-layout: fixed;
+      border-collapse: collapse;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 0.96rem;
+      line-height: 1.5;
+      margin: 1.1rem 0 1.4rem;
+    }
+    .data-table th {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      text-align: left;
+      padding: 0.4rem 0.8rem 0.35rem;
+      border-bottom: 1.5px solid rgba(0,0,0,0.20);
+      color: var(--burgundy);
+      opacity: 0.70;
+    }
+    .data-table td {
+      padding: 0.46rem 0.8rem;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+      vertical-align: top;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table .status-cell { font-size: 0.88em; opacity: 0.72; }
+
+    @media (max-width: 700px) {
+      .content-item { grid-template-columns: 2rem 1fr; gap: 1rem; }
+      .content-number { font-size: 1.1rem; }
+      .data-table, .data-table thead, .data-table tbody, .data-table th, .data-table td, .data-table tr { display: block; }
+      .data-table th { border-bottom: none; padding-bottom: 0; }
+      .data-table td { border-bottom: none; padding: 0.15rem 0; }
+      .data-table tr { padding-bottom: 0.8rem; border-bottom: 1px solid rgba(0,0,0,0.08); }
+    }
+
+    /* ── figure / image ───────────────────────────────────── */
+    .post-figure { margin: 2rem 0 2.2rem; }
+    .post-figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid rgba(0,0,0,0.10);
+      background: #ffffff;
+    }
+    .post-caption {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      line-height: 1.7;
+      color: var(--burgundy);
+      opacity: 0.85;
+      margin-top: 0.7rem;
+    }
+    .caption-title { font-weight: 600; text-transform: uppercase; }
+    .post-caption strong, figcaption strong, .caption-title strong { text-decoration: none; }
+
+    /* ── Emphasis: dotted underline so it reads as annotation, not as a link ── */
+    .page-body strong { text-decoration-style: dotted; }
+
+    /* ── Links: Klein blue instead of the site-wide amber, which has too ──
+       little contrast against this page's burgundy body text ───────────── */
+    .about-link { color: #002FA7; }
+    .about-link:hover { color: #001D6C; }
+  </style>
+</head>
+<body class="interior">
+
+  <header>
+    <a href="/en/about.html" class="nav-item" data-en="ABOUT" data-it="ABOUT">ABOUT</a>
+    <div class="menu-container">
+      <span class="menu-trigger" data-en="TOPICS" data-it="ARGOMENTI">TOPICS</span>
+      <div class="menu-dropdown">
+        <a href="/en/adv.html"             class="menu-item" data-en="ADV"            data-it="ADV">ADV</a>
+        <a href="/en/neural-graphics.html" class="menu-item" data-en="VISUAL STORIES" data-it="FUMETTI/STORYBOARD">VISUAL STORIES</a>
+        <a href="/en/comfyui.html"         class="menu-item" data-en="COMFYUI"        data-it="COMFYUI">COMFYUI</a>
+        <a href="/en/posts.html"           class="menu-item" data-en="POSTS"          data-it="POST">POSTS</a>
+        <span class="menu-item menu-item--disabled" data-en="VIDEO" data-it="VIDEO">VIDEO</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content">
+
+    <p class="section-label"
+       data-en="ComfyUI &middot; Mickmumpitz &middot; MASTERCLASS · TECHNICAL BREAKDOWN"
+       data-it="ComfyUI &middot; Mickmumpitz &middot; MASTERCLASS · ANALISI TECNICA">ComfyUI &middot; Mickmumpitz &middot; MASTERCLASS · TECHNICAL BREAKDOWN</p>
+
+    <h1 class="page-title"
+        data-en="Create HYPERREALISTIC Consistent AI Characters"
+        data-it="Crea personaggi IA coerenti e iperrealistici">
+      Create HYPERREALISTIC Consistent AI Characters
+    </h1>
+
+    <div class="page-body">
+
+      <div class="post-tags" style="margin-bottom:2rem;">
+        <span class="post-tag tag-tech" data-en="ComfyUI"     data-it="ComfyUI">ComfyUI</span>
+        <span class="post-tag tag-tech" data-en="Mickmumpitz" data-it="Mickmumpitz">Mickmumpitz</span>
+        <span class="post-tag tag-tech" data-en="LoRA"        data-it="LoRA">LoRA</span>
+        <span class="post-tag tag-tech" data-en="AI Toolkit"  data-it="AI Toolkit">AI Toolkit</span>
+      </div>
+
+      <p class="post-text"
+         data-en="This page breaks down Mickmumpitz's masterclass <a href='https://www.youtube.com/watch?v=PhiPASFYBmk' class='about-link' target='_blank'>Create HYPERREALISTIC Consistent AI Characters</a> (761,885 views as of 11/14/2026, published October&nbsp;7, 2025), referenced in this site's sitography. The video's stack is open source and local: Qwen Image Edit for the Consistent Character Creator (CCC) workflow and for building the dataset, Wan&nbsp;2.2 for images and video, AI Toolkit to train the character's LoRA, with Runpod as a paid cloud option for anyone without a suitable GPU. The comparison with NanoBanana and Seedream&nbsp;4.0, both commercial, is there only as a point of reference. A note on sources: the video's transcript was not read, so each chapter's content below is partly inferred from titles, the description, and Mickmumpitz's own published materials — where that is the case, it is flagged."
+         data-it="Questa pagina analizza la masterclass di Mickmumpitz <a href='https://www.youtube.com/watch?v=PhiPASFYBmk' class='about-link' target='_blank'>Create HYPERREALISTIC Consistent AI Characters</a> (761.885 visualizzazioni al 14/11/2026, pubblicata il 7&nbsp;ottobre 2025), citata nella sitografia di questo sito. Lo stack del video è open source e locale: Qwen Image Edit per il workflow Consistent Character Creator (CCC) e per la costruzione del dataset, Wan&nbsp;2.2 per immagini e video, AI Toolkit per addestrare la LoRA del personaggio, con Runpod come opzione cloud a pagamento per chi non ha una GPU adeguata. Il confronto con NanoBanana e Seedream&nbsp;4.0, entrambi commerciali, serve solo da termine di paragone. Una nota sulle fonti: la trascrizione del video non è stata letta, quindi il contenuto di ogni capitolo qui sotto è in parte dedotto dai titoli, dalla descrizione e dai materiali pubblicati da Mickmumpitz — dove è così, è segnalato.">
+        This page breaks down Mickmumpitz's masterclass <a href="https://www.youtube.com/watch?v=PhiPASFYBmk" class="about-link" target="_blank">Create HYPERREALISTIC Consistent AI Characters</a> (761,885 views as of 11/14/2026, published October&nbsp;7, 2025), referenced in this site's sitography. The video's stack is open source and local: Qwen Image Edit for the Consistent Character Creator (CCC) workflow and for building the dataset, Wan&nbsp;2.2 for images and video, AI Toolkit to train the character's LoRA, with Runpod as a paid cloud option for anyone without a suitable GPU. The comparison with NanoBanana and Seedream&nbsp;4.0, both commercial, is there only as a point of reference. A note on sources: the video's transcript was not read, so each chapter's content below is partly inferred from titles, the description, and Mickmumpitz's own published materials — where that is the case, it is flagged.
+      </p>
+
+      <figure class="post-figure">
+        <img src="/assets/post-confyui-confronto-gemini/img1.jpg"
+             alt="Ostris AI Toolkit dashboard with the character dataset" width="983" height="535" decoding="async">
+        <figcaption class="post-caption"
+          data-en="<span class='caption-title'>The character dataset inside AI Toolkit</span>Ostris AI Toolkit's web dashboard during training: the dataset generated by the Consistent Character Creator, with automatic captions for each image."
+          data-it="<span class='caption-title'>Il dataset del personaggio in AI Toolkit</span>La dashboard web di Ostris AI Toolkit durante il training: il dataset generato dal Consistent Character Creator, con didascalie automatiche per ogni immagine.">
+          <span class="caption-title">The character dataset inside AI Toolkit</span>Ostris AI Toolkit's web dashboard during training: the dataset generated by the Consistent Character Creator, with automatic captions for each image.
+        </figcaption>
+      </figure>
+
+      <!-- ── CONTENTS ──────────────────────────────────────── -->
+      <ol class="content-list">
+
+        <!-- 01 -->
+        <li class="content-item">
+          <div class="content-number">01</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="The video's phases, tool by tool"
+                data-it="Le fasi del video, strumento per strumento">
+              The video's phases, tool by tool
+            </h3>
+
+            <p class="post-text"
+               data-en="The video has nine chapters. The table lists the tool used in each, whether it is free or paid, local or cloud, and how well it is verified — some rows come from the video's own description, others are inferred from chapter titles or from Mickmumpitz's attached files."
+               data-it="I capitoli del video sono nove. La tabella elenca lo strumento usato in ciascuno, se è gratuito o a pagamento, se gira in locale o in cloud, e quanto è verificato — alcune righe vengono dalla descrizione del video, altre sono dedotte dai titoli dei capitoli o dai file allegati da Mickmumpitz.">
+              The video has nine chapters. The table lists the tool used in each, whether it is free or paid, local or cloud, and how well it is verified — some rows come from the video's own description, others are inferred from chapter titles or from Mickmumpitz's attached files.
+            </p>
+
+            <table class="data-table">
+              <thead><tr>
+                <th data-en="Phase"        data-it="Fase">Phase</th>
+                <th data-en="Tools"        data-it="Strumenti">Tools</th>
+                <th data-en="Cost"         data-it="Costo">Cost</th>
+                <th data-en="Local/Cloud"  data-it="Locale/Cloud">Local/Cloud</th>
+                <th data-en="Status"       data-it="Stato">Status</th>
+              </tr></thead>
+              <tbody>
+                <tr>
+                  <td data-en="Intro (0:00)" data-it="Intro (00:00)">Intro (0:00)</td>
+                  <td data-en="Comparison with NanoBanana and Seedream 4.0" data-it="Confronto con NanoBanana e Seedream 4.0">Comparison with NanoBanana and Seedream 4.0</td>
+                  <td data-en="Paid" data-it="A pagamento">Paid</td>
+                  <td data-en="Cloud (API)" data-it="Cloud (API)">Cloud (API)</td>
+                  <td class="status-cell" data-en="Comparison confirmed in the description" data-it="Confronto confermato nella descrizione">Comparison confirmed in the description</td>
+                </tr>
+                <tr>
+                  <td data-en="Instruction Based Image Editing (0:55)" data-it="Instruction Based Image Editing (00:55)">Instruction Based Image Editing (0:55)</td>
+                  <td data-en="Qwen Image Edit" data-it="Qwen Image Edit">Qwen Image Edit</td>
+                  <td data-en="Free, open source" data-it="Gratuito, open source">Free, open source</td>
+                  <td data-en="Local, in ComfyUI" data-it="Locale, in ComfyUI">Local, in ComfyUI</td>
+                  <td class="status-cell" data-en="Tool confirmed" data-it="Strumento confermato">Tool confirmed</td>
+                </tr>
+                <tr>
+                  <td data-en="Installation (3:04)" data-it="Installation (03:04)">Installation (3:04)</td>
+                  <td data-en="Portable ComfyUI for Windows" data-it="ComfyUI portable per Windows">Portable ComfyUI for Windows</td>
+                  <td data-en="Free" data-it="Gratuito">Free</td>
+                  <td data-en="Local" data-it="Locale">Local</td>
+                  <td class="status-cell" data-en="Inferred from the description's links" data-it="Dedotto dai link in descrizione">Inferred from the description's links</td>
+                </tr>
+                <tr>
+                  <td data-en="Consistent Character Creator (6:03)" data-it="Consistent Character Creator (06:03)">Consistent Character Creator (6:03)</td>
+                  <td data-en="CCC workflow on Qwen Image Edit" data-it="Workflow CCC su Qwen Image Edit">CCC workflow on Qwen Image Edit</td>
+                  <td data-en="Free (base workflow)" data-it="Gratuito (workflow base)">Free (base workflow)</td>
+                  <td data-en="Local; also RunComfy, paid" data-it="Locale; anche RunComfy, a pagamento">Local; also RunComfy, paid</td>
+                  <td class="status-cell" data-en="Confirmed; exact nodes unknown" data-it="Confermato; nodi esatti non noti">Confirmed; exact nodes unknown</td>
+                </tr>
+                <tr>
+                  <td data-en="Dataset Creation (10:15)" data-it="Dataset Creation (10:15)">Dataset Creation (10:15)</td>
+                  <td data-en="CCC's &quot;Dataset Creation&quot; group: upscaling and captions" data-it="Gruppo &quot;Dataset Creation&quot; del CCC: upscaling e didascalie">CCC's &quot;Dataset Creation&quot; group: upscaling and captions</td>
+                  <td data-en="Free" data-it="Gratuito">Free</td>
+                  <td data-en="Local" data-it="Locale">Local</td>
+                  <td class="status-cell" data-en="Result confirmed; USO Upscaling's role unverified" data-it="Risultato confermato; ruolo di USO Upscaling non verificato">Result confirmed; USO Upscaling's role unverified</td>
+                </tr>
+                <tr>
+                  <td data-en="Training a LoRA (12:16)" data-it="Training a LoRA (12:16)">Training a LoRA (12:16)</td>
+                  <td data-en="AI Toolkit; Runpod for cloud training" data-it="AI Toolkit; Runpod per il cloud">AI Toolkit; Runpod for cloud training</td>
+                  <td data-en="Toolkit free; Runpod paid" data-it="Toolkit gratuito; Runpod a pagamento">Toolkit free; Runpod paid</td>
+                  <td data-en="Local or cloud" data-it="Locale o cloud">Local or cloud</td>
+                  <td class="status-cell" data-en="Named in the description; Ostris's identity unconfirmed" data-it="Nomi in descrizione; identità Ostris non confermata">Named in the description; Ostris's identity unconfirmed</td>
+                </tr>
+                <tr>
+                  <td data-en="Generating images (18:42)" data-it="Generating images (18:42)">Generating images (18:42)</td>
+                  <td data-en="Wan 2.2 (image workflow) with the trained LoRA" data-it="Wan 2.2 (workflow immagini) con la LoRA">Wan 2.2 (image workflow) with the trained LoRA</td>
+                  <td data-en="Free" data-it="Gratuito">Free</td>
+                  <td data-en="Local" data-it="Locale">Local</td>
+                  <td class="status-cell" data-en="Inferred from attached files" data-it="Dedotto dai file allegati">Inferred from attached files</td>
+                </tr>
+                <tr>
+                  <td data-en="Generating Video (22:05)" data-it="Generating Video (22:05)">Generating Video (22:05)</td>
+                  <td data-en="Wan 2.2 (video workflow)" data-it="Wan 2.2 (workflow video)">Wan 2.2 (video workflow)</td>
+                  <td data-en="Free" data-it="Gratuito">Free</td>
+                  <td data-en="Local" data-it="Locale">Local</td>
+                  <td class="status-cell" data-en="Inferred from attached files" data-it="Dedotto dai file allegati">Inferred from attached files</td>
+                </tr>
+                <tr>
+                  <td data-en="Advanced workflows (23:00)" data-it="Advanced workflows (23:00)">Advanced workflows (23:00)</td>
+                  <td data-en="Preview of advanced workflows, presumably on Patreon" data-it="Anteprima dei workflow avanzati, presumibilmente su Patreon">Preview of advanced workflows, presumably on Patreon</td>
+                  <td data-en="Paid" data-it="A pagamento">Paid</td>
+                  <td data-en="n/a" data-it="n.d.">n/a</td>
+                  <td class="status-cell" data-en="Content unconfirmed" data-it="Contenuto non confermato">Content unconfirmed</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <p class="post-text"
+               data-en="The CCC workflow has been updated since the video went up: version 3.8 (January 6, 2026) is built on Qwen Image Edit 2511, not the 3.6 shown in the video. Anyone following the masterclass today should download the newer version."
+               data-it="Il workflow CCC è stato aggiornato dopo la pubblicazione del video: la versione 3.8 (6 gennaio 2026) è costruita su Qwen Image Edit 2511, non sulla 3.6 mostrata nel video. Chi segue la masterclass oggi dovrebbe scaricare la versione più recente.">
+              The CCC workflow has been updated since the video went up: version 3.8 (January 6, 2026) is built on Qwen Image Edit 2511, not the 3.6 shown in the video. Anyone following the masterclass today should download the newer version.
+            </p>
+
+          </div>
+        </li>
+
+        <!-- 02 -->
+        <li class="content-item">
+          <div class="content-number">02</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="AI Toolkit trains LoRAs, it doesn't generate variations"
+                data-it="AI Toolkit addestra le LoRA, non genera variazioni">
+              AI Toolkit trains LoRAs, it doesn't generate variations
+            </h3>
+
+            <p class="post-text"
+               data-en="One clarification first: AI Toolkit trains adapters — mainly LoRAs — it does not generate image variations. The variations that populate the dataset come from the CCC workflow on Qwen Image Edit, upstream of training; the images AI Toolkit itself generates during a run are only checkpoint previews."
+               data-it="Un chiarimento prima di tutto: AI Toolkit addestra adattatori — soprattutto LoRA — e non genera variazioni di immagine. Le variazioni che popolano il dataset le produce il workflow CCC su Qwen Image Edit, a monte del training; le immagini che AI Toolkit genera durante il lavoro servono solo da anteprima dei checkpoint.">
+              One clarification first: AI Toolkit trains adapters — mainly LoRAs — it does not generate image variations. The variations that populate the dataset come from the CCC workflow on Qwen Image Edit, upstream of training; the images AI Toolkit itself generates during a run are only checkpoint previews.
+            </p>
+
+            <p class="post-text"
+               data-en="It is an open-source suite with a local web interface (port 8675) and YAML configuration. Secondary sources list it under an MIT license and credit Ostris as the author, but neither the license nor the authorship was verified directly against the repository. It runs on an NVIDIA GPU — 24&nbsp;GB is the practical baseline — or on a rented GPU (Runpod, or RunComfy's paid hosted version)."
+               data-it="È una suite open source con interfaccia web locale (porta 8675) e configurazione YAML. Fonti secondarie la indicano con licenza MIT e come opera di Ostris, ma né la licenza né la paternità sono state verificate direttamente sul repository. Gira su una GPU NVIDIA — 24&nbsp;GB sono la base pratica — oppure su una GPU a noleggio (Runpod, o il servizio ospitato a pagamento di RunComfy).">
+              It is an open-source suite with a local web interface (port 8675) and YAML configuration. Secondary sources list it under an MIT license and credit Ostris as the author, but neither the license nor the authorship was verified directly against the repository. It runs on an NVIDIA GPU — 24&nbsp;GB is the practical baseline — or on a rented GPU (Runpod, or RunComfy's paid hosted version).
+            </p>
+
+            <p class="post-text"
+               data-en="It isn't the only trainer available, and the LoRAs it produces load into ComfyUI regardless of which tool trained them:"
+               data-it="Non è l'unico addestratore disponibile, e le LoRA che produce si caricano comunque in ComfyUI qualunque sia lo strumento usato per addestrarle:"
+               style="margin-bottom:0.5rem;">
+              It isn't the only trainer available, and the LoRAs it produces load into ComfyUI regardless of which tool trained them:
+            </p>
+            <ul class="content-sublist">
+              <li data-en="<strong>Kohya</strong> (sd-scripts): free, Apache-2.0. Best suited to SD1.5/SDXL and the most VRAM-frugal of the four; slower to support new model families." data-it="<strong>Kohya</strong> (sd-scripts): gratuito, licenza Apache-2.0. Il più adatto a SD1.5/SDXL e il più parsimonioso in VRAM dei quattro; più lento ad aggiornarsi sui modelli nuovi."><strong>Kohya</strong> (sd-scripts): free, Apache-2.0. Best suited to SD1.5/SDXL and the most VRAM-frugal of the four; slower to support new model families.</li>
+              <li data-en="<strong>OneTrainer</strong>: free, AGPL-3.0. A single GUI covering older model families." data-it="<strong>OneTrainer</strong>: gratuito, licenza AGPL-3.0. Un'unica GUI per famiglie di modelli più datate."><strong>OneTrainer</strong>: free, AGPL-3.0. A single GUI covering older model families.</li>
+              <li data-en="<strong>Musubi Tuner</strong>: free, command-line. Supports Wan, Qwen Image and Edit, FLUX.2; trains Wan video in 24&nbsp;GB with fp8 and block swap." data-it="<strong>Musubi Tuner</strong>: gratuito, riga di comando. Supporta Wan, Qwen Image ed Edit, FLUX.2; addestra video Wan in 24&nbsp;GB con fp8 e block swap."><strong>Musubi Tuner</strong>: free, command-line. Supports Wan, Qwen Image and Edit, FLUX.2; trains Wan video in 24&nbsp;GB with fp8 and block swap.</li>
+              <li data-en="<strong>fal.ai's hosted trainers</strong>: paid, cloud, for Qwen Image Edit, Flux Kontext and Flux 2 (pricing unverified)." data-it="<strong>Trainer ospitati di fal.ai</strong>: a pagamento, in cloud, per Qwen Image Edit, Flux Kontext e Flux 2 (prezzi non verificati)."><strong>fal.ai's hosted trainers</strong>: paid, cloud, for Qwen Image Edit, Flux Kontext and Flux 2 (pricing unverified).</li>
+            </ul>
+
+            <p class="post-text"
+               data-en="Why Mickmumpitz picked it isn't documented in any source consulted: he doesn't mention it in the post accompanying the video, and the transcript wasn't read. The reasons most often cited for AI Toolkit's popularity are fast support for new models and reproducible YAML configs — read these as inference, not as his own stated reason."
+               data-it="Il perché della scelta di Mickmumpitz non è documentato in nessuna fonte consultata: non ne parla nel post che accompagna il video, e la trascrizione non è stata letta. Le ragioni più citate per la popolarità di AI Toolkit sono il supporto rapido ai modelli nuovi e la configurazione riproducibile via YAML — vanno lette come inferenza, non come una sua dichiarazione.">
+              Why Mickmumpitz picked it isn't documented in any source consulted: he doesn't mention it in the post accompanying the video, and the transcript wasn't read. The reasons most often cited for AI Toolkit's popularity are fast support for new models and reproducible YAML configs — read these as inference, not as his own stated reason.
+            </p>
+
+          </div>
+        </li>
+
+        <!-- 03 -->
+        <li class="content-item">
+          <div class="content-number">03</div>
+          <div class="content-body">
+
+            <h3 class="content-title"
+                data-en="The reference models, a year on"
+                data-it="I modelli di riferimento, un anno dopo">
+              The reference models, a year on
+            </h3>
+
+            <p class="post-text"
+               data-en="Every model named in the masterclass has since been superseded. The picture as of November 14, 2026, sourced where possible:"
+               data-it="Tutti i modelli citati nella masterclass sono stati superati. Il quadro aggiornato al 14 novembre 2026, con le fonti verificate dove possibile:"
+               style="margin-bottom:0.5rem;">
+              Every model named in the masterclass has since been superseded. The picture as of November 14, 2026, sourced where possible:
+            </p>
+            <ul class="content-sublist">
+              <li data-en="<strong>Editing, local:</strong> Qwen-Image-Edit-2511 — free, Apache-2.0, improved character identity over the version shown in the video." data-it="<strong>Editing, locale:</strong> Qwen-Image-Edit-2511 — gratuito, licenza Apache-2.0, identità del personaggio migliorata rispetto alla versione del video."><strong>Editing, local:</strong> Qwen-Image-Edit-2511 — free, Apache-2.0, improved character identity over the version shown in the video.</li>
+              <li data-en="FLUX.2 klein 4B — free, Apache-2.0, about 13&nbsp;GB of VRAM, generation and editing in one model (the 9B variant is non-commercial)." data-it="FLUX.2 klein 4B — gratuito, licenza Apache-2.0, circa 13&nbsp;GB di VRAM, generazione ed editing nello stesso modello (la variante 9B ha licenza non commerciale).">FLUX.2 klein 4B — free, Apache-2.0, about 13&nbsp;GB of VRAM, generation and editing in one model (the 9B variant is non-commercial).</li>
+              <li data-en="<strong>Editing, cloud, paid:</strong> Nano Banana 2.1 and Seedream 5.5 — the best-quality commercial options, both API-only." data-it="<strong>Editing, cloud, a pagamento:</strong> Nano Banana 2.1 e Seedream 5.5 — i migliori per qualità tra i modelli commerciali, entrambi solo via API."><strong>Editing, cloud, paid:</strong> Nano Banana 2.1 and Seedream 5.5 — the best-quality commercial options, both API-only.</li>
+              <li data-en="<strong>Video, local:</strong> LTX-2.5 — open weights, free under $10M in annual revenue, 16&nbsp;GB VRAM minimum. Wan 2.2 remains the last Wan release with open weights; later versions (2.5, 2.6, 3.0) are API-only." data-it="<strong>Video, locale:</strong> LTX-2.5 — pesi aperti, gratuito sotto i 10 milioni di dollari di ricavi annui, minimo 16&nbsp;GB di VRAM. Wan 2.2 resta l'ultimo Wan con pesi aperti; le versioni successive (2.5, 2.6, 3.0) sono solo via API."><strong>Video, local:</strong> LTX-2.5 — open weights, free under $10M in annual revenue, 16&nbsp;GB VRAM minimum. Wan 2.2 remains the last Wan release with open weights; later versions (2.5, 2.6, 3.0) are API-only.</li>
+              <li data-en="<strong>Video, cloud, paid:</strong> Seedance 2.0, Kling 3.0, Veo 3.1 — among the most-cited commercial options for quality." data-it="<strong>Video, cloud, a pagamento:</strong> Seedance 2.0, Kling 3.0, Veo 3.1 — tra i modelli commerciali più citati per la qualità."><strong>Video, cloud, paid:</strong> Seedance 2.0, Kling 3.0, Veo 3.1 — among the most-cited commercial options for quality.</li>
+            </ul>
+
+            <p class="post-text"
+               data-en="For anyone updating course material, the masterclass's basic architecture still holds up: ComfyUI, the CCC workflow, one LoRA for the lead character. It is worth swapping in Qwen Image Edit 2511 and weighing LTX-2.5 alongside Wan 2.2 for the video stage, keeping in mind that models released only weeks ago have no independent verification yet."
+               data-it="Per chi aggiorna il materiale del corso, l'impianto della masterclass regge ancora: ComfyUI, workflow CCC, una LoRA per il personaggio principale. Conviene sostituire Qwen Image Edit con la versione 2511 e valutare LTX-2.5 accanto a Wan 2.2 per la parte video, tenendo presente che i modelli usciti da poche settimane non hanno ancora una verifica indipendente.">
+              For anyone updating course material, the masterclass's basic architecture still holds up: ComfyUI, the CCC workflow, one LoRA for the lead character. It is worth swapping in Qwen Image Edit 2511 and weighing LTX-2.5 alongside Wan 2.2 for the video stage, keeping in mind that models released only weeks ago have no independent verification yet.
+            </p>
+
+            <div class="open-question">
+              <span class="oq-label" data-en="WHAT STILL NEEDS CHECKING" data-it="COSA RESTA DA VERIFICARE">WHAT STILL NEEDS CHECKING</span>
+              <p data-en="The video's full transcript, for the exact training parameters and the verdict on the NanoBanana/Seedream comparison." data-it="La trascrizione completa del video, per i parametri esatti del training e i verdetti sul confronto con NanoBanana e Seedream.">The video's full transcript, for the exact training parameters and the verdict on the NanoBanana/Seedream comparison.</p>
+              <p data-en="The README and license of the ostris/ai-toolkit GitHub repository, unreachable during this research." data-it="Il file README e la licenza del repository ostris/ai-toolkit su GitHub, non raggiungibile durante questa ricerca.">The README and license of the ostris/ai-toolkit GitHub repository, unreachable during this research.</p>
+              <p data-en="Mickmumpitz's Patreon tiers and pricing, where the advanced workflow versions live." data-it="I livelli e i prezzi del Patreon di Mickmumpitz, dove risiedono le versioni avanzate del workflow.">Mickmumpitz's Patreon tiers and pricing, where the advanced workflow versions live.</p>
+            </div>
+
+            <h3 class="content-title" style="margin-top:2rem;"
+                data-en="Main sources"
+                data-it="Fonti principali">
+              Main sources
+            </h3>
+            <ul class="content-sublist sources-list">
+              <li><a href="https://www.youtube.com/watch?v=PhiPASFYBmk" class="about-link" target="_blank">YouTube — Create HYPERREALISTIC Consistent AI Characters</a></li>
+              <li><a href="https://mickmumpitz.ai/posts/new-video-create-140671046?synced=1" class="about-link" target="_blank">mickmumpitz.ai — post with the workflow files and CCC version history</a></li>
+              <li><a href="https://huggingface.co/Qwen/Qwen-Image-Edit-2511" class="about-link" target="_blank">Hugging Face — Qwen-Image-Edit-2511</a></li>
+              <li><a href="https://bfl.ai/blog/flux2-klein-towards-interactive-visual-intelligence" class="about-link" target="_blank">Black Forest Labs — FLUX.2 klein</a></li>
+              <li><a href="https://artificialanalysis.ai/image/leaderboard/editing" class="about-link" target="_blank">Artificial Analysis — image editing leaderboard</a></li>
+              <li><a href="https://sanj.dev/post/onetrainer-vs-kohya-ss-vs-ai-toolkit/" class="about-link" target="_blank">sanj.dev — OneTrainer vs Kohya vs AI Toolkit</a></li>
+            </ul>
+
+          </div>
+        </li>
+
+      </ol>
+
+    </div><!-- /page-body -->
+  </main>
+
+  <a href="/en/post-comfyui-documents.html" class="nav-back"
+     data-en="BACK" data-it="INDIETRO">BACK</a>
+
+  <a href="/en/index.html" class="nav-back nav-home" id="home-link" data-en="HOME" data-it="HOME">HOME</a>
+  <div class="lang-switch">
+    <a class="lang-btn" href="/masterclass.html">IT</a>
+  </div>
+
+  <script src="/assets/menu.js"></script>
+  <script>
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').classList.toggle('scrolled', window.scrollY > 20);
+    });
+  </script>
+</body>
+</html>

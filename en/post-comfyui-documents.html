@@ -121,6 +121,46 @@
       .content-item { grid-template-columns: 2rem 1fr; gap: 1rem; }
       .content-number { font-size: 1.1rem; }
     }
+
+    /* ── masterclass mini-frame (linking to the deep-dive page) ─ */
+    .masterclass-frame {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border: 1px solid rgba(0,0,0,0.12);
+      padding: 0.7rem 1rem;
+      margin: 0.2rem 0 1.4rem;
+      color: inherit;
+      transition: border-color 0.2s;
+    }
+    .masterclass-frame:hover { border-color: #8B5200; }
+    .masterclass-frame img {
+      width: 108px;
+      height: auto;
+      flex-shrink: 0;
+      border-radius: 2px;
+      display: block;
+    }
+    .masterclass-frame .mf-text {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 0.98rem;
+      line-height: 1.5;
+    }
+    .masterclass-frame .mf-title {
+      display: block;
+      font-weight: 600;
+      color: #8B5200;
+      margin-bottom: 0.25rem;
+    }
+    .masterclass-frame .mf-meta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem;
+      opacity: 0.65;
+    }
+    @media (max-width: 500px) {
+      .masterclass-frame { align-items: flex-start; }
+      .masterclass-frame img { width: 80px; }
+    }
   </style>
 </head>
 <body class="interior">
@@ -220,6 +260,18 @@
 				data-it="Sintesi. Se si vuole creare un corso di ComfyUI per filmmaker, Mickmumpitz è il più vicino alla pre-produzione cinematografica. Sebastian Kamph è il migliore per spiegare i nodi da zero. TensorAlchemist serve per la generazione video su GPU modeste. Latent Vision è un archivio prezioso ma fermo al 2023-2024.">
 			  <strong>Summary.</strong> If the goal is to build a ComfyUI course for filmmakers, Mickmumpitz is closest to cinematic pre-production. Sebastian Kamph is the best for explaining nodes from scratch. TensorAlchemist is useful for video generation on modest GPUs. Latent Vision is a valuable archive, but stalled at 2023-2024.</span>
 			</li>
+
+			</ul>
+
+			<a href="/en/masterclass.html" class="masterclass-frame">
+			  <img src="/assets/post-confyui-confronto-gemini/img1.jpg" alt="Ostris AI Toolkit dashboard with the character dataset" width="983" height="535" loading="lazy" decoding="async">
+			  <span class="mf-text">
+				<span class="mf-title" data-en="Inside Mickmumpitz's masterclass &mdash; technical breakdown" data-it="Dentro la masterclass di Mickmumpitz &mdash; analisi tecnica">Inside Mickmumpitz's masterclass &mdash; technical breakdown</span>
+				<span class="mf-meta" data-en="761,885 views as of 11/14/2026 &middot; published Oct 7, 2025" data-it="761.885 visualizzazioni al 14/11/2026 &middot; pubblicata il 7 ott 2025">761,885 views as of 11/14/2026 &middot; published Oct 7, 2025</span>
+			  </span>
+			</a>
+
+			<ul class="content-sublist">
 
 			<!-- 1A -->
 			<li>
