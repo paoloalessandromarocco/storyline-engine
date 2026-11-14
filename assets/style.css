@@ -629,28 +629,22 @@ figcaption strong {
 
 
 /* ── Video-channel critique list (post-comfyui-documents.html, "Video tutorial") ──
-   outer list = the 5 authors: round ocra markers, same visual weight as before.
-   "Sintesi" lead-in: no marker, bold ocra label, thin left accent.
-   inner lists = per-channel detail points: thin line markers, tighter spacing ── */
+   outer list = the 5 authors: small round ocra marker, native list marker
+   so it always stays paired with its own item (no absolute positioning).
+   "Sintesi" lead-in: no marker, just a bold ocra label, same paragraph rhythm
+   as the rest of the post body (no border, no extra block styling).
+   inner lists = per-channel detail points: thin dash marker, tighter spacing,
+   same font/line-height as the surrounding post text ── */
 .content-sublist > li:not(.content-sublist-summary) {
-  list-style: none;
-  position: relative;
-  padding-left: 24px;
+  list-style: disc;
+  margin-left: 18px;
 }
-.content-sublist > li:not(.content-sublist-summary)::before {
-  content: "";
-  position: absolute;
-  left: 2px;
-  top: 0.5em;
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background: #8B5200;
+.content-sublist > li:not(.content-sublist-summary)::marker {
+  color: #8B5200;
+  font-size: 0.7em;
 }
 .content-sublist-summary {
   list-style: none;
-  padding: 8px 0 8px 16px;
-  border-left: 3px solid #8B5200;
 }
 .content-sublist-summary strong {
   color: #8B5200;
@@ -658,25 +652,16 @@ figcaption strong {
   text-decoration: none;
 }
 .content-sublist-detail {
-  list-style: none;
-  margin: 10px 0 4px;
+  margin: 8px 0 4px 18px;
   padding: 0;
 }
 .content-sublist-detail li {
-  position: relative;
-  padding-left: 16px;
-  margin-bottom: 5px;
-  line-height: 1.45;
+  list-style-type: "– ";
+  margin-bottom: 4px;
 }
-.content-sublist-detail li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.78em;
-  width: 8px;
-  height: 1px;
-  background: currentColor;
-  opacity: 0.5;
+.content-sublist-detail li::marker {
+  color: inherit;
+  opacity: 0.6;
 }
 
 
