@@ -140,6 +140,18 @@
       margin-bottom: 0.6em;
     }
     .content-sublist.sources-list { margin-bottom: 0; }
+    .content-sublist li strong {
+      font-weight: 600;
+      text-decoration: none;
+    }
+	
+	.sub-paragraphs {
+	  margin-top: 0.5em;
+	  padding-left: 1.2em;
+	}
+	.sub-paragraphs p {
+	  margin: 0.9em 0;
+	}
 
     /* ── defect-category table ────────────────────────────── */
     .data-table {
@@ -245,14 +257,23 @@
       </div>
 
       <p class="post-text">
-        Questa pagina analizza la masterclass di Mickmumpitz <a href="https://www.youtube.com/watch?v=PhiPASFYBmk" class="about-link" target="_blank">Create HYPERREALISTIC Consistent AI Characters</a> (761.885 visualizzazioni al 14/11/2026, pubblicata il 7&nbsp;ottobre 2025), citata nella sitografia di questo sito. Lo stack del video è open source e locale: Qwen Image Edit per il workflow Consistent Character Creator (CCC) e per la costruzione del dataset, Wan&nbsp;2.2 per immagini e video, AI Toolkit per addestrare la LoRA del personaggio, con Runpod come opzione cloud a pagamento per chi non ha una GPU adeguata. Il confronto con NanoBanana e Seedream&nbsp;4.0, entrambi commerciali, serve solo da termine di paragone. Una nota sulle fonti: la trascrizione del video non è stata letta, quindi il contenuto di ogni capitolo qui sotto è in parte dedotto dai titoli, dalla descrizione e dai materiali pubblicati da Mickmumpitz — dove è così, è segnalato.
-      </p>
+        Questa pagina analizza la masterclass di Mickmumpitz <a href="https://www.youtube.com/watch?v=PhiPASFYBmk" class="about-link" target="_blank">Create HYPERREALISTIC Consistent AI Characters</a> (761.885 visualizzazioni al 14/11/2026, pubblicata il 7&nbsp;ottobre 2025), citata nella sitografia di questo sito. <br>Lo stack del video è open source e locale. Vediamo ora i punti chiave per costruire la pipeline ComfyUI completa che genera il video </p>
+		
+		<ul class="content-sublist">
+			  <li><strong>Punto di partenza — una sola immagine.</strong> Da una singola immagine di input (qualsiasi stile), il workflow "Consistent Character Creator" (CCC), in pratica un sottografo della pipeline principale  (costruito sopra i nodi di <i>Qwen Image Edit</i>) genera variazioni del personaggio: pose diverse, espressioni, cambi di outfit (virtual try-on), nuove scene e ambientazioni.</li>
+			  <li><strong>Qwen Image Edit<sup class="fn-ref"><a href="#fn1" id="fnref1">1</a></sup> — il motore dietro il CCC.</strong> È un modello di <i>instruction-based image editing</i>da un personaggio di riferimento → varia posa/outfit/scena, via editing a istruzioni: ossia non genera da zero, modifica un'immagine esistente seguendo istruzioni testuali. </li>
+			  <li><strong>Costruzione del dataset.</strong> Questa seconda parte qui è il dataset creation group, “e creerà le didascalie e le immagini in upscale del tuo personaggio” — parole dirette del video (minuto 5:13). Tutte le immagini create finiscono nella cartella con il nome del personaggio, insieme ai relativi file di didascalia. Il dataset finale è una lista di coppie immagine+testo, il formato standard che qualunque trainer LoRA accetta. In più c'è un modulo di Upscaling: Qwen Image Edit genera a una risoluzione nativa limitata (fino a 1024×1024). Per un dataset pensato per addestrare una LoRA “iperrealistica” — dove contano i dettagli fini (pelle, texture, tessuti) — generare in piccolo e poi fare upscaling prima di salvare è la pratica raccomandata in ComfyUI stesso: in questo modo la LoRA viene addestrata su immagini più nitide e dettagliate.</li>
+			  <li><strong>AI Toolkit (Ostris) — il motore applicativo per far runnare il fine tuning LoRA.</strong> Il dataset viene passato ad AI Toolkit per addestrare una LoRA del personaggio, di cui abbiamo inserito il training di immagini. Il passaggio Qwen → Wan: è compatibile perché AI Toolkit addestra LoRA direttamente per Wan 2.2 come modello target (il problema della compatibilità non è affatto scontato: il formato di uscita della LoRA deve essere compatibile con l'input del passo successivo della pipeline, in questo caso il generatore video Wan).</li>
+			  <li><strong>Wan 2.2 — generazione finale, immagini e video.</strong> La LoRA addestrata viene usata con Wan 2.2 per generare le immagini finali e, con un workflow dedicato, i video<sup class="fn-ref"><a href="#fn2" id="fnref2">2</a></sup>.</li>
+			  <li><strong>Runpod</strong> — viene usato in due fasi: a) per il training LoRA e b) per far girare tutta la Pipeline ComfyUI, il cui ultimo passaggio è la generazione Video.  Runpod è una famiglia di GPU/CPU noleggiabili per certi intervalli di tempo (ha decine di macchine virtuali, di diversa potenza, e di diverso costo). Nel caso b) quello dell'interazione con ComfyUI, RunPod ha dei template ufficiali pensati specificamente per questo, che pre-installano ComfyUI e il plugin ComfyUI Manager, con più varianti per tipo di GPU. Esiste persino un template specifico “WAN 2.2 Text to Video” pensato apposta per ComfyUI con Wan 2.2. Deployato il pod, accedi all’interfaccia ComfyUI via browser ed esegui lì l’intero grafo — CCC, dataset creation, generazione finale con Wan 2.2 — esattamente come lo eseguiresti in locale, ma su hardware noleggiato. 
+			  </li>
+		</ul>
 
       <figure class="post-figure">
         <img src="assets/post-confyui-confronto-gemini/img1.jpg"
              alt="Dashboard di Ostris AI Toolkit con il dataset del personaggio" width="983" height="535" decoding="async">
         <figcaption class="post-caption">
-          <span class="caption-title">Il dataset del personaggio in AI Toolkit</span>La dashboard web di Ostris AI Toolkit durante il training: il dataset generato dal Consistent Character Creator, con didascalie automatiche per ogni immagine.
+          <span class="caption-title">Il dataset del personaggio in AI Toolkit </span>La dashboard web di Ostris AI Toolkit durante il training: il dataset generato dal Consistent Character Creator, con didascalie automatiche per ogni immagine.
         </figcaption>
       </figure>
 
@@ -278,77 +299,79 @@
                 <th>Strumenti</th>
                 <th>Costo</th>
                 <th>Locale/Cloud</th>
-                <th>Stato</th>
               </tr></thead>
               <tbody>
                 <tr>
                   <td>Intro (00:00)</td>
-                  <td>Confronto con NanoBanana e Seedream 4.0</td>
+                  <td>&mdash;</td>
                   <td>A pagamento</td>
                   <td>Cloud (API)</td>
-                  <td class="status-cell">Confronto confermato nella descrizione</td>
                 </tr>
                 <tr>
                   <td>Instruction Based Image Editing (00:55)</td>
                   <td>Qwen Image Edit</td>
                   <td>Gratuito, open source</td>
                   <td>Locale, in ComfyUI</td>
-                  <td class="status-cell">Strumento confermato</td>
                 </tr>
                 <tr>
                   <td>Installation (03:04)</td>
                   <td>ComfyUI portable per Windows</td>
                   <td>Gratuito</td>
                   <td>Locale</td>
-                  <td class="status-cell">Dedotto dai link in descrizione</td>
                 </tr>
                 <tr>
                   <td>Consistent Character Creator (06:03)</td>
                   <td>Workflow CCC su Qwen Image Edit</td>
                   <td>Gratuito (workflow base)</td>
                   <td>Locale; anche RunComfy, a pagamento</td>
-                  <td class="status-cell">Confermato; nodi esatti non noti</td>
                 </tr>
                 <tr>
                   <td>Dataset Creation (10:15)</td>
                   <td>Gruppo &quot;Dataset Creation&quot; del CCC: upscaling e didascalie</td>
                   <td>Gratuito</td>
                   <td>Locale</td>
-                  <td class="status-cell">Risultato confermato; ruolo di USO Upscaling non verificato</td>
                 </tr>
                 <tr>
                   <td>Training a LoRA (12:16)</td>
                   <td>AI Toolkit; Runpod per il cloud</td>
                   <td>Toolkit gratuito; Runpod a pagamento</td>
                   <td>Locale o cloud</td>
-                  <td class="status-cell">Nomi in descrizione; identità Ostris non confermata</td>
                 </tr>
                 <tr>
                   <td>Generating images (18:42)</td>
-                  <td>Wan 2.2 (workflow immagini) con la LoRA</td>
+                  <td>Wan 2.2 (workflow immagini) con LoRA</td>
                   <td>Gratuito</td>
                   <td>Locale</td>
-                  <td class="status-cell">Dedotto dai file allegati</td>
                 </tr>
                 <tr>
                   <td>Generating Video (22:05)</td>
                   <td>Wan 2.2 (workflow video)</td>
                   <td>Gratuito</td>
                   <td>Locale</td>
-                  <td class="status-cell">Dedotto dai file allegati</td>
-                </tr>
-                <tr>
-                  <td>Advanced workflows (23:00)</td>
-                  <td>Anteprima dei workflow avanzati, presumibilmente su Patreon</td>
-                  <td>A pagamento</td>
-                  <td>n.d.</td>
-                  <td class="status-cell">Contenuto non confermato</td>
                 </tr>
               </tbody>
             </table>
 
             <p class="post-text">
-              Il workflow CCC è stato aggiornato dopo la pubblicazione del video: la versione 3.8 (6 gennaio 2026) è costruita su Qwen Image Edit 2511, non sulla 3.6 mostrata nel video. Chi segue la masterclass oggi dovrebbe scaricare la versione più recente.
+              Il grafo CCC è stato aggiornato dall'autore,  dopo la prima pubblicazione del video: la versione 3.8 (6 gennaio 2026) è costruita su Qwen Image Edit 2511, non sulla 3.6 mostrata nel video.
+            </p>
+
+            <p class="post-text"
+               style="margin-bottom:0.5rem;">
+              Una stima dei costi, calcolata sui prezzi RunPod attuali incrociati con benchmark pubblici:
+            </p>
+            <ul class="content-sublist">
+              <li><strong>Training LoRA</strong> (personaggio statico con 28 varianti, come nel video): $1,50&ndash;17, calcolato da prezzi RunPod ufficiali &times; 2-4 ore di GPU estrapolate da un caso reale documentato (28 immagini, 2.500 step, ~2,2h su RTX 5090).</li>
+              <li><strong>Pipeline CCC + Dataset Creation</strong>, 3-4 prove: $2&ndash;12. La L40 (48&nbsp;GB, $0,82/h) è la scelta più sensata &mdash; costa meno della RTX 4090 e ha più VRAM, perché un test reale mostra che Qwen Image Edit può non entrare nei 24&nbsp;GB della 4090.</li>
+              <li><strong>Generazione video</strong> (clip di 5 secondi, 3-4 prove): meno di $0,10 con un acceleratore a 4 step su GPU da 24&nbsp;GB (il modello impiega 71 secondi per produrre una clip video); circa $0,40&ndash;0,50 senza acceleratore, sempre a 24&nbsp;GB (20 step, il modello impiega 8,5 minuti/clip). Il salto di costo reale si verifica quando la VRAM non basta e il sistema deve scaricare e ricaricare i dati durante l’elaborazione: in questi casi anche GPU economiche possono richiedere più di un’ora per una singola clip, portando il costo complessivo a $3–4 per un lotto di 3-4 clip — non per il prezzo della GPU, ma per il tempo perso. Una GPU più cara ma con VRAM sufficiente (es. 80 GB) evita questo rallentamento e, nonostante il costo orario più elevato, può risultare comunque più economica nel totale.</li>
+            </ul>
+
+            <p class="post-text">
+              Difficile una stima dei costi totali, perché ogni fase è indipendente, e assumere il minimo dei costi per ogni fase, oppure, all'opposto, il massimo, non darebbe stime realistiche del min/max dei costi totali. Una media potrebbe essere sui $10 per 3 clip di 5 se l'una.  È il costo di costruire e far girare una pipeline personalizzata, LoRA di un personaggio in un ambiente non statico &mdash; non è confrontabile uno a uno con il prezzo per singolo video di un servizio via API come Nano Banana o Seedream, che non è personalizzato su nessun training di immagini create.
+            </p>
+
+            <p class="post-text">
+              Correzione automatica. La pipeline descritta nel video non prevede un passaggio di valutazione automatica dell'output: ogni generazione va controllata a occhio. Un ciclo generazione&rarr;valutazione&rarr;correzione avrebbe qui un impatto probabilmente maggiore che in pipeline di generazione di sole immagini statiche: la generazione video è più esposta a difetti (lo stesso identity drift descritto in nota 2), e un errore individuato solo a fine generazione costa, in tempo e in GPU, molto più di un errore individuato su un'immagine statica.
             </p>
 
           </div>
@@ -357,41 +380,6 @@
         <!-- 02 -->
         <li class="content-item">
           <div class="content-number">02</div>
-          <div class="content-body">
-
-            <h3 class="content-title">
-              AI Toolkit addestra le LoRA, non genera variazioni
-            </h3>
-
-            <p class="post-text">
-              Un chiarimento prima di tutto: AI Toolkit addestra adattatori — soprattutto LoRA — e non genera variazioni di immagine. Le variazioni che popolano il dataset le produce il workflow CCC su Qwen Image Edit, a monte del training; le immagini che AI Toolkit genera durante il lavoro servono solo da anteprima dei checkpoint.
-            </p>
-
-            <p class="post-text">
-              È una suite open source con interfaccia web locale (porta 8675) e configurazione YAML. Fonti secondarie la indicano con licenza MIT e come opera di Ostris, ma né la licenza né la paternità sono state verificate direttamente sul repository. Gira su una GPU NVIDIA — 24&nbsp;GB sono la base pratica — oppure su una GPU a noleggio (Runpod, o il servizio ospitato a pagamento di RunComfy).
-            </p>
-
-            <p class="post-text"
-               style="margin-bottom:0.5rem;">
-              Non è l'unico addestratore disponibile, e le LoRA che produce si caricano comunque in ComfyUI qualunque sia lo strumento usato per addestrarle:
-            </p>
-            <ul class="content-sublist">
-              <li><strong>Kohya</strong> (sd-scripts): gratuito, licenza Apache-2.0. Il più adatto a SD1.5/SDXL e il più parsimonioso in VRAM dei quattro; più lento ad aggiornarsi sui modelli nuovi.</li>
-              <li><strong>OneTrainer</strong>: gratuito, licenza AGPL-3.0. Un'unica GUI per famiglie di modelli più datate.</li>
-              <li><strong>Musubi Tuner</strong>: gratuito, riga di comando. Supporta Wan, Qwen Image ed Edit, FLUX.2; addestra video Wan in 24&nbsp;GB con fp8 e block swap.</li>
-              <li><strong>Trainer ospitati di fal.ai</strong>: a pagamento, in cloud, per Qwen Image Edit, Flux Kontext e Flux 2 (prezzi non verificati).</li>
-            </ul>
-
-            <p class="post-text">
-              Il perché della scelta di Mickmumpitz non è documentato in nessuna fonte consultata: non ne parla nel post che accompagna il video, e la trascrizione non è stata letta. Le ragioni più citate per la popolarità di AI Toolkit sono il supporto rapido ai modelli nuovi e la configurazione riproducibile via YAML — vanno lette come inferenza, non come una sua dichiarazione.
-            </p>
-
-          </div>
-        </li>
-
-        <!-- 03 -->
-        <li class="content-item">
-          <div class="content-number">03</div>
           <div class="content-body">
 
             <h3 class="content-title">
@@ -404,22 +392,16 @@
             </p>
             <ul class="content-sublist">
               <li><strong>Editing, locale:</strong> Qwen-Image-Edit-2511 — gratuito, licenza Apache-2.0, identità del personaggio migliorata rispetto alla versione del video.</li>
-              <li>FLUX.2 klein 4B — gratuito, licenza Apache-2.0, circa 13&nbsp;GB di VRAM, generazione ed editing nello stesso modello (la variante 9B ha licenza non commerciale).</li>
+              <li><strong>FLUX.2 klein 4B</strong> — gratuito, licenza Apache-2.0, circa 13&nbsp;GB di VRAM — è una caratteristica del modello FLUX.2 klein: un solo checkpoint fa sia text-to-image sia editing (anziché due modelli separati, come succede con altre coppie generazione/editing). Nel contesto della pipeline, questo lo rende un’alternativa a Qwen-Image-Edit per il passaggio di creazione del dataset di immagini del personaggio. FLUX.2 serve solo a produrre le immagini del dataset, e la LoRA viene comunque addestrata puntando a Wan 2.2 come nel caso precedente. Non serve che FLUX.2 “sia compatibile” con Wan, serve solo che produca buone immagini per il training successivo.</li>
               <li><strong>Editing, cloud, a pagamento:</strong> Nano Banana 2.1 e Seedream 5.5 — i migliori per qualità tra i modelli commerciali, entrambi solo via API.</li>
               <li><strong>Video, locale:</strong> LTX-2.5 — pesi aperti, gratuito sotto i 10 milioni di dollari di ricavi annui, minimo 16&nbsp;GB di VRAM. Wan 2.2 resta l'ultimo Wan con pesi aperti; le versioni successive (2.5, 2.6, 3.0) sono solo via API.</li>
               <li><strong>Video, cloud, a pagamento:</strong> Seedance 2.0, Kling 3.0, Veo 3.1 — tra i modelli commerciali più citati per la qualità.</li>
             </ul>
 
             <p class="post-text">
-              Per chi aggiorna il materiale del corso, l'impianto della masterclass regge ancora: ComfyUI, workflow CCC, una LoRA per il personaggio principale. Conviene sostituire Qwen Image Edit con la versione 2511 e valutare LTX-2.5 accanto a Wan 2.2 per la parte video, tenendo presente che i modelli usciti da poche settimane non hanno ancora una verifica indipendente.
+              L'impianto della masterclass regge ancora: ComfyUI, workflow CCC, una LoRA per il personaggio principale. Conviene sostituire Qwen Image Edit con la versione 2511 e valutare LTX-2.5 accanto a Wan 2.2 per la parte video, tenendo presente che i modelli usciti da poche settimane non hanno ancora una verifica indipendente.
             </p>
 
-            <div class="open-question">
-              <span class="oq-label">COSA RESTA DA VERIFICARE</span>
-              <p>La trascrizione completa del video, per i parametri esatti del training e i verdetti sul confronto con NanoBanana e Seedream.</p>
-              <p>Il file README e la licenza del repository ostris/ai-toolkit su GitHub, non raggiungibile durante questa ricerca.</p>
-              <p>I livelli e i prezzi del Patreon di Mickmumpitz, dove risiedono le versioni avanzate del workflow.</p>
-            </div>
 
             <h3 class="content-title" style="margin-top:2rem;">
               Fonti principali
@@ -439,6 +421,34 @@
       </ol>
 
     </div><!-- /page-body -->
+	<!-- ── FOOTNOTES ───────────────────────────────────────── -->
+
+	<section class="footnotes">
+	<ol>
+	<li id="fn1">
+	  <span>Qwen-Image-Edit è un modello di editing di immagini del team Qwen di Alibaba, rilasciato il 19 agosto 2025, costruito sopra il backbone Qwen-Image da 20 miliardi di parametri, con licenza Apache 2.0 (open, uso commerciale incluso) ( <a href="https://www.producthunt.com/p/qwen-image-edit-2/qwen-image-edit-4" class="about-link" target="_blank">Product Hunt</a>). Secondo la documentazione tecnica, Qwen-Image adotta un'architettura a tre moduli principali (<a href="https://build.nvidia.com/qwen/qwen-image-edit.md" class="about-link" target="_blank">NVIDIA</a>): 
+		  <ul class="content-sublist">
+			<li>Qwen2.5-VL — modello linguistico multimodale "congelato" (non riaddestrato), usato per l'estrazione delle caratteristiche testo/immagine e l'allineamento semantico, 7 miliardi di parametri — che riprende i modelli  "Qwen" che si conoscono: è la stessa famiglia di modelli linguistici, nella sua variante vision-language (interpretano immagini e testo insieme);  </li>
+			<li> VAE (encoder/decoder, piccolissimo — 54M/73M parametri), che si occupa della preservazione dei dettagli visivi/pixel;  </li>
+			<li> MMDiT (Multimodal Diffusion Transformer, 20 miliardi di parametri) — il motore generativo vero, il transformer di diffusion che produce l'immagine finale.</li>	  
+		  </ul>
+		Come lavorano insieme i tre componenti: Qwen-Image-Edit alimenta contemporaneamente l’immagine di input insieme a Qwen2.5-VL (per il controllo semantico visivo) e all’encoder del VAE (per il controllo dell’aspetto visivo), ottenendo così sia capacità di editing della semantica del testo sia di editing dell’aspetto visivo. In pratica: Qwen2.5-VL “legge” l’immagine e l’istruzione testuale e decide cosa cambiare concettualmente (es. “metti un cappello al gatto”); il VAE mantiene i dettagli visivi di tutto il resto, così l’immagine non cambia dove non richiesto; il MMDiT genera il risultato finale bilanciando le due informazioni.  
+	   </span>
+	  <a href="#fnref1" class="f1-back" aria-label="back to text">↩</a>
+	</li>
+	
+	<li id="fn2">
+	  <span>
+		Wan 2.2 14B non è un modello a singolo passaggio come Qwen Image Edit o Flux: è una Mixture-of-Experts con un esperto “high-noise” (struttura/movimento) e un esperto “low-noise” (dettaglio); AI Toolkit addestra entrambi tramite il “Multi-stage”. Questo significa che un singolo comando di training deve produrre e gestire due set di pesi, non uno — già qui la pipeline di training è più complessa di un modello immagine singolo. <BR>
+
+		Il vincolo si riflette poi all’uso: nell’architettura MoE di Wan 2.2 devi modificare i pesi in ENTRAMBE le reti esperte per ottenere risultati consistenti. E sul lato comunità, la compatibilità delle LoRA WAN 2.1 resta generalmente buona, insieme alla compatibilità delle LoRA WAN 2.2 “low noise” (da non usare le LoRA “high noise”), e potresti dover aggiustare le intensità della LoRA — cioè anche dentro lo stesso ecosistema Wan, le LoRA non sono intercambiabili in modo automatico, senza messa a punto.  <BR>
+
+		E per il video specificamente, la consistenza del personaggio in WAN 2.2 I2V si deforma durante il movimento — un problema di “identity drift” e deformazione del volto, documentato e affrontato con guide dedicate, non un semplice dettaglio.
+	 </span>
+	  <a href="#fnref2" class="f2-back" aria-label="back to text">↩</a>
+	</li> 
+	</ol>
+	</section>
   </main>
 
   <a href="post-comfyui-documents.html" class="nav-back">INDIETRO</a>
