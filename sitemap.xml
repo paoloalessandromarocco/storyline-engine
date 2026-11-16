@@ -3,560 +3,560 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://storyline-engine.com/index.html</loc>
+    <loc>https://storyline-engine.com/</loc>
     <lastmod>2026-11-03</lastmod>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/index.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/index.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/index.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/"/>
     <image:image><image:loc>https://storyline-engine.com/assets/thumbs/door-pannocchino.webp</image:loc></image:image>
     <image:image><image:loc>https://storyline-engine.com/assets/thumbs/door-visual-stories.webp</image:loc></image:image>
     <image:image><image:loc>https://storyline-engine.com/assets/thumbs/door-adv.webp</image:loc></image:image>
   </url>
   <url>
-    <loc>https://storyline-engine.com/en/index.html</loc>
+    <loc>https://storyline-engine.com/en/</loc>
     <lastmod>2026-11-03</lastmod>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/index.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/index.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/index.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/about.html</loc>
+    <loc>https://storyline-engine.com/about</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/about.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/about.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/about.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/about"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/about"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/en/about.html</loc>
+    <loc>https://storyline-engine.com/en/about</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/about.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/about.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/about.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/about"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/about"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/posts.html</loc>
+    <loc>https://storyline-engine.com/posts</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/posts.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/posts.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/posts.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/posts"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/posts"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/posts"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/en/posts.html</loc>
+    <loc>https://storyline-engine.com/en/posts</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/posts.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/posts.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/posts.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/posts"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/posts"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/posts"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/adv.html</loc>
+    <loc>https://storyline-engine.com/adv</loc>
     <lastmod>2026-11-03</lastmod>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/adv.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/adv.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/adv.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/adv"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/adv"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/adv"/>
     <image:image><image:loc>https://storyline-engine.com/assets/thumbs/adv-first-birthday.webp</image:loc></image:image>
     <image:image><image:loc>https://storyline-engine.com/assets/thumbs/adv-selling-cake.webp</image:loc></image:image>
     <image:image><image:loc>https://storyline-engine.com/assets/thumbs/adv-pigiatura.webp</image:loc></image:image>
     <image:image><image:loc>https://storyline-engine.com/assets/thumbs/row-pannocchino.webp</image:loc></image:image>
   </url>
   <url>
-    <loc>https://storyline-engine.com/en/adv.html</loc>
+    <loc>https://storyline-engine.com/en/adv</loc>
     <lastmod>2026-11-03</lastmod>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/adv.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/adv.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/adv.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/adv"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/adv"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/adv"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/comfyui.html</loc>
+    <loc>https://storyline-engine.com/comfyui</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/comfyui.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/comfyui.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/comfyui.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/comfyui"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/comfyui"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/comfyui"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/en/comfyui.html</loc>
+    <loc>https://storyline-engine.com/en/comfyui</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/comfyui.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/comfyui.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/comfyui.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/comfyui"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/comfyui"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/comfyui"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/neural-graphics.html</loc>
+    <loc>https://storyline-engine.com/neural-graphics</loc>
     <lastmod>2026-11-03</lastmod>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/neural-graphics.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/neural-graphics.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/neural-graphics.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/neural-graphics"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/neural-graphics"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/neural-graphics"/>
     <image:image><image:loc>https://storyline-engine.com/assets/thumbs/row-sotto-lasfalto.webp</image:loc></image:image>
     <image:image><image:loc>https://storyline-engine.com/assets/thumbs/row-primo-incontro.webp</image:loc></image:image>
     <image:image><image:loc>https://storyline-engine.com/assets/thumbs/row-aelita.webp</image:loc></image:image>
     <image:image><image:loc>https://storyline-engine.com/assets/thumbs/row-pannocchino.webp</image:loc></image:image>
   </url>
   <url>
-    <loc>https://storyline-engine.com/en/neural-graphics.html</loc>
+    <loc>https://storyline-engine.com/en/neural-graphics</loc>
     <lastmod>2026-11-03</lastmod>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/neural-graphics.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/neural-graphics.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/neural-graphics.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/neural-graphics"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/neural-graphics"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/neural-graphics"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/neural-forecast.html</loc>
+    <loc>https://storyline-engine.com/neural-forecast</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/neural-forecast.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/neural-forecast.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/neural-forecast.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/neural-forecast"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/neural-forecast"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/neural-forecast"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/en/neural-forecast.html</loc>
+    <loc>https://storyline-engine.com/en/neural-forecast</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/neural-forecast.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/neural-forecast.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/neural-forecast.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/neural-forecast"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/neural-forecast"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/neural-forecast"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/aelita.html</loc>
+    <loc>https://storyline-engine.com/aelita</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/aelita.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/aelita.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/aelita.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/aelita"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/aelita"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/aelita"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/en/aelita.html</loc>
+    <loc>https://storyline-engine.com/en/aelita</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/aelita.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/aelita.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/aelita.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/aelita"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/aelita"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/aelita"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/primo-incontro.html</loc>
+    <loc>https://storyline-engine.com/primo-incontro</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/primo-incontro.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/primo-incontro.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/primo-incontro.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/primo-incontro"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/primo-incontro"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/primo-incontro"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/en/primo-incontro.html</loc>
+    <loc>https://storyline-engine.com/en/primo-incontro</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/primo-incontro.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/primo-incontro.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/primo-incontro.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/primo-incontro"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/primo-incontro"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/primo-incontro"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/sotto-lasfalto.html</loc>
+    <loc>https://storyline-engine.com/sotto-lasfalto</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/sotto-lasfalto.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/sotto-lasfalto.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/sotto-lasfalto.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/sotto-lasfalto"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/sotto-lasfalto"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/sotto-lasfalto"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/en/sotto-lasfalto.html</loc>
+    <loc>https://storyline-engine.com/en/sotto-lasfalto</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/sotto-lasfalto.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/sotto-lasfalto.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/sotto-lasfalto.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/sotto-lasfalto"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/sotto-lasfalto"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/sotto-lasfalto"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/aelita-storyboard.html</loc>
+    <loc>https://storyline-engine.com/aelita-storyboard</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/aelita-storyboard.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/aelita-storyboard-en.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/aelita-storyboard.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/aelita-storyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/aelita-storyboard-en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/aelita-storyboard"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/aelita-storyboard-en.html</loc>
+    <loc>https://storyline-engine.com/aelita-storyboard-en</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/aelita-storyboard-en.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/aelita-storyboard.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/aelita-storyboard.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/aelita-storyboard-en"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/aelita-storyboard"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/aelita-storyboard"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/primo-incontro-storyboard.html</loc>
+    <loc>https://storyline-engine.com/primo-incontro-storyboard</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/primo-incontro-storyboard.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/primo-incontro-storyboard-en.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/primo-incontro-storyboard.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/primo-incontro-storyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/primo-incontro-storyboard-en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/primo-incontro-storyboard"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/primo-incontro-storyboard-en.html</loc>
+    <loc>https://storyline-engine.com/primo-incontro-storyboard-en</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/primo-incontro-storyboard-en.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/primo-incontro-storyboard.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/primo-incontro-storyboard.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/primo-incontro-storyboard-en"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/primo-incontro-storyboard"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/primo-incontro-storyboard"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/sotto-lasfalto-storyboard.html</loc>
+    <loc>https://storyline-engine.com/sotto-lasfalto-storyboard</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/sotto-lasfalto-storyboard.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/sotto-lasfalto-storyboard-en.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/sotto-lasfalto-storyboard.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/sotto-lasfalto-storyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/sotto-lasfalto-storyboard-en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/sotto-lasfalto-storyboard"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/sotto-lasfalto-storyboard-en.html</loc>
+    <loc>https://storyline-engine.com/sotto-lasfalto-storyboard-en</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/sotto-lasfalto-storyboard-en.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/sotto-lasfalto-storyboard.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/sotto-lasfalto-storyboard.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/sotto-lasfalto-storyboard-en"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/sotto-lasfalto-storyboard"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/sotto-lasfalto-storyboard"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/comfyui-pipeline-setup.html</loc>
+    <loc>https://storyline-engine.com/comfyui-pipeline-setup</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/comfyui-pipeline-setup.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/comfyui-pipeline-setup.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/comfyui-pipeline-setup.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/comfyui-pipeline-setup"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/comfyui-pipeline-setup"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/comfyui-pipeline-setup"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/en/comfyui-pipeline-setup.html</loc>
+    <loc>https://storyline-engine.com/en/comfyui-pipeline-setup</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/comfyui-pipeline-setup.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/comfyui-pipeline-setup.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/comfyui-pipeline-setup.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/comfyui-pipeline-setup"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/comfyui-pipeline-setup"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/comfyui-pipeline-setup"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/comfyui-python-workflow-instructions.html</loc>
+    <loc>https://storyline-engine.com/comfyui-python-workflow-instructions</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/comfyui-python-workflow-instructions.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/comfyui-python-workflow-instructions.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/comfyui-python-workflow-instructions.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/comfyui-python-workflow-instructions"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/comfyui-python-workflow-instructions"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/comfyui-python-workflow-instructions"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/en/comfyui-python-workflow-instructions.html</loc>
+    <loc>https://storyline-engine.com/en/comfyui-python-workflow-instructions</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/comfyui-python-workflow-instructions.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/comfyui-python-workflow-instructions.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/comfyui-python-workflow-instructions.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/comfyui-python-workflow-instructions"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/comfyui-python-workflow-instructions"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/comfyui-python-workflow-instructions"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/post-aelita.html</loc>
+    <loc>https://storyline-engine.com/post-aelita</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-aelita.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-aelita.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-aelita.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-aelita"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-aelita"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-aelita"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/en/post-aelita.html</loc>
+    <loc>https://storyline-engine.com/en/post-aelita</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-aelita.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-aelita.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-aelita.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-aelita"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-aelita"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-aelita"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/post-box-office-imprevisto.html</loc>
+    <loc>https://storyline-engine.com/post-box-office-imprevisto</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-box-office-imprevisto.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-box-office-imprevisto.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-box-office-imprevisto.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-box-office-imprevisto"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-box-office-imprevisto"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-box-office-imprevisto"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/en/post-box-office-imprevisto.html</loc>
+    <loc>https://storyline-engine.com/en/post-box-office-imprevisto</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-box-office-imprevisto.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-box-office-imprevisto.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-box-office-imprevisto.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-box-office-imprevisto"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-box-office-imprevisto"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-box-office-imprevisto"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/post-comfyui-concepts.html</loc>
+    <loc>https://storyline-engine.com/post-comfyui-concepts</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-comfyui-concepts.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-comfyui-concepts.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-comfyui-concepts.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-comfyui-concepts"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-comfyui-concepts"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-comfyui-concepts"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/en/post-comfyui-concepts.html</loc>
+    <loc>https://storyline-engine.com/en/post-comfyui-concepts</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-comfyui-concepts.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-comfyui-concepts.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-comfyui-concepts.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-comfyui-concepts"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-comfyui-concepts"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-comfyui-concepts"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/post-comfyui-course-material.html</loc>
+    <loc>https://storyline-engine.com/post-comfyui-course-material</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-comfyui-course-material.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-comfyui-course-material.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-comfyui-course-material.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-comfyui-course-material"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-comfyui-course-material"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-comfyui-course-material"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/en/post-comfyui-course-material.html</loc>
+    <loc>https://storyline-engine.com/en/post-comfyui-course-material</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-comfyui-course-material.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-comfyui-course-material.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-comfyui-course-material.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-comfyui-course-material"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-comfyui-course-material"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-comfyui-course-material"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/post-comfyui-documents.html</loc>
+    <loc>https://storyline-engine.com/post-comfyui-documents</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-comfyui-documents.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-comfyui-documents.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-comfyui-documents.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-comfyui-documents"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-comfyui-documents"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-comfyui-documents"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/en/post-comfyui-documents.html</loc>
+    <loc>https://storyline-engine.com/en/post-comfyui-documents</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-comfyui-documents.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-comfyui-documents.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-comfyui-documents.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-comfyui-documents"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-comfyui-documents"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-comfyui-documents"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/masterclass.html</loc>
+    <loc>https://storyline-engine.com/masterclass</loc>
     <lastmod>2026-11-15</lastmod>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/masterclass.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/masterclass.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/masterclass.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/masterclass"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/masterclass"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/masterclass"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/en/masterclass.html</loc>
+    <loc>https://storyline-engine.com/en/masterclass</loc>
     <lastmod>2026-11-15</lastmod>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/masterclass.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/masterclass.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/masterclass.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/masterclass"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/masterclass"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/masterclass"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/post-comfyui-intro.html</loc>
+    <loc>https://storyline-engine.com/post-comfyui-intro</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-comfyui-intro.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-comfyui-intro.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-comfyui-intro.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-comfyui-intro"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-comfyui-intro"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-comfyui-intro"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/en/post-comfyui-intro.html</loc>
+    <loc>https://storyline-engine.com/en/post-comfyui-intro</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-comfyui-intro.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-comfyui-intro.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-comfyui-intro.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-comfyui-intro"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-comfyui-intro"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-comfyui-intro"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/post-comfyui-python.html</loc>
+    <loc>https://storyline-engine.com/post-comfyui-python</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-comfyui-python.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-comfyui-python.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-comfyui-python.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-comfyui-python"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-comfyui-python"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-comfyui-python"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/en/post-comfyui-python.html</loc>
+    <loc>https://storyline-engine.com/en/post-comfyui-python</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-comfyui-python.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-comfyui-python.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-comfyui-python.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-comfyui-python"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-comfyui-python"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-comfyui-python"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/post-confyui-confronto-gemini.html</loc>
+    <loc>https://storyline-engine.com/post-confyui-confronto-gemini</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-confyui-confronto-gemini.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-confyui-confronto-gemini.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-confyui-confronto-gemini.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-confyui-confronto-gemini"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-confyui-confronto-gemini"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-confyui-confronto-gemini"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/en/post-confyui-confronto-gemini.html</loc>
+    <loc>https://storyline-engine.com/en/post-confyui-confronto-gemini</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-confyui-confronto-gemini.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-confyui-confronto-gemini.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-confyui-confronto-gemini.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-confyui-confronto-gemini"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-confyui-confronto-gemini"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-confyui-confronto-gemini"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/post-dco-engine.html</loc>
+    <loc>https://storyline-engine.com/post-dco-engine</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-dco-engine.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-dco-engine.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-dco-engine.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-dco-engine"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-dco-engine"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-dco-engine"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/en/post-dco-engine.html</loc>
+    <loc>https://storyline-engine.com/en/post-dco-engine</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-dco-engine.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-dco-engine.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-dco-engine.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-dco-engine"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-dco-engine"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-dco-engine"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/post-dco-mercato-agenzie-ita.html</loc>
+    <loc>https://storyline-engine.com/post-dco-mercato-agenzie-ita</loc>
     <lastmod>2026-11-02</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-dco-mercato-agenzie-ita.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-dco-mercato-agenzie-ita.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-dco-mercato-agenzie-ita.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-dco-mercato-agenzie-ita"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-dco-mercato-agenzie-ita"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-dco-mercato-agenzie-ita"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/en/post-dco-mercato-agenzie-ita.html</loc>
+    <loc>https://storyline-engine.com/en/post-dco-mercato-agenzie-ita</loc>
     <lastmod>2026-11-02</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-dco-mercato-agenzie-ita.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-dco-mercato-agenzie-ita.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-dco-mercato-agenzie-ita.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-dco-mercato-agenzie-ita"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-dco-mercato-agenzie-ita"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-dco-mercato-agenzie-ita"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/post-dco-mercato-globale.html</loc>
+    <loc>https://storyline-engine.com/post-dco-mercato-globale</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-dco-mercato-globale.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-dco-mercato-globale.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-dco-mercato-globale.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-dco-mercato-globale"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-dco-mercato-globale"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-dco-mercato-globale"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/en/post-dco-mercato-globale.html</loc>
+    <loc>https://storyline-engine.com/en/post-dco-mercato-globale</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-dco-mercato-globale.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-dco-mercato-globale.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-dco-mercato-globale.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-dco-mercato-globale"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-dco-mercato-globale"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-dco-mercato-globale"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/post-dco-pipeline.html</loc>
+    <loc>https://storyline-engine.com/post-dco-pipeline</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-dco-pipeline.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-dco-pipeline.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-dco-pipeline.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-dco-pipeline"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-dco-pipeline"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-dco-pipeline"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/en/post-dco-pipeline.html</loc>
+    <loc>https://storyline-engine.com/en/post-dco-pipeline</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-dco-pipeline.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-dco-pipeline.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-dco-pipeline.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-dco-pipeline"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-dco-pipeline"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-dco-pipeline"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/post-fantascienza.html</loc>
+    <loc>https://storyline-engine.com/post-fantascienza</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-fantascienza.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-fantascienza.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-fantascienza.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-fantascienza"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-fantascienza"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-fantascienza"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/en/post-fantascienza.html</loc>
+    <loc>https://storyline-engine.com/en/post-fantascienza</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-fantascienza.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-fantascienza.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-fantascienza.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-fantascienza"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-fantascienza"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-fantascienza"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/post-generi-rischio.html</loc>
+    <loc>https://storyline-engine.com/post-generi-rischio</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-generi-rischio.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-generi-rischio.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-generi-rischio.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-generi-rischio"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-generi-rischio"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-generi-rischio"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/en/post-generi-rischio.html</loc>
+    <loc>https://storyline-engine.com/en/post-generi-rischio</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-generi-rischio.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-generi-rischio.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-generi-rischio.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-generi-rischio"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-generi-rischio"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-generi-rischio"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/post-horror-bmovie.html</loc>
+    <loc>https://storyline-engine.com/post-horror-bmovie</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-horror-bmovie.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-horror-bmovie.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-horror-bmovie.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-horror-bmovie"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-horror-bmovie"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-horror-bmovie"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/en/post-horror-bmovie.html</loc>
+    <loc>https://storyline-engine.com/en/post-horror-bmovie</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-horror-bmovie.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-horror-bmovie.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-horror-bmovie.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-horror-bmovie"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-horror-bmovie"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-horror-bmovie"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/post-pannocchino-spighetta.html</loc>
+    <loc>https://storyline-engine.com/post-pannocchino-spighetta</loc>
     <lastmod>2026-11-03</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-pannocchino-spighetta.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-pannocchino-spighetta.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-pannocchino-spighetta.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-pannocchino-spighetta"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-pannocchino-spighetta"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-pannocchino-spighetta"/>
     <image:image><image:loc>https://storyline-engine.com/assets/post-pannocchino-spighetta/01-encounter.jpg</image:loc></image:image>
   </url>
   <url>
-    <loc>https://storyline-engine.com/en/post-pannocchino-spighetta.html</loc>
+    <loc>https://storyline-engine.com/en/post-pannocchino-spighetta</loc>
     <lastmod>2026-11-03</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-pannocchino-spighetta.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-pannocchino-spighetta.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-pannocchino-spighetta.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-pannocchino-spighetta"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-pannocchino-spighetta"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-pannocchino-spighetta"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/post-storyboard-adv.html</loc>
+    <loc>https://storyline-engine.com/post-storyboard-adv</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-storyboard-adv.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-storyboard-adv.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-storyboard-adv.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-storyboard-adv"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-storyboard-adv"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-storyboard-adv"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/en/post-storyboard-adv.html</loc>
+    <loc>https://storyline-engine.com/en/post-storyboard-adv</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-storyboard-adv.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-storyboard-adv.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-storyboard-adv.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-storyboard-adv"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-storyboard-adv"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-storyboard-adv"/>
   </url>
   <url>
-    <loc>https://storyline-engine.com/post-storyboard-vendemmia.html</loc>
+    <loc>https://storyline-engine.com/post-storyboard-vendemmia</loc>
     <lastmod>2026-11-03</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-storyboard-vendemmia.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-storyboard-vendemmia.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-storyboard-vendemmia.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-storyboard-vendemmia"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-storyboard-vendemmia"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-storyboard-vendemmia"/>
     <image:image><image:loc>https://storyline-engine.com/assets/post-storyboard-vendemmia/01-raccolta-mattina.jpg</image:loc></image:image>
   </url>
   <url>
-    <loc>https://storyline-engine.com/en/post-storyboard-vendemmia.html</loc>
+    <loc>https://storyline-engine.com/en/post-storyboard-vendemmia</loc>
     <lastmod>2026-11-03</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-storyboard-vendemmia.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-storyboard-vendemmia.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-storyboard-vendemmia.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://storyline-engine.com/en/post-storyboard-vendemmia"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://storyline-engine.com/post-storyboard-vendemmia"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-storyboard-vendemmia"/>
   </url>
 </urlset>
