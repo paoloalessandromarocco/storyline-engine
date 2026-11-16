@@ -1,0 +1,6 @@
+name = "storyline-engine"
+compatibility_date = "2026-11-16"
+
+[assets]
+directory = "."
+html_handling = "none"
