@@ -580,6 +580,7 @@ a.post-title:hover { color: #001D6C; }
 .post-group--tech   { color: #002FA7; border-bottom-color: #002FA7; }
 .post-group--narr   { color: #8B5200; border-bottom-color: #A76300; }
 .post-group--cinema { color: #1A5800; border-bottom-color: #267300; }
+.post-group--ai-cinema { color: #00A86B; border-bottom-color: #00A86B; }
 
 /* ── About page links — warm amber, distinct from Klein blue body text ─── */
 .about-link {

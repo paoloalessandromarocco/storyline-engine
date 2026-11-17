@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <title>Modelli AI e Cinema: come i primi stanno trasformando l'ultima arte</title>
+  <link rel="alternate" hreflang="en"        href="https://storyline-engine.com/en/post-modelli-ai-cinema">
+  <link rel="alternate" hreflang="it"        href="https://storyline-engine.com/post-modelli-ai-cinema">
+  <link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-modelli-ai-cinema">
+
+  <!-- Preload self-hosted fonts so they're already in flight before style.css
+       is even parsed — closes the remaining window where the browser paints
+       with the fallback (Georgia/Courier) and then swaps to the real font,
+       which is what still reads as the font "changing size" on reload. -->
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+  <meta name="description" content="Perché il 'workflow ibrido' tra AI generativa e VFX tradizionali è solo una fase di transizione: gli spazi latenti, la traiettoria di Robin Rombach e l'uso che ne fa Scorsese per lo storyboard.">
+  <link rel="canonical" href="https://storyline-engine.com/post-modelli-ai-cinema">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Paolo Marocco">
+  <meta property="og:title" content="Modelli AI e Cinema: come i primi stanno trasformando l'ultima arte">
+  <meta property="og:description" content="Perché il 'workflow ibrido' tra AI generativa e VFX tradizionali è solo una fase di transizione: gli spazi latenti, la traiettoria di Robin Rombach e l'uso che ne fa Scorsese per lo storyboard.">
+  <meta property="og:url" content="https://storyline-engine.com/post-modelli-ai-cinema">
+  <meta property="og:image" content="https://storyline-engine.com/assets/bg_new.jpg">
+  <meta property="og:locale" content="it_IT">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Modelli AI e Cinema: come i primi stanno trasformando l'ultima arte">
+  <meta name="twitter:description" content="Perché il 'workflow ibrido' tra AI generativa e VFX tradizionali è solo una fase di transizione: gli spazi latenti, la traiettoria di Robin Rombach e l'uso che ne fa Scorsese per lo storyboard.">
+  <meta name="twitter:image" content="https://storyline-engine.com/assets/bg_new.jpg">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Modelli AI e Cinema: come i primi stanno trasformando l'ultima arte",
+  "description": "Perché il 'workflow ibrido' tra AI generativa e VFX tradizionali è solo una fase di transizione: gli spazi latenti, la traiettoria di Robin Rombach e l'uso che ne fa Scorsese per lo storyboard.",
+  "image": "https://storyline-engine.com/assets/bg_new.jpg",
+  "inLanguage": "it",
+  "mainEntityOfPage": "https://storyline-engine.com/post-modelli-ai-cinema",
+  "author": {
+    "@type": "Person",
+    "name": "Paolo Marocco",
+    "url": "https://storyline-engine.com/about"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Paolo Marocco"
+  }
+}
+  </script>
+
+  <link rel="stylesheet" href="assets/style.css">
+
+  <style>
+    /* ── post body text ───────────────────────────────────── */
+    .post-text {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.15rem;
+      line-height: 1.75;
+      margin: 0 0 1.4em 0;
+    }
+
+    /* ── question headers ─────────────────────────────────── */
+    .q-header {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      letter-spacing: 0.16em;
+      color: #1A5CB3;
+      text-transform: uppercase;
+      margin: 48px 0 16px;
+    }
+    .q-header:first-of-type { margin-top: 0; }
+
+    /* ── footnote ref ────────────────────────────────────── */
+    sup.fn-ref {
+      font-family: var(--mono);
+      font-size: 0.6em;
+      line-height: 1;
+      vertical-align: super;
+      margin-left: 0.1em;
+    }
+    sup.fn-ref a { text-decoration: none; opacity: 0.55; }
+    sup.fn-ref a:hover { opacity: 1; }
+
+    /* ── footnotes block ─────────────────────────────────── */
+    .footnotes {
+      margin-top: 4rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid currentColor;
+      opacity: 0.65;
+    }
+    .footnotes ol {
+      font-family: var(--serif);
+      font-size: 0.92rem;
+      line-height: 1.65;
+      padding-left: 1.4em;
+      margin: 0 0 0 -1.4em;
+      list-style-position: outside;
+    }
+    .footnotes li { margin-bottom: 0.8em; }
+    .fn-back {
+      font-family: var(--mono);
+      font-size: 0.8em;
+      margin-left: 0.4em;
+      text-decoration: none;
+      opacity: 0.5;
+    }
+    .fn-back:hover { opacity: 1; }
+  </style>
+</head>
+<body class="interior">
+
+  <header>
+    <a href="about.html" class="nav-item">ABOUT</a>
+    <div class="menu-container">
+      <span class="menu-trigger">ARGOMENTI</span>
+      <div class="menu-dropdown">
+        <a href="adv.html"             class="menu-item">ADV</a>
+        <a href="neural-graphics.html" class="menu-item">FUMETTI/STORYBOARD</a>
+        <a href="comfyui.html"         class="menu-item">COMFYUI</a>
+        <a href="posts.html"           class="menu-item">POST</a>
+        <span class="menu-item menu-item--disabled">VIDEO</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content">
+
+    <p class="section-label" style="color:#00A86B;">Cinema &middot; Intelligenza Artificiale</p>
+
+    <h1 class="page-title">Modelli AI e Cinema: come i primi stanno trasformando l'ultima arte</h1>
+
+    <p class="post-subtitle">
+      Esiste un approccio AI che trasforma la narrazione cinematografica?
+    </p>
+
+    <hr class="divider" style="margin-top: 2.5rem; margin-bottom: 0.5rem;">
+
+    <!-- ── ABSTRACT — da scrivere ──────────────────────────── -->
+    <p class="post-abstract-text" style="margin-bottom:28px; opacity:0.55; font-style:italic;">
+      [ABSTRACT — da scrivere]
+    </p>
+
+    <hr class="divider" style="margin-top: 0.5rem; margin-bottom: 2rem;">
+
+    <div class="page-body">
+
+      <div class="post-tags" style="margin-bottom:2rem;">
+        <span class="post-tag tag-cinema">Cinema</span>
+        <span class="post-tag tag-cinema">Modelli Generativi</span>
+        <span class="post-tag tag-cinema">Spazio Latente</span>
+        <span class="post-tag tag-cinema">Robin Rombach</span>
+      </div>
+
+      <p class="post-text">
+        Nel suo saggio <i>It's Not Video. On AI &ldquo;Video&rdquo; and Post-Cinema</i><sup class="fn-ref"><a href="#fn1" id="fnref1">1</a></sup>, Thomas Flight descrive i risultati migliori come il prodotto di workflow ibridi: più modelli generativi innestati dentro gli strumenti VFX tradizionali, per mantenere il controllo creativo. È una descrizione tecnicamente corretta di come lavora oggi la maggior parte degli studi, ma a mio parere scambia una soluzione di passaggio per un punto d'arrivo. Il mix tra la cultura VFX degli ultimi vent'anni e quella nativamente multimodale dell'AI generativa non è un equilibrio stabile: è il sintomo di una fase di transizione tecnologica &mdash; lo stesso fenomeno che nella storia dei media si definisce <em>skeuomorfismo strutturale</em>, come il primo cinema che trattava la macchina da presa come uno spettatore seduto in platea davanti a un palcoscenico teatrale.
+      </p>
+
+      <!-- Q1 -->
+      <p class="q-header">Geometria euclidea contro varietà latenti</p>
+
+      <p class="post-text">
+        La cultura VFX degli ultimi vent'anni &mdash; compositing nodale, rigging poligonale, simulazioni fisiche deterministiche, keyframing su curve di B&eacute;zier &mdash; è costruita per intero attorno a una rappresentazione esplicita e cartesiana dello spazio, pensata per adattarsi alle categorie percettive e motorie umane. In quel paradigma, &ldquo;controllo&rdquo; significa intervenire localmente su parametri geometrici o fotometrici isolati.
+      </p>
+
+      <p class="post-text">
+        L'AI generativa nativamente multimodale opera su un piano diverso. Le architetture più recenti non disegnano né animano oggetti: organizzano varietà continue &mdash; i cosiddetti <em>latent manifold</em> &mdash; in cui semantica, illuminazione, cinematica, identità e stile restano intrecciati statisticamente in geometrie non euclidee, estranee all'esperienza fenomenologica umana. Un video generato non è una sequenza di fotogrammi montati, ma una traiettoria campionata e decodificata attraverso uno spazio latente spazio-temporale. Iniettare l'output di una rete neurale dentro una pipeline VFX tradizionale serve ad addomesticare un motore stocastico estraneo con corrimano industriali familiari, ma non sfrutta la natura intrinseca del medium.
+      </p>
+
+      <!-- Q2 -->
+      <p class="q-header">La traiettoria di Robin Rombach: dallo spazio latente ai world model</p>
+
+      <p class="post-text">
+        Il percorso di Robin Rombach &mdash; co-fondatore e CEO di Black Forest Labs &mdash; descrive esattamente questo spostamento progressivo del controllo: dall'esterno (la post-produzione, il compositing) all'interno dei pesi della rete. Il paper cardine <i>High-Resolution Image Synthesis with Latent Diffusion Models</i> (Rombach, Blattmann, Lorenz, Esser, Ommer &mdash; CVPR 2022)<sup class="fn-ref"><a href="#fn2" id="fnref2">2</a></sup>, da cui nasce Stable Diffusion, separa la compressione percettiva &mdash; affidata a un autoencoder variazionale &mdash; dalla modellazione semantica: comprimere dati naturali in rappresentazioni continue a dimensionalità ridotta è un principio che prescinde dall'architettura specifica e conserva un segnale percettivo superiore rispetto alla serializzazione discreta.
+      </p>
+
+      <p class="post-text">
+        Con <i>SDXL: Improving Latent Diffusion Models for High-Resolution Image Synthesis</i> (Podell, Rombach et al. &mdash; ICLR 2024)<sup class="fn-ref"><a href="#fn3" id="fnref3">3</a></sup> e le successive tecniche di distillazione accelerata, l'attenzione si sposta sul potenziamento del condizionamento testuale e sulla qualità nativa della sintesi ad alta risoluzione, riducendo il bisogno di interventi correttivi esterni. In Black Forest Labs, con i Rectified Flow Transformer di FLUX.1 Kontext e FLUX.2, Rombach supera le classiche U-Net: la coerenza dei personaggi e l'editing multi-input si risolvono direttamente tramite istruzioni contestuali, in modelli con finestre di contesto estese dove memoria visiva e coerenza diventano proprietà emergenti dell'architettura, non più un intervento a posteriori.
+      </p>
+
+      <p class="post-text">
+        Nell'intervista a <i>The OpenRouter Show</i><sup class="fn-ref"><a href="#fn4" id="fnref4">4</a></sup> Rombach distingue due poli: da un lato l'orchestrazione tra modelli &ldquo;specialisti&rdquo;, coordinati dall'esterno; dall'altro l'estremo generalista, dove quel coordinamento è già &ldquo;dentro i pesi della rete neurale&rdquo;. È in questa distinzione che si gioca il punto centrale: il workflow ibrido descritto da Flight è solo il polo dell'efficienza immediata. La vera frontiera è interiorizzare fisica, coerenza temporale e dinamica visiva direttamente nei pesi del modello, verso veri <em>world model</em> in tempo reale.
+      </p>
+
+      <!-- Q3 -->
+      <p class="q-header">L'incontro con il cinema: Scorsese e l'interfaccia pre-linguistica</p>
+
+      <p class="post-text">
+        Nella primavera del 2026 Martin Scorsese è diventato advisor di Black Forest Labs, dichiarando di usare i loro modelli quasi esclusivamente per lo storyboard<sup class="fn-ref"><a href="#fn5" id="fnref5">5</a></sup>. Letto attraverso lo spazio latente, non è un ripiego prudente da parte di un maestro del cinema classico, ma l'individuazione esatta del punto in cui la navigazione vettoriale incontra l'immaginazione autoriale.
+      </p>
+
+      <p class="post-text">
+        Per settant'anni Scorsese ha dovuto tradurre una visione mentale fluida in schizzi bidimensionali statici, per comunicarla a scenografi e direttori della fotografia. Il condizionamento in-context permette oggi di proiettare un'intuizione spaziale e atmosferica senza passare dalla mediazione artigianale del disegno. È lo stesso attrito traduttivo di cui parla Flight a proposito del post-cinema: finché l'AI resta costretta dentro le impalcature dei VFX hollywoodiani, rimane una protesi produttiva. Quando invece un ricercatore come Rombach incontra un autore formato sulla grammatica pura del montaggio e dello sguardo come Scorsese, l'esplorazione dello spazio latente smette di essere un surrogato a basso costo del set, e diventa un nuovo spazio pre-linguistico di pre-visualizzazione e invenzione formale.
+      </p>
+
+      <!-- ── FOOTNOTES ─────────────────────────────────────── -->
+      <section class="footnotes">
+        <ol>
+          <li id="fn1">
+            <span>
+              Thomas Flight, &ldquo;It's not video. On AI &lsquo;video&rsquo; and post-cinema&rdquo;, 4 marzo 2024.
+            </span>
+            <a href="https://www.thomasflight.com/its-not-video-on-ai-video-and-post-cinema/" class="about-link" target="_blank" rel="noopener noreferrer" style="margin-left:0.4em;">Link</a>
+            <a href="#fnref1" class="fn-back" aria-label="back to text">&#8617;</a>
+          </li>
+          <li id="fn2">
+            <span>
+              Rombach, Blattmann, Lorenz, Esser, Ommer, &ldquo;High-Resolution Image Synthesis with Latent Diffusion Models&rdquo;, CVPR 2022.
+            </span>
+            <a href="https://arxiv.org/abs/2112.10752" class="about-link" target="_blank" rel="noopener noreferrer" style="margin-left:0.4em;">arXiv</a>
+            <a href="#fnref2" class="fn-back" aria-label="back to text">&#8617;</a>
+          </li>
+          <li id="fn3">
+            <span>
+              Podell, English, Lacey, Blattmann, Dockhorn, Müller, Penna, Rombach, &ldquo;SDXL: Improving Latent Diffusion Models for High-Resolution Image Synthesis&rdquo;, ICLR 2024.
+            </span>
+            <a href="https://arxiv.org/abs/2307.01952" class="about-link" target="_blank" rel="noopener noreferrer" style="margin-left:0.4em;">arXiv</a>
+            <a href="#fnref3" class="fn-back" aria-label="back to text">&#8617;</a>
+          </li>
+          <li id="fn4">
+            <span>
+              Robin Rombach, intervista a <i>The OpenRouter Show</i>.
+            </span>
+            <a href="https://www.youtube.com/watch?v=mnOxq6ZL6-U" class="about-link" target="_blank" rel="noopener noreferrer" style="margin-left:0.4em;">YouTube</a>
+            <a href="#fnref4" class="fn-back" aria-label="back to text">&#8617;</a>
+          </li>
+          <li id="fn5">
+            <span>
+              Riportato da IndieWire (Brian Welk), giugno 2026, sull'ingresso di Scorsese come advisor di Black Forest Labs.
+            </span>
+            <a href="#fnref5" class="fn-back" aria-label="back to text">&#8617;</a>
+          </li>
+        </ol>
+      </section>
+
+    </div><!-- /page-body -->
+  </main>
+
+  <a href="index.html" class="nav-back nav-home" id="home-link">HOME</a>
+  <div class="lang-switch">
+    <a class="lang-btn" href="/en/post-modelli-ai-cinema.html">EN</a>
+  </div>
+
+  <script src="/assets/menu.js"></script>
+  <script>
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').classList.toggle('scrolled', window.scrollY > 20);
+    });
+  </script>
+</body>
+</html>
