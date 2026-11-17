@@ -8,7 +8,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="color-scheme" content="light">
-  <title>Gemini vs ComfyUI (Open source): a comparison</title>
+  <title>Gemini vs ComfyUI (Open Source): A Comparison</title>
   <link rel="alternate" hreflang="en"        href="https://storyline-engine.com/en/post-confyui-confronto-gemini">
   <link rel="alternate" hreflang="it"        href="https://storyline-engine.com/post-confyui-confronto-gemini">
   <link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-confyui-confronto-gemini">
@@ -16,34 +16,34 @@
        is even parsed — closes the remaining window where the browser paints
        with the fallback (Georgia/Courier) and then swaps to the real font,
        which is what still reads as the font "changing size" on reload. -->
-  <link rel="preload" href="/assets/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/ibm-plex-mono-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/eb-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/eb-garamond-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
 
-  <meta name="description" content="Why a two-line Gemini prompt can outperform a 50-node ComfyUI pipeline built by hand — and what that gap actually is, and isn&#x27;t, about.">
+  <meta name="description" content="Why a two-line prompt on Gemini often beats a hand-built 50-node ComfyUI pipeline — and what truly separates the two approaches, and what does not.">
   <link rel="canonical" href="https://storyline-engine.com/en/post-confyui-confronto-gemini">
 
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Paolo Marocco">
-  <meta property="og:title" content="Gemini vs ComfyUI (Open source): a comparison">
-  <meta property="og:description" content="Why a two-line Gemini prompt can outperform a 50-node ComfyUI pipeline built by hand — and what that gap actually is, and isn&#x27;t, about.">
+  <meta property="og:title" content="Gemini vs ComfyUI (Open Source): A Comparison">
+  <meta property="og:description" content="Why a two-line prompt on Gemini often beats a hand-built 50-node ComfyUI pipeline — and what truly separates the two approaches, and what does not.">
   <meta property="og:url" content="https://storyline-engine.com/en/post-confyui-confronto-gemini">
   <meta property="og:image" content="https://storyline-engine.com/assets/post-confyui-confronto-gemini/diagram-loop.jpg">
   <meta property="og:locale" content="en_US">
   <meta property="og:locale:alternate" content="it_IT">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Gemini vs ComfyUI (Open source): a comparison">
-  <meta name="twitter:description" content="Why a two-line Gemini prompt can outperform a 50-node ComfyUI pipeline built by hand — and what that gap actually is, and isn&#x27;t, about.">
+  <meta name="twitter:title" content="Gemini vs ComfyUI (Open Source): A Comparison">
+  <meta name="twitter:description" content="Why a two-line prompt on Gemini often beats a hand-built 50-node ComfyUI pipeline — and what truly separates the two approaches, and what does not.">
   <meta name="twitter:image" content="https://storyline-engine.com/assets/post-confyui-confronto-gemini/diagram-loop.jpg">
 
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "Gemini vs ComfyUI (Open source): a comparison",
-  "description": "Why a two-line Gemini prompt can outperform a 50-node ComfyUI pipeline built by hand — and what that gap actually is, and isn't, about.",
+  "headline": "Gemini vs ComfyUI (Open Source): A Comparison",
+  "description": "Why a two-line prompt on Gemini often beats a hand-built 50-node ComfyUI pipeline — and what truly separates the two approaches, and what does not.",
   "image": "https://storyline-engine.com/assets/post-confyui-confronto-gemini/diagram-loop.jpg",
   "inLanguage": "en",
   "mainEntityOfPage": "https://storyline-engine.com/en/post-confyui-confronto-gemini",
@@ -59,7 +59,7 @@
 }
   </script>
 
-  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="assets/style.css">
 
   <style>
     /* ── post body text ─────────────────────────────────── */
@@ -188,19 +188,55 @@
       .content-item { grid-template-columns: 2rem 1fr; gap: 1rem; }
       .content-number { font-size: 1.1rem; }
     }
+
+    /* ── comparison table ────────────────────────────────── */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.6rem 0 1.4rem;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.02rem;
+      line-height: 1.55;
+    }
+    .comparison-table th {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #1A5CB3;
+      font-weight: 600;
+      text-align: left;
+      padding: 0.75rem 0.8rem;
+      border-bottom: 1px solid rgba(26,92,179,0.35);
+    }
+    .comparison-table td {
+      padding: 0.75rem 0.8rem;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      vertical-align: top;
+    }
+    .comparison-table td:first-child {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.76rem;
+      color: #1A5CB3;
+      width: 22%;
+    }
+    @media (max-width: 700px) {
+      .comparison-table { font-size: 0.95rem; }
+      .comparison-table th, .comparison-table td { padding: 0.55rem 0.5rem; }
+    }
   </style>
 </head>
 <body class="interior">
 
   <header>
-    <a href="/en/about.html" class="nav-item">ABOUT</a>
+    <a href="about.html" class="nav-item">ABOUT</a>
     <div class="menu-container">
       <span class="menu-trigger">TOPICS</span>
       <div class="menu-dropdown">
-        <a href="/en/adv.html"             class="menu-item">ADV</a>
-        <a href="/en/neural-graphics.html" class="menu-item">VISUAL STORIES</a>
-        <a href="/en/comfyui.html"         class="menu-item">COMFYUI</a>
-        <a href="/en/posts.html"           class="menu-item">POSTS</a>
+        <a href="adv.html"             class="menu-item">ADV</a>
+        <a href="neural-graphics.html" class="menu-item">COMICS / STORYBOARDS</a>
+        <a href="comfyui.html"         class="menu-item">COMFYUI</a>
+        <a href="posts.html"           class="menu-item">POSTS</a>
         <span class="menu-item menu-item--disabled">VIDEO</span>
       </div>
     </div>
@@ -208,9 +244,9 @@
 
   <main class="page-content">
 
-    <p class="section-label">Narrazioni &middot; Comparison · DEEP TECHNICAL</p>
+    <p class="section-label">Narratives &middot; Comparison &middot; ADVANCED TECHNICAL</p>
 
-    <h1 class="page-title">Gemini vs ComfyUI (Open source): a comparison</h1>
+    <h1 class="page-title">Gemini vs ComfyUI (Open Source): A Comparison</h1>
 
     <div class="page-body">
 
@@ -218,13 +254,11 @@
         <span class="post-tag tag-narr">Gemini</span>
         <span class="post-tag tag-narr">ComfyUI</span>
         <span class="post-tag tag-narr">VLM</span>
-        <span class="post-tag tag-narr">Confronto</span>
+        <span class="post-tag tag-narr">Comparison</span>
       </div>
 
-            <p class="post-abstract-text">A two-line Gemini prompt often beats a hand-built 50-node ComfyUI pipeline for simple shots. ComfyUI only wins once you add back what Gemini already does internally: a judge that checks the image against a spec, and an editor that repairs only what fails.</p>
-
       <p class="post-abstract-text">
-        A working note on why a two-line Gemini prompt often outperforms a 50-node ComfyUI pipeline built by hand. The gap is not the level of detail in the prompt &mdash; it's a missing piece: a critical level that reads the generated image back against a structured spec, and a corrective editor that repairs only what fails, in a closed loop. This post reconstructs that architecture as an open graph (nodes A&ndash;E), isolates the minimal sub-graph that actually guarantees consistency, explains why ComfyUI's own execution model can't run the loop natively, and walks through how the critical node reasons, step by step, down to the instruction it hands the editor.
+        A two-line prompt on Gemini often beats a hand-built 50-node ComfyUI pipeline, especially on complex, multi-character scenes. The gap does not come from prompt length, but from two mechanisms that natively multimodal models merge into a single internal pass: expanding the brief into a high-density latent representation &mdash; where implicit details and background characters emerge from relational <em>priors</em> and context memory, with no external RAG needed &mdash; and a closed loop in which a critic layer checks the image against a specification while a corrective editor repairs only what is off. This post reconstructs that architecture as an open graph (nodes A&ndash;E) &mdash; showing how structured planning and visual retrieval compensate in open source for what Gemini does in latent space &mdash; isolates the minimal consistency sub-graph, explains why ComfyUI requires an external Python orchestrator, and traces how the critic node reasons, step by step, down to the instruction it hands to the editor.
       </p>
 
       <!-- ── CONTENTS: 01–02 ───────────────────────────────── -->
@@ -236,19 +270,19 @@
           <div class="content-body">
 
             <h3 class="content-title">
-              Why a short prompt (launching a Google tool Gemini) beats a 50-node pipeline
+              Why a Short Prompt (Calling Google Gemini) Beats a 50-Node Pipeline
             </h3>
 
             <p class="post-text">
-              The pipeline built in the first two parts of this course &mdash; <a href='post-comfyui-modelli.html' class='about-link'>part one</a> and <a href='post-comfyui-modelli2.html' class='about-link'>part two</a> &mdash; is a ComfyUI graph generated with Claude's help: 50+ nodes, IP-Adapter and ControlNet chains, KSampler loops. A fairly complex structure, not uniquely defined, which requires trial-and-error configuration to produce good results. Even pushing it further with <a href='post-comfyui-python.html' class='about-link'>Python integration</a> &mdash; it still falls short of a one-shot solution like Gemini's. Whereas giving Gemini two lines of instructions and a couple of reference images consistently delivers a richer, more coherent scene than the best standard ComfyUI result (the one used throughout this course)."
+              The pipeline built in the first two parts of this course &mdash; <a href="post-comfyui-modelli.html" class="about-link">Part One</a> and <a href="post-comfyui-modelli2.html" class="about-link">Part Two</a> &mdash; is a 50+ node ComfyUI graph with IP-Adapter and ControlNet chains and KSampler loops: a complex structure tuned by trial and error that, even when orchestrated via <a href="post-comfyui-python.html" class="about-link">Python integration</a>, remains a <em>one-shot</em> open-chain generator. Giving Gemini two lines of instructions and a couple of reference images, by contrast, reliably produces a richer and more coherent scene than the best standard ComfyUI workflow.
             </p>
 
             <p class="post-text">
-              Gemini's first winner move is to turn a plain-language scene description into a structured specification &mdash; an LLM step, not a ComfyUI function. The result reads like a stricter, LLM-authored version of what <code>shots_config.py</code> already does by hand in this course's pipeline<sup class="fn-ref"><a href="#fn1" id="fnref1">1</a></sup>: subjects with bound attributes, spatial relations, camera and lens, lighting, style anchors. Gemini's version goes further, because an LLM parses the informal brief in more depth than a fixed config schema can &mdash; every implied reference gets pulled out and named explicitly before a single pixel is drawn.
+              Gemini's first winning move is turning an informal brief into a structured plan before a single pixel is synthesized &mdash; the dynamic equivalent of what <code>shots_config.py</code> defines by hand in this course<sup class="fn-ref"><a href="#fn1" id="fnref1">1</a></sup>. When you ask for a crowd scene built around two recurring characters, the 20&ndash;30 secondary guests (with coherent outfits, palettes, and expressions) are not fetched from an external vector database via RAG; they emerge from three internal mechanisms: spatial planning and <em>thinking</em> tokens in latent space, the model's relational <em>priors</em> about the world (an <em>implicit world model</em> that projects the event schema onto the protagonists' visual domain), and direct attention over the visual tokens already present in the chat history (<em>in-context memory</em>).
             </p>
 
             <p class="post-text">
-              But that structured spec is not, by itself, the answer to why two lines are enough. If it were only a matter of a richer description, a sufficiently detailed prompt fed into this course's own pipeline should close the gap &mdash; and it doesn't, reliably. The real difference sits one and two steps further down the chain: a node that checks the rendered image against the spec, and a node that repairs only the parts that fail. Everything from here is about isolating and explaining those two nodes.
+              A structured specification alone, however, is not enough to close the gap: in an open diffusion pipeline, feeding a very long prompt with 25 subjects still tends to blend attributes across characters (<em>attribute bleeding</em>). The decisive difference lies one and two steps downstream: a node that checks the rendered image against the specification, and a node that repairs only the regions that fail.
             </p>
 
           </div>
@@ -260,11 +294,11 @@
           <div class="content-body">
 
             <h3 class="content-title">
-              An open reconstruction: nodes A to E
+              An Open Reconstruction: From Nodes A &rarr; E
             </h3>
 
             <p class="post-text">
-              Gemini doesn't expose these steps as separate nodes &mdash; inside it, A&ndash;E are one jointly-trained model. Reconstructed as an open graph, so it can be rebuilt with the tools this course already uses (a diffusion base, IP-Adapter, ControlNet, an external LLM/VLM call), the pipeline looks like this:
+              Gemini does not expose these steps as separate nodes: internally, A&ndash;E collapse into a single model trained <em>end-to-end</em>. Reconstructed as an open graph &mdash; reproducible with the tools already used in this course (a diffusion backbone, IP-Adapter/PuLID, ControlNet, and an external LLM/VLM) &mdash; the pipeline separates reasoning (A, D), deterministic compilation (B), and visual synthesis (C, E):
             </p>
 
           </div>
@@ -274,14 +308,14 @@
 
       <!-- ── FIGURE 1 ──────────────────────────────────────── -->
       <figure class="post-figure">
-        <img src="/assets/post-confyui-confronto-gemini/diagram-pipeline.jpg"
+        <img src="assets/post-confyui-confronto-gemini/diagram-pipeline.jpg"
              alt="Reconstructed reason-plan-render-check-refine pipeline, nodes A to E" width="969" height="625" decoding="async">
         <figcaption class="post-caption">
-          <span class="caption-title">Reason &middot; plan &middot; render &middot; check &middot; refine</span>Teal nodes (A, D) are reasoning steps &mdash; an LLM or VLM call. The coral nodes (B, C, E) are synthesis steps &mdash; they produce or edit pixels. In Gemini all five collapse into one jointly-trained model; rebuilt in the open, they are five separate calls wired together.
+          <span class="caption-title">Reason &middot; plan &middot; generate &middot; verify &middot; refine</span>The green nodes (A, D) are reasoning steps handled by an LLM or VLM; B is the deterministic bridge that compiles the specification into control signals; the coral nodes (C, E) are synthesis steps that generate or modify pixels. In Gemini all five collapse into a single jointly trained model; laid out explicitly, they become five connected modules.
         </figcaption>
       </figure>
 
-      <!-- ── CONTENTS: 03–05 ───────────────────────────────── -->
+      <!-- ── CONTENTS: 03–06 ───────────────────────────────── -->
       <ol class="content-list" start="3">
 
         <!-- 03 — THE FIVE NODES, ONE BY ONE ───────────────────── -->
@@ -290,26 +324,63 @@
           <div class="content-body">
 
             <h3 class="content-title">
-              The five nodes, one by one
+              The Five Nodes, One by One (And Why Gemini Wins &ldquo;End-to-End&rdquo;)
             </h3>
 
             <ul class="content-sublist">
               <li>
-                <strong>A &mdash; Semantic planner.</strong> An LLM turns the raw brief into structured JSON, not prose &mdash; subjects with bound attributes, spatial relations, camera/lens, lighting, style anchors. This is the single biggest lever in the whole graph. For a real location or object, retrieval can pull reference images in at this stage, so the model isn't guessing at world knowledge it never saw.
+                <strong>A &mdash; Semantic planner (LLM + visual RAG).</strong> Translates the raw brief into a structured JSON Scene Graph with depth hierarchy, spatial coordinates, camera, lighting, and style anchors. Here <strong>visual RAG</strong> plays a concrete role in open source: it queries a local repository (<em>Character &amp; Style Bank</em>) to retrieve <em>character sheets</em>, color palettes, and multi-angle references for recurring characters.
               </li>
               <li>
-                <strong>B &mdash; Conditioning compiler.</strong> Turns that spec into control signals: regional/attention conditioning so attributes bind to the right subject, a rough draft rasterized to depth/canny for composition, and reference embeds (IP-Adapter, Flux Redux/Kontext) for identity. This is exactly this course's existing IP-Adapter/ControlNet stack &mdash; but now driven by a plan instead of hand-set values.
+                <strong>B &mdash; Conditioning compiler.</strong> The deterministic hinge node that translates the Scene Graph into decoupled control tensors: <em>regional attention masking</em> to confine each description to its own <em>bounding box</em> and prevent <em>attribute bleeding</em>, depth/canny maps for perspective, and <em>reference embeds</em> (IP-Adapter, PuLID, Flux Redux/Kontext) to lock identities.
               </li>
               <li>
-                <strong>C &mdash; Generator.</strong> The diffusion base &mdash; Flux, in this course's pipeline &mdash; renders the draft image from B's control signals. Nothing new here: this is the KSampler/VAE chain already covered in parts one and two.
+                <strong>C &mdash; Generator.</strong> The diffusion backbone (Flux) renders an initial <em>draft</em> from the signals compiled by B, running through the standard KSampler/VAE chain.
               </li>
               <li>
-                <strong>D &mdash; Critic.</strong> A VLM checks the draft against the spec, assertion by assertion &mdash; exactly one figure? shirt red? text spelled correctly? &mdash; and returns a structured defect list with severities. This closed check is the piece almost no hand-built Flux pipeline has, and it is the mechanism behind every serious result in the published literature on this topic.
+                <strong>D &mdash; Critic (VLM).</strong> Checks the draft against the Scene Graph, assertion by assertion (counts, clothing, relative positions, text), isolating non-compliant areas (<em>flagged regions</em>) along with severity scores and normalized coordinates.
               </li>
               <li>
-                <strong>E &mdash; Corrective editor.</strong> Applies targeted edits only to the flagged regions, via Kontext or inpainting, then loops back to D &mdash; until the image passes, or the iteration budget runs out.
+                <strong>E &mdash; Corrective editor.</strong> Applies targeted inpainting (or Kontext editing) solely on the masks flagged by D and sends the image back to D, until the score passes the threshold or the iteration budget runs out.
               </li>
             </ul>
+
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th>Dimension</th>
+                  <th>Classic ComfyUI (50+ nodes)</th>
+                  <th>Open Graph (Nodes A &rarr; E)</th>
+                  <th>Gemini (Unified Model)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Brief expansion</td>
+                  <td>Manual or rigid template (<code>shots_config.py</code>)</td>
+                  <td>Dynamic via LLM + local visual RAG (A)</td>
+                  <td>Internal within multimodal <em>thinking</em> tokens</td>
+                </tr>
+                <tr>
+                  <td>Error handling</td>
+                  <td>Global regeneration (<em>seed hunting</em>)</td>
+                  <td>Targeted local repair (D &rarr; E)</td>
+                  <td>Native self-correction in latent space</td>
+                </tr>
+                <tr>
+                  <td>Transition cost</td>
+                  <td>None (linear feed-forward flow)</td>
+                  <td>JSON serialization + VAE encode/decode passes</td>
+                  <td>Zero (joint <em>end-to-end</em> training)</td>
+                </tr>
+                <tr>
+                  <td>Control &amp; debugging</td>
+                  <td>High over weights, low over semantics</td>
+                  <td><strong>Maximum:</strong> inspectable spec, layout, and masks</td>
+                  <td>Low (<em>black-box</em> between prompt and output)</td>
+                </tr>
+              </tbody>
+            </table>
 
           </div>
         </li>
@@ -320,15 +391,15 @@
           <div class="content-body">
 
             <h3 class="content-title">
-              The minimal sub-graph that actually guarantees consistency
+              The Minimal Sub-Graph and the Two Constraints Required for Convergence
             </h3>
 
             <p class="post-text">
-              Only three things carry the consistency guarantee: the spec JSON held from A, node D, and node E &mdash; plus the back-edge from E to D. B and C matter for the quality of any single draft, but once a draft exists, consistency across a sequence of shots lives entirely inside this closed loop.
+              Only three elements actually carry the consistency guarantee: the JSON specification produced by A, node D, and node E, closed by the back-edge E&rarr;D. B and C govern the quality of the first draft, but once an image exists, consistency across a sequence lives entirely inside this closed loop: without the spec, D has no contract; without D, defective areas cannot be isolated; without E, issues are detected but never fixed; without the back-edge, there is no convergence.
             </p>
 
             <p class="post-text">
-              The spec is what closes the loop rather than leaving it open: D does not judge the image in isolation, it checks it against specific assertions derived from A's structured output. Take the spec away and D degrades to unconstrained aesthetic taste &mdash; useless for automated correction. Take D away and there's no way to tell a passing region from a failing one. Take E away and the system can detect problems but never fix them. Take the back-edge away and you get one correction pass with no guarantee of convergence. The loop exits when D reports that every high-severity assertion has passed, or when the iteration counter hits its cap &mdash; whichever comes first.
+              Implementing A&rarr;E in an open graph without degrading the image requires two engineering safeguards. First, a <strong>strict contract between D and E</strong>: the critic must not return discursive prose, but failed atomic assertions paired with normalized coordinates <code>[y_min, x_min, y_max, x_max]</code> that Python automatically converts into <em>feathered masks</em>. Second, a <strong>two-tier exit threshold</strong>: because every pass through E goes through a VAE encode/decode cycle, more than 2&ndash;3 iterations on the same region accumulate edge micro-artifacts; if a local detail fails, E repairs it, whereas if D detects a structural error in perspective or composition, the loop should abort, update the layout in B, and re-run C.
             </p>
 
           </div>
@@ -340,15 +411,15 @@
           <div class="content-body">
 
             <h3 class="content-title">
-              Why ComfyUI can't run this loop natively
+              Why ComfyUI Cannot Run This Loop Natively
             </h3>
 
             <p class="post-text">
-              ComfyUI executes a topological sort of a fixed graph at queue time. There is no native conditional back-edge &mdash; no node can say &ldquo;run D and E again&rdquo; and have the queue obey. What the community calls a &ldquo;loop&rdquo; in ComfyUI is really one of two things: an unrolled fixed-N chain (D&#8321;&rarr;E&#8321;&rarr;D&#8322;&rarr;E&#8322;&hellip;, where every node runs regardless of whether it's needed), or a loop that quietly lives outside ComfyUI altogether. The unrolled version wastes compute on passes the image didn't need, and becomes unmanageable past two or three repetitions &mdash; there's no way to stop early when D already passed.
+              ComfyUI executes a topological sort of a fixed directed acyclic graph at queue time: there is no native conditional back-edge capable of commanding &ldquo;re-run D and E only if needed.&rdquo; Simulating the loop by unrolling fixed chains (D&#8321;&rarr;E&#8321;&rarr;D&#8322;&rarr;E&#8322;&hellip;) wastes compute even when the first draft is already right and becomes unmanageable beyond two or three passes.
             </p>
 
             <p class="post-text">
-              The right answer, for a pipeline already built the way this course builds one, is to keep the loop in Python and use ComfyUI purely as GPU compute &mdash; called through its API, exactly the pattern <code>patcher.py</code> and <code>sweep.py</code> already use in the <a href="/en/post-comfyui-python.html" class="about-link">third part of this course</a>. A Python <code>while</code> loop calls the VLM critical node, decides whether to call ComfyUI's API again for a targeted inpaint, and stops on its own condition &mdash; something no arrangement of nodes inside the graph itself can do.
+              The clean solution is to use ComfyUI purely as a GPU compute engine called over its API, keeping the <code>while</code> loop in Python &mdash; the same pattern used by <code>patcher.py</code> and <code>sweep.py</code> in <a href="post-comfyui-python.html" class="about-link">Part Three of this course</a>. Python queries the VLM critic, converts the coordinates of failed regions into feathered masks for inpainting in ComfyUI, and decides autonomously when to stop.
             </p>
 
           </div>
@@ -360,11 +431,11 @@
           <div class="content-body">
 
             <h3 class="content-title">
-              How the critical node reasons, from image to instruction
+              How the Critic Node Reasons, From Image to Instruction
             </h3>
 
             <p class="post-text">
-              Every call to the critical node hands the VLM two things at once: the full spec from A as text, and the rendered image. The spec is the contract, the image is the evidence &mdash; the critic's entire job is to check one against the other. What follows is not a fixed sequence of separate tools; it's one reasoning process inside a single model call, described here in the order its conclusions become available &mdash; from the minimal sub-graph isolated above, this is what actually happens inside D before it hands anything to E.
+              On every call, the critic node receives both the full specification from A (the contract) and the rendered image (the evidence). What follows is not a chain of separate tools, but the single internal reasoning trace through which D turns visual inspection into an actionable instruction for E.
             </p>
 
           </div>
@@ -374,10 +445,10 @@
 
       <!-- ── FIGURE 2 ──────────────────────────────────────── -->
       <figure class="post-figure">
-        <img src="/assets/post-confyui-confronto-gemini/diagram-loop.jpg"
+        <img src="assets/post-confyui-confronto-gemini/diagram-loop.jpg"
              alt="Minimal consistency sub-graph: spec JSON, D critic, E editor, loop until pass or budget cap" width="969" height="495" loading="lazy" decoding="async">
         <figcaption class="post-caption">
-          <span class="caption-title">The minimal consistency sub-graph</span>The spec JSON held from A asserts against D, the VLM critic; D reports defects to E, the corrective editor; E loops back to D until the image passes or the iteration budget caps out. Everything that guarantees consistency across a sequence lives inside this dashed box.
+          <span class="caption-title">The Minimal Consistency Sub-Graph</span>The JSON specification from A constrains D (VLM critic node); D flags defects to E (corrective editor); E feeds the image back to D until assertions pass or the iteration budget runs out. Everything that guarantees consistency across a sequence lives inside this dashed box.
         </figcaption>
       </figure>
 
@@ -390,35 +461,35 @@
           <div class="content-body">
 
             <h3 class="content-title">
-              From reading the image to writing the fix
+              From Reading the Image to Writing the Correction
             </h3>
 
             <ul class="content-sublist">
               <li>
-                <strong>Reading the image at all.</strong> Before any of this starts, the image is split into a grid of small patches &mdash; roughly 4,000&ndash;5,000 of them for a megapixel-scale image &mdash; and each patch is turned into a vector that shares the same mathematical space as the model's text tokens. This is the foundation everything below relies on: it lets the model's attention mechanism treat &ldquo;the patches showing a face&rdquo; and the word &ldquo;woman&rdquo; from the spec as comparable objects.
+                <strong>Tokenizing the image.</strong> The image is split into a grid of small patches (roughly 4,000&ndash;5,000 at 1 megapixel) projected into the same vector space as text: this is what allows the model's attention mechanism to compare face patches directly against the word &ldquo;woman&rdquo; in the specification.
               </li>
               <li>
-                <strong>Locating each subject.</strong> When the critical node reads &ldquo;woman&rdquo; in the spec, it compares that concept against every patch in the image and finds where the match is strongest &mdash; in effect, pointing at where it believes the woman is, sometimes literally outputting coordinates. This step is weakest on subjects that are small, partly hidden, or described in words with no clear visual equivalent (&ldquo;a fifty-year-old waiter&rdquo; has no fixed shape to look for).
+                <strong>Localizing every subject.</strong> The critic node matches each entity in the specification to the patches with the strongest correspondence until it estimates their coordinates. This step is most fragile on small, partially occluded subjects or concepts lacking a fixed visual shape (&ldquo;a fifty-year-old waiter&rdquo;).
               </li>
               <li>
-                <strong>Reading each attribute.</strong> Once a subject is located, the critical node reads off its actual attributes &mdash; colour, count, position relative to another subject, any text visible in the scene. These are not equally hard: colour is nearly always read correctly, since it shows up directly in the patch's raw visual signal; counting is harder, because it means finding every instance rather than one; relative position (&ldquo;left of&rdquo;, &ldquo;behind&rdquo;) is the hardest, since it means holding two locations in mind at once and comparing them; legible text is fragile unless the model has a way to zoom into sub-regions at higher resolution, because letterforms are smaller than a single patch.
+                <strong>Extracting actual attributes.</strong> Difficulty follows a clear hierarchy: <em>color</em> emerges directly from the raw visual signal; <em>counting</em> multiple instances requires finding all of them; <em>relative positions</em> (&ldquo;to the left of,&rdquo; &ldquo;behind&rdquo;) require holding and comparing two coordinates at once; <em>legible text</em> remains fragile if letters are smaller than a single patch.
               </li>
               <li>
-                <strong>Comparing what it saw to what was asked for.</strong> With the spec's target value and its own observation both now in the same context &mdash; &ldquo;weathered green paint&rdquo; against &ldquo;kiosk appears blue&rdquo; &mdash; the critical node runs what is essentially a reading-comprehension check: does the second sentence satisfy the first? This is the most reliable part of the whole process, because by this point the hard perceptual work is done and what's left is a purely linguistic comparison, which language models are good at.
+                <strong>Comparing observation against specification.</strong> Once what it sees is translated into descriptions comparable to A's constraints (&ldquo;weathered green paint&rdquo; vs. &ldquo;the kiosk appears blue&rdquo;), the model performs a purely linguistic check &mdash; the ground where it is most reliable.
               </li>
               <li>
-                <strong>Deciding how much a mismatch matters.</strong> A wrong subject count is judged far more damaging than a slightly-off colour, and the critic's own system prompt states that ranking explicitly, so a count error is always caught and flagged before a cosmetic one. The judgment also leans on everything the model absorbed, during training, about how people write quality reviews and grading rubrics &mdash; which is why a larger, more thoroughly trained critical node tends to grade defects more sensibly than a small one. Left unchecked, a critical node tends to over-flag &mdash; language models trained to be thorough default to calling everything serious &mdash; so the instruction that keeps this in check is an explicit &ldquo;be conservative, a false alarm costs a wasted repair pass.&rdquo;
+                <strong>Deciding how much a discrepancy matters.</strong> The system prompt enforces an explicit hierarchy &mdash; a count error outweighs a slight color drift &mdash; leveraging the ability of larger models to apply coherent grading rubrics. An explicit caution rule also reins in VLM over-zealousness, preventing false alarms that would waste repair passes.
               </li>
               <li>
-                <strong>Drawing the box around the problem.</strong> This is the hardest step in the whole chain, and the one the rest of the loop depends on most directly: a loose or wrong box produces a repair mask that either misses the defect or damages good content next to it. The patch grid itself sets a hard floor on precision &mdash; a defect smaller than one patch simply can't be boxed tightly. A defect confined to one figure gets a small, useful box; a defect that's really about the whole image (a wrong overall colour cast, say) has to be marked with a full-frame box and capped at a lower severity, precisely so the editor doesn't try to repaint the entire frame over one bad hue.
+                <strong>Drawing the bounding box.</strong> This is the most delicate link in the chain: an imprecise box repairs the wrong area or damages valid neighboring details, and remains bounded by patch-grid resolution. Global defects (such as a color cast) must be flagged at low severity so the editor does not repaint the entire scene.
               </li>
               <li>
-                <strong>Writing the instruction E will follow.</strong> The last thing the critical node produces is a short imperative &mdash; &ldquo;remove the second figure on the right&rdquo;, &ldquo;recolour the kiosk to weathered dark green&rdquo; &mdash; built from the failing assertion, what was actually observed, the box, and the spec's original target. This instruction, together with the original scene description, is what E receives: the positive content to keep, plus an explicit list of what to change. That combination is the same mechanism behind instruction-guided image editing generally &mdash; the correction steers the repair only where it's needed, leaving the rest of the frame untouched.
+                <strong>Writing the instruction E will follow.</strong> Finally, D synthesizes a concise imperative (&ldquo;remove the second figure on the right,&rdquo; &ldquo;recolor the kiosk in weathered dark green&rdquo;) paired with the mask of the failed box and the original description to preserve, directing edits only where needed while leaving the rest of the frame untouched.
               </li>
             </ul>
 
             <p class="post-text" style="margin-top:1.4em; opacity:0.75;">
-              Every one of these seven reads happens inside one VLM call, not six separate tool invocations &mdash; there is no code to inspect here, only a reasoning trace. The value of walking through it is knowing where the loop is most likely to fail: on small or occluded subjects, on fine spatial relations, and above all on the bounding box, which is what decides whether E's repair helps or hurts.
+              All seven readings happen inside a single VLM call, not seven separate invocations. Tracing them shows where the loop is most likely to fail: small or occluded subjects, fine spatial relationships, and above all the accuracy of the bounding boxes guiding E.
             </p>
 
           </div>
@@ -434,11 +505,11 @@
           <div class="content-body">
 
             <h3 class="content-title">
-              When it's actually worth building
+              When It Is Actually Worth Building
             </h3>
 
             <p class="post-text">
-              In practice, this whole architecture is a recipe for a more efficient, more automatic image-generation loop. It doesn't look like the right fit for a one-off, hand-curated project &mdash; the kind of single-storyboard, single-sequence work this course's earlier examples are built around, where a human already looks at every frame and corrects it directly. Where it does earn its cost is production at scale for a defined market: any pipeline that has to generate and self-correct many sequences without a human reviewing each frame is exactly the case the D&ndash;E loop was built for, and exactly where ComfyUI's per-node optimized tuning (and lacking auto-correction) stops scaling.
+              For a single storyboard or a short hand-crafted sequence, where a person already inspects every frame and fixes it directly, standing up the full A&ndash;E infrastructure does not pay off. The architecture becomes decisive in production at scale: when a pipeline must generate and self-correct dozens of coherent sequences without frame-by-frame human supervision &mdash; precisely where open-chain ComfyUI graphs stop scaling.
             </p>
 
           </div>
@@ -451,7 +522,7 @@
         <ol>
           <li id="fn1">
             <span>
-              See the <a href="/en/post-comfyui-python.html" class="about-link">third part of this course</a> for the full field list used in <code>shots_config.py</code>: wall/environment, framing, focal length, angle, objects, positive and negative prompt fields, and per-shot weights. Gemini's internal spec covers the same ground, generated by an LLM rather than filled in by hand for each shot.
+              See <a href="post-comfyui-python.html" class="about-link">Part Three of this course</a> for the full list of fields in <code>shots_config.py</code>: environment/wall, framing, focal length, angle, objects, positive and negative prompts, and per-shot weights. Gemini's internal specification covers the same scope, generated dynamically by an LLM rather than written by hand.
             </span>
             <a href="#fnref1" class="fn-back" aria-label="back to text">&#8617;</a>
           </li>
@@ -459,16 +530,16 @@
       </section>
 
       <p class="section-label">FAQ</p>
-      <p><strong>Is ComfyUI harder to learn than prompting Gemini?</strong> Yes, for a one-off image. The pipeline built across this course's first two parts runs 50+ nodes, IP-Adapter and ControlNet chains, and KSampler loops that need trial-and-error tuning — a two-line Gemini prompt gets a comparable single result much faster.</p>
-      <p><strong>Can ComfyUI run that same generate-judge-correct loop natively?</strong> Not on its own. ComfyUI executes a fixed graph with no native conditional back-edge, so nodes can't perform loops. The practical fix is to keep the loop in Python — call ComfyUI's API for each pass — rather than trying to decompose it as nodes.</p>
-      <p><strong>When is it actually worth building this architecture instead of just using</strong> Gemini? Not for a one-off, hand-curated project where a person already reviews every frame. It earns its cost at extended production scale: any pipeline that has to generate and self-correct many sequences without a human checking each one.</p>
+      <p><strong>Is ComfyUI harder to set up than writing a prompt</strong> in Gemini? Yes: a 50+ node pipeline combining IP-Adapter, ControlNet, and KSampler requires trial-and-error tuning, whereas two lines in Gemini plan and refine the scene in a single pass.</p>
+      <p><strong>Can ComfyUI run the generate-judge-refine loop natively?</strong> No: it executes a fixed directed acyclic graph with no native conditional back-edge. The practical solution is to keep the <code>while</code> loop in Python, calling ComfyUI's API only on the masks that need repair.</p>
+      <p><strong>When is it worth building the open A&ndash;E loop instead of simply using</strong> Gemini? Not for a single hand-curated project where someone already reviews every frame, but in automated production at scale where granular control and continuous self-correction are required.</p>
 
-      <p>Related: <a href='post-comfyui-intro.html' class='about-link'>What is ComfyUI</a> for the node basics, and <a href='post-comfyui-concepts.html' class='about-link'>ComfyUI Visual Stories — Concepts</a> for how this course's own pipeline builds consistency without this loop.</p>
+      <p>Related: <a href="post-comfyui-intro.html" class="about-link">What Is ComfyUI</a> for node fundamentals, and <a href="post-comfyui-concepts.html" class="about-link">ComfyUI Visual Stories &mdash; Concepts</a> for how this course builds consistency without a corrective loop.</p>
 
         </div><!-- /page-body -->
   </main>
 
-  <a href="/en/index.html" class="nav-back nav-home" id="home-link">HOME</a>
+  <a href="index.html" class="nav-back nav-home" id="home-link">HOME</a>
   <div class="lang-switch">
     <a class="lang-btn" href="/post-confyui-confronto-gemini.html">IT</a>
   </div>

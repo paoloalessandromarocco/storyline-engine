@@ -188,6 +188,42 @@
       .content-item { grid-template-columns: 2rem 1fr; gap: 1rem; }
       .content-number { font-size: 1.1rem; }
     }
+
+    /* ── comparison table ────────────────────────────────── */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.6rem 0 1.4rem;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.02rem;
+      line-height: 1.55;
+    }
+    .comparison-table th {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #1A5CB3;
+      font-weight: 600;
+      text-align: left;
+      padding: 0.75rem 0.8rem;
+      border-bottom: 1px solid rgba(26,92,179,0.35);
+    }
+    .comparison-table td {
+      padding: 0.75rem 0.8rem;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      vertical-align: top;
+    }
+    .comparison-table td:first-child {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.76rem;
+      color: #1A5CB3;
+      width: 22%;
+    }
+    @media (max-width: 700px) {
+      .comparison-table { font-size: 0.95rem; }
+      .comparison-table th, .comparison-table td { padding: 0.55rem 0.5rem; }
+    }
   </style>
 </head>
 <body class="interior">
@@ -221,11 +257,8 @@
         <span class="post-tag tag-narr">Confronto</span>
       </div>
 
-            <p class="post-abstract-text">Un prompt di due righe su Gemini spesso batte una pipeline ComfyUI costruita a mano con 50 nodi, per scatti semplici. ComfyUI vince solo quando si aggiunge ciò che Gemini fa già internamente: un giudice che verifica l'immagine rispetto a una specifica, e un editor che corregge solo ciò che non torna.</p>
-
       <p class="post-abstract-text">
-        Una nota di lavoro sul perché un prompt Gemini di due righe spesso batte una pipeline ComfyUI di 50 nodi costruita a mano. Il divario non sta nel livello di dettaglio del prompt, ma in un pezzo mancante: un livello interpretativo (nodo critico) che rilegge l'immagine generata confrontandola con una spec strutturata, e un editor correttivo che ripara solo ciò che non torna, in un ciclo chiuso. Questo post ricostruisce quell'architettura come un grafo aperto (nodi A&ndash;E), isola il sotto-grafo minimo che garantisce davvero la coerenza, spiega perché il modello di esecuzione di ComfyUI non può eseguire nativamente quel ciclo, e ripercorre come ragiona il nodo interpretativo nodo critico, passo dopo passo, fino all'istruzione che consegna all'editor.<br>
-		 MANCA UNA COSA IMPORTANTE: una funzione come quella di creazioni img Gemini si divide in due parti A) un VLM/LLM specializzato, che ha in input il promt utente e in output genera una sequenza di informaizioni molto dettagliate (da studiare meglio x' forse è un vettore latente) che cerca anche via RAG tutto quello che manca per coprire la scena (es.: la festa di nozze o il primo compleanno del bambino di Pannicchino e spighetta: la scen ha 20-30 personaggi ognuno con colori, vestizioni, espressioni dedicate , in armonia tra loro e nell'ambiente: nessuno li ha descritti direttamente. Sono emersi dal nulla quandi qualcosa di retrieval li ha recuperati a livello di iference ma forse anche di Rag. B) il diffusion model e il sistema di feedback descritto nel diagramma in basso. Questa costruzione potrebbe funzionare anche con modelli open source ma va srudiata opportunamente. 
+        Un prompt di due righe su Gemini batte spesso una pipeline ComfyUI da 50 nodi costruita a mano, soprattutto nelle scene complesse e corali. Il divario non dipende dalla lunghezza del testo, ma da due meccanismi che i modelli nativamente multimodali fondono in un unico passaggio interno: l'espansione del brief in una rappresentazione latente ad alta densità &mdash; dove dettagli impliciti e personaggi secondari emergono dai <em>prior</em> relazionali e dalla memoria di contesto, senza bisogno di un RAG esterno &mdash; e un ciclo chiuso in cui un livello critico verifica l'immagine rispetto a una specifica mentre un editor correttivo ripara solo ciò che non torna. Questo post ricostruisce quell'architettura come grafo aperto (nodi A&ndash;E) &mdash; mostrando come pianificazione strutturata e retrieval visivo compensino in open source ciò che Gemini fa nello spazio latente &mdash; isola il sotto-grafo minimo della coerenza, spiega perché ComfyUI richiede un orchestratore Python esterno e ripercorre come ragiona il nodo critico, passo dopo passo, fino all'istruzione consegnata all'editor.
       </p>
 
       <!-- ── CONTENTS: 01–02 ───────────────────────────────── -->
@@ -237,19 +270,19 @@
           <div class="content-body">
 
             <h3 class="content-title">
-              Perché un prompt breve (ma che chiama Google Gemini) batte una pipeline di 50 nodi!
+              Perché un prompt breve (che chiama Google Gemini) batte una pipeline di 50 nodi
             </h3>
 
             <p class="post-text">
-              La pipeline costruita nelle prime due parti di questo corso &mdash; <a href="post-comfyui-modelli.html" class="about-link">prima parte</a> e <a href="post-comfyui-modelli2.html" class="about-link">seconda parte</a> &mdash; è un grafo ComfyUI generato col supporto di Claude: 50+ nodi, catene IP-Adapter e ControlNet, cicli di KSampler. Una struttura abbastanza complessa e non univocamente definita, che occorre configurare per tentativi, in modo da conseguire buoni risultati. Pur provando a farla convergere <a href="post-comfyui-python.html" class="about-link">integrazione python</a> &mdash; non è comunque una soluzione one-shot come quella di Gemini. Mentre dare a Gemini due righe di istruzioni e un paio di immagini di riferimento produce stabilimente una scena più ricca e coerente del risultato migliore ComfyUI standard (quello usato nel corso)."
+              La pipeline costruita nelle prime due parti di questo corso &mdash; <a href="post-comfyui-modelli.html" class="about-link">prima parte</a> e <a href="post-comfyui-modelli2.html" class="about-link">seconda parte</a> &mdash; è un grafo ComfyUI da oltre 50 nodi, con catene IP-Adapter e ControlNet e cicli di KSampler: una struttura complessa da tarare per tentativi che, pur orchestrata tramite <a href="post-comfyui-python.html" class="about-link">integrazione Python</a>, resta un generatore <em>one-shot</em> a catena aperta. Dare a Gemini due righe di istruzioni e un paio di immagini di riferimento produce invece stabilmente una scena più ricca e coerente rispetto al miglior flusso ComfyUI standard.
             </p>
 
             <p class="post-text">
-              La prima mossa vincente di Gemini è trasformare una descrizione della scena in linguaggio naturale in una specifica strutturata &mdash; un passaggio fatto da un LLM, non da una funzione ComfyUI. Il risultato si legge come una versione più rigorosa, scritta da un LLM, di ciò che <code>shots_config.py</code> già fa a mano nella pipeline di questo corso<sup class="fn-ref"><a href="#fn1" id="fnref1">1</a></sup>: soggetti con attributi vincolati, relazioni spaziali, camera e focale, luce, ancore di stile. La versione di Gemini va oltre, perché un LLM analizza il brief informale con più profondità di quanto possa fare uno schema di configurazione fisso: ogni riferimento implicito viene estratto e reso esplicito prima ancora che venga disegnato un solo pixel.
+              La prima mossa vincente di Gemini è trasformare il brief informale in una pianificazione strutturata prima ancora di sintetizzare un solo pixel &mdash; l'equivalente dinamico di ciò che <code>shots_config.py</code> definisce a mano nel corso<sup class="fn-ref"><a href="#fn1" id="fnref1">1</a></sup>. Quando si chiede una scena corale attorno a due personaggi ricorrenti, i 20&ndash;30 invitati secondari (con abiti, palette ed espressioni coerenti) non vengono recuperati da un database vettoriale esterno via RAG, ma emergono da tre meccanismi interni: i token di <em>thinking</em> e pianificazione spaziale nello spazio latente, i <em>prior</em> relazionali del modello sul mondo (<em>implicit world model</em>, che proietta lo schema dell'evento sul dominio visivo dei protagonisti) e l'attenzione diretta sui token visivi già presenti nella cronologia della chat (<em>in-context memory</em>).
             </p>
 
             <p class="post-text">
-              Ma quella spec strutturata da sola non spiega perché due righe bastino. Se fosse solo questione di una descrizione più ricca, un prompt sufficientemente dettagliato dato in pasto alla pipeline di questo corso dovrebbe colmare il divario &mdash; e non lo fa, in modo affidabile. La differenza vera sta uno e due passi più avanti nella catena: un nodo che verifica l'immagine renderizzata rispetto alla spec, e un nodo che ripara solo le parti che non tornano. Tutto quello che segue serve a isolare e spiegare questi due nodi.
+              La specifica strutturata, da sola, non basta però a colmare il divario: in una pipeline diffusiva aperta, un prompt lunghissimo con 25 soggetti tende comunque a fondere gli attributi (<em>attribute bleeding</em>). La differenza decisiva sta uno e due passi più avanti: un nodo che verifica l'immagine renderizzata rispetto alla specifica e un nodo che ripara soltanto le regioni che non tornano.
             </p>
 
           </div>
@@ -261,11 +294,11 @@
           <div class="content-body">
 
             <h3 class="content-title">
-              Una ricostruzione aperta: dai nodi A -> E
+              Una ricostruzione aperta: dai nodi A &rarr; E
             </h3>
 
             <p class="post-text">
-              Gemini non espone questi passaggi come nodi separati &mdash; al suo interno, A&ndash;E sono un unico modello addestrato in blocco. Ricostruito come grafo aperto, in modo da poter essere riprodotto con gli strumenti che questo corso già usa (una base diffusiva, IP-Adapter, ControlNet, una chiamata esterna a un LLM/VLM), la pipeline appare così:
+              Gemini non espone questi passaggi come nodi separati: al suo interno, A&ndash;E collassano in un unico modello addestrato <em>end-to-end</em>. Ricostruita come grafo aperto &mdash; riproducibile con gli strumenti già usati nel corso (una base diffusiva, IP-Adapter/PuLID, ControlNet e un LLM/VLM esterno) &mdash; la pipeline separa ragionamento (A, D), compilazione deterministica (B) e sintesi visiva (C, E):
             </p>
 
           </div>
@@ -278,11 +311,11 @@
         <img src="assets/post-confyui-confronto-gemini/diagram-pipeline.jpg"
              alt="Reconstructed reason-plan-render-check-refine pipeline, nodes A to E" width="969" height="625" decoding="async">
         <figcaption class="post-caption">
-          <span class="caption-title">Ragiona &middot; pianifica &middot; genera &middot; verifica &middot; correggi</span>I nodi verdi (A, D) sono passaggi di ragionamento &mdash; una chiamata a un LLM o a un VLM. I nodi corallo (B, C, E) sono passaggi di sintesi &mdash; producono o modificano pixel. In Gemini tutti e cinque collassano in un unico modello addestrato insieme; ricostruiti in chiaro, sono cinque chiamate separate collegate tra loro.
+          <span class="caption-title">Ragiona &middot; pianifica &middot; genera &middot; verifica &middot; correggi</span>I nodi verdi (A, D) sono passaggi di ragionamento affidati a un LLM o a un VLM; B è il ponte deterministico che compila la specifica in segnali di controllo; i nodi corallo (C, E) sono passaggi di sintesi che generano o modificano pixel. In Gemini tutti e cinque collassano in un unico modello addestrato insieme; ricostruiti in chiaro diventano cinque moduli collegati.
         </figcaption>
       </figure>
 
-      <!-- ── CONTENTS: 03–05 ───────────────────────────────── -->
+      <!-- ── CONTENTS: 03–06 ───────────────────────────────── -->
       <ol class="content-list" start="3">
 
         <!-- 03 — THE FIVE NODES, ONE BY ONE ───────────────────── -->
@@ -291,26 +324,63 @@
           <div class="content-body">
 
             <h3 class="content-title">
-              I cinque nodi, uno per uno
+              I cinque nodi, uno per uno (e perché Gemini vince &ldquo;in blocco&rdquo;)
             </h3>
 
             <ul class="content-sublist">
               <li>
-                <strong>A &mdash; Pianificatore semantico.</strong> Un LLM trasforma il brief grezzo in JSON strutturato, non in prosa &mdash; soggetti con attributi vincolati, relazioni spaziali, camera/focale, luce, ancore di stile. È la leva singola più potente dell'intero grafo. Per un luogo o un oggetto reale, in questa fase si può innestare una retrieval che recupera immagini di riferimento, così il modello non deve indovinare una conoscenza del mondo che non ha mai visto.
+                <strong>A &mdash; Pianificatore semantico (LLM + RAG visivo).</strong> Trasforma il brief grezzo in uno Scene Graph JSON con gerarchia dei piani, coordinate spaziali, camera, luce e ancore di stile. Qui il <strong>RAG visivo</strong> ha un ruolo concreto in open source: interroga un archivio locale (<em>Character &amp; Style Bank</em>) per recuperare <em>character sheet</em>, palette e riferimenti multi-angolo dei personaggi ricorrenti.
               </li>
               <li>
-                <strong>B &mdash; Compilatore di conditioning.</strong> Traduce quella spec in segnali di controllo: conditioning regionale/di attenzione perché gli attributi si leghino al soggetto giusto, una bozza rasterizzata in depth/canny per la composizione, e reference embed (IP-Adapter, Flux Redux/Kontext) per l'identità. È esattamente lo stack IP-Adapter/ControlNet già usato in questo corso &mdash; ma ora guidato da un piano invece che da valori impostati a mano.
+                <strong>B &mdash; Compilatore di conditioning.</strong> È il nodo cerniera deterministico che traduce lo Scene Graph in tensori disaccoppiati: <em>regional attention masking</em> per confinare ogni descrizione alla propria <em>bounding box</em> ed evitare l'<em>attribute bleeding</em>, mappe depth/canny per la prospettiva e <em>reference embed</em> (IP-Adapter, PuLID, Flux Redux/Kontext) per bloccare le identità.
               </li>
               <li>
-                <strong>C &mdash; Generatore.</strong> La base diffusiva &mdash; Flux, nella pipeline di questo corso &mdash; renderizza l'immagine bozza a partire dai segnali di controllo di B. Nulla di nuovo qui: è la catena KSampler/VAE già vista nella prima e seconda parte.
+                <strong>C &mdash; Generatore.</strong> La base diffusiva (Flux) renderizza una <em>bozza</em> iniziale a partire dai segnali compilati da B, attraverso la consueta catena KSampler/VAE.
               </li>
               <li>
-                <strong>D &mdash; Critico.</strong> Un VLM verifica la bozza rispetto alla spec, asserzione per asserzione &mdash; esattamente una figura? maglietta rossa? testo scritto correttamente? &mdash; e restituisce un elenco strutturato di difetti con relativa gravità. Questo controllo chiuso è il pezzo che quasi nessuna pipeline Flux costruita a mano possiede, ed è il meccanismo dietro ogni risultato serio nella letteratura pubblicata su questo tema.
+                <strong>D &mdash; Critico (VLM).</strong> Confronta la bozza con lo Scene Graph, asserzione per asserzione (conteggi, abiti, posizioni relative, testo), isolando le regioni non conformi (<em>flagged regions</em>) con gravità e coordinate normalizzate.
               </li>
               <li>
-                <strong>E &mdash; Editor correttivo.</strong> Applica modifiche mirate solo alle regioni segnalate, tramite Kontext o inpainting, poi torna a D &mdash; finché l'immagine non passa il controllo, o finisce il budget di iterazioni.
+                <strong>E &mdash; Editor correttivo.</strong> Esegue un inpainting mirato (o editing con Kontext) soltanto sulle maschere segnalate da D e rimanda l'immagine a D, finché lo score supera la soglia o si esaurisce il budget di iterazioni.
               </li>
             </ul>
+
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th>Dimensione</th>
+                  <th>ComfyUI classico (50+ nodi)</th>
+                  <th>Grafo aperto (Nodi A &rarr; E)</th>
+                  <th>Gemini (Modello unificato)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Espansione del brief</td>
+                  <td>Manuale o template rigido (<code>shots_config.py</code>)</td>
+                  <td>Dinamica via LLM + RAG visivo locale (A)</td>
+                  <td>Interna nei token di <em>thinking</em> multimodale</td>
+                </tr>
+                <tr>
+                  <td>Gestione errori</td>
+                  <td>Rigenerazione globale (<em>seed hunting</em>)</td>
+                  <td>Riparazione locale mirata (D &rarr; E)</td>
+                  <td>Autocorrezione nativa nello spazio latente</td>
+                </tr>
+                <tr>
+                  <td>Costo di transizione</td>
+                  <td>Nessuno (flusso lineare)</td>
+                  <td>Serializzazione JSON + passaggi VAE encode/decode</td>
+                  <td>Zero (addestramento congiunto <em>end-to-end</em>)</td>
+                </tr>
+                <tr>
+                  <td>Controllo e debug</td>
+                  <td>Alto sui pesi, basso sulla semantica</td>
+                  <td><strong>Massimo:</strong> spec, layout e maschere ispezionabili</td>
+                  <td>Basso (<em>black-box</em> tra prompt e output)</td>
+                </tr>
+              </tbody>
+            </table>
 
           </div>
         </li>
@@ -321,15 +391,15 @@
           <div class="content-body">
 
             <h3 class="content-title">
-              Il sotto-grafo minimo che garantisce davvero la coerenza
+              Il sotto-grafo minimo e i due vincoli per farlo convergere
             </h3>
 
             <p class="post-text">
-              Solo tre elementi portano davvero la garanzia di coerenza: la spec JSON tenuta da A, il nodo D, il nodo E &mdash; più il back-edge da E a D. B e C contano per la qualità della singola bozza, ma una volta che una bozza esiste, la coerenza lungo una sequenza di shot vive interamente dentro questo ciclo chiuso.
+              Solo tre elementi portano davvero la garanzia di coerenza: la specifica JSON prodotta da A, il nodo D e il nodo E, chiusi dall'arco di ritorno E&rarr;D. B e C determinano la qualità della prima bozza, ma una volta generata l'immagine la tenuta lungo una sequenza vive interamente dentro questo ciclo chiuso: senza specifica D non ha un contratto; senza D non si isolano le aree difettose; senza E i problemi restano irrisolti; senza back-edge manca la convergenza.
             </p>
 
             <p class="post-text">
-              La spec è ciò che chiude il ciclo invece di lasciarlo aperto: D non giudica l'immagine in isolamento, la verifica rispetto ad asserzioni specifiche derivate dall'output strutturato di A. Togliete la spec e D degrada a un giudizio estetico non vincolato &mdash; inutile per una correzione automatizzata. Togliete D e non c'è modo di distinguere una regione che passa da una che fallisce. Togliete E e il sistema sa individuare i problemi ma non li risolve mai. Togliete il back-edge e ottenete una sola passata di correzione senza garanzia di convergenza. Il ciclo termina quando D segnala che tutte le asserzioni ad alta gravità sono state superate, oppure quando il contatore delle iterazioni raggiunge il proprio limite &mdash; a seconda di cosa arriva prima.
+              Per implementare A&rarr;E in un grafo aperto senza degradare l'immagine servono due accorgimenti ingegneristici. Primo, un <strong>contract rigoroso tra D ed E</strong>: il critico non deve restituire prosa discorsiva, ma asserzioni atomiche fallite abbinate a coordinate normalizzate <code>[y_min, x_min, y_max, x_max]</code> che Python converte automaticamente in maschere sfumate (<em>feathered masks</em>). Secondo, una <strong>soglia di uscita a due livelli</strong>: poiché ogni passaggio in E attraversa una ricodifica VAE, oltre 2&ndash;3 iterazioni sulla stessa area compaiono micro-artefatti sui bordi; se fallisce un dettaglio locale ripara E, mentre se D rileva un errore strutturale di prospettiva o composizione conviene interrompere il loop, aggiornare il layout in B e rilanciare C.
             </p>
 
           </div>
@@ -345,11 +415,11 @@
             </h3>
 
             <p class="post-text">
-              ComfyUI esegue un ordinamento topologico di un grafo fisso al momento della coda. Non esiste un back-edge condizionale nativo &mdash; nessun nodo può dire &ldquo;riesegui D ed E&rdquo; e farsi obbedire dalla coda. Quello che la community chiama &ldquo;loop&rdquo; in ComfyUI è in realtà una di due cose: una catena srotolata a N fisso (D&#8321;&rarr;E&#8321;&rarr;D&#8322;&rarr;E&#8322;&hellip;, dove ogni nodo viene eseguito comunque, che serva o meno), oppure un ciclo che in realtà vive fuori da ComfyUI. La versione srotolata spreca calcolo su passate che l'immagine non richiedeva, e diventa ingestibile oltre due o tre ripetizioni &mdash; non c'è modo di fermarsi prima se D ha già dato l'ok.
+              ComfyUI esegue l'ordinamento topologico di un grafo aciclico fisso al momento dell'accodamento: non esiste un back-edge condizionale nativo in grado di ordinare &ldquo;riesegui D ed E solo se necessario&rdquo;. Simulare il ciclo srotolando catene fisse (D&#8321;&rarr;E&#8321;&rarr;D&#8322;&rarr;E&#8322;&hellip;) spreca calcolo anche quando la prima bozza è già corretta e diventa ingestibile oltre due o tre passaggi.
             </p>
 
             <p class="post-text">
-              La risposta corretta, per una pipeline già costruita come quella di questo corso, è tenere il ciclo in Python e usare ComfyUI puramente come motore di calcolo GPU &mdash; richiamato tramite la sua API, esattamente lo schema che <code>patcher.py</code> e <code>sweep.py</code> già usano nella <a href="post-comfyui-python.html" class="about-link">terza parte di questo corso</a>. Un ciclo <code>while</code> in Python richiama la funzione nodo critico VLM, decide se richiamare di nuovo l'API di ComfyUI per un inpaint mirato, e si ferma secondo una propria condizione &mdash; cosa che nessuna disposizione di nodi dentro il grafo stesso può fare.
+              La soluzione corretta è usare ComfyUI come puro motore GPU richiamato via API, mantenendo il ciclo <code>while</code> in Python &mdash; lo stesso schema usato da <code>patcher.py</code> e <code>sweep.py</code> nella <a href="post-comfyui-python.html" class="about-link">terza parte di questo corso</a>. Python interroga il VLM critico, converte le coordinate delle aree fallite in maschere sfumate per l'inpainting su ComfyUI e decide autonomamente quando fermarsi.
             </p>
 
           </div>
@@ -365,7 +435,7 @@
             </h3>
 
             <p class="post-text">
-              Ogni chiamata al nodo critico consegna al VLM due cose insieme: la spec completa di A come testo, e l'immagine renderizzata. La spec è il contratto, l'immagine è la prova &mdash; il compito del nodo critico è interamente verificare l'una rispetto all'altra. Quanto segue non è una sequenza fissa di strumenti separati; è un unico processo di ragionamento dentro un'unica chiamata al modello, descritto qui nell'ordine in cui le sue conclusioni diventano disponibili &mdash; a partire dal sotto-grafo minimo isolato sopra, questo è ciò che accade davvero dentro D prima che consegni qualcosa a E.
+              A ogni chiamata il nodo critico riceve insieme la specifica completa di A (il contratto) e l'immagine renderizzata (la prova). Quanto segue non è una catena di strumenti separati, ma l'unica traccia di ragionamento interna con cui D trasforma la lettura visiva in un'istruzione operativa per E.
             </p>
 
           </div>
@@ -378,7 +448,7 @@
         <img src="assets/post-confyui-confronto-gemini/diagram-loop.jpg"
              alt="Minimal consistency sub-graph: spec JSON, D critic, E editor, loop until pass or budget cap" width="969" height="495" loading="lazy" decoding="async">
         <figcaption class="post-caption">
-          <span class="caption-title">Il sotto-grafo minimo di coerenza</span>La spec JSON tenuta da A asserisce contro D, il nodo critico VLM; D riporta i difetti a E, l'editor correttivo; E torna a D finché l'immagine non passa o il budget di iterazioni non si esaurisce. Tutto ciò che garantisce la coerenza lungo una sequenza vive dentro questo riquadro tratteggiato.
+          <span class="caption-title">Il sotto-grafo minimo di coerenza</span>La specifica JSON di A vincola D (nodo critico VLM); D segnala i difetti a E (editor correttivo); E restituisce l'immagine a D finché le asserzioni passano o il budget di iterazioni si esaurisce. Tutto ciò che garantisce la coerenza lungo una sequenza vive dentro questo riquadro tratteggiato.
         </figcaption>
       </figure>
 
@@ -396,30 +466,30 @@
 
             <ul class="content-sublist">
               <li>
-                <strong>Leggere l'immagine, anzitutto.</strong> Prima che tutto questo inizi, l'immagine viene divisa in una griglia di piccoli riquadri &mdash; circa 4.000&ndash;5.000 per un'immagine a risoluzione da un megapixel &mdash; e ogni riquadro diventa un vettore che condivide lo stesso spazio matematico dei token di testo del modello. È la base su cui poggia tutto il resto: permette al meccanismo di attenzione del modello di trattare &ldquo;i riquadri che mostrano un volto&rdquo; e la parola &ldquo;donna&rdquo; della spec come oggetti confrontabili.
+                <strong>Tokenizzare l'immagine.</strong> L'immagine viene suddivisa in una griglia di piccoli riquadri (patch, circa 4.000&ndash;5.000 a 1 megapixel) proiettati nello stesso spazio vettoriale del testo: è ciò che permette all'attenzione del modello di confrontare direttamente i patch di un volto con la parola &ldquo;donna&rdquo; della specifica.
               </li>
               <li>
-                <strong>Localizzare ogni soggetto.</strong> Quando il nodo critico legge &ldquo;donna&rdquo; nella spec, confronta quel concetto con ogni riquadro dell'immagine e trova dove la corrispondenza è più forte &mdash; in pratica, indicando dove ritiene che si trovi la donna, a volte producendo direttamente delle coordinate. Questo passaggio è più debole su soggetti piccoli, parzialmente nascosti, o descritti con parole senza un chiaro equivalente visivo (&ldquo;un cameriere di cinquant'anni&rdquo; non ha una forma fissa da cercare).
+                <strong>Localizzare ogni soggetto.</strong> Il nodo critico abbina ciascuna entità della specifica ai patch con la corrispondenza più forte fino a stimarne le coordinate. Questo passaggio è più fragile su soggetti piccoli, parzialmente occlusi o descritti con concetti privi di una forma visiva univoca (&ldquo;un cameriere di cinquant'anni&rdquo;).
               </li>
               <li>
-                <strong>Leggere ogni attributo.</strong> Una volta localizzato un soggetto, il nodo critico ne legge gli attributi reali &mdash; colore, numero, posizione rispetto a un altro soggetto, eventuale testo visibile nella scena. Non sono ugualmente difficili: il colore viene quasi sempre letto correttamente, perché emerge direttamente nel segnale visivo grezzo del riquadro; contare è più difficile, perché significa trovare ogni istanza e non una sola; la posizione relativa (&ldquo;a sinistra di&rdquo;, &ldquo;dietro&rdquo;) è la più difficile, perché richiede di tenere a mente due posizioni contemporaneamente e confrontarle; il testo leggibile è fragile a meno che il modello non possa ingrandire sotto-regioni ad alta risoluzione, perché le lettere sono più piccole di un singolo riquadro.
+                <strong>Estrarre gli attributi reali.</strong> La difficoltà segue una gerarchia chiara: il <em>colore</em> emerge subito dal segnale visivo grezzo; <em>contare</em> istanze multiple richiede di individuarle tutte; le <em>posizioni relative</em> (&ldquo;a sinistra di&rdquo;, &ldquo;dietro&rdquo;) obbligano a confrontare due coordinate simultaneamente; il <em>testo leggibile</em> resta fragile se le lettere sono più piccole di un singolo patch.
               </li>
               <li>
-                <strong>Confrontare ciò che ha visto con ciò che era richiesto.</strong> Con il valore target della spec e la propria osservazione ora nello stesso contesto &mdash; &ldquo;vernice verde consumata dal tempo&rdquo; contro &ldquo;il chiosco appare blu&rdquo; &mdash; il nodo critico esegue quella che è essenzialmente una verifica di comprensione del testo: la seconda frase soddisfa la prima? È la parte più affidabile dell'intero processo, perché a questo punto il lavoro percettivo difficile è già fatto e resta un confronto puramente linguistico, in cui i modelli di linguaggio sono bravi.
+                <strong>Confrontare osservazione e specifica.</strong> Una volta tradotto ciò che vede in descrizioni confrontabili con i vincoli di A (&ldquo;vernice verde consumata&rdquo; contro &ldquo;il chiosco appare blu&rdquo;), il modello esegue una verifica puramente linguistica, il terreno in cui è più affidabile.
               </li>
               <li>
-                <strong>Decidere quanto conta uno scarto.</strong> Un numero di soggetti sbagliato viene giudicato molto più grave di un colore leggermente fuori tono, e il prompt di sistema del nodo critico stesso dichiara esplicitamente questa gerarchia, così un errore di conteggio viene sempre individuato e segnalato prima di uno cosmetico. Il giudizio si appoggia anche a tutto ciò che il modello ha assorbito, durante l'addestramento, su come si scrivono recensioni di qualità e griglie di valutazione &mdash; motivo per cui un nodo critico più grande e meglio addestrato tende a valutare i difetti in modo più sensato di uno piccolo. Lasciato senza correttivi, un nodo critico tende a segnalare troppo &mdash; i modelli linguistici addestrati a essere scrupolosi finiscono per default a considerare tutto grave &mdash; quindi l'istruzione che tiene tutto sotto controllo è un esplicito &ldquo;sii prudente, un falso allarme costa una passata di riparazione sprecata.&rdquo;
+                <strong>Decidere quanto pesa uno scarto.</strong> Il prompt di sistema impone una gerarchia esplicita &mdash; un errore di conteggio pesa molto più di una leggera deriva cromatica &mdash; sfruttando la capacità dei modelli più grandi di applicare griglie di valutazione coerenti. Una regola esplicita di prudenza frena inoltre l'eccesso di zelo del VLM, evitando falsi allarmi che sprecherebbero passate di riparazione.
               </li>
               <li>
-                <strong>Disegnare il riquadro attorno al problema.</strong> È il passaggio più difficile dell'intera catena, e quello da cui dipende più direttamente il resto del ciclo: un riquadro impreciso o sbagliato produce una maschera di riparazione che manca il difetto oppure danneggia contenuto buono lì accanto. La griglia dei riquadri stessa impone un limite fisico alla precisione &mdash; un difetto più piccolo di un singolo riquadro non può semplicemente essere delimitato con precisione. Un difetto confinato a una sola figura ottiene un riquadro piccolo e utile; un difetto che riguarda davvero l'intera immagine (una dominante di colore sbagliata, ad esempio) va segnato con un riquadro a piena inquadratura e con una gravità limitata verso il basso, proprio per evitare che l'editor tenti di ridipingere l'intera scena per una tonalità sbagliata.
+                <strong>Disegnare il riquadro (bounding box).</strong> È lo snodo più delicato dell'intera catena: una box imprecisa fa riparare l'area sbagliata o danneggia dettagli validi vicini, ed è comunque limitata dalla risoluzione della griglia di patch. Difetti globali (come una dominante di colore) vanno segnalati a bassa gravità per impedire all'editor di ridipingere l'intera scena.
               </li>
               <li>
-                <strong>Scrivere l'istruzione che E seguirà.</strong> L'ultima cosa che il nodo critico produce è un breve imperativo &mdash; &ldquo;rimuovi la seconda figura a destra&rdquo;, &ldquo;ricolora il chiosco in verde scuro consumato&rdquo; &mdash; costruito a partire dall'asserzione fallita, da ciò che è stato effettivamente osservato, dal riquadro, e dal valore target originale della spec. Questa istruzione, insieme alla descrizione originale della scena, è ciò che riceve E: il contenuto positivo da mantenere, più un elenco esplicito di cosa cambiare. Questa combinazione è lo stesso meccanismo alla base dell'editing di immagini guidato da istruzioni in generale &mdash; la correzione indirizza la riparazione solo dove serve, lasciando intatto il resto dell'inquadratura.
+                <strong>Scrivere l'istruzione che E seguirà.</strong> Infine, D sintetizza un breve imperativo (&ldquo;rimuovi la seconda figura a destra&rdquo;, &ldquo;ricolora il chiosco in verde scuro consumato&rdquo;) abbinato alla maschera del riquadro fallito e alla descrizione originale da preservare, indirizzando l'editing solo dove serve e lasciando intatto il resto dell'inquadratura.
               </li>
             </ul>
 
             <p class="post-text" style="margin-top:1.4em; opacity:0.75;">
-              Ognuna di queste sette letture avviene dentro un'unica chiamata al VLM, non in sei invocazioni separate di strumenti diversi &mdash; qui non c'è codice da ispezionare, solo una traccia di ragionamento. Il valore di ripercorrerla sta nel sapere dove il ciclo ha più probabilità di fallire: su soggetti piccoli o occlusi, sulle relazioni spaziali fini, e soprattutto sul riquadro di delimitazione, che è ciò che decide se la riparazione di E aiuta o danneggia.
+              Tutte e sette queste letture avvengono dentro un'unica chiamata al VLM, non in sette invocazioni separate. Ripercorrerle serve a sapere dove il ciclo ha più probabilità di fallire: su soggetti piccoli o occlusi, sulle relazioni spaziali fini e soprattutto sulla precisione delle bounding box che guidano E.
             </p>
 
           </div>
@@ -439,7 +509,7 @@
             </h3>
 
             <p class="post-text">
-              In pratica, l'intera architettura è una ricetta per un ciclo di generazione immagini più efficiente e più automatico. Non sembra la scelta giusta per un progetto singolo e curato a mano &mdash; il tipo di lavoro su un singolo storyboard, una singola sequenza, su cui sono costruiti gli esempi precedenti di questo corso, dove una persona guarda già ogni fotogramma e lo corregge direttamente. Dove invece giustifica il proprio costo è nella produzione su scala per un mercato definito: qualunque pipeline che debba generare e autocorreggere molte sequenze senza che una persona riveda ogni fotogramma è esattamente il caso per cui è stato costruito il ciclo D&ndash;E, ed è esattamente dove la messa a punto non ottimizzata (e mancante di loop di autocorrezione) di ComfyUI smette di scalare.
+              Per un singolo storyboard o una sequenza breve curata a mano, dove una persona rivede già ogni fotogramma e lo corregge direttamente, allestire l'intera infrastruttura A&ndash;E non ripaga lo sforzo. L'architettura diventa invece decisiva nella produzione su scala: quando una pipeline deve generare e autocorreggere molte sequenze coerenti senza supervisione umana fotogramma per fotogramma, esattamente dove i grafi ComfyUI a catena aperta smettono di scalare.
             </p>
 
           </div>
@@ -452,7 +522,7 @@
         <ol>
           <li id="fn1">
             <span>
-              Vedi la <a href="post-comfyui-python.html" class="about-link">terza parte di questo corso</a> per l'elenco completo dei campi usati in <code>shots_config.py</code>: ambiente/wall, framing, focale, angolo, oggetti, prompt positivo e negativo, e pesi per shot. La spec interna di Gemini copre lo stesso terreno, generata da un LLM invece che compilata a mano per ogni shot.
+              Vedi la <a href="post-comfyui-python.html" class="about-link">terza parte di questo corso</a> per l'elenco completo dei campi di <code>shots_config.py</code>: ambiente/wall, framing, focale, angolo, oggetti, prompt positivo e negativo, e pesi per shot. La specifica interna di Gemini copre lo stesso perimetro, ma viene generata dinamicamente da un LLM anziché compilata a mano.
             </span>
             <a href="#fnref1" class="fn-back" aria-label="back to text">&#8617;</a>
           </li>
@@ -460,11 +530,11 @@
       </section>
 
       <p class="section-label">FAQ</p>
-      <p><strong>ComfyUI è più difficile da imparare rispetto a scrivere un prompt</strong> su Gemini? Sì, per un'immagine singola. La pipeline costruita nelle prime due parti di questo corso usa 50+ nodi, catene IP-Adapter e ControlNet, e cicli KSampler che richiedono una messa a punto per tentativi — un prompt di due righe su Gemini ottiene un risultato paragonabile molto più in fretta.</p>
-      <p><strong>ComfyUI può eseguire nativamente lo stesso ciclo genera-giudica-correggi?</strong> Non da solo. ComfyUI esegue un grafo fisso senza un vero arco di ritorno condizionale, quindi i nodi non possono effettuare cicli. La soluzione pratica è tenere il ciclo in Python — richiamando l'API di ComfyUI a ogni passaggio — invece di provare a decomporlo come nodi.</p>
-      <p><strong>Quando vale davvero la pena costruire questa architettura invece di usare semplicemente</strong> Gemini? Non per un progetto singolo, curato a mano, dove una persona rivede già ogni fotogramma. Ripaga su una scala produttiva estesa: qualsiasi pipeline che deve generare e autocorreggere molte sequenze senza che una persona ne controlli ciascuna.</p>
+      <p><strong>ComfyUI è più complesso da configurare rispetto a un prompt</strong> su Gemini? Sì: una pipeline con 50+ nodi tra IP-Adapter, ControlNet e KSampler richiede messa a punto per tentativi, mentre due righe su Gemini pianificano e rifiniscono la scena in un solo passaggio.</p>
+      <p><strong>ComfyUI può eseguire nativamente il ciclo genera-giudica-correggi?</strong> No: esegue un grafo aciclico fisso senza un vero arco di ritorno condizionale. La soluzione pratica è gestire il ciclo <code>while</code> in Python richiamando l'API di ComfyUI solo sulle maschere da riparare.</p>
+      <p><strong>Quando vale la pena costruire il ciclo aperto A&ndash;E invece di usare</strong> Gemini? Non per un progetto singolo curato a mano, dove si rivede già ogni fotogramma, ma nella produzione automatizzata su larga scala dove servono controllo granulare e autocorrezione continua.</p>
 
-      <p>Correlati: <a href="post-comfyui-intro.html" class="about-link">Cosa è ComfyUI</a> per le basi sui nodi, e <a href="post-comfyui-concepts.html" class="about-link">ComfyUI Storie Visive — Concetti</a> per come la pipeline di questo corso costruisce la coerenza senza questo ciclo.</p>
+      <p>Correlati: <a href="post-comfyui-intro.html" class="about-link">Cosa è ComfyUI</a> per le basi sui nodi, e <a href="post-comfyui-concepts.html" class="about-link">ComfyUI Storie Visive — Concetti</a> per come il corso gestisce la coerenza senza ciclo correttivo.</p>
 
         </div><!-- /page-body -->
   </main>
