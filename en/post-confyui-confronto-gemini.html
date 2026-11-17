@@ -16,11 +16,11 @@
        is even parsed — closes the remaining window where the browser paints
        with the fallback (Georgia/Courier) and then swaps to the real font,
        which is what still reads as the font "changing size" on reload. -->
-  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/ibm-plex-mono-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/eb-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/eb-garamond-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
 
   <meta name="description" content="Why a two-line prompt on Gemini often beats a hand-built 50-node ComfyUI pipeline — and what truly separates the two approaches, and what does not.">
   <link rel="canonical" href="https://storyline-engine.com/en/post-confyui-confronto-gemini">
@@ -59,7 +59,7 @@
 }
   </script>
 
-  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="/assets/style.css">
 
   <style>
     /* ── post body text ─────────────────────────────────── */
@@ -309,7 +309,7 @@
 
       <!-- ── FIGURE 1 ──────────────────────────────────────── -->
       <figure class="post-figure">
-        <img src="assets/post-confyui-confronto-gemini/diagram-pipeline.jpg"
+        <img src="/assets/post-confyui-confronto-gemini/diagram-pipeline.jpg"
              alt="Reconstructed reason-plan-render-check-refine pipeline, nodes A to E" width="969" height="625" decoding="async">
         <figcaption class="post-caption">
           <span class="caption-title">Reason &middot; plan &middot; generate &middot; verify &middot; refine</span>The green nodes (A, D) are reasoning steps handled by an LLM or VLM; B is the deterministic bridge that compiles the specification into control signals; the coral nodes (C, E) are synthesis steps that generate or modify pixels. In Gemini all five collapse into a single jointly trained model; laid out explicitly, they become five connected modules.
@@ -446,7 +446,7 @@
 
       <!-- ── FIGURE 2 ──────────────────────────────────────── -->
       <figure class="post-figure">
-        <img src="assets/post-confyui-confronto-gemini/diagram-loop.jpg"
+        <img src="/assets/post-confyui-confronto-gemini/diagram-loop.jpg"
              alt="Minimal consistency sub-graph: spec JSON, D critic, E editor, loop until pass or budget cap" width="969" height="495" loading="lazy" decoding="async">
         <figcaption class="post-caption">
           <span class="caption-title">The Minimal Consistency Sub-Graph</span>The JSON specification from A constrains D (VLM critic node); D flags defects to E (corrective editor); E feeds the image back to D until assertions pass or the iteration budget runs out. Everything that guarantees consistency across a sequence lives inside this dashed box.
