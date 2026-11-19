@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <title>AI Models and Cinema: How the Former Are Transforming the Youngest Art</title>
+  <link rel="alternate" hreflang="en"        href="https://storyline-engine.com/post-modelli-ai-cinema-EN.html">
+  <link rel="alternate" hreflang="it"        href="https://storyline-engine.com/post-modelli-ai-cinema.html">
+  <link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/post-modelli-ai-cinema.html">
+
+  <!-- Preload self-hosted fonts so they're already in flight before style.css
+       is even parsed — closes the remaining window where the browser paints
+       with the fallback (Georgia/Courier) and then swaps to the real font,
+       which is what still reads as the font "changing size" on reload. -->
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+  <meta name="description" content="Why the 'hybrid workflow' between generative AI and traditional VFX is merely a transitional phase: latent spaces, Robin Rombach's trajectory, and how Martin Scorsese uses AI for storyboarding.">
+  <link rel="canonical" href="https://storyline-engine.com/post-modelli-ai-cinema-EN.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Paolo Marocco">
+  <meta property="og:title" content="AI Models and Cinema: How the Former Are Transforming the Youngest Art">
+  <meta property="og:description" content="Why the 'hybrid workflow' between generative AI and traditional VFX is merely a transitional phase: latent spaces, Robin Rombach's trajectory, and how Martin Scorsese uses AI for storyboarding.">
+  <meta property="og:url" content="https://storyline-engine.com/post-modelli-ai-cinema-EN.html">
+  <meta property="og:image" content="https://storyline-engine.com/assets/bg_new.jpg">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="it_IT">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Models and Cinema: How the Former Are Transforming the Youngest Art">
+  <meta name="twitter:description" content="Why the 'hybrid workflow' between generative AI and traditional VFX is merely a transitional phase: latent spaces, Robin Rombach's trajectory, and how Martin Scorsese uses AI for storyboarding.">
+  <meta name="twitter:image" content="https://storyline-engine.com/assets/bg_new.jpg">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI Models and Cinema: How the Former Are Transforming the Youngest Art",
+  "description": "Why the 'hybrid workflow' between generative AI and traditional VFX is merely a transitional phase: latent spaces, Robin Rombach's trajectory, and how Martin Scorsese uses AI for storyboarding.",
+  "image": "https://storyline-engine.com/assets/bg_new.jpg",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://storyline-engine.com/post-modelli-ai-cinema-EN.html",
+  "author": {
+    "@type": "Person",
+    "name": "Paolo Marocco",
+    "url": "https://storyline-engine.com/about"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Paolo Marocco"
+  }
+}
+  </script>
+
+  <link rel="stylesheet" href="assets/style.css">
+
+  <style>
+    /* ── post body text ───────────────────────────────────── */
+    .post-text {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.15rem;
+      line-height: 1.75;
+      margin: 0 0 1.4em 0;
+    }
+
+    /* ── question headers ─────────────────────────────────── */
+    .q-header {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      letter-spacing: 0.16em;
+      color: #1A5CB3;
+      text-transform: uppercase;
+      margin: 48px 0 16px;
+    }
+    .q-header:first-of-type { margin-top: 0; }
+
+    /* ── footnote ref ────────────────────────────────────── */
+    sup.fn-ref {
+      font-family: var(--mono);
+      font-size: 0.6em;
+      line-height: 1;
+      vertical-align: super;
+      margin-left: 0.1em;
+    }
+    sup.fn-ref a { text-decoration: none; opacity: 0.55; }
+    sup.fn-ref a:hover { opacity: 1; }
+
+    /* ── footnotes block ─────────────────────────────────── */
+    .footnotes {
+      margin-top: 4rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid currentColor;
+      opacity: 0.65;
+    }
+    .footnotes ol {
+      font-family: var(--serif);
+      font-size: 0.92rem;
+      line-height: 1.65;
+      padding-left: 1.4em;
+      margin: 0 0 0 -1.4em;
+      list-style-position: outside;
+    }
+    .footnotes li { margin-bottom: 0.8em; }
+    .fn-back {
+      font-family: var(--mono);
+      font-size: 0.8em;
+      margin-left: 0.4em;
+      text-decoration: none;
+      opacity: 0.5;
+    }
+    .fn-back:hover { opacity: 1; }
+  </style>
+</head>
+<body class="interior">
+
+  <header>
+    <a href="about.html" class="nav-item">ABOUT</a>
+    <div class="menu-container">
+      <span class="menu-trigger">TOPICS</span>
+      <div class="menu-dropdown">
+        <a href="adv.html"             class="menu-item">ADV</a>
+        <a href="neural-graphics.html" class="menu-item">COMICS/STORYBOARD</a>
+        <a href="comfyui.html"         class="menu-item">COMFYUI</a>
+        <a href="posts.html"           class="menu-item">POSTS</a>
+        <span class="menu-item menu-item--disabled">VIDEO</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content">
+
+    <p class="section-label" style="color:#00A86B;">Cinema &middot; Artificial Intelligence</p>
+
+    <h1 class="page-title">AI Models and Cinema: How the Former Are Transforming the Youngest Art</h1>
+
+    <p class="post-subtitle">
+      Is there an AI approach capable of genuinely transforming cinematic storytelling?
+    </p>
+
+    <hr class="divider" style="margin-top: 2.5rem; margin-bottom: 0.5rem;">
+
+    <!-- ── ABSTRACT ───────────────────────────────────────── -->
+    <p class="post-abstract-text" style="margin-bottom:28px; opacity:0.85; font-style:italic;">
+      Integrating generative AI into traditional VFX pipelines is widely hailed today as the gold standard of creative control. Yet this &ldquo;hybrid workflow&rdquo; is merely a transitional compromise&mdash;much like early cinema placing a static camera squarely in front of a theatrical stage before discovering its own grammar. By contrasting the deterministic, Euclidean geometry of classical 3D with the non-intuitive statistical trajectories of latent manifolds, this essay examines current hybrid productions (<em>ANCESTRA</em>, <em>Never Split Up</em>, <em>Clearwater</em>) alongside mainstream AI-native experiments (<em>Nova AI Films</em>, <em>Aurelume Films</em>), concluding with Martin Scorsese&rsquo;s advisory role at Black Forest Labs as a signal of a new, pre-linguistic visual interface for directing.
+    </p>
+
+    <hr class="divider" style="margin-top: 0.5rem; margin-bottom: 2rem;">
+
+    <div class="page-body">
+
+      <div class="post-tags" style="margin-bottom:2rem;">
+        <span class="post-tag tag-cinema">Cinema</span>
+        <span class="post-tag tag-cinema">Generative Models</span>
+        <span class="post-tag tag-cinema">Latent Space</span>
+        <span class="post-tag tag-cinema">Robin Rombach</span>
+      </div>
+
+      <p class="post-text">
+        In his essay <em>It's Not Video. On AI &ldquo;Video&rdquo; and Post-Cinema</em><sup class="fn-ref"><a href="#fn1" id="fnref1">1</a></sup>, Thomas Flight describes the strongest current outcomes as the product of hybrid workflows: multiple generative models grafted onto traditional VFX tools in order to preserve creative control. While this is a technically accurate account of how most studios operate today, in my view it mistakes a transitional workaround for a final destination. Blending the VFX culture of the past twenty years with the natively multimodal nature of generative AI is the symptom of a technological phase shift&mdash;much like how the motion-picture camera was used in primitive cinema, before a proper film grammar emerged in the first two decades of the twentieth century: as a sort of spectator seated in the stalls before a theatrical stage, ideally motionless and dead-center. Consequently, the game is, on the one hand, deceptive (works are routinely passed off on YouTube as &ldquo;AI videos&rdquo; when their primary backbone is conventional post-production, with generative AI relegated to rendering the surface, color, and shape of characters rather than orchestrating interactions and motion); on the other hand, it is purely a matter of budget management: generating bodies and faces with AI today is undeniably faster and cheaper than 3D modeling, yet it brings no shift in style or narrative form.
+      </p>
+
+      <!-- Q1 -->
+      <p class="q-header">Euclidean Geometry vs. Latent Manifolds</p>
+
+      <p class="post-text">
+        The VFX culture of the last two decades&mdash;node-based compositing, polygonal rigging, deterministic physics simulations, keyframing on animation curves&mdash;is built entirely around an explicit, Cartesian representation of space designed to align with human perceptual and motor categories. Within that paradigm, &ldquo;control&rdquo; means intervening locally on geometric or photometric parameters grounded in a perceptible simulation of the physical environment humans inhabit.
+      </p>
+
+      <p class="post-text">
+        Generative AI, now natively multimodal, operates on an altogether different plane. Recent architectures neither draw nor animate objects: they organize continuous manifolds&mdash;the so-called <em>latent manifolds</em>&mdash;in which semantics, lighting, kinematics, identity, and style remain entangled within high-dimensional geometric spaces alien to human phenomenological experience. In short, they are fundamentally non-intuitive: through encoder-decoder mechanisms, the entire vector-space algebra unfolds beyond the grasp of direct human spatial intuition. Therefore, intuition in the generative process (at least until roughly a year ago, before LLMs stepped in as critical-explanatory mediators) does not mean conceptually and graphically manipulating a spatial synthesis as in 3D modeling, but sensing which geometric architectures, loss functions, parameters, and convergence metrics will optimize the final output. It is a deeply indirect process. A generated video is not a sequence of edited frames, but a trajectory sampled and compressed within a spatiotemporal latent space&mdash;in plain terms, an array of real numbers, completely unreadable to the human eye, like a zipped pattern. Using generative AI merely to produce &ldquo;raw assets&rdquo; to slot into legacy visual-effects software reduces a radically new technology to a faster supplier of raw material, forcing it inside rules engineered for a bygone paradigm.<sup class="fn-ref"><a href="#fn2" id="fnref2">2</a></sup> This reflects the nature of AI as an &ldquo;alien stochastic engine&rdquo;: unlike traditional 3D graphics&mdash;where solid geometric models are built, physical lights are placed, and the scene is calculated deterministically&mdash;a neural network generates images and video probabilistically, so that form, light, motion, and meaning are not discrete layers, but statistically interwoven variables.
+      </p>
+
+      <p class="post-text">
+        The act of &ldquo;taming&rdquo; occurs when an artist takes the output of a generative model and retouches, stabilizes, or masks it inside a classical VFX pipeline, forcing a fluid, probabilistic system to behave like a rigid, deterministic cog. AI is thus deployed as a prosthesis to do faster what was already being done, neutralizing its native variability.
+      </p>
+
+      <!-- Q3 -->
+      <p class="q-header">Examples of Hybrid Approaches</p>
+
+      <p class="post-text">
+        In cinema and AI, a hybrid approach (<em>Hybrid AI Filmmaking</em>) denotes a production model that deliberately separates the capture of physical reality (live actors&rsquo; performances, optical camera movements, physical props, or real locations) from generative synthesis (environments, set extensions, relighting, costumes, or visual effects), recombining them within a controlled post-production pipeline. Unlike AI-native cinema (synthesized entirely from prompts or keyframes) and traditional VFX (based on manual 3D modeling, rigging, and physically based rendering), the hybrid approach uses generative models as scenic and optical layers anchored to physical <em>ground truth</em>. In schematic terms: real actors, dialogue, on-set costumes, and studio camera moves remain physical and deterministic, while surrounding environments, set extensions, sound design, filtering, and lighting reconstructions are synthesized by AI. That, at least, is the theory. In practice, the boundary between conventional VFX and Hybrid AI Filmmaking is far blurrier, since contemporary VFX pipelines already rely heavily on AI tools in post-production (Photoshop plug-ins, rotoscoping tools, and so forth) to cut layer-generation costs, achieve signature AI textures, or automatically synthesize sound effects conditioned on visual action. From the standpoint of film aesthetics, however, Hybrid AI does not represent a genuine formal breakthrough or a paradigm shift in cinema history; it is primarily a production technology enabling greater automation and lower costs. If we look back at films such as Godfrey Reggio&rsquo;s <em>Koyaanisqatsi</em> (1982, music by Philip Glass, cinematography by Ron Fricke) or Terrence Malick&rsquo;s <em>The Tree of Life</em> (2011)<sup class="fn-ref"><a href="#fn3" id="fnref3">3</a></sup>, we encounter works charged with bold experimentalism long before generative AI existed. The deeper issue is the absorption of creative work into the vast churn of contemporary media circulation, whereby today&rsquo;s audience is unable to perceive a quantum leap between current Hybrid AI works and earlier auteur films crafted through optical speed manipulations or traditional rigging and physically based rendering.<sup class="fn-ref"><a href="#fn4" id="fnref4">4</a></sup> Consider a few concrete examples. <em>ANCESTRA</em> (2025) is a short film directed by Eliza McNitt, produced in collaboration between Google DeepMind and Primordial Soup, the production company of Darren Aronofsky&mdash;a filmmaker of major works (winning Natalie Portman an Oscar for <em>Black Swan</em>, 2010) who debuted with fiercely original films blending psychedelic experimentation and esoteric conspiracy narratives. The blend of AI and live-action footage weaves fetal imagery into themes of human and animal motherhood, polished and eloquently narrated; yet between Aronofsky&rsquo;s fetus (with its fractal composites and alien spermatozoa) and Stanley Kubrick&rsquo;s Starchild, there is no AI revolution. Google DeepMind promotes it as &ldquo;one of the clearest examples of AI used in a serious production workflow, a hybrid production model combining live action with Veo, Google&rsquo;s video generation model.&rdquo; Ultimately, however, <em>ANCESTRA</em> is little more than a tender, crowd-pleasing piece&mdash;effective as a promotional showcase, yet unconvincing as a demonstration of a genuinely new AI aesthetic.
+      </p>
+
+      <figure class="post-figure">
+        <img src="assets/post-modelli-ai-cinema/Humans Are Trapped in a World 1.jpg" alt="A biomechanical giant monster looms over survivors hidden in tall grass, in In 2763, Humans Are Trapped in a World Ruled by Machines" loading="lazy">
+        <figcaption class="post-caption">
+          <span class="caption-title">In 2763, Humans Are Trapped in a World Ruled by Machines, Nova AI Films</span> The biomechanical giant monster spots the human survivors hidden in the tall grass.
+        </figcaption>
+      </figure>
+
+      <p class="post-text">
+        Another short film (<a href="https://www.youtube.com/watch?v=HgibMMFPdbk" class="about-link" target="_blank" rel="noopener noreferrer">watch on YouTube</a>) combining multiple AI techniques with live-action performance to conjure horror worlds is <em>Never Split Up</em> by Kaufland (Ambassadors Berlin). Its straightforward premise builds a visionary nightmare out of a late-night supermarket, packed with overt homages to David Cronenberg (especially <em>Naked Lunch</em>, 1991) and, once again, the ubiquitous Kubrick (<em>The Shining</em>, 1980), alongside werewolves whose VFX lineage traces back to John Landis&rsquo;s <em>An American Werewolf in London</em> (1981) and its sequel, <em>An American Werewolf in Paris</em> (1997, directed by Anthony Waller). All of this is interwoven with labyrinthine geometric compositions echoing the trendy &ldquo;hidden room&rdquo; architectural loops popular on YouTube. The result never rises above a slick, tightly edited commercial piece devoid of any genuinely original use of AI. Slightly stronger is another short film, <em>Clearwater</em> (2020), featured on the DUST channel (<a href="https://www.youtube.com/@watchdust" class="about-link" target="_blank" rel="noopener noreferrer">YouTube channel</a>). Here the hybridization of live-action footage and AI is shrewdly calibrated: a young woman sunbathing beside a stream is bitten by a mosquito that subsequently feeds a nearby alien organism capable of duplicating, incubating, and birthing a semi-monstrous replica of the unsuspecting woman&mdash;a post-human parthenogenesis. The surprise encounter between the double and her original is briskly edited and directorially effective; even so, AI serves purely as a cost-saving tool facilitating the amniotic-fetal metamorphosis compared to conventional VFX.
+      </p>
+
+      <figure class="post-figure">
+        <img src="assets/post-modelli-ai-cinema/Clearwater.jpg" alt="Creature-like duplicate of the protagonist in the short film Clearwater, DUST" loading="lazy">
+        <figcaption class="post-caption">
+          <span class="caption-title">Clearwater (2020), DUST</span> Still frame of the protagonist&rsquo;s semi-monstrous duplicate, generated via AI over live-action footage shot by the stream.
+        </figcaption>
+      </figure>
+
+      <p class="post-text">
+        Operating on a higher tier of curation, budget, and reach (3.53 million subscribers) is the sci-fi platform and channel DUST, whose catalog frequently places real actors and grounded performances inside synthetic backdrops where depth of field and edge contours are preserved seamlessly enough that the boundary goes unnoticed. Moreover, bodily transformations often incorporate AI-assisted cosmetics, and the futuristic props handled by the characters are likewise AI-generated. Ultimately, Hybrid AI Filmmaking functions primarily as a pragmatic blend of traditional craft and generative tools aimed at expanding creative freedom and producing low-budget works (typically shorts) that would have been unthinkable for an independent team just two or three years ago&mdash;for instance, a continuous zoom from the microscopic scale to an extreme long shot no longer demands weeks of labor and millions of dollars, as in the opening shot of Robert Zemeckis&rsquo;s <em>Contact</em> (1997), but can be achieved for $10&ndash;$50 through judicious use of AI. Yet the originality and artistic merit of a film still reside in directorial vision, not in the tools&mdash;or rather, in the intuition that a given tool can be bent toward an unprecedented visual effect capable of reshaping contemporary aesthetics. Alfred Hitchcock invented or commissioned custom camera rigs, but it was his directorial intuition that turned those machines into instruments of visionary spectacle or startling realism.
+      </p>
+
+      <figure class="post-figure">
+        <img src="assets/post-modelli-ai-cinema/2763 humans are trapped 2.jpg" alt="A female android tries to strangle one of the human survivors, in In 2763, Humans Are Trapped in a World Ruled by Machines" loading="lazy">
+        <figcaption class="post-caption">
+          <span class="caption-title">In 2763, Humans Are Trapped in a World Ruled by Machines, Nova AI Films</span> A female android attempts to strangle one of the human survivors.
+        </figcaption>
+      </figure>
+
+      <!-- Q4 -->
+      <p class="q-header">Examples of Mainstream-Quality Generative Approaches</p>
+
+      <p class="post-text">
+        Let us return to science fiction, the primary laboratory of experimentation&mdash;alongside horror&mdash;for visual tricks and imaginary worlds. From Georges M&eacute;li&egrave;s&rsquo;s moon hit in the eye to the zenith of pre-digital VFX&mdash;<em>2001: A Space Odyssey</em> (1968) and above all the late-1970s and early-1980s cycle (<em>Close Encounters of the Third Kind</em>, 1977; <em>Alien</em>, 1979; <em>Blade Runner</em>, 1982)&mdash;cinematography and production design forged a tactile sci-fi iconography built physically and composited photochemically directly onto film. The core principle consisted of shooting scale miniatures and glass matte paintings with cameras driven by early computers (<em>motion control</em>), fusing multiple exposure passes on an <em>optical printer</em>, and working predominantly on 65mm negative so that fine exposure detail survived reduction to 35mm release prints. It was an entire artisanal laboratory of miniatures, painted glass, colored-gas fluid dynamics, and electromechanical rigs producing effects that leapt off the screen as never before&mdash;and that nearly fifty years later still hold their ground with weathered dignity alongside nascent AI. Which brings us to recent YouTube productions built with cutting-edge generative video models such as Seedance.<sup class="fn-ref"><a href="#fn5" id="fnref5">5</a></sup> Consider two series: the first is <em>In 2763, Humans Are Trapped in a World Ruled by Machines</em> by Nova AI Films (<a href="https://novaaifilms.com" class="about-link" target="_blank" rel="noopener noreferrer">novaaifilms.com</a>); the second is <em>An Alien Woman Came to Earth&mdash;One Human Aged Decades to Save Her</em> (<a href="https://www.youtube.com/watch?v=jompJJVWIPM" class="about-link" target="_blank" rel="noopener noreferrer">watch on YouTube</a>) by Aurelume Films (which functions as an episode within a remarkably uniform science-fantasy cycle, consistent both visually and in character behavior). Beginning with the latter film, its narrative archetype comes straight from the Western: the romance between a cowboy or ranger and a beautiful Indigenous woman, culminating in the hero&rsquo;s sacrifice. In the AI version, the ranger remains a ranger&mdash;a hardened, widowed, solitary forty-year-old living in Arizona, childless yet strictly law-abiding&mdash;while the Indigenous woman becomes an alien endowed with smooth, four-dimensional curves (an idealized digital pin-up, yet cast in a chaste, pre-biological register of pure desire). Technically, the shots are remarkably sustained, with seamless transitions across the model&rsquo;s native 10&ndash;15 second segments. By now, however, photorealistic AI faces appear stamped from a familiar mold: luminous and smooth for women; square-jawed, rugged, and military-styled for men, evoking 1950s&ndash;1960s comics and a pre-global Cold War imaginary.
+      </p>
+
+      <figure class="post-figure">
+        <img src="assets/post-modelli-ai-cinema/Alien Woman Came to Earth.jpg" alt="The alien woman and the ranger face to face in An Alien Woman Came to Earth, Aurelume Films" loading="lazy">
+        <figcaption class="post-caption">
+          <span class="caption-title">An Alien Woman Came to Earth&mdash;One Human Aged Decades to Save Her, Aurelume Films</span> The smooth-featured alien woman face-to-face with the ranger, an AI-generated photorealistic character.
+        </figcaption>
+      </figure>
+
+      <p class="post-text">
+        The first series (<a href="https://www.youtube.com/watch?v=7vczSml1-Go&amp;t=13s" class="about-link" target="_blank" rel="noopener noreferrer">watch on YouTube</a>) places greater visual emphasis on its human protagonists: in a post-nuclear wasteland, a handful of survivors battle rogue cyber-androids commanding biomechanical giant monsters standing over fifty meters tall and weighing two thousand tons, in one relentless skirmish after another. The photorealistic rendering of the human figures is convincing enough that they almost pass for live actors (suggesting Hybrid AI Filmmaking&mdash;a claim the studio publicly denies, though it warrants scrutiny). Yet the truly distinctive trait lies in the narrative structure. Every sequence follows a tightly regulated five-beat loop: (1) watchful calm (characters tend their wounds and rest for two or three minutes in a bunker, cave, or patch of vegetation); (2) alert (a rustle of leaves, heavy footsteps&mdash;from behind a ridge or above a stream emerges a colossal biomechanical beast, mute or uttering guttural roars, programmed to exterminate humans); (3) attack (the monster tries to crush or devour the survivors, who flee and take cover); (4) defense (the humans mount counter-strategies complicated by fierce, strikingly beautiful female androids); and (5) escape and return to the watchful calm of beat one. The narrative cycles endlessly through these five stages, refreshed with variations in landscape, monster design, upgraded weaponry, post-apocalyptic ruins, or the occasional benevolent ex-human cyborg coming to the rescue. It reads like a textbook low-effort LLM script: repetitive, certainly, yet delivering the exact loop-based gratification expected by a game-movie audience.<br>
+        What emerges from all this is that, through AI&mdash;both in video synthesis and in sequential text generation&mdash;a self-sustaining mode of creativity may take root: simple as it may be, yet capable of proliferating around a structural <em>attention mechanism</em> (to borrow one of the defining constructs of transformer architectures&mdash;the neural language models, not the 1980s Japanese robots) that could lie at the origin of a new, self-generated aesthetic.
+      </p>
+
+      <!-- Q5 -->
+      <p class="q-header">The Encounter with Cinema: Scorsese and the Pre-Linguistic Interface</p>
+
+      <p class="post-text">
+        In the spring of 2026, Martin Scorsese joined Black Forest Labs (founded by Robin Rombach) as an advisor.<sup class="fn-ref"><a href="#fn6" id="fnref6">6</a></sup> Rombach authored several foundational papers that propelled generative AI forward, first in image synthesis and subsequently in video, enabling character consistency across sequential shots without having to feed a character reference image into every single frame. Scorsese himself remains far removed from native generative-AI engineering culture, and indeed states that he uses the company&rsquo;s models exclusively to generate storyboards<sup class="fn-ref"><a href="#fn7" id="fnref7">7</a></sup> derived from his own verbal direction (naturally through an intermediary operator: Scorsese neither tunes parameters nor writes prompts himself). This is not final-pixel production, yet it points toward a pre-linguistic directorial interface&mdash;a way for AI to translate immediate visual intuition into faster, more precise storyboards without forcing the filmmaker into technical prompt syntax. A reassuring step forward, light-years away from the current Italian landscape.
+      </p>
+
+      <!-- ── FOOTNOTES ─────────────────────────────────────── -->
+      <section class="footnotes">
+        <ol>
+          <li id="fn1">
+            <span>
+              Thomas Flight, &ldquo;It's Not Video. On AI &lsquo;Video&rsquo; and Post-Cinema&rdquo;, March 4, 2024.
+            </span>
+            <a href="https://www.thomasflight.com/its-not-video-on-ai-video-and-post-cinema/" class="about-link" target="_blank" rel="noopener noreferrer" style="margin-left:0.4em;">Link</a>
+            <a href="#fnref1" class="fn-back" aria-label="back to text">&#8617;</a>
+          </li>
+          <li id="fn2">
+            <span>
+              This is a recurring pattern in media history: just as early cinema subordinated the mechanical eye to the conventions of stage theater, today&rsquo;s industry tends to treat latent space as an inexpensive asset factory for legacy post-production software, deferring the discovery of a visual language truly native to artificial intelligence.
+            </span>
+            <a href="#fnref2" class="fn-back" aria-label="back to text">&#8617;</a>
+          </li>
+          <li id="fn3">
+            <span>
+              Renowned VFX pioneer Douglas Trumbull (<em>2001: A Space Odyssey</em>, 1968; <em>Close Encounters of the Third Kind</em>, 1977; <em>Blade Runner</em>, 1982) famously remarked regarding his practical cosmic sequences for Malick&rsquo;s film: &ldquo;We worked with chemicals, paint, fluorescent dyes, smoke, liquids, CO2, flares, spin dishes, fluid dynamics, lighting and high speed photography to see how effective they might be.&rdquo;
+            </span>
+            <a href="#fnref3" class="fn-back" aria-label="back to text">&#8617;</a>
+          </li>
+          <li id="fn4">
+            <span>
+              Rigging and physically based rendering (PBR) are two distinct stages governing model motion and surface appearance respectively: rigging prepares a 3D mesh for animation via a digital skeleton, whereas PBR simulates the physical interaction of light with surface materials to achieve photorealistic imagery.
+            </span>
+            <a href="#fnref4" class="fn-back" aria-label="back to text">&#8617;</a>
+          </li>
+          <li id="fn5">
+            <span>
+              Seedance 2.0 overcomes the traditional separation between visual synthesis and sound post-production through a unified multimodal Diffusion Transformer (DiT). In a single inference pass, the model accepts a text prompt combined with up to 9 images, 3 video clips, and 3 audio tracks, performing joint audio-video synthesis in which stereo sound (ambient audio, impact-synchronized foley, and multilingual lip-synced dialogue) is generated within the same latent space as the video frames rather than added afterward. Clips can be generated from 4 to 15 seconds with native multi-shot continuity, temporal extension, and native output up to 2K (2048&times;1080), scalable to 4K on standard BytePlus ModelArk instances.
+            </span>
+            <a href="#fnref5" class="fn-back" aria-label="back to text">&#8617;</a>
+          </li>
+          <li id="fn6">
+            <span>
+              Robin Rombach, co-founder and CEO of Black Forest Labs: from Latent Diffusion Models (Rombach, Blattmann, Lorenz, Esser, Ommer &mdash; CVPR 2022), which gave rise to Stable Diffusion, to SDXL (Podell, Rombach et al. &mdash; ICLR 2024), through to the Rectified Flow Transformers of FLUX.1 and FLUX.2. In his interview on <em>The OpenRouter Show</em>, Rombach contrasts multi-model orchestration against end-to-end learning within a single unified network&mdash;drawing the dividing line between a transitional compromise and a genuine computational paradigm shift.
+            </span>
+            <a href="https://arxiv.org/abs/2112.10752" class="about-link" target="_blank" rel="noopener noreferrer" style="margin-left:0.4em;">LDM&nbsp;arXiv</a>
+            <a href="https://arxiv.org/abs/2307.01952" class="about-link" target="_blank" rel="noopener noreferrer" style="margin-left:0.4em;">SDXL&nbsp;arXiv</a>
+            <a href="https://www.youtube.com/watch?v=mnOxq6ZL6-U" class="about-link" target="_blank" rel="noopener noreferrer" style="margin-left:0.4em;">YouTube</a>
+            <a href="#fnref6" class="fn-back" aria-label="back to text">&#8617;</a>
+          </li>
+          <li id="fn7">
+            <span>
+              Reported by IndieWire (Brian Welk), June 2026, covering Martin Scorsese&rsquo;s appointment as advisor to Black Forest Labs.
+            </span>
+            <a href="#fnref7" class="fn-back" aria-label="back to text">&#8617;</a>
+          </li>
+        </ol>
+      </section>
+
+    </div><!-- /page-body -->
+  </main>
+
+  <a href="index.html" class="nav-back nav-home" id="home-link">HOME</a>
+  <div class="lang-switch">
+    <a class="lang-btn" href="post-modelli-ai-cinema.html">IT</a>
+  </div>
+
+  <script src="/assets/menu.js"></script>
+  <script>
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').classList.toggle('scrolled', window.scrollY > 20);
+    });
+  </script>
+</body>
+</html>
