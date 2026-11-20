@@ -773,3 +773,24 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   html { font-size: 125%; }
   .page-content { max-width: 960px; }
 }
+
+/* ── Fixed formats: 2048 x 1152 and 2240 x 1400 ────────────────────────────
+   Additive block: it only matches viewports of about those widths, so the
+   1300 x 800 base layout, the phone rules and the generic >=1800 / >=2400
+   rules above are not touched for any other size.
+   The page is scaled uniformly (CSS zoom) by viewport width / 1300, so it
+   keeps exactly the proportions of the 1300 x 800 layout (content column at
+   60% of the width, same type scale, same fixed-bar offsets).
+   vw/vh lengths are divided by the zoom factor, otherwise they would be
+   scaled twice (home hero, tagline, interior min-height).
+══════════════════════════════════════════════════════════════════════════ */
+@media (min-width: 1990px) and (max-width: 2110px) { :root { --zk: 1.5754; } }  /* 2048 / 1300 */
+@media (min-width: 2180px) and (max-width: 2300px) { :root { --zk: 1.7231; } }  /* 2240 / 1300 */
+@media (min-width: 1990px) and (max-width: 2110px), (min-width: 2180px) and (max-width: 2300px) {
+  html { zoom: var(--zk); font-size: 100%; }      /* cancels the >=1800 rem bump */
+  .page-content { max-width: 780px; }             /* back to the base column width */
+  .hero { width: calc(100vw / var(--zk)); height: calc(100vh / var(--zk)); }
+  .hero-text { width: calc(90vw / var(--zk)); }
+  .hero-title, .hero-sub { font-size: clamp(1.32rem, calc(2.4vw / var(--zk)), 2.1rem); }
+  body.interior { min-height: calc(100vh / var(--zk)); }
+}
