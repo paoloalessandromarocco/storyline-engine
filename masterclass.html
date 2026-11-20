@@ -8,11 +8,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="color-scheme" content="light">
-  <title>Mickmumpitz: masterclass ComfyUI — analisi tecnica</title>
+  <title>Mickmumpitz: masterclass ComfyUI &mdash; analisi tecnica</title>
   <link rel="alternate" hreflang="en"        href="https://storyline-engine.com/en/masterclass">
   <link rel="alternate" hreflang="it"        href="https://storyline-engine.com/masterclass">
   <link rel="alternate" hreflang="x-default" href="https://storyline-engine.com/masterclass">
-    <!-- Preload self-hosted fonts so they're already in flight before style.css
+
+  <!-- Preload self-hosted fonts so they're already in flight before style.css
        is even parsed — closes the remaining window where the browser paints
        with the fallback (Georgia/Courier) and then swaps to the real font,
        which is what still reads as the font "changing size" on reload. -->
@@ -22,13 +23,13 @@
   <link rel="preload" href="assets/fonts/eb-garamond-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
 
-  <meta name="description" content="Analisi tecnica della masterclass ComfyUI di Mickmumpitz (Create HYPERREALISTIC Consistent AI Characters): strumenti per fase, AI Toolkit per il training LoRA, alternative e modelli più recenti a novembre 2026.">
+  <meta name="description" content="Analisi tecnica della masterclass ComfyUI di Mickmumpitz (Create HYPERREALISTIC Consistent AI Characters): strumenti per fase, AI Toolkit per il training LoRA, alternative e modelli pi&ugrave; recenti a novembre 2026.">
   <link rel="canonical" href="https://storyline-engine.com/masterclass">
 
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Paolo Marocco">
-  <meta property="og:title" content="Mickmumpitz: masterclass ComfyUI — analisi tecnica">
-  <meta property="og:description" content="Analisi tecnica della masterclass ComfyUI di Mickmumpitz (Create HYPERREALISTIC Consistent AI Characters): strumenti per fase, AI Toolkit per il training LoRA, alternative e modelli più recenti a novembre 2026.">
+  <meta property="og:title" content="Mickmumpitz: masterclass ComfyUI &mdash; analisi tecnica">
+  <meta property="og:description" content="Analisi tecnica della masterclass ComfyUI di Mickmumpitz (Create HYPERREALISTIC Consistent AI Characters): strumenti per fase, AI Toolkit per il training LoRA, alternative e modelli pi&ugrave; recenti a novembre 2026.">
   <meta property="og:url" content="https://storyline-engine.com/masterclass">
   <meta property="og:image" content="https://storyline-engine.com/assets/post-confyui-confronto-gemini/img1.jpg">
   <meta property="og:locale" content="it_IT">
@@ -36,15 +37,15 @@
   <meta property="article:tag" content="ComfyUI">
   <meta property="article:tag" content="Generative AI">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Mickmumpitz: masterclass ComfyUI — analisi tecnica">
-  <meta name="twitter:description" content="Analisi tecnica della masterclass ComfyUI di Mickmumpitz (Create HYPERREALISTIC Consistent AI Characters): strumenti per fase, AI Toolkit per il training LoRA, alternative e modelli più recenti a novembre 2026.">
+  <meta name="twitter:title" content="Mickmumpitz: masterclass ComfyUI &mdash; analisi tecnica">
+  <meta name="twitter:description" content="Analisi tecnica della masterclass ComfyUI di Mickmumpitz (Create HYPERREALISTIC Consistent AI Characters): strumenti per fase, AI Toolkit per il training LoRA, alternative e modelli pi&ugrave; recenti a novembre 2026.">
   <meta name="twitter:image" content="https://storyline-engine.com/assets/post-confyui-confronto-gemini/img1.jpg">
 
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "Crea personaggi IA coerenti e iperrealistici — analisi tecnica",
+  "headline": "Crea video con personaggi IA coerenti e iperrealistici",
   "description": "Analisi tecnica della masterclass ComfyUI di Mickmumpitz (Create HYPERREALISTIC Consistent AI Characters): strumenti per fase, AI Toolkit per il training LoRA, alternative e modelli più recenti a novembre 2026.",
   "image": "https://storyline-engine.com/assets/post-confyui-confronto-gemini/img1.jpg",
   "inLanguage": "it",
@@ -68,7 +69,7 @@
     body.interior { color: var(--burgundy); }
     .page-title, .section-label { color: var(--burgundy) !important; }
     .post-tag { border-color: var(--burgundy) !important; color: var(--burgundy) !important; }
-    .content-sublist li, .open-question p { color: var(--burgundy); }
+    .content-sublist li, .content-ordered-list li, .open-question p { color: var(--burgundy); }
 
     /* ── post body text ─────────────────────────────────── */
     .post-text {
@@ -144,14 +145,31 @@
       font-weight: 600;
       text-decoration: none;
     }
-	
-	.sub-paragraphs {
-	  margin-top: 0.5em;
-	  padding-left: 1.2em;
-	}
-	.sub-paragraphs p {
-	  margin: 0.9em 0;
-	}
+
+    /* ── nested ordered list ──────────────────────────────── */
+    .content-ordered-list {
+      list-style: decimal;
+      padding-left: 1.4em;
+      margin: 0.8em 0 1em;
+    }
+    .content-ordered-list li {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      margin-bottom: 0.55em;
+    }
+    .content-ordered-list li strong {
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .sub-paragraphs {
+      margin-top: 0.5em;
+      padding-left: 1.2em;
+    }
+    .sub-paragraphs p {
+      margin: 0.9em 0;
+    }
 
     /* ── defect-category table ────────────────────────────── */
     .data-table {
@@ -214,6 +232,55 @@
     .caption-title { font-weight: 600; text-transform: uppercase; }
     .post-caption strong, figcaption strong, .caption-title strong { text-decoration: none; }
 
+    /* ── footnote ref & block ─────────────────────────────── */
+    sup.fn-ref {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65em;
+      line-height: 1;
+      vertical-align: super;
+      margin-left: 0.12em;
+    }
+    sup.fn-ref a { text-decoration: none; opacity: 0.65; color: var(--burgundy); }
+    sup.fn-ref a:hover { opacity: 1; }
+
+    .footnotes {
+      margin-top: 4rem;
+      padding-top: 1.4rem;
+      border-top: 1px solid rgba(107, 39, 55, 0.25);
+      color: var(--burgundy);
+      opacity: 0.85;
+    }
+    .footnotes > ol {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      padding-left: 1.4em;
+      margin: 0;
+      list-style-position: outside;
+    }
+    .footnotes > ol > li { margin-bottom: 1.1em; }
+    .footnotes .content-sublist {
+      margin: 0.5em 0 0.7em;
+    }
+    .footnotes .content-sublist li {
+      font-size: 0.94rem;
+      line-height: 1.6;
+      margin-bottom: 0.4em;
+    }
+    .footnotes .data-table {
+      margin: 0.7rem 0 0.4rem;
+      font-size: 0.92rem;
+    }
+    .fn-back {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8em;
+      margin-left: 0.4em;
+      text-decoration: none;
+      color: var(--burgundy);
+      opacity: 0.55;
+    }
+    .fn-back:hover { opacity: 1; }
+
     /* ── Emphasis: dotted underline so it reads as annotation, not as a link ── */
     .page-body strong { text-decoration-style: dotted; }
 
@@ -241,7 +308,7 @@
 
   <main class="page-content">
 
-    <p class="section-label">ComfyUI &middot; Mickmumpitz &middot; MASTERCLASS · ANALISI TECNICA</p>
+    <p class="section-label">ComfyUI &middot; Mickmumpitz &middot; MASTERCLASS &middot; ANALISI TECNICA</p>
 
     <h1 class="page-title">
       Crea video con personaggi IA coerenti e iperrealistici
@@ -257,23 +324,47 @@
       </div>
 
       <p class="post-text">
-        Questa pagina analizza la masterclass di Mickmumpitz <a href="https://www.youtube.com/watch?v=PhiPASFYBmk" class="about-link" target="_blank">Create HYPERREALISTIC Consistent AI Characters</a> (761.885 visualizzazioni al 14/11/2026, pubblicata il 7&nbsp;ottobre 2025), citata nella sitografia di questo sito. <br>Lo stack del video è open source e locale. Vediamo ora i punti chiave per costruire la pipeline ComfyUI completa che genera il video finale del personaggio</p>
-		
-		<ul class="content-sublist">
-			  <li><strong>Punto di partenza — una sola immagine.</strong> Da una singola immagine di input (qualsiasi stile), il workflow "Consistent Character Creator" (CCC), in pratica un sottografo della pipeline principale  (costruito sopra i nodi di <i>Qwen Image Edit</i>) genera variazioni del personaggio: pose diverse, espressioni, cambi di outfit (virtual try-on), nuove scene e ambientazioni.</li>
-			  <li><strong>Qwen Image Edit<sup class="fn-ref"><a href="#fn1" id="fnref1">1</a></sup> — il motore dietro il CCC.</strong> È un modello di <i>instruction-based image editing</i>da un personaggio di riferimento → varia posa/outfit/scena, via editing a istruzioni: ossia non genera da zero, modifica un'immagine esistente seguendo istruzioni testuali. </li>
-			  <li><strong>Costruzione del dataset.</strong> Questa seconda parte qui è il dataset creation group, “e creerà le didascalie e le immagini in upscale del tuo personaggio” — parole dirette del video (minuto 5:13). Tutte le immagini create finiscono nella cartella con il nome del personaggio, insieme ai relativi file di didascalia. Il dataset finale è una lista di coppie immagine+testo, il formato standard che qualunque trainer LoRA accetta. In più c'è un modulo di Upscaling: Qwen Image Edit genera a una risoluzione nativa limitata (fino a 1024×1024). Per un dataset pensato per addestrare una LoRA “iperrealistica” — dove contano i dettagli fini (pelle, texture, tessuti) — generare in piccolo e poi fare upscaling prima di salvare è la pratica raccomandata in ComfyUI stesso: in questo modo la LoRA viene addestrata su immagini più nitide e dettagliate.</li>
-			  <li><strong>AI Toolkit (Ostris) — il motore applicativo per far runnare il fine tuning LoRA.</strong> Il dataset viene passato ad AI Toolkit per addestrare una LoRA del personaggio, di cui abbiamo inserito il training di immagini. Il passaggio Qwen → Wan: è compatibile perché AI Toolkit addestra LoRA direttamente per Wan 2.2 come modello target (il problema della compatibilità non è affatto scontato: il formato di uscita della LoRA deve essere compatibile con l'input del passo successivo della pipeline, in questo caso il generatore video Wan).</li>
-			  <li><strong>Wan 2.2 — generazione finale, immagini e video.</strong> La LoRA addestrata viene usata con Wan 2.2 per generare le immagini finali e, con un workflow dedicato, i video<sup class="fn-ref"><a href="#fn2" id="fnref2">2</a></sup>.</li>
-			  <li><strong>Runpod</strong> — viene usato in due fasi: a) per il training LoRA e b) per far girare tutta la Pipeline ComfyUI, il cui ultimo passaggio è la generazione Video.  Runpod è una famiglia di GPU/CPU noleggiabili per certi intervalli di tempo (ha decine di macchine virtuali, di diversa potenza, e di diverso costo). Nel caso b) quello dell'interazione con ComfyUI, RunPod ha dei template ufficiali pensati specificamente per questo, che pre-installano ComfyUI e il plugin ComfyUI Manager, con più varianti per tipo di GPU. Esiste persino un template specifico “WAN 2.2 Text to Video” pensato apposta per ComfyUI con Wan 2.2. Deployato il pod, accedi all’interfaccia ComfyUI via browser ed esegui lì l’intero grafo — CCC, dataset creation, generazione finale con Wan 2.2 — esattamente come lo eseguiresti in locale, ma su hardware noleggiato. 
-			  </li>
-		</ul>
+        Questa pagina analizza la masterclass di Mickmumpitz <a href="https://www.youtube.com/watch?v=PhiPASFYBmk" class="about-link" target="_blank" rel="noopener noreferrer">Create HYPERREALISTIC Consistent AI Characters</a> (761.885 visualizzazioni al 14/11/2026, pubblicata il 7&nbsp;ottobre 2025), citata nella sitografia di questo sito. Lo stack impiegato nel video &egrave; open source ed eseguibile in locale: vediamo i punti chiave per costruire la pipeline ComfyUI completa che genera il video finale del personaggio.
+      </p>
+
+      <ul class="content-sublist">
+        <li>
+          <strong>Punto di partenza &mdash; una sola immagine.</strong> Da una singola immagine di input (in qualsiasi stile), il workflow &laquo;Consistent Character Creator&raquo; (CCC) &mdash; di fatto un sottografo della pipeline principale costruito sopra i nodi di <em>Qwen Image Edit</em> &mdash; genera variazioni del personaggio: pose diverse, espressioni, cambi di outfit (<em>virtual try-on</em>), nuove scene e ambientazioni.
+        </li>
+        <li>
+          <strong>Qwen Image Edit<sup class="fn-ref"><a href="#fn1" id="fnref1">1</a></sup> &mdash; il motore dietro il CCC.</strong> &Egrave; un modello di <em>instruction-based image editing</em>: a partire da un personaggio di riferimento, ne varia posa, outfit e ambientazione tramite istruzioni testuali, modificando un'immagine esistente anzich&eacute; generarla da zero.
+        </li>
+        <li>
+          <strong>Costruzione del dataset.</strong> La seconda sezione del workflow &egrave; il gruppo <em>Dataset Creation</em>, che &laquo;creer&agrave; le didascalie e le immagini upscalate del tuo personaggio&raquo; &mdash; parole dirette del video (minuto 5:13). Tutte le immagini generate vengono salvate nella cartella dedicata al personaggio insieme ai relativi file di testo. Il dataset finale &egrave; cos&igrave; costituito da una lista di coppie immagine-testo, il formato standard accettato da qualsiasi trainer LoRA. A questo si aggiunge un modulo di upscaling: <em>Qwen Image Edit</em> genera infatti a una risoluzione nativa limitata (fino a 1024&times;1024 pixel). Per un dataset destinato ad addestrare una LoRA &laquo;iperrealistica&raquo; &mdash; dove contano i dettagli fini di pelle, texture e tessuti &mdash; generare a risoluzione ridotta ed eseguire l'upscaling prima del salvataggio &egrave; la pratica raccomandata in ComfyUI, perch&eacute; consente di addestrare la LoRA su immagini pi&ugrave; nitide e ricche di dettaglio.
+        </li>
+        <li>
+          <strong>AI Toolkit (Ostris) &mdash; il motore per eseguire il fine-tuning della LoRA.</strong> Il dataset viene passato ad AI Toolkit per addestrare una LoRA dedicata al personaggio sulla base delle immagini appena preparate. La transizione da Qwen a Wan &egrave; compatibile perch&eacute; AI Toolkit addestra la LoRA direttamente su Wan 2.2 come modello target (un requisito tutt'altro che scontato, poich&eacute; i pesi in uscita devono corrispondere all'architettura del generatore video utilizzato nella fase successiva).
+        </li>
+        <li>
+          <strong>Wan 2.2 &mdash; generazione finale di immagini e video.</strong> La LoRA addestrata viene impiegata con Wan 2.2 per generare le immagini finali e, tramite un workflow dedicato, le sequenze video. L'architettura <em>Mixture-of-Experts</em> (MoE) di Wan 2.2 si riflette direttamente nel grafo a nodi di ComfyUI: a differenza di un modello monolitico tradizionale (dove si carica un checkpoint e si esegue un unico campionamento), Wan 2.2 separa il modello in due reti esperte distinte (una per l'<em>high-noise</em> e una per il <em>low-noise</em>), richiedendo all'operatore di gestire pi&ugrave; moduli intermedi e una taratura manuale su due rami paralleli. Il processo base di generazione non avviene quindi in un singolo step, ma in due passaggi sequenziali di denoising sullo stesso spazio latente, preceduti da due rami paralleli di caricamento (pi&ugrave; un eventuale terzo passaggio correttivo in caso di <em>identity drift</em>):
+          <ol class="content-ordered-list">
+            <li>
+              <strong>Struttura e movimento (<em>High-Noise Expert</em>):</strong> il primo campionamento elabora gli step iniziali (ad alto livello di rumore), in cui il modello definisce la composizione globale, la traiettoria dei corpi e la dinamica del movimento, fermandosi a met&agrave; percorso senza completare la pulizia dell'immagine.
+            </li>
+            <li>
+              <strong>Dettagli e fisionomia (<em>Low-Noise Expert</em>):</strong> il secondo campionamento riceve il latente ancora parzialmente rumoroso prodotto dal primo passaggio e completa gli step finali, ricostruendo le texture fini, la pelle e i tratti del volto.
+            </li>
+            <li>
+              <strong>Stabilizzazione dell'identit&agrave; (passaggio opzionale/correttivo):</strong> se durante il movimento il volto si deforma (<em>identity drift</em>), occorre aggiungere un ulteriore stadio di vincolo (condizionamento multi-frame o un secondo passaggio <em>video-to-video</em> a bassa denoise) per riallineare la fisionomia.
+            </li>
+          </ol>
+          Nella generazione video specifica, la coerenza del personaggio in Wan 2.2 I2V tende infatti a degradarsi durante il moto &mdash; un problema documentato di <em>identity drift</em> e deformazione facciale affrontato con guide dedicate, non un semplice dettaglio<sup class="fn-ref"><a href="#fn2" id="fnref2">2</a></sup>. Un'altra modalit&agrave; di composizione consiste nell'affiancare al grafo di ComfyUI un pre-movimento realizzato in Blender: questa scomposizione (<em>Blender Grey-Box</em> + mappe di controllo + Wan 2.2) applica una divisione del lavoro ottimale, sottraendo al modello di diffusione il compito in cui &egrave; pi&ugrave; debole e stocastico (mantenere la coerenza geometrica e prospettica nello spazio 3D) e lasciandogli ci&ograve; in cui eccelle (illuminazione atmosferica, materiali, texture della pelle e dinamica organica di tessuti e capelli). La difficolt&agrave; complessiva &egrave; medio-alta, non perch&eacute; richieda competenze da artista VFX tradizionale, ma per l'allineamento tra i due ambienti e la taratura dei pesi in ComfyUI: la soluzione &egrave; fortemente consigliata per inquadrature con regia spaziale, movimenti di camera complessi (carrellate, orbite, <em>dolly-zoom</em>, passaggi dietro oggetti in primo piano) o coreografie tra pi&ugrave; personaggi, mentre risulta un sovraccarico inutile per primi piani statici o scene basate soltanto su micro-espressioni facciali<sup class="fn-ref"><a href="#fn3" id="fnref3">3</a></sup>.
+        </li>
+        <li>
+          <strong>RunPod &mdash; esecuzione in cloud.</strong> Viene utilizzato in due fasi: (a) per il training della LoRA e (b) per eseguire l'intera pipeline ComfyUI fino alla generazione video finale. RunPod &egrave; una piattaforma cloud che consente di noleggiare istanze GPU/CPU a consumo, scegliendo tra decine di configurazioni per potenza e tariffa oraria. Per l'esecuzione di ComfyUI, RunPod offre template ufficiali che preinstallano l'ambiente e il plugin ComfyUI Manager in diverse varianti hardware, incluso un template dedicato (&laquo;WAN 2.2 Text to Video&raquo;) gi&agrave; configurato per Wan 2.2. Una volta avviato il pod, si accede all'interfaccia di ComfyUI via browser e si esegue l'intero grafo &mdash; CCC, creazione del dataset e generazione finale con Wan 2.2 &mdash; esattamente come in locale, ma su hardware cloud.
+        </li>
+      </ul>
 
       <figure class="post-figure">
         <img src="assets/post-confyui-confronto-gemini/img1.jpg"
              alt="Dashboard di Ostris AI Toolkit con il dataset del personaggio" width="983" height="535" decoding="async">
         <figcaption class="post-caption">
-          <span class="caption-title">Il dataset del personaggio in AI Toolkit </span>La dashboard web di Ostris AI Toolkit durante il training: il dataset generato dal Consistent Character Creator, con didascalie automatiche per ogni immagine.
+          <span class="caption-title">Il dataset del personaggio in AI Toolkit.</span> La dashboard web di Ostris AI Toolkit durante il training: il dataset generato dal Consistent Character Creator, con didascalie automatiche per ogni immagine.
         </figcaption>
       </figure>
 
@@ -290,7 +381,7 @@
             </h3>
 
             <p class="post-text">
-              I capitoli del video sono nove. La tabella elenca lo strumento usato in ciascuno, se è gratuito o a pagamento, se gira in locale o in cloud, e quanto è verificato — alcune righe vengono dalla descrizione del video, altre sono dedotte dai titoli dei capitoli o dai file allegati da Mickmumpitz.
+              I capitoli del video sono nove (otto quelli operativi). La tabella elenca lo strumento impiegato in ciascuna fase, il modello di licenza o costo e l'ambiente di esecuzione (locale o cloud), sintetizzando sia i dati espliciti nella descrizione del video sia le informazioni ricavate dai titoli dei capitoli e dai file allegati da Mickmumpitz.
             </p>
 
             <table class="data-table">
@@ -333,8 +424,8 @@
                 </tr>
                 <tr>
                   <td>Training a LoRA (12:16)</td>
-                  <td>AI Toolkit; Runpod per il cloud</td>
-                  <td>Toolkit gratuito; Runpod a pagamento</td>
+                  <td>AI Toolkit; RunPod per il cloud</td>
+                  <td>Toolkit gratuito; RunPod a pagamento</td>
                   <td>Locale o cloud</td>
                 </tr>
                 <tr>
@@ -353,7 +444,7 @@
             </table>
 
             <p class="post-text">
-              Il grafo CCC è stato aggiornato dall'autore,  dopo la prima pubblicazione del video: la versione 3.8 (6 gennaio 2026) è costruita su Qwen Image Edit 2511, non sulla 3.6 mostrata nel video.
+              Il grafo CCC &egrave; stato aggiornato dall'autore dopo la prima pubblicazione del video: la versione 3.8 (6 gennaio 2026) &egrave; costruita su Qwen Image Edit 2511, non sulla 3.6 mostrata nel video.
             </p>
 
             <p class="post-text"
@@ -361,17 +452,17 @@
               Una stima dei costi, calcolata sui prezzi RunPod attuali incrociati con benchmark pubblici:
             </p>
             <ul class="content-sublist">
-              <li><strong>Training LoRA</strong> (personaggio statico con 28 varianti, come nel video): $1,50&ndash;17, calcolato da prezzi RunPod ufficiali &times; 2-4 ore di GPU estrapolate da un caso reale documentato (28 immagini, 2.500 step, ~2,2h su RTX 5090).</li>
-              <li><strong>Pipeline CCC + Dataset Creation</strong>, 3-4 prove: $2&ndash;12. La L40 (48&nbsp;GB, $0,82/h) è la scelta più sensata &mdash; costa meno della RTX 4090 e ha più VRAM, perché un test reale mostra che Qwen Image Edit può non entrare nei 24&nbsp;GB della 4090.</li>
-              <li><strong>Generazione video</strong> (clip di 5 secondi, 3-4 prove): meno di $0,10 con un acceleratore a 4 step su GPU da 24&nbsp;GB (il modello impiega 71 secondi per produrre una clip video); circa $0,40&ndash;0,50 senza acceleratore, sempre a 24&nbsp;GB (20 step, il modello impiega 8,5 minuti/clip). Il salto di costo reale si verifica quando la VRAM non basta e il sistema deve scaricare e ricaricare i dati durante l’elaborazione: in questi casi anche GPU economiche possono richiedere più di un’ora per una singola clip, portando il costo complessivo a $3–4 per un lotto di 3-4 clip — non per il prezzo della GPU, ma per il tempo perso. Una GPU più cara ma con VRAM sufficiente (es. 80 GB) evita questo rallentamento e, nonostante il costo orario più elevato, può risultare comunque più economica nel totale.</li>
+              <li><strong>Training LoRA</strong> (personaggio statico con 28 varianti, come nel video): $1,50&ndash;17, calcolato da prezzi RunPod ufficiali &times; 2&ndash;4 ore di GPU estrapolate da un caso reale documentato (28 immagini, 2.500 step, ~2,2 ore su RTX 5090).</li>
+              <li><strong>Pipeline CCC + Dataset Creation</strong> (3&ndash;4 prove): $2&ndash;12. La L40 (48&nbsp;GB, $0,82/h) risulta la scelta pi&ugrave; sensata &mdash; costa meno della RTX 4090 e offre il doppio della VRAM, evitando che <em>Qwen Image Edit</em> saturi i 24&nbsp;GB della 4090, come documentato in test reali.</li>
+              <li><strong>Generazione video</strong> (clip di 5 secondi, 3&ndash;4 prove): meno di $0,10 con un acceleratore a 4 step su GPU da 24&nbsp;GB (71 secondi per produrre una clip); circa $0,40&ndash;0,50 senza acceleratore, sempre su 24&nbsp;GB (20 step, 8,5 minuti per clip). Il salto di costo reale si verifica quando la VRAM non basta e il sistema deve scaricare e ricaricare i dati in memoria durante l'elaborazione: in questi casi anche GPU economiche possono richiedere pi&ugrave; di un'ora per una singola clip, portando la spesa complessiva a $3&ndash;4 per un lotto di 3&ndash;4 clip &mdash; non per la tariffa oraria, ma per il tempo perso. Una GPU pi&ugrave; capiente (ad esempio da 80&nbsp;GB) evita questo rallentamento e, pur costando di pi&ugrave; all'ora, pu&ograve; risultare pi&ugrave; economica sul totale.</li>
             </ul>
 
             <p class="post-text">
-              Difficile una stima dei costi totali, perché ogni fase è indipendente, e assumere il minimo dei costi per ogni fase, oppure, all'opposto, il massimo, non darebbe stime realistiche del min/max dei costi totali. Una media potrebbe essere sui $10 per 3 clip di 5 se l'una.  È il costo di costruire e far girare una pipeline personalizzata, LoRA di un personaggio in un ambiente non statico &mdash; non è confrontabile uno a uno con il prezzo per singolo video di un servizio via API come Nano Banana o Seedream, che non è personalizzato su nessun training di immagini create.
+              Stimare un costo complessivo rigoroso &egrave; complesso perch&eacute; ogni fase &egrave; indipendente: sommare tutti i minimi o tutti i massimi non restituirebbe un intervallo realistico. Un ordine di grandezza medio si aggira intorno ai $10 per produrre tre clip da 5 secondi ciascuna. &Egrave; il costo necessario per costruire ed eseguire una pipeline personalizzata (con LoRA dedicata a un personaggio inserito in un ambiente dinamico) e non &egrave; confrontabile uno a uno con la tariffa per singolo video di un servizio API come Nano Banana o Seedream, che non include alcun addestramento sul soggetto.
             </p>
 
             <p class="post-text">
-              Correzione automatica. La pipeline descritta nel video non prevede un passaggio di valutazione automatica dell'output: ogni generazione va controllata a occhio. Un ciclo generazione&rarr;valutazione&rarr;correzione avrebbe qui un impatto probabilmente maggiore che in pipeline di generazione di sole immagini statiche: la generazione video è più esposta a difetti (lo stesso identity drift descritto in nota 2), e un errore individuato solo a fine generazione costa, in tempo e in GPU, molto più di un errore individuato su un'immagine statica.
+              <strong>Correzione automatica.</strong> La pipeline descritta nel video non prevede un passaggio di valutazione automatica dell'output: ogni generazione va controllata a occhio. Un ciclo generazione&rarr;valutazione&rarr;correzione avrebbe qui un impatto ancora maggiore rispetto alle pipeline per sole immagini statiche: il video &egrave; pi&ugrave; esposto a difetti temporali (come l'<em>identity drift</em> descritto nella nota 2) e un errore individuato soltanto a fine elaborazione costa, in tempo e in risorse GPU, molto pi&ugrave; di un errore su un singolo fotogramma.
             </p>
 
           </div>
@@ -391,15 +482,15 @@
               Tutti i modelli citati nella masterclass sono stati superati. Il quadro aggiornato al 14 novembre 2026, con le fonti verificate dove possibile:
             </p>
             <ul class="content-sublist">
-              <li><strong>Editing, locale:</strong> Qwen-Image-Edit-2511 — gratuito, licenza Apache-2.0, identità del personaggio migliorata rispetto alla versione del video.</li>
-              <li><strong>FLUX.2 klein 4B</strong> — gratuito, licenza Apache-2.0, circa 13&nbsp;GB di VRAM — è una caratteristica del modello FLUX.2 klein: un solo checkpoint fa sia text-to-image sia editing (anziché due modelli separati, come succede con altre coppie generazione/editing). Nel contesto della pipeline, questo lo rende un’alternativa a Qwen-Image-Edit per il passaggio di creazione del dataset di immagini del personaggio. FLUX.2 serve solo a produrre le immagini del dataset, e la LoRA viene comunque addestrata puntando a Wan 2.2 come nel caso precedente. Non serve che FLUX.2 “sia compatibile” con Wan, serve solo che produca buone immagini per il training successivo.</li>
-              <li><strong>Editing, cloud, a pagamento:</strong> Nano Banana 2.1 e Seedream 5.5 — i migliori per qualità tra i modelli commerciali, entrambi solo via API.</li>
-              <li><strong>Video, locale:</strong> LTX-2.5 — pesi aperti, gratuito sotto i 10 milioni di dollari di ricavi annui, minimo 16&nbsp;GB di VRAM. Wan 2.2 resta l'ultimo Wan con pesi aperti; le versioni successive (2.5, 2.6, 3.0) sono solo via API.</li>
-              <li><strong>Video, cloud, a pagamento:</strong> Seedance 2.0, Kling 3.0, Veo 3.1 — tra i modelli commerciali più citati per la qualità.</li>
+              <li><strong>Editing, locale:</strong> <em>Qwen-Image-Edit-2511</em> &mdash; gratuito, licenza Apache-2.0, con tenuta dell'identit&agrave; del personaggio migliorata rispetto alla versione mostrata nel video.</li>
+              <li><strong>Editing, locale (alternativa):</strong> <em>FLUX.2 klein 4B</em> &mdash; gratuito, licenza Apache-2.0, circa 13&nbsp;GB di VRAM. La sua peculiarit&agrave; consiste nell'integrare in un unico checkpoint sia il <em>text-to-image</em> sia l'editing (anzich&eacute; richiedere due modelli separati). Nel contesto della pipeline costituisce un'alternativa a <em>Qwen-Image-Edit</em> per generare il dataset del personaggio: FLUX.2 produce soltanto le immagini di partenza, mentre la LoRA viene comunque addestrata su Wan 2.2. Non occorre quindi alcuna compatibilit&agrave; architetturale diretta tra FLUX.2 e Wan, ma soltanto che le immagini generate abbiano qualit&agrave; sufficiente per il training successivo.</li>
+              <li><strong>Editing, cloud, a pagamento:</strong> Nano Banana 2.1 e Seedream 5.5 &mdash; ai vertici qualitativi tra i modelli commerciali, entrambi accessibili solo via API.</li>
+              <li><strong>Video, locale:</strong> LTX-2.5 &mdash; pesi aperti, gratuito sotto i 10 milioni di dollari di ricavi annui, minimo 16&nbsp;GB di VRAM. Wan 2.2 resta l'ultimo modello della famiglia Wan con pesi aperti; le versioni successive (2.5, 2.6, 3.0) sono disponibili solo via API.</li>
+              <li><strong>Video, cloud, a pagamento:</strong> Seedance 2.0, Kling 3.0, Veo 3.1 &mdash; tra i modelli commerciali pi&ugrave; citati per la qualit&agrave; visiva.</li>
             </ul>
 
             <p class="post-text">
-              L'impianto della masterclass regge ancora: ComfyUI, workflow CCC, una LoRA per il personaggio principale. Conviene sostituire Qwen Image Edit con la versione 2511 e valutare LTX-2.5 accanto a Wan 2.2 per la parte video, tenendo presente che i modelli usciti da poche settimane non hanno ancora una verifica indipendente.
+              L'impianto della masterclass regge ancora: ComfyUI, workflow CCC e una LoRA per il personaggio principale. Conviene sostituire Qwen Image Edit con la versione 2511 e valutare LTX-2.5 accanto a Wan 2.2 per la parte video, tenendo presente che i modelli usciti da poche settimane non dispongono ancora di una verifica indipendente consolidata.
             </p>
 
 
@@ -407,12 +498,12 @@
               Fonti principali
             </h3>
             <ul class="content-sublist sources-list">
-              <li><a href="https://www.youtube.com/watch?v=PhiPASFYBmk" class="about-link" target="_blank">YouTube — Create HYPERREALISTIC Consistent AI Characters</a></li>
-              <li><a href="https://mickmumpitz.ai/posts/new-video-create-140671046?synced=1" class="about-link" target="_blank">mickmumpitz.ai — post con i file del workflow e le versioni del CCC</a></li>
-              <li><a href="https://huggingface.co/Qwen/Qwen-Image-Edit-2511" class="about-link" target="_blank">Hugging Face — Qwen-Image-Edit-2511</a></li>
-              <li><a href="https://bfl.ai/blog/flux2-klein-towards-interactive-visual-intelligence" class="about-link" target="_blank">Black Forest Labs — FLUX.2 klein</a></li>
-              <li><a href="https://artificialanalysis.ai/image/leaderboard/editing" class="about-link" target="_blank">Artificial Analysis — classifica editing immagini</a></li>
-              <li><a href="https://sanj.dev/post/onetrainer-vs-kohya-ss-vs-ai-toolkit/" class="about-link" target="_blank">sanj.dev — OneTrainer vs Kohya vs AI Toolkit</a></li>
+              <li><a href="https://www.youtube.com/watch?v=PhiPASFYBmk" class="about-link" target="_blank" rel="noopener noreferrer">YouTube &mdash; Create HYPERREALISTIC Consistent AI Characters</a></li>
+              <li><a href="https://mickmumpitz.ai/posts/new-video-create-140671046?synced=1" class="about-link" target="_blank" rel="noopener noreferrer">mickmumpitz.ai &mdash; post con i file del workflow e le versioni del CCC</a></li>
+              <li><a href="https://huggingface.co/Qwen/Qwen-Image-Edit-2511" class="about-link" target="_blank" rel="noopener noreferrer">Hugging Face &mdash; Qwen-Image-Edit-2511</a></li>
+              <li><a href="https://bfl.ai/blog/flux2-klein-towards-interactive-visual-intelligence" class="about-link" target="_blank" rel="noopener noreferrer">Black Forest Labs &mdash; FLUX.2 klein</a></li>
+              <li><a href="https://artificialanalysis.ai/image/leaderboard/editing" class="about-link" target="_blank" rel="noopener noreferrer">Artificial Analysis &mdash; classifica editing immagini</a></li>
+              <li><a href="https://sanj.dev/post/onetrainer-vs-kohya-ss-vs-ai-toolkit/" class="about-link" target="_blank" rel="noopener noreferrer">sanj.dev &mdash; OneTrainer vs Kohya vs AI Toolkit</a></li>
             </ul>
 
           </div>
@@ -421,34 +512,71 @@
       </ol>
 
     </div><!-- /page-body -->
-	<!-- ── FOOTNOTES ───────────────────────────────────────── -->
 
-	<section class="footnotes">
-	<ol>
-	<li id="fn1">
-	  <span>Qwen-Image-Edit è un modello di editing di immagini del team Qwen di Alibaba, rilasciato il 19 agosto 2025, costruito sopra il backbone Qwen-Image da 20 miliardi di parametri, con licenza Apache 2.0 (open, uso commerciale incluso) ( <a href="https://www.producthunt.com/p/qwen-image-edit-2/qwen-image-edit-4" class="about-link" target="_blank">Product Hunt</a>). Secondo la documentazione tecnica, Qwen-Image adotta un'architettura a tre moduli principali (<a href="https://build.nvidia.com/qwen/qwen-image-edit.md" class="about-link" target="_blank">NVIDIA</a>): 
-		  <ul class="content-sublist">
-			<li>Qwen2.5-VL — modello linguistico multimodale "congelato" (non riaddestrato), usato per l'estrazione delle caratteristiche testo/immagine e l'allineamento semantico, 7 miliardi di parametri — che riprende i modelli  "Qwen" che si conoscono: è la stessa famiglia di modelli linguistici, nella sua variante vision-language (interpretano immagini e testo insieme);  </li>
-			<li> VAE (encoder/decoder, piccolissimo — 54M/73M parametri), che si occupa della preservazione dei dettagli visivi/pixel;  </li>
-			<li> MMDiT (Multimodal Diffusion Transformer, 20 miliardi di parametri) — il motore generativo vero, il transformer di diffusion che produce l'immagine finale.</li>	  
-		  </ul>
-		Come lavorano insieme i tre componenti: Qwen-Image-Edit alimenta contemporaneamente l’immagine di input insieme a Qwen2.5-VL (per il controllo semantico visivo) e all’encoder del VAE (per il controllo dell’aspetto visivo), ottenendo così sia capacità di editing della semantica del testo sia di editing dell’aspetto visivo. In pratica: Qwen2.5-VL “legge” l’immagine e l’istruzione testuale e decide cosa cambiare concettualmente (es. “metti un cappello al gatto”); il VAE mantiene i dettagli visivi di tutto il resto, così l’immagine non cambia dove non richiesto; il MMDiT genera il risultato finale bilanciando le due informazioni.  
-	   </span>
-	  <a href="#fnref1" class="f1-back" aria-label="back to text">↩</a>
-	</li>
-	
-	<li id="fn2">
-	  <span>
-		Wan 2.2 14B non è un modello a singolo passaggio come Qwen Image Edit o Flux: è una Mixture-of-Experts con un esperto “high-noise” (struttura/movimento) e un esperto “low-noise” (dettaglio); AI Toolkit addestra entrambi tramite il “Multi-stage”. Questo significa che un singolo comando di training deve produrre e gestire due set di pesi, non uno — già qui la pipeline di training è più complessa di un modello immagine singolo. <BR>
+    <!-- ── FOOTNOTES ───────────────────────────────────────── -->
+    <section class="footnotes">
+      <ol>
+        <li id="fn1">
+          <span>
+            <em>Qwen-Image-Edit</em> &egrave; un modello di editing di immagini sviluppato dal team Qwen di Alibaba, rilasciato il 19 agosto 2025, costruito sopra il backbone <em>Qwen-Image</em> da 20 miliardi di parametri con licenza Apache 2.0 (open source, uso commerciale incluso; <a href="https://www.producthunt.com/p/qwen-image-edit-2/qwen-image-edit-4" class="about-link" target="_blank" rel="noopener noreferrer">Product Hunt</a>). Secondo la documentazione tecnica, <em>Qwen-Image</em> adotta un'architettura a tre moduli principali (<a href="https://build.nvidia.com/qwen/qwen-image-edit.md" class="about-link" target="_blank" rel="noopener noreferrer">NVIDIA</a>):
+          </span>
+          <ul class="content-sublist">
+            <li><strong>Qwen2.5-VL (7 miliardi di parametri):</strong> modello linguistico multimodale &laquo;congelato&raquo; (non riaddestrato), impiegato per l'estrazione delle caratteristiche testo-immagine e l'allineamento semantico; appartiene alla nota famiglia linguistica Qwen nella variante <em>vision-language</em>, capace di elaborare congiuntamente immagini e testo.</li>
+            <li><strong>VAE (encoder/decoder, 54M/73M parametri):</strong> modulo compatto incaricato di preservare la fedelt&agrave; dei dettagli visivi e dei pixel.</li>
+            <li><strong>MMDiT (<em>Multimodal Diffusion Transformer</em>, 20 miliardi di parametri):</strong> il motore generativo vero e proprio, ovvero il transformer di diffusione che sintetizza l'immagine finale.</li>
+          </ul>
+          <span>
+            Nel funzionamento congiunto, <em>Qwen-Image-Edit</em> invia simultaneamente l'immagine di input sia a Qwen2.5-VL (per il controllo semantico) sia all'encoder del VAE (per la coerenza visiva), combinando cos&igrave; editing semantico guidato dal testo e fedelt&agrave; all'aspetto originale. In pratica: Qwen2.5-VL interpreta l'immagine e l'istruzione testuale stabilendo che cosa modificare concettualmente (ad esempio, &laquo;metti un cappello al gatto&raquo;); il VAE preserva i dettagli visivi delle aree non interessate dalla modifica; infine il MMDiT sintetizza il risultato bilanciando entrambi i flussi informativi.
+          </span>
+          <a href="#fnref1" class="fn-back" aria-label="Torna al testo">&#8617;</a>
+        </li>
 
-		Il vincolo si riflette poi all’uso: nell’architettura MoE di Wan 2.2 devi modificare i pesi in ENTRAMBE le reti esperte per ottenere risultati consistenti. E sul lato comunità, la compatibilità delle LoRA WAN 2.1 resta generalmente buona, insieme alla compatibilità delle LoRA WAN 2.2 “low noise” (da non usare le LoRA “high noise”), e potresti dover aggiustare le intensità della LoRA — cioè anche dentro lo stesso ecosistema Wan, le LoRA non sono intercambiabili in modo automatico, senza messa a punto.  <BR>
+        <li id="fn2">
+          <span>
+            Wan 2.2 14B non &egrave; un modello a singolo passaggio come <em>Qwen Image Edit</em> o <em>FLUX</em>, bens&igrave; una <em>Mixture-of-Experts</em> composta da un esperto <em>high-noise</em> (struttura e movimento) e da un esperto <em>low-noise</em> (dettaglio); AI Toolkit addestra entrambi tramite modalit&agrave; <em>multi-stage</em>, il che significa che un singolo comando di training deve produrre e gestire due set di pesi distinti anzich&eacute; uno solo. In fase di inferenza in ComfyUI, non si utilizza un unico nodo &laquo;tutto-in-uno&raquo;, ma un grafo multi-modulo composto da almeno 7&ndash;8 nodi core collegati in serie e in parallelo (due <code>Load Diffusion Model</code>, almeno due <code>LoraLoaderModelOnly</code>, il nodo <code>WanImageToVideo</code> e due <code>KSamplerAdvanced</code> in cascata con passaggio del latente intermedio). Questa architettura comporta un'operativit&agrave; articolata, in cui l'utente deve intervenire manualmente su quattro snodi critici del grafo: (1) duplicare i nodi LoRA su entrambi i rami calibrandone separatamente le intensit&agrave; (tenendo in genere basso il peso sul ramo <em>high-noise</em> per non irrigidire il moto e alzandolo sul ramo <em>low-noise</em> per fissare i tratti); (2) filtrare la compatibilit&agrave; delle LoRA tra i rami (le LoRA per Wan 2.1 e quelle <em>low-noise</em> per Wan 2.2 restano utilizzabili sul secondo ramo, mentre le LoRA specifiche <em>high-noise</em> vanno escluse dal ramo <em>low-noise</em> per evitare artefatti); (3) tarare lo step esatto di scambio (<em>handoff step</em>) tra il primo e il secondo campionatore; (4) contrastare, nella modalit&agrave; <em>Image-to-Video</em> (I2V), il problema documentato dell'<em>identity drift</em>, poich&eacute; durante movimenti ampi o rotazioni del capo il volto tende a deformarsi progressivamente rispetto al fotogramma iniziale, costringendo l'operatore a inserire moduli intermedi di ancoraggio (come vincoli <em>Start/End Frame</em> o riferimenti multi-vista) o a ricorrere a passaggi correttivi in post-elaborazione.
+          </span>
+          <a href="#fnref2" class="fn-back" aria-label="Torna al testo">&#8617;</a>
+        </li>
 
-		E per il video specificamente, la consistenza del personaggio in WAN 2.2 I2V si deforma durante il movimento — un problema di “identity drift” e deformazione del volto, documentato e affrontato con guide dedicate, non un semplice dettaglio.
-	 </span>
-	  <a href="#fnref2" class="f2-back" aria-label="back to text">↩</a>
-	</li> 
-	</ol>
-	</section>
+        <li id="fn3">
+          <span>
+            Quando conviene affiancare Blender a Wan 2.2 e quando no:
+          </span>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th style="width:32%;">Tipo di inquadratura</th>
+                <th style="width:26%;">Pipeline consigliata</th>
+                <th style="width:42%;">Motivo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Camera in movimento (orbite, carrellate, raccordi spaziali, cambio di focale)</td>
+                <td>Blender + Mappe + Wan 2.2</td>
+                <td>L'AI pura perde la geometria dell'ambiente; Blender garantisce parallasse e raccordi esatti al primo tentativo.</td>
+              </tr>
+              <tr>
+                <td>Interazione complessa (due soggetti che si incrociano, mani che afferrano oggetti)</td>
+                <td>Blender + Mappe + Wan 2.2</td>
+                <td>Evita compenetrazioni anatomiche e arti deformati durante il moto.</td>
+              </tr>
+              <tr>
+                <td>Primo piano emotivo / dialogo (camera fissa o lieve <em>push-in</em>)</td>
+                <td>Solo Keyframe + Wan 2.2 I2V</td>
+                <td>Un'animazione 3D grezza del viso risulterebbe innaturale e ridurrebbe l'espressivit&agrave; del modello.</td>
+              </tr>
+              <tr>
+                <td>Atmosfera pura / paesaggi (vento, fumo, acqua, luci ambientali)</td>
+                <td>Solo Keyframe + Wan 2.2 I2V</td>
+                <td>La fisica stocastica nativa del modello &egrave; molto pi&ugrave; ricca e veloce da iterare senza passare dal 3D.</td>
+              </tr>
+            </tbody>
+          </table>
+          <a href="#fnref3" class="fn-back" aria-label="Torna al testo">&#8617;</a>
+        </li>
+      </ol>
+    </section>
   </main>
 
   <a href="post-comfyui-documents.html" class="nav-back">INDIETRO</a>
