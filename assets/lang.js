@@ -30,18 +30,15 @@
       btn.style.display = btn.dataset.lang !== lang ? '' : 'none';
     });
 
-    // Update URL for SEO crawlability
-    const url = new URL(window.location.href);
-    lang === 'en' ? url.searchParams.delete('lang')
-                  : url.searchParams.set('lang', lang);
-    history.replaceState({}, '', url.toString());
-
     localStorage.setItem('siteLang', lang);
 
-    // Keep HOME link language-aware
+    // Keep HOME link language-aware (clean absolute paths, no ?lang= query
+    // string: this page is noindex, so there is no SEO-crawlability reason
+    // left to rewrite the URL, and a ?lang= link was still being
+    // re-discovered by Google via this page's own hreflang tag).
     const homeLink = document.getElementById('home-link');
     if (homeLink) {
-      homeLink.href = lang === 'en' ? 'index.html' : 'index.html?lang=' + lang;
+      homeLink.href = lang === 'en' ? '/en/' : '/';
     }
   }
 
