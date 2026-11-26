@@ -229,14 +229,14 @@
 <body class="interior">
 
   <header>
-    <a href="about.html" class="nav-item">ABOUT</a>
+    <a href="/about" class="nav-item">ABOUT</a>
     <div class="menu-container">
       <span class="menu-trigger">TOPICS</span>
       <div class="menu-dropdown">
-        <a href="adv.html"             class="menu-item">ADV</a>
-        <a href="neural-graphics.html" class="menu-item">COMICS / STORYBOARDS</a>
-        <a href="comfyui.html"         class="menu-item">COMFYUI</a>
-        <a href="posts.html"           class="menu-item">POSTS</a>
+        <a href="/adv"             class="menu-item">ADV</a>
+        <a href="/neural-graphics" class="menu-item">COMICS / STORYBOARDS</a>
+        <a href="/comfyui"         class="menu-item">COMFYUI</a>
+        <a href="/posts"           class="menu-item">POSTS</a>
         <span class="menu-item menu-item--disabled">VIDEO</span>
       </div>
     </div>
@@ -275,7 +275,7 @@
             </h3>
 
             <p class="post-text">
-              The pipeline built in the first two parts of this course &mdash; <a href="post-comfyui-modelli.html" class="about-link">Part One</a> and <a href="post-comfyui-modelli2.html" class="about-link">Part Two</a> &mdash; is a 50+ node ComfyUI graph with IP-Adapter and ControlNet chains and KSampler loops, which nodes A and B draw on, while the D&rarr;E consistency loop from the figure &ldquo;The Minimal Consistency Sub-Graph&rdquo; is new here. Where the course (classic ComfyUI) needed a full image regeneration, in the current case the D&rarr;E pass is a targeted, local repair performed by a VLM, which was not present in the base version.
+              The pipeline built in the first two parts of this course &mdash; <a href="/post-comfyui-modelli" class="about-link">Part One</a> and <a href="/post-comfyui-modelli2" class="about-link">Part Two</a> &mdash; is a 50+ node ComfyUI graph with IP-Adapter and ControlNet chains and KSampler loops, which nodes A and B draw on, while the D&rarr;E consistency loop from the figure &ldquo;The Minimal Consistency Sub-Graph&rdquo; is new here. Where the course (classic ComfyUI) needed a full image regeneration, in the current case the D&rarr;E pass is a targeted, local repair performed by a VLM, which was not present in the base version.
             </p>
 
             <p class="post-text">
@@ -420,7 +420,7 @@
             </p>
 
             <p class="post-text">
-              The clean solution is to use ComfyUI purely as a GPU compute engine called over its API, keeping the <code>while</code> loop in Python &mdash; the same pattern used by <code>patcher.py</code> and <code>sweep.py</code> in <a href="post-comfyui-python.html" class="about-link">Part Three of this course</a>. Python queries the VLM critic, converts the coordinates of failed regions into feathered masks for inpainting in ComfyUI, and decides autonomously when to stop.
+              The clean solution is to use ComfyUI purely as a GPU compute engine called over its API, keeping the <code>while</code> loop in Python &mdash; the same pattern used by <code>patcher.py</code> and <code>sweep.py</code> in <a href="/post-comfyui-python" class="about-link">Part Three of this course</a>. Python queries the VLM critic, converts the coordinates of failed regions into feathered masks for inpainting in ComfyUI, and decides autonomously when to stop.
             </p>
 
           </div>
@@ -523,7 +523,7 @@
         <ol>
           <li id="fn1">
             <span>
-              See <a href="post-comfyui-python.html" class="about-link">Part Three of this course</a> for the full list of fields in <code>shots_config.py</code>: environment/wall, framing, focal length, angle, objects, positive and negative prompts, and per-shot weights. Gemini's internal specification covers the same scope, generated dynamically by an LLM rather than written by hand.
+              See <a href="/post-comfyui-python" class="about-link">Part Three of this course</a> for the full list of fields in <code>shots_config.py</code>: environment/wall, framing, focal length, angle, objects, positive and negative prompts, and per-shot weights. Gemini's internal specification covers the same scope, generated dynamically by an LLM rather than written by hand.
             </span>
             <a href="#fnref1" class="fn-back" aria-label="back to text">&#8617;</a>
           </li>
@@ -535,14 +535,14 @@
       <p><strong>Can ComfyUI run the generate-judge-refine loop natively?</strong> No: it executes a fixed directed acyclic graph with no native conditional back-edge. The practical solution is to keep the <code>while</code> loop in Python, calling ComfyUI's API only on the masks that need repair.</p>
       <p><strong>When is it worth building the open A&ndash;E loop instead of simply using</strong> Gemini? Not for a single hand-curated project where someone already reviews every frame, but in automated production at scale where granular control and continuous self-correction are required.</p>
 
-      <p>Related: <a href="post-comfyui-intro.html" class="about-link">What Is ComfyUI</a> for node fundamentals, and <a href="post-comfyui-concepts.html" class="about-link">ComfyUI Visual Stories &mdash; Concepts</a> for how this course builds consistency without a corrective loop.</p>
+      <p>Related: <a href="/post-comfyui-intro" class="about-link">What Is ComfyUI</a> for node fundamentals, and <a href="/post-comfyui-concepts" class="about-link">ComfyUI Visual Stories &mdash; Concepts</a> for how this course builds consistency without a corrective loop.</p>
 
         </div><!-- /page-body -->
   </main>
 
-  <a href="index.html" class="nav-back nav-home" id="home-link">HOME</a>
+  <a href="/" class="nav-back nav-home" id="home-link">HOME</a>
   <div class="lang-switch">
-    <a class="lang-btn" href="/post-confyui-confronto-gemini.html">IT</a>
+    <a class="lang-btn" href="/post-confyui-confronto-gemini">IT</a>
   </div>
 
   <script src="/assets/menu.js"></script>

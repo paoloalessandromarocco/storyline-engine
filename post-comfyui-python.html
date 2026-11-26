@@ -268,14 +268,14 @@
 <body class="interior">
 
   <header>
-    <a href="about.html" class="nav-item">ABOUT</a>
+    <a href="/about" class="nav-item">ABOUT</a>
     <div class="menu-container">
       <span class="menu-trigger">ARGOMENTI</span>
       <div class="menu-dropdown">
-        <a href="adv.html"             class="menu-item">ADV</a>
-        <a href="neural-graphics.html" class="menu-item">FUMETTI/STORYBOARD</a>
-        <a href="comfyui.html"         class="menu-item">COMFYUI</a>
-        <a href="posts.html"           class="menu-item">POST</a>
+        <a href="/adv"             class="menu-item">ADV</a>
+        <a href="/neural-graphics" class="menu-item">FUMETTI/STORYBOARD</a>
+        <a href="/comfyui"         class="menu-item">COMFYUI</a>
+        <a href="/posts"           class="menu-item">POST</a>
         <span class="menu-item menu-item--disabled">VIDEO</span>
       </div>
     </div>
@@ -298,11 +298,11 @@
       </div>
 
       <p class="post-abstract-text">
-        Questo post copre il percorso complementare a quello del grafo a nodi — vedi <a href="post-comfyui-course-material.html" class="about-link">Il Grafo dei Nodi</a> — script Python e bash che automatizzano la generazione (essenzialmente <code>patcher.py</code> e <code>sweep.py</code>)<sup class="fn-ref"><a href="#fn1" id="fnref1">1</a></sup>, utili ad esempio per trattare aspetti come i cicli, le multi-varianti e la ripetizione di aggregati di nodi — difficili da gestire soltanto tramite grafi. In questo post vedremo l'utilizzo di queste funzioni applicate a 14 inquadrature della storia <a href="sotto-lasfalto.html" class="about-link">Sotto l'Asfalto</a>, con i due personaggi ricorrenti: John e Elena.
+        Questo post copre il percorso complementare a quello del grafo a nodi — vedi <a href="/post-comfyui-course-material" class="about-link">Il Grafo dei Nodi</a> — script Python e bash che automatizzano la generazione (essenzialmente <code>patcher.py</code> e <code>sweep.py</code>)<sup class="fn-ref"><a href="#fn1" id="fnref1">1</a></sup>, utili ad esempio per trattare aspetti come i cicli, le multi-varianti e la ripetizione di aggregati di nodi — difficili da gestire soltanto tramite grafi. In questo post vedremo l'utilizzo di queste funzioni applicate a 14 inquadrature della storia <a href="/sotto-lasfalto" class="about-link">Sotto l'Asfalto</a>, con i due personaggi ricorrenti: John e Elena.
       </p>
 
       <p class="post-text">
-        <a href="post-comfyui-course-material.html" class="about-link">Il Grafo dei Nodi</a> — una pipeline vista nella pagina relativa — è composto da 50+ nodi ComfyUI. Scalare questo tipo di grafo per generare 14 inquadrature significa replicare identici sottografi quattordici volte — ossia moltiplicare una decina di nodi per 14 in un unico grafo. Questo comporta: gestire prompt, pesi e riferimenti alle immagini, inquadratura per inquadratura, nel JSON. Un processo che diventa rapidamente impraticabile<sup class="fn-ref"><a href="#fn2" id="fnref2">2</a></sup>. È il problema risolto dagli script qui descritti.
+        <a href="/post-comfyui-course-material" class="about-link">Il Grafo dei Nodi</a> — una pipeline vista nella pagina relativa — è composto da 50+ nodi ComfyUI. Scalare questo tipo di grafo per generare 14 inquadrature significa replicare identici sottografi quattordici volte — ossia moltiplicare una decina di nodi per 14 in un unico grafo. Questo comporta: gestire prompt, pesi e riferimenti alle immagini, inquadratura per inquadratura, nel JSON. Un processo che diventa rapidamente impraticabile<sup class="fn-ref"><a href="#fn2" id="fnref2">2</a></sup>. È il problema risolto dagli script qui descritti.
       </p>
 
       <!-- ══════════════════════════════════════════════════ -->
@@ -342,7 +342,7 @@
             </h3>
 
             <p class="post-text">
-              L'esempio usato in questo post è uno storyboard di 14 inquadrature chiamato <code>bar_14shots</code>, ambientato in un wine bar con due personaggi ricorrenti — Jim e Barbara. Le loro immagini di riferimento (corpo intero/turnaround, ritaglio del volto, riferimento a due personaggi) sono gli stessi file descritti nella <a href="comfyui-pipeline-setup.html" class="about-link">pagina di configurazione</a>. Ogni inquadratura ha uno stile iperrealistico. I moduli coinvolti sono: Flux.1-dev come modello diffusivo base, PuLID per il blocco dell'identità facciale, XLabs IPAdapter per la coerenza di corpo e abbigliamento, ControlNet depth per la struttura spaziale.
+              L'esempio usato in questo post è uno storyboard di 14 inquadrature chiamato <code>bar_14shots</code>, ambientato in un wine bar con due personaggi ricorrenti — Jim e Barbara. Le loro immagini di riferimento (corpo intero/turnaround, ritaglio del volto, riferimento a due personaggi) sono gli stessi file descritti nella <a href="/comfyui-pipeline-setup" class="about-link">pagina di configurazione</a>. Ogni inquadratura ha uno stile iperrealistico. I moduli coinvolti sono: Flux.1-dev come modello diffusivo base, PuLID per il blocco dell'identità facciale, XLabs IPAdapter per la coerenza di corpo e abbigliamento, ControlNet depth per la struttura spaziale.
             </p>
 
             <p class="post-text">
@@ -359,7 +359,7 @@
       </ol><!-- /content-list -->
 
       <p class="post-text" style="margin-top:1.4rem;">
-        Vuoi i passaggi concreti, operativi — i cinque file, la sequenza di esecuzione e il passaggio di post-processing? Vedi <a href="comfyui-python-workflow-instructions.html" class="about-link">Istruzioni per scrivere e lanciare il workflow di questa sezione</a>.
+        Vuoi i passaggi concreti, operativi — i cinque file, la sequenza di esecuzione e il passaggio di post-processing? Vedi <a href="/comfyui-python-workflow-instructions" class="about-link">Istruzioni per scrivere e lanciare il workflow di questa sezione</a>.
       </p>
 
       <!-- ── FOOTNOTES ─────────────────────────────────────── -->
@@ -389,9 +389,9 @@
     </div><!-- /page-body -->
   </main>
 
-  <a href="index.html" class="nav-back nav-home" id="home-link">HOME</a>
+  <a href="/" class="nav-back nav-home" id="home-link">HOME</a>
   <div class="lang-switch">
-    <a class="lang-btn" href="/en/post-comfyui-python.html">EN</a>
+    <a class="lang-btn" href="/en/post-comfyui-python">EN</a>
   </div>
 
   <script src="/assets/menu.js"></script>

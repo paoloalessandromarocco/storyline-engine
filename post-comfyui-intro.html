@@ -191,14 +191,14 @@
 <body class="interior">
 
   <header>
-    <a href="about.html" class="nav-item">ABOUT</a>
+    <a href="/about" class="nav-item">ABOUT</a>
     <div class="menu-container">
       <span class="menu-trigger">ARGOMENTI</span>
       <div class="menu-dropdown">
-        <a href="adv.html"             class="menu-item">ADV</a>
-        <a href="neural-graphics.html" class="menu-item">FUMETTI/STORYBOARD</a>
-        <a href="comfyui.html"         class="menu-item">COMFYUI</a>
-        <a href="posts.html"           class="menu-item">POST</a>
+        <a href="/adv"             class="menu-item">ADV</a>
+        <a href="/neural-graphics" class="menu-item">FUMETTI/STORYBOARD</a>
+        <a href="/comfyui"         class="menu-item">COMFYUI</a>
+        <a href="/posts"           class="menu-item">POST</a>
         <span class="menu-item menu-item--disabled">VIDEO</span>
       </div>
     </div>
@@ -228,7 +228,7 @@
             <p class="post-abstract-text">ComfyUI è un'interfaccia gratuita e open source, basata su nodi, per costruire visivamente pipeline di generazione AI di immagini (e video, 3D, audio) — senza codice, solo nodi collegati da fili. Questo articolo spiega cos'è un nodo, come si collegano, e come appare un grafo di base da testo a immagine.</p>
 
       <p class="post-abstract-text">
-        <a href="https://comfy.org/" class="about-link" target="_blank">ComfyUI</a> è un'interfaccia grafica a nodi per la <em>generazione di immagini</em><sup class="fn-ref"><a href="#fn1" id="fnref1">1</a></sup> (utilizzo presentato in questo blog), ma anche di testi, video, modelli 3D e altro. A differenza dei tool basati solo su prompt testuali, permette di costruire pipeline visive complesse (grafi di nodi funzionali), in cui ogni passaggio del processo generativo è esplicito, modificabile e componibile con altri grafi — intuitivamente come il Lego. Questo articolo introduce i componenti di base — nodi, connessioni, argomenti di input, parametri — senza presupporre conoscenze di programmazione. Questo post non è un corso introduttivo: per tutorial esterni e risorse online commentate, vedi <a href="post-comfyui-documents.html" class="about-link">ComfyUI: sitografia ragionata</a>. <strong>NOTA</strong>: Se vi annoiano i tecnicismi di questa parte, passate direttamente a sfogliare le storie listate nella pagina <a href="neural-graphics.html" class="about-link" target="_self">Graphic novel e Storyboard</a>.
+        <a href="https://comfy.org/" class="about-link" target="_blank">ComfyUI</a> è un'interfaccia grafica a nodi per la <em>generazione di immagini</em><sup class="fn-ref"><a href="#fn1" id="fnref1">1</a></sup> (utilizzo presentato in questo blog), ma anche di testi, video, modelli 3D e altro. A differenza dei tool basati solo su prompt testuali, permette di costruire pipeline visive complesse (grafi di nodi funzionali), in cui ogni passaggio del processo generativo è esplicito, modificabile e componibile con altri grafi — intuitivamente come il Lego. Questo articolo introduce i componenti di base — nodi, connessioni, argomenti di input, parametri — senza presupporre conoscenze di programmazione. Questo post non è un corso introduttivo: per tutorial esterni e risorse online commentate, vedi <a href="/post-comfyui-documents" class="about-link">ComfyUI: sitografia ragionata</a>. <strong>NOTA</strong>: Se vi annoiano i tecnicismi di questa parte, passate direttamente a sfogliare le storie listate nella pagina <a href="/neural-graphics" class="about-link" target="_self">Graphic novel e Storyboard</a>.
       </p>
 
       <!-- ── FIGURE ─────────────────────────────────────────── -->
@@ -307,7 +307,7 @@
 			<p class="post-text"
 >
 
-			  This site uses ComfyUI as the generative engine for all its visual stories (comics and storyboards). Rather than generating images through a chat interface or a static web form (one shot), ComfyUI offers control over every stage of the process: model selection, text prompt encoding, parameter adjustment, and the insertion or removal of modules (character and environment conditioning, output post-processing, and so on)<sup class="fn-ref"><a href="#fn2"  id="fnref2">2</a></sup>. The pipelines built in this way are designed for sequential storytelling — graphic novel panels, storyboard frames, character body, face and costume — where consistency across different poses of the same character matters greatly (something that cannot be achieved simply by repeating prompts). All graph workflows associated with the stories are downloadable from their respective pages, listed in <a href="neural-graphics.html" class="about-link" target="_self">Comics and Storyboards</a>.<br>Finally, one practically significant development. Until about eighteen months ago, ComfyUI graphs were built by hand, connecting pairs of module nodes through the graphical interface of the environment. This meant an enormous amount of work to create graphs of just 10–20 nodes — far smaller than those used to generate stories such as the one shown in <a href="sotto-lasfalto.html" class="about-link" target="_self">Under the Asphalt</a>, which have 80+ nodes and hundreds of connections. Today, through Vibe Coding it is possible to generate the graph JSON<sup class="fn-ref"><a href="#fn3" id="fnref3">3</a></sup> directly via an LLM (Claude, Gemini, the various GPT models from OpenAI, and others), and then, if needed, refine it directly in an editor or regenerate it through further Vibe Coding. An epoch-making shift whose full implications will become clearer over the next one to two years.
+			  This site uses ComfyUI as the generative engine for all its visual stories (comics and storyboards). Rather than generating images through a chat interface or a static web form (one shot), ComfyUI offers control over every stage of the process: model selection, text prompt encoding, parameter adjustment, and the insertion or removal of modules (character and environment conditioning, output post-processing, and so on)<sup class="fn-ref"><a href="#fn2"  id="fnref2">2</a></sup>. The pipelines built in this way are designed for sequential storytelling — graphic novel panels, storyboard frames, character body, face and costume — where consistency across different poses of the same character matters greatly (something that cannot be achieved simply by repeating prompts). All graph workflows associated with the stories are downloadable from their respective pages, listed in <a href="/neural-graphics" class="about-link" target="_self">Comics and Storyboards</a>.<br>Finally, one practically significant development. Until about eighteen months ago, ComfyUI graphs were built by hand, connecting pairs of module nodes through the graphical interface of the environment. This meant an enormous amount of work to create graphs of just 10–20 nodes — far smaller than those used to generate stories such as the one shown in <a href="/sotto-lasfalto" class="about-link" target="_self">Under the Asphalt</a>, which have 80+ nodes and hundreds of connections. Today, through Vibe Coding it is possible to generate the graph JSON<sup class="fn-ref"><a href="#fn3" id="fnref3">3</a></sup> directly via an LLM (Claude, Gemini, the various GPT models from OpenAI, and others), and then, if needed, refine it directly in an editor or regenerate it through further Vibe Coding. An epoch-making shift whose full implications will become clearer over the next one to two years.
 			</p>
 
           </div>
@@ -338,16 +338,16 @@
       <p><strong>ComfyUI è gratuito?</strong> Sì — è open source, con circa 60.000 nodi personalizzati creati dalla community, anche se quelli essenziali sono circa 100-200.</p>
       <p><strong>Serve saper programmare per usare ComfyUI?</strong> No. È un ambiente no-code, basato su nodi: si collegano blocchi grafici già pronti invece di scrivere codice. L'integrazione con Python/bash è disponibile per chi vuole ciclare o scrivere lo script di un workflow, ma è opzionale.</p>
       <p><strong>Cos'è un file workflow di ComfyUI?</strong> Ogni nodo, connessione e parametro di un grafo viene salvato in un unico file .json — il formato nativo che ComfyUI usa per salvare, condividere e ricaricare un workflow esattamente com'è stato costruito.</p>
-      <p><strong>In cosa ComfyUI è diverso dal semplice scrivere un prompt</strong> su uno strumento come Gemini? Gemini trasforma un breve prompt testuale in un risultato in un solo passaggio. Questo unico passaggio è però quello che vede l'utente, ma in realtà il sottografo incluso nella generazione è complesso (basti pensare a come Gemini sia capace di creare decine di personaggi non citati, puramente per compatibilità tra la storia e scene simili già trainate). In modo differente, ComfyUI espone la pipeline come esplicita: questa viene costruita nel disegno del progetto dall'utente o dall'AI di supporto — più controllo, più configurazione. Vedi <a href="post-confyui-confronto-gemini.html" class="about-link">Gemini vs ComfyUI: un confronto</a> per capire quando conviene l'uno o l'altro.</p>
+      <p><strong>In cosa ComfyUI è diverso dal semplice scrivere un prompt</strong> su uno strumento come Gemini? Gemini trasforma un breve prompt testuale in un risultato in un solo passaggio. Questo unico passaggio è però quello che vede l'utente, ma in realtà il sottografo incluso nella generazione è complesso (basti pensare a come Gemini sia capace di creare decine di personaggi non citati, puramente per compatibilità tra la storia e scene simili già trainate). In modo differente, ComfyUI espone la pipeline come esplicita: questa viene costruita nel disegno del progetto dall'utente o dall'AI di supporto — più controllo, più configurazione. Vedi <a href="/post-confyui-confronto-gemini" class="about-link">Gemini vs ComfyUI: un confronto</a> per capire quando conviene l'uno o l'altro.</p>
 
-      <p>Correlati: <a href="post-comfyui-concepts.html" class="about-link">ComfyUI Storie Visive — Concetti</a> per come la pipeline di questo sito usa questi nodi per personaggi coerenti, e <a href="post-confyui-confronto-gemini.html" class="about-link">Gemini vs ComfyUI: un confronto</a> per capire quando conviene uno strumento solo a prompt.</p>
+      <p>Correlati: <a href="/post-comfyui-concepts" class="about-link">ComfyUI Storie Visive — Concetti</a> per come la pipeline di questo sito usa questi nodi per personaggi coerenti, e <a href="/post-confyui-confronto-gemini" class="about-link">Gemini vs ComfyUI: un confronto</a> per capire quando conviene uno strumento solo a prompt.</p>
 
         </div><!-- /page-body -->
   </main>
 
-  <a href="index.html" class="nav-back nav-home" id="home-link">HOME</a>
+  <a href="/" class="nav-back nav-home" id="home-link">HOME</a>
   <div class="lang-switch">
-    <a class="lang-btn" href="/en/post-comfyui-intro.html">EN</a>
+    <a class="lang-btn" href="/en/post-comfyui-intro">EN</a>
   </div>
 
   <script src="/assets/menu.js"></script>

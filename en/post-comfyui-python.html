@@ -268,14 +268,14 @@
 <body class="interior">
 
   <header>
-    <a href="/en/about.html" class="nav-item">ABOUT</a>
+    <a href="/en/about" class="nav-item">ABOUT</a>
     <div class="menu-container">
       <span class="menu-trigger">TOPICS</span>
       <div class="menu-dropdown">
-        <a href="/en/adv.html"             class="menu-item">ADV</a>
-        <a href="/en/neural-graphics.html" class="menu-item">VISUAL STORIES</a>
-        <a href="/en/comfyui.html"         class="menu-item">COMFYUI</a>
-        <a href="/en/posts.html"           class="menu-item">POSTS</a>
+        <a href="/en/adv"             class="menu-item">ADV</a>
+        <a href="/en/neural-graphics" class="menu-item">VISUAL STORIES</a>
+        <a href="/en/comfyui"         class="menu-item">COMFYUI</a>
+        <a href="/en/posts"           class="menu-item">POSTS</a>
         <span class="menu-item menu-item--disabled">VIDEO</span>
       </div>
     </div>
@@ -298,11 +298,11 @@
       </div>
 
       <p class="post-abstract-text">
-        This post covers the course's other operational path: not the node-based GUI — explained in <a href='post-comfyui-course-material.html' class='about-link'>The Node Graph</a> — but Python and bash scripts that automate the generation (essentially <code>patcher.py</code> and <code>sweep.py</code>)<sup class='fn-ref'><a href='#fn1' id='fnref1'>1</a></sup>, useful for handling things like loops, multiple variants and the repetition of node clusters — hard to manage through graphs alone. In this post we'll see these scripts applied to 14 shots from the <a href='sotto-lasfalto.html' class='about-link'>Sotto l'Asfalto</a> story, with the two recurring characters John and Elena.
+        This post covers the course's other operational path: not the node-based GUI — explained in <a href='/post-comfyui-course-material' class='about-link'>The Node Graph</a> — but Python and bash scripts that automate the generation (essentially <code>patcher.py</code> and <code>sweep.py</code>)<sup class='fn-ref'><a href='#fn1' id='fnref1'>1</a></sup>, useful for handling things like loops, multiple variants and the repetition of node clusters — hard to manage through graphs alone. In this post we'll see these scripts applied to 14 shots from the <a href='/sotto-lasfalto' class='about-link'>Sotto l'Asfalto</a> story, with the two recurring characters John and Elena.
       </p>
 
       <p class="post-text">
-        <a href='post-comfyui-course-material.html' class='about-link'>The Node Graph</a> — a pipeline shown on its own page — runs to 50+ nodes in ComfyUI. Scaling that kind of graph to generate 14 shots means replicating identical sub-graphs fourteen times — that is, multiplying around ten nodes by 14 within a single graph. This means handling prompts, weights and image references, shot by shot, inside the JSON. A process that quickly becomes unworkable.<sup class="fn-ref"><a href="#fn2" id="fnref2">2</a></sup> This is the problem the scripts described here solve.
+        <a href='/post-comfyui-course-material' class='about-link'>The Node Graph</a> — a pipeline shown on its own page — runs to 50+ nodes in ComfyUI. Scaling that kind of graph to generate 14 shots means replicating identical sub-graphs fourteen times — that is, multiplying around ten nodes by 14 within a single graph. This means handling prompts, weights and image references, shot by shot, inside the JSON. A process that quickly becomes unworkable.<sup class="fn-ref"><a href="#fn2" id="fnref2">2</a></sup> This is the problem the scripts described here solve.
       </p>
 
       <!-- ══════════════════════════════════════════════════ -->
@@ -342,7 +342,7 @@
             </h3>
 
             <p class="post-text">
-              The example used throughout this post is a 14-shot storyboard called <code>bar_14shots</code>, set in a wine bar with two recurring characters — Jim and Barbara. Their reference images (full-body turnaround, face crop, two-character reference) are the same files described in the <a href="/en/comfyui-pipeline-setup.html" class="about-link">setup page</a>. Each shot is photorealistic: Flux.1-dev as the base diffusion model, PuLID for face identity locking, XLabs IPAdapter for body and clothing consistency, ControlNet depth for spatial structure.
+              The example used throughout this post is a 14-shot storyboard called <code>bar_14shots</code>, set in a wine bar with two recurring characters — Jim and Barbara. Their reference images (full-body turnaround, face crop, two-character reference) are the same files described in the <a href="/en/comfyui-pipeline-setup" class="about-link">setup page</a>. Each shot is photorealistic: Flux.1-dev as the base diffusion model, PuLID for face identity locking, XLabs IPAdapter for body and clothing consistency, ControlNet depth for spatial structure.
             </p>
 
             <p class="post-text">
@@ -359,7 +359,7 @@
       </ol><!-- /content-list -->
 
       <p class="post-text" style="margin-top:1.4rem;">
-        Want the concrete, hands-on steps — the five files, the run sequence, and the post-processing pass? See <a href='comfyui-python-workflow-instructions.html' class='about-link'>Instructions for writing and running this section's workflow</a>.
+        Want the concrete, hands-on steps — the five files, the run sequence, and the post-processing pass? See <a href='/comfyui-python-workflow-instructions' class='about-link'>Instructions for writing and running this section's workflow</a>.
       </p>
 
       <!-- ── FOOTNOTES ─────────────────────────────────────── -->
@@ -389,9 +389,9 @@
     </div><!-- /page-body -->
   </main>
 
-  <a href="/en/index.html" class="nav-back nav-home" id="home-link">HOME</a>
+  <a href="/en/" class="nav-back nav-home" id="home-link">HOME</a>
   <div class="lang-switch">
-    <a class="lang-btn" href="/post-comfyui-python.html">IT</a>
+    <a class="lang-btn" href="/post-comfyui-python">IT</a>
   </div>
 
   <script src="/assets/menu.js"></script>

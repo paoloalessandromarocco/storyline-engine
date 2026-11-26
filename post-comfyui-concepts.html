@@ -197,14 +197,14 @@
 <body class="interior">
 
   <header>
-    <a href="about.html" class="nav-item">ABOUT</a>
+    <a href="/about" class="nav-item">ABOUT</a>
     <div class="menu-container">
       <span class="menu-trigger">ARGOMENTI</span>
       <div class="menu-dropdown">
-        <a href="adv.html"             class="menu-item">ADV</a>
-        <a href="neural-graphics.html" class="menu-item">FUMETTI/STORYBOARD</a>
-        <a href="comfyui.html"         class="menu-item">COMFYUI</a>
-        <a href="posts.html"           class="menu-item">POST</a>
+        <a href="/adv"             class="menu-item">ADV</a>
+        <a href="/neural-graphics" class="menu-item">FUMETTI/STORYBOARD</a>
+        <a href="/comfyui"         class="menu-item">COMFYUI</a>
+        <a href="/posts"           class="menu-item">POST</a>
         <span class="menu-item menu-item--disabled">VIDEO</span>
       </div>
     </div>
@@ -230,7 +230,7 @@
             <p class="post-abstract-text">Un Diffusion Model trasforma il testo in un'immagine coerente e fotorealistica attraverso quattro componenti: CLIP (che legge il prompt), noise/denoising (che genera), IP-Adapter (che mantiene un volto riconoscibile) e ControlNet (che fissa dove le cose stanno nell'inquadratura). Questo articolo spiega tutti e quattro con metafore, senza bisogno del grafo dei nodi.</p>
 
       <p class="post-abstract-text">
-        Le idee che stanno dietro a un breve corso su ComfyUI per filmmaker e graphic designer. Innanzitutto un chiarimento: non si parla di video-generation, ma di immagini statiche che conservano identità e coerenza in una sequenza, come nei fumetti e negli storyboard, in stile iperrealistico, cioè con la precisione e il dettaglio di una fotografia ad alta risoluzione. Senza entrare nei singoli nodi, questo post spiega con delle metafore come un Diffusion Model trasforma un testo in un'immagine (CLIP, rumore e denoising, VAE), come due adattatori — IP-Adapter e ControlNet — gli insegnano a rispettare un volto e un'inquadratura, e come queste tre guide si intrecciano a ogni ciclo di generazione. Si chiude con una riflessione più ampia su come le reti neurali apprendono attraverso cicli ripetuti. I dettagli tecnici, il grafo dei nodi e la pipeline scaricabile sono nel post gemello <a href="post-comfyui-course-material.html" class="about-link">ComfyUI Storie Visive — Il Grafo dei Nodi</a>. Esempi più evoluti che adottano questa tecnica li trovate in <a href="neural-graphics.html" class="about-link">Fumetti e Storyboard</a>.
+        Le idee che stanno dietro a un breve corso su ComfyUI per filmmaker e graphic designer. Innanzitutto un chiarimento: non si parla di video-generation, ma di immagini statiche che conservano identità e coerenza in una sequenza, come nei fumetti e negli storyboard, in stile iperrealistico, cioè con la precisione e il dettaglio di una fotografia ad alta risoluzione. Senza entrare nei singoli nodi, questo post spiega con delle metafore come un Diffusion Model trasforma un testo in un'immagine (CLIP, rumore e denoising, VAE), come due adattatori — IP-Adapter e ControlNet — gli insegnano a rispettare un volto e un'inquadratura, e come queste tre guide si intrecciano a ogni ciclo di generazione. Si chiude con una riflessione più ampia su come le reti neurali apprendono attraverso cicli ripetuti. I dettagli tecnici, il grafo dei nodi e la pipeline scaricabile sono nel post gemello <a href="/post-comfyui-course-material" class="about-link">ComfyUI Storie Visive — Il Grafo dei Nodi</a>. Esempi più evoluti che adottano questa tecnica li trovate in <a href="/neural-graphics" class="about-link">Fumetti e Storyboard</a>.
       </p>
 
       <!-- ── INTRO ─────────────────────────────────────────── -->
@@ -412,23 +412,23 @@
       </section>
 
       <p class="post-text" style="margin-top:2.5rem; opacity:0.75;">
-  Dettagli tecnici, grafo dei nodi e pipeline scaricabile: <a href="post-comfyui-course-material.html" class="about-link">ComfyUI Storie Visive — Il Grafo dei Nodi</a>.
+  Dettagli tecnici, grafo dei nodi e pipeline scaricabile: <a href="/post-comfyui-course-material" class="about-link">ComfyUI Storie Visive — Il Grafo dei Nodi</a>.
 </p>
 
       <p class="section-label">FAQ</p>
       <p><strong>Cosa fa un IP-Adapter in ComfyUI?</strong> Mostra al modello un'immagine di riferimento invece di descrivere un volto a parole, così il volto dello stesso personaggio resta riconoscibile scatto dopo scatto — una variabile controlla quanto venga seguita.</p>
       <p><strong>A cosa serve ControlNet?</strong> Fissa le posizioni nell'inquadratura — tipicamente tramite una depth map — così il modello non decide da solo distanze e posizioni dei corpi. Il testo e la foto di riferimento decidono cosa c'è nella scena; ControlNet decide dove.</p>
       <p><strong>Qual è la differenza tra CLIP e il processo di noise/denoising?</strong> CLIP associa i token del prompt ai frammenti d'immagine appresi durante l'addestramento. Il noise/denoising è il processo distinto che costruisce davvero una nuova immagine: aggiunge rumore finché nulla è più riconoscibile, poi lo rimuove passo dopo passo, guidato da ciò che CLIP ha collegato.</p>
-      <p><strong>Dove si trovano il grafo dei nodi vero e proprio</strong> e la pipeline scaricabile? Nel post gemello, <a href="post-comfyui-course-material.html" class="about-link">ComfyUI Storie Visive — Il Grafo dei Nodi</a> — questo post copre i concetti, quello copre l'implementazione.</p>
+      <p><strong>Dove si trovano il grafo dei nodi vero e proprio</strong> e la pipeline scaricabile? Nel post gemello, <a href="/post-comfyui-course-material" class="about-link">ComfyUI Storie Visive — Il Grafo dei Nodi</a> — questo post copre i concetti, quello copre l'implementazione.</p>
 
-      <p>Correlati: <a href="post-comfyui-intro.html" class="about-link">Cosa è ComfyUI</a> per le basi sui nodi, e <a href="post-confyui-confronto-gemini.html" class="about-link">Gemini vs ComfyUI: un confronto</a> per capire perché questo livello di controllo non conviene sempre.</p>
+      <p>Correlati: <a href="/post-comfyui-intro" class="about-link">Cosa è ComfyUI</a> per le basi sui nodi, e <a href="/post-confyui-confronto-gemini" class="about-link">Gemini vs ComfyUI: un confronto</a> per capire perché questo livello di controllo non conviene sempre.</p>
 
         </div><!-- /page-body -->
   </main>
 
-  <a href="index.html" class="nav-back nav-home" id="home-link">HOME</a>
+  <a href="/" class="nav-back nav-home" id="home-link">HOME</a>
   <div class="lang-switch">
-    <a class="lang-btn" href="/en/post-comfyui-concepts.html">EN</a>
+    <a class="lang-btn" href="/en/post-comfyui-concepts">EN</a>
   </div>
 
   <script src="/assets/menu.js"></script>

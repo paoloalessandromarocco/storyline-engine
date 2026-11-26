@@ -222,14 +222,14 @@
 <body class="interior">
 
   <header>
-    <a href="about.html" class="nav-item">ABOUT</a>
+    <a href="/about" class="nav-item">ABOUT</a>
     <div class="menu-container">
       <span class="menu-trigger">ARGOMENTI</span>
       <div class="menu-dropdown">
-        <a href="adv.html"             class="menu-item">ADV</a>
-        <a href="neural-graphics.html" class="menu-item">FUMETTI/STORYBOARD</a>
-        <a href="comfyui.html"         class="menu-item">COMFYUI</a>
-        <a href="posts.html"           class="menu-item">POST</a>
+        <a href="/adv"             class="menu-item">ADV</a>
+        <a href="/neural-graphics" class="menu-item">FUMETTI/STORYBOARD</a>
+        <a href="/comfyui"         class="menu-item">COMFYUI</a>
+        <a href="/posts"           class="menu-item">POST</a>
         <span class="menu-item menu-item--disabled">VIDEO</span>
       </div>
     </div>
@@ -255,12 +255,12 @@
             <p class="post-abstract-text">Un motore che prende una coppia di mascotte fissata, un brand, uno script e uno slogan, e genera molte varianti della storia coerenti col brand — poi verifica e corregge automaticamente ogni scatto rispetto a uno storyboard master approvato da una persona, così la coerenza regge su scala senza rivedere ogni fotogramma a mano.</p>
 
       <p class="post-abstract-text">
-        Proponiamo un engine di generazione automatica storyboard, per campagne che hanno come protagonisti mascotte. Riepiloghiamo l'I/O. In ingresso: quattro input manuali — la coppia di mascotte (immagine neutra di riferimento), il brand o l'oggetto da promuovere, lo script che descrive la storia e gli slogan — scelti a monte, dal brand o dalla sua agenzia; tutto il resto, file di descrizione strutturato compreso, è generato. In uscita: N varianti della storia, con un meccanismo di controllo QA, e la formattazione di export rispondente alle piattaforme di AD-serving/DCO che integrano questo engine generativo. Questo post complementa l'esempio descrittivo del post precedente <a href="post-storyboard-vendemmia.html" class="about-link">La vendemmia di Grappolotto e Foglina</a> integrandolo con aspetti più tecnici. L'obbiettivo è quello di portare l'attenzione sul loop di autocorrezione automatico delle varianti rispetto a un master storyboard approvato da una persona (capitolo 05), la struttura dati del manifest e la sua firma umana finale (capitolo 06), fino alle proporzioni e agli spazi di formattazione secondo le specifiche di un template di riferimento (capitolo 07). Infine nell'ultimo passo, il batch delle informazioni di tutte le inquadrature, viene esportato nel Manifest rispetto al formato concordato con le piattaforme di AD-serving/DCO. Un aspetto che, dal pdv del mercato, viene approfondito nel post <a href="post-dco-pipeline.html" class="about-link">DCO: una Pipeline, Più Prodotti</a>.
+        Proponiamo un engine di generazione automatica storyboard, per campagne che hanno come protagonisti mascotte. Riepiloghiamo l'I/O. In ingresso: quattro input manuali — la coppia di mascotte (immagine neutra di riferimento), il brand o l'oggetto da promuovere, lo script che descrive la storia e gli slogan — scelti a monte, dal brand o dalla sua agenzia; tutto il resto, file di descrizione strutturato compreso, è generato. In uscita: N varianti della storia, con un meccanismo di controllo QA, e la formattazione di export rispondente alle piattaforme di AD-serving/DCO che integrano questo engine generativo. Questo post complementa l'esempio descrittivo del post precedente <a href="/post-storyboard-vendemmia" class="about-link">La vendemmia di Grappolotto e Foglina</a> integrandolo con aspetti più tecnici. L'obbiettivo è quello di portare l'attenzione sul loop di autocorrezione automatico delle varianti rispetto a un master storyboard approvato da una persona (capitolo 05), la struttura dati del manifest e la sua firma umana finale (capitolo 06), fino alle proporzioni e agli spazi di formattazione secondo le specifiche di un template di riferimento (capitolo 07). Infine nell'ultimo passo, il batch delle informazioni di tutte le inquadrature, viene esportato nel Manifest rispetto al formato concordato con le piattaforme di AD-serving/DCO. Un aspetto che, dal pdv del mercato, viene approfondito nel post <a href="/post-dco-pipeline" class="about-link">DCO: una Pipeline, Più Prodotti</a>.
       </p>
 
       <!-- ── INTRO ─────────────────────────────────────────── -->
       <p class="post-text">
-        <strong>Dove si colloca il motore.</strong> Il brand o la sua agenzia di riferimento decidono il prodotto, slogan, personaggi e ambientazione, e chiamano il motore come passo di pre-produzione. Un direttore creativo o chi gestisce la campagna, spedisce un unico job — un brief, una coppia di personaggi già fissata, le ambientazioni — tramite API oppure come file JSON. Il motore genera un pool di varianti di storia già pronte, da cui viene prodotto l'Export. La storia (o meglio lo script) può essere scritta dal team creativo del brand, oppure creata dal motore a partire dal brief e poi approvata in modo supervisionato. Il risultato del processo entra poi nello stesso strumento di dynamic creative che il cliente usa già oggi (<a href="post-dco-mercato-globale.html" class="about-link">DCO e il mercato delle agenzie</a> spiega come avviene quel passaggio); i formati della richiesta e dell'export sono specificati in <a href="dco-engine-tech.html" class="about-link">Motore DCO: descrizione tecnica</a>.Il prodotto pubblicizzato nell'esempio che seguirà è un cavatappi professionale in legno
+        <strong>Dove si colloca il motore.</strong> Il brand o la sua agenzia di riferimento decidono il prodotto, slogan, personaggi e ambientazione, e chiamano il motore come passo di pre-produzione. Un direttore creativo o chi gestisce la campagna, spedisce un unico job — un brief, una coppia di personaggi già fissata, le ambientazioni — tramite API oppure come file JSON. Il motore genera un pool di varianti di storia già pronte, da cui viene prodotto l'Export. La storia (o meglio lo script) può essere scritta dal team creativo del brand, oppure creata dal motore a partire dal brief e poi approvata in modo supervisionato. Il risultato del processo entra poi nello stesso strumento di dynamic creative che il cliente usa già oggi (<a href="/post-dco-mercato-globale" class="about-link">DCO e il mercato delle agenzie</a> spiega come avviene quel passaggio); i formati della richiesta e dell'export sono specificati in <a href="/dco-engine-tech" class="about-link">Motore DCO: descrizione tecnica</a>.Il prodotto pubblicizzato nell'esempio che seguirà è un cavatappi professionale in legno
       </p>
 
       <!-- ── WHAT DCO IS ───────────────────────────────────── -->
@@ -305,7 +305,7 @@
           Campagne UGC e co-creazione su larga scala, dove il volume di revisione da solo rende il QA manuale fisicamente impossibile, non solo costoso.
         </li>
         <li>
-          Ciascuno di questi quattro profili di acquirenti è approfondito, con casi reali, in <a href="post-dco-pipeline.html" class="about-link">DCO: una Pipeline, Più Prodotti</a>.
+          Ciascuno di questi quattro profili di acquirenti è approfondito, con casi reali, in <a href="/post-dco-pipeline" class="about-link">DCO: una Pipeline, Più Prodotti</a>.
         </li>
       </ul>
 
@@ -365,7 +365,7 @@
             </h3>
 
             <p class="post-text">
-              La campagna di riferimento coinvolge lo storyboard già visto in <a href="post-storyboard-vendemmia.html" class="about-link">La vendemmia di Grappolotto e Foglina</a>. L'input richiesto dal motore: una coppia di personaggi in due immagini &mdash; quella con le due mascotte isolate (immagine neutra) e quella con le mascotte inserite nell'ambiente vinicolo che fa da sfondo &mdash; più, quando il prodotto della campagna ha bisogno di un'identità visiva fissata invece di un ripiego generico, una sua immagine di riferimento a parte (il caso del cavatappi qui sotto). L'immagine neutra della coppia viene presa come riferimento, e ha un doppio ruolo, come vedremo nel capitolo 05, <em>Il judge automatico nel loop</em>:<br>1. <strong>Riferimento di identità</strong> &mdash; fissa l'aspetto dei due personaggi: è contro questa che D controlla l'identity drift (il personaggio generato assomiglia davvero a Grappolotto/Foglina?).<br>2. <strong>Riferimento di staging</strong> &mdash; fissa anche chi sta a sinistra e chi a destra come convenzione canonica, quella stessa che poi ricompare come campo <code>LEFT:</code>/<code>RIGHT:</code> nel file di descrizione strutturato (capitolo 03, un campo per ogni beat) e che D ricontrolla per l'allineamento spaziale (capitolo 05: &ldquo;confermare che un personaggio sia correttamente a <code>LEFT:</code> piuttosto che a <code>RIGHT:</code>&rdquo;).<br>La stessa logica vale per il prodotto pubblicizzato: una volta che ha la propria immagine di riferimento, il loop genera&rarr;judge&rarr;correggi ne controlla identità, posizione e contesto in ogni beat esattamente come fa per i personaggi &mdash; non solo che sia l'oggetto giusto (il caso di wrong object nel capitolo 05), ma anche che sia messo in scena nel modo giusto.
+              La campagna di riferimento coinvolge lo storyboard già visto in <a href="/post-storyboard-vendemmia" class="about-link">La vendemmia di Grappolotto e Foglina</a>. L'input richiesto dal motore: una coppia di personaggi in due immagini &mdash; quella con le due mascotte isolate (immagine neutra) e quella con le mascotte inserite nell'ambiente vinicolo che fa da sfondo &mdash; più, quando il prodotto della campagna ha bisogno di un'identità visiva fissata invece di un ripiego generico, una sua immagine di riferimento a parte (il caso del cavatappi qui sotto). L'immagine neutra della coppia viene presa come riferimento, e ha un doppio ruolo, come vedremo nel capitolo 05, <em>Il judge automatico nel loop</em>:<br>1. <strong>Riferimento di identità</strong> &mdash; fissa l'aspetto dei due personaggi: è contro questa che D controlla l'identity drift (il personaggio generato assomiglia davvero a Grappolotto/Foglina?).<br>2. <strong>Riferimento di staging</strong> &mdash; fissa anche chi sta a sinistra e chi a destra come convenzione canonica, quella stessa che poi ricompare come campo <code>LEFT:</code>/<code>RIGHT:</code> nel file di descrizione strutturato (capitolo 03, un campo per ogni beat) e che D ricontrolla per l'allineamento spaziale (capitolo 05: &ldquo;confermare che un personaggio sia correttamente a <code>LEFT:</code> piuttosto che a <code>RIGHT:</code>&rdquo;).<br>La stessa logica vale per il prodotto pubblicizzato: una volta che ha la propria immagine di riferimento, il loop genera&rarr;judge&rarr;correggi ne controlla identità, posizione e contesto in ogni beat esattamente come fa per i personaggi &mdash; non solo che sia l'oggetto giusto (il caso di wrong object nel capitolo 05), ma anche che sia messo in scena nel modo giusto.
 			   <br>Le ambientazioni degli altri fotogrammi saranno ottenute senza l'esigenza di altre immagini in input, ma in base alla descrizione dell'immagine stessa, e usando come referenti sempre l'immagine neutra delle due mascotte isolate. Le mascotte di riferimento potrebbero essere generate (con le API di Google Gemini, in questa release), oppure commissionate a un servizio esterno. Non è questo un punto nodale in questo post, semmai quello di mostrare la facilità di affidarsi a un setup risolvibile in un giorno, piuttosto che a una commissione illustrativa di settimane.
             </p>
 
@@ -397,7 +397,7 @@
             </h3>
 
             <p class="post-text">
-              Il motore ha bisogno della storia in una forma strutturata, non come prosa libera: una voce per ogni beat (inquadratura), con i suoi personaggi e la loro posizione <code>LEFT:</code>/<code>RIGHT:</code>, lo sfondo, il prodotto o l'oggetto in scena, il ruolo narrativo (inizio, rivelazione, chiusura) e le eventuali condizioni di scena, come pioggia o sole. Chi crea la campagna non deve compilare tutto questo: gli input manuali sono solo quattro — la coppia di mascotte nell'immagine neutra, il brand o l'oggetto da promuovere, lo script che descrive la storia e gli slogan. Il resto è generato: Claude (o l'LLM usato) struttura lo script nel file di descrizione e ne riempie tutti i campi, e una persona lo controlla, invece di scriverlo a mano shot per shot. Un esempio del file che contiene queste informazioni, e la funzione che lo produce, sono in <a href="dco-engine-tech.html" class="about-link">Motore DCO: descrizione tecnica</a>, capitolo 02.
+              Il motore ha bisogno della storia in una forma strutturata, non come prosa libera: una voce per ogni beat (inquadratura), con i suoi personaggi e la loro posizione <code>LEFT:</code>/<code>RIGHT:</code>, lo sfondo, il prodotto o l'oggetto in scena, il ruolo narrativo (inizio, rivelazione, chiusura) e le eventuali condizioni di scena, come pioggia o sole. Chi crea la campagna non deve compilare tutto questo: gli input manuali sono solo quattro — la coppia di mascotte nell'immagine neutra, il brand o l'oggetto da promuovere, lo script che descrive la storia e gli slogan. Il resto è generato: Claude (o l'LLM usato) struttura lo script nel file di descrizione e ne riempie tutti i campi, e una persona lo controlla, invece di scriverlo a mano shot per shot. Un esempio del file che contiene queste informazioni, e la funzione che lo produce, sono in <a href="/dco-engine-tech" class="about-link">Motore DCO: descrizione tecnica</a>, capitolo 02.
             </p>
 
           </div>
@@ -462,7 +462,7 @@
             </p>
 
             <p class="post-text">
-              <strong>Una correzione reale, passo per passo.</strong> Un caso di wrong object &mdash; l'altro conformity error che D è costruito per intercettare, sul prodotto anziché sul cast. Per lo shot principale della campagna &mdash; quello con cui si apre <a href="post-storyboard-vendemmia.html" class="about-link">La vendemmia di Grappolotto e Foglina</a>, che promuove un prodotto preciso, un cavatappi professionale in legno &mdash; una prima generazione pesca un cavatappi generico e piuttosto grezzo dal repository di asset del motore, invece di quello brandizzato per cui esiste l'intera campagna. D lo segnala rispetto al master: il file di descrizione nomina esattamente quel prodotto, non un ripiego preso dal repository. E corregge rigenerando la zona dell'oggetto con il cavatappi corretto &mdash; stessa inquadratura, stessi personaggi, stesso tavolo. La versione corretta è quella pubblicata come immagine principale della campagna.
+              <strong>Una correzione reale, passo per passo.</strong> Un caso di wrong object &mdash; l'altro conformity error che D è costruito per intercettare, sul prodotto anziché sul cast. Per lo shot principale della campagna &mdash; quello con cui si apre <a href="/post-storyboard-vendemmia" class="about-link">La vendemmia di Grappolotto e Foglina</a>, che promuove un prodotto preciso, un cavatappi professionale in legno &mdash; una prima generazione pesca un cavatappi generico e piuttosto grezzo dal repository di asset del motore, invece di quello brandizzato per cui esiste l'intera campagna. D lo segnala rispetto al master: il file di descrizione nomina esattamente quel prodotto, non un ripiego preso dal repository. E corregge rigenerando la zona dell'oggetto con il cavatappi corretto &mdash; stessa inquadratura, stessi personaggi, stesso tavolo. La versione corretta è quella pubblicata come immagine principale della campagna.
             </p>
 
           </div>
@@ -493,7 +493,7 @@
           <strong>Pro &mdash; velocità:</strong>  un difetto viene segnalato e rimandato in correzione nel tempo di una nuova esecuzione del loop, non nel tempo che ci vuole perché arrivi il suo turno in una coda di revisione umana.
         </li>
         <li>
-          <strong>Con &mdash; costo:</strong> ogni controllo automatico resta comunque una chiamata API per shot, lineare col volume; non è gratuito solo perché non coinvolge una persona (dettagli in <a href="dco-costs-tech.html" class="about-link">DCO: modello dei costi</a>).
+          <strong>Con &mdash; costo:</strong> ogni controllo automatico resta comunque una chiamata API per shot, lineare col volume; non è gratuito solo perché non coinvolge una persona (dettagli in <a href="/dco-costs-tech" class="about-link">DCO: modello dei costi</a>).
         </li>
       </ul>
 
@@ -522,7 +522,7 @@
           <strong>Passo 3:</strong> Un loop che genera variazioni della storia: in input il file di descrizione, le immagini dei personaggi e del prodotto e lo sfondo, con lo slogan come testo di appoggio; l'orchestrazione produce varianti di storia compatibili, messe in scena come definito nel file di descrizione. Dettagli: Il loop A&rarr;D&rarr;E&rarr;D e la sua avvertenza sull'affidabilità del giudice automatico &mdash; forte sulla deriva grossolana di identità, più debole sull'allineamento spaziale fine &mdash; .
         </li>
         <li>
-          <strong>Passo 4:</strong> Output: N varianti di storia generate e corrette via Controllo qualità (QA) per un brand &mdash; sequenze complete beat per beat, non singole immagini. Quanto costa davvero produrre N varianti &mdash; compresi tasso di scarto e inefficienze varie &mdash; è nella pagina di <a href="dco-costs-tech.html" class="about-link">DCO: modello dei costi</a>.
+          <strong>Passo 4:</strong> Output: N varianti di storia generate e corrette via Controllo qualità (QA) per un brand &mdash; sequenze complete beat per beat, non singole immagini. Quanto costa davvero produrre N varianti &mdash; compresi tasso di scarto e inefficienze varie &mdash; è nella pagina di <a href="/dco-costs-tech" class="about-link">DCO: modello dei costi</a>.
         </li>
         <li style="margin-top:1.2em; font-family:var(--mono); font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:#1A5CB3;">
           Oltre il motore &mdash; due aspetti dell'export
@@ -547,7 +547,7 @@
             </h3>
 
             <p class="post-text">
-              Un pool di immagini approvate non è ancora sufficiente per un DCO platform, occorre aggiungere un layer di export: ossia trasformare il run del diagramma in figura, in un <strong>Manifest strutturato</strong>, dove ogni riga è un'unità deliberabile — una inquadratura, in una proporzione, per uno slogan. Una storia di sei beat, con tre slogan e quattro proporzioni, produce 72 righe: è esattamente la moltiplicazione che in agenzia si usa fare spesso a mano.<br><br>Il manifest è uno e canonico. Il motore non scrive mai direttamente il formato di questo o quel fornitore: scrive tutto quello che ha usato nel batch, e un adattatore seleziona e rinomina le colonne per la destinazione. Aggiungere una destinazione vuol dire scrivere un adattatore. Il primo adattatore segue lo schema a feed già descritto in <a href="post-dco-mercato-globale.html" class="about-link">DCO e il mercato delle agenzie</a>: un ID univoco per riga, una URL immagine, i testi di headline e CTA, una URL di uscita. Elenchiamo i campi del Manifest:
+              Un pool di immagini approvate non è ancora sufficiente per un DCO platform, occorre aggiungere un layer di export: ossia trasformare il run del diagramma in figura, in un <strong>Manifest strutturato</strong>, dove ogni riga è un'unità deliberabile — una inquadratura, in una proporzione, per uno slogan. Una storia di sei beat, con tre slogan e quattro proporzioni, produce 72 righe: è esattamente la moltiplicazione che in agenzia si usa fare spesso a mano.<br><br>Il manifest è uno e canonico. Il motore non scrive mai direttamente il formato di questo o quel fornitore: scrive tutto quello che ha usato nel batch, e un adattatore seleziona e rinomina le colonne per la destinazione. Aggiungere una destinazione vuol dire scrivere un adattatore. Il primo adattatore segue lo schema a feed già descritto in <a href="/post-dco-mercato-globale" class="about-link">DCO e il mercato delle agenzie</a>: un ID univoco per riga, una URL immagine, i testi di headline e CTA, una URL di uscita. Elenchiamo i campi del Manifest:
             </p>
 
             <ul class="content-sublist">
@@ -555,7 +555,7 @@
                 <strong>asset_id</strong> — l'identificatore con cui il motore DCO chiamerà l'immagine. La convenzione è scriverle in questo ordine — <em>brand-storia-slogan-beat-proporzione</em> — perché quando un report segnala un problema, l'ID dice già dove guardare.
               </li>
               <li>
-                <strong>brand</strong>, <strong>linea_prodotto</strong> — le chiavi che tengono insieme un catalogo multi-prodotto (vedi <a href="post-dco-pipeline.html" class="about-link">DCO: una Pipeline, Più Prodotti</a>).
+                <strong>brand</strong>, <strong>linea_prodotto</strong> — le chiavi che tengono insieme un catalogo multi-prodotto (vedi <a href="/post-dco-pipeline" class="about-link">DCO: una Pipeline, Più Prodotti</a>).
               </li>
               <li>
                 <strong>storia</strong>, <strong>beat</strong>, <strong>ruolo_narrativo</strong> — da dove viene l'inquadratura e che funzione ha nella sequenza: apertura, sviluppo, chiusura. Serve perché una CTA non va messa sopra un beat di apertura.
@@ -598,7 +598,7 @@
             </p>
 
             <p class="post-text" style="margin-top:1.2em;">
-              Perché funzioni, al motore serve un ingresso che da solo non ha: la geometria dei template effettivamente in uso presso il cliente — quale rettangolo, in quale proporzione. In pratica, la messa in scena a rettangolo riservato deve attendere la geometria dei template di un cliente reale per essere messa alla prova. Per il conteggio delle chiamate API, i costi per immagine e il meccanismo tabella-di-configurazione/file-di-descrizione dietro entrambi gli stadi, vedi <a href="dco-costs-tech.html" class="about-link">DCO: modello dei costi</a>.
+              Perché funzioni, al motore serve un ingresso che da solo non ha: la geometria dei template effettivamente in uso presso il cliente — quale rettangolo, in quale proporzione. In pratica, la messa in scena a rettangolo riservato deve attendere la geometria dei template di un cliente reale per essere messa alla prova. Per il conteggio delle chiamate API, i costi per immagine e il meccanismo tabella-di-configurazione/file-di-descrizione dietro entrambi gli stadi, vedi <a href="/dco-costs-tech" class="about-link">DCO: modello dei costi</a>.
             </p>
 
             <figure class="post-figure" style="margin-top:1.6rem;">
@@ -620,7 +620,7 @@
         <ol>
           <li id="fn1">
             <span>
-              Il loop A&rarr;D&rarr;E&rarr;D è il ciclo genera&ndash;giudica&ndash;correggi su cui gira l'intera pipeline, descritto anche in <a href="post-dco-pipeline.html" class="about-link">DCO: una Pipeline, Più Prodotti</a>. <strong>A</strong> genera un'inquadratura a partire dal suo file di descrizione strutturato. <strong>D</strong>, un judge VLM basato su Gemini, verifica il risultato asserzione per asserzione &mdash; il personaggio LEFT: ha ancora i suoi tratti distintivi, la posa corrisponde al file di descrizione, e così via &mdash; ed elenca eventuali difetti per gravità. <strong>E</strong> modifica l'inquadratura per correggere solo ciò che D ha segnalato, senza rigenerarla da zero. D ricontrolla poi l'inquadratura corretta, e il ciclo si ripete finché non passa o non raggiunge un limite massimo di tentativi. Il loop gira una volta per inquadratura, quindi una singola variante di storia con più inquadrature lo esegue più volte.
+              Il loop A&rarr;D&rarr;E&rarr;D è il ciclo genera&ndash;giudica&ndash;correggi su cui gira l'intera pipeline, descritto anche in <a href="/post-dco-pipeline" class="about-link">DCO: una Pipeline, Più Prodotti</a>. <strong>A</strong> genera un'inquadratura a partire dal suo file di descrizione strutturato. <strong>D</strong>, un judge VLM basato su Gemini, verifica il risultato asserzione per asserzione &mdash; il personaggio LEFT: ha ancora i suoi tratti distintivi, la posa corrisponde al file di descrizione, e così via &mdash; ed elenca eventuali difetti per gravità. <strong>E</strong> modifica l'inquadratura per correggere solo ciò che D ha segnalato, senza rigenerarla da zero. D ricontrolla poi l'inquadratura corretta, e il ciclo si ripete finché non passa o non raggiunge un limite massimo di tentativi. Il loop gira una volta per inquadratura, quindi una singola variante di storia con più inquadrature lo esegue più volte.
             </span>
             <a href="#fnref1" class="fn-back" aria-label="back to text">&#8617;</a>
           </li>
@@ -639,14 +639,14 @@
       <p><strong>Cosa deve fornire davvero un brand?</strong> Solo quattro input manuali: la coppia di mascotte come immagine di riferimento neutra, il brand o l'oggetto da promuovere, lo script (ossia il testo della sceneggiatura, in linguaggio verbale e senza vincoli di controllo), e gli slogan. Tutto il resto — incluso il file di descrizione strutturato — viene generato.</p>
       <p><strong>Questo può sostituire del tutto una revisione creativa umana?</strong> No. Il giudice (D) individua solo errori di conformità — deriva d'identità, oggetti sbagliati, regole spaziali violate. Se la storia è precisamente quella che deve esprimere quel brand resta una decisione umana, presa quando lo storyboard master viene ultimato e deciso.</p>
 
-      <p>Correlati: <a href="post-pannocchino-spighetta.html" class="about-link">Storyboard Automatico: ecco Pannocchino e Spighetta</a> e <a href="post-storyboard-adv.html" class="about-link">Pannocchino e Spighetta hanno un bebè</a> per lo stesso motore applicato a un'altra coppia di mascotte.</p>
+      <p>Correlati: <a href="/post-pannocchino-spighetta" class="about-link">Storyboard Automatico: ecco Pannocchino e Spighetta</a> e <a href="/post-storyboard-adv" class="about-link">Pannocchino e Spighetta hanno un bebè</a> per lo stesso motore applicato a un'altra coppia di mascotte.</p>
 
         </div><!-- /page-body -->
   </main>
 
-  <a href="index.html" class="nav-back nav-home" id="home-link">HOME</a>
+  <a href="/" class="nav-back nav-home" id="home-link">HOME</a>
   <div class="lang-switch">
-    <a class="lang-btn" href="/en/post-dco-engine.html">EN</a>
+    <a class="lang-btn" href="/en/post-dco-engine">EN</a>
   </div>
 
   <script src="/assets/menu.js"></script>

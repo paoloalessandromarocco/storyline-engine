@@ -197,14 +197,14 @@
 <body class="interior">
 
   <header>
-    <a href="/en/about.html" class="nav-item">ABOUT</a>
+    <a href="/en/about" class="nav-item">ABOUT</a>
     <div class="menu-container">
       <span class="menu-trigger">TOPICS</span>
       <div class="menu-dropdown">
-        <a href="/en/adv.html"             class="menu-item">ADV</a>
-        <a href="/en/neural-graphics.html" class="menu-item">VISUAL STORIES</a>
-        <a href="/en/comfyui.html"         class="menu-item">COMFYUI</a>
-        <a href="/en/posts.html"           class="menu-item">POSTS</a>
+        <a href="/en/adv"             class="menu-item">ADV</a>
+        <a href="/en/neural-graphics" class="menu-item">VISUAL STORIES</a>
+        <a href="/en/comfyui"         class="menu-item">COMFYUI</a>
+        <a href="/en/posts"           class="menu-item">POSTS</a>
         <span class="menu-item menu-item--disabled">VIDEO</span>
       </div>
     </div>
@@ -230,7 +230,7 @@
             <p class="post-abstract-text">A Diffusion Model turns text into a consistent, photorealistic image through four pieces: CLIP (reading the prompt), noise/denoising (generating), IP-Adapter (keeping a face recognizable), and ControlNet (fixing where things sit in frame). This post explains all four with metaphors, no node graph required.</p>
 
       <p class="post-abstract-text">
-        The ideas behind a short ComfyUI course for filmmakers and graphic designers. A clarification first: this is not about video generation, but about static images that preserve identity and consistency across a sequence — as in comics and storyboards — in a hyperrealistic style, meaning with the precision and detail of a high-resolution photograph. Without going into individual nodes, this post uses metaphors to explain how a Diffusion Model turns text into an image (CLIP, noise and denoising, VAE), how two adapters — IP-Adapter and ControlNet — teach it to respect a face and a framing, and how these three guides come together at every cycle of generation. It closes with a broader reflection on how neural networks learn through repeated cycles. The technical details, the node graph and the downloadable pipeline are in the companion post <a href='post-comfyui-course-material.html' class='about-link'>ComfyUI Visual Stories — The Node Graph</a>. More advanced examples using this technique can be found in <a href='neural-graphics.html' class='about-link'>Comics and Storyboards</a>.
+        The ideas behind a short ComfyUI course for filmmakers and graphic designers. A clarification first: this is not about video generation, but about static images that preserve identity and consistency across a sequence — as in comics and storyboards — in a hyperrealistic style, meaning with the precision and detail of a high-resolution photograph. Without going into individual nodes, this post uses metaphors to explain how a Diffusion Model turns text into an image (CLIP, noise and denoising, VAE), how two adapters — IP-Adapter and ControlNet — teach it to respect a face and a framing, and how these three guides come together at every cycle of generation. It closes with a broader reflection on how neural networks learn through repeated cycles. The technical details, the node graph and the downloadable pipeline are in the companion post <a href='/post-comfyui-course-material' class='about-link'>ComfyUI Visual Stories — The Node Graph</a>. More advanced examples using this technique can be found in <a href='/neural-graphics' class='about-link'>Comics and Storyboards</a>.
       </p>
 
       <!-- ── INTRO ─────────────────────────────────────────── -->
@@ -412,23 +412,23 @@
       </section>
 
       <p class="post-text" style="margin-top:2.5rem; opacity:0.75;">
-  Technical details, node graph and downloadable pipeline: <a href='post-comfyui-course-material.html' class='about-link'>ComfyUI Visual Stories — The Node Graph</a>.
+  Technical details, node graph and downloadable pipeline: <a href='/post-comfyui-course-material' class='about-link'>ComfyUI Visual Stories — The Node Graph</a>.
 </p>
 
       <p class="section-label">FAQ</p>
       <p><strong>What does an IP-Adapter do in ComfyUI?</strong> It shows the model a reference image instead of describing a face in words, so the same character's face stays recognizable shot after shot — a variable controls how strongly it's followed.</p>
       <p><strong>What is ControlNet used for?</strong> It fixes the positions of things within the frame — typically via a depth map — so the model doesn't decide distances and body positions on its own. Text and the reference photo decide what's in the scene; ControlNet decides where.</p>
       <p><strong>What's the difference between CLIP and the noise/denoising process?</strong> CLIP associates the prompt's tokens with the image fragments it learned during training. Noise/denoising is the separate process that actually builds a new image: adding noise until nothing is recognizable, then removing it step by step, guided by what CLIP connected.</p>
-      <p><strong>Where's the actual node graph and downloadable pipeline?</strong> In the companion post, <a href='post-comfyui-course-material.html' class='about-link'>ComfyUI Visual Stories — The Node Graph</a> — this post covers the concepts, that one covers the implementation.</p>
+      <p><strong>Where's the actual node graph and downloadable pipeline?</strong> In the companion post, <a href='/post-comfyui-course-material' class='about-link'>ComfyUI Visual Stories — The Node Graph</a> — this post covers the concepts, that one covers the implementation.</p>
 
-      <p>Related: <a href='post-comfyui-intro.html' class='about-link'>What is ComfyUI</a> for the node basics first, and <a href='post-confyui-confronto-gemini.html' class='about-link'>Gemini vs ComfyUI: a comparison</a> for why this level of control isn't always worth it.</p>
+      <p>Related: <a href='/post-comfyui-intro' class='about-link'>What is ComfyUI</a> for the node basics first, and <a href='/post-confyui-confronto-gemini' class='about-link'>Gemini vs ComfyUI: a comparison</a> for why this level of control isn't always worth it.</p>
 
         </div><!-- /page-body -->
   </main>
 
-  <a href="/en/index.html" class="nav-back nav-home" id="home-link">HOME</a>
+  <a href="/en/" class="nav-back nav-home" id="home-link">HOME</a>
   <div class="lang-switch">
-    <a class="lang-btn" href="/post-comfyui-concepts.html">IT</a>
+    <a class="lang-btn" href="/post-comfyui-concepts">IT</a>
   </div>
 
   <script src="/assets/menu.js"></script>

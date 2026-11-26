@@ -222,14 +222,14 @@
 <body class="interior">
 
   <header>
-    <a href="/en/about.html" class="nav-item">ABOUT</a>
+    <a href="/en/about" class="nav-item">ABOUT</a>
     <div class="menu-container">
       <span class="menu-trigger">TOPICS</span>
       <div class="menu-dropdown">
-        <a href="/en/adv.html"             class="menu-item">ADV</a>
-        <a href="/en/neural-graphics.html" class="menu-item">VISUAL STORIES</a>
-        <a href="/en/comfyui.html"         class="menu-item">COMFYUI</a>
-        <a href="/en/posts.html"           class="menu-item">POSTS</a>
+        <a href="/en/adv"             class="menu-item">ADV</a>
+        <a href="/en/neural-graphics" class="menu-item">VISUAL STORIES</a>
+        <a href="/en/comfyui"         class="menu-item">COMFYUI</a>
+        <a href="/en/posts"           class="menu-item">POSTS</a>
         <span class="menu-item menu-item--disabled">VIDEO</span>
       </div>
     </div>
@@ -255,12 +255,12 @@
             <p class="post-abstract-text">An engine that takes one locked mascot pair, a brand, a script and a slogan, and generates many on-brand story variants — then automatically checks and repairs every shot against a human-approved master storyboard, so consistency holds at scale without reviewing each frame by hand.</p>
 
       <p class="post-abstract-text">
-        We present an engine for automatic storyboard generation, for campaigns built around mascot characters. Here's the I/O in brief. In: four manual inputs — the mascot pair (neutral reference image), the brand or object to promote, the script that describes the story, and the slogans — all chosen upstream, by the brand or its agency; everything else, the structured description file included, is generated. Out: N story variants, with a QA control mechanism, and export formatting matching the AD-serving/DCO platforms this generative engine plugs into. This post complements the worked example from the earlier post <a href="/en/post-storyboard-vendemmia.html" class="about-link">The grape harvest of Grappolotto and Foglina</a>, adding more technical depth. The goal is to bring attention to the automatic self-correction loop that checks variants against a human-approved master storyboard (Chapter 05), the manifest's data structure and its final human sign-off (Chapter 06), and on to the formats and the formatting spaces per the specifications of a reference template (Chapter 07). Finally, in the last step, the batch of information for every shot is exported into the Manifest, according to the format agreed with the AD-serving/DCO platforms. A point which, from the market's point of view, is covered in more depth in the post <a href="/en/post-dco-pipeline.html" class="about-link">DCO: One Pipeline, Many Products</a>.
+        We present an engine for automatic storyboard generation, for campaigns built around mascot characters. Here's the I/O in brief. In: four manual inputs — the mascot pair (neutral reference image), the brand or object to promote, the script that describes the story, and the slogans — all chosen upstream, by the brand or its agency; everything else, the structured description file included, is generated. Out: N story variants, with a QA control mechanism, and export formatting matching the AD-serving/DCO platforms this generative engine plugs into. This post complements the worked example from the earlier post <a href="/en/post-storyboard-vendemmia" class="about-link">The grape harvest of Grappolotto and Foglina</a>, adding more technical depth. The goal is to bring attention to the automatic self-correction loop that checks variants against a human-approved master storyboard (Chapter 05), the manifest's data structure and its final human sign-off (Chapter 06), and on to the formats and the formatting spaces per the specifications of a reference template (Chapter 07). Finally, in the last step, the batch of information for every shot is exported into the Manifest, according to the format agreed with the AD-serving/DCO platforms. A point which, from the market's point of view, is covered in more depth in the post <a href="/en/post-dco-pipeline" class="about-link">DCO: One Pipeline, Many Products</a>.
       </p>
 
       <!-- ── INTRO ─────────────────────────────────────────── -->
       <p class="post-text">
-        <strong>Where the engine sits.</strong> It is not the campaign. The brand or its agency decides the brand, the slogan, the cast and the setting, and calls the engine as a pre-production step: a creative lead or a campaign-operations person sends one job — a brief, a locked character pair, the background plates — either as an API request or as a JSON file, and gets back a pool of finished story variants. The story itself arrives in one of two ways: written by the brand's creative team, or drafted by the engine from the brief and then approved upstream; the engine never decides on its own which story runs. The pool then enters whichever dynamic-creative tool the client already runs today (<a href="/en/post-dco-mercato-globale.html" class="about-link">DCO and the Agency Market</a> covers how that hand-off works); the job and export formats are specified in <a href="/en/dco-engine-tech.html" class="about-link">DCO Engine: technical description</a>.<br><br>What follows covers the whole engine, not a layer on top of something explained elsewhere: given a character pair and a brand's slogan, generate the story itself, not just its shots; run it through the loop that produces compatible variants for new slogans; and check and repair every shot with the generate &rarr; judge &rarr; correct loop the rest of this mechanism relies on. The product being advertised in the running example is a professional wooden waiter's corkscrew, shown below.
+        <strong>Where the engine sits.</strong> It is not the campaign. The brand or its agency decides the brand, the slogan, the cast and the setting, and calls the engine as a pre-production step: a creative lead or a campaign-operations person sends one job — a brief, a locked character pair, the background plates — either as an API request or as a JSON file, and gets back a pool of finished story variants. The story itself arrives in one of two ways: written by the brand's creative team, or drafted by the engine from the brief and then approved upstream; the engine never decides on its own which story runs. The pool then enters whichever dynamic-creative tool the client already runs today (<a href="/en/post-dco-mercato-globale" class="about-link">DCO and the Agency Market</a> covers how that hand-off works); the job and export formats are specified in <a href="/en/dco-engine-tech" class="about-link">DCO Engine: technical description</a>.<br><br>What follows covers the whole engine, not a layer on top of something explained elsewhere: given a character pair and a brand's slogan, generate the story itself, not just its shots; run it through the loop that produces compatible variants for new slogans; and check and repair every shot with the generate &rarr; judge &rarr; correct loop the rest of this mechanism relies on. The product being advertised in the running example is a professional wooden waiter's corkscrew, shown below.
       </p>
 
       <!-- ── WHAT DCO IS ───────────────────────────────────── -->
@@ -304,7 +304,7 @@
           Large-scale UGC and co-creation campaigns, where the sheer review volume makes manual QA physically impossible rather than just expensive.
         </li>
         <li>
-          Each of these four buyer profiles is worked through in detail, with real cases, in <a href="/en/post-dco-pipeline.html" class="about-link">DCO: One Pipeline, Many Products</a>.
+          Each of these four buyer profiles is worked through in detail, with real cases, in <a href="/en/post-dco-pipeline" class="about-link">DCO: One Pipeline, Many Products</a>.
         </li>
       </ul>
 
@@ -364,7 +364,7 @@
             </h3>
 
             <p class="post-text">
-              The reference campaign uses the same storyboard already seen in <a href="/en/post-storyboard-vendemmia.html" class="about-link">The grape harvest of Grappolotto and Foglina</a>. The input the engine needs: one character pair in two images — the one with the two mascots isolated (neutral image) and the one with the mascots staged in the vineyard background plate — plus, when the campaign's product needs a locked visual identity of its own rather than a generic stand-in, its own separate reference image (the corkscrew case below). The pair's neutral image is taken as the reference, and it plays a double role, as we'll see in chapter <em>05 The judge in the loop</em>:<br>1. <strong>Identity reference</strong> — fixes the two characters' look: this is what D checks identity drift against (does the generated character actually look like Grappolotto/Foglina?).<br>2. <strong>Staging reference</strong> — also fixes who stands on the left and who on the right as the canonical convention, the same one that later reappears as the <code>LEFT:</code>/<code>RIGHT:</code> field in the structured description file (Chapter 03, one field per beat) and that D rechecks for spatial alignment (Chapter 05: “confirming a character sits correctly on the <code>LEFT:</code> versus the <code>RIGHT:</code>”).<br>The same logic applies to the product being advertised: once it has its own reference image, the generate→judge→correct loop checks its identity, position and context in every beat exactly as it does for the characters — not just that it's the right object (the wrong-object case in Chapter 05), but that it's staged the right way too. The settings for the other frames are obtained without needing any further input images, but from the description of the image itself, always using the neutral image of the two isolated mascots as the reference. The reference mascots can be generated (with the Google Gemini API, in this release) or commissioned from an outside service. That isn't the point of this post — the point is to show how easy it is to rely on a same-day setup, rather than a multi-week illustration commission.
+              The reference campaign uses the same storyboard already seen in <a href="/en/post-storyboard-vendemmia" class="about-link">The grape harvest of Grappolotto and Foglina</a>. The input the engine needs: one character pair in two images — the one with the two mascots isolated (neutral image) and the one with the mascots staged in the vineyard background plate — plus, when the campaign's product needs a locked visual identity of its own rather than a generic stand-in, its own separate reference image (the corkscrew case below). The pair's neutral image is taken as the reference, and it plays a double role, as we'll see in chapter <em>05 The judge in the loop</em>:<br>1. <strong>Identity reference</strong> — fixes the two characters' look: this is what D checks identity drift against (does the generated character actually look like Grappolotto/Foglina?).<br>2. <strong>Staging reference</strong> — also fixes who stands on the left and who on the right as the canonical convention, the same one that later reappears as the <code>LEFT:</code>/<code>RIGHT:</code> field in the structured description file (Chapter 03, one field per beat) and that D rechecks for spatial alignment (Chapter 05: “confirming a character sits correctly on the <code>LEFT:</code> versus the <code>RIGHT:</code>”).<br>The same logic applies to the product being advertised: once it has its own reference image, the generate→judge→correct loop checks its identity, position and context in every beat exactly as it does for the characters — not just that it's the right object (the wrong-object case in Chapter 05), but that it's staged the right way too. The settings for the other frames are obtained without needing any further input images, but from the description of the image itself, always using the neutral image of the two isolated mascots as the reference. The reference mascots can be generated (with the Google Gemini API, in this release) or commissioned from an outside service. That isn't the point of this post — the point is to show how easy it is to rely on a same-day setup, rather than a multi-week illustration commission.
             </p>
 
           </div>
@@ -395,7 +395,7 @@
             </h3>
 
             <p class="post-text">
-              The engine needs the campaign story in a structured shape, not free prose: one entry per beat (shot), each with its characters and their <code>LEFT:</code>/<code>RIGHT:</code> position, the background plate, the product or prop, the narrative role (opening, reveal, close) and any scene conditions, such as rain or sun. The campaign creator fills in none of this: there are only four manual inputs — the mascot pair in the neutral image, the brand or object to promote, the script that describes the story, and the slogans (if the brand has no script, the engine can draft one from the brief and a person approves it upstream). Everything else is generated: Claude (or whichever LLM is used) structures the script into the description file and fills in all its fields, and a person checks it rather than hand-writing it shot by shot. An example of the file, and the function that produces it, are in <a href="/en/dco-engine-tech.html" class="about-link">DCO Engine: technical description</a>, chapter 02.
+              The engine needs the campaign story in a structured shape, not free prose: one entry per beat (shot), each with its characters and their <code>LEFT:</code>/<code>RIGHT:</code> position, the background plate, the product or prop, the narrative role (opening, reveal, close) and any scene conditions, such as rain or sun. The campaign creator fills in none of this: there are only four manual inputs — the mascot pair in the neutral image, the brand or object to promote, the script that describes the story, and the slogans (if the brand has no script, the engine can draft one from the brief and a person approves it upstream). Everything else is generated: Claude (or whichever LLM is used) structures the script into the description file and fills in all its fields, and a person checks it rather than hand-writing it shot by shot. An example of the file, and the function that produces it, are in <a href="/en/dco-engine-tech" class="about-link">DCO Engine: technical description</a>, chapter 02.
             </p>
 
           </div>
@@ -460,7 +460,7 @@
             </p>
 
             <p class="post-text">
-              <strong>A real correction, worked through.</strong> A wrong-object case — the other conformity error D is built to catch, the product rather than the cast. For the campaign's hero shot — the one <a href="/en/post-storyboard-vendemmia.html" class="about-link">The grape harvest of Grappolotto and Foglina</a> opens on, promoting one specific product, a professional wooden corkscrew — a first generation pulls a generic, rough-looking corkscrew out of the engine's own asset repository instead of the branded one the whole campaign exists to sell. D flags it against the master: the spec names that exact product, not a stand-in from the repository. E corrects it by regenerating the prop region with the correct corkscrew — same shot, same characters, same table. The corrected version is the one published as the campaign's hero image.
+              <strong>A real correction, worked through.</strong> A wrong-object case — the other conformity error D is built to catch, the product rather than the cast. For the campaign's hero shot — the one <a href="/en/post-storyboard-vendemmia" class="about-link">The grape harvest of Grappolotto and Foglina</a> opens on, promoting one specific product, a professional wooden corkscrew — a first generation pulls a generic, rough-looking corkscrew out of the engine's own asset repository instead of the branded one the whole campaign exists to sell. D flags it against the master: the spec names that exact product, not a stand-in from the repository. E corrects it by regenerating the prop region with the correct corkscrew — same shot, same characters, same table. The corrected version is the one published as the campaign's hero image.
             </p>
 
           </div>
@@ -491,7 +491,7 @@
           <strong>Pro — speed:</strong> a defect is flagged and routed back for correction in the time it takes to run the loop again, not in the time it takes to reach the top of a review queue.
         </li>
         <li>
-          <strong>Con — cost:</strong> every automated check is still an API call per shot, scaling linearly with volume; it isn't free just because no person is involved (cost detail in <a href="/en/dco-costs-tech.html" class="about-link">DCO: cost model</a>).
+          <strong>Con — cost:</strong> every automated check is still an API call per shot, scaling linearly with volume; it isn't free just because no person is involved (cost detail in <a href="/en/dco-costs-tech" class="about-link">DCO: cost model</a>).
         </li>
       </ul>
 
@@ -520,7 +520,7 @@
           <strong>Step 3:</strong> A loop that generates story variations: the description file, the character and product images and the background go in, with the slogan as supporting copy; orchestration produces compatible story variants, staged as the description file says. Details: The A&rarr;D&rarr;E&rarr;D loop and its judge-reliability caveat — strong on gross identity drift, weaker on fine spatial alignment — against the Pros of automating that check at scale compared with a human doing it by hand.
         </li>
         <li>
-          <strong>Step 4:</strong> Output: N generated-and-QA-repaired story variants for one brand — full beat-by-beat sequences, not single images. What N actually costs to produce — yield, refusal rate — is in <a href="/en/dco-costs-tech.html" class="about-link">DCO: cost model</a>.
+          <strong>Step 4:</strong> Output: N generated-and-QA-repaired story variants for one brand — full beat-by-beat sequences, not single images. What N actually costs to produce — yield, refusal rate — is in <a href="/en/dco-costs-tech" class="about-link">DCO: cost model</a>.
         </li>
         <li style="margin-top:1.2em; font-family:var(--mono); font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:#1A5CB3;">
           Beyond the engine — two aspects of export
@@ -545,7 +545,7 @@
             </h3>
 
             <p class="post-text">
-              A pool of approved images is not yet something a dynamic-creative platform can read. The export layer covers that gap: it turns the run into a <strong>structured manifest</strong>, where every row is one deliverable unit — one shot, in one format, for one slogan. A six-beat story, with three slogans and four formats, produces 72 rows: exactly the multiplication that in an agency is still done by hand.<br><br>There is one canonical manifest, and the adapters towards individual platforms are thin. The engine never writes one vendor's format directly: it writes everything it knows about the batch, and an adapter selects and renames the columns for the destination. Adding a destination means writing an adapter, not touching the engine. The first adapter follows the feed schema already described in <a href="/en/post-dco-mercato-globale.html" class="about-link">DCO and the Agency Market</a>: a unique ID per row, an image URL, headline and CTA text, an exit URL. Let's list the Manifest's fields:
+              A pool of approved images is not yet something a dynamic-creative platform can read. The export layer covers that gap: it turns the run into a <strong>structured manifest</strong>, where every row is one deliverable unit — one shot, in one format, for one slogan. A six-beat story, with three slogans and four formats, produces 72 rows: exactly the multiplication that in an agency is still done by hand.<br><br>There is one canonical manifest, and the adapters towards individual platforms are thin. The engine never writes one vendor's format directly: it writes everything it knows about the batch, and an adapter selects and renames the columns for the destination. Adding a destination means writing an adapter, not touching the engine. The first adapter follows the feed schema already described in <a href="/en/post-dco-mercato-globale" class="about-link">DCO and the Agency Market</a>: a unique ID per row, an image URL, headline and CTA text, an exit URL. Let's list the Manifest's fields:
             </p>
 
             <ul class="content-sublist">
@@ -553,7 +553,7 @@
                 <strong>asset_id</strong> — the identifier the DCO engine will use to call the image. The convention is to write them in this order — <em>brand-story-slogan-beat-format</em> — because when a report flags a problem, the ID already says where to look.
               </li>
               <li>
-                <strong>brand</strong>, <strong>product_line</strong> — the keys that hold a multi-product catalogue together (see <a href="/en/post-dco-pipeline.html" class="about-link">DCO: One Pipeline, Many Products</a>).
+                <strong>brand</strong>, <strong>product_line</strong> — the keys that hold a multi-product catalogue together (see <a href="/en/post-dco-pipeline" class="about-link">DCO: One Pipeline, Many Products</a>).
               </li>
               <li>
                 <strong>story</strong>, <strong>beat</strong>, <strong>narrative_role</strong> — where the shot comes from and what function it has in the sequence: opening, development, close. It matters because a CTA does not belong on an opening beat.
@@ -596,7 +596,7 @@
             </p>
 
             <p class="post-text" style="margin-top:1.2em;">
-              For this to work the engine needs an input it does not have on its own: the geometry of the templates actually in use at the client — which rectangle, in which aspect ratio. In practice, reserved-rectangle staging is waiting for the template geometry of a real client to put it to the test. For the API-call counts, per-image costs and the config-table/description-file mechanics behind both stages, see <a href="/en/dco-costs-tech.html" class="about-link">DCO: cost model</a>.
+              For this to work the engine needs an input it does not have on its own: the geometry of the templates actually in use at the client — which rectangle, in which aspect ratio. In practice, reserved-rectangle staging is waiting for the template geometry of a real client to put it to the test. For the API-call counts, per-image costs and the config-table/description-file mechanics behind both stages, see <a href="/en/dco-costs-tech" class="about-link">DCO: cost model</a>.
             </p>
 
             <figure class="post-figure" style="margin-top:1.6rem;">
@@ -618,7 +618,7 @@
         <ol>
           <li id="fn1">
             <span>
-              The A&rarr;D&rarr;E&rarr;D loop is the generate–judge–correct cycle the whole pipeline runs on, also described in <a href="/en/post-dco-pipeline.html" class="about-link">DCO: One Pipeline, Many Products</a>. <strong>A</strong> generates a shot against its structured spec. <strong>D</strong>, a Gemini-based VLM judge, checks the result assertion by assertion — does the LEFT: character still have its defining features, does the pose match the spec, and so on — and lists any defects by severity. <strong>E</strong> edits the shot to fix only what D flagged, without re-generating from scratch. D then rechecks the corrected shot, and the cycle repeats until it passes or hits a budget cap on retries. The loop runs once per shot, so a single story variant with several shots runs it several times.
+              The A&rarr;D&rarr;E&rarr;D loop is the generate–judge–correct cycle the whole pipeline runs on, also described in <a href="/en/post-dco-pipeline" class="about-link">DCO: One Pipeline, Many Products</a>. <strong>A</strong> generates a shot against its structured spec. <strong>D</strong>, a Gemini-based VLM judge, checks the result assertion by assertion — does the LEFT: character still have its defining features, does the pose match the spec, and so on — and lists any defects by severity. <strong>E</strong> edits the shot to fix only what D flagged, without re-generating from scratch. D then rechecks the corrected shot, and the cycle repeats until it passes or hits a budget cap on retries. The loop runs once per shot, so a single story variant with several shots runs it several times.
             </span>
             <a href="#fnref1" class="fn-back" aria-label="back to text">&#8617;</a>
           </li>
@@ -637,14 +637,14 @@
       <p><strong>What does a brand actually have to supply?</strong> Just four manual inputs: the mascot pair as a neutral reference image, the brand or object to promote, the script (plain prose, with no control constraints), and the slogans. Everything else — including the structured description file — is generated.</p>
       <p><strong>Can this replace a human creative review entirely?</strong> No. The judge (D) only catches conformity errors — identity drift, wrong objects, broken spatial rules. Whether the story is precisely what that brand needs to express stays a human sign-off, made when the master storyboard is finalized and decided.</p>
 
-      <p>Related: <a href='post-pannocchino-spighetta.html' class='about-link'>Automatic Storyboard: meet Pannocchino e Spighetta</a> and <a href='post-storyboard-adv.html' class='about-link'>Pannocchino e Spighetta have a baby</a> for this same engine applied to a different mascot pair.</p>
+      <p>Related: <a href='/post-pannocchino-spighetta' class='about-link'>Automatic Storyboard: meet Pannocchino e Spighetta</a> and <a href='/post-storyboard-adv' class='about-link'>Pannocchino e Spighetta have a baby</a> for this same engine applied to a different mascot pair.</p>
 
         </div><!-- /page-body -->
   </main>
 
-  <a href="/en/index.html" class="nav-back nav-home" id="home-link">HOME</a>
+  <a href="/en/" class="nav-back nav-home" id="home-link">HOME</a>
   <div class="lang-switch">
-    <a class="lang-btn" href="/post-dco-engine.html">IT</a>
+    <a class="lang-btn" href="/post-dco-engine">IT</a>
   </div>
 
   <script src="/assets/menu.js"></script>

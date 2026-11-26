@@ -197,14 +197,14 @@
 <body class="interior">
 
   <header>
-    <a href="/en/about.html" class="nav-item">ABOUT</a>
+    <a href="/en/about" class="nav-item">ABOUT</a>
     <div class="menu-container">
       <span class="menu-trigger">TOPICS</span>
       <div class="menu-dropdown">
-        <a href="/en/adv.html"             class="menu-item">ADV</a>
-        <a href="/en/neural-graphics.html" class="menu-item">VISUAL STORIES</a>
-        <a href="/en/comfyui.html"         class="menu-item">COMFYUI</a>
-        <a href="/en/posts.html"           class="menu-item">POSTS</a>
+        <a href="/en/adv"             class="menu-item">ADV</a>
+        <a href="/en/neural-graphics" class="menu-item">VISUAL STORIES</a>
+        <a href="/en/comfyui"         class="menu-item">COMFYUI</a>
+        <a href="/en/posts"           class="menu-item">POSTS</a>
         <span class="menu-item menu-item--disabled">VIDEO</span>
       </div>
     </div>
@@ -228,12 +228,12 @@
 </div>
 
       <p class="post-abstract-text">
-        Teaching material from a short ComfyUI course for filmmakers and graphic designers: the node graph, explained node by node through two diagrams, of the pipeline used to generate the John-and-Elena sequence introduced in <a href='post-comfyui-concepts.html' class='about-link'>Concepts</a>. The full graph is downloadable as a JSON file. This post follows the GUI path, node by node; the Python and bash scripts that automate and scale that same kind of generation to many shots are in the companion post <a href='post-comfyui-python.html' class='about-link'>ComfyUI Visual Stories — The Python Scripts</a>.
+        Teaching material from a short ComfyUI course for filmmakers and graphic designers: the node graph, explained node by node through two diagrams, of the pipeline used to generate the John-and-Elena sequence introduced in <a href='/post-comfyui-concepts' class='about-link'>Concepts</a>. The full graph is downloadable as a JSON file. This post follows the GUI path, node by node; the Python and bash scripts that automate and scale that same kind of generation to many shots are in the companion post <a href='/post-comfyui-python' class='about-link'>ComfyUI Visual Stories — The Python Scripts</a>.
       </p>
 
       <!-- ── INTRO ─────────────────────────────────────────── -->
       <p class="post-text">
-  This post's job is to explain the two diagrams that summarise the graph — see the images below. The nodes they show are defined and explained one by one further down. For the ideas behind these diagrams, see <a href='post-comfyui-concepts.html' class='about-link'>Concepts</a>.
+  This post's job is to explain the two diagrams that summarise the graph — see the images below. The nodes they show are defined and explained one by one further down. For the ideas behind these diagrams, see <a href='/post-comfyui-concepts' class='about-link'>Concepts</a>.
 </p>
 
       <!-- ── FIGURE 1: loaders ─────────────────────────────── -->
@@ -261,7 +261,7 @@
 
 <ul class="content-sublist">
 <li>
-  <strong>Flux-dev</strong> (Load Diffusion Model) is the main neural network, the one that generates the images (a type of Diffusion Model, explained in <a href='post-comfyui-concepts.html' class='about-link'>Concepts</a>). Here it is loaded in its 8-bit (fp8) version: with this reduction in the bits used for its numerical representations, it can run on its own on roughly 12&nbsp;GB of VRAM on an RTX&nbsp;3090. Its output (MODEL) is sent to the six shots.
+  <strong>Flux-dev</strong> (Load Diffusion Model) is the main neural network, the one that generates the images (a type of Diffusion Model, explained in <a href='/post-comfyui-concepts' class='about-link'>Concepts</a>). Here it is loaded in its 8-bit (fp8) version: with this reduction in the bits used for its numerical representations, it can run on its own on roughly 12&nbsp;GB of VRAM on an RTX&nbsp;3090. Its output (MODEL) is sent to the six shots.
 </li>
 <li>
   <strong>DualCLIPLoader</strong> loads the CLIP network. With Flux it actually loads two networks: CLIP (clip_l) and t5xxl. They serve roughly the same purpose — text-to-image association — but the second one supports prompts of up to 512 tokens, while CLIP is limited to around 70. Its output (CLIP) is sent to the twelve text-encoding nodes.
@@ -296,7 +296,7 @@
 </p>
 
 <p class="post-text">
-  The first two act on the image itself: the IP-Adapter (<strong>IPA</strong>) and <strong>ControlNet</strong>, which modify certain internal states of the main Flux network. Following the wires between the nodes: the Flux model is sent to six chains of IPA nodes, one per final shot. In the four shots with a single character the chain has one ApplyFluxIPA node — for example <code style='word-break:break-word;'>Shot_1_Cafe_Wide_A</code>, which opens on John alone at the bar, or <code style='word-break:break-word;'>Shot_6_Garage_Closeup_A</code>, his dramatic close-up in the garage. In the two shots where both characters share the scene — <code style='word-break:break-word;'>Shot_2_Cafe_Medium_OTS_A</code>, the over-the-shoulder shot at the bar, and <code style='word-break:break-word;'>Shot_5_Garage_TwoShot_A</code>, the confrontation in the garage — the chain has two ApplyFluxIPA nodes in sequence, one per character: eight applications in all, which is why the FLUX_IPA output is sent to eight nodes in the first diagram. The output of each chain enters one of the six KSampler modules, which are responsible for the Noising/Denoising process described in <a href='post-comfyui-concepts.html' class='about-link'>Concepts</a>, controlling image generation starting from random noise (the fog discussed there). As for ControlNet, it's simpler: six lines leave the loader and enter the six nodes that apply it, one per shot — no distinction between single- and double-character shots, because the depth map concerns the scene, not the characters.
+  The first two act on the image itself: the IP-Adapter (<strong>IPA</strong>) and <strong>ControlNet</strong>, which modify certain internal states of the main Flux network. Following the wires between the nodes: the Flux model is sent to six chains of IPA nodes, one per final shot. In the four shots with a single character the chain has one ApplyFluxIPA node — for example <code style='word-break:break-word;'>Shot_1_Cafe_Wide_A</code>, which opens on John alone at the bar, or <code style='word-break:break-word;'>Shot_6_Garage_Closeup_A</code>, his dramatic close-up in the garage. In the two shots where both characters share the scene — <code style='word-break:break-word;'>Shot_2_Cafe_Medium_OTS_A</code>, the over-the-shoulder shot at the bar, and <code style='word-break:break-word;'>Shot_5_Garage_TwoShot_A</code>, the confrontation in the garage — the chain has two ApplyFluxIPA nodes in sequence, one per character: eight applications in all, which is why the FLUX_IPA output is sent to eight nodes in the first diagram. The output of each chain enters one of the six KSampler modules, which are responsible for the Noising/Denoising process described in <a href='/post-comfyui-concepts' class='about-link'>Concepts</a>, controlling image generation starting from random noise (the fog discussed there). As for ControlNet, it's simpler: six lines leave the loader and enter the six nodes that apply it, one per shot — no distinction between single- and double-character shots, because the depth map concerns the scene, not the characters.
 </p>
 
 <p class="post-text">
@@ -367,7 +367,7 @@
   <strong>ControlNetApplyAdvanced</strong> applies the depth map rendered from the 3D camera/mesh setup, at a given strength (here 0.25, over the whole sampling process), providing spatial and pose guidance to the model.
 </li>
 <li>
-  <strong>KSampler</strong> is the actual sampling engine: it performs the iterative Noising/Denoising cycle described in <a href='post-comfyui-concepts.html' class='about-link'>Concepts</a>, converting random noise into the final latent image, guided by the positive/negative conditioning and by ControlNet. Here: 30 steps, euler sampler with the simple scheduler, cfg 1.0.
+  <strong>KSampler</strong> is the actual sampling engine: it performs the iterative Noising/Denoising cycle described in <a href='/post-comfyui-concepts' class='about-link'>Concepts</a>, converting random noise into the final latent image, guided by the positive/negative conditioning and by ControlNet. Here: 30 steps, euler sampler with the simple scheduler, cfg 1.0.
 </li>
 <li>
   <strong>EmptyLatentImage</strong> allocates the empty latent canvas at the target resolution (1344&times;768) that KSampler will progressively fill.
@@ -423,7 +423,7 @@
 <p class="post-text" style="margin-top:0.4rem; display:flex; gap:1.2rem; flex-wrap:wrap; align-items:center;">
               <a href="/assets/scenario3toConfyUI_B_canvas_v3.2_6.json"
                  class="post-pdf-btn" download>&darr; Download the pipeline (JSON)</a>
-              <a href="/en/comfyui-pipeline-setup.html"
+              <a href="/en/comfyui-pipeline-setup"
                  class="post-pdf-btn">&rarr; Instructions for customized modules</a>
             </p>
 
@@ -435,9 +435,9 @@
     </div><!-- /page-body -->
   </main>
 
-  <a href="/en/index.html" class="nav-back nav-home" id="home-link">HOME</a>
+  <a href="/en/" class="nav-back nav-home" id="home-link">HOME</a>
   <div class="lang-switch">
-    <a class="lang-btn" href="/post-comfyui-course-material.html">IT</a>
+    <a class="lang-btn" href="/post-comfyui-course-material">IT</a>
   </div>
 
   <script src="/assets/menu.js"></script>

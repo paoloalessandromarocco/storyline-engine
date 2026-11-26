@@ -195,14 +195,14 @@
 <body class="interior">
 
   <header>
-    <a href="/en/about.html" class="nav-item">ABOUT</a>
+    <a href="/en/about" class="nav-item">ABOUT</a>
     <div class="menu-container">
       <span class="menu-trigger">TOPICS</span>
       <div class="menu-dropdown">
-        <a href="/en/adv.html"             class="menu-item">ADV</a>
-        <a href="/en/neural-graphics.html" class="menu-item">VISUAL STORIES</a>
-        <a href="/en/comfyui.html"         class="menu-item">COMFYUI</a>
-        <a href="/en/posts.html"           class="menu-item">POSTS</a>
+        <a href="/en/adv"             class="menu-item">ADV</a>
+        <a href="/en/neural-graphics" class="menu-item">VISUAL STORIES</a>
+        <a href="/en/comfyui"         class="menu-item">COMFYUI</a>
+        <a href="/en/posts"           class="menu-item">POSTS</a>
         <span class="menu-item menu-item--disabled">VIDEO</span>
       </div>
     </div>
@@ -227,7 +227,7 @@
       </div>
 
       <p class="post-abstract-text">
-        This post gives an overview of: who operates in the Italian DCO (Dynamic Creative Optimization) market, who buys from the providers/agencies offering the service, where a small producer can realistically enter, and what a flexible service shared by several agencies would look like. In short, the realistic way in: not a new product that could compete with the platforms. The international picture — what traditional DCO can and can't do, what the large platforms' AI already covers, and the realistic route into the gap — is written up in <a href="/en/post-dco-mercato-globale.html" class="about-link">DCO and the Agency Market</a>.
+        This post gives an overview of: who operates in the Italian DCO (Dynamic Creative Optimization) market, who buys from the providers/agencies offering the service, where a small producer can realistically enter, and what a flexible service shared by several agencies would look like. In short, the realistic way in: not a new product that could compete with the platforms. The international picture — what traditional DCO can and can't do, what the large platforms' AI already covers, and the realistic route into the gap — is written up in <a href="/en/post-dco-mercato-globale" class="about-link">DCO and the Agency Market</a>.
       </p>
 
       <!-- ── CONTENTS ──────────────────────────────────────── -->
@@ -304,7 +304,7 @@
               <strong>On current evidence, the realistic way in is not a product</strong> but a service: calibration, audit and spot-check of AI creative checks, sold by the project to the mid-market agencies and regional brands described in <a href="#open-door" class="about-link">chapter 03</a>. Integrators and vendors are a later, harder step. The reason is a gap the vendors leave open. Platforms publish accuracy claims without a validation protocol behind them: <i>Rocketium</i> advertises 90%+ brand-compliance accuracy without disclosing how it was tested, and the <i>Volkswagen</i> pipeline built with <i>AWS</i> uses LLM judges for brand fit while its published account reports no agreement figure between judge and human experts<sup class="fn-ref"><a href="#fn1" id="fnref1">1</a></sup>. Either way, per-brand calibration is a technical step the flexible engine needs anyway to be configured for that specific brand: it becomes the first step of onboarding itself, not a separate consulting engagement, because it's how the agency sees, from day one, how far it can trust the automatic check on its own creative.
             </p>
             <p class="post-text" style="margin-top:1.2em;">
-              What would be proposed comes in three parts. <strong>A calibration study per brand:</strong> a person labels a set of shots as on/off-brand (30–50 to start, around 400 for a result worth highlighting), and the study then reports how often the judge agrees with the human result (Cohen's kappa) and how many bad shots it lets through<sup class="fn-ref"><a href="#fn2" id="fnref2">2</a></sup>. Raw agreement alone can mislead when brand-fit calls are ambiguous: a 2025 study shows that standard validation can pick judges of up to 34% lower quality than the supervised one<sup class="fn-ref"><a href="#fn3" id="fnref3">3</a></sup>. <strong>A blind audit of a judge already in use:</strong> a reviewer who has not seen its verdicts re-checks a sample of the shots it approved; the share they reject is the escape rate, defined in <a href="/en/dco-engine-tech.html" class="about-link">DCO Engine: technical description</a>, and that same sample is also used to measure the time spent approving each shot and the residual-defect rate &mdash; the two measures that, together with API cost, make up the total cost per approved variant.
+              What would be proposed comes in three parts. <strong>A calibration study per brand:</strong> a person labels a set of shots as on/off-brand (30–50 to start, around 400 for a result worth highlighting), and the study then reports how often the judge agrees with the human result (Cohen's kappa) and how many bad shots it lets through<sup class="fn-ref"><a href="#fn2" id="fnref2">2</a></sup>. Raw agreement alone can mislead when brand-fit calls are ambiguous: a 2025 study shows that standard validation can pick judges of up to 34% lower quality than the supervised one<sup class="fn-ref"><a href="#fn3" id="fnref3">3</a></sup>. <strong>A blind audit of a judge already in use:</strong> a reviewer who has not seen its verdicts re-checks a sample of the shots it approved; the share they reject is the escape rate, defined in <a href="/en/dco-engine-tech" class="about-link">DCO Engine: technical description</a>, and that same sample is also used to measure the time spent approving each shot and the residual-defect rate &mdash; the two measures that, together with API cost, make up the total cost per approved variant.
             </p>
 
           </div>
@@ -319,7 +319,7 @@
 
 
       <p class="post-text">
-        <strong>The model that holds up is a flexible service.</strong> The same engine can serve five to ten small agencies at once, because everything that differs between them isn't in the development code: each brand arrives as a configuration file, a reference pair and a calibration set (see <a href="/dco-engine-tech.html#brand-config" class="about-link">DCO Engine: technical description</a>), while the loop, the manifest and the export are shared. Five to ten agencies at two or three campaigns each means ten to thirty campaigns a month through one engine. The fixed cost is low (see the <a href="/dco-costs-tech.html#multi-agency" class="about-link">detailed cost page</a>); what grows with each new agency is the cost of onboarding its brands and, to a much smaller extent, the API cost. An approach like this also fits what the engine is for: brand-consistent, checked creative for agencies that have neither a big-brand production budget nor a reviewer for every variant.
+        <strong>The model that holds up is a flexible service.</strong> The same engine can serve five to ten small agencies at once, because everything that differs between them isn't in the development code: each brand arrives as a configuration file, a reference pair and a calibration set (see <a href="/dco-engine-tech#brand-config" class="about-link">DCO Engine: technical description</a>), while the loop, the manifest and the export are shared. Five to ten agencies at two or three campaigns each means ten to thirty campaigns a month through one engine. The fixed cost is low (see the <a href="/dco-costs-tech#multi-agency" class="about-link">detailed cost page</a>); what grows with each new agency is the cost of onboarding its brands and, to a much smaller extent, the API cost. An approach like this also fits what the engine is for: brand-consistent, checked creative for agencies that have neither a big-brand production budget nor a reviewer for every variant.
       </p>
 
       <p class="post-text">
@@ -329,7 +329,7 @@
         <li><strong>Onboarding a brand stays cheap.</strong> The configuration file is the service's lever; if every new brand needs bespoke customisation, the model collapses back into the dedicated service.</li>
         <li><strong>Calibration is done per brand.</strong> It cannot be left out or shared, so onboarding carries a real human-time cost that doesn't show up in any API cost.</li>
         <li><strong>Tenants are isolated.</strong> One agency's reference pair, configuration and outputs are never visible from another: shared engine, separate brands.</li>
-        <li><strong>Human review carries real value, not a free step.</strong> The engine has three points in the flow where supervision is still needed (it isn't all generated-and-approved automatically by the judge &mdash; there are three checkpoints where a human has to look and decide, described in <a href="/en/dco-engine-tech.html" class="about-link">DCO Engine: technical description</a>). Those three checkpoints don't disappear once the engine is shared across agencies: every campaign that passes through the system carries the same number of steps to check by hand, and with many small tenants that queue has to be sized and priced accordingly.</li>
+        <li><strong>Human review carries real value, not a free step.</strong> The engine has three points in the flow where supervision is still needed (it isn't all generated-and-approved automatically by the judge &mdash; there are three checkpoints where a human has to look and decide, described in <a href="/en/dco-engine-tech" class="about-link">DCO Engine: technical description</a>). Those three checkpoints don't disappear once the engine is shared across agencies: every campaign that passes through the system carries the same number of steps to check by hand, and with many small tenants that queue has to be sized and priced accordingly.</li>
       </ul>
 
       <p class="post-text">
@@ -343,7 +343,7 @@
 
 
       <p class="post-text" style="margin-top:2.5rem; opacity:0.75;">
-        <span>Related reading: </span><a href="/en/post-dco-mercato-globale.html" class="about-link">DCO and the Agency Market</a><span>, </span><a href="/en/post-dco-pipeline.html" class="about-link">DCO: One Pipeline, Many Products</a><span>, </span><a href="/en/post-dco-engine.html" class="about-link">The Engine: generation, control, export</a><span>, </span><a href="/dco-costs-tech.html#multi-agency" class="about-link">DCO: cost model</a>.
+        <span>Related reading: </span><a href="/en/post-dco-mercato-globale" class="about-link">DCO and the Agency Market</a><span>, </span><a href="/en/post-dco-pipeline" class="about-link">DCO: One Pipeline, Many Products</a><span>, </span><a href="/en/post-dco-engine" class="about-link">The Engine: generation, control, export</a><span>, </span><a href="/dco-costs-tech#multi-agency" class="about-link">DCO: cost model</a>.
       </p>
 
 
@@ -384,9 +384,9 @@
     </div><!-- /page-body -->
   </main>
 
-  <a href="/en/index.html" class="nav-back nav-home" id="home-link">HOME</a>
+  <a href="/en/" class="nav-back nav-home" id="home-link">HOME</a>
   <div class="lang-switch">
-    <a class="lang-btn" href="/post-dco-mercato-agenzie-ita.html">IT</a>
+    <a class="lang-btn" href="/post-dco-mercato-agenzie-ita">IT</a>
   </div>
 
   <script src="/assets/menu.js"></script>

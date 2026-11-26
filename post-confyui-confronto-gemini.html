@@ -229,14 +229,14 @@
 <body class="interior">
 
   <header>
-    <a href="about.html" class="nav-item">ABOUT</a>
+    <a href="/about" class="nav-item">ABOUT</a>
     <div class="menu-container">
       <span class="menu-trigger">ARGOMENTI</span>
       <div class="menu-dropdown">
-        <a href="adv.html"             class="menu-item">ADV</a>
-        <a href="neural-graphics.html" class="menu-item">FUMETTI/STORYBOARD</a>
-        <a href="comfyui.html"         class="menu-item">COMFYUI</a>
-        <a href="posts.html"           class="menu-item">POST</a>
+        <a href="/adv"             class="menu-item">ADV</a>
+        <a href="/neural-graphics" class="menu-item">FUMETTI/STORYBOARD</a>
+        <a href="/comfyui"         class="menu-item">COMFYUI</a>
+        <a href="/posts"           class="menu-item">POST</a>
         <span class="menu-item menu-item--disabled">VIDEO</span>
       </div>
     </div>
@@ -275,7 +275,7 @@
             </h3>
 
             <p class="post-text">
-              La pipeline costruita nelle prime due parti del corso &mdash; <a href="post-comfyui-modelli.html" class="about-link">prima parte</a> e <a href="post-comfyui-modelli2.html" class="about-link">seconda parte</a> &mdash; è un grafo ComfyUI da oltre 50 nodi, con catene IP-Adapter e ControlNet e cicli di KSampler, da cui trarre spunto per i nodi A e B, mentre il grafo di coerenza D&rarr;E dell'immagine &ldquo;Il sotto-grafo minimo di coerenza&rdquo; costituisce una novità. Laddove nel corso (ComfyUI classico) occorreva una rigenerazione globale dell'immagine, nel caso corrente il passaggio D&rarr;E è una riparazione locale e mirata, ottenuta con un VLM, che non era presente nella versione base.
+              La pipeline costruita nelle prime due parti del corso &mdash; <a href="/post-comfyui-modelli" class="about-link">prima parte</a> e <a href="/post-comfyui-modelli2" class="about-link">seconda parte</a> &mdash; è un grafo ComfyUI da oltre 50 nodi, con catene IP-Adapter e ControlNet e cicli di KSampler, da cui trarre spunto per i nodi A e B, mentre il grafo di coerenza D&rarr;E dell'immagine &ldquo;Il sotto-grafo minimo di coerenza&rdquo; costituisce una novità. Laddove nel corso (ComfyUI classico) occorreva una rigenerazione globale dell'immagine, nel caso corrente il passaggio D&rarr;E è una riparazione locale e mirata, ottenuta con un VLM, che non era presente nella versione base.
             </p>
 
             <p class="post-text">
@@ -420,7 +420,7 @@
             </p>
 
             <p class="post-text">
-              La soluzione corretta è usare ComfyUI come puro motore GPU richiamato via API, mantenendo il ciclo <code>while</code> in Python &mdash; lo stesso schema usato da <code>patcher.py</code> e <code>sweep.py</code> nella <a href="post-comfyui-python.html" class="about-link">terza parte di questo corso</a>. Python interroga il VLM critico, converte le coordinate delle aree fallite in maschere sfumate per l'inpainting su ComfyUI e decide autonomamente quando fermarsi.
+              La soluzione corretta è usare ComfyUI come puro motore GPU richiamato via API, mantenendo il ciclo <code>while</code> in Python &mdash; lo stesso schema usato da <code>patcher.py</code> e <code>sweep.py</code> nella <a href="/post-comfyui-python" class="about-link">terza parte di questo corso</a>. Python interroga il VLM critico, converte le coordinate delle aree fallite in maschere sfumate per l'inpainting su ComfyUI e decide autonomamente quando fermarsi.
             </p>
 
           </div>
@@ -523,7 +523,7 @@
         <ol>
           <li id="fn1">
             <span>
-              Vedi la <a href="post-comfyui-python.html" class="about-link">terza parte di questo corso</a> per l'elenco completo dei campi di <code>shots_config.py</code>: ambiente/wall, framing, focale, angolo, oggetti, prompt positivo e negativo, e pesi per shot. La specifica interna di Gemini copre lo stesso perimetro, ma viene generata dinamicamente da un LLM anziché compilata a mano.
+              Vedi la <a href="/post-comfyui-python" class="about-link">terza parte di questo corso</a> per l'elenco completo dei campi di <code>shots_config.py</code>: ambiente/wall, framing, focale, angolo, oggetti, prompt positivo e negativo, e pesi per shot. La specifica interna di Gemini copre lo stesso perimetro, ma viene generata dinamicamente da un LLM anziché compilata a mano.
             </span>
             <a href="#fnref1" class="fn-back" aria-label="back to text">&#8617;</a>
           </li>
@@ -535,14 +535,14 @@
       <p><strong>ComfyUI può eseguire nativamente il ciclo genera-giudica-correggi?</strong> No: esegue un grafo aciclico fisso senza un vero arco di ritorno condizionale. La soluzione pratica è gestire il ciclo <code>while</code> in Python richiamando l'API di ComfyUI solo sulle maschere da riparare.</p>
       <p><strong>Quando vale la pena costruire il ciclo aperto A&ndash;E invece di usare</strong> Gemini? Non per un progetto singolo curato a mano, dove si rivede già ogni fotogramma, ma nella produzione automatizzata su larga scala dove servono controllo granulare e autocorrezione continua.</p>
 
-      <p>Correlati: <a href="post-comfyui-intro.html" class="about-link">Cosa è ComfyUI</a> per le basi sui nodi, e <a href="post-comfyui-concepts.html" class="about-link">ComfyUI Storie Visive — Concetti</a> per come il corso gestisce la coerenza senza ciclo correttivo.</p>
+      <p>Correlati: <a href="/post-comfyui-intro" class="about-link">Cosa è ComfyUI</a> per le basi sui nodi, e <a href="/post-comfyui-concepts" class="about-link">ComfyUI Storie Visive — Concetti</a> per come il corso gestisce la coerenza senza ciclo correttivo.</p>
 
         </div><!-- /page-body -->
   </main>
 
-  <a href="index.html" class="nav-back nav-home" id="home-link">HOME</a>
+  <a href="/" class="nav-back nav-home" id="home-link">HOME</a>
   <div class="lang-switch">
-    <a class="lang-btn" href="/en/post-confyui-confronto-gemini.html">EN</a>
+    <a class="lang-btn" href="/en/post-confyui-confronto-gemini">EN</a>
   </div>
 
   <script src="/assets/menu.js"></script>
